@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Start header file -->
+<header id = "header">
+<nav  style ="position: fixed;"id="ac-globalnav" class="no-js " role="navigation" aria-label="Global Navigation" data-hires="false" data-analytics-region="global nav" lang="en-US">
+	<div class="ac-gn-content">
+		<ul class="ac-gn-header">
+			<li class="ac-gn-item ac-gn-menuicon"> <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+					</span>
+					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+					</span>
+				</label>
+				<a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
+				<a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-apple">
+				<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+				<a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
+		</ul>
+		<ul class="ac-gn-list">
+			<li class="ac-gn-item ac-gn-apple">
+				<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+				<a class="ac-gn-link" href="/discover/"> <span>  </span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+				<a class="ac-gn-link" href="/design/"> <span> Trang chủ </span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+				<a class="ac-gn-link" href="/develop/"> <span>Thảo luận</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+				<a class="ac-gn-link" href="/distribute/"> <span>Đóng góp</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+				<a class="ac-gn-link" href="/support/"> <span>Sự kiện</span></a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+				<a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search glyphicon glyphicon-search" aria-label="Search event" href="/" > <span class="ac-gn-search-placeholder" aria-hidden="true">Search</span> </a>
+			</li>
+			 <li class="ac-gn-item ac-gn-item-menu ac-gn-aboutus">
+				<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-account">Tài khoản
+				<a class="ac-gn-link dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-caret-down"></i> </a>
+			<ul class="dropdown-menu dropdown-user" style ="padding:10px;">
+       <li>
+       <a href="profile.html">
+       <i class="fa fa-user"></i> My Profile
+       </a>
+       </li>
+       <li>
+        <a href="mailbox.html">
+        <i class="fa fa-envelope"></i> My Messages
+        <span class="badge green pull-right">4</span>
+        </a>
+        </li>
+        <li>
+        <a href="#">
+        <i class="fa fa-bell"></i> My Alerts
+         <span class="badge orange pull-right" style="background-color:orange;">9</span>
+         </a>
+        </li>
+		
+        <li>
+                                <a href="#">
+                                    <i class="fa fa-tasks"></i> My Tasks
+                                    <span class="badge blue pull-right"style="background-color:blue;">10</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="calendar.html">
+                                    <i class="fa fa-calendar"></i> My Calendar
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-gear"></i> Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="logout_open" href="#logout">
+                                    <i class="fa fa-sign-out"></i> Logout
+                                    <strong>Nhien LH</strong>
+                                </a>
+                            </li>
+                        </ul>
+            </li>
+			
+            
+		</ul>
+		
+	</div>
+</nav>
+</header>
+<!-- End header file -->
+<!-- Start slider -->
+ <div id="slider">
+         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <img class="imgCarouse" src="Images/slider1.jpg" alt="...">
+               
+              </div>
+              <div class="item">
+                <img class="imgCarouse" src="Images/slider2.jpg" alt="...">
+              </div>
+			  <div class="item">
+                <img class="imgCarouse" src="Images/slider3.jpg" alt="...">
+              </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+			</div>
+
+      </div> 
+	 
+</div>
+ <!-- end slider -->
+</body>	
+
+</html>
