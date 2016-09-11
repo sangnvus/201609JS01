@@ -1303,6 +1303,7 @@ html, body {
 {
  float:left;
  padding-top:20px;
+ width:270px;
  text-align:center;
  margin-top:20px;
  border: 1px solid #d6d6d6;
@@ -1317,10 +1318,10 @@ html, body {
 	padding-bottom:36px;
 	
 }
-.container{
-	
-	padding:50px auto;
-
+@media (min-width: 1170px) {
+  .container {
+    width: 1300px;
+  }
 }
 footer{ 
     text-align:center;
