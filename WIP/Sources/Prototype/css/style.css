@@ -5,45 +5,13 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
 
-body {
-  margin: 0;
-  padding: 0; }
 
-ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, hgroup, p, blockquote, figure,
-form, fieldset, input, legend, pre, abbr {
-  margin: 0;
-  padding: 0; }
-
-pre, code, address, caption, th, figcaption {
-  font-size: 1em;
-  font-weight: normal;
-  font-style: normal; }
-
-fieldset, iframe, img {
-  border: none; }
-
-caption, th {
-  text-align: left; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
-article, aside, footer, header, nav, main, section, summary, details,
-hgroup, figure, figcaption {
-  display: block; }
-
-audio, canvas, video, progress {
-  display: inline-block;
-  vertical-align: baseline; }
 
 button {
   font: inherit;
   vertical-align: middle; }
 
-@media print {
-  body, #main, #content {
-    color: #000; }
+
 
   a, a:link, a:visited {
     color: #000;
@@ -56,7 +24,7 @@ button {
 html, body {
   margin: 0;
   padding: 0; }
-
+/* Nav bar */
 #ac-globalnav, #ac-gn-segmentbar {
 
   font-weight: normal;
@@ -1318,6 +1286,8 @@ html, body {
   background: rgba(240, 240, 240, 0.9);
 	
 }
+
+/* SLIDER */
 #slider 
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
@@ -1328,4 +1298,33 @@ html, body {
  .carousel-caption{
  	padding-bottom: 13%;
  }
+/* LeaderBoard */
+#LeaderBoard
+{
+ float:left;
+ padding-top:20px;
+ text-align:center;
+ margin-top:20px;
+ border: 1px solid #d6d6d6;
+
+}
+#topEvent{
+	padding-top:25px;
+	float:right;
+	margin-top:20px;
+	border: 1px solid #d6d6d6;
+
+	padding-bottom:36px;
 	
+}
+.container{
+	
+	padding:50px auto;
+
+}
+footer{ 
+    text-align:center;
+    background:rgba(240, 240, 240, 0.9);
+    margin-left:-100%;
+    margin-right:-100%;
+}
