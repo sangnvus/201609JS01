@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,6 +9,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+ 
 </head>
 <body>
 <!-- Start header file -->
@@ -149,6 +150,163 @@
 	 
 </div>
  <!-- end slider -->
-</body>	
 
+ <!--Start content -->
+<div class="container" >
+	 <div id = "topEvent"  class="col-sm-9">
+	   <div class="row">
+        <div class="col-sm-4">
+      <p><strong>Chủ đề: </strong></p><br>
+      <img src="Images/event1.jpg" alt="..." width="255" height="255">
+    </div>
+    <div class="col-sm-4">
+      <p><strong>Chủ đề: </strong></p><br>
+      <img src="Images/event2.jpg" alt="..." width="255" height="255">
+    </div>
+    <div class="col-sm-4">
+      <p><strong>Chủ đề:</strong></p><br>
+      <img src="Images/event3.jpg" alt="..." width="255" height="255">
+    </div>
+  </div>
+    <div class="row" style="padding-top:20px;">
+    <div class="col-sm-4">
+      <p><strong>Chủ đề: </strong></p><br>
+      <img src="Images/event4.jpg" alt="..." width="255" height="255">
+    </div>
+    <div class="col-sm-4">
+      <p><strong>Chủ đề: </strong></p><br>
+      <img src="Images/event5.jpg" alt="..." width="255" height="255">
+    </div>
+    <div class="col-sm-4">
+      <p><strong>Chủ đề:</strong></p><br>
+      <img src="Images/event6.jpg" alt="..." width="255" height="255">
+    </div>
+  </div>
+      </div>
+   <!--Start LeaderBoard Panel -->
+    <div id = "LeaderBoard"  class="col-sm-3">
+	<h3  >Xếp hạng các tổ chức</h3>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Hạng</th>
+        <th>Tên tổ chức</th>
+        <th>Điểm số</th>
+      </tr>
+    </thead>
+    <tbody style="text-align:left;"> 
+      <tr class="success">
+        <td><img src ="Images/rank_1.png" width="25px;" height="25px;"></img></td>
+        <td>Quĩ vì cộng đồng</td>
+        <td>500</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_2.png" width="25px;" height="25px;"></img></td>
+        <td>Quĩ vỏ chai</td>
+        <td>450</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_3.png" width="25px;" height="25px;"></img></td>
+        <td>Chữ thập đỏ</td>
+        <td>400</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_4.png" width="25px;" height="25px;"></img></td>
+        <td>Apple</td>
+        <td>380</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_5.png" width="25px;" height="25px;"></img></td>
+        <td>Samsung</td>
+        <td>300</td>
+      </tr>
+	  	<tr style="color:green;">
+	 <td>Xem chi tiết</td>
+	</tr>
+    </tbody>
+  </table>
+    <h3>Xếp hạng các cá nhân</h3>
+    
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Hạng</th>
+        <th>Tên cá nhân</th>
+        <th>Điểm số</th>
+      </tr>
+    </thead>
+    <tbody style="text-align:left;"> 
+      <tr class="success">
+        <td><img src ="Images/rank_1.png" width="25px;" height="25px;"></td>
+        <td>Nhien_Deptrai</td>
+        <td>500</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_2.png" width="25px;" height="25px;"></td>
+        <td>Tuandv</td>
+        <td>450</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_3.png" width="25px;" height="25px;"></td>
+        <td>DuyTN</td>
+        <td>400</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_3.png" width="25px;" height="25px;"></td>
+        <td>NghiaDT</td>
+        <td>380</td>
+      </tr>
+	    <tr class="success">
+        <td><img src ="Images/rank_5.png" width="25px;" height="25px;"></td>
+        <td>Samsung</td>
+        <td>300</td>
+      </tr>
+	<tr style="color:green;">
+	 <td>Xem chi tiết</td>
+	</tr>
+    </tbody>
+	</table>
+  </div>
+ </div>
+ </div>
+ <!--End content -->
+<!--Footer file -->
+<footer>
+   <a class="up-arrow" href="#slider" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>Developed by WingS Team <a href="http://www.WingSFU.com" data-toggle="tooltip" title="Visit Us">www.WingSFU.com</a></p>
+</footer>
+<script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip();
+  
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".ac-globalnav a, footer a[href='#slider']").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
+
+</body>	
 </html>
