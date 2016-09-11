@@ -491,7 +491,6 @@ html, body {
   opacity: 1;
   -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=$ieopacity)';
   filter: alpha(opacity=100);
-  color: #888;
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -1328,4 +1327,10 @@ footer{
     background:rgba(240, 240, 240, 0.9);
     margin-left:-100%;
     margin-right:-100%;
+}
+#searchBox{
+	margin-top:5px;
+	width:200px;
+	background-color: rgba(240, 240, 240, 0.9);
+
 }
