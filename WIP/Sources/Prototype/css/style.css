@@ -1300,7 +1300,7 @@ html, body {
 /* LeaderBoard */
 #LeaderBoard
 {
- float:left;
+ float:right;
  padding-top:20px;
  width:270px;
  text-align:center;
