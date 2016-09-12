@@ -53,60 +53,19 @@
 			<li class="ac-gn-item ac-gn-item-menu ac-gn-support">
 				<a class="ac-gn-link" href="/support/"> <span>Sự kiện</span></a>
 			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search" style="display:inline-block;">
-				<a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search glyphicon glyphicon-search" aria-label="Search event" href="/" > </a>
-			</li>
+			
 			<li class="ac-gn-item ac-gn-item-menu ac-gn-searchinput" >
 				    <input id = "searchBox"class="form-control" id="focusedInput" type="text" placeholder=" Tên sự kiện hoặc tổ chức..." >
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search" style="display:inline-block;">
+				<a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search glyphicon glyphicon-search" aria-label="Search event" href="/" > </a>
 			</li>
 			 <li class="ac-gn-item ac-gn-item-menu ac-gn-aboutus">
 				<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
 			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-account">Tài khoản
-				<a class="ac-gn-link dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-caret-down"></i> </a>
-			<ul class="dropdown-menu dropdown-user" style ="padding:10px;">
-       <li>
-       <a href="profile.html">
-       <i class="fa fa-user"></i> My Profile
-       </a>
-       </li>
-       <li>
-        <a href="mailbox.html">
-        <i class="fa fa-envelope"></i> My Messages
-        <span class="badge green pull-right">4</span>
-        </a>
-        </li>
-        <li>
-        <a href="#">
-        <i class="fa fa-bell"></i> My Alerts
-         <span class="badge orange pull-right" style="background-color:orange;">9</span>
-         </a>
-        </li>
-		
-        <li>
-                                <a href="#">
-                                    <i class="fa fa-tasks"></i> My Tasks
-                                    <span class="badge blue pull-right"style="background-color:blue;">10</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="calendar.html">
-                                    <i class="fa fa-calendar"></i> My Calendar
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-gear"></i> Settings
-                                </a>
-                            </li>
-                            <li>
-                                <a class="logout_open" href="#logout">
-                                    <i class="fa fa-sign-out"></i> Logout
-                                    <strong>Nhien LH</strong>
-                                </a>
-                            </li>
-                        </ul>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+				<a class="ac-gn-link dropdown-toggle" href="#"> <span>Đăng nhập</span></a>
+			
             </li>
 			
             
@@ -156,34 +115,38 @@
 
  <!--Start content -->
 <div class="container" >
-	 <div id = "topEvent"  class="col-sm-9">
-	   <div class="row">
+	 <div class="col-sm-9">
+	   <div class="row" id = "topEvent"  >
         <div class="col-sm-4">
-      <p><strong>Chủ đề: </strong></p><br>
+      <p><strong>Sự kiện: </strong></p><br>
       <img src="Images/event1.jpg" alt="..." width="255" height="255">
     </div>
     <div class="col-sm-4">
-      <p><strong>Chủ đề: </strong></p><br>
+      <p><strong>Sự kiện: </strong></p><br>
       <img src="Images/event2.jpg" alt="..." width="255" height="255">
     </div>
     <div class="col-sm-4">
-      <p><strong>Chủ đề:</strong></p><br>
+      <p><strong>Sự kiện:</strong></p><br>
       <img src="Images/event3.jpg" alt="..." width="255" height="255">
     </div>
-  </div>
-    <div class="row" style="padding-top:20px;">
+    <div align="center" style="margin-top:10px;"><a href="#" style="text-decoration: underline;">Xem thêm</a></div>
+   </div>
+
+   <div class="row" id = "topDiscuss"  style="padding-top:20px;">
     <div class="col-sm-4">
-      <p><strong>Chủ đề: </strong></p><br>
+      <p><strong>Thảo luận: </strong></p><br>
       <img src="Images/event4.jpg" alt="..." width="255" height="255">
     </div>
     <div class="col-sm-4">
-      <p><strong>Chủ đề: </strong></p><br>
+      <p><strong>Thảo luận </strong></p><br>
       <img src="Images/event5.jpg" alt="..." width="255" height="255">
     </div>
     <div class="col-sm-4">
-      <p><strong>Chủ đề:</strong></p><br>
+      <p><strong>Thảo luận</strong></p><br>
       <img src="Images/event6.jpg" alt="..." width="255" height="255">
     </div>
+    <div align="center" style="margin-top:10px;"><a href="#" style="text-decoration: underline;">Xem thêm</a></div>
+
   </div>
       </div>
    <!--Start LeaderBoard Panel -->
@@ -224,7 +187,7 @@
         <td>300</td>
       </tr>
 	  	<tr style="color:green;">
-	 <td>Xem chi tiết</td>
+	 <td>Xem thêm</td>
 	</tr>
     </tbody>
   </table>
@@ -265,7 +228,7 @@
         <td>300</td>
       </tr>
 	<tr style="color:green;">
-	 <td>Xem chi tiết</td>
+	 <td>Xem thêm</td>
 	</tr>
     </tbody>
 	</table>
