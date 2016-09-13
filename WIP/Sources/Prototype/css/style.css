@@ -1341,3 +1341,18 @@ footer{
 	background-color: rgba(240, 240, 240, 0.9);
 
 }
+#titleRows{
+	padding:30px;
+	margin-top:20px;
+	margin-left:30px;
+    transition: all 0.5s linear;
+	border-bottom: 5px solid rgb(225, 225, 225);
+}
+#mainContent{
+	height:193px;
+	padding:30px;
+	margin-top:20px;
+	margin-left:30px;
+	width: auto;
+	border-bottom: 1px solid rgb(225, 225, 225);
+}
