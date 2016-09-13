@@ -1,0 +1,47 @@
+/*css for about us page*/
+.aboutUsText{
+    background-color: #c09853;
+    opacity: 10;
+    width: 1068px;
+}
+.aboutUsText h1{
+    text-align: left;
+    color: #ffffff;
+    font-family:'PT Sans';
+    font-weight: 500;
+}
+.aboutUsText p{
+    text-align: left;
+    color: #ffffff;
+    font-weight: 200;
+}
+.aboutUsIntro{
+    height: 60px;
+}
+.aboutUsIntro h1{
+    text-align: center;
+    color: blue;
+    font-family:'PT Sans';
+    text-transform: uppercase;
+    font-weight: bold;
+}
+@media (min-width: 1170px) {
+    .aboutUsFounder{
+        text-align: center;
+        width: 1300px;
+    }
+}
+.aboutUsFounder h4{
+    font-weight: 600;
+}
+.aboutUsContact {
+    padding-top: 30px;
+    height: 100px;
+    text-align: center;
+    background-color: #ce8483;
+    width: 1068px;
+}
+.aboutUsContact a{
+    color: blue;
+    text-decoration: underline;
+}
