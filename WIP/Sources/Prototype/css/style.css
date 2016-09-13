@@ -491,7 +491,6 @@ html, body {
   opacity: 1;
   -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=$ieopacity)';
   filter: alpha(opacity=100);
-  color: #888;
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -1301,7 +1300,7 @@ html, body {
 /* LeaderBoard */
 #LeaderBoard
 {
- float:left;
+ float:right;
  padding-top:20px;
  width:270px;
  text-align:center;
@@ -1314,7 +1313,14 @@ html, body {
 	float:right;
 	margin-top:20px;
 	border: 1px solid #d6d6d6;
-
+	padding-bottom:36px;
+	
+}
+#topDiscuss{
+	padding-top:25px;
+	float:right;
+	margin-top:20px;
+	border: 1px solid #d6d6d6;
 	padding-bottom:36px;
 	
 }
@@ -1328,4 +1334,10 @@ footer{
     background:rgba(240, 240, 240, 0.9);
     margin-left:-100%;
     margin-right:-100%;
+}
+#searchBox{
+	margin-top:5px;
+	width:200px;
+	background-color: rgba(240, 240, 240, 0.9);
+
 }
