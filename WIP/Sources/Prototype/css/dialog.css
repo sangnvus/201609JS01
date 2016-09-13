@@ -1,0 +1,252 @@
+/*phần tử phủ toàn màn hình*/
+#over {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 999;
+}
+a, a:visited, a:active{
+    text-decoration:none;
+}
+/* lớp login - cửa sổ đăng nhập*/
+.login
+{
+    background-color:#99CCCC;
+    height:auto;
+    width:400px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding-bottom:5px;
+    display:none;
+    overflow:hidden;
+    position:absolute;
+    z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
+    top:10%;
+    left:50%;
+    margin-left:-200px;
+}
+		
+.login .login_title
+{
+    color:white;
+    font-size:18px;
+    padding:7px 0 4px 7px;
+    text-align:center;
+}
+
+
+.login-content
+{
+    padding-left:45px;
+	padding-right: 45px;
+    background-color:white;
+    margin-left:5px;
+    margin-right:5px;
+    height:auto;
+    padding-top:25px;
+    overflow:hidden;
+}
+	
+.img-close {
+    float: right;
+    margin-top:-46px;
+}	
+
+.boderbottom{
+	border-bottom: 1px solid #bdc3c7;
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+}
+.login-fa{
+	padding-bottom: 20px;
+}
+.login-gg{
+	padding-bottom: 60px;
+}
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+/* style icon */
+.inner-addon .fa {
+	position: absolute;
+	padding: 10px;
+	pointer-events: none;
+}
+.left-addon .fa  { 
+	left:  0px;
+}
+
+.left-addon input {
+	padding-left:  28px; 
+}
+.padding{
+	padding-top: 50px;
+}
+.login-fa .fa{
+	left: 0px;
+	top:0px;
+	bottom:0px;
+	padding:10px;
+	background:#37528c;
+	border-right: 1px solid rgba(0,0,0,.2);
+}
+.login-fa a{
+	background: #3b5998;
+}
+.login-gg .fa{
+	left: 0px;
+	top:0px;
+	bottom:0px;
+	padding:8px;
+	background:#c74534;
+	border-right: 1px solid rgba(0,0,0,.2);
+}
+.login-gg a{
+	background: #d34836;
+}
+
+/* Register Dialog */
+.register
+{
+    background:#778899;
+    height:auto;
+    width:550px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding-bottom:5px;
+    display:none;
+    overflow:hidden;
+    position:absolute;
+    z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
+    top:7%;
+    left:45%;
+    margin-left:-200px;
+}
+/*
+.register{
+	background:#f1f1f1; 
+	width:600px; 
+	margin:0 auto; 
+	padding-left:50px; 
+	padding-top:20px;
+	overflow:hidden;
+	display:none;
+}*/
+.register .register_title
+{
+    
+	color:white;
+    font-size:18px;
+    padding:7px 0 4px 7px;
+    text-align:center;
+}
+.register-content
+{
+    padding-left:45px;
+	padding-right: 45px;
+    background-color:#D3D3D3;
+    margin-left:5px;
+    margin-right:5px;
+    height:auto;
+    padding-top:20px;
+    overflow:hidden;
+}
+
+
+.register p.contact {
+	font-size: 12px; 
+	margin:0px 0px 10px 0;
+	line-height: 14px; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.register input[type="text"] { width: 450px; }
+.register input[type="email"] { width: 450px; }
+.register input[type="password"] { width: 450px; }
+.register fieldset{border:0px; padding:0px; margin:0px;}
+.register input.birthyear{width:120px;font-family: Arial, Helvetica;}
+.register label { color: #000;font-size: 12px;font-weight:bold;line-height: 14px; font-family:Arial, Helvetica; }
+.register label.day {width: 60px;}
+.register label.month {width: 80px;}
+.register input{
+	background-color: rgba(255, 255, 255, 0.4); 
+	border: 1px solid rgba(122, 192, 0, 0.15); 
+	padding: 7px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #4b4b4b; 
+	font-size: 14px; 
+	-webkit-border-radius: 5px; 
+	margin-bottom: 15px; 
+	margin-top: -10px; 
+}
+.register .select-style {
+   background-color: rgba(255, 255, 255, 0.4); 
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-position: center right;
+   background-repeat: no-repeat;
+   border: 0px solid #FFF;
+   color: #555;
+   font-size: inherit;
+   margin: 0;
+   overflow: hidden;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+  }
+.register input:focus{ border: 1px solid #ff5400; background-color: rgba(255, 255, 255, 1); }
+.register .gender {
+  width:450px;
+ }
+ .padding1{
+	padding-top: 17px;
+}
+
+/* Forgot Password Dialog */
+.forgotpass
+{
+    background:#CCFFFF;
+    height:auto;
+    width:900px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding-bottom:5px;
+    display:none;
+    overflow:hidden;
+    position:absolute;
+    z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
+    top:5%;
+    left:30%;
+    margin-left:-200px;
+}
+.forgotpass_title
+{
+    
+	color:black;
+    font-size:18px;
+    padding:7px 0 4px 7px;
+    text-align:left;
+	font-weight:700;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.forgotpass-content
+{
+    padding-left:45px;
+	padding-right: 45px;
+    background-color:#D3D3D3;
+    margin-left:5px;
+    margin-right:5px;
+    height:auto;
+    padding-top:20px;
+    overflow:hidden;
+}
