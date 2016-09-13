@@ -234,22 +234,23 @@
 	</table>
   </div>
  </div>
+ 
  </div>
  <!--End content -->
 <!--Footer file -->
-<footer>
+<div id ="footer" align="center">
    <a class="up-arrow" href="#slider" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
-  </a><br><br>
+  </a>
   <p>Developed by WingS Team <a href="http://www.WingSFU.com" data-toggle="tooltip" title="Visit Us">www.WingSFU.com</a></p>
-</footer>
+</div>
 <script>
 $(document).ready(function(){
   // Initialize Tooltip
   $('[data-toggle="tooltip"]').tooltip();
   
   // Add smooth scrolling to all links in navbar + footer link
-  $(".ac-globalnav a, footer a[href='#slider']").on('click', function(event) {
+  $(".ac-globalnav a, #footer a[href='#slider']").on('click', function(event) {
 
     // Make sure this.hash has a value before overriding default behavior
     if (this.hash !== "") {
