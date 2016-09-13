@@ -9,6 +9,11 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- Add by TuanDV-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/dialog.css" />
+  <script type="text/javascript" src="js/dialog.js"></script>
  
 </head>
 <body>
@@ -64,15 +69,167 @@
 				<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
 			</li>
 			<li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-				<a class="ac-gn-link dropdown-toggle" href="#"> <span>Đăng nhập</span></a>
+				<a class="ac-gn-link dropdown-toggle" href="#" id="login-box"> <span>Đăng nhập</span></a>
 			
             </li>
-			
-            
-		</ul>
-		
+
+		</ul>	
 	</div>
 </nav>
+			<!-- Login Dialog -->
+			<div class="login" id="login">
+            <p class="login_title"> ĐĂNG NHẬP</p> 	
+			<a href="#" class="close" id="close_login"><img class="img-close" title="Close Window" alt="Close" src="images/closeIcon.png" /></a>
+            <form  class="login-content">
+				<div class="form-group inner-addon left-addon ">
+					<i class="fa fa-user"></i>					
+					<input class="form-control " id="username" name="username" value="" type="text"  placeholder="Tên đăng nhập" required >
+				</div>
+				<div class="form-group inner-addon left-addon ">
+					<i class="fa fa-lock"></i>	
+					<input class="form-control" id="password" name="password" value="" type="password" placeholder="Mật khẩu" required>
+				</div>					
+			    <a href="#" class="btn btn-danger btn-block" style="color:white">
+					<i class="fa fa-sign-in" ></i> <span style="font-weight: bold">Đăng Nhập</span>				
+				</a>
+				<div class="checkbox pull-left">
+					<label>
+						<input type="checkbox"> Nhớ mật khẩu
+					</label>
+				</div>			
+				<div class="pull-right" style="margin: 10px 0">
+					<a href="#" id="forgot-box" style="color: blue">Quên mật khẩu?</a>
+				</div>
+				<div class="padding"></div>	
+				<div><a href="#" id="register-box" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a></div>		 
+				<div class="boderbottom">
+				</div>
+				
+				<div id="login-facebook" class="login-fa" >
+					<a class=" btn btn-primary btn-block inner-addon">
+						<i  class="fa fa-facebook"></i> Đăng nhập qua Facebook
+					</a>		
+				 </div>
+				 <div id="login-google" class="login-gg" >
+					<a class="btn btn-danger btn-block inner-addon">
+						<i class="fa fa-google-plus"></i> Đăng nhập qua Google
+					</a>	
+				 </div>
+			</form>
+			</div>
+		
+		<!-- Register Dialog -->
+		<div class="register" id="register">
+			<p class="register_title"> ĐĂNG KÝ TÀI KHOẢN</p>
+			<a href="#" id="close_register"><img class="img-close" title="Close Window" alt="Close" src="images/closeIcon.png" /></a>
+			<form class="register-content">
+			    <p class="contact"><label for="name">Tên hiển thị</label></p> 
+    			<input id="name" name="name" placeholder="Tên hiển thị" required="" type="text"> 
+    			
+				<p class="contact"><label for="username">Tên đăng nhập</label></p> 
+    			<input id="username" name="username" placeholder="Tên đăng nhập" required="" type="text"> 
+    			<p class="contact"><label for="email">Địa chỉ Email</label></p> 
+    			<input id="email" name="email" placeholder="example@domain.com" required="" type="email"> 
+
+                <p class="contact"><label for="password">Mật khẩu</label></p> 
+    			<input type="password" id="password" name="password" required=""> 
+                <p class="contact"><label for="repassword">Nhập lại mật khẩu</label></p> 
+    			<input type="password" id="repassword" name="repassword" required=""> 
+
+				<fieldset>
+					 <label>Ngày sinh</label>
+					 <label class="day">
+						 <select class="select-style" name="birthday">
+							<option>Ngày</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						 </select>
+					 </label> 
+					 
+					 <label>Tháng</label>
+					  <label class="month"> 	
+						  <select class="select-style" name="birthmonth">
+							  <option value="">Tháng</option>
+							  <option value="01">1</option>
+							  <option value="02">2</option>
+							  <option value="03">3</option>
+							  <option value="04">4</option>
+							  <option value="05">5</option>
+							  <option value="06">6</option>
+							  <option value="07">7</option>
+							  <option value="08">8</option>
+							  <option value="09">9</option>
+							  <option value="10">10</option>
+							  <option value="11">11</option>
+							  <option value="12">12</option>				  
+						  </select>
+					  </label>			 
+					<label>Năm <input class="birthyear" maxlength="4" name="birthyear" placeholder="Năm" required></label>
+                 </fieldset>
+				
+				 <select class="select-style gender" name="gender">
+							 <option value="select">Giới tính</option>
+							 <option value="M">Nam</option>
+							 <option value="F">Nữ</option>
+							 <option value="others">Khác</option>
+				 </select><br><br>
+				
+			    <a href="#" class="btn btn-primary btn-block" style="color:white">
+					<i class="fa fa-registered" ></i> <span style="font-weight: bold">Đăng Ký</span>				
+				</a>
+				<div class="padding1"></div>	
+				<div><a href="#" id="backlogin" style="color: blue">Đã có tài khoản? Đăng nhập</a></div>	
+				<div style="padding-bottom: 12px"></div>
+			</form>
+		</div>
+		<!-- Forgot Password -->
+		<div class="forgotpass" id="forgotpass">
+			<p class="forgotpass_title"> QUÊN MẬT KHẨU</p>
+			<a href="#" id="close_forgotpass"><img class="img-close" title="Close Window" alt="Close" src="images/closeIcon.png" /></a>
+			<form class="forgotpass-content">
+				<div class="col-sm-8" style="border-right: 1px solid #737373" >
+					<p>Bạn vui lòng nhập địa chỉ Email của mình vào đây để lấy lại mật khẩu mới.</p>
+					<p class="contact"><label for="reemail">Email đã đăng ký</label></p> 
+					<input id="reemail" name="reemail" placeholder="example@domain.com" required="" type="email"> 
+					<p><label for="captcha">Mã xác nhận</label></p>
+					<p><input type="text" id="captcha" name="captcha" class="form-control" style="width: 40%; display: inline">
+					<img style="display: inline" src="images/image_captcha.png" ></p>
+					<img alt="refresh captcha" title="Refresh Captcha" src="images/refresh-captcha.png" style="display: inline">
+				</div>
+				<div class="col-sm-4">
+					<p>Đã có tài khoản </p>
+				</div>
+			</form>
+		</div>
 </header>
 <!-- End header file -->
 <!-- Start slider -->
