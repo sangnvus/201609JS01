@@ -51,9 +51,9 @@ a, a:visited, a:active{
     overflow:hidden;
 }
 	
-.img-close {
+.close_dialog {
     float: right;
-    margin-top:-46px;
+    margin-top:-50px;
 }	
 
 .boderbottom{
@@ -113,7 +113,7 @@ a, a:visited, a:active{
 /* Register Dialog */
 .register
 {
-    background:#778899;
+    background:white;
     height:auto;
     width:550px;
     font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -126,6 +126,7 @@ a, a:visited, a:active{
     top:7%;
     left:45%;
     margin-left:-200px;
+	border-radius: 7px;
 }
 /*
 .register{
@@ -140,16 +141,19 @@ a, a:visited, a:active{
 .register .register_title
 {
     
-	color:white;
+	color:black;
     font-size:18px;
-    padding:7px 0 4px 7px;
+    padding:5px 0 4px 7px;
     text-align:center;
+	size:font-style;
 }
+
+
 .register-content
 {
     padding-left:45px;
 	padding-right: 45px;
-    background-color:#D3D3D3;
+    background-color:white;
     margin-left:5px;
     margin-right:5px;
     height:auto;
