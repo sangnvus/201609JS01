@@ -33,7 +33,11 @@ $(document).ready(function() {
 			$("#register").hide();
 			return false;
 		});
-		
+		// Close  ForgotPass Windows 
+		$("#close_forgotpass").click(function(){
+			$("#forgotpass").hide();
+			return false;
+		});
 	/*
 	//Open Login Window
 	$('a.login-window').click(function() {

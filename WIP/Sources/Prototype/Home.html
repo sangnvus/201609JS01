@@ -124,7 +124,7 @@
 		
 			<p class="register_title" style="font-size:20px"> ĐĂNG KÝ TÀI KHOẢN</p>
 		
-			<a href="#" id="close_register"><i class="fa fa-close close_dialog" style="font-size:36px;color:red"></i></a>
+			<a href="#" id="close_register"><i class="fa fa-close close_dialog" style="font-size:31px;color:red"></i></a>
 		
 			<form class="register-content">
 			    <p class="contact"><label for="name">Tên hiển thị</label></p> 
@@ -142,7 +142,7 @@
 
 				<fieldset>
 					 <label>Ngày sinh</label>
-					 <label class="day">
+					 <label class="day" style border-color:gray;>
 						 <select class="select-style" name="birthday">
 							<option>Ngày</option>
 							<option value="1">1</option>
@@ -216,21 +216,48 @@
 			</form>
 		</div>
 		<!-- Forgot Password -->
-		<div class="forgotpass" id="forgotpass">
+				<div class="forgotpass" id="forgotpass">
 			<p class="forgotpass_title"> QUÊN MẬT KHẨU</p>
-			<a href="#" id="close_forgotpass"><img class="img-close" title="Close Window" alt="Close" src="images/closeIcon.png" /></a>
+			
+			
+			
+			<a href="#" id="close_forgotpass"><i class="fa fa-close close_dialog" style="font-size:24px;color:red"></i></a>
+			
 			<form class="forgotpass-content">
 				<div class="col-sm-8" style="border-right: 1px solid #737373" >
 					<p>Bạn vui lòng nhập địa chỉ Email của mình vào đây để lấy lại mật khẩu mới.</p>
-					<p class="contact"><label for="reemail">Email đã đăng ký</label></p> 
-					<input id="reemail" name="reemail" placeholder="example@domain.com" required="" type="email"> 
-					<p><label for="captcha">Mã xác nhận</label></p>
-					<p><input type="text" id="captcha" name="captcha" class="form-control" style="width: 40%; display: inline">
-					<img style="display: inline" src="images/image_captcha.png" ></p>
-					<img alt="refresh captcha" title="Refresh Captcha" src="images/refresh-captcha.png" style="display: inline">
+					<div class="padding1"></div>
+					<label for="reemail" style="font-weight:normal">Email đã đăng ký</label>
+					<input class="form-control" id="reemail" name="reemail" required="" type="email" style="width: 75%"> 
+					<div class="padding1"></div>
+					<label for="captcha" style="font-weight:normal">Mã xác nhận</label>
+					<div>
+						<input class="form-control" type="text" id="captcha" name="captcha" style="width: 50%;display:inline">
+						<img  src="images/image_captcha.png" >
+						<img alt="refresh captcha" title="Refresh Captcha" src="images/refresh-captcha.png" >
+					</div>
+					<div class="padding1"></div>
+					<div>
+						<a href="#" class="btn btn-primary " style="width: 75%; color:white" ><span style="font-weight: bold">Lấy lại mật khẩu</span></a>
+					</div>
+					
 				</div>
 				<div class="col-sm-4">
-					<p>Đã có tài khoản </p>
+					<p style="text-align:center">Đã có tài khoản </p>
+					<div>
+						<a id="backlogin1" href="#" class="btn btn-danger btn-block" style="color:white" ><span style="font-weight: bold">Đăng Nhập Ngay</span></a>
+					</div>
+					<div class="boderbottom"></div>
+					<div id="login-facebook" class="login-fa" >
+						<a class=" btn btn-primary btn-block inner-addon">
+							<i  class="fa fa-facebook"></i> Đăng nhập qua Facebook
+						</a>		
+				    </div>
+					<div id="login-google" class="login-gg" >
+						<a class="btn btn-danger btn-block inner-addon">
+							<i class="fa fa-google-plus"></i> Đăng nhập qua Google
+						</a>	
+					</div>
 				</div>
 			</form>
 		</div>
