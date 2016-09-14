@@ -79,7 +79,8 @@
 			<!-- Login Dialog -->
 			<div class="login" id="login">
             <p class="login_title"> ĐĂNG NHẬP</p> 	
-			<a href="#" class="close" id="close_login"><img class="img-close" title="Close Window" alt="Close" src="images/closeIcon.png" /></a>
+			
+			<a href="#" id="close_login"><i class="fa fa-close close_dialog" style="font-size:24px;color:red"></i></a>
             <form  class="login-content">
 				<div class="form-group inner-addon left-addon ">
 					<i class="fa fa-user"></i>					
@@ -120,8 +121,11 @@
 		
 		<!-- Register Dialog -->
 		<div class="register" id="register">
-			<p class="register_title"> ĐĂNG KÝ TÀI KHOẢN</p>
-			<a href="#" id="close_register"><img class="img-close" title="Close Window" alt="Close" src="images/closeIcon.png" /></a>
+		
+			<p class="register_title" style="font-size:20px"> ĐĂNG KÝ TÀI KHOẢN</p>
+		
+			<a href="#" id="close_register"><i class="fa fa-close close_dialog" style="font-size:36px;color:red"></i></a>
+		
 			<form class="register-content">
 			    <p class="contact"><label for="name">Tên hiển thị</label></p> 
     			<input id="name" name="name" placeholder="Tên hiển thị" required="" type="text"> 
@@ -197,7 +201,7 @@
                  </fieldset>
 				
 				 <select class="select-style gender" name="gender">
-							 <option value="select">Giới tính</option>
+							<option value="selected">Giới tính</option>
 							 <option value="M">Nam</option>
 							 <option value="F">Nữ</option>
 							 <option value="others">Khác</option>
