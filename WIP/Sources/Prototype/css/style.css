@@ -1292,11 +1292,9 @@ html, body {
 .carousel-inner > .item > a > img {
       width: 100%;
       margin: auto;
-      max-height: 665px;
+      max-height: 740px;
  }
- .carousel-caption{
- 	padding-bottom: 13%;
- }
+
 /* LeaderBoard */
 #LeaderBoard
 {
@@ -1342,7 +1340,7 @@ footer{
 
 }
 #titleRows{
-	padding:30px;
+	padding :10px 30px 30px 30px;
 	margin-top:20px;
 	margin-left:30px;
     transition: all 0.5s linear;
@@ -1356,3 +1354,26 @@ footer{
 	width: auto;
 	border-bottom: 1px solid rgb(225, 225, 225);
 }
+#project_detail_1{
+	margin-top:30px;
+	background-color: #f7fafa;
+	padding-bottom:40px;
+}
+
+/*reponsive video======*/
+	.responsive-video {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 60px; overflow: hidden;
+	}
+
+
+	.responsive-video iframe,
+	.responsive-video object,
+	.responsive-video embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	}
