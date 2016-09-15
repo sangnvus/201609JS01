@@ -65,7 +65,10 @@ a, a:visited, a:active{
     float: right;
     margin-top:-50px;
 }	
-
+.close_dialog_forgotpass{
+	float: right;
+    margin-top: -72px;
+}
 .boderbottom{
 	border-bottom: 1px solid #bdc3c7;
 	padding-bottom: 25px;
@@ -231,7 +234,7 @@ a, a:visited, a:active{
 /* Forgot Password Dialog */
 .forgotpass
 {
-    background:#CCFFFF;
+    background:white;
     height:auto;
     width:900px;
     font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -254,16 +257,28 @@ a, a:visited, a:active{
     padding-left:40px;
 	font-weight:700;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-bottom: 1px solid #737373;
+	padding-bottom: 25px;
 }
 
 .forgotpass-content
 {
     padding-left:20px;
 	padding-right: 45px;
-    background-color:#D3D3D3;
+    background-color:white;
     margin-left:5px;
     margin-right:5px;
     height:auto;
     padding-top:20px;
     overflow:hidden;
+}
+
+.forgot_border
+{
+
+border-right: 1px solid #737373;
+
+}
+.right_forgotpass_form{
+ padding-left: 50px;
 }

@@ -131,7 +131,7 @@
 			<div class="login" id="login">
             <p class="login_title"> ĐĂNG NHẬP</p> 	
 			
-			<a href="#" id="close_login"><i class="fa fa-close close_dialog" style="font-size:24px;color:red"></i></a>
+			<a href="#" id="close_login" class="light_close"><i class="fa fa-close close_dialog" style="font-size:24px;color:red"></i></a>
             <form  class="login-content">
 				<div class="form-group inner-addon left-addon ">
 					<i class="fa fa-user"></i>					
@@ -271,29 +271,26 @@
 			<p class="forgotpass_title"> QUÊN MẬT KHẨU</p>
 			
 			
-			
-			<a href="#" id="close_forgotpass"><i class="fa fa-close close_dialog" style="font-size:24px;color:red"></i></a>
+			<a href="#" id="close_forgotpass"><i class="fa fa-close close_dialog_forgotpass" style="font-size:24px;color:red"></i></a>
 			
 			<form class="forgotpass-content">
-				<div class="col-sm-8" style="border-right: 1px solid #737373" >
+			
+				<div class="col-sm-7 forgot_border">
+			
 					<p>Bạn vui lòng nhập địa chỉ Email của mình vào đây để lấy lại mật khẩu mới.</p>
 					<div class="padding1"></div>
 					<label for="reemail" style="font-weight:normal">Email đã đăng ký</label>
 					<input class="form-control" id="reemail" name="reemail" required="" type="email" style="width: 75%"> 
 					<div class="padding1"></div>
-					<label for="captcha" style="font-weight:normal">Mã xác nhận</label>
-					<div>
-						<input class="form-control" type="text" id="captcha" name="captcha" style="width: 50%;display:inline">
-						<img  src="images/image_captcha.png" >
-						<img alt="refresh captcha" title="Refresh Captcha" src="images/refresh-captcha.png" >
-					</div>
+					
+					
 					<div class="padding1"></div>
 					<div>
 						<a href="#" class="btn btn-primary " style="width: 75%; color:white" ><span style="font-weight: bold">Lấy lại mật khẩu</span></a>
 					</div>
 					
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-5 right_forgotpass_form">
 					<p style="text-align:center">Đã có tài khoản </p>
 					<div>
 						<a id="backlogin1" href="#" class="btn btn-danger btn-block" style="color:white" ><span style="font-weight: bold">Đăng Nhập Ngay</span></a>
