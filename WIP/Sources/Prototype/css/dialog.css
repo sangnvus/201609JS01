@@ -1,3 +1,11 @@
+
+#loginDialog{
+    padding-top: 7%;
+    
+}
+.modal-content{
+    width: 480px;
+}
 /*phần tử phủ toàn màn hình*/
 #over {
     display: none;
