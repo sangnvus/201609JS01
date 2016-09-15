@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WingS", "WingS\WingS.csproj", "{FB9D12D7-770B-4FD3-A9A3-EBF60C7A84D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WingS", "WingS\WingS.csproj", "{B3C1A7D6-8F15-48D3-8581-AB0CE9BF0C03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB9D12D7-770B-4FD3-A9A3-EBF60C7A84D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB9D12D7-770B-4FD3-A9A3-EBF60C7A84D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB9D12D7-770B-4FD3-A9A3-EBF60C7A84D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB9D12D7-770B-4FD3-A9A3-EBF60C7A84D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C1A7D6-8F15-48D3-8581-AB0CE9BF0C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C1A7D6-8F15-48D3-8581-AB0CE9BF0C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C1A7D6-8F15-48D3-8581-AB0CE9BF0C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C1A7D6-8F15-48D3-8581-AB0CE9BF0C03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
