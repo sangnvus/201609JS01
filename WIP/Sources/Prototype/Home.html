@@ -21,10 +21,10 @@
 <!-- Login Dialog using Bootstrap -->
 <div id="loginDialog" class="modal fade" role="dialog">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-container">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
 	      	<div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title" style="text-align:center">ĐĂNG NHẬP</h4>
+		        <h3 class="modal-title" style="text-align:center">ĐĂNG NHẬP</h3>
 		        <!-- <p class="login_title"> ĐĂNG NHẬP</p> 	 -->
 	      	</div>
 	      	
@@ -46,10 +46,12 @@
 					</label>
 				</div>			
 				<div class="pull-right" style="margin: 10px 0">
-					<a href="#" id="forgot-box" style="color: blue">Quên mật khẩu?</a>
+					<a href="#" id="forgot-box" data-toggle="modal" data-target="#forgotPassDialog" style="color: blue">Quên mật khẩu?</a>
 				</div>
 				<div class="padding"></div>	
-				<div><a href="#" id="register-box" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a></div>		 
+				<div>
+					<a href="#" id="register-box" data-toggle="modal" data-target="#registerDialog" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a>
+				</div>		 
 				<div class="boderbottom">
 				</div>
 				
@@ -67,250 +69,340 @@
 		</div>
 	</div>
 </div>
+<!-- Register Dialog using Bootstrap -->
+<div id="registerDialog" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-container " style="width:600px !important">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h3 class="modal-title" style="text-align:center">ĐĂNG KÝ TÀI KHOẢN</h3>
+		    </div>
+
+		    <div class="modal-body">
+		    	<div class="modal-group">
+    				<label for="full_name">Tên hiển thị
+    					<!-- <span class="pull-right error">không được để trống</span> -->
+    				</label>
+    				<input type="text" name="full_name" placeholder="tên hiển thị" required="" autocomplete="off">
+    			</div>
+
+    			<div class="modal-group">
+		    		<label for="username">Tên đăng nhập
+		    			<!-- <span class="pull-right"></span> -->
+		    		</label>
+		    		<input type="text" name="username" placeholder="tên đăng nhập">
+		    	</div>
+
+		    	<div class="modal-group">
+		    		<label for="email">Địa chỉ email
+		    			<!-- <span class="pull-right"></span> -->
+		    		</label>
+		    		<input type="text" name="email" placeholder="email@domain.com">
+		    	</div>
+
+		    	<div class="row form-group">
+		    		<div class="col-sm-6" style="padding:0;">
+		    			<div class="col-sm-12">
+		    				<label for="password">Mật khẩu
+				    		<!-- <span class="pull-right"></span> -->
+				    	</label>
+		    			</div>
+		    			<div class="col-sm-12">
+		    				<input type="password" name="password" placeholder="mật khẩu">
+				    	
+		    			</div>			    	
+			            
+		            </div>
+			    	<div class="col-sm-6" style="padding:0;">
+				    	<div class="col-sm-12">
+				    		<label for="password_confirmation">Nhập lại
+					    		<!-- <span class="pull-right"></span> -->
+					    	</label>
+				    	</div>
+				    	<div class="col-sm-12">
+				    		<input type="password" name="password_confirmation" placeholder="nhập lại mật khẩu">
+				    	</div>
+				    	
+			            
+		            </div>
+		        </div>
+
+		        <div class="row form-group">
+		        	<div class="col-sm-6" style="padding:0;">
+		        		<div class="col-sm-12">
+		        			<label for="birthday">Ngày sinh
+				    			<!-- <span class="pull-right error">chưa chọn tháng sinh</span> -->
+				    		</label>
+		        		</div>
+		        		<div class="col-sm-12" style="padding:0;">
+		        			<div class="col-sm-4">
+			        			<select name="birthDate" required="">
+									<option value="">Ngày</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+			        		</div>
+			        		<div class="col-sm-4">
+			        			<select name="birthMonth" required="">
+									<option value="">Tháng</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+								</select>
+			        		</div>
+			        		<div class="col-sm-4" style="padding-right:0;">
+			        			<select name="birthYear" required="">
+									<option value="">Năm</option>
+									<option value="1970">1970</option>
+									<option value="1971">1971</option>
+									<option value="1972">1972</option>
+									<option value="1973">1973</option>
+									<option value="1974">1974</option>
+									<option value="1975">1975</option>
+									<option value="1976">1976</option>
+									<option value="1977">1977</option>
+									<option value="1978">1978</option>
+									<option value="1979">1979</option>
+									<option value="1980">1980</option>
+									<option value="1981">1981</option>
+									<option value="1982">1982</option>
+									<option value="1983">1983</option>
+									<option value="1984">1984</option>
+									<option value="1985">1985</option>
+									<option value="1986">1986</option>
+									<option value="1987">1987</option>
+									<option value="1988">1988</option>
+									<option value="1989">1989</option>
+									<option value="1990">1990</option>
+									<option value="1991">1991</option>
+									<option value="1992">1992</option>
+									<option value="1993">1993</option>
+									<option value="1994">1994</option>
+									<option value="1995">1995</option>
+									<option value="1996">1996</option>
+									<option value="1997">1997</option>
+									<option value="1998">1998</option>
+									<option value="1999">1999</option>
+									<option value="2000">2000</option>
+									<option value="2001">2001</option>
+									<option value="2002">2002</option>
+									<option value="2003">2003</option>
+									<option value="2004">2004</option>
+									<option value="2005">2005</option>
+								</select>
+			        		</div>
+		        		</div>
+
+		            </div>
+
+		            <div class="col-sm-6" style="padding:0;">
+		            	<div class="col-sm-12">
+		            		<label for="gender">Giới tính</label>
+		            	</div>
+		            	<div class="col-sm-12">
+		            		<div class="col-sm-4">
+			            		<div class="radio">
+					            	<input type="radio" name="gender" id="male" value="1" checked=""> <label for="male" style="padding-left:0;">Nam</label>
+					            </div>
+			            	</div>
+
+			            	<div class="col-sm-4">
+			            		<div class="radio">
+					            	<input type="radio" name="gender" id="female" value="0"> <label for="female" style="padding-left:0;">Nữ</label>
+					            </div>
+		            		</div>
+		            	</div>
+
+		            	
+            		</div>
+		        </div>
+
+		        <div class="col-sm-12" style="padding:0;">
+		        	<input type="submit" value="Đăng ký" class="disable">
+
+		        	<div class="loading input-loading signup-loading">
+		        		<span></span><span></span><span></span><span></span><span></span>
+		        	</div>
+		        </div>
+
+		    </div>
+
+		    <div class="modal-footer" style="margin-top:40px;">
+		        <div slot="footer">
+		        	<a href="#" id="backToLoginDialog" style="color: blue">Đã có tài khoản? Đăng nhập</a>
+		    		<!-- <span class="signup">Đã có tài khoản? Đăng nhập</span> -->
+		    	</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<!-- Forgot Password Dialog using Bootstrap -->
+<div id="forgotPassDialog" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-container" style="width:520px">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<div class="modal-header">
+				<div class="row form-group">
+					<div class="col-sm-12">
+						<h3 class="modal-title" style="text-align:center">QUÊN MẬT KHẨU</h3>
+					</div>	
+					<div class="col-sm-12">
+						<p>Bạn vui lòng nhập tên tài khoản và Email của mình để lấy lại mật khẩu.</p>
+					</div>	
+				</div>										
+			</div>
+
+			<div class="modal-body">
+				<div class="row form-group">
+					<div class="col-sm-12">
+			    		<label for="username">Tên đăng nhập
+			    			<!-- <span class="pull-right"></span> -->
+			    		</label>			    		
+			    	</div>
+
+			    	<div class="col-sm-12">
+			    		<input type="text" name="username" placeholder="tên đăng nhập">
+			    	</div>		    	
+
+				</div>
+
+				<div class="row form-group">
+					<div class="col-sm-12">
+			    		<label for="email">Địa chỉ email
+			    			<!-- <span class="pull-right"></span> -->
+			    		</label>			    		
+			    	</div>
+
+			    	<div class="col-sm-12">
+			    		<input type="text" name="email" placeholder="email@domain.com">
+			    	</div>
+				</div>
+
+				
+				
+			</div>
+
+			<div class="modal-footer">
+				<div class="row form-group">
+					<div class="col-sm-12">
+			    		<input type="submit" name="submitForgotPass" value="Lấy lại mật khẩu!">
+			    	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <!-- Start header file -->	
 <header id = "header">
+
+<!-- Header bar -->
 <nav  style ="position: fixed;"id="ac-globalnav" class="no-js " role="navigation" aria-label="Global Navigation" data-hires="false" data-analytics-region="global nav" lang="en-US">
-	<div class="ac-gn-content">
-		<ul class="ac-gn-header">
-			<li class="ac-gn-item ac-gn-menuicon"> <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-					</span>
-					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-					</span>
-				</label>
-				<a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
-				<a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-apple">
-				<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
-				<a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
-		</ul>
-		<ul class="ac-gn-list">
-			<li class="ac-gn-item ac-gn-apple">
-				<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
-				<a class="ac-gn-link" href="/discover/"> <span>  </span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-design">
-				<a class="ac-gn-link" href="Home.html"> <span> Trang chủ </span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
-				<a class="ac-gn-link" href="Discussion.html"> <span>Thảo luận</span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
-				<a class="ac-gn-link" href="/distribute/"> <span>Đóng góp</span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-support">
-				<a class="ac-gn-link" href="/support/"> <span>Sự kiện</span></a>
-			</li>
-			
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-searchinput" >
-				    <input id = "searchBox"class="form-control" id="focusedInput" type="text" placeholder=" Tên sự kiện hoặc tổ chức..." >
-			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search" style="display:inline-block;">
-				<a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search glyphicon glyphicon-search" aria-label="Search event" href="/" > </a>
-			</li>
-			 <li class="ac-gn-item ac-gn-item-menu ac-gn-aboutus">
-				<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
-			</li>
-			<li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-				<a class="ac-gn-link dropdown-toggle" href="#" data-toggle="modal" data-target="#loginDialog"> <span>Đăng nhập</span></a>
-			</li>
-            
-            
+	<div class="row form-group">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-1"></div>
 
-		</ul>	
-	</div>
-</nav>
-			<!-- Login Dialog -->
-			<div class="login" id="login">
-            <p class="login_title"> ĐĂNG NHẬP</p> 	
-			
-			<a href="#" id="close_login" class="light_close"><i class="fa fa-close close_dialog" style="font-size:24px;color:red"></i></a>
-            <form  class="login-content">
-				<div class="form-group inner-addon left-addon ">
-					<i class="fa fa-user"></i>					
-					<input class="form-control " id="username" name="username" value="" type="text"  placeholder="Tên đăng nhập" required >
-				</div>
-				<div class="form-group inner-addon left-addon ">
-					<i class="fa fa-lock"></i>	
-					<input class="form-control" id="password" name="password" value="" type="password" placeholder="Mật khẩu" required>
-				</div>					
-			    <a href="#" class="btn btn-danger btn-block" style="color:white">
-					<i class="fa fa-sign-in" ></i> <span style="font-weight: bold">Đăng Nhập</span>				
-				</a>
-				<div class="checkbox pull-left">
-					<label>
-						<input type="checkbox"> Nhớ mật khẩu
+		<div class="ac-gn-content col-sm-6">
+			<ul class="ac-gn-header">
+				<li class="ac-gn-item ac-gn-menuicon"> <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+						<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+							<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+						</span>
+						<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+							<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+						</span>
 					</label>
-				</div>			
-				<div class="pull-right" style="margin: 10px 0">
-					<a href="#" id="forgot-box" style="color: blue">Quên mật khẩu?</a>
-				</div>
-				<div class="padding"></div>	
-				<div><a href="#" id="register-box" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a></div>		 
-				<div class="boderbottom">
-				</div>
+					<a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
+					<a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-apple">
+					<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+					<a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
+			</ul>
+			<ul class="ac-gn-list">
+				<li class="ac-gn-item ac-gn-apple">
+					<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+					<a class="ac-gn-link" href="/discover/"> <span>  </span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+					<a class="ac-gn-link" href="Home.html"> <span> Trang chủ </span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+					<a class="ac-gn-link" href="Discussion.html"> <span>Thảo luận</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+					<a class="ac-gn-link" href="/distribute/"> <span>Đóng góp</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+					<a class="ac-gn-link" href="/support/"> <span>Sự kiện</span></a>
+				</li>
 				
-				<div id="login-facebook" class="login-fa" >
-					<a class=" btn btn-primary btn-block inner-addon">
-						<i  class="fa fa-facebook"></i> Đăng nhập qua Facebook
-					</a>		
-				 </div>
-				 <div id="login-google" class="login-gg" >
-					<a class="btn btn-danger btn-block inner-addon">
-						<i class="fa fa-google-plus"></i> Đăng nhập qua Google
-					</a>	
-				 </div>
-			</form>
-			</div>
-		
-		<!-- Register Dialog -->
-		<div class="register" id="register">
-		
-			<p class="register_title" style="font-size:20px"> ĐĂNG KÝ TÀI KHOẢN</p>
-		
-			<a href="#" id="close_register"><i class="fa fa-close close_dialog" style="font-size:31px;color:red"></i></a>
-		
-			<form class="register-content">
-			    <p class="contact"><label for="name">Tên hiển thị</label></p> 
-    			<input id="name" name="name" placeholder="Tên hiển thị" required="" type="text"> 
-    			
-				<p class="contact"><label for="username">Tên đăng nhập</label></p> 
-    			<input id="username" name="username" placeholder="Tên đăng nhập" required="" type="text"> 
-    			<p class="contact"><label for="email">Địa chỉ Email</label></p> 
-    			<input id="email" name="email" placeholder="example@domain.com" required="" type="email"> 
-
-                <p class="contact"><label for="password">Mật khẩu</label></p> 
-    			<input type="password" id="password" name="password" required=""> 
-                <p class="contact"><label for="repassword">Nhập lại mật khẩu</label></p> 
-    			<input type="password" id="repassword" name="repassword" required=""> 
-
-				<fieldset>
-					 <label>Ngày sinh</label>
-					 <label class="day" style border-color:gray;>
-						 <select class="select-style" name="birthday">
-							<option>Ngày</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-							<option value="24">24</option>
-							<option value="25">25</option>
-							<option value="26">26</option>
-							<option value="27">27</option>
-							<option value="28">28</option>
-							<option value="29">29</option>
-							<option value="30">30</option>
-							<option value="31">31</option>
-						 </select>
-					 </label> 
-					 
-					 <label>Tháng</label>
-					  <label class="month"> 	
-						  <select class="select-style" name="birthmonth">
-							  <option value="">Tháng</option>
-							  <option value="01">1</option>
-							  <option value="02">2</option>
-							  <option value="03">3</option>
-							  <option value="04">4</option>
-							  <option value="05">5</option>
-							  <option value="06">6</option>
-							  <option value="07">7</option>
-							  <option value="08">8</option>
-							  <option value="09">9</option>
-							  <option value="10">10</option>
-							  <option value="11">11</option>
-							  <option value="12">12</option>				  
-						  </select>
-					  </label>			 
-					<label>Năm <input class="birthyear" maxlength="4" name="birthyear" placeholder="Năm" required></label>
-                 </fieldset>
-				
-				 <select class="select-style gender" name="gender">
-							<option value="selected">Giới tính</option>
-							 <option value="M">Nam</option>
-							 <option value="F">Nữ</option>
-							 <option value="others">Khác</option>
-				 </select><br><br>
-				
-			    <a href="#" class="btn btn-primary btn-block" style="color:white">
-					<i class="fa fa-registered" ></i> <span style="font-weight: bold">Đăng Ký</span>				
-				</a>
-				<div class="padding1"></div>	
-				<div><a href="#" id="backlogin" style="color: blue">Đã có tài khoản? Đăng nhập</a></div>	
-				<div style="padding-bottom: 12px"></div>
-			</form>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-searchinput" >
+					    <input id = "searchBox"class="form-control" id="focusedInput" type="text" placeholder=" Tên sự kiện hoặc tổ chức..." >
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search" style="display:inline-block;">
+					<a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search glyphicon glyphicon-search" aria-label="Search event" href="/" > </a>
+				</li>
+				 <li class="ac-gn-item ac-gn-item-menu ac-gn-aboutus">
+					<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+					<a id="loginLink" class="ac-gn-link dropdown-toggle" href="#" data-toggle="modal" data-target="#loginDialog"> <span>Đăng nhập</span></a>
+				</li>
+			</ul>	
 		</div>
-		<!-- Forgot Password -->
-				<div class="forgotpass" id="forgotpass">
-			<p class="forgotpass_title"> QUÊN MẬT KHẨU</p>
+	</div>
+	
+</nav>
 			
-			
-			<a href="#" id="close_forgotpass"><i class="fa fa-close close_dialog_forgotpass" style="font-size:24px;color:red"></i></a>
-			
-			<form class="forgotpass-content">
-			
-				<div class="col-sm-7 forgot_border">
-			
-					<p>Bạn vui lòng nhập địa chỉ Email của mình vào đây để lấy lại mật khẩu mới.</p>
-					<div class="padding1"></div>
-					<label for="reemail" style="font-weight:normal">Email đã đăng ký</label>
-					<input class="form-control" id="reemail" name="reemail" required="" type="email" style="width: 75%"> 
-					<div class="padding1"></div>
-					
-					
-					<div class="padding1"></div>
-					<div>
-						<a href="#" class="btn btn-primary " style="width: 75%; color:white" ><span style="font-weight: bold">Lấy lại mật khẩu</span></a>
-					</div>
-					
-				</div>
-				<div class="col-sm-5 right_forgotpass_form">
-					<p style="text-align:center">Đã có tài khoản </p>
-					<div>
-						<a id="backlogin1" href="#" class="btn btn-danger btn-block" style="color:white" ><span style="font-weight: bold">Đăng Nhập Ngay</span></a>
-					</div>
-					<div class="boderbottom"></div>
-					<div id="login-facebook" class="login-fa" >
-						<a class=" btn btn-primary btn-block inner-addon">
-							<i  class="fa fa-facebook"></i> Đăng nhập qua Facebook
-						</a>		
-				    </div>
-					<div id="login-google" class="login-gg" >
-						<a class="btn btn-danger btn-block inner-addon">
-							<i class="fa fa-google-plus"></i> Đăng nhập qua Google
-						</a>	
-					</div>
-				</div>
-			</form>
-		</div>
 </header>
 <!-- End header file -->
+
 <!-- Start slider -->
  <div id="slider">
          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -477,8 +569,8 @@
         <!-- /.row -->
       
 </div>
-  <!-- Footer -->
-        <div id ="footer" align="center">
+<!-- Footer -->
+<div id ="footer" align="center">
             <div class="row">
                 <div class="col-lg-12">
 				 <a class="up-arrow" href="#slider" data-toggle="tooltip" title="TO TOP">
@@ -488,7 +580,7 @@
                 </div>
             </div>
             <!-- /.row -->
-        </div>
+</div>
 <script>
 $(document).ready(function(){
   // Initialize Tooltip
