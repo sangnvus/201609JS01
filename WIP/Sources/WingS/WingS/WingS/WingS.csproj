@@ -162,6 +162,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentEvent.cs" />
+    <Compile Include="Models\CommentThread.cs" />
+    <Compile Include="Models\Donation.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventType.cs" />
+    <Compile Include="Models\Event_Statistic.cs" />
+    <Compile Include="Models\Organazation.cs" />
+    <Compile Include="Models\ReportEvent.cs" />
+    <Compile Include="Models\Thread.cs" />
     <Compile Include="Models\User_Information.cs" />
     <Compile Include="Models\Ws_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

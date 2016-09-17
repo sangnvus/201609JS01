@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -21,7 +22,13 @@ namespace WingS.Models
         public string VerifyCode { get; set; }
         #endregion
         #region RelationShip
-       
+        public virtual User_Information User_Info { get; set; }
+        public virtual Organazation Orgnazation { get; set; }
+        public ICollection<CommentEvent>  Comment { get; set; }
+        public ICollection<ReportEvent> Report { get; set; }
+        public ICollection<Donation> Donate { get; set; }
+        public ICollection<Thread> Thread { get; set; }
+        public ICollection<CommentThread> CommentThread { get; set; }
         #endregion
     }
 }

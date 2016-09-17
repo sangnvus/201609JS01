@@ -9,8 +9,9 @@ namespace WingS.Models
 {
     public class User_Information
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
+        [ForeignKey("User")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserID { get; set; }
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
@@ -24,6 +25,7 @@ namespace WingS.Models
         public string UserSignature { get; set; }
         public int Point { get; set; }
         #region Relationship
+     
         public virtual Ws_User User { get; set; }
         #endregion
     }
