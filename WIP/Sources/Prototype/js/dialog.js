@@ -1,13 +1,18 @@
 $(document).ready(function() {
-	// $("#loginLink").click(function(){
-	// 	// $("#loginDialog").modal("hide");
-	// 	$("#loginDialog").modal("toggle");
-	// });
+	$("#loginLink").click(function(){
+		// $("#loginDialog").modal("hide");
+		$("#loginDialog").modal("toggle");
+	});
 
-	// $("#register-box").click(function(){
-	// 	$("#loginDialog").modal("hide").fadeOut(1200);
-	// 	$("#registerDialog").modal("toggle").fadeIn(200);
-	// });
+	$("#register-box").click(function(){
+		$("#loginDialog").modal("hide").fadeOut(1200);
+		$("#registerDialog").modal("toggle").fadeIn(200);
+	});
+	$("#forgot-box").click(function(){
+		$("#loginDialog").modal("hide").fadeOut(1200);
+		$("#forgotPassDialog").modal("toggle").fadeIn(200);
+	});
+	
 		//  // Calling Login Form
 		// $("#login-box").click(function(){
 		// 	$("#login").delay(1000).show();
