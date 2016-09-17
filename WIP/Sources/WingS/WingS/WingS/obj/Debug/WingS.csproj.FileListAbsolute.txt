@@ -110,3 +110,4 @@ E:\WingS\201609JS01\WIP\Sources\WingS\WingS\WingS\bin\Antlr3.Runtime.pdb
 E:\WingS\201609JS01\WIP\Sources\WingS\WingS\WingS\bin\Newtonsoft.Json.xml
 E:\WingS\201609JS01\WIP\Sources\WingS\WingS\WingS\obj\Debug\WingS.dll
 E:\WingS\201609JS01\WIP\Sources\WingS\WingS\WingS\obj\Debug\WingS.pdb
+E:\WingS\201609JS01\WIP\Sources\WingS\WingS\WingS\obj\Debug\WingS.csprojResolveAssemblyReference.cache

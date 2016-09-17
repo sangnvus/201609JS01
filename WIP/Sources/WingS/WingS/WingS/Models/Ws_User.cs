@@ -24,7 +24,11 @@ namespace WingS.Models
         #region RelationShip
         public virtual User_Information User_Info { get; set; }
         public virtual Organazation Orgnazation { get; set; }
-
+        public ICollection<CommentEvent>  Comment { get; set; }
+        public ICollection<ReportEvent> Report { get; set; }
+        public ICollection<Donation> Donate { get; set; }
+        public ICollection<Thread> Thread { get; set; }
+        public ICollection<CommentThread> CommentThread { get; set; }
         #endregion
     }
 }
