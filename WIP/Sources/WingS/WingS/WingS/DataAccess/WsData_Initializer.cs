@@ -10,6 +10,7 @@ namespace WingS.DataAccess
     {
         protected override void Seed(Ws_DataContext context)
         {
+            //Initiate Dummy Data
             var User = new List<Ws_User>
             {
             new Ws_User{UserName="nhienlh",UserPassword="123456",AccountType=true,IsActive=true,CreatedDate=DateTime.Now,
