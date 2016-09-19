@@ -9,7 +9,7 @@ namespace WingS.Models.DTOs
     {
 
         public string UserName { get; set; }
-        public bool AccounType { get; set; }
+        public bool AccountType { get; set; }
         public bool IsActive { get; set; }
         public string FullName { get; set; }
         public string ProfileImage { get; set; }

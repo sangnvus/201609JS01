@@ -11,21 +11,25 @@ namespace WingS.DataHelper
 {
     public class ModelAccess : Controller
     {
-        public Ws_User GetCurrentUser()
+        protected  Ws_User GetCurrentUser()
         {
             Ws_User CurrentUser = null;
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.Name != null)
             {
-                CurrentUser = UserDAL.GetUserByUserNameOrEmail(User.Identity.Name);
-                ViewBag.CurrentUser = new UserBasicInfoDTO()
-                //Set ViewBag for View
+                using (var db = new UserDAL())
                 {
-                    FullName = CurrentUser.User_Information.FullName,
-                    ProfileImage = CurrentUser.User_Information.ProfileImage,
-                    AccounType = CurrentUser.AccountType,
-                    IsActive = CurrentUser.IsActive,
-                    UserName = CurrentUser.UserName
-                };
+                    CurrentUser = db.GetUserByUserNameOrEmail(User.Identity.Name);
+                    //ViewBag.CurrentUser = new UserBasicInfoDTO()
+                    ////Set ViewBag for View
+                    //{
+                    //    FullName = CurrentUser.User_Information.FullName,
+                    //    ProfileImage = CurrentUser.User_Information.ProfileImage,
+                    //    AccountType = CurrentUser.AccountType,
+                    //    IsActive = CurrentUser.IsActive,
+                    //    UserName = CurrentUser.UserName
+                    //};
+
+                }
             }
             return CurrentUser;
         }
