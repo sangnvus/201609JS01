@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace WingS.Models
+﻿namespace WingS.Models
 {
-    public class Ws_User
-    { 
-        #region Attribute
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class Ws_User
+    {
+
         [Key]
         public int UserID { get; set; }
         public string UserName { get; set; }
@@ -19,9 +19,12 @@ namespace WingS.Models
         public DateTime LastLogin { get; set; }
         public string Email { get; set; }
         public string VerifyCode { get; set; }
-        #endregion
-        #region RelationShip
-       
-        #endregion
+        public virtual ICollection<CommentEvent> CommentEvents { get; set; }
+        public virtual ICollection<CommentThread> CommentThreads { get; set; }
+        public virtual ICollection<Donation> Donations { get; set; }
+        public virtual Organazation Organazation { get; set; }
+        public virtual ICollection<ReportEvent> ReportEvents { get; set; }
+        public virtual ICollection<Thread> Threads { get; set; }
+        public virtual User_Information User_Information { get; set; }
     }
 }

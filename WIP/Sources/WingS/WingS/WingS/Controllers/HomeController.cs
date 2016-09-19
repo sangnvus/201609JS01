@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WingS.AccessData;
+using WingS.DataAccess;
 using WingS.Models;
 
 namespace WingS.Controllers
@@ -14,11 +14,11 @@ namespace WingS.Controllers
         {
             using (var db = new Ws_DataContext())
             {
-                Ws_User s = db.WingsUsers.Find(1);
+                Ws_User s = db.Ws_User.Find(1);
             }
             return View();
         }
 
-     
+      
     }
 }

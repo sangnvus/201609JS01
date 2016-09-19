@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
-
 namespace WingS.Models
 {
-    public class User_Information
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class User_Information
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
+        [ForeignKey("Ws_User")]
         public int UserID { get; set; }
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
@@ -23,8 +22,6 @@ namespace WingS.Models
         public string OrgnazationIDFollow { get; set; }
         public string UserSignature { get; set; }
         public int Point { get; set; }
-        #region Relationship
-        public virtual Ws_User User { get; set; }
-        #endregion
+        public virtual Ws_User Ws_User { get; set; }
     }
 }

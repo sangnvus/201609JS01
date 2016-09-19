@@ -1,3 +1,138 @@
+.modal-header h3 {
+    color: #42b983;
+}
+
+#loginDialog , #registerDialog, #forgotPassDialog{
+    margin-top: 7%;
+ 
+}
+
+.modal-container {
+    position: relative;
+    width: 480px;
+    margin: 0 auto;
+    padding: 3%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.33);
+    transition: all .3s ease;
+    font-family: Helvetica,Arial,sans-serif;
+}
+
+.signup-form {
+    width: 520px !important;
+}
+
+.modal-body .modal-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/**, :after, :before {
+    box-sizing: border-box;
+}*/
+.modal-body .modal-group:after, .modal-body .modal-group:before {
+    content: " ";
+    display: table;
+}
+
+
+.modal-body label {
+    color: #666;
+    display: inherit;
+}
+
+label {
+    cursor: default;
+}
+
+.modal-body input[type=text], .modal-body input[type=password] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+
+.modal-body .modal-group .left-column {
+    float: left;
+    width: 50%;
+    padding-right: 10px;
+}
+
+.modal-body .modal-group .right-column {
+    float: right;
+    width: 50%;
+    padding-left: 10px;
+}
+
+#registerDialog select {
+    width: 74px;
+    height: 36px;
+    padding: 0 5px;
+    color: #666;
+    background-color: transparent;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.5);
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+/*button, select {
+    text-transform: none;
+}*/
+
+.signup-form .radio {
+    float: left;
+    margin-right: 40px;
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+
+
+.signup-form input[type=submit] {
+    margin-top: 20px;
+}
+
+.modal-body input[type=submit], .modal-footer input[type=submit] {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+    background: #D80F16;
+    color: #eee;
+    border: 0;
+    border-radius: 4px;
+}
+
 /*phần tử phủ toàn màn hình*/
 #over {
     display: none;
@@ -41,7 +176,7 @@ a, a:visited, a:active{
 }
 
 
-.login-content
+.login-content,.register-content
 {
     padding-left:45px;
 	padding-right: 45px;
@@ -57,7 +192,10 @@ a, a:visited, a:active{
     float: right;
     margin-top:-50px;
 }	
-
+.close_dialog_forgotpass{
+	float: right;
+    margin-top: -72px;
+}
 .boderbottom{
 	border-bottom: 1px solid #bdc3c7;
 	padding-bottom: 25px;
@@ -124,7 +262,7 @@ a, a:visited, a:active{
     display:none;
     overflow:hidden;
     position:absolute;
-    z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
+    z-index:99999;
     top:7%;
     left:45%;
     margin-left:-200px;
@@ -140,7 +278,7 @@ a, a:visited, a:active{
 	overflow:hidden;
 	display:none;
 }*/
-.register .register_title
+/*.register .register_title
 {
     
 	color:black;
@@ -148,23 +286,9 @@ a, a:visited, a:active{
     padding:5px 0 4px 7px;
     text-align:center;
 	size:font-style;
-}
+}*/
 
-
-.register-content
-{
-    padding-left:45px;
-	padding-right: 45px;
-    background-color:white;
-    margin-left:5px;
-    margin-right:5px;
-    height:auto;
-    padding-top:20px;
-    overflow:hidden;
-}
-
-
-.register p.contact {
+/*.register p.contact {
 	font-size: 12px; 
 	margin:0px 0px 10px 0;
 	line-height: 14px; 
@@ -208,22 +332,14 @@ a, a:visited, a:active{
    padding-bottom: 5px;
    text-overflow: ellipsis;
    white-space: nowrap;
-  }
-.register input:focus{ border: 1px solid #ff5400; background-color: rgba(255, 255, 255, 1); }
-.register .gender {
-
-  width:450px;
- 
- }
- .padding1{
-	padding-top: 17px;
-}
+  }*/
+/*s*/
 
 /* Forgot Password Dialog */
 /* Forgot Password Dialog */
 .forgotpass
 {
-    background:#CCFFFF;
+    background:white;
     height:auto;
     width:900px;
     font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -246,16 +362,28 @@ a, a:visited, a:active{
     padding-left:40px;
 	font-weight:700;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-bottom: 1px solid #737373;
+	padding-bottom: 25px;
 }
 
 .forgotpass-content
 {
     padding-left:20px;
 	padding-right: 45px;
-    background-color:#D3D3D3;
+    background-color:white;
     margin-left:5px;
     margin-right:5px;
     height:auto;
     padding-top:20px;
     overflow:hidden;
+}
+
+.forgot_border
+{
+
+border-right: 1px solid #737373;
+
+}
+.right_forgotpass_form{
+ padding-left: 50px;
 }
