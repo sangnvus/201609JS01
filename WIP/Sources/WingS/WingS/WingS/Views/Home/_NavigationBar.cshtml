@@ -1,0 +1,119 @@
+﻿<header id = "header">
+
+<!-- Header bar -->
+<nav  style ="position: fixed;"id="ac-globalnav" class="no-js " role="navigation" aria-label="Global Navigation" data-hires="false" data-analytics-region="global nav" lang="en-US">
+	<div class="row form-group">
+
+		<div class="ac-gn-content">
+			<ul class="ac-gn-header">
+				<li class="ac-gn-item ac-gn-menuicon"> <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+						<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+							<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+						</span>
+						<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+							<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+						</span>
+					</label>
+					<a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
+					<a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-apple">
+					<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+					<a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
+			</ul>
+			<ul class="ac-gn-list">
+				<li class="ac-gn-item ac-gn-apple">
+					<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+					<a class="ac-gn-link" href="/discover/"> <span>  </span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+					<a class="ac-gn-link" href="Home.html"> <span> Trang chủ </span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+					<a class="ac-gn-link" href="Discussion.html"> <span>Thảo luận</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+					<a class="ac-gn-link" href="/distribute/"> <span>Đóng góp</span> </a>
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+					<a class="ac-gn-link" href="/support/"> <span>Sự kiện</span></a>
+				</li>
+				
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-searchinput" >
+					    <input id = "searchBox"class="form-control" id="focusedInput" type="text" placeholder=" Tên sự kiện hoặc tổ chức..." >
+				</li>
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search" style="display:inline-block;">
+					<a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search glyphicon glyphicon-search" aria-label="Search event" href="/" > </a>
+				</li>
+				 <li class="ac-gn-item ac-gn-item-menu ac-gn-aboutus">
+					<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
+				</li>
+
+                @if (User.Identity==null||!User.Identity.IsAuthenticated)
+                {
+				<li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+					<a id="loginLink" class="ac-gn-link dropdown-toggle" href="#"  data-target="#loginDialog"> <span>Đăng nhập</span></a>
+				</li>
+                }
+                else
+                {
+                    <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+                        Tài khoản
+                        <a class="ac-gn-link dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-caret-down"></i> </a>
+                        <ul class="dropdown-menu dropdown-user" style="padding:10px;">
+                            <li>
+                                <a href="profile.html">
+                                    <i class="fa fa-user"></i> My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailbox.html">
+                                    <i class="fa fa-envelope"></i> My Messages
+                                    <span class="badge green pull-right">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-bell"></i> My Alerts
+                                    <span class="badge orange pull-right" style="background-color:orange;">9</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-tasks"></i> My Tasks
+                                    <span class="badge blue pull-right" style="background-color:blue;">10</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="calendar.html">
+                                    <i class="fa fa-calendar"></i> My Calendar
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-gear"></i> Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="logout_open" href="@Url.Action("Logout", "Login")">
+                                    <i class="fa fa-sign-out"></i> Logout
+                                    <strong>@User.Identity.Name</strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                }
+			</ul>	
+		</div>
+	</div>
+	
+</nav>
+			
+</header>
