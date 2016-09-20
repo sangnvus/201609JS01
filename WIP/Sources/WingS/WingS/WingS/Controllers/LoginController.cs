@@ -12,27 +12,6 @@ namespace WingS.Controllers
 {
     public class LoginController : ModelAccess
     {
-        public ActionResult Login()
-        {
-            // Check if logged
-            if (User.Identity != null && User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                FormsAuthentication.SignOut();
-                var limit = Request.Cookies.Count;
-                for (int i = 0; i < limit; i++)
-                {
-                    var cookieName = Request.Cookies[i].Name;
-                    var cookie = new HttpCookie(cookieName) { Expires = DateTime.UtcNow.AddDays(-1) };
-                    Response.Cookies.Add(cookie);
-                }
-            }
-
-            return View();
-        }
         [HttpPost]
         public ActionResult Login(LoginInfoDTO account)
         {
@@ -41,11 +20,11 @@ namespace WingS.Controllers
                 var AccountInfo = userDal.GetUserByUserNameAndPassword(account.UserName, account.PassWord);
                 if (AccountInfo == null)
                 {
-                    ModelState.AddModelError("", "Sai mật khẩu hoặc tài khoản không tồn tại!");
+                    ModelState.AddModelError("WrongPassword", "Sai mật khẩu hoặc tài khoản không tồn tại!");
                 }
                 else if (!AccountInfo.IsActive || !AccountInfo.IsVerify)
                 {
-                    ModelState.AddModelError("", "Tài khoản bị khóa hoặc chưa xác nhận Email!");
+                    ModelState.AddModelError("LockedAccount", "Tài khoản bị khóa hoặc chưa xác nhận Email!");
                 }
                 //Updated Logged time for account.
                 else
@@ -71,6 +50,25 @@ namespace WingS.Controllers
             //Clear Cookies
             
             return RedirectToAction("Index", "Home");
+        }
+      
+        public JsonResult ValidateUser(string UserName, string PassWord)
+        {
+            string messageError = "";
+            using (var userDal = new UserDAL())
+            {
+                var AccountInfo = userDal.GetUserByUserNameAndPassword(UserName, PassWord);
+                if (AccountInfo == null)
+                {
+                    messageError = "Sai tên đăng nhập hoặc mật khẩu!";
+                }
+                else if (!AccountInfo.IsActive || !AccountInfo.IsVerify)
+                {
+                    messageError = "Tài khoản đang bị khóa hoặc chưa xác nhận!";
+                }
+                else messageError = "Success";
+            }
+            return this.Json(messageError,JsonRequestBehavior.AllowGet);
         }
     }
 }
