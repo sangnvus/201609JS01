@@ -36,6 +36,9 @@
 				<div class="form-group inner-addon left-addon ">
 					<i class="fa fa-lock"></i>	
 					<input class="form-control" id="password" name="password" value="" type="password" placeholder="Mật khẩu" required>
+					<!-- <div>
+						<label class="errorInput">Thông tin đăng nhập sai!</label>
+					</div> -->
 				</div>					
 			    <a href="#" class="btn btn-danger btn-block" style="color:white">
 					<i class="fa fa-sign-in" ></i> <span style="font-weight: bold">Đăng Nhập</span>				
@@ -81,21 +84,21 @@
 		    <div class="modal-body">
 		    	<div class="modal-group">
     				<label for="full_name">Tên hiển thị
-    					<!-- <span class="pull-right error">không được để trống</span> -->
+    					<span class="errorInput" >không được để trống</span>
     				</label>
     				<input type="text" name="full_name" placeholder="tên hiển thị" required="" autocomplete="off">
     			</div>
 
     			<div class="modal-group">
 		    		<label for="username">Tên đăng nhập
-		    			<!-- <span class="pull-right"></span> -->
+		    			<span class="errorInput" >không được để trống</span>
 		    		</label>
 		    		<input type="text" name="username" placeholder="tên đăng nhập">
 		    	</div>
 
 		    	<div class="modal-group">
 		    		<label for="email">Địa chỉ email
-		    			<!-- <span class="pull-right"></span> -->
+		    			<span class="errorInput">không được để trống</span>
 		    		</label>
 		    		<input type="text" name="email" placeholder="email@domain.com">
 		    	</div>
@@ -104,19 +107,18 @@
 		    		<div class="col-sm-6" style="padding:0;">
 		    			<div class="col-sm-12">
 		    				<label for="password">Mật khẩu
-				    		<!-- <span class="pull-right"></span> -->
+				    		<span class="errorInput">không được để trống</span>
 				    	</label>
 		    			</div>
 		    			<div class="col-sm-12">
-		    				<input type="password" name="password" placeholder="mật khẩu">
-				    	
+		    				<input type="password" name="password" placeholder="mật khẩu">				    	
 		    			</div>			    	
 			            
 		            </div>
 			    	<div class="col-sm-6" style="padding:0;">
 				    	<div class="col-sm-12">
 				    		<label for="password_confirmation">Nhập lại
-					    		<!-- <span class="pull-right"></span> -->
+					    		<span class="errorInput">không được để trống</span>
 					    	</label>
 				    	</div>
 				    	<div class="col-sm-12">
@@ -131,7 +133,7 @@
 		        	<div class="col-sm-6" style="padding:0;">
 		        		<div class="col-sm-12">
 		        			<label for="birthday">Ngày sinh
-				    			<!-- <span class="pull-right error">chưa chọn tháng sinh</span> -->
+				    			<span class="errorInput">chưa chọn tháng sinh</span>
 				    		</label>
 		        		</div>
 		        		<div class="col-sm-12" style="padding:0;">
