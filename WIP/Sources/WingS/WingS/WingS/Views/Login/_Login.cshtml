@@ -1,0 +1,52 @@
+﻿<div id="loginDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-container">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-header">
+                <h3 class="modal-title" style="text-align:center">ĐĂNG NHẬP</h3>
+                <!-- <p class="login_title"> ĐĂNG NHẬP</p> 	 -->
+            </div>
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new {@class ="login-content", @id = "LoginForm", @name = "LoginForm", role = "form" }))
+{
+      
+                <div class="form-group inner-addon left-addon ">
+                    <i class="fa fa-user"></i>
+                    <input class="form-control " id="username" name="UserName" value="" type="text" placeholder="Tên đăng nhập" required>
+                </div>
+                <div class="form-group inner-addon left-addon ">
+                    <i class="fa fa-lock"></i>
+                    <input class="form-control" id="password" name="PassWord" value="" type="password" placeholder="Mật khẩu" required>
+                </div>
+                <a href="#" onclick="this.parentNode.submit(); return false;" class="btn btn-danger btn-block" style="color:white">
+                    <i class="fa fa-sign-in"></i> <span style="font-weight: bold">Đăng Nhập</span>
+                </a>
+                <div class="checkbox pull-left">
+                    <label>
+                        <input type="checkbox"  name="RememberMe" value="true"> Nhớ mật khẩu
+                    </label>
+                </div>
+                <div class="pull-right" style="margin: 10px 0">
+                    <a href="#" id="forgot-box" data-target="#forgotPassDialog" style="color: blue">Quên mật khẩu?</a>
+                </div>
+                <div class="padding"></div>
+                <div>
+                    <a href="#" id="register-box" data-target="#registerDialog" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a>
+                </div>
+                <div class="boderbottom">
+                </div>
+
+                <div id="login-facebook" class="login-fa">
+                    <a class=" btn btn-primary btn-block inner-addon">
+                        <i class="fa fa-facebook"></i> Đăng nhập qua Facebook
+                    </a>
+                </div>
+                <div id="login-google" class="login-gg">
+                    <a class="btn btn-danger btn-block inner-addon">
+                        <i class="fa fa-google-plus"></i> Đăng nhập qua Google
+                    </a>
+                </div>
+
+}
+        </div>
+    </div>
+</div>
