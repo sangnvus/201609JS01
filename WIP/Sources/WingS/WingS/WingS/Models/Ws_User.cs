@@ -15,6 +15,7 @@
         public string UserPassword { get; set; }
         public bool AccountType { get; set; }
         public bool IsActive { get; set; }
+        public bool IsVerify { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastLogin { get; set; }
         public string Email { get; set; }
