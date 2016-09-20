@@ -115,9 +115,9 @@ input[type=checkbox], input[type=radio] {
 
 
 
-.signup-form input[type=submit] {
+/*.signup-form input[type=submit] {
     margin-top: 20px;
-}
+}*/
 
 .modal-body input[type=submit], .modal-footer input[type=submit] {
     text-align: center;
@@ -131,6 +131,12 @@ input[type=checkbox], input[type=radio] {
     color: #eee;
     border: 0;
     border-radius: 4px;
+}
+
+.errorInput{
+    color: red;
+    float: right;
+    /*display: none;*/
 }
 
 /*phần tử phủ toàn màn hình*/
