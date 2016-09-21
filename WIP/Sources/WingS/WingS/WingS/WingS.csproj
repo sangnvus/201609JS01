@@ -239,6 +239,7 @@
     <Content Include="Views\Login\_ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\AjaxScript\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\icons\" />
     <Folder Include="fonts\FrontEndController\" />
