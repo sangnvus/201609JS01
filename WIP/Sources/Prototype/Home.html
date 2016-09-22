@@ -21,7 +21,7 @@
 
 <div style="width:100%; padding:0;">
 	<!-- Login Dialog using Bootstrap -->
-	<div id="loginDialog" class="modal fade" role="dialog">
+	<div id="loginDialog" class="modal fade" role="dialog" style="overflow: hidden;">
 		<div class="modal-dialog">
 			<div class="modal-container">
 				<div class="modal-header">
@@ -67,11 +67,11 @@
 						</div>
 
 						<div class="col-sm-6" style="text-align: right;">
-							<a href="#" id="forgot-box" data-target="#forgotPassDialog" style="color: blue">Quên mật khẩu?</a>
+							<a href="#" id="forgot-box" data-toggle="modal" data-target="#forgotPassDialog" data-dismiss="modal" style="color: blue">Quên mật khẩu?</a>
 						</div>
 
 						<div class="col-sm-12">
-							<a href="#" id="register-box" data-target="#registerDialog" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a>
+							<a href="#" id="register-box" data-toggle="modal" data-target="#registerDialog" data-dismiss="modal" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a>
 						</div>						
 					</div>					
 				</div>
@@ -95,7 +95,7 @@
 	</div>
 
 	<!-- Register Dialog using Bootstrap -->
-	<div id="registerDialog" class="modal fade" role="dialog">
+	<div id="registerDialog" class="modal fade" role="dialog" style="overflow: hidden;">
 		<div class="modal-dialog">
 			<div class="modal-container">
 				<div class="modal-header">
@@ -288,7 +288,7 @@
 				<div class="modal-footer" style="padding-bottom: 0px;">
 					<div class="row">
 						<div class="col-sm-12">
-							<a href="#" id="backToLoginDialog" style="color: blue">Đã có tài khoản? Đăng nhập</a>
+							<a href="#" id="backToLoginDialog" style="color: blue" data-toggle="modal" data-target="#loginDialog" data-dismiss="modal">Đã có tài khoản? Đăng nhập</a>
 						</div>
 					</div>
 				</div>
@@ -412,7 +412,7 @@
 					<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
 				</li>
 				<li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-					<a id="loginLink" class="ac-gn-link dropdown-toggle" href="#"  data-target="#loginDialog"> <span>Đăng nhập</span></a>
+					<a id="loginLink" class="ac-gn-link dropdown-toggle" href="#" data-toggle="modal" data-target="#loginDialog"> <span>Đăng nhập</span></a>
 				</li>
 			</ul>	
 		</div>
