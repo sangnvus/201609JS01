@@ -6,11 +6,21 @@ $(document).ready(function() {
 
 	$("#register-box").click(function(){
 		$("#loginDialog").modal("hide").fadeOut(1200);
+		// $("#loginDialog").modal("toggle");
+		// $("#loginDialog-Dismiss").click(function(){
+		// 	alert("aa");
+		// });
 		$("#registerDialog").modal("toggle").fadeIn(200);
 	});
+
 	$("#forgot-box").click(function(){
 		$("#loginDialog").modal("hide").fadeOut(1200);
 		$("#forgotPassDialog").modal("toggle").fadeIn(200);
+	});
+
+	$("#backToLoginDialog").click(function(){
+		$("#registerDialog").modal("hide").fadeOut(1200);
+		$("#loginDialog").modal("toggle").fadeIn(200);
 	});
 	
 		//  // Calling Login Form

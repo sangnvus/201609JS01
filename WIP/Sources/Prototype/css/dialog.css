@@ -1,15 +1,27 @@
-.modal-header h3 {
+.modal-header h4 {
     color: #42b983;
+}
+
+.modal-title{
+    text-align:center;
 }
 
 #loginDialog , #registerDialog, #forgotPassDialog{
     margin-top: 7%;
  
 }
+#loginDialog .modal-container{
+    width: 410px;
+}
+div .col-sm-12{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
 
 .modal-container {
     position: relative;
-    width: 480px;
+    width: 100%;
     margin: 0 auto;
     padding: 3%;
     background-color: #fff;
@@ -17,15 +29,20 @@
     box-shadow: 0 2px 8px rgba(0,0,0,.33);
     transition: all .3s ease;
     font-family: Helvetica,Arial,sans-serif;
+   /* overflow-y: auto;*/
 }
 
-.signup-form {
-    width: 520px !important;
+.modal-header {
+    padding: 10px 15px;
 }
 
 .modal-body .modal-group {
     position: relative;
     margin-bottom: 20px;
+}
+
+.modal-body {
+    padding: 15px 15px 0px 15px;
 }
 
 /**, :after, :before {
@@ -68,17 +85,6 @@ input, textarea, keygen, select, button {
     font: 13.3333px Arial;
 }
 
-.modal-body .modal-group .left-column {
-    float: left;
-    width: 50%;
-    padding-right: 10px;
-}
-
-.modal-body .modal-group .right-column {
-    float: right;
-    width: 50%;
-    padding-left: 10px;
-}
 
 #registerDialog select {
     width: 74px;
@@ -103,16 +109,10 @@ option {
     text-transform: none;
 }*/
 
-.signup-form .radio {
-    float: left;
-    margin-right: 40px;
-}
-
 input[type=checkbox], input[type=radio] {
     box-sizing: border-box;
-    padding: 0;
+    /*padding: 0;*/
 }
-
 
 
 /*.signup-form input[type=submit] {
