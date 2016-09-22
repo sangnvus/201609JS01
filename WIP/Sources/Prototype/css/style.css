@@ -1377,3 +1377,16 @@ footer{
 	width: 100%;
 	height: 100%;
 	}
+
+  .avata{
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.75);
+  }
+
+  /*#userAvata{
+    margin-top: 5px;
+  }*/
