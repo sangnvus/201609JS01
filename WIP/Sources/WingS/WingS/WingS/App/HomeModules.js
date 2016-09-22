@@ -6,9 +6,18 @@ app.config(function ($routeProvider) {
         tittle: "Hãy đến với chúng tôi để chia sẻ từ thiện",
         templateUrl: "/Client/Home"
     })
-    .when("/Discussion", {
-     
+    .when("/Home", {
+        templateUrl: "/Client/Home",
+        title: "Hãy đến với chúng tôi để chia sẻ từ thiện"
     });
 
 });
+app.run(['$location', '$rootScope', function ($location, $rootScope) {
+    $rootScope.$on("$routeChangeStart", function (e, curr, prev) {
+        if (curr.$$route !== undefined && curr.$$route.title != null) {
+            $rootScope.title = curr.$$route.title;
 
+        } else $rootScope.title = "WingS";
+
+    });
+}]);
