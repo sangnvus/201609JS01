@@ -4,10 +4,11 @@
 
 #loginDialog , #registerDialog, #forgotPassDialog{
     margin-top: 3%;
- 
+
 }
 
 .modal-container {
+    
     position: relative;
     width: 480px;
     margin: 0 auto;

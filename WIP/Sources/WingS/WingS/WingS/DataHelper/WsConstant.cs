@@ -15,5 +15,13 @@ namespace WingS.DataHelper
             public static string CreateEvent = "Khởi tạo một event";
         }
         public enum Level { Diamon=2000,Golden = 1000, Silver = 500, Bronze= 200, Newbie = 0 };
+        public static class HttpMessageType
+        {
+            public static readonly string NOT_AUTHEN = "not-authen";
+            public static readonly string NOT_FOUND = "not-found";
+            public static readonly string BAD_REQUEST = "bad-request";
+            public static readonly string SUCCESS = "success";
+            public static readonly string ERROR = "error";
+        }
     }
 }

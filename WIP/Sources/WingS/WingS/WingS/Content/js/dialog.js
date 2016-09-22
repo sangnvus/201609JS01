@@ -1,7 +1,9 @@
 $(document).ready(function() {
 	$("#loginLink").click(function(){
-		// $("#loginDialog").modal("hide");
-		$("#loginDialog").modal("toggle");
+	    // $("#loginDialog").modal("hide");
+	 
+	    $("#loginDialog").modal("toggle");
+	    $("#ac-globalnav").css("padding-right", "15px;");
 	});
 
 	$("#register-box").click(function(){

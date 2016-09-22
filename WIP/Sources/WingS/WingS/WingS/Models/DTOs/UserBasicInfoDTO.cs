@@ -7,7 +7,6 @@ namespace WingS.Models.DTOs
 {
     public class UserBasicInfoDTO
     {
-
         public string UserName { get; set; }
         public bool AccountType { get; set; }
         public bool IsActive { get; set; }
