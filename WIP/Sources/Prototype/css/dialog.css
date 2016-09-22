@@ -161,60 +161,8 @@ input[type=checkbox], input[type=radio] {
 a, a:visited, a:active{
     text-decoration:none;
 }
-/* lớp login - cửa sổ đăng nhập*/
-.login
-{
-    background-color: white;
-    height:auto;
-    width:400px;
-    font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-size:14px;
-    padding-bottom:5px;
-    display:none;
-    overflow:hidden;
-    position:absolute;
-    z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
-    top:10%;
-    left:50%;
-    margin-left:-200px;
-    border: none;
-    border-radius: 7px;
-}
-		
-.login .login_title
-{
-    color:black;
-    font-size:18px;
-    padding:7px 0 4px 7px;
-    text-align:center;
-}
+/* lớp login - cửa sổ đăng nhập*/	
 
-
-.login-content,.register-content
-{
-    padding-left:45px;
-	padding-right: 45px;
-    background-color:white;
-    margin-left:5px;
-    margin-right:5px;
-    height:auto;
-    padding-top:25px;
-    overflow:hidden;
-}
-	
-.close_dialog {
-    float: right;
-    margin-top:-50px;
-}	
-.close_dialog_forgotpass{
-	float: right;
-    margin-top: -72px;
-}
-.boderbottom{
-	border-bottom: 1px solid #bdc3c7;
-	padding-bottom: 25px;
-	margin-bottom: 25px;
-}
 .login-fa{
 	padding-bottom: 20px;
 }
@@ -238,9 +186,7 @@ a, a:visited, a:active{
 .left-addon input {
 	padding-left:  28px; 
 }
-.padding{
-	padding-top: 50px;
-}
+
 .login-fa .fa{
 	left: 0px;
 	top:0px;
@@ -262,56 +208,4 @@ a, a:visited, a:active{
 }
 .login-gg a{
 	background: #d34836;
-}
-
-
-.forgotpass
-{
-    background:white;
-    height:auto;
-    width:900px;
-    font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-size:14px;
-    padding-bottom:5px;
-    display:none;
-    overflow:hidden;
-    position:absolute;
-    z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
-    top:10%;
-    left:30%;
-    margin-left:-200px;
-}
-.forgotpass_title
-{
-    
-	color:black;
-    font-size:18px;
-    padding:7px 0 4px 7px;
-    padding-left:40px;
-	font-weight:700;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	border-bottom: 1px solid #737373;
-	padding-bottom: 25px;
-}
-
-.forgotpass-content
-{
-    padding-left:20px;
-	padding-right: 45px;
-    background-color:white;
-    margin-left:5px;
-    margin-right:5px;
-    height:auto;
-    padding-top:20px;
-    overflow:hidden;
-}
-
-.forgot_border
-{
-
-border-right: 1px solid #737373;
-
-}
-.right_forgotpass_form{
- padding-left: 50px;
 }
