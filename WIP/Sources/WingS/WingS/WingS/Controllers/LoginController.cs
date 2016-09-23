@@ -60,11 +60,11 @@ namespace WingS.Controllers
                 var AccountInfo = userDal.GetUserByUserNameAndPassword(UserName, PassWord);
                 if (AccountInfo == null)
                 {
-                    messageError = "Sai tên đăng nhập hoặc mật khẩu!";
+                    messageError = "WrongPass";
                 }
                 else if (!AccountInfo.IsActive || !AccountInfo.IsVerify)
                 {
-                    messageError = "Tài khoản đang bị khóa hoặc chưa xác nhận!";
+                    messageError = "Locked";
                 }
                 else messageError = "Success";
             }

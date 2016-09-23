@@ -1,0 +1,207 @@
+body{
+    padding-right: 0!important;
+}
+.modal-header h4 {
+    color: #42b983;
+}
+
+.modal-title{
+    text-align:center;
+}
+
+#loginDialog .modal-container{
+    width: 410px;
+}
+#registerDialog div .col-sm-12{
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+
+#loginDialog div .col-sm-12{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+
+.modal-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.33);
+    transition: all .3s ease;
+    font-family: Helvetica,Arial,sans-serif;
+   /* overflow-y: auto;*/
+}
+
+.modal-header {
+    padding: 10px 15px;
+}
+
+.modal-body .modal-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.modal-body {
+    padding: 15px 15px 0px 15px;
+}
+
+/**, :after, :before {
+    box-sizing: border-box;
+}*/
+.modal-body .modal-group:after, .modal-body .modal-group:before {
+    content: " ";
+    display: table;
+}
+
+
+.modal-body label {
+    color: #666;
+    display: inherit;
+}
+
+label {
+    cursor: default;
+}
+
+.modal-body input[type=text], .modal-body input[type=password] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+
+
+#registerDialog select {
+    width: 74px;
+    height: 36px;
+    padding: 0 5px;
+    color: #666;
+    background-color: transparent;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.5);
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+/*button, select {
+    text-transform: none;
+}*/
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    /*padding: 0;*/
+}
+
+
+/*.signup-form input[type=submit] {
+    margin-top: 20px;
+}*/
+
+.modal-body input[type=submit], .modal-footer input[type=submit] {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+    background: #D80F16;
+    color: #eee;
+    border: 0;
+    border-radius: 4px;
+}
+
+.errorInput{
+    color: red;
+    float: right;
+    /*display: none;*/
+}
+
+/*phần tử phủ toàn màn hình*/
+#over {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 999;
+}
+a, a:visited, a:active{
+    text-decoration:none;
+}
+/* lớp login - cửa sổ đăng nhập*/	
+
+.login-fa{
+	padding-bottom: 20px;
+}
+.login-gg{
+	padding-bottom: 60px;
+}
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+/* style icon */
+.inner-addon .fa {
+	position: absolute;
+	padding: 10px;
+	pointer-events: none;
+}
+.left-addon .fa  { 
+	left:  0px;
+}
+
+.left-addon input {
+	padding-left:  28px; 
+}
+
+.login-fa .fa{
+	left: 0px;
+	top:0px;
+	bottom:0px;
+	padding:10px;
+	background:#37528c;
+	border-right: 1px solid rgba(0,0,0,.2);
+}
+.login-fa a{
+	background: #3b5998;
+}
+.login-gg .fa{
+	left: 0px;
+	top:0px;
+	bottom:0px;
+	padding:8px;
+	background:#c74534;
+	border-right: 1px solid rgba(0,0,0,.2);
+}
+.login-gg a{
+	background: #d34836;
+}

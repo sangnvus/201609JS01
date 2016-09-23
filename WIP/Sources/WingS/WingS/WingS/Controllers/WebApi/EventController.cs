@@ -9,7 +9,7 @@ using WingS.DataHelper;
 using WingS.Models;
 using WingS.Models.DTOs;
 
-namespace WingS.Controllers.WebApi
+namespace WingS.Controllers
 {
     public class EventController : ApiController
     {
@@ -17,34 +17,23 @@ namespace WingS.Controllers.WebApi
         [HttpGet]
         public IHttpActionResult GetTopViewEvent()
         {
-            UserBasicInfoDTO GetUser = null;
-            Ws_User user = null;
-            using (var db = new Ws_DataContext())
+            EventBasicInfo GetEvent = new EventBasicInfo();
+            Event topEvent = null ;
+            using (var db = new EventDAL())
             {
-                user = (Ws_User)db.Ws_User.Where(x => x.UserID == 1);
                 //Get top event.
+                topEvent = db.GetTopViewEvent();
                 //Set basic info to event
-                GetUser.UserName = user.UserName;
-                GetUser.IsActive = user.IsActive;
-                GetUser.Email = user.Email;
-              
+                if (topEvent != null)
+                {
+                    GetEvent.EventID = topEvent.EventID;
+                    GetEvent.EventName = topEvent.EventName;
+                    GetEvent.Content = topEvent.Description;
+                    GetEvent.CreatorID = topEvent.CreatorID;
+                    GetEvent.ImageUrl = topEvent.ImageUrl;
+                }
             }
-            //EventBasicInfo GetEvent = null;
-            //Event topEvent = null;
-            //using (var db = new Ws_DataContext())
-            //{
-            //    topEvent = (Event)db.Events.Where(x => x.Status == true).OrderByDescending(x => x.Event_Statistic.Views).Take(1);
-            //    //Get top event.
-            //    //Set basic info to event
-            //    if(topEvent!= null)
-            //    {
-            //        GetEvent.EventID = topEvent.EventID;
-            //        GetEvent.EventName = topEvent.EventName;
-            //        GetEvent.CreatorID = topEvent.CreatorID;
-            //        GetEvent.Content = topEvent.Description;
-            //    }
-            //}
-            return Ok( new HTTPMessageDTO { Status= WsConstant.HttpMessageType.SUCCESS, Data= GetUser });
+            return Ok( new HTTPMessageDTO { Status= WsConstant.HttpMessageType.SUCCESS, Data= GetEvent });
         }
     }
 }

@@ -1,14 +1,17 @@
 ﻿'use strict';
 var app = angular.module('ClientApp', ['ngRoute']);
+
 app.config(function ($routeProvider) {
     $routeProvider
     .when("/", {
         tittle: "Hãy đến với chúng tôi để chia sẻ từ thiện",
-        templateUrl: "/Client/Home"
+        templateUrl: "/Client/Home",
+        controller: "HomeController"
     })
     .when("/Home", {
         templateUrl: "/Client/Home",
-        title: "Hãy đến với chúng tôi để chia sẻ từ thiện"
+        title: "Hãy đến với chúng tôi để chia sẻ từ thiện",
+        controller: "HomeController"
     });
 
 });
