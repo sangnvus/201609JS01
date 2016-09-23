@@ -92,7 +92,7 @@ input, textarea, keygen, select, button {
 
 #registerDialog select {
     width: 74px;
-    height: 36px;
+    height: 30px;
     padding: 0 5px;
     color: #666;
     background-color: transparent;
@@ -117,7 +117,9 @@ input[type=checkbox], input[type=radio] {
     box-sizing: border-box;
     /*padding: 0;*/
 }
-
+.radio1 {
+    display: inline;
+}
 
 /*.signup-form input[type=submit] {
     margin-top: 20px;
