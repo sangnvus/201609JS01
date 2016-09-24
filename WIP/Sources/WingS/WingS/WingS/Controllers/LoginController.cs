@@ -48,10 +48,22 @@ namespace WingS.Controllers
         {   //Set logout Authentication
             FormsAuthentication.SignOut();
             //Clear Cookies
-            
             return RedirectToAction("Index", "Home");
         }
-      
+       public JsonResult CheckExistedUserNameOrEmail(string UserNameOrEmail)
+        {
+            string message = "";
+            using (var userDal = new UserDAL())
+            {
+                var User = userDal.GetUserByUserNameOrEmail(UserNameOrEmail);
+                if (User != null)
+                {
+                    message = "ExistedUserNameOrEmail";
+                }
+                else message = "ValidUserNameOrEmail";
+            }
+            return this.Json(message, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult ValidateUser(string UserName, string PassWord)
         {
             string messageError = "";
