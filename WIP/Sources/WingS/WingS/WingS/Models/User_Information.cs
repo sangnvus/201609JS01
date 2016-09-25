@@ -14,9 +14,9 @@ namespace WingS.Models
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
         public string UserAddress { get; set; }
-        public DateTime DoB { get; set; }
+        public DateTime? DoB { get; set; }
         public string Phone { get; set; }
-        public bool Gender { get; set; }
+        public string Gender { get; set; }
         public string Country { get; set; }
         public string FacebookUrl { get; set; }
         public string OrgnazationIDFollow { get; set; }
