@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>User Profiles</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/createEvent.css">
+  <link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <script type="text/javascript" src="js/user_profile.js"></script>
+
+  <!--DateTimePicker import-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+     <script src="lib/jquery.ptTimeSelect.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/jquery.ptTimeSelect.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.standalone.css" />
+
+    <script src="https://jonthornton.github.io/jquery-timepicker/jquery.timepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jonthornton.github.io/jquery-timepicker/jquery.timepicker.css" />
+    <script src="lib/pikaday.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/pikaday.css" />
+
+    <script src="lib/moment.min.js"></script>
+    <script src="lib/site.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/site.css" />
+
+    <script src="dist/datepair.js"></script>
+    <script src="dist/jquery.datepair.js"></script>
+  
+  
+</head>
+<body>
+<!--Start Header Panel -->
+
+<header id = "header">
+<nav  style ="position: fixed;"id="ac-globalnav" class="no-js " role="navigation" aria-label="Global Navigation" data-hires="false" data-analytics-region="global nav" lang="en-US">
+	<div class="ac-gn-content">
+		<ul class="ac-gn-header">
+			<li class="ac-gn-item ac-gn-menuicon"> <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+					</span>
+					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+					</span>
+				</label>
+				<a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
+				<a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-apple">
+				<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+				<a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
+		</ul>
+		<ul class="ac-gn-list">
+			<li class="ac-gn-item ac-gn-apple">
+				<a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">WingSFU.com</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+				<a class="ac-gn-link" href="/discover/"> <span>  </span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+				<a class="ac-gn-link" href="/design/"> <span> Trang chủ </span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+				<a class="ac-gn-link" href="/develop/"> <span>Thảo luận</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+				<a class="ac-gn-link" href="/distribute/"> <span>Đóng góp</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+				<a class="ac-gn-link" href="/support/"> <span>Sự kiện</span></a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search" style="display:inline-block;">
+				<a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search glyphicon glyphicon-search" aria-label="Search event" href="/" > </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-searchinput" >
+				    <input id = "searchBox"class="form-control" id="focusedInput" type="text" placeholder=" Tên sự kiện hoặc tổ chức..." >
+			</li>
+			 <li class="ac-gn-item ac-gn-item-menu ac-gn-aboutus">
+				<a class="ac-gn-link" href="/support/"> <span>Về chúng tôi</span> </a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-account">Tài khoản
+				<a class="ac-gn-link dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-caret-down"></i> </a>
+			<ul class="dropdown-menu dropdown-user" style ="padding:10px;">
+       <li>
+       <a href="profile.html">
+       <i class="fa fa-user"></i> My Profile
+       </a>
+       </li>
+       <li>
+        <a href="mailbox.html">
+        <i class="fa fa-envelope"></i> My Messages
+        <span class="badge green pull-right">4</span>
+        </a>
+        </li>
+        <li>
+        <a href="#">
+        <i class="fa fa-bell"></i> My Alerts
+         <span class="badge orange pull-right" style="background-color:orange;">9</span>
+         </a>
+        </li>
+		
+        <li>
+                                <a href="#">
+                                    <i class="fa fa-tasks"></i> My Tasks
+                                    <span class="badge blue pull-right"style="background-color:blue;">10</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="calendar.html">
+                                    <i class="fa fa-calendar"></i> My Calendar
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-gear"></i> Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="logout_open" href="#logout">
+                                    <i class="fa fa-sign-out"></i> Logout
+                                    <strong>Nhien LH</strong>
+                                </a>
+                            </li>
+                        </ul>
+            </li>
+			
+            
+		</ul>
+		
+	</div>
+</nav>
+</header>
+
+
+
+	
+<div class="pageTitle">
+	
+  <!-- <h2>Tạo sự kiện</h2>	 -->
+  
+  <font size="20" style="padding-right: 500px" class="main-heading text-heading-primary text-body--significant">
+                Tạo sự kiện
+  </font>
+  
+		<!-- <input style="font-size: 30px; width:190px; height="100px;" "type="submit" id="createEvent0" class="btn btn-success" value="Tạo sự kiện" onclick="location.href='#'"> -->
+
+		<input style="font-size: 30px; width:190px; height:55px;" "  type="submit" id="createEvent" class="btn btn-success" value="Tạo sự kiện">
+ 
+  
+</div>
+
+<nav style="border:none" class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" style="width:180px" href="#"> </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li  style="width:180px"><a href="#">Home</a></li>
+      <li><a href="#">Design</a></li>
+      
+    </ul>
+  </div>
+</nav>
+<div class="containerEvent">
+<div class="containerCreateEvent">
+
+<div class=" page-header titleDetail">
+
+  <!-- <h3>Chi tiết sự kiện</h3> -->
+  <font size="6" style="padding-right: 500px" class="stext-heading-primary text-body--significant">
+                Chi tiết sự kiện
+  </font>
+
+   <div class="container">
+
+  <!-- Trigger the modal with a button -->
+  <a style="color: blue" type="button" data-toggle="modal" data-target="#myModal">Lưu ý</a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Lưu ý về thông tin sự kiện</h4>
+        </div>
+        <div class="modal-body">
+          <p>1. Mọi thông tin đều phải tuyệt đối chính xác...</p>'
+          <p>2. Thời gian và địa ĐIỂM...</p>'
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div id="event_details_title">
+            <div>
+                <label>
+                    TÊN SỰ KIỆN
+                    <span class="required">*</span>
+                </label>
+            </div>
+            <div>
+                <div class="inputtext">
+                    <input class="form-control"	style="width:670px; height:42px" type="text" id="detailEventName" maxlength="255" name="DetailEventName" placeholder="Lấy tên ngắn gọn" />
+                </div>
+            </div>
+          
+        </div>
+		<div class="location">
+			<label>
+                    ĐỊA ĐIỂM
+                    <span class="required">*</span>
+            </label>
+			<div class="inputtext">
+                    <input class="form-control" style="width:670px; height:42px"   type="text"  id="details-event-name" maxlength="255" name="group-details-name" placeholder="Địa điểm chính xác tổ chức sự kiện" />
+					
+            </div>	
+		</div>
+		
+		<div class="dateTime">
+		<div class="col-sm-12 " id="dateTime">
+			<div class="col-sm-4 startDateTime">
+			<label>
+				THỜI GIAN BẮT ĐẦU 
+			</label>
+			 <div>
+			 <p id="datetimePicker">
+					<input size="8" type="text" class="date start" placeholder="Ngày bắt đầu"/>
+          <input size="6" type="text" class="time start" placeholder="Thời gian"/> 
+        </p>
+			</div>
+			</div>
+			
+			
+			<div class="col-sm-8 endtDateTime">
+			<label>
+				THỜI GIAN KẾT THÚC
+			</label>
+			<div>
+			<p id="datetimePicker">
+				  <input size="8" type="text" class="date end" placeholder="Ngày kết thúc"/>
+          <input size="6"type="text" class="time end" placeholder="Thời gian"/>
+      </p>
+			  </div>
+			</div>
+				
+
+            <script>
+                $('#datetimePicker .time').timepicker({
+                    'showDuration': true,
+                    'timeFormat': 'g:ia'
+                });
+                $('#datetimePicker .date').datepicker({
+                    'format': 'm/d/yyyy',
+                    'autoclose': true
+                });
+                var basicExampleEl = document.getElementById('datetimePicker');
+                var datepair = new Datepair(basicExampleEl);
+            </script>
+		</div>
+		</div>
+		<label>
+			HÌNH ẢNH SỰ KIỆN 
+		</label>
+
+		<div class="container-fluid">
+                  <div class="row ">
+                    <div class="col-md-9 uploadImage">
+                      <div class="row border-grey">
+                        <div class="col-md-3">
+                          <h3>Event image</h3>
+                       		 </div>
+                       		 <div class="col-md-8">
+                         	 <div class="upload">
+                         	  	 Choose an image from your computer
+                           	 <input class="photo file" data-help_section="project-image-help" id="event_photo" name="event[photo]" type="file" url="#">
+                            	<strong class="center">
+                           			  <span class="has_file_hide">This is the main image associated with your event. Make it count!</span><span>JPEG, PNG, GIF, or BMP • 50MB file limit</span> <span>At least 1024x768 pixels • 4:3 aspect ratio</span>
+                          		 </strong>
+                       		  </div>
+                     		  </div>
+                    	</div>
+                     </div>
+                     </div>
+                     </div>
+
+			<label>
+				MÔ TẢ SỰ KIỆN
+			</label>
+			<div id="txtEditor">
+				<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> 
+				<script type="text/javascript">
+				//<![CDATA[
+				        bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+				  //]]>
+				  </script>
+				  <textarea  style="width:673px; height: 180px; name="area2" ">
+				       
+				</textarea><br />
+ 
+			</div>
+
+			<label>
+				LOẠI SỰ KIỆN
+				
+			</label>
+			<br/>		
+                <select class="form-control eventCategory" id="event_category" name="event_category" style="width:670px; height:42px"    >
+            		<option value="2">Giáo dục</option>
+            		<option value="0" >Thiên tai</option>
+            		<option value="0" >Khác</option>
+            		<option value="1" selected="selected">Xã hội</option>
+            	</select>
+
+
+</div>
+</div>
+
+ 
+
+
+<div class="confirmCreate" >
+		
+	
+			<input style="font-size: 36px; width:260px; height="190px" "  type="submit" id="createEvent" class="btn btn-success center-block" value="Tạo sự kiện">
+		
+			
+</div>
+<footer style="middle" class="container-fluid" >
+  <p>Footer hihi</p>
+</footer>
+
+
+</body>
+</html>
