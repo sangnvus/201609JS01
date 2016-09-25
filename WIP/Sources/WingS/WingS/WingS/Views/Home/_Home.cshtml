@@ -128,7 +128,7 @@
 <div id="footer" align="center">
     <div class="row">
         <div class="col-lg-12">
-            <a class="up-arrow" href="#slider" data-toggle="tooltip" title="TO TOP">
+            <a class="up-arrow"  href="#slider" data-toggle="tooltip" title="TO TOP">
                 <span class="glyphicon glyphicon-chevron-up"></span>
             </a>
             <p>Copyright &copy; WingS team</p>
@@ -158,9 +158,7 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 900, function(){
-
         // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
       });
     } // End if
   });

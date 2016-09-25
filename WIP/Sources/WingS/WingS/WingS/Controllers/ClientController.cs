@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WingS.Controllers
 {
+    [RequireHttps]
     public class ClientController : Controller
     {
         public ActionResult Home()
