@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
 using WingS.DataAccess;
@@ -15,21 +14,36 @@ namespace WingS.Controllers
         [HttpPost]
         public ActionResult Index(string userName,string emailAdress)
         {
-            using (var userDal = new UserDAL())
+            try
             {
-                var AccountInfo = userDal.GetUserByUserNameAndEmail(userName, emailAdress);
-                if (AccountInfo == null)
+                var fromAddress = new MailAddress("anhtuanck93@gmail.com", "WingS");
+                var toAddress = new MailAddress(emailAdress, userName);
+                const string fromPassword = "tuan1993";
+                const string subject = "Test send mail";
+                const string body = "Body of the mail la la la la la!!!!";
+
+                var smtp = new SmtpClient
                 {
-                    ModelState.AddModelError("WrongUserNameorPassword", "Tài khoản hoặc email không tồn tại!");
-                }
-                else if (!AccountInfo.IsActive || !AccountInfo.IsVerify)
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
                 {
-                    ModelState.AddModelError("LockedAccount", "Tài khoản bị khóa hoặc chưa xác nhận Email!");
-                }
-                else
+                    Subject = subject,
+                    Body = body
+                })
                 {
-                    
+                    smtp.Send(message);
                 }
+                TempData["AlertMessage"] = "A mail has been sent to your register email address!";
+                return RedirectToAction("Index","Home");
+            }
+            catch (Exception ex)
+            {
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -41,11 +55,11 @@ namespace WingS.Controllers
                 var AccountInfo = userDal.GetUserByUserNameAndEmail(userName, emailAdress);
                 if (AccountInfo == null)
                 {
-                    messageError = "Tài khoản hoặc email không tồn tại!";
+                    messageError = "notExist";
                 }
                 else if (!AccountInfo.IsActive || !AccountInfo.IsVerify)
                 {
-                    messageError = "Tài khoản bị khóa hoặc chưa xác nhận Email!";
+                    messageError = "blocked";
                 }
                 else messageError = "Success";
             }
