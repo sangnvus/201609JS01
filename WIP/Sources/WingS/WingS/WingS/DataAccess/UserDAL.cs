@@ -100,6 +100,21 @@ namespace WingS.DataAccess
                 return currentUser;
             }
         }
+
+        /// <summary>
+        /// get data by user name and user email
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userEmail"></param>
+        /// <returns>user info</returns>
+        public Ws_User GetUserByUserNameAndEmail(string userName,string userEmail)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var User = db.Ws_User.FirstOrDefault(x => x.UserName == userName || x.Email == userEmail);
+                return User;
+            }
+        }
         public void Dispose()
         {
             
