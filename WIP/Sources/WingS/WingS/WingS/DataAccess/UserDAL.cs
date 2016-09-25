@@ -111,7 +111,7 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                var User = db.Ws_User.FirstOrDefault(x => x.UserName == userName || x.Email == userEmail);
+                var User = db.Ws_User.FirstOrDefault(x => x.UserName == userName && x.Email == userEmail);
                 return User;
             }
         }
