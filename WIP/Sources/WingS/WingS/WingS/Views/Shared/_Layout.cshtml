@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" type="text/css" href="~/Content/css/style.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/Logindialog.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/dialog.css">
     <link href="~/Content/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     
     @Styles.Render("~/Content/css")
@@ -13,16 +13,23 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-   
+    <script type="text/javascript">
+    if (window.location.hash && window.location.hash == '#_=_') {
+        window.location.hash = '';
+    }
+    </script>
 
 </head>
 
 <body >
 
     @Html.Partial("../Login/_Login")
+    @Html.Partial("../Login/_Register")
     @Html.Partial("../Login/_ForgotPassword")
     @Html.Partial("_NavigationBar")
+   
     @RenderBody()
+
 
 </body >
 

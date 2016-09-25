@@ -1,17 +1,16 @@
 ﻿<script type="text/javascript">
     $(function () {
         $('#logInBtn').click(function () {
-           
             $('#ErrorMessage').html("Đang đăng nhập...");
-            $.getJSON("/Login/ValidateUser", { UserName: $("#UserNameInput").val(), PassWord: $("#PassWordInput").val() }, function (data) {
-                if(data=="Sai tên đăng nhập hoặc mật khẩu!")
+            $.getJSON("/Login/ValidateUser", { UserName: $("#username").val(), PassWord: $("#password").val() }, function (data) {
+                if (data == "WrongPass")
                 {
-                    $('#ErrorMessage').html("Sai tên đăng nhập hoặc mật khẩu!");
+                    $('#ErrorMessage').html("Sai tên đăng nhập hoặc mật khẩu!!!");
                     return False;
                     
-                }else if(data=="Tài khoản đang bị khóa hoặc chưa xác nhận!")
+                }else if(data=="Locked")
                 {
-                    $('#ErrorMessage').html("Tài khoản đang bị khóa hoặc chưa xác nhận!");
+                    $('#ErrorMessage').html("Tài khoản đang bị khóa hoặc chưa xác nhận!!!");
                     return False;
                 }
                 else
@@ -25,54 +24,79 @@
 
   });
 </script>
-
-<div id="loginDialog" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-container">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div class="modal-header">
-                <h3 class="modal-title" style="text-align:center">ĐĂNG NHẬP</h3>
-                <h4 id="ErrorMessage" style="color:red; margin-left:30px;"> </h4>
-            </div>
-@using (Html.BeginForm("Login", "Login", FormMethod.Post, new {@class ="login-content", @id = "LoginForm", @name = "LoginForm", role = "form" }))
+    
+    <div id="loginDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="margin-top:7%;">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">ĐĂNG NHẬP</h4>
+                    <h5 style= "color:red;margin-left:5px;" id="ErrorMessage"></h5>
+                </div>
+                
+                <div class="modal-body">
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "login-content", @id = "LoginForm", @name = "LoginForm", role = "form" }))
 {
-      
-                <div class="form-group inner-addon left-addon ">
-                    <i class="fa fa-user"></i>
-                    <input class="form-control " id="UserNameInput" name="UserName"  type="text" placeholder="Tên đăng nhập" required>
-                </div>
-                <div class="form-group inner-addon left-addon ">
-                    <i class="fa fa-lock"></i>
-                    <input class="form-control" id="PassWordInput" name="PassWord"  type="password" placeholder="Mật khẩu" required>
-                </div>
-                <button id="logInBtn" type="button" class="btn btn-danger btn-block" style="color:white" ><i class="fa fa-sign-in" ></i> <span style="font-weight: bold">Đăng Nhập</span></button>
-                <div class="checkbox pull-left">
-                    <label>
-                        <input type="checkbox"  name="RememberMe" value="true"> Nhớ mật khẩu
-                    </label>
-                </div>
-                <div class="pull-right" style="margin: 10px 0">
-                    <a href="#" onclick="return false;" id="forgot-box" data-target="#forgotPassDialog" style="color: blue">Quên mật khẩu?</a>
-                </div>
-                <div class="padding"></div>
-                <div>
-                    <a href="#" onclick="return false;"  id="register-box" data-target="#registerDialog" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a>
-                </div>
-                <div class="boderbottom">
-                </div>
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <div class="input-group">
 
-                <div id="login-facebook" class="login-fa">
-                    <a class=" btn btn-primary btn-block inner-addon">
-                        <i class="fa fa-facebook"></i> Đăng nhập qua Facebook
-                    </a>
-                </div>
-                <div id="login-google" class="login-gg">
-                    <a class="btn btn-danger btn-block inner-addon">
-                        <i class="fa fa-google-plus"></i> Đăng nhập qua Google
-                    </a>
-                </div>
+                                <span class="input-group-addon ">
+                                     <i class="fa fa-user"></i> 
+                                    @*<span class="glyphicon glyphicon-user"></span>*@
+                                </span>
 
+                                <input class="form-control " id="username" name="username" value="" type="text" placeholder="Tên đăng nhập" required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 ">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    @*<span class="glyphicon glyphicon-lock"></span>*@
+                                     <i class="fa fa-lock"></i> 
+                                </span>
+                                <input class="form-control" id="password" name="password" value="" type="password" placeholder="Mật khẩu" required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <button id="logInBtn" type="button" class="btn btn-danger btn-block" style="color:white"><i class="fa fa-sign-in"></i> <span style="font-weight: bold">Đăng Nhập</span></button>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label>
+                                <input type="checkbox"> Nhớ mật khẩu
+                            </label>
+                        </div>
+
+                        <div class="col-sm-6" style="text-align: right;">
+                            <a href="#" onclick="return false;" id="forgot-box" data-toggle="modal" data-target="#forgotPassDialog" data-dismiss="modal" style="color: blue">Quên mật khẩu?</a>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <a href="#" onclick="return false;" id="register-box" data-toggle="modal" data-target="#registerDialog" data-dismiss="modal" style="color: blue">Chưa có tài khoản? Đăng ký ngay</a>
+                        </div>
+                        
+                    </div>
 }
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div id="login-facebook" class="col-sm-12 login-fa">
+                            <a  href="@Url.Content("~/Login/AuthenFacebook/")" class="btn btn-primary btn-block inner-addon">
+                                <i class="fa fa-facebook"></i> Đăng nhập qua Facebook
+                            </a>
+                        </div>
+                        <div id="login-google" class="col-sm-12 login-gg">
+                            <a class="btn btn-danger btn-block inner-addon">
+                                <i class="fa fa-google-plus"></i> Đăng nhập qua Google
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>

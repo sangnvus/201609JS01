@@ -13,5 +13,14 @@ namespace WingS.Models.DTOs
         public string Content { get; set; }
         public string ImageUrl { get; set; }
         public bool Status { get; set; }
+        public EventBasicInfo()
+        {
+            EventID = 0;
+            CreatorID = 0;
+            EventName = "";
+            Content = "";
+            ImageUrl = "";
+            Status = false;
+        }
     }
 }

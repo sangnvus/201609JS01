@@ -56,7 +56,7 @@
                 @if (User.Identity==null||!User.Identity.IsAuthenticated)
                 {
 				<li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-					<a id="loginLink" class="ac-gn-link dropdown-toggle" href="#" onclick="return false;" data-target="#loginDialog"> <span>Đăng nhập</span></a>
+					<a id="loginLink" class="ac-gn-link dropdown-toggle" href="#" onclick="return false;" data-target="#loginDialog" data-toggle="modal"> <span>Đăng nhập</span></a>
 				</li>
                 }
                 else

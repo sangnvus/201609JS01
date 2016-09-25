@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Facebook;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -48,10 +50,22 @@ namespace WingS.Controllers
         {   //Set logout Authentication
             FormsAuthentication.SignOut();
             //Clear Cookies
-            
             return RedirectToAction("Index", "Home");
         }
-      
+       public JsonResult CheckExistedUserNameOrEmail(string UserNameOrEmail)
+        {
+            string message = "";
+            using (var userDal = new UserDAL())
+            {
+                var User = userDal.GetUserByUserNameOrEmail(UserNameOrEmail);
+                if (User != null)
+                {
+                    message = "ExistedUserNameOrEmail";
+                }
+                else message = "ValidUserNameOrEmail";
+            }
+            return this.Json(message, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult ValidateUser(string UserName, string PassWord)
         {
             string messageError = "";
@@ -60,16 +74,113 @@ namespace WingS.Controllers
                 var AccountInfo = userDal.GetUserByUserNameAndPassword(UserName, PassWord);
                 if (AccountInfo == null)
                 {
-                    messageError = "Sai tên đăng nhập hoặc mật khẩu!";
+                    messageError = "WrongPass";
                 }
                 else if (!AccountInfo.IsActive || !AccountInfo.IsVerify)
                 {
-                    messageError = "Tài khoản đang bị khóa hoặc chưa xác nhận!";
+                    messageError = "Locked";
                 }
                 else messageError = "Success";
             }
             return this.Json(messageError,JsonRequestBehavior.AllowGet);
         }
+        public ActionResult FacebookCallback(string code)
+        {
+            try
+            {
+                var fb = new FacebookClient();
+                dynamic result = fb.Post("oauth/access_token", new
+                {
+                    client_id = "167432310370225",
+                    client_secret = "af5a15c4b243b7d4ef5a586a93289dca",
+                    redirect_uri = RedirectUri.AbsoluteUri,
+                    code = code
+                });
+                var accessToken = result.access_token;
+                // Store the access token in the session
+                Session["AccessToken"] = accessToken;
+                // update the facebook client with the access token so 
+                // we can make requests on behalf of the user
+                fb.AccessToken = accessToken;
+                // Get the user's information
+                dynamic me = fb.Get("/me?fields=id,name,gender,link,birthday,email,bio");
+                //dynamic me = fb.Get("/me?fields=id,name,gender,link,birthday,email,bio,website,location");
+                string facebookId = me.id;
+                string email = me.email;
 
+                if (string.IsNullOrEmpty(email))
+                {
+                    email = facebookId + "@facebook.com";
+                }
+                me.email = email;
+                // select from DB
+                using (var db = new UserDAL()) { 
+                    var newUser = db.GetUserByUserNameOrEmail(email);
+                    if (newUser == null)
+                    {
+                        newUser = db.RegisterFacebook(me);
+                    }
+                    else if (newUser != null && newUser.IsActive == false)
+                    {
+                    // user is Locked
+                    TempData["loginMessageError"] = "Tài khoản của bạn đã bị khóa!";
+                    return RedirectToAction("Login", "Login");
+                    }
+                    else
+                    {
+                        newUser.LastLogin = DateTime.UtcNow;
+                        newUser = db.UpdateUser(newUser);
+
+                    }
+                    // Set the auth cookie
+                    FormsAuthentication.SetAuthCookie(newUser.UserName, true);
+                newUser.LastLogin = DateTime.UtcNow;
+                db.UpdateUser(newUser);
+                }
+
+                return RedirectToAction("Index", "Home");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public ActionResult AuthenFacebook()
+        {
+            try
+            {
+                var fb = new FacebookClient();
+                var loginUrl = fb.GetLoginUrl(new
+                {
+                    client_id = "167432310370225",
+                    client_secret = "af5a15c4b243b7d4ef5a586a93289dca",
+                    redirect_uri = RedirectUri.AbsoluteUri,
+                    response_type = "code",
+                    scope = "email,user_birthday,user_about_me" 
+                });
+                return Redirect(loginUrl.AbsoluteUri);
+            }
+            catch (Exception)
+            {
+                return Redirect("/#/error");
+            }
+
+        }
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url)
+                {
+                    Query = null,
+                    Fragment = null,
+                    Path = Url.Action("FacebookCallback")
+                };
+                return uriBuilder.Uri;
+            }
+        }
     }
+
 }
