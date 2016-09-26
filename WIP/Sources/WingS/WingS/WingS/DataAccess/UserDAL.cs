@@ -39,7 +39,7 @@ namespace WingS.DataAccess
                     UserAddress = me.location,
                     FullName = me.name,
                     Gender = me.gender,
-                    DoB = (Convert.ToDateTime(me.birthday)!==DateTime.MinValue)?Convert.ToDateTime(me.birthday):null,
+                    DoB = (Convert.ToDateTime(me.birthday)!=DateTime.MinValue)?Convert.ToDateTime(me.birthday):null,
                     FacebookUrl = me.link,
                     ProfileImage = "https://graph.facebook.com/" + me.id + "/picture?type=large",
                     Country = string.Empty,

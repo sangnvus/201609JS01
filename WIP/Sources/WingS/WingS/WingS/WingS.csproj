@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -212,7 +213,6 @@
     <Content Include="App\HomeModules.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\dialog.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\Images\EventDemo\event1.jpg" />
     <Content Include="Content\js\dialog.js" />
@@ -266,17 +266,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\_NavigationBar.cshtml" />
-    <Content Include="Views\Home\_SlideBar.cshtml" />
-    <Content Include="Views\Login\_Login.cshtml" />
-    <Content Include="Views\Login\_ForgotPassword.cshtml" />
     <Content Include="Views\Home\_Home.cshtml" />
+    <Content Include="Views\Login\_Login.cshtml" />
     <Content Include="Views\Login\_Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Service\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Content\icons\" />
     <Folder Include="fonts\FrontEndController\" />
     <Folder Include="Views\Client\" />
     <Folder Include="Views\User\" />
@@ -307,7 +303,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2710</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost:2710/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

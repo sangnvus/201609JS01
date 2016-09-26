@@ -1,318 +1,222 @@
-﻿<script>
-    app.directive('passwordMatch', [function () {
-        return {
-            restrict: 'A',
-            scope: true,
-            require: 'ngModel',
-            link: function (scope, elem, attrs, control) {
-                var checker = function () {
+﻿<link href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
+<body id="pageBody">
 
-                    //get the value of the first password
-                    var e1 = scope.$eval(attrs.ngModel);
+    <div id="divBoxed" class="container">
 
-                    //get the value of the other password  
-                    var e2 = scope.$eval(attrs.passwordMatch);
-                    return e1 == e2;
-                   
-                };
-                scope.$watch(checker, function (n) {
-                   
-                    //set the form control to valid if both 
-                    //passwords are the same, else invalid
-                    control.$setValidity("unique", n);
-                });
-            }
-        };
-    }]);
-</script>
+        <div class="transparent-bg" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
 
-<div id="registerDialog" class="modal fade" role="dialog" style="overflow: hidden;">
-    <div class="modal-dialog">
-        <div class="modal-container">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">ĐĂNG KÝ TÀI KHOẢN</h4>
-            </div>
+        <div class="divPanel notop nobottom">
+            <div class="row-fluid">
+                <div class="span12">
 
-            <div class="modal-body">
-                <form name="RegisterForm" role="form" novalidate>
-                    <div class="row form-group">
-                        <!-- Tên hiển thị -->
-                        <div class="col-sm-12">
-                            <label for="FullName">
-                                <span class="col-sm-4">Tên hiển thị</span>
-                                <span class="col-sm-8" ng-show="RegisterForm.FullName.$dirty && RegisterForm.FullName.$invalid" style="color:#d9534f">
-                                    <span class="glyphicon glyphicon-remove " style="color:#d9534f"></span>
-                                    <span ng-show="RegisterForm.FullName.$error.required">không được để trống</span>
-                                    <span ng-show="RegisterForm.FullName.$error.minlength">phải dài hơn 4 kí tự</span>
-                                    <span ng-show="RegisterForm.FullName.$error.maxlength">phải ngắn hơn 20 kí tự</span>
-                                    <span ng-show="RegisterForm.FullName.$error.pattern">chỉ gồm chữ và số</span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="col-sm-12">
-                            <span class="col-sm-11">
-                                <input class="form-control" type="text" name="FullName" placeholder="Tên hiển thị"
-                                       ng-model="FullName"
-                                       required
-                                       ng-minlength="4"
-                                       ng-maxlength="20"
-                                       ng-pattern="/^[a-zA-Z0-9]+$/">
-                            </span>
-                            <span class="col-sm-1" style="padding:0px">
-                                <i class="fa fa-check text-success" ng-show="RegisterForm.FullName.$dirty && RegisterForm.FullName.$valid"></i>
-                            </span>
-                        </div>
-                        <!-- Tên đăng nhập -->
-                        <div class="col-sm-12">
-                            <label for="Username">
-                                <span class="col-sm-4">Tên đăng nhập</span>
-                                <span class="col-sm-8" ng-show="RegisterForm.UserName.$dirty && RegisterForm.UserName.$invalid" style="color:#d9534f">
-                                    <span class="glyphicon glyphicon-remove " style="color:#d9534f"></span>
-                                    <span ng-show="RegisterForm.UserName.$error.required">không được để trống</span>
-                                    <span ng-show="RegisterForm.UserName.$error.minlength">phải dài hơn 8 kí tự</span>
-                                    <span ng-show="RegisterForm.UserName.$error.maxlength">phải ngắn hơn 20 kí tự</span>
-                                    <span ng-show="RegisterForm.UserName.$error.pattern">chỉ gồm chữ và số</span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="col-sm-12">
-                            <span class="col-sm-11">
-                                <input class="form-control" type="text" name="UserName" placeholder="Tên đăng nhập"
-                                       ng-model="UserName"
-                                       required
-                                       ng-minlength="8"
-                                       ng-maxlength="20"
-                                       ng-pattern="/^[a-zA-Z0-9]+$/">
-                            </span>
-                            <span class="col-sm-1" style="padding:0px">
-                                <i class="fa fa-check text-success" ng-show="RegisterForm.UserName.$dirty && RegisterForm.UserName.$valid"></i>
-                            </span>
-                        </div>
-                        <!-- Địa chỉ Email -->
-                        <div class="col-sm-12">
-                            <label for="Email">
-                                <span class="col-sm-4">Địa chỉ email</span>
-                                <span class="col-sm-8" ng-show="RegisterForm.Email.$dirty && RegisterForm.Email.$invalid" style="color:#d9534f">
-                                    <span class="glyphicon glyphicon-remove " style="color:#d9534f"></span>
-                                    <span ng-show="RegisterForm.Email.$error.required">không được để trống</span>
-                                    <span ng-show="RegisterForm.Email.$error.email">không đúng định dạng </span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="col-sm-12">
-                            <span class="col-sm-11">
-                                <input class="form-control" name="Email" type="email" placeholder="email@domain.com"
-                                       ng-model="email"
-                                       autocomplete="off"
-                                       required>
-                            </span>
-                            <span class="col-sm-1" style="padding:0px">
-                                <i class="fa fa-check text-success" ng-show="RegisterForm.Email.$dirty && RegisterForm.Email.$valid"></i>
-                            </span>
-                        </div>
-                        <!-- Mật khẩu -->
-                        <div class="col-sm-12">
-                            <label for="PassWord">
-                                <span class="col-sm-4">Mật khẩu</span>
-                                <span class="col-sm-8" ng-show="RegisterForm.PassWord.$dirty && RegisterForm.PassWord.$invalid" style="color:#d9534f;">
-                                    <span class="glyphicon glyphicon-remove " style="color:#d9534f"></span>
-                                    <span ng-show="RegisterForm.PassWord.$error.required">không được để trống</span>
-                                    <span ng-show="RegisterForm.PassWord.$error.minlength">phải dài hơn 8 kí tự</span>
-                                    <span ng-show="RegisterForm.PassWord.$error.maxlength">phải ngắn hơn 20 kí tự</span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="col-sm-12">
-                            <span class="col-sm-11">
-                                <input class="form-control" name="PassWord" ng-model="PassWord" type="password"
-                                       placeholder="Mật khẩu"
-                                       ng-minlength="8"
-                                       ng-maxlength="20" 
-                                       required>
-                            </span>
-                            <span class="col-sm-1" style="padding:0px">
-                                <i class="fa fa-check text-success" ng-show="RegisterForm.PassWord.$dirty && RegisterForm.PassWord.$valid"></i>
-                            </span>
-                        </div>
-                        <!-- Nhập lại mật khẩu -->
-                        <div class="col-sm-12">
-                            <label for="RePassWord">
-                                <span class="col-sm-4">Nhập lại mật khẩu</span>
-                                <span class="col-sm-8" ng-show="RegisterForm.RePassWord.$dirty && RegisterForm.RePassWord.$invalid" style="color:#d9534f;">
-                                    <span class="glyphicon glyphicon-remove " style="color:#d9534f"></span>
-                                    <span ng-show="RegisterForm.RePassWord.$error.required">không được để trống</span>
-                                    <span ng-show="RegisterForm.RePassWord.$error.unique">không giống</span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="col-sm-12">
-                            <span class="col-sm-11">
-                                <input class="form-control login-field" type="password" placeholder="Nhập lại mật khẩu"
-                                       name="RePassWord"
-                                       ng-model="RePassWord"
-                                       password-match="PassWord"
-                                       required>
-                            </span>
-                            <span class="col-sm-1" style="padding:0px">
-                                <i class="fa fa-check text-success" ng-show="RegisterForm.RePassWord.$dirty && RegisterForm.RePassWord.$valid"></i>
-                            </span>
-                        </div>
+                    <div id="divLogo" class="pull-left">
+                        <a href="index.html" id="divSiteTitle">WingS</a><br />
+                        <a href="index.html" id="divTagLine">Hãy chia sẻ</a>
+                    </div>
 
-                        <div class="col-sm-6" style="padding:0;">
-                            <div class="col-sm-12">
-                                <label for="BirthDay">
-                                    <span class="col-sm-5">Ngày sinh</span>
-                                    <span class="col-sm-7" ng-show="RegisterForm.BirthDate.$dirty && RegisterForm.BirthDate.$invalid" style="color:#d9534f;">
-                                    </span>
-                                    <span class="col-sm-7" ng-show="RegisterForm.BirthMonth.$dirty && RegisterForm.BirthMonth.$invalid" style="color:#d9534f;">
-                                    </span>
-                                    <span class="col-sm-7" ng-show="RegisterForm.BirthYear.$dirty && RegisterForm.BirthYear.$invalid" style="color:#d9534f;">
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="col-sm-4">
-                                    <select name="BirthDate" ng-model="BirthDate" required>
-                                        <option value="">Ngày</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">28</option>
-                                        <option value="29">29</option>
-                                        <option value="30">30</option>
-                                        <option value="31">31</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-4">
-                                    <select name="BirthMonth" ng-model="BirthMonth" required>
-                                        <option value="">Tháng</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-4" style="padding-right:0;">
-                                    <select name="BirthYear" ng-model="BirthYear" required>
-                                        <option value="">Năm</option>
-                                        <option value="1970">1970</option>
-                                        <option value="1971">1971</option>
-                                        <option value="1972">1972</option>
-                                        <option value="1973">1973</option>
-                                        <option value="1974">1974</option>
-                                        <option value="1975">1975</option>
-                                        <option value="1976">1976</option>
-                                        <option value="1977">1977</option>
-                                        <option value="1978">1978</option>
-                                        <option value="1979">1979</option>
-                                        <option value="1980">1980</option>
-                                        <option value="1981">1981</option>
-                                        <option value="1982">1982</option>
-                                        <option value="1983">1983</option>
-                                        <option value="1984">1984</option>
-                                        <option value="1985">1985</option>
-                                        <option value="1986">1986</option>
-                                        <option value="1987">1987</option>
-                                        <option value="1988">1988</option>
-                                        <option value="1989">1989</option>
-                                        <option value="1990">1990</option>
-                                        <option value="1991">1991</option>
-                                        <option value="1992">1992</option>
-                                        <option value="1993">1993</option>
-                                        <option value="1994">1994</option>
-                                        <option value="1995">1995</option>
-                                        <option value="1996">1996</option>
-                                        <option value="1997">1997</option>
-                                        <option value="1998">1998</option>
-                                        <option value="1999">1999</option>
-                                        <option value="2000">2000</option>
-                                        <option value="2001">2001</option>
-                                        <option value="2002">2002</option>
-                                        <option value="2003">2003</option>
-                                        <option value="2004">2004</option>
-                                        <option value="2005">2005</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="divMenuRight" class="pull-right">
+                        <div class="navbar">
+                            <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
+                                NAVIGATION <span class="icon-chevron-down icon-white"></span>
+                            </button>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav nav-pills ddmenu">
+                                    <li class="active"><a href=@Url.Content("/#/Home")>Trang chủ</a></li>
+                                    <li><a href="about.html">Sự kiện</a></li>
 
-                        <div class="col-sm-6">
-                            <div class="col-sm-12">
-                                <label for="Gender">
-                                    <span class="col-sm-12">Giới tính</span>
-                                </label>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="col-sm-5">
-                                    <div class="radio1">
-                                        <input type="radio" name="Gender" id="Male" value="1" checked="">
-                                        <label for="Male" style="padding-left:0;">Nam</label>
-                                    </div>
-                                </div>
+                                    </li>
+                                    <li><a href="services.html">Thảo luận</a></li>
+                                    <li><a href="portfolio.html">Về chúng tôi</a></li>
+                                    <li><a href="contact.php">Liên hệ</a></li>
+                                    <li><a href=@Url.Content("/#/Login")>Đăng nhập</a></li>
+                                    <!-- <li class="dropdown">
+                                    <a href="page.html" class="dropdown-toggle">Tài khoản <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                    <li><a href="full.html">Tin nhắn</a></li>
+                                    <li><a href="2-column.html">Thông báo</a></li>
+                                    <li><a href="3-column.html">Thông tin tài khoản</a></li>
+                                    <li><a href="../documentation/index.html">Đăng xuất</a></li>
 
-                                <div class="col-sm-4">
-                                    <div class="radio1">
-                                        <input type="radio" name="Gender" id="Female" value="0">
-                                        <label for="Female" style="padding-left:0;">Nữ</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-sm-12" style="padding-top:20px">
-                            <div class="col-sm-11">
-                                <button type="submit" class="btn btn-danger btn-block"
-                                        ng-disabled="!RegisterForm.$dirty || (RegisterForm.$dirty && RegisterForm.$invalid)">
-                                    <span class="glyphicon glyphicon-registration-mark"></span>
-                                    <span style="font-weight: bold"> Đăng ký</span>
-                                </button>
+                                    </ul>
+                                    </ul> -->
                             </div>
                         </div>
                     </div>
-                </form>
+
+                </div>
             </div>
 
-            <div class="modal-footer" style="padding-bottom: 0px;">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <a href="#" id="backToLoginDialog" style="color: blue; " data-toggle="modal" data-target="#loginDialog" data-dismiss="modal">Đã có tài khoản? Đăng nhập</a>
-                    </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div id="contentInnerSeparator"></div>
                 </div>
             </div>
         </div>
+
+        <div class="contentArea">
+
+            <div class="divPanel notop page-content">
+
+                <div class="breadcrumbs">
+                    <a href="index.html">Trang Chủ</a> &nbsp;/&nbsp; <span>Đăng Ký</span>
+                </div>
+
+                <div class="row-fluid">
+                    <!--Edit Main Content Area here-->
+                    <div class="span12" id="divMain">
+                        <div class="row-fluid">
+                            <section id="content">
+                                <form action="">
+                                    <h1>Đăng Ký</h1>
+                                    <div>
+                                        <input type="text" placeholder="Tên đăng nhập" required="" id="username" />
+                                    </div>
+                                    <div>
+                                        <input type="text" placeholder="Tên đăng nhập" required="" id="username" />
+                                    </div>
+                                    <div>
+                                        <input type="text" placeholder="Tên đầy đủ" required="" id="username" />
+                                    </div>
+                                    <div>
+                                        <input type="password" placeholder="Mật khẩu" required="" id="password" />
+                                    </div>
+                                    <div>
+                                        <input type="password" placeholder="Nhập lại mật khẩu" required="" id="repassword" />
+                                    </div>
+                                    <div>
+                                        <input type="email" placeholder="Nhập Email Email.com" required="" id="email" />
+                                    </div>
+                                    <div>Lỗi show ở đây</div>
+                                    <div>
+
+
+                                    </div>
+                                    <div>
+                                        <input type="submit" value="Đăng kí" />
+                                        <a href="#">Quên mật khẩu?</a>
+
+                                    </div>
+                                </form><!-- form -->
+                                <div class="button">
+                                    <a href="#">Đăng nhập với Facebook</a>
+                                </div><!-- button -->
+                                <div class="button">
+                                     <a href=@Url.Content("/#/Login")>Đã có tài khoản, đăng nhập</a>
+                                </div><!-- button -->
+                            </section><!-- content -->
+                        </div>
+
+                        <hr>
+                        <br>
+
+
+                    </div>
+                    <!--End Main Content here-->
+
+                </div>
+
+                <div id="footerInnerSeparator"></div>
+            </div>
+        </div>
+
+        <div id="footerOuterSeparator"></div>
+
+        <div id="divFooter" class="footerArea">
+
+            <div class="divPanel">
+
+                <div class="row-fluid">
+                    <div class="span3" id="footerArea1">
+
+                        <h3>About Company</h3>
+
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
+
+                        <p>
+                            <a href="#" title="Terms of Use">Terms of Use</a><br />
+                            <a href="#" title="Privacy Policy">Privacy Policy</a><br />
+                            <a href="#" title="FAQ">FAQ</a><br />
+                            <a href="#" title="Sitemap">Sitemap</a>
+                        </p>
+
+                    </div>
+                    <div class="span3" id="footerArea2">
+
+                        <h3>Recent Blog Posts</h3>
+                        <p>
+                            <a href="#" title="">Lorem Ipsum is simply dummy text</a><br />
+                            <span style="text-transform:none;">2 hours ago</span>
+                        </p>
+                        <p>
+                            <a href="#" title="">Duis mollis, est non commodo luctus</a><br />
+                            <span style="text-transform:none;">5 hours ago</span>
+                        </p>
+                        <p>
+                            <a href="#" title="">Maecenas sed diam eget risus varius</a><br />
+                            <span style="text-transform:none;">19 hours ago</span>
+                        </p>
+                        <p>
+                            <a href="#" title="">VIEW ALL POSTS</a>
+                        </p>
+
+                    </div>
+                    <div class="span3" id="footerArea3">
+
+                        <h3>Sample Content</h3>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
+                        </p>
+
+                    </div>
+                    <div class="span3" id="footerArea4">
+
+                        <h3>Get in Touch</h3>
+
+                        <ul id="contact-info">
+                            <li>
+                                <i class="general foundicon-phone icon"></i>
+                                <span class="field">Phone:</span>
+                                <br />
+                                (123) 456 7890 / 456 7891
+                            </li>
+                            <li>
+                                <i class="general foundicon-mail icon"></i>
+                                <span class="field">Email:</span>
+                                <br />
+                                <a href="mailto:info@yourdomain.com" title="Email">info@yourdomain.com</a>
+                            </li>
+                            <li>
+                                <i class="general foundicon-home icon" style="margin-bottom:50px"></i>
+                                <span class="field">Address:</span>
+                                <br />
+                                123 Street<br />
+                                12345 City, State<br />
+                                Country
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <br /><br />
+                <div class="row-fluid">
+                    <div class="span12">
+                        <p class="copyright">
+                            Copyright © 2013 Your Company. All Rights Reserved.
+                        </p>
+
+                        <p class="social_bookmarks">
+                            <a href="#"><i class="social foundicon-facebook"></i> Facebook</a>
+                            <a href=""><i class="social foundicon-twitter"></i> Twitter</a>
+                            <a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
+                            <a href="#"><i class="social foundicon-rss"></i> Rss</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-</div>
+    <br /><br /><br />
+</body>

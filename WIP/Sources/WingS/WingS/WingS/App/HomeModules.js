@@ -8,11 +8,22 @@ app.config(function ($routeProvider) {
         templateUrl: "/Client/Home",
         controller: "HomeController"
     })
+   .when("/Login", {
+       tittle: "Đăng nhập",
+       templateUrl: "/Client/Login",
+       controller: "LoginController"
+   })
+    .when("/Register", {
+             tittle: "Đăng kí",
+             templateUrl: "/Client/Register",
+             controller: "LoginController"
+         })
     .when("/Home", {
         templateUrl: "/Client/Home",
         title: "Hãy đến với chúng tôi để chia sẻ từ thiện",
         controller: "HomeController"
     });
+ 
 
 });
 

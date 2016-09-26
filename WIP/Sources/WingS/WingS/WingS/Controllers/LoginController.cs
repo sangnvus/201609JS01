@@ -12,7 +12,6 @@ using WingS.Models.DTOs;
 
 namespace WingS.Controllers
 {
-    [RequireHttps]
     public class LoginController : ModelAccess
     {
         [HttpPost]

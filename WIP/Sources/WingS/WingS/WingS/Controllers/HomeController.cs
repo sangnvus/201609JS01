@@ -10,7 +10,6 @@ using System.Web.Security;
 
 namespace WingS.Controllers
 {
-    [RequireHttps]
     public class HomeController : ModelAccess
     {
         public ActionResult Index()
