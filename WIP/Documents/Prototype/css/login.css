@@ -114,7 +114,8 @@ form:after {
 }
 #content form { margin: 0 20px; position: relative }
 #content form input[type="text"],
-#content form input[type="password"] {
+#content form input[type="password"],
+#content form input[type="email"] {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-ms-border-radius: 3px;
@@ -130,7 +131,6 @@ form:after {
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	background: #eae7e7 url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) no-repeat;
 	border: 1px solid #c8c8c8;
 	color: #777;
 	font: 13px Helvetica, Arial, sans-serif;
@@ -138,6 +138,7 @@ form:after {
 	padding: 15px 10px 15px 40px;
 	width: 80%;
 }
+
 #content form input[type="text"]:focus,
 #content form input[type="password"]:focus {
 	-webkit-box-shadow: 0 0 2px #ed1c24 inset;
@@ -218,7 +219,6 @@ form:after {
 	padding: 15px 0;
 }
 .button a {
-	background: url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) 0 -112px no-repeat;
 	color: #7E7E7E;
 	font-size: 17px;
 	padding: 2px 0 2px 40px;
