@@ -16,13 +16,16 @@ app.config(function ($routeProvider) {
    })
     .when("/Register", {
              tittle: "Đăng kí",
-             templateUrl: "/Client/Register",
-             controller: "RegisterController"
+             templateUrl: "/Client/Register"
          })
     .when("/Home", {
         templateUrl: "/Client/Home",
         title: "Hãy đến với chúng tôi để chia sẻ từ thiện",
         controller: "HomeController"
+    })
+    .when("/ForgotPassword", {
+        templateUrl: "/Client/ForgotPassword",
+        title: "Quên mật khẩu"
     });
  
 

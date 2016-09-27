@@ -107,12 +107,23 @@ namespace WingS.DataAccess
         /// <param name="userName"></param>
         /// <param name="userEmail"></param>
         /// <returns>user info</returns>
-        public Ws_User GetUserByUserNameAndEmail(string userName,string userEmail)
+        public Boolean GetUserByUserNameAndEmail(string userName,string userEmail)
         {
             using (var db = new Ws_DataContext())
             {
-                var User = db.Ws_User.FirstOrDefault(x => x.UserName == userName && x.Email == userEmail);
-                return User;
+                var user = db.Ws_User.FirstOrDefault(x => x.UserName == userName && x.Email == userEmail);
+                if (user == null)
+                {
+                    return false;
+                }
+                else if (!user.IsActive || !user.IsVerify)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
         public void Dispose()
