@@ -22,6 +22,10 @@ app.config(function ($routeProvider) {
         templateUrl: "/Client/Home",
         title: "Hãy đến với chúng tôi để chia sẻ từ thiện",
         controller: "HomeController"
+    })
+    .when("/ForgotPassword", {
+        templateUrl: "/Client/ForgotPassword",
+        title: "Quên mật khẩu"
     });
  
 

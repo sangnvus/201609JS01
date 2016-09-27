@@ -4,6 +4,7 @@ using System.Net.Mail;
 using System.Web.Mvc;
 using WingS.DataAccess;
 using WingS.DataHelper;
+using WingS.Models;
 
 namespace WingS.Controllers
 {
@@ -16,24 +17,28 @@ namespace WingS.Controllers
         /// <param name="emailAdress"></param>
         /// <returns>home page</returns>
         [HttpPost]
-        public ActionResult Index(string userName,string emailAdress)
+        public ActionResult Index(string userNameOrEmail)
         {
             try
             {
                 //xu li doi password
                 Random rnd = new Random();
+                string userName = string.Empty;
+                string userEmail = string.Empty;
                 using (var userDal = new UserDAL())
                 {
-                    var AccountInfo = userDal.GetUserByUserNameAndEmail(userName, emailAdress);
+                    var AccountInfo = userDal.GetUserByUserNameOrEmail(userName);
+                    userName = AccountInfo.UserName;
+                    userEmail = AccountInfo.Email;
                     AccountInfo.UserPassword = rnd.Next(999999).ToString();
                     userDal.UpdateUser(AccountInfo);
                 }
                 //khai bao bien
-                var fromAddress = new MailAddress("anhtuanck93@gmail.com", "WingS Organization");
-                var toAddress = new MailAddress(emailAdress, userName);
-                const string fromPassword = "tuan1993";
-                const string subject = "Test send mail";
-                string body = "Body of the mail la la la la la!!!!"+ rnd;
+                    var fromAddress = new MailAddress("anhtuanck93@gmail.com", WsConstant.ForgotPass.wsOrganization);
+                    var toAddress = new MailAddress(userEmail, userName);
+                    const string fromPassword = "tuan1993";
+                    string subject = WsConstant.ForgotPass.emailSubject;
+                    string body = WsConstant.ForgotPass.emailContent + rnd;
                 //xu li gui mail
                 var smtp = new SmtpClient
                 {
@@ -53,12 +58,12 @@ namespace WingS.Controllers
                     smtp.Send(message);
                 }
                 //hien thong bao success
-                TempData["AlertMessage"] = "A mail has been sent to your register email address!";
+                TempData["AlertMessage"] = WsConstant.ForgotPass.sentAlert;
                 return RedirectToAction("Index","Home");
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Error");
             }
         }
 
@@ -70,24 +75,13 @@ namespace WingS.Controllers
         /// <returns>true and false</returns>
         public JsonResult ValidateUser(string userName, string emailAdress)
         {
-            string messageError = "";
-            using (var userDal = new UserDAL())
-            {
-                var AccountInfo = userDal.GetUserByUserNameAndEmail(userName, emailAdress);
-                if (AccountInfo == null)
+            bool validAcc;
+                using (var userDal = new UserDAL())
                 {
-                    messageError = "notExist";
+                    validAcc = userDal.GetUserByUserNameAndEmail(userName, emailAdress);
                 }
-                else if (!AccountInfo.IsActive || !AccountInfo.IsVerify)
-                {
-                    messageError = "blocked";
-                }
-                else
-                {
-                    messageError = "Success";
-                }
-            }
-            return this.Json(messageError, JsonRequestBehavior.AllowGet);
+                return this.Json(validAcc, JsonRequestBehavior.AllowGet);
+            
         }
 	}
 }
