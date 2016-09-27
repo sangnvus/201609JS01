@@ -9,8 +9,9 @@ namespace WingS.DataAccess
     {
         public Event GetTopViewEvent()
         {
-            List<Event> top10list = GetTop3EventByView();
-            Event evt = top10list.First();
+            //List<Event> top10list = GetTop3EventByView();
+            //Event evt = top10list.First();
+            Event evt = new Event();
             return evt;
         }
         public List<Event> GetTop3EventByView()
