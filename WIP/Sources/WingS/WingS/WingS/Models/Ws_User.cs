@@ -17,7 +17,7 @@
         public bool IsActive { get; set; }
         public bool IsVerify { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
         public string Email { get; set; }
         public string VerifyCode { get; set; }
         public virtual ICollection<CommentEvent> CommentEvents { get; set; }
