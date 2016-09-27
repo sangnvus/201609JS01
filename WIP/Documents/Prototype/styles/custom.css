@@ -264,7 +264,7 @@ body {background-image: url(scribble_light.png);  background-position: inherit i
 
 .cap5 > div {opacity: 0.85;filter:alpha(opacity=85);}
 
-.camera_full_width {margin-left:-40px;margin-right:-40px}
+.camera_full_width {margin-left:-40px;margin-right:-40px; margin-top: -45px;}
 
 h1 {font-weight: normal; font-style: normal; letter-spacing: 0px; line-height: 65px; margin-top: 0px; font-family: 'Source Sans Pro', sans-serif; color: rgb(0, 0, 0); font-size: 40px;}
 
