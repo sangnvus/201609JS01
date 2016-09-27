@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WingS.DataAccess;
 using WingS.DataHelper;
-using WingS.Models;
 using WingS.Models.DTOs;
 
 namespace WingS.Controllers
@@ -51,34 +50,6 @@ namespace WingS.Controllers
         {   //Set logout Authentication
             FormsAuthentication.SignOut();
             //Clear Cookies
-            return RedirectToAction("Index", "Home");
-        }
-        //Create New Account
-        public ActionResult Register(UserRegisterDTO account)
-        {
-
-            var Md5pass = MD5Helper.MD5Encrypt(account.PassWord);
-            var newUser = new Ws_User
-            {
-                Email = account.Email,
-                UserName = account.UserName,
-                UserPassword = Md5pass,
-                CreatedDate = DateTime.UtcNow,
-                IsActive = true,
-                IsVerify = true,
-                AccountType = false,
-                VerifyCode = string.Empty,
-                User_Information = new User_Information
-                {
-                    FullName = account.FullName,
-                }
-            };
-            using (var userDal = new UserDAL())
-            {
-                userDal.AddNewUser(newUser);
-            }
-
-
             return RedirectToAction("Index", "Home");
         }
        public JsonResult CheckExistedUserNameOrEmail(string UserNameOrEmail)
