@@ -31,7 +31,7 @@ namespace WingS.Controllers
                 //Updated Logged time for account.
                 else
                 {
-                    DateTime LastLogin = DateTime.Now;
+                    AccountInfo.LastLogin = DateTime.Now;
                     userDal.UpdateUser(AccountInfo);
                 }
                 //Add remember me
