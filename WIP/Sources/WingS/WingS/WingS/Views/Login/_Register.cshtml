@@ -1,4 +1,5 @@
-﻿<link href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
+﻿<link href="~/Content/css/login.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <body id="pageBody">
 
     <div id="divBoxed" class="container">
@@ -24,7 +25,6 @@
                                     <li class="active"><a href=@Url.Content("/#/Home")>Trang chủ</a></li>
                                     <li><a href="about.html">Sự kiện</a></li>
 
-                                    </li>
                                     <li><a href="services.html">Thảo luận</a></li>
                                     <li><a href="portfolio.html">Về chúng tôi</a></li>
                                     <li><a href="contact.php">Liên hệ</a></li>
@@ -36,9 +36,9 @@
                                     <li><a href="2-column.html">Thông báo</a></li>
                                     <li><a href="3-column.html">Thông tin tài khoản</a></li>
                                     <li><a href="../documentation/index.html">Đăng xuất</a></li>
-
+                                    -->
                                     </ul>
-                                    </ul> -->
+                                  
                             </div>
                         </div>
                     </div>
@@ -66,42 +66,39 @@
                     <div class="span12" id="divMain">
                         <div class="row-fluid">
                             <section id="content">
-                                <form action="">
+                                @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "register-content", @id = "RegisterForm", @name = "RegisterForm", role = "form" }))
+                                {
+
                                     <h1>Đăng Ký</h1>
                                     <div>
-                                        <input type="text" placeholder="Tên đăng nhập" required="" id="username" />
+                                        <input type="text" placeholder="Tên đầy đủ" required="" id="FullName" name="FullName" />
                                     </div>
                                     <div>
-                                        <input type="text" placeholder="Tên đăng nhập" required="" id="username" />
+                                        <input type="text" placeholder="Tên đăng nhập" required="" id="UserName" name="UserName" />
+                                    </div>
+
+                                    <div>
+                                        <input type="password" placeholder="Mật khẩu" required="" id="PassWord" name="PassWord" />
                                     </div>
                                     <div>
-                                        <input type="text" placeholder="Tên đầy đủ" required="" id="username" />
+                                        <input type="password" placeholder="Nhập lại mật khẩu" required="" id="RePassWord" name="RePassWord" />
                                     </div>
                                     <div>
-                                        <input type="password" placeholder="Mật khẩu" required="" id="password" />
-                                    </div>
-                                    <div>
-                                        <input type="password" placeholder="Nhập lại mật khẩu" required="" id="repassword" />
-                                    </div>
-                                    <div>
-                                        <input type="email" placeholder="Nhập Email Email.com" required="" id="email" />
+                                        <input type="email" placeholder="Nhập Email Email.com" required="" id="Email" name="Email" />
                                     </div>
                                     <div>Lỗi show ở đây</div>
                                     <div>
 
-
                                     </div>
-                                    <div>
-                                        <input type="submit" value="Đăng kí" />
-                                        <a href="#">Quên mật khẩu?</a>
-
+                                    <div>                 
+                                        <input type="submit" value="Đăng ký" style="margin-left: 33%; width: 150px;"/>
                                     </div>
-                                </form><!-- form -->
+                                }<!-- form -->
                                 <div class="button">
                                     <a href="#">Đăng nhập với Facebook</a>
                                 </div><!-- button -->
                                 <div class="button">
-                                     <a href=@Url.Content("/#/Login")>Đã có tài khoản, đăng nhập</a>
+                                    <a href=@Url.Content("/#/Login")>Đã có tài khoản, đăng nhập</a>
                                 </div><!-- button -->
                             </section><!-- content -->
                         </div>
