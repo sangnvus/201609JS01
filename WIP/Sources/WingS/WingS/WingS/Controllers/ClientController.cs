@@ -20,5 +20,9 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Login/_Register.cshtml");
         }
+        public ActionResult ForgotPassword()
+        {
+            return PartialView("~/Views/Login/_ForgotPassword.cshtml");
+        }
     }
 }

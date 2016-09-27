@@ -177,6 +177,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\WebApi\EventController.cs" />
@@ -527,6 +529,7 @@
     <Content Include="Views\Home\_NavigationBar.cshtml" />
     <Content Include="Views\Home\_SlideBar.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
+    <Content Include="Views\Login\_ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Service\" />
