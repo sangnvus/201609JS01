@@ -7,16 +7,17 @@ app.config(function ($routeProvider) {
         tittle: "Hãy đến với chúng tôi để chia sẻ từ thiện",
         templateUrl: "/Client/Home",
         controller: "HomeController"
+
     })
    .when("/Login", {
        tittle: "Đăng nhập",
-       templateUrl: "/Client/Login",
-       controller: "LoginController"
+       templateUrl: "/Client/Login"
+
    })
     .when("/Register", {
              tittle: "Đăng kí",
-             templateUrl: "/Client/Register",
-             controller: "LoginController"
+             templateUrl: "/Client/Register"
+
          })
     .when("/Home", {
         templateUrl: "/Client/Home",
