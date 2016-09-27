@@ -41,17 +41,15 @@
 
                                     </div>
                                     <div>
-                                        <input id="logInBtn" type="submit" value="Đăng nhập"/>
-                                        <a href="#">Quên mật khẩu?</a>
-
-
+                                        <input id="logInBtn" onclick="return false;" type="submit" value="Đăng nhập"/>
+                                        <a href="#">Quên mật khẩu?</a><a href="javascript:void(0);"><span><input name="RememberMe" type="checkbox" value="true" style="margin-bottom:5px; "></span>Nhớ tài khoản</a>
                                     </div>
                                 }
                                 <div class="button">
-                                    <a href=@Url.Content("/#/Register")> Đăng kí</a>
+                                    <a href=@Url.Content("/#/Register")> Đăng ký mới</a>
                                 </div><!-- button -->
                                 <div class="button">
-                                    <a href="#">Đăng nhập với Facebook</a>
+                                    <a href="@Url.Action("AuthenFacebook", "Login")">Đăng nhập với Facebook</a>
                                 </div><!-- button -->
                             </section><!-- content -->
                         </div>

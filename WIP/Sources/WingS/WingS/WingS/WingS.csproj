@@ -198,6 +198,7 @@
     <Compile Include="Models\DTOs\HTTPMessageDTO.cs" />
     <Compile Include="Models\DTOs\LoginInfoDTO.cs" />
     <Compile Include="Models\DTOs\UserBasicInfoDTO.cs" />
+    <Compile Include="Models\DTOs\UserRegisterDTO.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\Event_Statistic.cs" />
@@ -523,6 +524,9 @@
     <Content Include="Views\Home\_Home.cshtml" />
     <Content Include="Views\Login\_Login.cshtml" />
     <Content Include="Views\Login\_Register.cshtml" />
+    <Content Include="Views\Home\_NavigationBar.cshtml" />
+    <Content Include="Views\Home\_SlideBar.cshtml" />
+    <Content Include="Views\Home\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Service\" />

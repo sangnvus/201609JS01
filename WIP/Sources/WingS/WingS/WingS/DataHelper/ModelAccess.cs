@@ -19,18 +19,10 @@ namespace WingS.DataHelper
                 using (var db = new UserDAL())
                 {
                     CurrentUser = db.GetUserByUserNameOrEmail(User.Identity.Name);
-                    //ViewBag.CurrentUser = new UserBasicInfoDTO()
-                    ////Set ViewBag for View
-                    //{
-                    //    FullName = CurrentUser.User_Information.FullName,
-                    //    ProfileImage = CurrentUser.User_Information.ProfileImage,
-                    //    AccountType = CurrentUser.AccountType,
-                    //    IsActive = CurrentUser.IsActive,
-                    //    UserName = CurrentUser.UserName
-                    //};
 
                 }
             }
+         
             return CurrentUser;
         }
     }

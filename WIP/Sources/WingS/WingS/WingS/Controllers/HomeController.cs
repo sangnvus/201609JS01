@@ -14,7 +14,7 @@ namespace WingS.Controllers
     {
         public ActionResult Index()
         {
-           GetCurrentUser();
+           ViewBag.currentUser =GetCurrentUser();
            ViewBag.Title = WsConstant.PageTitle.Home;
            return View();
         }
