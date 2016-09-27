@@ -70,35 +70,90 @@
                                 {
 
                                     <h1>Đăng Ký</h1>
+                                    <!-- Tên hiển thị -->
                                     <div>
-                                        <input type="text" placeholder="Tên đầy đủ" required="" id="FullName" name="FullName" />
+                                        <div ng-show="RegisterForm.FullName.$dirty && RegisterForm.FullName.$invalid" style="color: #d9534f;">
+                                            <i class="icon-remove-sign  " style="color: #d9534f"></i>
+                                            <span ng-show="RegisterForm.FullName.$error.required">Tên hiển thị không được để trống</span>
+                                            <span ng-show="RegisterForm.FullName.$error.maxlength">Tên hiển thị phải ngắn hơn 20 kí tự</span>
+                                            <span ng-show="RegisterForm.FullName.$error.pattern">Tên hiển thị chỉ gồm chữ</span>
+                                        </div>
+                                        <input type="text" name="FullName" placeholder="Tên hiển thị"
+                                               ng-model="FullName"
+                                               required
+                                               ng-maxlength="20"
+                                               ng-pattern="/^[a-zA-Z]+$/">
                                     </div>
+                                    <!-- Tên đăng nhập -->
                                     <div>
-                                        <input type="text" placeholder="Tên đăng nhập" required="" id="UserName" name="UserName" />
+                                        <div ng-show="RegisterForm.UserName.$dirty && RegisterForm.UserName.$invalid" style="color: #d9534f;">
+                                            <i class="icon-remove-sign  " style="color: #d9534f"></i>
+                                            <span ng-show="RegisterForm.UserName.$error.required">Tên đăng nhập không được để trống</span>
+                                            <span ng-show="RegisterForm.UserName.$error.minlength">Tên đăng nhập phải dài hơn 8 kí tự</span>
+                                            <span ng-show="RegisterForm.UserName.$error.maxlength">Tên đăng nhập phải ngắn hơn 20 kí tự</span>
+                                            <span ng-show="RegisterForm.UserName.$error.pattern && !RegisterForm.UserName.$error.minlength">Tên đăng nhập chỉ gồm chữ và số </span>
+                                        </div>
+                                        <input type="text" name="UserName" placeholder="Tên đăng nhập"
+                                               ng-model="UserName"
+                                               required
+                                               ng-minlength="8"
+                                               ng-maxlength="20"
+                                               ng-pattern="/^[a-zA-Z0-9]+$/">
                                     </div>
-
+                                    <!-- Mật khẩu -->
                                     <div>
-                                        <input type="password" placeholder="Mật khẩu" required="" id="PassWord" name="PassWord" />
+                                        <div ng-show="RegisterForm.PassWord.$dirty && RegisterForm.PassWord.$invalid" style="color: #d9534f;">
+                                            <i class="icon-remove-sign  " style="color: #d9534f"></i>
+                                            <span ng-show="RegisterForm.PassWord.$error.required">Mật khẩu không được để trống</span>
+                                            <span ng-show="RegisterForm.PassWord.$error.minlength">Mật khẩu phải dài hơn 8 kí tự</span>
+                                            <span ng-show="RegisterForm.PassWord.$error.maxlength">Mật khẩu phải ngắn hơn 20 kí tự</span>
+                                        </div>
+                                        <input name="PassWord" ng-model="PassWord" type="password"
+                                               placeholder="Mật khẩu"
+                                               ng-minlength="8"
+                                               ng-maxlength="20"
+                                               required>
                                     </div>
+                                    <!-- Nhập lại mật khẩu -->
                                     <div>
-                                        <input type="password" placeholder="Nhập lại mật khẩu" required="" id="RePassWord" name="RePassWord" />
+                                        <div ng-show="RegisterForm.RePassWord.$dirty && RegisterForm.RePassWord.$invalid" style="color: #d9534f;">
+                                            <i class="icon-remove-sign  " style="color: #d9534f"></i>
+                                            <span ng-show="RegisterForm.RePassWord.$error.required">Nhập lại mật khẩu không được để trống</span>
+                                            <span ng-show="RegisterForm.RePassWord.$error.unique && !RegisterForm.RePassWord.$error.required">Nhập lại mật khẩu không giống</span>
+                                        </div>
+                                        <input type="password" placeholder="Nhập lại mật khẩu"
+                                               name="RePassWord"
+                                               ng-model="RePassWord"
+                                               password-match="PassWord"
+                                               required>
                                     </div>
+                                    <!-- Địa chỉ Email -->
                                     <div>
-                                        <input type="email" placeholder="Nhập Email Email.com" required="" id="Email" name="Email" />
+                                        <div ng-show="RegisterForm.Email.$dirty && RegisterForm.Email.$invalid" style="color: #d9534f;">
+                                            <i class="icon-remove-sign  " style="color: #d9534f"></i>
+                                            <span ng-show="RegisterForm.Email.$error.required">Email không được để trống</span>
+                                            <span ng-show="RegisterForm.Email.$error.email">Email không đúng định dạng </span>
+                                        </div>
+                                        <input name="Email" type="email" placeholder="Nhập email example@domain.com"
+                                               ng-model="email"
+                                               autocomplete="off"
+                                               required>
                                     </div>
                                     <div>Lỗi show ở đây</div>
                                     <div>
 
                                     </div>
-                                    <div>                 
-                                        <input type="submit" value="Đăng ký" style="margin-left: 33%; width: 150px;"/>
+                                    <div>
+                                        <input type="submit" value="Đăng ký"
+                                               style="margin-left: 33%; width: 150px;"
+                                               ng-disabled="!RegisterForm.$dirty || (RegisterForm.$dirty && RegisterForm.$invalid)"/>                                          
                                     </div>
                                 }<!-- form -->
                                 <div class="button">
                                     <a href="#">Đăng nhập với Facebook</a>
                                 </div><!-- button -->
                                 <div class="button">
-                                    <a href=@Url.Content("/#/Login")>Đã có tài khoản, đăng nhập</a>
+                                    <a href=@Url.Content("/#/Login")>Đã có tài khoản? Đăng nhập</a>
                                 </div><!-- button -->
                             </section><!-- content -->
                         </div>
