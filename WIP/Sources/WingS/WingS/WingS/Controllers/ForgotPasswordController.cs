@@ -27,7 +27,7 @@ namespace WingS.Controllers
                 string userEmail = string.Empty;
                 using (var userDal = new UserDAL())
                 {
-                    var AccountInfo = userDal.GetUserByUserNameOrEmail(userName);
+                    var AccountInfo = userDal.GetUserByUserNameOrEmail(userNameOrEmail);
                     userName = AccountInfo.UserName;
                     userEmail = AccountInfo.Email;
                     AccountInfo.UserPassword = rnd.Next(999999).ToString();
@@ -61,7 +61,7 @@ namespace WingS.Controllers
                 TempData["AlertMessage"] = WsConstant.ForgotPass.sentAlert;
                 return RedirectToAction("Index","Home");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return RedirectToAction("Index", "Error");
             }
@@ -73,15 +73,17 @@ namespace WingS.Controllers
         /// <param name="userName"></param>
         /// <param name="emailAdress"></param>
         /// <returns>true and false</returns>
-        public JsonResult ValidateUser(string userName, string emailAdress)
+        public JsonResult ValidateUser(string userNameOrEmail)
         {
-            bool validAcc;
+            Ws_User validAcc = null;
                 using (var userDal = new UserDAL())
                 {
-                    validAcc = userDal.GetUserByUserNameAndEmail(userName, emailAdress);
+                    validAcc = userDal.GetUserByUserNameOrEmail(userNameOrEmail);
                 }
-                return this.Json(validAcc, JsonRequestBehavior.AllowGet);
-            
+            if (validAcc != null) return this.Json(true, JsonRequestBehavior.AllowGet);
+            else return this.Json(false, JsonRequestBehavior.AllowGet);
+
+
         }
 	}
 }
