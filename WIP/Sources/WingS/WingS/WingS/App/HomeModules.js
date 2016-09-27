@@ -16,8 +16,7 @@ app.config(function ($routeProvider) {
    })
     .when("/Register", {
              tittle: "Đăng kí",
-             templateUrl: "/Client/Register",
-             controller: "RegisterController"
+             templateUrl: "/Client/Register"
          })
     .when("/Home", {
         templateUrl: "/Client/Home",
