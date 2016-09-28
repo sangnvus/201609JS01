@@ -31,8 +31,9 @@ namespace WingS.Controllers
                     var AccountInfo = userDal.GetUserByUserNameOrEmail(userNameOrEmail);
                     userName = AccountInfo.UserName;
                     userEmail = AccountInfo.Email;
-                    AccountInfo.UserPassword = rnd.Next(999999).ToString();
-                    userNewPass = AccountInfo.UserPassword;
+                    var md5pass = rnd.Next(999999).ToString();
+                    userNewPass = md5pass;
+                    AccountInfo.UserPassword = MD5Helper.MD5Encrypt(md5pass);
                     userDal.UpdateUser(AccountInfo);
                 }
                 //khai bao bien
@@ -40,12 +41,12 @@ namespace WingS.Controllers
                 var toAddress = new MailAddress(userEmail, userName);
                 string fromPassword = WsConstant.ForgotPass.AdminEmailPass;
                 string subject = WsConstant.ForgotPass.EmailSubject;
-                string body = WsConstant.ForgotPass.EmailContentFirst + userNewPass;
-                        //+ "\nUsername:" + rnd + "\nNew Password:" + userNewPass + WsConstant.ForgotPass.EmailContentLast;
+                string body = WsConstant.ForgotPass.EmailContentFirst + "  Username : " + userName + "\n  New Password : " +
+                              userNewPass + WsConstant.ForgotPass.EmailContentLast;
                 //xu li gui mail
                 var smtp = new SmtpClient
                 {
-                    Host = "smtp.gmail.com",
+                    Host = "smtp.gmail.comcc",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,

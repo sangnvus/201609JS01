@@ -18,9 +18,10 @@ namespace WingS.Controllers
         [HttpPost]
         public ActionResult Login(LoginInfoDTO account)
         {
+            string encryptpass = MD5Helper.MD5Encrypt(account.PassWord);
             using (var userDal = new UserDAL())
             {
-                var AccountInfo = userDal.GetUserByUserNameAndPassword(account.UserName, account.PassWord);
+                var AccountInfo = userDal.GetUserByUserNameAndPassword(account.UserName, encryptpass);
                 if (AccountInfo == null)
                 {
                     ModelState.AddModelError("WrongPassword", "Sai mật khẩu hoặc tài khoản không tồn tại!");
@@ -99,9 +100,10 @@ namespace WingS.Controllers
         public JsonResult ValidateUser(string UserName, string PassWord)
         {
             string messageError = "";
+            string encryptpass = MD5Helper.MD5Encrypt(PassWord);
             using (var userDal = new UserDAL())
             {
-                var AccountInfo = userDal.GetUserByUserNameAndPassword(UserName, PassWord);
+                var AccountInfo = userDal.GetUserByUserNameAndPassword(UserName, encryptpass);
                 if (AccountInfo == null)
                 {
                     messageError = "WrongPass";

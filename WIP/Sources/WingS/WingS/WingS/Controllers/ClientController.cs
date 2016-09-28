@@ -22,7 +22,7 @@ namespace WingS.Controllers
         }
         public ActionResult Error()
         {
-            return PartialView("~/Views/Shared/_Error.cshtml");
+            return PartialView("~/Views/Error/_Error.cshtml");
         }
     }
 }
