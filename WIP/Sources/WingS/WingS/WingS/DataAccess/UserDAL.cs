@@ -64,6 +64,22 @@ namespace WingS.DataAccess
                 return User;
             }
         }
+        //Get UserName or Email
+        public int GetUserByUserNameAndEmail(string Username, string Email)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                if(db.Ws_User.FirstOrDefault(x => ( x.Email == Email))!=null){
+                    return 2;
+                }
+                else if (db.Ws_User.FirstOrDefault(x => (x.UserName == Username)) != null)
+                {
+                    return 1;
+                }
+                else
+                return 0;
+            }
+        }
         public Ws_User AddNewUser(Ws_User newUser)
         {
             using (var db = new Ws_DataContext())

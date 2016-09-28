@@ -33,20 +33,6 @@
                                 {
 
                                     <h1>Đăng Ký</h1>
-                                    <!-- Tên hiển thị -->
-                                    <div>
-                                        <div ng-show="RegisterForm.FullName.$dirty && RegisterForm.FullName.$invalid" style="color: #d9534f;">
-                                            <i class="icon-remove-sign  " style="color: #d9534f"></i>
-                                            <span ng-show="RegisterForm.FullName.$error.required">Tên hiển thị không được để trống</span>
-                                            <span ng-show="RegisterForm.FullName.$error.maxlength">Tên hiển thị phải ngắn hơn 20 kí tự</span>
-                                            <span ng-show="RegisterForm.FullName.$error.pattern">Tên hiển thị chỉ gồm chữ</span>
-                                        </div>
-                                        <input type="text" name="FullName" placeholder="Tên hiển thị"
-                                               ng-model="FullName"
-                                               required
-                                               ng-maxlength="20"
-                                               ng-pattern="/^[a-zA-Z]+$/">
-                                    </div>
                                     <!-- Tên đăng nhập -->
                                     <div>
                                         <div ng-show="RegisterForm.UserName.$dirty && RegisterForm.UserName.$invalid" style="color: #d9534f;">
@@ -56,7 +42,10 @@
                                             <span ng-show="RegisterForm.UserName.$error.maxlength">Tên đăng nhập phải ngắn hơn 20 kí tự</span>
                                             <span ng-show="RegisterForm.UserName.$error.pattern && !RegisterForm.UserName.$error.minlength">Tên đăng nhập chỉ gồm chữ và số </span>
                                         </div>
-                                        <input type="text" name="UserName" placeholder="Tên đăng nhập"
+                                        <div>
+                                            <span id="errorExistUser" style="color: #d9534f"></span>
+                                        </div>
+                                        <input type="text" name="UserName" id="UserName" placeholder="Tên đăng nhập"
                                                ng-model="UserName"
                                                required
                                                ng-minlength="8"
@@ -90,6 +79,22 @@
                                                password-match="PassWord"
                                                required>
                                     </div>
+                                     <!-- Tên đầy đủ -->
+                                    <div>
+                                        <div ng-show="RegisterForm.FullName.$dirty && RegisterForm.FullName.$invalid" style="color: #d9534f;">
+                                            <i class="icon-remove-sign  " style="color: #d9534f"></i>
+                                            <span ng-show="RegisterForm.FullName.$error.required">Tên đầy đủ không được để trống</span>
+                                            <span ng-show="RegisterForm.UserName.$error.minlength">Tên đầy đủ phải dài hơn 6 kí tự</span>
+                                            <span ng-show="RegisterForm.FullName.$error.maxlength">Tên đầy đủ phải ngắn hơn 20 kí tự</span>
+                                            <span ng-show="RegisterForm.FullName.$error.pattern &&!RegisterForm.UserName.$error.minlength">Tên đầy đủ chỉ gồm chữ</span>
+                                        </div>
+                                        <input type="text" name="FullName" placeholder="Tên đầy đủ"
+                                               ng-model="FullName"
+                                               required
+                                               ng-minlength="6"
+                                               ng-maxlength="20"
+                                               ng-pattern="/^[a-zA-Z]+$/">
+                                    </div>
                                     <!-- Địa chỉ Email -->
                                     <div>
                                         <div ng-show="RegisterForm.Email.$dirty && RegisterForm.Email.$invalid" style="color: #d9534f;">
@@ -97,18 +102,16 @@
                                             <span ng-show="RegisterForm.Email.$error.required">Email không được để trống</span>
                                             <span ng-show="RegisterForm.Email.$error.email">Email không đúng định dạng </span>
                                         </div>
-                                        <input name="Email" type="email" placeholder="Nhập email example@domain.com"
+                                        <span id="errorExistEmail" style="color: #d9534f"></span>
+                                        <input name="Email" id="Email" type="email" placeholder="Nhập email example@domain.com"
                                                ng-model="email"
                                                autocomplete="off"
                                                required>
                                     </div>
-                                    <div>Lỗi show ở đây</div>
                                     <div>
-
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="Đăng ký"
+                                        <input id="registerBtn" type="submit" value="Đăng ký"
                                                style="margin-left: 33%; width: 150px;"
+                                               onclick="return false;"
                                                ng-disabled="!RegisterForm.$dirty || (RegisterForm.$dirty && RegisterForm.$invalid)" />                                          
                                     </div>
                                 }<!-- form -->
@@ -136,5 +139,27 @@
         @Html.Partial("../Home/_Footer")
 
     </div>
-    <br /><br /><br />
+<br/><br/><br/>
+    <script type="text/javascript">
+        $(function () {
+            $('#registerBtn').click(function () {
+                $('#errorExistUser').html("Đang kiểm tra...");
+                $.getJSON("/Login/CheckExistedUserNameOrEmail", { UserName: $("#UserName").val(), Email: $("#Email").val() }, function (data) {
+                    if (data == "ExistedUser") {
+                        $('#errorExistUser').html("Tên đăng nhập đã được sử dụng");
+                        $('#UserName').focus();
+                        return false;
+
+                    } else if (data == "ExistedEmail") {
+                        $('#errorExistEmail').html("Địa chỉ Email đã được sử dụng");
+                        $('#Email').focus();
+                        return false;
+                    } else {
+                        $('#RegisterForm').submit();
+                        return true;
+                    }
+                });
+            });
+        });
+    </script>
 </body>

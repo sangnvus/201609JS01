@@ -83,17 +83,21 @@ namespace WingS.Controllers
             return RedirectToAction("Index", "Home");
         }
         //Check Existed UserName or Email
-       public JsonResult CheckExistedUserNameOrEmail(string UserNameOrEmail)
+        public JsonResult CheckExistedUserNameOrEmail(string UserName, string Email)
         {
             string message = "";
             using (var userDal = new UserDAL())
             {
-                var User = userDal.GetUserByUserNameOrEmail(UserNameOrEmail);
-                if (User != null)
+                var check = userDal.GetUserByUserNameAndEmail(UserName, Email);
+                if (check == 1)
                 {
-                    message = "ExistedUserNameOrEmail";
+                    message = "ExistedUser";
                 }
-                else message = "ValidUserNameOrEmail";
+                else if (check == 2)
+                {
+                    message = "ExistedEmail";
+                }
+                else message = "Success";
             }
             return this.Json(message, JsonRequestBehavior.AllowGet);
         }
