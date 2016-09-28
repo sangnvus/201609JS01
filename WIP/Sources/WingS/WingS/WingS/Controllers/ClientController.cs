@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace WingS.Controllers
 {
@@ -23,6 +19,10 @@ namespace WingS.Controllers
         public ActionResult ForgotPassword()
         {
             return PartialView("~/Views/Login/_ForgotPassword.cshtml");
+        }
+        public ActionResult Error()
+        {
+            return PartialView("~/Views/Shared/_Error.cshtml");
         }
     }
 }

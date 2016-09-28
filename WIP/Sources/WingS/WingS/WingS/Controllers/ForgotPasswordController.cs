@@ -37,10 +37,11 @@ namespace WingS.Controllers
                 }
                 //khai bao bien
                 var fromAddress = new MailAddress(WsConstant.ForgotPass.AdminEmail, WsConstant.ForgotPass.WsOrganization);
-                    var toAddress = new MailAddress(userEmail, userName);
-                    string fromPassword = WsConstant.ForgotPass.AdminEmailPass;
-                    string subject = WsConstant.ForgotPass.EmailSubject;
-                    string body = WsConstant.ForgotPass.EmailContentFirst + "\nUsername:" + rnd + "\nNew Password:" + userNewPass + WsConstant.ForgotPass.EmailContentLast;
+                var toAddress = new MailAddress(userEmail, userName);
+                string fromPassword = WsConstant.ForgotPass.AdminEmailPass;
+                string subject = WsConstant.ForgotPass.EmailSubject;
+                string body = WsConstant.ForgotPass.EmailContentFirst + userNewPass;
+                        //+ "\nUsername:" + rnd + "\nNew Password:" + userNewPass + WsConstant.ForgotPass.EmailContentLast;
                 //xu li gui mail
                 var smtp = new SmtpClient
                 {
@@ -63,9 +64,10 @@ namespace WingS.Controllers
                 TempData["AlertMessage"] = WsConstant.ForgotPass.SentAlert;
                 return RedirectToAction("Index","Home");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return RedirectToAction("Index", "Error");
+                ViewBag.ErrorMessage = ex;
+                return RedirectToAction("Error", "Client");
             }
         }
 
