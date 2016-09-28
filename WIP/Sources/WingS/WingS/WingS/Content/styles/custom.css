@@ -37,7 +37,9 @@ h3, h4, h5, h6 {line-height:1.5 !important}
     font-size:inherit !important;
 }
 
-
+.navBar{
+	margin-top:-20px;
+}
 /* Contact */
 
 ul#contact-info .icon {font-size:20px;float:left;line-height:25px;margin-right:10px;}
@@ -224,7 +226,6 @@ img.pull-left { margin-right:15px !important; margin-top:7px !important;}
 
 body {background-image: url(scribble_light.png);  background-position: inherit inherit; background-repeat: repeat repeat;}
 
-#divBoxed {margin-top: 51px; ;;;}
 
 #divLogo{margin-top: 48px; margin-bottom: 0px; text-align: left;}
 
@@ -264,7 +265,7 @@ body {background-image: url(scribble_light.png);  background-position: inherit i
 
 .cap5 > div {opacity: 0.85;filter:alpha(opacity=85);}
 
-.camera_full_width {margin-left:-40px;margin-right:-40px;margin-top: -55px;}
+.camera_full_width {margin-left:-40px;margin-right:-40px; margin-top: -55px;}
 
 h1 {font-weight: normal; font-style: normal; letter-spacing: 0px; line-height: 65px; margin-top: 0px; font-family: 'Source Sans Pro', sans-serif; color: rgb(0, 0, 0); font-size: 40px;}
 
