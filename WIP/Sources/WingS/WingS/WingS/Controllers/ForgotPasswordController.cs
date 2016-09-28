@@ -15,7 +15,7 @@ namespace WingS.Controllers
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="emailAdress"></param>
-        /// <returns>home page</returns>
+        /// <returns>home page or error page</returns>
         [HttpPost]
         public ActionResult Index(string userNameOrEmail)
         {
@@ -25,20 +25,22 @@ namespace WingS.Controllers
                 Random rnd = new Random();
                 string userName = string.Empty;
                 string userEmail = string.Empty;
+                string userNewPass = string.Empty;
                 using (var userDal = new UserDAL())
                 {
                     var AccountInfo = userDal.GetUserByUserNameOrEmail(userNameOrEmail);
                     userName = AccountInfo.UserName;
                     userEmail = AccountInfo.Email;
                     AccountInfo.UserPassword = rnd.Next(999999).ToString();
+                    userNewPass = AccountInfo.UserPassword;
                     userDal.UpdateUser(AccountInfo);
                 }
                 //khai bao bien
-                    var fromAddress = new MailAddress("anhtuanck93@gmail.com", WsConstant.ForgotPass.wsOrganization);
+                var fromAddress = new MailAddress(WsConstant.ForgotPass.AdminEmail, WsConstant.ForgotPass.WsOrganization);
                     var toAddress = new MailAddress(userEmail, userName);
-                    const string fromPassword = "tuan1993";
-                    string subject = WsConstant.ForgotPass.emailSubject;
-                    string body = WsConstant.ForgotPass.emailContent + rnd;
+                    string fromPassword = WsConstant.ForgotPass.AdminEmailPass;
+                    string subject = WsConstant.ForgotPass.EmailSubject;
+                    string body = WsConstant.ForgotPass.EmailContentFirst + "\nUsername:" + rnd + "\nNew Password:" + userNewPass + WsConstant.ForgotPass.EmailContentLast;
                 //xu li gui mail
                 var smtp = new SmtpClient
                 {
@@ -58,7 +60,7 @@ namespace WingS.Controllers
                     smtp.Send(message);
                 }
                 //hien thong bao success
-                TempData["AlertMessage"] = WsConstant.ForgotPass.sentAlert;
+                TempData["AlertMessage"] = WsConstant.ForgotPass.SentAlert;
                 return RedirectToAction("Index","Home");
             }
             catch (Exception)

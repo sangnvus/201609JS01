@@ -26,6 +26,10 @@ app.config(function ($routeProvider) {
     .when("/ForgotPassword", {
         templateUrl: "/Client/ForgotPassword",
         title: "Quên mật khẩu"
+    })
+    .when("/Error", {
+        templateUrl: "/Client/Error",
+        title: "Đã xảy ra lỗi"
     });
  
 

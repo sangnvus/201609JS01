@@ -36,10 +36,13 @@ namespace WingS.DataHelper
 
         public static class ForgotPass
         {
-            public static readonly string wsOrganization = "WingS Organization";
-            public static readonly string emailSubject = "Test send mail";
-            public static readonly string emailContent = "Body of the mail la la la la la!!!!";
-            public static readonly string sentAlert = "A mail has been sent to your register email address!";
+            public static readonly string WsOrganization = "WingS Organization";
+            public static readonly string EmailSubject = "WingS account details";
+            public static readonly string EmailContentFirst = "Hi, \nAs per your request we have generated a new password for your account.\nHere is the information we now have for this account:";
+            public static readonly string EmailContentLast = "You may change your password in User CP - Security Settings after logging in.\n------\nYours,\nThe WingS Team.";
+            public static readonly string SentAlert = "A mail has been sent to your register email address!";
+            public static readonly string AdminEmail = "anhtuanck93@gmail.com";
+            public static readonly string AdminEmailPass = "tuan1993";
         }
     }
 }
