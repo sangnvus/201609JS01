@@ -35,6 +35,16 @@ app.config(function ($routeProvider) {
         templateUrl: "/Client/Discussion",
         title: "Xem thảo luận",
         controller: "DiscussionController"
+    })
+    .when("/RegisterSuccess", {
+        templateUrl: "/Client/RegisterSuccess",
+        title: "Đăng ký thành công",
+        controller: "RegisterSuccessController"
+    })
+    .when("/VerifyAccount", {
+        templateUrl: "/Client/VerifyAccount",
+        title: "Xác nhận tài khoản",
+        controller: "VerifyAccountController"
     });
  
 
