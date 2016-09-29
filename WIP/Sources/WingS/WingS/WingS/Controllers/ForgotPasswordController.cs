@@ -41,7 +41,7 @@ namespace WingS.Controllers
                 var toAddress = new MailAddress(userEmail, userName);
                 string fromPassword = WsConstant.ForgotPass.AdminEmailPass;
                 string subject = WsConstant.ForgotPass.EmailSubject;
-                string body = WsConstant.ForgotPass.EmailContentFirst + "  Username : " + userName + "\n  New Password : " +
+                string body = WsConstant.ForgotPass.EmailContentFirst + "   Tài khoản : " + userName + "\n   Mật khẩu : " +
                               userNewPass + WsConstant.ForgotPass.EmailContentLast;
                 //xu li gui mail
                 var smtp = new SmtpClient

@@ -37,10 +37,10 @@ namespace WingS.DataHelper
         public static class ForgotPass
         {
             public static readonly string WsOrganization = "WingS Organization";
-            public static readonly string EmailSubject = "WingS account details";
-            public static readonly string EmailContentFirst = "Hi, \n\nAs per your request we have generated a new password for your account.\n\nHere is the information we now have for this account:\n\n";
-            public static readonly string EmailContentLast = "\n\nYou may change your password in Account Settings after logging in.\n------\nYours,\nThe WingS Team.";
-            public static readonly string SentAlert = "A mail has been sent to your register email address!";
+            public static readonly string EmailSubject = "Thông tin tài khoản WingS";
+            public static readonly string EmailContentFirst = "Chào bạn, \n\nChúng tôi đã nhận được yêu cầu quên mật khẩu từ bạn\n\nĐây là thông tin về tài khoản hiện tại của bạn:\n\n";
+            public static readonly string EmailContentLast = "\n\nBạn có thể đổi mật khẩu tại mục Quản lí tài khoản sau khi đăng nhập\n------\nThân,\nThe WingS Team.";
+            public static readonly string SentAlert = "Một email đã được gửi tới địa chỉ email đăng kí của bạn!";
             public static readonly string AdminEmail = "anhtuanck93@gmail.com";
             public static readonly string AdminEmailPass = "tuan1993";
         }
