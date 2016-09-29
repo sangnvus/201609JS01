@@ -30,6 +30,11 @@ app.config(function ($routeProvider) {
     .when("/Error", {
         templateUrl: "/Client/Error",
         title: "Đã xảy ra lỗi"
+    })
+    .when("/Discussion", {
+        templateUrl: "/Client/Discussion",
+        title: "Xem thảo luận",
+        controller: "DiscussionController"
     });
  
 

@@ -24,5 +24,9 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Error/_Error.cshtml");
         }
+        public ActionResult Discussion()
+        {
+            return PartialView("~/Views/Discussion/_Discussion.cshtml");
+        }
     }
 }

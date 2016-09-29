@@ -22,6 +22,7 @@ namespace WingS.DataAccess
         public virtual DbSet<Thread> Threads { get; set; }
         public virtual DbSet<User_Information> User_Information { get; set; }
         public virtual DbSet<Ws_User> Ws_User { get; set; }
+        public virtual DbSet<ThreadAlbumImage> ThreadAlbum { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }
