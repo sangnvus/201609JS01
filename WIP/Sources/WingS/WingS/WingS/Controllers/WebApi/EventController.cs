@@ -17,23 +17,18 @@ namespace WingS.Controllers
         [HttpGet]
         public IHttpActionResult GetTopViewEvent()
         {
-            EventBasicInfo GetEvent = new EventBasicInfo();
-            Event topEvent = null ;
+            List<Event> topEvent = null;
+            var basicList = new List<EventBasicInfo>();
             using (var db = new EventDAL())
             {
                 //Get top event.
-                topEvent = db.GetTopViewEvent();
-                //Set basic info to event
-                if (topEvent != null)
+                topEvent = db.GetTop3EventByView();
+                foreach(Event e in topEvent)
                 {
-                    GetEvent.EventID = topEvent.EventID;
-                    GetEvent.EventName = topEvent.EventName;
-                    GetEvent.Content = topEvent.Description;
-                    GetEvent.CreatorID = topEvent.CreatorID;
-                    GetEvent.ImageUrl = topEvent.ImageUrl;
+                    basicList.Add(new EventBasicInfo { EventID = e.EventID, EventName = e.EventName, Content = e.Description, CreatorID = e.CreatorID, ImageUrl = e.ImageUrl, Status = e.Status });
                 }
             }
-            return Ok( new HTTPMessageDTO { Status= WsConstant.HttpMessageType.SUCCESS, Data= GetEvent });
+            return Ok( new HTTPMessageDTO { Status= WsConstant.HttpMessageType.SUCCESS, Data= basicList });
         }
     }
 }

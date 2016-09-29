@@ -7,13 +7,7 @@ namespace WingS.DataAccess
 {
     public class EventDAL : IDisposable
     {
-        public Event GetTopViewEvent()
-        {
-            //List<Event> top10list = GetTop3EventByView();
-            //Event evt = top10list.First();
-            Event evt = new Event();
-            return evt;
-        }
+
         public List<Event> GetTop3EventByView()
         {
             List<Event> list = null;
