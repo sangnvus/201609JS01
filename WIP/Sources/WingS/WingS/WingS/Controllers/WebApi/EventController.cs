@@ -15,20 +15,20 @@ namespace WingS.Controllers
     {
         //Get top view event
         [HttpGet]
-        public IHttpActionResult GetTopViewEvent()
+        public IHttpActionResult GetTopFourViewedEvent()
         {
             List<Event> topEvent = null;
-            var basicList = new List<EventBasicInfo>();
+            var basicEventList = new List<EventBasicInfo>();
             using (var db = new EventDAL())
             {
                 //Get top event.
-                topEvent = db.GetTop3EventByView();
+                topEvent = db.GetTopEventByView(4);
                 foreach(Event e in topEvent)
                 {
-                    basicList.Add(new EventBasicInfo { EventID = e.EventID, EventName = e.EventName, Content = e.Description, CreatorID = e.CreatorID, ImageUrl = "", Status = e.Status });
+                    basicEventList.Add(new EventBasicInfo { EventID = e.EventID, EventName = e.EventName, Content = e.Description, CreatorID = e.CreatorID, ImageUrl = "", Status = e.Status });
                 }
             }
-            return Ok( new HTTPMessageDTO { Status= WsConstant.HttpMessageType.SUCCESS, Data= basicList });
+            return Ok( new HTTPMessageDTO { Status= WsConstant.HttpMessageType.SUCCESS, Data= basicEventList });
         }
     }
 }
