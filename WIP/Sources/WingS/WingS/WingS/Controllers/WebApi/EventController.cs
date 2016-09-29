@@ -25,7 +25,7 @@ namespace WingS.Controllers
                 topEvent = db.GetTop3EventByView();
                 foreach(Event e in topEvent)
                 {
-                    basicList.Add(new EventBasicInfo { EventID = e.EventID, EventName = e.EventName, Content = e.Description, CreatorID = e.CreatorID, ImageUrl = e.ImageUrl, Status = e.Status });
+                    basicList.Add(new EventBasicInfo { EventID = e.EventID, EventName = e.EventName, Content = e.Description, CreatorID = e.CreatorID, ImageUrl = "", Status = e.Status });
                 }
             }
             return Ok( new HTTPMessageDTO { Status= WsConstant.HttpMessageType.SUCCESS, Data= basicList });
