@@ -86,15 +86,15 @@
                                             <i class="icon-remove-sign  " style="color: #d9534f"></i>
                                             <span ng-show="RegisterForm.FullName.$error.required">Tên đầy đủ không được để trống</span>
                                             <span ng-show="RegisterForm.FullName.$error.minlength">Tên đầy đủ phải dài hơn 6 kí tự</span>
-                                            <span ng-show="RegisterForm.FullName.$error.maxlength">Tên đầy đủ phải ngắn hơn 20 kí tự</span>
-                                            <span ng-show="RegisterForm.FullName.$error.pattern &&!RegisterForm.FullName.$error.minlength">Tên đầy đủ chỉ gồm chữ</span>
+                                            <span ng-show="RegisterForm.FullName.$error.maxlength">Tên đầy đủ phải ngắn hơn 50 kí tự</span>
+                                            <span ng-show="RegisterForm.FullName.$error.pattern &&!RegisterForm.FullName.$error.minlength">Tên đầy đủ không được chứa kí tự đặc biệt và số</span>
                                         </div>
                                         <input type="text" name="FullName" id="FullName" placeholder="Tên đầy đủ"
                                                ng-model="FullName"
                                                required
                                                ng-minlength="6"
-                                               ng-maxlength="20"
-                                               ng-pattern="/^[a-zA-Z]+$/">
+                                               ng-maxlength="50"
+                                               ng-pattern="/^[a-zA-Z\sÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/">
                                     </div>
                                     <!-- Địa chỉ Email -->
                                     <div>
