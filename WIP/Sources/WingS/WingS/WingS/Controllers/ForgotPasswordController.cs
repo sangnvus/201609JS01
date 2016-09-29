@@ -46,7 +46,7 @@ namespace WingS.Controllers
                 //xu li gui mail
                 var smtp = new SmtpClient
                 {
-                    Host = "smtp.gmail.comcc",
+                    Host = "smtp.gmail.com",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
