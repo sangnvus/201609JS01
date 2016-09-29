@@ -122,44 +122,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row-fluid">
-                            <div class="span3">
-                                <h5 class="text-info">Sự kiện 1</h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
+                        <div class="row-fluid" >
+                            <div class="span3" ng-repeat="item in Event track by $index">
+                                <div class="event-title">
+                                    <h5 class="text-info">{{item.EventName}}</h5>
+                                </div>
+                                <div class="event-imgreference">
+                                    <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin: 5px 0px 15px;" alt="">
+                                </div>
+                                <div class="event-content">
+                                    <p>{{item.Content}}<br /></p>
+                                </div>
+                                <div class="event-footer">
+                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span><br/>
                                     <a href="#">Read More &raquo;</a>
-                                </p>
+                                </div>
                             </div>
-                            <div class="span3">
-                                <h5 class="text-info">Sự kiện 2</h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                    <a href="#">Read More &raquo;</a>
-                                </p>
 
-                            </div>
-                            <div class="span3">
-                                <h5 class="text-info">Sự kiện 3</h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                    <a href="#">Read More &raquo;</a>
-                                </p>
-                            </div>
-                            <div class="span3">
-                                <h5 class="text-info">Sự kiện 4</h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                    <a href="#">Read More &raquo;</a>
-                                </p>
-                            </div>
+
                         </div>
                         <div class="row-fluid">
 

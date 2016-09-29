@@ -480,4 +480,19 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 
 
+/*Set OverFlow for content*/
+.event-title, .event-content, .event-imgreference, .event-footer {
+    overflow: hidden;
+}
 
+ .event-title {
+     height: 55px;
+ }
+
+ .event-content {
+     height: 135px;
+ }
+
+ .event-footer {
+     height: 25px;
+ }

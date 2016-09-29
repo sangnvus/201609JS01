@@ -28,5 +28,13 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Discussion/_Discussion.cshtml");
         }
+        public ActionResult RegisterSuccess()
+        {
+            return PartialView("~/Views/Login/_RegisterSuccess.cshtml");
+        }
+        public ActionResult VerifyAccount()
+        {
+            return PartialView("~/Views/Login/_VerifyAccount.cshtml");
+        }
     }
 }

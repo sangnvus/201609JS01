@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -54,10 +56,15 @@ namespace WingS.Controllers
             //Clear Cookies
             return RedirectToAction("Index", "Home");
         }
-        //Create New Account
+        //Create New Account and Send Verify code
+        [HttpPost]
         public ActionResult Register(UserRegisterDTO account)
         {
-
+            try
+            {
+            //Save data to database
+            Random rnd = new Random();
+            var verifycode = rnd.Next(999999).ToString();
             var Md5pass = MD5Helper.MD5Encrypt(account.PassWord);
             var newUser = new Ws_User
             {
@@ -66,9 +73,9 @@ namespace WingS.Controllers
                 UserPassword = Md5pass,
                 CreatedDate = DateTime.UtcNow,
                 IsActive = true,
-                IsVerify = true,
+                IsVerify = false,
                 AccountType = false,
-                VerifyCode = string.Empty,
+                VerifyCode = verifycode,
                 User_Information = new User_Information
                 {
                     FullName = account.FullName,
@@ -79,9 +86,93 @@ namespace WingS.Controllers
                 userDal.AddNewUser(newUser);
             }
 
-
-            return RedirectToAction("Index", "Home");
+            // Send Verify code
+                //khai báo biến để gửi mã xác nhận
+                var fromAddress = new MailAddress(WsConstant.VerifyEmail.AdminEmail, WsConstant.VerifyEmail.WsOrganization);
+                var toAddress = new MailAddress(account.Email, account.UserName);
+                string fromPassword = WsConstant.VerifyEmail.AdminEmailPass;
+                string subject = WsConstant.VerifyEmail.EmailSubject;
+                string body = WsConstant.VerifyEmail.EmailContentFirst + "  Tên đăng nhập : " + account.UserName + "\n  Mã xác nhận : " +
+                              verifycode + WsConstant.VerifyEmail.EmailContentLast;
+                //xu li gui mail
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+                //chuyển đến trang đăng ký thành công
+                return RedirectToAction("RegisterSuccess", "Client");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex;
+                return RedirectToAction("Error", "Client");
+            }
         }
+        // Xác nhận tài khoản: update trường Isverify
+        [HttpPost]
+        public ActionResult updateIsverify(string UserName)
+        {
+            try
+            {
+                using (var userDal = new UserDAL())
+                {
+                    var AccountInfo = userDal.GetUserByUserNameOrEmail(UserName);
+                    AccountInfo.IsVerify = true;
+                    userDal.UpdateUser(AccountInfo);
+                }
+                return RedirectToAction("Login", "Client");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex;
+                return RedirectToAction("Error", "Client");
+            }
+
+        }
+        //check valid of verifycode
+        public JsonResult CheckVerifyCode(string UserName, string VerifyCode)
+        {
+            string message = "";
+            string connect = "";
+            try
+            {
+                using (var userDal = new UserDAL())
+                {
+                    var AccountInfo = userDal.GetUserByUserNameOrEmail(UserName);
+                    if (AccountInfo == null )
+                    {
+                        message = "NotExistUser";
+                    }
+                    else if (VerifyCode != AccountInfo.VerifyCode)
+                    {
+                        message = "ErrorCode";
+                    }
+                    else message = "Success";
+                }
+                return this.Json(message, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                connect = "Exception";
+                return this.Json(connect, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
         //Check Existed UserName or Email
         public JsonResult CheckExistedUserNameOrEmail(string UserName, string Email)
         {
@@ -101,6 +192,9 @@ namespace WingS.Controllers
             }
             return this.Json(message, JsonRequestBehavior.AllowGet);
         }
+
+
+        //Check UserName and PassWord
         public JsonResult ValidateUser(string UserName, string PassWord)
         {
             string messageError = "";
