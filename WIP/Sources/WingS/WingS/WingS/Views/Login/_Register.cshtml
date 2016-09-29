@@ -1,4 +1,5 @@
 ﻿<link href="~/Content/css/login.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="~/Content/js/checkValidateRegister.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <body id="pageBody">
 
@@ -60,7 +61,7 @@
                                             <span ng-show="RegisterForm.PassWord.$error.minlength">Mật khẩu phải dài hơn 8 kí tự</span>
                                             <span ng-show="RegisterForm.PassWord.$error.maxlength">Mật khẩu phải ngắn hơn 20 kí tự</span>
                                         </div>
-                                        <input name="PassWord" ng-model="PassWord" type="password"
+                                        <input name="PassWord" id="PassWord" ng-model="PassWord" type="password"
                                                placeholder="Mật khẩu"
                                                ng-minlength="8"
                                                ng-maxlength="20"
@@ -74,7 +75,7 @@
                                             <span ng-show="RegisterForm.RePassWord.$error.unique && !RegisterForm.RePassWord.$error.required">Nhập lại mật khẩu không giống</span>
                                         </div>
                                         <input type="password" placeholder="Nhập lại mật khẩu"
-                                               name="RePassWord"
+                                               name="RePassWord" id="RePassWord"
                                                ng-model="RePassWord"
                                                password-match="PassWord"
                                                required>
@@ -84,11 +85,11 @@
                                         <div ng-show="RegisterForm.FullName.$dirty && RegisterForm.FullName.$invalid" style="color: #d9534f;">
                                             <i class="icon-remove-sign  " style="color: #d9534f"></i>
                                             <span ng-show="RegisterForm.FullName.$error.required">Tên đầy đủ không được để trống</span>
-                                            <span ng-show="RegisterForm.UserName.$error.minlength">Tên đầy đủ phải dài hơn 6 kí tự</span>
+                                            <span ng-show="RegisterForm.FullName.$error.minlength">Tên đầy đủ phải dài hơn 6 kí tự</span>
                                             <span ng-show="RegisterForm.FullName.$error.maxlength">Tên đầy đủ phải ngắn hơn 20 kí tự</span>
-                                            <span ng-show="RegisterForm.FullName.$error.pattern &&!RegisterForm.UserName.$error.minlength">Tên đầy đủ chỉ gồm chữ</span>
+                                            <span ng-show="RegisterForm.FullName.$error.pattern &&!RegisterForm.FullName.$error.minlength">Tên đầy đủ chỉ gồm chữ</span>
                                         </div>
-                                        <input type="text" name="FullName" placeholder="Tên đầy đủ"
+                                        <input type="text" name="FullName" id="FullName" placeholder="Tên đầy đủ"
                                                ng-model="FullName"
                                                required
                                                ng-minlength="6"
@@ -111,7 +112,7 @@
                                     <div>
                                         <input id="registerBtn" type="submit" value="Đăng ký"
                                                style="margin-left: 33%; width: 150px;"
-                                               onclick="return false;"
+                                               onclick=" return false; "
                                                ng-disabled="!RegisterForm.$dirty || (RegisterForm.$dirty && RegisterForm.$invalid)" />                                          
                                     </div>
                                 }<!-- form -->
@@ -140,26 +141,4 @@
 
     </div>
 <br/><br/><br/>
-    <script type="text/javascript">
-        $(function () {
-            $('#registerBtn').click(function () {
-                $('#errorExistUser').html("Đang kiểm tra...");
-                $.getJSON("/Login/CheckExistedUserNameOrEmail", { UserName: $("#UserName").val(), Email: $("#Email").val() }, function (data) {
-                    if (data == "ExistedUser") {
-                        $('#errorExistUser').html("Tên đăng nhập đã được sử dụng");
-                        $('#UserName').focus();
-                        return false;
-
-                    } else if (data == "ExistedEmail") {
-                        $('#errorExistEmail').html("Địa chỉ Email đã được sử dụng");
-                        $('#Email').focus();
-                        return false;
-                    } else {
-                        $('#RegisterForm').submit();
-                        return true;
-                    }
-                });
-            });
-        });
-    </script>
 </body>
