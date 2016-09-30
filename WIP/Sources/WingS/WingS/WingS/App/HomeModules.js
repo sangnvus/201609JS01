@@ -1,6 +1,6 @@
 ﻿'use strict';
 var app = angular.module('ClientApp', ['ngRoute']);
-
+    
 app.config(function ($routeProvider) {
     $routeProvider
     .when("/", {
@@ -38,8 +38,15 @@ app.config(function ($routeProvider) {
     })
         .when("/CreateDiscussion", {
             templateUrl: "/Client/CreateDiscussion",
+            resolve:{
+                'check': function ($location, $window) {
+                    if($window.sessionStorage.isAuthen=="false")
+                        {
+                            $location.path('/Login');
+                        }
+                }},
             title: "Tạo thảo luận",
-            controller: "CreateDiscussionController"
+
         })
 
     .when("/RegisterSuccess", {
@@ -56,7 +63,7 @@ app.config(function ($routeProvider) {
 
 });
 
-app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window) {
+app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window, $localStorage) {
     $rootScope.$on("$routeChangeStart", function (e, curr, prev) {
         if (curr.$$route !== undefined && curr.$$route.title != null) {
             $rootScope.title = curr.$$route.title;
@@ -71,10 +78,12 @@ app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, 
                 // Save authen info into $rootScope
                 $rootScope.User_Information = data.Data;
                 $rootScope.User_Information.IsAuthen = true;
+                $window.sessionStorage.setItem("isAuthen", true)
             } else {
                 $rootScope.User_Information = {
                     IsAuthen: false
                 };
+                $window.sessionStorage.setItem("isAuthen", false)
             }
         })
     }
