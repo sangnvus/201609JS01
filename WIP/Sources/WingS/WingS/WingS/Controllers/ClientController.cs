@@ -36,5 +36,9 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Login/_VerifyAccount.cshtml");
         }
+        public ActionResult CreateDiscussion()
+        {
+            return PartialView("~/Views/Discussion/_CreateDiscussion.cshtml");
+        }
     }
 }
