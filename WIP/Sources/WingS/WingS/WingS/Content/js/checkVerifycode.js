@@ -6,6 +6,11 @@
                 $('#ErrorCode').html("");
                 return false;
             }
+            else if (data == "IsVerify") {
+                $('#ErrorNotExistUser').html("Tài khoản của bạn đã được xác nhận rồi! Vui lòng Đăng nhập để sử dụng trang web.");
+                $('#ErrorCode').html("");
+                return false;
+            }
             else if (data == "ErrorCode")
             {
                 $('#ErrorNotExistUser').html("");

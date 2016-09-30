@@ -57,6 +57,7 @@ namespace WingS.Controllers
             return RedirectToAction("Index", "Home");
         }
         //Create New Account and Send Verify code
+      
         [HttpPost]
         public ActionResult Register(UserRegisterDTO account)
         {
@@ -113,12 +114,12 @@ namespace WingS.Controllers
                     smtp.Send(message);
                 }
                 //chuyển đến trang đăng ký thành công
-                return RedirectToAction("RegisterSuccess", "Client");
+                return Redirect("/#/RegisterSuccess");
             }
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex;
-                return RedirectToAction("Error", "Client");
+                return Redirect("/#/Error");
             }
         }
         // Xác nhận tài khoản: update trường Isverify
@@ -133,12 +134,13 @@ namespace WingS.Controllers
                     AccountInfo.IsVerify = true;
                     userDal.UpdateUser(AccountInfo);
                 }
-                return RedirectToAction("Login", "Client");
+                //return RedirectToAction("Login", "Client");
+                return Redirect("/#/Login");
             }
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex;
-                return RedirectToAction("Error", "Client");
+                return Redirect("/#/Error");
             }
 
         }
@@ -156,10 +158,15 @@ namespace WingS.Controllers
                     {
                         message = "NotExistUser";
                     }
+                    else if (AccountInfo.IsVerify==true)
+                    {
+                        message = "IsVerify";
+                    }
                     else if (VerifyCode != AccountInfo.VerifyCode)
                     {
                         message = "ErrorCode";
                     }
+                   
                     else message = "Success";
                 }
                 return this.Json(message, JsonRequestBehavior.AllowGet);
