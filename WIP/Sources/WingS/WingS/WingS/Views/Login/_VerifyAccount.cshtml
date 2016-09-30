@@ -30,7 +30,7 @@
                             <section id="content">
                                 @using (Html.BeginForm("updateIsverify", "Login", FormMethod.Post, new { @class = "verify-content", @id = "VerifyForm", @name = "VerifyForm", role = "form" }))
                                 {
-                                    <h1>Xác nhận tài khoản</h1>
+                                    <h2 style="color: #7E7E7E;font: bold 25px Helvetica, Arial, sans-serif;letter-spacing: -0.05em;line-height: 20px;margin: 10px 0 30px;">Xác nhận tài khoản</h2>
                                     <div>
                                         <span id="ErrorNotExistUser" style="color: red"></span>
                                         <input type="text" placeholder="Tên đăng nhập" id="UserName" name="UserName" required=""/>
