@@ -11,6 +11,7 @@
         public int ThreadId { get; set; }
         [ForeignKey("Ws_User")]
         public int UserId { get; set; }
+        public string Title { get; set; }
         public string Content { get; set; }
         public string VideoUrl { get; set; }
         public DateTime CreatedDate { get; set; }
