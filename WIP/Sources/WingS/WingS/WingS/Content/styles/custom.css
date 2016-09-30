@@ -481,18 +481,18 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 
 /*Set OverFlow for content*/
-.event-title, .event-content, .event-imgreference, .event-footer {
+.event-title, .event-content, .event-img, .event-footer, .thread-title, .thread-content, .thread-img, .event-footer {
     overflow: hidden;
 }
 
- .event-title {
+ .event-title, .thread-title {
      height: 55px;
  }
 
- .event-content {
+ .event-content, .thread-content {
      height: 135px;
  }
 
- .event-footer {
+ .event-footer, .thread-footer {
      height: 25px;
  }

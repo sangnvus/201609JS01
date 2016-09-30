@@ -128,7 +128,7 @@
                                 <div class="event-title">
                                     <h5 class="text-info">{{item.EventName}}</h5>
                                 </div>
-                                <div class="event-imgreference">
+                                <div class="event-img">
                                     <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin: 5px 0px 15px;" alt="">
                                 </div>
                                 <div class="event-content">
@@ -145,42 +145,24 @@
                         <div class="row-fluid">
 
 
-                            <div class="span3">
-                                <h5 class="text-info">Thảo luận </h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
+                            <div class="span3" ng-repeat="item in Thread track by $index">
+                                <div class="thread-title">
+                                    <h5 class="text-info">{{item.ThreadName}}</h5>
+                                </div>
+                                <div class="thread-img">
+                                    <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin: 5px 0px 15px;" alt="">
+                                </div>
+                                <div class="thread-content">
+                                    <p>{{item.Content}}</p>
+                                </div>
+                                <div class="thread-footer">
+                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span><br />
                                     <a href="#">Read More &raquo;</a>
-                                </p>
+                                </div>
+                                
                             </div>
-                            <div class="span3">
-                                <h5 class="text-info">Thảo luận</h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                    <a href="#">Read More &raquo;</a>
-                                </p>
-                            </div>
-                            <div class="span3">
-                                <h5 class="text-info">Thảo luận</h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                    <a href="#">Read More &raquo;</a>
-                                </p>
-                            </div>
-                            <div class="span3">
-                                <h5 class="text-info">Thảo luận</h5>
-                                <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                    <a href="#">Read More &raquo;</a>
-                                </p>
-                            </div>
+                            
+                            
                         </div>
 
                     </div>

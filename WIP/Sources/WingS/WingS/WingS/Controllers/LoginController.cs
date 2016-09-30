@@ -164,7 +164,7 @@ namespace WingS.Controllers
                 }
                 return this.Json(message, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 connect = "Exception";
                 return this.Json(connect, JsonRequestBehavior.AllowGet);

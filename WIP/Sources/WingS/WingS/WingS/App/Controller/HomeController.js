@@ -3,4 +3,8 @@
         $scope.Event = response.Data;
         //$scope.abc = "nghia";
     });
+
+    $http.get("/api/Thread/GetTopFourThread").success(function (response) {
+        $scope.Thread = response.Data;
+    });
 });
