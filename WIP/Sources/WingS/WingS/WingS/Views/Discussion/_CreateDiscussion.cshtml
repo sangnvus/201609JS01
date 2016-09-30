@@ -28,10 +28,10 @@
                         <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
                             <div class="row-fluid">
                                 <div class="span4" align="center">
-                                    <strong><h3 style="margin-top:25px;">Tiêu đề</h3></strong>
+                                    <h3 style="margin-top:25px;"><strong>Tiêu đề</strong></h3>
                                 </div>
                                 <div class="span8">
-                                    <input type="text" style=" margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:100%;" />
+                                    <input type="text" style="margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:100%;" id="title" />
                                     <p>
                                         Nhập vào tiêu đề không dài quá 50 kí tự.
                                     </p>
@@ -121,6 +121,10 @@
     <script src="../../Content/scripts/yoxview/yox.js" type="text/javascript"></script>
     <script src="../../Content/scripts/yoxview/jquery.yoxview-2.21.js" type="text/javascript"></script>
     <script type="text/javascript">$(document).ready(function () {$('.yoxview').yoxview({autoHideInfo:false,renderInfoPin:false,backgroundColor:'#ffffff',backgroundOpacity:0.8,infoBackColor:'#000000',infoBackOpacity:1});$('.yoxview a img').hover(function(){$(this).animate({opacity:0.7},300)},function(){$(this).animate({opacity:1},300)});});</script>
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#title').focus();
+        });
+    </script>
 
 </body>
