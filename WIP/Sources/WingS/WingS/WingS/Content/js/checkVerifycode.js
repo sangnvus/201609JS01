@@ -7,9 +7,11 @@
                 return false;
             }
             else if (data == "IsVerify") {
-                $('#ErrorNotExistUser').html("Tài khoản của bạn đã được xác nhận rồi! Vui lòng Đăng nhập để sử dụng trang web.");
-                $('#ErrorCode').html("");
-                return false;
+                //$('#ErrorNotExistUser').html("Tài khoản của bạn đã được xác nhận rồi! Vui lòng Đăng nhập để sử dụng trang web.");
+                //$('#ErrorCode').html("");
+                //return false;
+                alert("Tài khoản của bạn đã được xác nhận rồi! Vui lòng Đăng nhập để sử dụng trang web.");
+                window.location.href = '/#/Login';
             }
             else if (data == "ErrorCode")
             {
@@ -24,7 +26,8 @@
                 return false;
             }
             else {
-                $('#VerifyForm').submit();
+                alert("Bạn đã đăng ký thành công, hãy đăng nhập!");
+                $('#VerifyForm').submit().delay(1000);
                 return true;
             }
         });
