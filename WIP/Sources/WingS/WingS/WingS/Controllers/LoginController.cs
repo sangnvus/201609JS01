@@ -301,7 +301,7 @@ namespace WingS.Controllers
             }
             catch (Exception)
             {
-                return Redirect("/#/error");
+                return Redirect("/#/Error");
             }
 
         }

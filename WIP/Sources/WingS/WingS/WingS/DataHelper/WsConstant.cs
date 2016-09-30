@@ -7,6 +7,18 @@ namespace WingS.DataHelper
 {
     public class WsConstant
     {
+        public static string randomString()
+        {
+            string randomString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[8];
+            Random rnd = new Random();
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = randomString[rnd.Next(randomString.Length)];
+            }
+
+            return new String(stringChars);
+        }
         // Crate some constant to use in controller and view
         public const string ConnectionString = "Ws_DataContext";
 
