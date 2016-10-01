@@ -481,18 +481,28 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 
 /*Set OverFlow for content*/
-.event-title, .event-content, .event-img, .event-footer, .thread-title, .thread-content, .thread-img, .event-footer {
+.event-title, .event-content, .event-img, .event-footer,
+.thread-title, .thread-content, .thread-img, .event-footer,
+.organization-title, .organization-img, .organization-content, .organization-footer {
     overflow: hidden;
 }
 
- .event-title, .thread-title {
-     height: 55px;
+/*.event-img,.thread-img {
+    margin-top: 5px;
+}*/
+
+ .event-title, .thread-title, .organization-title {
+     height: 57px;
  }
 
  .event-content, .thread-content {
      height: 135px;
  }
 
- .event-footer, .thread-footer {
+ .event-footer, .thread-footer, .organization-footer {
      height: 25px;
  }
+
+.organization-content {
+    height: 88px;
+}
