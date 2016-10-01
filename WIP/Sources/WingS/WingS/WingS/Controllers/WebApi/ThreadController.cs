@@ -26,12 +26,13 @@ namespace WingS.Controllers.WebApi
                 topFourThread = db.GetTopThreadByView(4);
                 foreach (Thread thread in topFourThread)
                 {
+                    var threadMainImage = db.GetMainImageThreadById(thread.ThreadId);
                     basicThreadList.Add(new ThreadBasicInfo
                     {
                         ThreadID = thread.ThreadId,
                         UserID = thread.UserId,
                         ThreadName = thread.Title,
-                        ImageUrl = "",
+                        ImageUrl = threadMainImage.ImageUrl,
                         Content = thread.Content,
                         Status = true
                     });

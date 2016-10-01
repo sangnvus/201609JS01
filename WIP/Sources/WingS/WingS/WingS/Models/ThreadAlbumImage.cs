@@ -14,7 +14,7 @@ namespace WingS.Models
         public int ImageId { get; set; }
         [ForeignKey("thread")]
         public int ThreadId { get; set; }
-        public string ImgaeUrl { get; set; }
+        public string ImageUrl { get; set; }
         public bool? status { get; set;}
         public virtual Thread thread { get; set; }
     }

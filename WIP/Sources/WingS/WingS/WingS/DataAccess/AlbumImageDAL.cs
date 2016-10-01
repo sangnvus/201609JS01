@@ -13,7 +13,7 @@ namespace WingS.DataAccess
         {
             var emptyAlbum = CreateEmptyThreadAlbum();
             emptyAlbum.ThreadId = album.ThreadId;
-            emptyAlbum.ImgaeUrl = album.ImageUrl;
+            emptyAlbum.ImageUrl = album.ImageUrl;
             using (var db = new Ws_DataContext())
             {
                 db.ThreadAlbum.Add(emptyAlbum);
@@ -26,7 +26,7 @@ namespace WingS.DataAccess
             using (var db = new Ws_DataContext()){
                 var album = db.ThreadAlbum.Create();
                 album.ThreadId = 0;
-                album.ImgaeUrl = "";
+                album.ImageUrl = "";
                 album.status = true;
                 return album;
                 }

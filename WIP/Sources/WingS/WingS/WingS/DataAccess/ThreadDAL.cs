@@ -61,18 +61,43 @@ namespace WingS.DataAccess
                 return thread;
             }
         }
-        //public List<Event> GetTopEventByView(int eventNumber)
-        //{
-        //    List<Event> list = null;
 
-        //    using (var db = new Ws_DataContext())
-        //    {
-        //        var topEvent = db.Events.OrderByDescending(x => x.Event_Statistic.Views).Take(eventNumber);
-        //        list = topEvent.ToList();
-        //    }
-        //    return list;
+        /// <summary>
+        /// Get all image of an Thread
+        /// </summary>
+        /// <param name="threadId"></param>
+        /// <returns></returns>
+        public List<ThreadAlbumImage> GetAllImageThreadById(int threadId)
+        {
+            List<ThreadAlbumImage> threadImagesList;
 
-        //}
+            using (var db = new Ws_DataContext())
+            {
+                var imageList = db.ThreadAlbum.Where(x => x.ThreadId == threadId);
+                threadImagesList = imageList.ToList();
+            }
+
+            return threadImagesList;
+        }
+
+        /// <summary>
+        /// Get main image of an Thread
+        /// </summary>
+        /// <param name="threadId"></param>
+        /// <returns></returns>
+        public ThreadAlbumImage GetMainImageThreadById(int threadId)
+        {
+            ThreadAlbumImage threadMainImage;
+
+            using (var db = new Ws_DataContext())
+            {
+                var image = db.ThreadAlbum.FirstOrDefault(x => x.ThreadId == threadId && x.status == true);
+                threadMainImage = image;
+            }
+
+            return threadMainImage;
+        }
+
         public void Dispose()
         {
             

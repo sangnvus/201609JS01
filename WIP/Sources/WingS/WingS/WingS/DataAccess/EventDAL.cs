@@ -26,7 +26,7 @@ namespace WingS.DataAccess
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        public List<EventAlbumImage> GetAllImageEvent(int eventId)
+        public List<EventAlbumImage> GetAllImageEventById(int eventId)
         {
             List<EventAlbumImage> eventImagesList;
 
@@ -39,14 +39,19 @@ namespace WingS.DataAccess
             return eventImagesList;
         }
 
+        /// <summary>
+        /// Get main image of an Event
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
         public EventAlbumImage GetMainImageEventById(int eventId)
         {
             EventAlbumImage eventMainImage;
 
             using (var db = new Ws_DataContext())
             {
-                var imageUrl = db.EventAlbum.FirstOrDefault(x => x.EventId == eventId && x.status == true);
-                eventMainImage = imageUrl;
+                var image = db.EventAlbum.FirstOrDefault(x => x.EventId == eventId && x.status == true);
+                eventMainImage = image;
             }
 
             return eventMainImage;

@@ -27,7 +27,7 @@ namespace WingS.Controllers.WebApi
                         OrganazationID = org.OrganazationID,
                         OrganazationName = org.OrganazationName,
                         Introduction = org.Introduction,
-                        LogoUrl = "",
+                        LogoUrl = org.LogoUrl,
                         Phone = org.Phone,
                         Email = org.Email,
                         Address = org.Address,
