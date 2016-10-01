@@ -15,11 +15,43 @@ namespace WingS.DataAccess
             using (var db = new Ws_DataContext())
             {
                 var topEvent = db.Events.OrderByDescending(x => x.Event_Statistic.Views).Take(eventNumber);
-                    list = topEvent.ToList();
+                list = topEvent.ToList();
             }
             return list;
 
         }
+
+        /// <summary>
+        /// Get all images off an event
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        public List<EventAlbumImage> GetAllImageEvent(int eventId)
+        {
+            List<EventAlbumImage> eventImagesList;
+
+            using (var db = new Ws_DataContext())
+            {
+                var imageList = db.EventAlbum.Where(x => x.EventId == eventId);
+                eventImagesList = imageList.ToList();
+            }
+
+            return eventImagesList;
+        }
+
+        public EventAlbumImage GetMainImageEventById(int eventId)
+        {
+            EventAlbumImage eventMainImage;
+
+            using (var db = new Ws_DataContext())
+            {
+                var imageUrl = db.EventAlbum.FirstOrDefault(x => x.EventId == eventId && x.status == true);
+                eventMainImage = imageUrl;
+            }
+
+            return eventMainImage;
+        } 
+
         public void Dispose()
         {
           

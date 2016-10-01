@@ -25,13 +25,17 @@ namespace WingS.Controllers
                 topEvent = db.GetTopEventByView(4);
                 foreach(Event e in topEvent)
                 {
+                    //Lấy ra ảnh tương ứng với mỗi 1 event với Status = 1
+                    //Note: ảnh có status bằng 1 là ảnh dùng để hiển thị trên trang Home
+                    var eventMainImage = db.GetMainImageEventById(e.EventID);
+
                     basicEventList.Add(new EventBasicInfo
                     {
                         EventID = e.EventID,
                         EventName = e.EventName,
                         Content = e.Description,
                         CreatorID = e.CreatorID,
-                        ImageUrl = "",
+                        ImageUrl = eventMainImage.ImageUrl,
                         Status = e.Status
                     });
                 }

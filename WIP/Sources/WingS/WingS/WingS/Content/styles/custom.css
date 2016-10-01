@@ -487,8 +487,8 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
     overflow: hidden;
 }
 
-/*.event-img,.thread-img {
-    margin-top: 5px;
+/*.event-img img,.thread-img img {
+    height: 135px;
 }*/
 
  .event-title, .thread-title, .organization-title {

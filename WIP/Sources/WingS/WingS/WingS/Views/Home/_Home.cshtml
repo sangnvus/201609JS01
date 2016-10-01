@@ -86,7 +86,7 @@
                             <div class="span3">
                                 <div class="box">
                                     <i class="icon-tasks"></i>
-                                    <h4 class="title">Tạo sự kiện</h4> <hr />
+                                    <h4 class="title">Tạo sự kiện</h4> <hr/>
                                     <p>
                                         Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
 
@@ -95,10 +95,10 @@
                             </div>
 
                             <div class="span3">
-                                
+
                                 <div class="box">
                                     <a href="@Url.Content("/#/CreateDiscussion")"> <i class="icon-edit"></i></a>
-                                    <h4 class="title">Tạo thảo luận</h4> <hr />
+                                    <h4 class="title">Tạo thảo luận</h4> <hr/>
                                     <p>
                                         Hãy chia sẻ cho chúng tôi những thông tin về những nơi cần việc từ thiện.
                                     </p>
@@ -107,7 +107,7 @@
                             <div class="span3">
                                 <div class="box">
                                     <i class="icon-money"></i>
-                                    <h4 class="title">Quyên góp</h4> <hr />
+                                    <h4 class="title">Quyên góp</h4> <hr/>
                                     <p>
                                         Đóng góp để gây quĩ từ thiện.
                                     </p>
@@ -116,20 +116,22 @@
                             <div class="span3">
                                 <div class="box">
                                     <i class="icon-share"></i>
-                                    <h4 class="title">Góp ý </h4> <hr />
+                                    <h4 class="title">Góp ý </h4> <hr/>
                                     <p>
                                         Góp ý với chúng tôi.
                                     </p>
                                 </div>
                             </div>
                         </div>
+
+                        @* Generate Top 4 Event *@
                         <div class="row-fluid" >
                             <div class="span3" ng-repeat="item in Event track by $index">
                                 <div class="event-title">
                                     <h5 class="text-info">{{item.EventName}}</h5>
                                 </div>
                                 <div class="event-img">
-                                    <img src="Content/Images/home-image.jpg" class="img-polaroid" style="margin: 5px 0px 15px;" alt="">
+                                    <img src="{{item.ImageUrl}}" class="img-polaroid" style="margin: 5px 0px 15px;" alt="">
                                 </div>
                                 <div class="event-content">
                                     <p>{{item.Content}}<br /></p>
