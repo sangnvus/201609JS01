@@ -1,4 +1,26 @@
-﻿
+﻿@model WingS.Models.DTOs.CreateThreadInfo
+<script src="../../Content/scripts/tinymce/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        // Initialize your tinyMCE Editor with your preferred options
+        tinyMCE.init({
+            // General options
+            selector: "textarea",
+            theme: "modern",
+            // Theme options
+            theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+            theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+            theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+            theme_advanced_buttons4: "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
+            theme_advanced_toolbar_location: "top",
+            theme_advanced_toolbar_align: "left",
+            theme_advanced_statusbar_location: "bottom",
+            theme_advanced_resizing: true,
+
+            // Example content CSS (should be your site CSS)
+            //content_css: "css/example.css",
+        });
+</script>
+
 <body id="pageBody">
 
     <div id="divBoxed" class="container">
@@ -23,15 +45,16 @@
                 <div class="breadcrumbs">
                     <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Thảo Luận</a> &nbsp;/&nbsp; <span>Tạo thảo Luận</span>
                 </div>
+                @using (Html.BeginForm("CreateDiscussion","Thread",FormMethod.Post, new { @id = "LoginForm", enctype = "multipart/form-data" })) {
                 <div class="row-fluid">
-                    <div class="span9">
-                        <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
+                    <div class="span9 offset1">
+                        <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                             <div class="row-fluid">
                                 <div class="span4" align="center">
                                     <h3 style="margin-top:25px;"><strong>Tiêu đề</strong></h3>
                                 </div>
                                 <div class="span8">
-                                    <input type="text" style="margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:100%;" id="title" />
+                                    <input type="text" style="margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:100%;" name="Title" />
                                     <p>
                                         Nhập vào tiêu đề không dài quá 50 kí tự.
                                     </p>
@@ -43,59 +66,52 @@
                             </div>
                         </div>
                     </div>
-                    <div class="span3" style="float:right;">
-                        <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
-                            <strong>Hãy tạo một cuộc thảo luận hay để giúp đỡ mọi người </strong>
-                        </div>
-                    </div>
-                    <div class="span3" align="center" style="float:right;">
-                        <img src="images/home-image.jpg" class="img-polaroid">
-                        <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span9">
-                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
-                                <div class="row-fluid">
-                                    <div class="span4" align="center">
-                                        <h3 style="margin-top:25px;"><strong>Hình ảnh </strong></h3>
-                                    </div>
-                                    <div class="span8">
-                                        <p>Chọn hình ảnh bạn có<span style="color:red;"> 	BẮT BUỘC</span></p>
-                                        <input type="file" multiple required>
-                                        <p style="font-weight: bold;">Chọn file với định dạng JPEG, PNG, GIF, hoặc BMP. Ít nhất với  1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
+                </div>
+                <div class="row-fluid">
+                    <div class="span9 offset1">
+                        <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                            <div class="row-fluid">
+                                <div class="span4" align="center">
+                                    <h3 style="margin-top:25px;"><strong>Hình ảnh </strong></h3>
+                                </div>
+                                <div class="span8">
+                                    <p>Chọn hình ảnh bạn có<span style="color:red;">    BẮT BUỘC</span></p>
+                                    <input type="file" class="multiple" name="Images" multiple/>
+                                    <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với  1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
 
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span9">
-                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
-                                <div class="row-fluid">
-                                    <div class="span4" align="center">
-                                        <h3 style="margin-top:25px;"><strong>Câu chuyện</strong></h3>
-                                    </div>
-                                    <div class="span8">
-                                        <p>Mô tả nội dung của bạn </p>
-                                        <div id="txtEditor" style="background-color:#fff; height:300px; margin-bottom:30px;"></div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span9" align="right">
-                            <button type="button" class="btn btn-navbar-highlight btn-large btn-primary">
-                                Tạo thảo luận
-                            </button>
-                        </div>
-
                     </div>
                 </div>
-            </div>
+                <div class="row-fluid">
+                    <div class="span9 offset1">
+                        <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
+                            <div class="row-fluid">
+                                <div class="span4" align="center">
+                                    <h3 style="margin-top:25px;"><strong>Câu chuyện</strong></h3>
+                                </div>
+                                <div class="span8">
+                                    <p>Mô tả nội dung của bạn </p>
+                                    @Html.TextAreaFor(thread => thread.Content)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                <div class="row-fluid">
+                    <div class="span9 offset1" align="right">
+                        <button type="submit" class="btn btn-navbar-highlight btn-large btn-primary">
+                            Tạo thảo luận
+                        </button>
+                    </div>
+                </div>
+
+                }
+
+             </div>
+        </div>
         </div>
 
 
@@ -103,18 +119,15 @@
 
         @Html.Partial("../Home/_Footer")
 
-    </div>
-  
 
     <br /><br /><br />
     <!-- Include stylesheet -->
-  
-    <script type="text/javascript">
-    var quill = new Quill('#txtEditor', {
-    theme: 'snow'
-        });
-    </script>
 
+    <style>
+        textarea{
+            height:300px;
+        }
+    </style>
     <script src="../../Content/scripts/default.js" type="text/javascript"></script>
     <script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
     <script type="text/javascript">$(window).load(function () {var options = {autoResize: true,container: $('#gridArea'),offset: 10};var handler = $('#tiles li');handler.wookmark(options);$('#tiles li').each(function () { var imgm = 0; if($(this).find('img').length>0)imgm=parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5;if($(this).find('iframe').height()) newHeight = newHeight+15;$(this).css('height', newHeight + 'px');});handler.wookmark(options);handler.wookmark(options);});</script>

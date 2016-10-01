@@ -37,17 +37,12 @@ namespace WingS.Controllers
                 {
                     AccountInfo.LastLogin = DateTime.Now;
                     userDal.UpdateUser(AccountInfo);
-                }
-                //Add remember me
-                if (AccountInfo != null && account.RememberMe)
-                {
-                    FormsAuthentication.SetAuthCookie(AccountInfo.UserName, account.RememberMe);
-                } else if(AccountInfo != null && !account.RememberMe)
-                {
                     FormsAuthentication.SetAuthCookie(AccountInfo.UserName, !account.RememberMe);
                 }
+                //Add remember me
+               
                 
-                return RedirectToAction("Index","Home");
+                return Redirect("/Home");
             }
         }
         public ActionResult Logout()

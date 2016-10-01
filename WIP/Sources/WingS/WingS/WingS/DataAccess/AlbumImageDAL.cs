@@ -17,6 +17,7 @@ namespace WingS.DataAccess
             using (var db = new Ws_DataContext())
             {
                 db.ThreadAlbum.Add(emptyAlbum);
+                db.SaveChanges();
                 return emptyAlbum;
             }
 
@@ -33,7 +34,7 @@ namespace WingS.DataAccess
         }
         public void Dispose()
         {
-            throw new NotImplementedException();
+         
         }
     }
 }

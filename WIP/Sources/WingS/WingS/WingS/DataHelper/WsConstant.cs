@@ -7,6 +7,10 @@ namespace WingS.DataHelper
 {
     public class WsConstant
     {
+        public static class CurrentUser
+        {
+            public static int  UserId { get; set; }
+        }
         public static string randomString()
         {
             string randomString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
