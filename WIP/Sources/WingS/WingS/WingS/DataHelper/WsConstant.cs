@@ -14,7 +14,7 @@ namespace WingS.DataHelper
         public static string randomString()
         {
             string randomString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var stringChars = new char[8];
+            var stringChars = new char[10];
             Random rnd = new Random();
             for (int i = 0; i < stringChars.Length; i++)
             {
@@ -57,8 +57,8 @@ namespace WingS.DataHelper
             public static readonly string EmailContentFirst = "Chào bạn, \n\nChúng tôi đã nhận được yêu cầu quên mật khẩu từ bạn\n\nĐây là thông tin về tài khoản hiện tại của bạn:\n\n";
             public static readonly string EmailContentLast = "\n\nBạn có thể đổi mật khẩu tại mục Quản lí tài khoản sau khi đăng nhập\n------\nThân,\nThe WingS Team.";
             public static readonly string SentAlert = "Một email đã được gửi tới địa chỉ email đăng kí của bạn!";
-            public static readonly string AdminEmail = "anhtuanck93@gmail.com";
-            public static readonly string AdminEmailPass = "tuan1993";
+            public static readonly string AdminEmail = "WingSFPT@gmail.com";
+            public static readonly string AdminEmailPass = "wing@123";
         }
         public static class VerifyEmail
         {

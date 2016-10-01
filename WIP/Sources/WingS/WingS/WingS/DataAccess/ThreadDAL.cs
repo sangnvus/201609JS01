@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WingS.DataHelper;
 using WingS.Models;
 using WingS.Models.DTOs;
 
@@ -33,7 +34,7 @@ namespace WingS.DataAccess
         public Thread AddNewThread(CreateThreadInfo thread)
         {
             var newThread = CreateEmptyThread();
-            newThread.UserId = thread.CreatorID;
+            newThread.UserId = WsConstant.CurrentUser.UserId;
             newThread.Title = thread.Title;
             newThread.Content = thread.Content;
             using (var db = new Ws_DataContext())

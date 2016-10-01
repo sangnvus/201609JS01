@@ -30,9 +30,9 @@ namespace WingS.Controllers
                 {
                     //rebuild imgae name
                     string imageName = WsConstant.randomString() + Path.GetExtension(img.FileName).ToLower();
-                    string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Upload/ThreadImage"), imageName);
+                    string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/Upload"), imageName);
                     img.SaveAs(path);
-                    string imgaeUrl = "Upload/ThreadImage/" + imageName;
+                    string imgaeUrl = "Content/Upload/" + imageName;
                     //Add Image to db.
                     using (var db = new AlbumImageDAL())
                     {

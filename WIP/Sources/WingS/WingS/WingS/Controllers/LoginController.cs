@@ -42,7 +42,7 @@ namespace WingS.Controllers
                 //Add remember me
                
                 
-                return Redirect("/Home");
+                return RedirectToAction("Index","Home");
             }
         }
         public ActionResult Logout()
@@ -62,20 +62,21 @@ namespace WingS.Controllers
             Random rnd = new Random();
             var verifycode = rnd.Next(999999).ToString();
             var Md5pass = MD5Helper.MD5Encrypt(account.PassWord);
-            var newUser = new Ws_User
-            {
-                Email = account.Email,
-                UserName = account.UserName,
-                UserPassword = Md5pass,
-                CreatedDate = DateTime.UtcNow,
-                IsActive = true,
-                IsVerify = false,
-                AccountType = false,
-                VerifyCode = verifycode,
-                User_Information = new User_Information
+                var newUser = new Ws_User
                 {
-                    FullName = account.FullName,
-                }
+                    Email = account.Email,
+                    UserName = account.UserName,
+                    UserPassword = Md5pass,
+                    CreatedDate = DateTime.UtcNow,
+                    IsActive = true,
+                    IsVerify = false,
+                    AccountType = false,
+                    VerifyCode = verifycode,
+                    User_Information = new User_Information
+                    {
+                     ProfileImage = "Content/Images/avatar_default.png",
+                     FullName = account.FullName,
+                     }
             };
             using (var userDal = new UserDAL())
             {
