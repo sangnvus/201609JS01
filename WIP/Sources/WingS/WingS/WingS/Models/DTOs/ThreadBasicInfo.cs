@@ -12,6 +12,8 @@ namespace WingS.Models.DTOs
         public string ThreadName { get; set; }
         public string ImageUrl { get; set; }
         public string Content { get; set; }
+        public int Likes { get; set; }
+        public int Views { get; set; }
         public bool Status { get; set; }
         public String CreatedDate { get; set; }
         public ThreadBasicInfo()
@@ -21,6 +23,8 @@ namespace WingS.Models.DTOs
             UserID = 0;
             ThreadName = "";
             Content = "";
+            Likes = 0;
+            Views = 0;
             Status = false;
             CreatedDate = "";
         }

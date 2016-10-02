@@ -34,6 +34,8 @@ namespace WingS.Controllers.WebApi
                         ThreadName = thread.Title,
                         ImageUrl = threadMainImage.ImageUrl,
                         Content = thread.Content,
+                        Likes = thread.Likes,
+                        Views = thread.Views,
                         Status = true,
                         CreatedDate = DateTime.Now.ToString("MM / dd / yy H: mm:ss")
                         
