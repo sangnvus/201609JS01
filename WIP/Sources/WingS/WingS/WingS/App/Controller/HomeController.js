@@ -9,7 +9,6 @@
     $http.get("/api/Thread/GetTopFourThread").success(function (response) {
         $scope.Thread = response.Data;
     });
-
     //Load 3 organization to Home page
     $http.get("/api/Organization/GetTopThreeOrganization").success(function (response) {
         $scope.Organization = response.Data;

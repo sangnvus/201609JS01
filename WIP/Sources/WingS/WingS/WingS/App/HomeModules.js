@@ -33,7 +33,8 @@ app.config(function ($routeProvider) {
     })
     .when("/Discussion", {
         templateUrl: "/Client/Discussion",
-        title: "Xem thảo luận"
+        title: "Xem thảo luận",
+        controller: "DiscussionController"
     })
         .when("/CreateDiscussion", {
             templateUrl: "/Client/CreateDiscussion",
