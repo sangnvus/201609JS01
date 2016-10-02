@@ -13,6 +13,7 @@ namespace WingS.Models.DTOs
         public string ImageUrl { get; set; }
         public string Content { get; set; }
         public bool Status { get; set; }
+        public String CreatedDate { get; set; }
         public ThreadBasicInfo()
         {
             ImageUrl = "";
@@ -21,6 +22,7 @@ namespace WingS.Models.DTOs
             ThreadName = "";
             Content = "";
             Status = false;
+            CreatedDate = "";
         }
     }
 }

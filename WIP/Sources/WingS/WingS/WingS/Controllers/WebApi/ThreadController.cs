@@ -34,14 +34,31 @@ namespace WingS.Controllers.WebApi
                         ThreadName = thread.Title,
                         ImageUrl = threadMainImage.ImageUrl,
                         Content = thread.Content,
-                        Status = true
+                        Status = true,
+                        CreatedDate = DateTime.Now.ToString("MM / dd / yy H: mm:ss")
+                        
                     });
                 }
             }
 
             return Ok(new HTTPMessageDTO {Status = WsConstant.HttpMessageType.SUCCESS, Data = basicThreadList});
         }
-
-     
+        [HttpPost]
+        public IHttpActionResult GetThreadById(int Id)
+        {
+            try { 
+            using (var db = new ThreadDAL())
+            {
+                Thread current = db.GetThreadById(Id);
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = current });
+                }
+               
+            }
+            catch(Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR});
+            }
+        }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace WingS.DataAccess
 
             using (var db = new Ws_DataContext())
             {
-                var topThread = db.Threads.OrderByDescending(x => x.Views).Take(threadNumber);
+                var topThread = db.Threads.OrderByDescending(x => x.Views).Where(x=>x.Status== true).Take(threadNumber);
                 listThreads = topThread.ToList();
             }
 

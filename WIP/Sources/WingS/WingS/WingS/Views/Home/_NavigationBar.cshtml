@@ -12,7 +12,7 @@
                             </button>
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
-                                    <li class="active"><a href=@Url.Content("/#/Home")>Trang chủ</a></li>
+                                    <li ><a href=@Url.Content("/#/Home")>Trang chủ</a></li>
                                     <li><a href="about.html">Sự kiện</a></li>
                                     <li><a href=@Url.Content("/#/Discussion")>Thảo luận</a></li>
                                     <li><a href="portfolio.html">Về chúng tôi</a></li>
@@ -23,16 +23,17 @@
                                     }
                                     else {
                                         <li class="active dropdown">
-                                            <a href="#" onclick="return false;" class="dropdown-toggle">Tài khoản <b class="caret"></b></a>
+                                            <img src="{{User_Information.ProfileImage}}" style="width:38px;height:38px; margin-top:2px;" /> <b class="caret"></b>
                                             <ul class="dropdown-menu">
                                                 <li><a href="full.html">Tin nhắn</a></li>
                                                 <li><a href="2-column.html">Thông báo</a></li>
                                                 <li><a href="3-column.html">Thông tin tài khoản</a></li>
-                                                <li><a href="@Url.Action("Logout","Login")">Đăng xuất</a></li>
+                                                <li><a href="@Url.Action("Logout", "Login")">Đăng xuất {{User_Information.FullName}}</a></li>
                                             </ul>
                                         </li>
                                     }
                                 </ul>
+                               
                             </div>
                         </div>
                     </div>

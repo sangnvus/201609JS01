@@ -15,9 +15,9 @@ app.config(function ($routeProvider) {
 
    })
     .when("/Register", {
-             tittle: "Đăng kí",
-             templateUrl: "/Client/Register"
-         })
+        tittle: "Đăng kí",
+        templateUrl: "/Client/Register"
+    })
     .when("/Home", {
         templateUrl: "/Client/Home",
         title: "Hãy đến với chúng tôi để chia sẻ từ thiện",
@@ -33,18 +33,17 @@ app.config(function ($routeProvider) {
     })
     .when("/Discussion", {
         templateUrl: "/Client/Discussion",
-        title: "Xem thảo luận",
-        controller: "DiscussionController"
+        title: "Xem thảo luận"
     })
         .when("/CreateDiscussion", {
             templateUrl: "/Client/CreateDiscussion",
-            resolve:{
+            resolve: {
                 'check': function ($location, $window) {
-                    if($window.sessionStorage.isAuthen=="false")
-                        {
-                            $location.path('/Login');
-                        }
-                }},
+                    if ($window.sessionStorage.isAuthen == "false") {
+                        $location.path('/Login');
+                    }
+                }
+            },
             title: "Tạo thảo luận",
 
         })
@@ -58,6 +57,11 @@ app.config(function ($routeProvider) {
         templateUrl: "/Client/VerifyAccount",
         title: "Xác nhận tài khoản",
         controller: "VerifyAccountController"
+    })
+    .when("/ThreadDetail/:Id", {
+        templateUrl: "/Client/ThreadDetail",
+        title: "Chi tiết thảo luận",
+        controller: "ThreadDetailController"
     });
  
 

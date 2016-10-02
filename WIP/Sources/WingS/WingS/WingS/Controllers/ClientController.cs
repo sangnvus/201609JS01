@@ -40,5 +40,9 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Discussion/_CreateDiscussion.cshtml");
         }
+        public ActionResult ThreadDetail()
+        {
+            return PartialView("~/Views/Discussion/_DiscussionDetail.cshtml");
+        }
     }
 }

@@ -155,21 +155,22 @@
 
 
                             <div class="span3" ng-repeat="item in Thread track by $index">
-                                <div class="thread-title">
-                                    <h5 class="text-info">{{item.ThreadName}}</h5>
-                                </div>
-                                <div class="thread-img">
-                                    <img src="{{item.ImageUrl}}" class="img-polaroid"  alt="" style="width:242px;height:156px; margin: 5px 0px 15px;" >
-                                </div>
-                                <div class="thread-content">
-                                    <p>{{item.Content}}</p>
-                                </div>
-                                <div class="thread-footer">
-                                    <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span>
-                                    @*<br />
-                                    <a href="#">Read More &raquo;</a>*@
-                                </div>
-                                
+                                    <div class="thread-title">
+                                        <h5 class="text-info">{{item.ThreadName}}</h5>
+                                    </div>
+                                    <div class="thread-img">
+                                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width:242px;height:156px; margin: 5px 0px 15px;"></a>
+                                    </div>
+                                    <div class="thread-content">
+                                        <p>{{item.Content}}</p>
+                                    </div>
+                                    <div class="thread-footer">
+                                        <i class="foundicon-thumb-up"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span><br />
+                                        <i class="general foundicon-clock"></i>{{item.CreatedDate}}
+                                        @*<br />
+                <a href="#">Read More &raquo;</a>*@
+                                    </div>
+                       
                             </div>
                             
                             
