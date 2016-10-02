@@ -67,8 +67,8 @@ namespace WingS.DataHelper
             public static readonly string EmailContentFirst = "Xin chào bạn, \n\nCảm ơn bạn đã đăng ký sử dụng trang web của chúng tôi!" +
                                                               "\nBạn vui lòng nhập đoạn mã sau đây để xác nhận tài khoản đã đăng ký:\n\n";
             public static readonly string EmailContentLast = "\nLink nhập mã xác nhận: http://localhost:2710/#/VerifyAccount \n\nNếu có vấn đề gì xin hãy liên hệ với chúng tôi qua đường link 'https://wings.com.vn'\n------\nYours,\nThe WingS Team.";
-            public static readonly string AdminEmail = "anhtuanck93@gmail.com";
-            public static readonly string AdminEmailPass = "tuan1993";
+            public static readonly string AdminEmail = "WingSFPT@gmail.com";
+            public static readonly string AdminEmailPass = "wing@123";
         }
     }
 }
