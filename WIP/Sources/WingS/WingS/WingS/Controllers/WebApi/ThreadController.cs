@@ -35,7 +35,7 @@ namespace WingS.Controllers.WebApi
                             UserID = thread.UserId,
                             ThreadName = thread.Title,
                             ImageUrl = threadMainImage.ImageUrl,
-                            Content = thread.Content,
+                            Content = thread.Content,   
                             Likes = thread.Likes,
                             Views = thread.Views,
                             Status = true,
@@ -75,16 +75,16 @@ namespace WingS.Controllers.WebApi
         // Get danh sách các Thread (8 cái mới nhất)
         [HttpGet]
         [ActionName("NewestThread")]
-        public IHttpActionResult GetEightNewestThread()
+        public IHttpActionResult GetNewestThread()
         {
-            List<Thread> eightNewestThread = null;
+            List<Thread> NewestThread = null;
             var basicThreadList = new List<ThreadBasicInfo>();
             try
             {
                 using (var db = new ThreadDAL())
                 {
-                    eightNewestThread = db.GetNewestThreadByCreatedDate(8);
-                    foreach (Thread thread in eightNewestThread)
+                    NewestThread = db.GetNewestThreadByCreatedDate();
+                    foreach (Thread thread in NewestThread)
                     {
                         var threadMainImage = db.GetMainImageThreadById(thread.ThreadId);
                         basicThreadList.Add(new ThreadBasicInfo

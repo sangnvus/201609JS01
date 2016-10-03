@@ -68,7 +68,7 @@
             <!--Edit Portfolio Content Area here-->
             <div class="row">
 
-                <div class="span3" style="width:242px" ng-repeat="item in Thread track by $index">
+                <div class="span3" style="width:242px" ng-repeat="item in Thread| limitTo: paginationLimit()">
                     <div class="thread-title">
                         <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><h5 class="text-info">{{item.ThreadName}}</h5></a>
                     </div>
@@ -86,8 +86,9 @@
                 </div>
             </div>
             <!--/End Portfolio Content Area-->
+            <br />
             <div align="center">
-                <a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i> Synchronizing Content...</a>
+                <a class="btn btn-primary" href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()"><i class="icon-refresh icon-spin"></i> Xem thêm...</a>
             </div>
             <div id="footerInnerSeparator"></div>
             <hr>

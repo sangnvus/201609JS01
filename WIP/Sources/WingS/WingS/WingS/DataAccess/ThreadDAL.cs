@@ -23,13 +23,13 @@ namespace WingS.DataAccess
             return listThreads;
         }
         // Get Thread by Created
-        public List<Thread> GetNewestThreadByCreatedDate(int threadNumber)
+        public List<Thread> GetNewestThreadByCreatedDate()
         {
             List<Thread> listThreads = null;
-
+            //Get All thread by created Date
             using (var db = new Ws_DataContext())
             {
-                var newestThread = db.Threads.OrderByDescending(x => x.CreatedDate).Where(x => x.Status == true).Take(threadNumber);
+                var newestThread = db.Threads.OrderByDescending(x => x.CreatedDate).Where(x => x.Status == true);
                 listThreads = newestThread.ToList();
             }
 
