@@ -35,6 +35,18 @@ namespace WingS.DataAccess
 
             return listThreads;
         }
+        public List<Thread> GetNewestThreadByCreatedDate1(int skipPage)
+        {
+            List<Thread> listThreads = null;
+
+            using (var db = new Ws_DataContext())
+            {
+                var newestThread = db.Threads.OrderByDescending(x => x.CreatedDate).Skip(skipPage).Take(8).Where(x => x.Status == true);
+                listThreads = newestThread.ToList();
+            }
+
+            return listThreads;
+        } 
         public Thread GetThreadById(int threadId)
         {
             using (var db = new Ws_DataContext())

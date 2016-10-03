@@ -63,12 +63,12 @@ namespace WingS.Controllers
                 }
                 //hien thong bao success
                 TempData["AlertMessage"] = WsConstant.ForgotPass.SentAlert;
-                return RedirectToAction("Index","Home");
+                return Redirect("/#/Home");
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = ex;
-                return RedirectToAction("Error", "Client");
+                ModelState.AddModelError("SendMailFailed", "Email can't be send!");
+                return Redirect("/#/Error");
             }
         }
 
@@ -87,8 +87,6 @@ namespace WingS.Controllers
                 }
             if (validAcc != null) return this.Json(true, JsonRequestBehavior.AllowGet);
             else return this.Json(false, JsonRequestBehavior.AllowGet);
-
-
         }
 	}
 }
