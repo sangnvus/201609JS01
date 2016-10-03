@@ -37,7 +37,7 @@ namespace WingS.Controllers.WebApi
                         Likes = thread.Likes,
                         Views = thread.Views,
                         Status = true,
-                        CreatedDate = DateTime.Now.ToString("MM / dd / yy H: mm:ss")
+                        CreatedDate = thread.CreatedDate.ToString("MM / dd / yy H: mm:ss")
                         
                     });
                 }

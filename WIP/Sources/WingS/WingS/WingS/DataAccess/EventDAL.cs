@@ -14,7 +14,7 @@ namespace WingS.DataAccess
         
             using (var db = new Ws_DataContext())
             {
-                var topEvent = db.Events.OrderByDescending(x => x.Event_Statistic.Views).Take(eventNumber);
+                var topEvent = db.Events.OrderByDescending(x => x.Views).Take(eventNumber);
                 list = topEvent.ToList();
             }
             return list;

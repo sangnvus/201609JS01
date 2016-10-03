@@ -31,6 +31,9 @@ namespace WingS.Controllers
 
                     basicEventList.Add(new EventBasicInfo
                     {
+                        Likes = e.Likes,
+                        Views = e.Views,
+                        CreatedDate=e.Created_Date.ToString("MM / dd / yy H: mm:ss"),
                         EventID = e.EventID,
                         EventName = e.EventName,
                         Content = e.Description,

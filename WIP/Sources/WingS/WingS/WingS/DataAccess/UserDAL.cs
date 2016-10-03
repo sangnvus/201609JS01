@@ -15,7 +15,7 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                var User = db.Ws_User.FirstOrDefault(x => x.UserName == UsernameOrEmail || x.Email == UsernameOrEmail);
+                var User = db.Ws_User.FirstOrDefault(x => x.UserName.Equals(UsernameOrEmail) || x.Email.Equals(UsernameOrEmail));
                 return User;
             }
         }
@@ -60,7 +60,7 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                var User = db.Ws_User.FirstOrDefault(x => ((x.UserName == UsernameOrEmail || x.Email == UsernameOrEmail) && x.UserPassword == Password));
+                var User = db.Ws_User.FirstOrDefault(x => ((x.UserName.Equals(UsernameOrEmail) || x.Email.Equals(UsernameOrEmail)) && x.UserPassword.Equals(Password)));
                 return User;
             }
         }
@@ -69,10 +69,10 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                if(db.Ws_User.FirstOrDefault(x => ( x.Email == Email))!=null){
+                if(db.Ws_User.FirstOrDefault(x => ( x.Email.Equals(Email)))!=null){
                     return 2;
                 }
-                else if (db.Ws_User.FirstOrDefault(x => (x.UserName == Username)) != null)
+                else if (db.Ws_User.FirstOrDefault(x => (x.UserName.Equals(Username))) != null)
                 {
                     return 1;
                 }

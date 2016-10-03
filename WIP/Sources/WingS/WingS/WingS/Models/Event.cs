@@ -22,13 +22,13 @@
         public string VideoUrl { get; set; }
         public int TotalPoint { get; set; }
         public bool Status { get; set; }
+        public int Views { get; set; }
+        public int Likes { get; set; }
         public virtual ICollection<CommentEvent> CommentEvents { get; set; }
         public virtual ICollection<Donation> Donations { get; set; }
         public virtual ICollection<EventAlbumImage> Album { get; set; }
-
         public virtual EventType EType { get; set; }
         public virtual Organazation Organazation { get; set; }
-        public virtual Event_Statistic Event_Statistic { get; set; }
         public virtual ICollection<ReportEvent> ReportEvents { get; set; }
     }
 }
