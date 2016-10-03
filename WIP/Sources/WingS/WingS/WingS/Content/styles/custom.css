@@ -224,7 +224,7 @@ img.pull-left { margin-right:15px !important; margin-top:7px !important;}
 .navbar .nav-pills > li > a:hover, .navbar .nav-pills li.dropdown.open.active > .dropdown-toggle {-webkit-transition: ease-in-out .2s;-moz-transition: ease-in-out .2s;-o-transition: ease-in-out .2s;-ms-transition: ease-in-out .2s; transition: ease-in-out .2s;}
 
 
-body {background-image: url(scribble_light.png);  background-position: inherit inherit; background-repeat: repeat repeat;}
+body {background-image: url(scribble_light.png);  background-position: inherit; background-repeat: repeat repeat;}
 
 
 #divLogo{margin-top: 48px; margin-bottom: 0px; text-align: left;}
@@ -321,13 +321,13 @@ a.btn, a.btn-large, a.btn-small, a.btn-mini {color:#333}
 
  .btn-secondary, .btn-secondary:hover, a.btn-secondary, a.btn-secondary:hover {color:#323232;}
 
- .btn-secondary {border:1px solid #dfdfdf;border-bottom:1px solid #afafaf;background-color:#fafafa;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e1e1e1));background-image:-webkit-linear-gradient(top, #fafafa, #e1e1e1);background-image:-moz-linear-gradient(top, #fafafa, #e1e1e1);background-image:-ms-linear-gradient(top, #fafafa, #e1e1e1);background-image:-o-linear-gradient(top, #fafafa, #e1e1e1);background-image:linear-gradient(top, #fafafa, #e1e1e1);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#fafafa, endColorstr=#e1e1e1, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
+ .btn-secondary {border:1px solid #dfdfdf;border-bottom:1px solid #afafaf;background-color:#fafafa;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e1e1e1));background-image:-webkit-linear-gradient(top, #fafafa, #e1e1e1);background-image:-moz-linear-gradient(top, #fafafa, #e1e1e1);background-image:-ms-linear-gradient(top, #fafafa, #e1e1e1);background-image:-o-linear-gradient(top, #fafafa, #e1e1e1);background-image:-linear-gradient(top, #fafafa, #e1e1e1);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#fafafa, endColorstr=#e1e1e1, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
 
  .btn-secondary:hover, .btn-secondary:active, .btn-secondary.active, .btn-secondary.disabled, .btn-secondary[disabled] {background-color:#dfdfdf;}
 
 .btn-primary, .btn-primary:hover, a.btn-primary, a.btn-primary:hover {color:#ffffff;}
 
- .btn-primary {border:1px solid #c75503;border-bottom:1px solid #9d4302;background-color:#e05f03;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#e05f03), to(#ca5603));background-image:-webkit-linear-gradient(top, #e05f03, #ca5603);background-image:-moz-linear-gradient(top, #e05f03, #ca5603);background-image:-ms-linear-gradient(top, #e05f03, #ca5603);background-image:-o-linear-gradient(top, #e05f03, #ca5603);background-image:linear-gradient(top, #e05f03, #ca5603);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#e05f03, endColorstr=#ca5603, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
+ .btn-primary {border:1px solid #c75503;border-bottom:1px solid #9d4302;background-color:#e05f03;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#e05f03), to(#ca5603));background-image:-webkit-linear-gradient(top, #e05f03, #ca5603);background-image:-moz-linear-gradient(top, #e05f03, #ca5603);background-image:-ms-linear-gradient(top, #e05f03, #ca5603);background-image:-o-linear-gradient(top, #e05f03, #ca5603);background-image:-linear-gradient(top, #e05f03, #ca5603);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#e05f03, endColorstr=#ca5603, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
 
  .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {background-color:#c75503;}
 
@@ -496,7 +496,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
  }
 
  .event-content, .thread-content {
-     height: 135px;
+     height: 100px;
  }
 
  .event-footer, .thread-footer, .organization-footer {

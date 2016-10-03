@@ -129,40 +129,42 @@
                         <div class="row-fluid" >
                             <span3><h3><strong>Sự kiện</strong></h3></span3>
                         </div>
-                        <div class="row-fluid" >
+                        <div class="row-fluid">
                             <div class="span3" ng-repeat="item in Event track by $index">
                                 <div class="event-title">
                                     <h5 class="text-info">{{item.EventName}}</h5>
                                 </div>
                                 <div class="event-img">
-                                    <img src="{{item.ImageUrl}}" class="img-polaroid"  alt="" style="width:242px; height:156px; margin: 5px 0px 15px;">
+                                    <img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width: 242px; height: 156px; margin: 5px 0px 15px;">
                                 </div>
                                 <div class="event-content">
-                                    <p>{{item.Content.substr(0, 150)}}...<br /></p>
+                                    <p>{{item.Content.substr(0, 150)}}...<a style="color: blue" href="#">Xem thêm</a><br/>
+                                    </p>
                                 </div>
                                 <div class="thread-footer">
                                     <i class="general foundicon-clock"></i><span><strong>{{item.CreatedDate}}</strong></span><br />
-                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="fa fa-eye"></i><span><strong>{{item.Views}}</strong></span><br />
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="fa fa-eye"></i><span><strong>{{item.Views}}</strong></span>
                                 </div>
                             </div>
 
 
                         </div>
+                        <hr>
                         <div class="row-fluid">
-                            <span><h3><strong> Thảo luận</strong></h3></span>
+                            <h3><strong> Thảo luận</strong></h3>
                         </div>
                         <div class="row-fluid">
 
 
                             <div class="span3" ng-repeat="item in Thread track by $index">
                                     <div class="thread-title">
-                                        <h5 class="text-info">{{item.ThreadName}}</h5>
-                                    </div>
+                                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><h5 class="text-info">{{item.ThreadName}}</h5></a>
+                                     </div>
                                     <div class="thread-img">
                                         <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width:242px;height:156px; margin: 5px 0px 15px;"></a>
                                     </div>
                                     <div class="thread-content">
-                                        <p>{{item.Content.substr(0, 150)}}...</p>
+                                        <p>{{item.Content.substr(0, 150)}}...<a style="color: blue" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")" >Xem thêm</a></p>
                                     </div>
                                     <i class="general foundicon-clock"></i><span><strong>{{item.CreatedDate}}</strong></span>
                                      <div class="thread-footer">

@@ -76,7 +76,7 @@
                         <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width: 300px; height: 200px; margin: 5px 0px 15px;"></a>
                     </div>
                     <div class="thread-content">
-                        <p>{{item.Content.substr(0, 150)}}...</p>
+                        <p>{{item.Content.substr(0, 150)}}...<a style="color: blue" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Xem thêm</a></p>
                     </div>
                     <i class="general foundicon-clock"></i><span><strong>{{item.CreatedDate}}</strong></span>
                     <div class="thread-footer" >

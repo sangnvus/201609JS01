@@ -15,35 +15,45 @@ namespace WingS.Controllers.WebApi
 {
     public class ThreadController : ApiController
     {
+        // Get 4 Thread có View lớn nhiều nhất
         [HttpGet]
         public IHttpActionResult GetTopFourThread()
         {
             List<Thread> topFourThread = null;
             var basicThreadList = new List<ThreadBasicInfo>();
-
-            using (var db = new ThreadDAL())
+            try
             {
-                topFourThread = db.GetTopThreadByView(4);
-                foreach (Thread thread in topFourThread)
+                using (var db = new ThreadDAL())
                 {
-                    var threadMainImage = db.GetMainImageThreadById(thread.ThreadId);
-                    basicThreadList.Add(new ThreadBasicInfo
+                    topFourThread = db.GetTopThreadByView(4);
+                    foreach (Thread thread in topFourThread)
                     {
-                        ThreadID = thread.ThreadId,
-                        UserID = thread.UserId,
-                        ThreadName = thread.Title,
-                        ImageUrl = threadMainImage.ImageUrl,
-                        Content = thread.Content,
-                        Likes = thread.Likes,
-                        Views = thread.Views,
-                        Status = true,
-                        CreatedDate = thread.CreatedDate.ToString("MM / dd / yy H: mm:ss")
-                        
-                    });
-                }
-            }
+                        var threadMainImage = db.GetMainImageThreadById(thread.ThreadId);
+                        basicThreadList.Add(new ThreadBasicInfo
+                        {
+                            ThreadID = thread.ThreadId,
+                            UserID = thread.UserId,
+                            ThreadName = thread.Title,
+                            ImageUrl = threadMainImage.ImageUrl,
+                            Content = thread.Content,
+                            Likes = thread.Likes,
+                            Views = thread.Views,
+                            Status = true,
+                            CreatedDate = thread.CreatedDate.ToString("MM/dd/yy H:mm:ss")
 
-            return Ok(new HTTPMessageDTO {Status = WsConstant.HttpMessageType.SUCCESS, Data = basicThreadList});
+                        });
+                    }
+                }
+
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = basicThreadList });
+            }
+            catch (Exception)
+            {
+
+               // ViewBag.ErrorMessage = ex;
+                return Redirect("/#/Error");
+            }
+           
         }
 		
         [HttpPost]
@@ -87,7 +97,7 @@ namespace WingS.Controllers.WebApi
                             Likes = thread.Likes,
                             Views = thread.Views,
                             Status = true,
-                            CreatedDate = DateTime.Now.ToString("MM / dd / yy H: mm:ss")
+                            CreatedDate = DateTime.Now.ToString("MM/dd/yy H:mm:ss")
                         });
                     }
                 }
