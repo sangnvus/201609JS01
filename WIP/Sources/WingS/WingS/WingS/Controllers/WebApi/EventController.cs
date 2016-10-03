@@ -33,7 +33,7 @@ namespace WingS.Controllers
                     {
                         Likes = e.Likes,
                         Views = e.Views,
-                        CreatedDate=e.Created_Date.ToString("MM/dd/yy H:mm:ss"),
+                        CreatedDate = e.Created_Date.ToString("H:mm:ss MM/dd/yy"),
                         EventID = e.EventID,
                         EventName = e.EventName,
                         Content = e.Description,

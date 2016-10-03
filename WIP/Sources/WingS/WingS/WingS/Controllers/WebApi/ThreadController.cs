@@ -39,7 +39,7 @@ namespace WingS.Controllers.WebApi
                             Likes = thread.Likes,
                             Views = thread.Views,
                             Status = true,
-                            CreatedDate = thread.CreatedDate.ToString("MM/dd/yy H:mm:ss")
+                            CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
 
                         });
                     }
@@ -97,7 +97,7 @@ namespace WingS.Controllers.WebApi
                             Likes = thread.Likes,
                             Views = thread.Views,
                             Status = true,
-                            CreatedDate = DateTime.Now.ToString("MM/dd/yy H:mm:ss")
+                            CreatedDate = DateTime.Now.ToString("H:mm:ss MM/dd/yy")
                         });
                     }
                 }
