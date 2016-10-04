@@ -14,7 +14,7 @@ namespace WingS.DataAccess
         
             using (var db = new Ws_DataContext())
             {
-                var topEvent = db.Events.OrderByDescending(x => x.Views).Take(eventNumber);
+                var topEvent = db.Events.OrderByDescending(x => x.Views).Where(x => x.Status == true).Take(eventNumber);
                 list = topEvent.ToList();
             }
             return list;
@@ -37,6 +37,19 @@ namespace WingS.DataAccess
             }
 
             return eventImagesList;
+        }
+        // Get Event by Created
+        public List<Event> GetNewestEventByCreatedDate()
+        {
+            List<Event> listEvents = null;
+            //Get All event by created Date
+            using (var db = new Ws_DataContext())
+            {
+                var newestEvent = db.Events.OrderByDescending(x => x.Created_Date).Where(x => x.Status == true);
+                listEvents = newestEvent.ToList();
+            }
+
+            return listEvents;
         }
 
         /// <summary>
