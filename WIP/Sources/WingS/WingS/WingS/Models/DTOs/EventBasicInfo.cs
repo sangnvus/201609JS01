@@ -24,6 +24,8 @@ namespace WingS.Models.DTOs
             EventName = "";
             Content = "";
             ImageUrl = "";
+            Likes = 0;
+            Views = 0;
             Status = false;
         }
     }

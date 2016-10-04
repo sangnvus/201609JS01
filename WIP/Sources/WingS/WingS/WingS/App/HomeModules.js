@@ -63,6 +63,11 @@ app.config(function ($routeProvider) {
         templateUrl: "/Client/ThreadDetail",
         title: "Chi tiết thảo luận",
         controller: "ThreadDetailController"
+    })
+    .when("/Event", {
+        templateUrl: "/Client/Event",
+        title: "Sự kiện",
+        controller: "EventController"
     });
  
 

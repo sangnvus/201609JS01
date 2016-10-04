@@ -72,7 +72,7 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR});
             }
         }
-        // Get danh sách các Thread (8 cái mới nhất)
+        // Get list thread by create date
         [HttpGet]
         [ActionName("NewestThread")]
         public IHttpActionResult GetNewestThread()
