@@ -81,9 +81,10 @@ namespace WingS.DataAccess
         /// </summary>
         /// <param name="threadId"></param>
         /// <returns></returns>
-        public List<ThreadAlbumImage> GetAllImageThreadById(int threadId)
+        public List<String> GetAllImageThreadById(int threadId)
         {
             List<ThreadAlbumImage> threadImagesList;
+            List<String> threadImagesUrlList = new List<string>();
 
             using (var db = new Ws_DataContext())
             {
@@ -91,7 +92,13 @@ namespace WingS.DataAccess
                 threadImagesList = imageList.ToList();
             }
 
-            return threadImagesList;
+            foreach (ThreadAlbumImage threadImage in threadImagesList)
+            {
+                String url = threadImage.ImageUrl;
+                threadImagesUrlList.Add(url);
+            }
+
+            return threadImagesUrlList;
         }
 
         /// <summary>

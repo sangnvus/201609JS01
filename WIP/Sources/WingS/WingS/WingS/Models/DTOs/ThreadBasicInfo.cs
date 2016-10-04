@@ -10,7 +10,7 @@ namespace WingS.Models.DTOs
         public int ThreadID { get; set; }
         public int UserID { get; set; }
         public string ThreadName { get; set; }
-        public string ImageUrl { get; set; }
+        public List<String> ImageUrl { get; set; }
         public string Content { get; set; }
         public int Likes { get; set; }
         public int Views { get; set; }
@@ -18,7 +18,7 @@ namespace WingS.Models.DTOs
         public String CreatedDate { get; set; }
         public ThreadBasicInfo()
         {
-            ImageUrl = "";
+            ImageUrl = null;
             ThreadID = 0;
             UserID = 0;
             ThreadName = "";

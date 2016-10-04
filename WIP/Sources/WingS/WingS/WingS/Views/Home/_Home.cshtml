@@ -161,7 +161,7 @@
                                         <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><h5 class="text-info">{{item.ThreadName}}</h5></a>
                                      </div>
                                     <div class="thread-img">
-                                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width:242px;height:156px; margin: 5px 0px 15px;"></a>
+                                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}" class="img-polaroid" alt="" style="width:242px;height:156px; margin: 5px 0px 15px;"></a>
                                     </div>
                                     <div class="thread-content">
                                         <p>{{item.Content.substr(0, 100)}}...<a style="color: blue" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")" >Xem thêm</a></p>

@@ -25,20 +25,13 @@
                 <div class="row-fluid">
                     <!--Edit Main Content Area here-->
                     <div class="span12" id="divMain">
-                        <h1>#123 Cần đóng góp để xây cầu cho trẻ em mùa lũ</h1>
+                        <h1>{{Thread.ThreadName}}</h1>
                         <p>
-                            <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</strong> Sed ipsum metus, pulvinar sed volutpat sit amet, fermentum in orci. Quisque vitae neque lectus, quis accumsan massa. Vivamus viverra orci eu dolor tristique sollicitudin. Duis sollicitudin laoreet tellus ac dictum.
-                            Fusce suscipit lectus vel elit posuere volutpat. Morbi ornare eros ut magna ullamcorper feugiat.
-                            Vivamus feugiat ligula vel nisi venenatis eleifend. Morbi accumsan rhoncus viverra. Integer orci nisi,
-                            cursus sit amet luctus quis, dictum eget massa.
+                            {{Thread.Content}}
                         </p>
-                        <p>
-                            <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</strong> Sed ipsum metus, pulvinar sed volutpat sit amet, fermentum in orci. Quisque vitae neque lectus, quis accumsan massa. Vivamus viverra orci eu dolor tristique sollicitudin. Duis sollicitudin laoreet tellus ac dictum.
-                            Fusce suscipit lectus vel elit posuere volutpat. Morbi ornare eros ut magna ullamcorper feugiat.
-                            Vivamus feugiat ligula vel nisi venenatis eleifend. Morbi accumsan rhoncus viverra. Integer orci nisi,
-                            cursus sit amet luctus quis, dictum eget massa.
-                        </p>
-
+                        <div ng-repeat="item in imgUrl track by $index">
+                            <p>{{item}}</p>
+                        </div>
                         <br />
                         <br />
 

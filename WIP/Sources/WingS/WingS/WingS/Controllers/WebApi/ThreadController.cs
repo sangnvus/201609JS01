@@ -28,13 +28,13 @@ namespace WingS.Controllers.WebApi
                     topFourThread = db.GetTopThreadByView(4);
                     foreach (Thread thread in topFourThread)
                     {
-                        var threadMainImage = db.GetMainImageThreadById(thread.ThreadId);
+                        List<String> threadImage = db.GetAllImageThreadById(thread.ThreadId);
                         basicThreadList.Add(new ThreadBasicInfo
                         {
                             ThreadID = thread.ThreadId,
                             UserID = thread.UserId,
                             ThreadName = thread.Title,
-                            ImageUrl = threadMainImage.ImageUrl,
+                            ImageUrl = threadImage,
                             Content = thread.Content,   
                             Likes = thread.Likes,
                             Views = thread.Views,
@@ -55,21 +55,36 @@ namespace WingS.Controllers.WebApi
             }
            
         }
-		
-        [HttpPost]
-        public IHttpActionResult GetThreadById(int Id)
+
+        [HttpGet]
+        public IHttpActionResult GetThreadById(int id)
         {
-            try { 
-            using (var db = new ThreadDAL())
+            try
             {
-                Thread current = db.GetThreadById(Id);
-                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = current });
+                using (var db = new ThreadDAL())
+                {
+                    Thread current = db.GetThreadById(id);
+                    ThreadBasicInfo threadBasic = new ThreadBasicInfo();
+
+                    threadBasic.ThreadID = current.ThreadId;
+                    threadBasic.UserID = current.UserId;
+                    threadBasic.ThreadName = current.Title;
+                    threadBasic.ImageUrl = db.GetAllImageThreadById(id);
+                    threadBasic.Content = current.Content;
+                    threadBasic.Likes = current.Likes;
+                    threadBasic.Views = current.Views;
+                    threadBasic.Status = current.Status;
+                    threadBasic.CreatedDate = current.CreatedDate.ToString("H:mm:ss MM/dd/yy");
+
+
+
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = threadBasic });
                 }
-               
+
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR});
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
             }
         }
         // Get list thread by create date
@@ -92,7 +107,7 @@ namespace WingS.Controllers.WebApi
                             ThreadID = thread.ThreadId,
                             UserID = thread.UserId,
                             ThreadName = thread.Title,
-                            ImageUrl = threadMainImage.ImageUrl,
+                            ImageUrl = null,//threadMainImage.ImageUrl,
                             Content = thread.Content,
                             Likes = thread.Likes,
                             Views = thread.Views,
