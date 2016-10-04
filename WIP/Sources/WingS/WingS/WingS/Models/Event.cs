@@ -30,5 +30,7 @@
         public virtual EventType EType { get; set; }
         public virtual Organazation Organazation { get; set; }
         public virtual ICollection<ReportEvent> ReportEvents { get; set; }
+        public virtual ICollection<EventTimeLine> Etimelines { get; set; }
+
     }
 }

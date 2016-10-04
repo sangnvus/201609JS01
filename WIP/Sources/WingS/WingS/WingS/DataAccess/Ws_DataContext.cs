@@ -23,6 +23,7 @@ namespace WingS.DataAccess
         public virtual DbSet<Ws_User> Ws_User { get; set; }
         public virtual DbSet<ThreadAlbumImage> ThreadAlbum { get; set; }
         public virtual DbSet<EventAlbumImage> EventAlbum { get; set; }
+        public virtual DbSet<EventTimeLine> ETimeLine { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }
