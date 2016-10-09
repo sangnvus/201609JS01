@@ -1,0 +1,189 @@
+﻿
+<style>
+    div .searchImg {
+        float: left;
+        max-width: 160px;
+        margin: 0;
+        padding-top: 2em;
+    }
+    div .searchContent {
+        margin-left: 170px;
+        border-left: 1px solid gray;
+        padding: 1em;
+        overflow: hidden;
+    }
+    img .thread-image {
+        width: 300px;
+        height: 200px;
+        margin: 5px 0px 15px;
+    }
+    .search-box {
+        margin-top: -18px;
+        padding: 10px;
+        border-color: rgb(224, 95, 3);
+        border-radius: 10px;
+        width: 600px;
+    }
+    .radio-inline {
+        width: 1050px;
+        margin-top: 10px;
+    }
+    .radio-inline label {
+        position: relative;
+        display: inline-block;
+        padding-left: 20px;
+        margin-bottom: 0;
+        font-size: 120%;
+        vertical-align: middle;
+        cursor: pointer;
+        width: 115px;
+    }
+</style>
+<body id="pageBody">
+<div id="divBoxed" class="container">
+
+    <div class="transparent-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
+
+    <div class="divPanel notop nobottom">
+        @Html.Partial("../Home/_NavigationBar")
+        <div class="row-fluid">
+            <div class="span12">
+                <div id="contentInnerSeparator"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contentArea">
+
+        <div class="divPanel notop page-content">
+
+            <div class="breadcrumbs">
+                <a href="/Views/Home/_Home.cshtml">Trang Chủ</a> &nbsp;/&nbsp; <span>Tìm kiếm</span>
+            </div>
+    <div class="row-fluid">
+        <!--Edit Main Content Area here-->
+        <div class="span12" id="divMain">
+            <div class="input-group box">
+                <input type="text" class="form-control search-box" placeholder="Nhập từ khóa để tìm kiếm" id="SearchKey" name="searchKey" required/>
+                <a id="SearchBtn" style="padding-left: 20px; width: 46px; height: 50px"><i class="icon-search"></i></a>
+                <div class="radio-inline">
+                    <label><b>Mục tìm kiếm : </b></label>
+                    <label>
+                        <input type="radio" name="searchType" value="user"> User
+                    </label>
+                    <label>
+                        <input type="radio" name="searchType" value="thread"> Bài viết
+                    </label>
+                    <label>
+                        <input type="radio" name="searchType" value="event"> Sự kiện
+                    </label>
+                    <label>
+                        <input type="radio" name="searchType" value="organization"> Tổ chức
+                    </label>
+                </div>
+                <div>
+                    <h3 id="ErrorMessage2" style="color: red;"> </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+                <div class="row-fluid">
+                    <div class="row" id="resultDiv">
+                        
+                    </div>
+                </div>
+                <div id="footerInnerSeparator"></div>
+</div>
+    </div>
+    @Html.Partial("../Home/_Footer")
+</div>
+<br/><br/><br/>
+</body>
+<script type="text/javascript">
+    $("#SearchBtn").click(function () {
+        $("#ErrorMessage2").html("");
+        if ($("#SearchKey").val() === "") {
+            document.getElementById('SearchKey').style = "border-color: red;";
+            $("#SearchKey").focus();
+            $("#ErrorMessage2").html("Xin hãy nhập dữ liệu để tìm kiếm!");
+            return false;
+            
+        } else if (!$("input:radio[name='searchType']").is(":checked")) {
+            $("#ErrorMessage2").html("Xin hãy chọn một mục để tìm kiếm!");
+            return false;
+        }
+        else {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Content("/Search/SearchResult")",
+                    datatype: "JSON",
+                data: {
+                    searchKey: $("#SearchKey").val(),
+                    searchType: $('input[name=searchType]:checked').val()
+                },
+                success: function (response) {
+                    debugger;
+                    var output = $("#resultDiv");
+                    output.empty();
+                    var result = "";
+                    if (response.status === "empty") {
+                        $("#ErrorMessage2").html("Không có kết quả nào khớp với từ khóa của bạn!");
+                        return false;
+                    } else if (response.status === "error") {
+                        $("#ErrorMessage2").html("Đã có lỗi xảy ra với server.Vui lòng thử lại sau!");
+                        return false;
+                    }
+                    //show thread result
+                    if (response.type === "thread") {
+                        for (var i = 0; i < response.data.length; i++) {
+                            var thread = response.data[i];
+                            result += '<div class = "searchImg">' + '<a href="/#/ThreadDetail/' + thread.ThreadID + '">' +
+                                '<img src="' + thread.ImageUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                                '<div class = "searchContent"><br/><b>Title : </b>' + thread.ThreadName + '<br/>' +
+                                '<b> Content :</b>' + thread.Content + '<br/>' +
+                                '<b> Views :</b>' + thread.Views + '<br/>' +
+                                '<b> Created Date :</b>' + thread.CreatedDate + '</div>';
+                        };
+                    } 
+                    else if (response.type === "user") {
+                        for (var j = 0; j < response.data.length; j++) {
+                            var user = response.data[j];
+                            result += '<div class = "searchImg">' + '<a href="/#/UserDetail/' + user.UserID + '">' +
+                                '<img src="' + user.ProfileImage + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                                '<div class = "searchContent"><br/><b>FullName : </b>' + user.FullName + '<br/>' +
+                                '<b> User Address :</b>' + user.UserAddress + '<br/>' +
+                                '<b> Phone :</b>' + user.Phone + '<br/>' +
+                                '<b> Facebook Url :</b>' + user.FacebookUrl + '</div>';
+                        };
+                    }
+                    else if (response.type === "event") {
+                        for (var k = 0; k < response.data.length; k++) {
+                            var event = response.data[k];
+                            result += '<div class = "searchImg">' + '<a href="/#/EventDetail/' + event.EventID + '">' +
+                                '<img src="' + event.ImageUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                                '<div class = "searchContent"><br/><b>Event Name : </b>' + event.EventName + '<br/>' +
+                                '<b> Content :</b>' + event.Content + '<br/>' +
+                                '<b> Views :</b>' + event.Views + '<br/>' +
+                                '<b> Created Date :</b>' + event.CreatedDate + '</div>';
+                        };
+                    }
+                    else if (response.type === "organization") {
+                        for (var l = 0; l < response.data.length; l++) {
+                            var organization = response.data[l];
+                            result += '<div class = "searchImg">' + '<a href="/#/OrganizationDetail/' + organization.OrganazationID + '">' +
+                                '<img src="' + organization.LogoUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                                '<div class = "searchContent"><br/><b>Organazation Name : </b>' + organization.OrganazationName + '<br/>' +
+                                '<b> Introduction :</b>' + organization.Introduction + '<br/>' +
+                                '<b> Phone :</b>' + organization.Phone + '<br/>' +
+                                '<b> Email :</b>' + organization.Email + '<br/>' +
+                                '<b> Address :</b>' + organization.Address + '<br/>' +
+                                '<b> Points :</b>' + organization.Point + '</div>';
+                        };
+                    }
+                    $("#resultDiv").append(result);
+                }
+                }); // end ajax
+            return true;
+        }
+    });
+</script>
