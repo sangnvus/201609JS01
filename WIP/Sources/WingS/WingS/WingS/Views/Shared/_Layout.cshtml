@@ -16,6 +16,7 @@
     <link href="../../Content/scripts/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css"/>
     <link href="../../Content/scripts/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="../../Content/scripts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="../../Content/scripts/carousel/style.css" rel="stylesheet" type="text/css"/>
     <link href="../../Content/scripts/camera/css/camera.css" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Syncopate" rel="stylesheet" type="text/css">
@@ -24,8 +25,10 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+    <link href="../../Content/scripts/lightbox/dist/css/lightbox.css" rel="stylesheet"> 
     <link href="../../Content/styles/custom.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/loading-bar.min.css" rel="stylesheet" type="text/css" />
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     <script src="../../Content/scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -39,6 +42,16 @@
 </head>
 
 <body>
+    <style>
+    #loading-bar-spinner .spinner-icon {
+width: 25px;
+height: 25px;
+border: solid 4px transparent;
+border-top-color: green;
+border-left-color: green;
+border-radius: 10px;
+}
+    </style>
     @RenderBody();
    
 </body>

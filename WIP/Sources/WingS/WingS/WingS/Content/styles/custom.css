@@ -500,7 +500,8 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
  }
 
  .event-footer, .thread-footer, .organization-footer {
-     height: 25px;
+     
+     height: 45px;
  }
 
 .organization-content {

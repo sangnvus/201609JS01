@@ -28,75 +28,45 @@
                 <div class="breadcrumbs">
                     <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Sự kiện </span>
                 </div>
-                <div class="row-fluid">
-                    <div class="span6">
-                        <div class="box">
-                            <i class="icon-tasks"></i>
-                            <h4 class="title">Tạo sự kiện</h4> <hr />
-                            <p>
-                                Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box" style="float:left;">
-                        <div class="input-group">
-                            <span>
-                                <i class="icon-search"></i>
-                            </span>
-                            <input type="text" placeholder="Nhập tìm kiếm" class="form-control" style="margin-top:-18px; padding:10px;border-color:rgb(224, 95, 3);border-radius:10px;" />
-                        </div>
-
-                    </div>
-                </div>
 
                 <hr>
                 <!--Edit Portfolio Content Area here-->
                 <div class="row-fluid" ng-repeat="item in Top1Event">
-       
                         <li class="span6">
                             <div class="event-img">
                                 <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width: 600px; height: 400px; margin: 5px 0px 15px;"></a>
                             </div>
                         </li>
                         <li class="span6">
-                            <div class="event-title">
-                                <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><h2 class="text-info">{{item.EventName}}</h2></a>
+                            <div class="event-title" style="height:130px;">
+                                <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><h2 class="text-info" >{{item.EventName}}</h2></a>
                             </div>
                             <div class="event-content">
                                 <p>
                                     {{item.Content}}<br/>
                                 </p>
                             </div>
-                            <i class="general foundicon-clock" title="Ngày tạo"></i>&nbsp;<span><strong>{{item.CreatedDate}}</strong></span><br />
-                            <div class="event-footer">
-                                <i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"></i><span><strong>{{item.Likes}}</strong></span>
-                                &nbsp;&nbsp; &nbsp;<i class="fa fa-eye" title="Số lượt xem"></i><span><strong>{{item.Views}}</strong></span>
-                                @*&nbsp;&nbsp; &nbsp;<i class="fa fa-users" aria-hidden="true"></i><span><strong>500</strong></span>*@
-                                &nbsp;&nbsp; &nbsp;<img src="Content\Images\donate.jpg" title="Số người tham gia" style="padding-bottom: 4px;" /><span><strong>500</strong></span>
-                            </div>
                         </li>
        
                 </div>
-
+                <br />
                 <div class="row">
 
                     <div class="span3" style="width:242px" ng-repeat="item in Event| limitTo: paginationLimit()">
-                        <div class="event-title">
-                            <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><h4 class="text-info">{{item.EventName}}</h4></a>
-                        </div>
                         <div class="event-img">
                             <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width: 300px; height: 200px; margin: 5px 0px 15px;"></a>
                         </div>
+                        <div class="event-title">
+                            <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><h4 class="text-info">{{item.EventName}}</h4></a>
+                        </div>
                         <div class="event-content">
-                            <p>{{item.Content.substr(0, 150)}}...<a style="color: blue" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Xem thêm</a></p>
+                            <p>{{item.Content}}</p>
                         </div>
-                        <i class="general foundicon-clock" title="Ngày tạo"></i>&nbsp;<span><strong>{{item.CreatedDate}}</strong></span>
                         <div class="event-footer">
-                            <i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"></i><span><strong>{{item.Likes}}</strong></span>
-                            &nbsp;&nbsp; &nbsp;<i class="fa fa-eye" title="Số lượt xem"></i><span><strong>{{item.Views}}</strong></span>
-                            &nbsp;&nbsp; &nbsp;<img src="Content\Images\donate.jpg" title="Số người tham gia" style="padding-bottom: 4px;" /><span><strong>500</strong></span>
+                            <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<img src="Content\Images\donate.jpg" title="Số người tham gia" style="padding-bottom: 4px;" /><span><strong>500</strong></span>
+                           <br />
+                            <a href="#">Xem thêm &raquo;</a></p>
                         </div>
-
                     </div>
                 </div>
                 <!--/End Portfolio Content Area-->

@@ -5,8 +5,7 @@ h3{ font-size:18px;}
 h4{ font-size:16px;}
 h5{ font-size:14px;}
 h6{ font-size:12px;}
-h1,h2,h3,h4,h5,h6{ color:#563D64;}
-small{ font-size:10px;}
+small{ font-size:14px;}
 b, strong{ font-weight:bold;}
 a{ text-decoration: none; }
 a:hover{ text-decoration: underline; }

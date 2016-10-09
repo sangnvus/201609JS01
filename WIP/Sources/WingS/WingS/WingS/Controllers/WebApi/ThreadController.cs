@@ -15,6 +15,99 @@ namespace WingS.Controllers.WebApi
 {
     public class ThreadController : ApiController
     {
+        [HttpGet]
+        public IHttpActionResult CheckExistedSubCommentOrNot()
+        {
+            using (var db = new ThreadDAL())
+            {
+                var commentList = db.GetAllCommentIdAndSubCommentId();
+                if (commentList == null || commentList.Count == 0)
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = commentList });
+            }
+
+        }
+        //Get All Commend in current thread.
+        [HttpGet]
+        public IHttpActionResult GetAllComment(int threadId)
+        {
+            using (var db = new ThreadDAL())
+            {
+               var commentList = db.GetAllCommentInThread(threadId);
+                if (commentList == null||commentList.Count==0)
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data= commentList });
+            }
+           
+        }
+        //Add comment to db
+        [HttpPost]
+        public IHttpActionResult AddComment(AddCommentDTO comment )
+        {
+            var newComment = new CommentThread
+            {
+                UserId=WsConstant.CurrentUser.UserId,
+                ThreadId = comment.ThreadId,
+                Content = comment.CommentContent,
+                Status = true,
+                CommentDate = DateTime.Now
+            };
+            using (var db = new ThreadDAL())
+            {
+                newComment = db.AddNewComment(newComment);
+            }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = newComment });
+        }
+        //Add subcomment for thread to DB
+        [HttpPost]
+        public IHttpActionResult AddSubComment(AddSubCommentDTO comment)
+        {
+            var newSubComment = new SubCommentThread
+            {
+                UserId = WsConstant.CurrentUser.UserId,
+                CommentThreadId = comment.CommentThreadId,
+                Content = comment.CommentContent,
+                Status = true,
+                CommentDate = DateTime.Now
+            };
+            using (var db = new ThreadDAL())
+            {
+                try { 
+                newSubComment = db.AddNewSubComment(newSubComment);
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS});
+                }
+                catch(Exception)
+                {
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+                }
+            }
+           
+        }
+        [HttpGet]
+        public IHttpActionResult GetSubCommentByCommentId(int CommentId)
+        {
+            //Select All SubComment and return
+            using (var db = new ThreadDAL())
+            {
+
+                var SubcommentList = db.GetSubCommentInThreadById(CommentId);
+                if (SubcommentList == null) return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = SubcommentList });
+            }
+        }
+        //Get All SubComment
+        [HttpGet]
+        public IHttpActionResult GetAllSubComment()
+        {
+            //Select All SubComment and return
+            using (var db = new ThreadDAL())
+            {
+                
+                    var SubcommentList = db.GetAllSubCommentInThread();
+                    if (SubcommentList == null) return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                    else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = SubcommentList });
+            }
+        }
         // Get 4 Thread có View lớn nhiều nhất
         [HttpGet]
         public IHttpActionResult GetTopFourThread()
@@ -56,6 +149,11 @@ namespace WingS.Controllers.WebApi
            
         }
 
+        /// <summary>
+        /// Get Baisc Thread using  Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetThreadById(int id)
         {
@@ -74,10 +172,7 @@ namespace WingS.Controllers.WebApi
                     threadBasic.Likes = current.Likes;
                     threadBasic.Views = current.Views;
                     threadBasic.Status = current.Status;
-                    threadBasic.CreatedDate = current.CreatedDate.ToString("H:mm:ss MM/dd/yy");
-
-
-
+                    threadBasic.CreatedDate = current.CreatedDate.ToString("H:mm:ss | MM/dd/yyyy");
                     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = threadBasic });
                 }
 
@@ -87,6 +182,39 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
             }
         }
+
+        /// <summary>
+        /// Get Basic user who creat this thread
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetUserCreatedThread(int id)
+        {
+            try
+            {
+                using (var db = new UserDAL())
+                {
+                    Ws_User wsUser = db.GetUserById(id);
+                    User_Information userInformation = db.GetUserInformation(id);
+                    UserBasicInfoDTO user = new UserBasicInfoDTO();
+                    user.UserName = wsUser.UserName;
+                    user.AccountType = wsUser.AccountType;
+                    user.IsActive = wsUser.IsActive;
+                    user.FullName = userInformation.FullName==null? wsUser.UserName: userInformation.FullName;
+                    user.ProfileImage = userInformation.ProfileImage;
+                    user.Email = wsUser.Email;
+
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = user });
+                }
+
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
+
         // Get list thread by create date
         [HttpGet]
         [ActionName("NewestThread")]
@@ -112,7 +240,7 @@ namespace WingS.Controllers.WebApi
                             Likes = thread.Likes,
                             Views = thread.Views,
                             Status = true,
-                            CreatedDate = DateTime.Now.ToString("H:mm:ss MM/dd/yy")
+                            CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
                         });
                     }
                 }

@@ -25,6 +25,7 @@ namespace WingS
                    "~/Scripts/angular.js",
                      "~/Scripts/angular-route.js",
                      "~/Scripts/angular-animate.js",
+                     "~/Scripts/loading-bar.js",
                      "~/Scripts/ngStorage.js"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

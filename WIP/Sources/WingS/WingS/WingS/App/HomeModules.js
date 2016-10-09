@@ -1,5 +1,5 @@
 ﻿'use strict';
-var app = angular.module('ClientApp', ['ngRoute']);
+var app = angular.module('ClientApp', ['ngRoute', 'angular-loading-bar', 'ngAnimate']);
     
 app.config(function ($routeProvider) {
     $routeProvider
@@ -30,6 +30,10 @@ app.config(function ($routeProvider) {
     .when("/Error", {
         templateUrl: "/Client/Error",
         title: "Đã xảy ra lỗi"
+    })
+    .when("/Search", {
+        templateUrl: "/Client/Search",
+        title: "Tìm kiếm"
     })
     .when("/Discussion", {
         templateUrl: "/Client/Discussion",
@@ -73,6 +77,7 @@ app.config(function ($routeProvider) {
 
 });
 
+
 app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window, $localStorage) {
     $rootScope.$on("$routeChangeStart", function (e, curr, prev) {
         if (curr.$$route !== undefined && curr.$$route.title != null) {
@@ -111,15 +116,12 @@ app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, 
 
     (function (d) {
         // load the Facebook javascript SDK
-
         var js,
             id = 'facebook-jssdk',
             ref = d.getElementsByTagName('script')[0];
-
         if (d.getElementById(id)) {
             return;
         }
-
         js = d.createElement('script');
         js.id = id;
         js.async = true;

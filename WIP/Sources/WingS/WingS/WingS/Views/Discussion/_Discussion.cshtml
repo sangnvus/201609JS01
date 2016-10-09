@@ -32,33 +32,13 @@
                 <div class="span3">
                     <div class="box">
                         <i class="icon-edit"></i>
-                        <h4 class="title">Tạo thảo luận</h4> <hr/>
-                        <p>
-                            Hãy chia sẻ cho chúng tôi những thông tin về những nơi cần việc từ thiện.
-                        </p>
+                        <h4 class="title">Tạo thảo luận</h4> 
                     </div>
                 </div>
                 <div class="span3">
                     <div class="box">
                         <i class="icon-tasks"></i>
-                        <h4 class="title">Tạo sự kiện</h4> <hr/>
-                        <p>
-                            Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
-
-                        </p>
-                    </div>
-                </div>
-
-                <div class="span6">
-                    <div class="box" style="float: left;">
-                        <div class="input-group">
-                            <span>
-                                        <i class="icon-search"></i>
-                                    </span>
-                            <input type="text" class="form-control" style="margin-top: -18px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px;"/>
-
-                        </div>
-
+                        <h4 class="title">Tạo sự kiện</h4>
                     </div>
                 </div>
 
@@ -76,14 +56,14 @@
                         <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width: 300px; height: 200px; margin: 5px 0px 15px;"></a>
                     </div>
                     <div class="thread-content">
-                        <p>{{item.Content.substr(0, 150)}}...<a style="color: blue" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Xem thêm</a></p>
+                        <p ng-bind-html="SkipValidation(item.Content)"></p>
                     </div>
-                    <i class="general foundicon-clock" title="Ngày tạo"></i>&nbsp;<span><strong>{{item.CreatedDate}}</strong></span>
-                    <div class="thread-footer" >
-                        <i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"></i><span><strong>{{item.Likes}}</strong></span>
-                        &nbsp; &nbsp;&nbsp; &nbsp;<i class="fa fa-eye" title="Số lượt xem"></i><span><strong>{{item.Views}}</strong></span><br/>
+                    <div class="thread-footer">
+                        <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
+                        <a href="#">Xem thêm &raquo;</a></p>
                     </div>
-
+                    <br />  
+                    <br />  
                 </div>
             </div>
             <!--/End Portfolio Content Area-->

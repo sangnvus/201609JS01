@@ -10,6 +10,146 @@ namespace WingS.DataAccess
 {
     public class ThreadDAL : IDisposable
     {
+        public List<int> GetAllCommentIdAndSubCommentId()
+        {
+            List<int> list = new List<int>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.SubCommentThread
+                        .Where(x => x.Status == true)
+                        .Select(x => new {x.CommentThreadId });
+                    foreach (var item in listComment)
+                    {
+                        list.Add(item.CommentThreadId);
+                    }
+
+                }
+                catch (Exception) { return null; }
+
+            }
+            return list;
+        }
+        public List<BasicCommentThread> GetAllCommentInThread (int threadId)
+        {
+            List<BasicCommentThread> list = new List<BasicCommentThread>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.CommentThreads
+                        .Where(x=>x.Status==true&&x.ThreadId==threadId)
+                        .Select(x=> new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage,x.CommentThreadId, x.Content, x.CommentDate})
+                        .OrderByDescending(x=>x.CommentDate).ToList();
+                    foreach(var item in listComment)
+                    {
+                        BasicCommentThread bs = new BasicCommentThread();
+                        bs.UserCommentedId = item.UserId;
+                        bs.UserCommentedName = item.UserName;
+                        bs.UserImageProfile = item.ProfileImage;
+                        bs.CommentId = item.CommentThreadId;
+                        bs.Content = item.Content;
+                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss MM/dd/yy");
+                        else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        list.Add(bs);
+                    }
+                   
+                }
+                catch (Exception) { return null; }
+                
+            }
+            return list;
+        }
+        public List<BasicCommentThread> GetSubCommentInThreadById(int CommentId)
+        {
+            List<BasicCommentThread> list = new List<BasicCommentThread>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.SubCommentThread
+                        .Where(x => x.Status == true&&x.CommentThreadId==CommentId)
+                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.CommentThreadId, x.Content, x.CommentDate })
+                        .OrderByDescending(x => x.CommentDate).ToList();
+                    foreach (var item in listComment)
+                    {
+                        BasicCommentThread bs = new BasicCommentThread();
+                        bs.UserCommentedId = item.UserId;
+                        bs.UserCommentedName = item.UserName;
+                        bs.UserImageProfile = item.ProfileImage;
+                        bs.CommentId = CommentId;
+                        bs.Content = item.Content;
+                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss MM/dd/yy");
+                        else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        list.Add(bs);
+                    }
+
+                }
+                catch (Exception) { return null; }
+
+            }
+            return list;
+        }
+        public List<BasicCommentThread> GetAllSubCommentInThread()
+        {
+            List<BasicCommentThread> list = new List<BasicCommentThread>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.SubCommentThread
+                        .Where(x => x.Status == true)
+                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.CommentThreadId, x.Content, x.CommentDate })
+                        .OrderByDescending(x => x.CommentDate).ToList();
+                    foreach (var item in listComment)
+                    {
+                        BasicCommentThread bs = new BasicCommentThread();
+                        bs.UserCommentedId = item.UserId;
+                        bs.UserCommentedName = item.UserName;
+                        bs.UserImageProfile = item.ProfileImage;
+                        bs.CommentId = item.CommentThreadId;
+                        bs.Content = item.Content;
+                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss MM/dd/yy");
+                        else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        list.Add(bs);
+                    }
+
+                }
+                catch (Exception) { return null; }
+
+            }
+            return list;
+        }
+        public SubCommentThread AddNewSubComment(SubCommentThread subComment)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var newComment = db.SubCommentThread.Add(subComment);
+                db.SaveChanges();
+                return newComment;
+            }
+
+        }
+        public CommentThread AddNewComment(CommentThread comment)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var newComment = db.CommentThreads.Add(comment);
+                db.SaveChanges();
+                return newComment;
+            }
+          
+        }
         public List<Thread> GetTopThreadByView(int threadNumber)
         {
             List<Thread> listThreads = null;

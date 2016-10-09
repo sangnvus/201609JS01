@@ -107,6 +107,7 @@ namespace WingS.DataAccess
                                    where user.UserName.Equals(userNameOrEmail) || user.Email.Equals(userNameOrEmail)
                                    select new UserBasicInfoDTO
                                    {
+                                       UserId = user.UserID,
                                        FullName = user.User_Information.FullName,
                                        IsActive = user.IsActive,
                                        ProfileImage = user.User_Information.ProfileImage,
@@ -118,11 +119,33 @@ namespace WingS.DataAccess
         }
 
         /// <summary>
-        /// get data by user name and user email
+        /// Get user using user id
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="userEmail"></param>
-        /// <returns>user info</returns>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Ws_User GetUserById(int id)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var currentUser = db.Ws_User.FirstOrDefault(x => x.UserID == id);
+                return currentUser;
+            }
+        }
+
+        /// <summary>
+        /// get user infomation using user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public User_Information GetUserInformation(int userId)
+        {
+
+            using (var db = new Ws_DataContext())
+            {
+                var currentUserInfo = db.User_Information.FirstOrDefault(x => x.UserID == userId);
+                return currentUserInfo;
+            }
+        }
     
         public void Dispose()
         {

@@ -65,7 +65,7 @@ namespace WingS.Controllers
                 TempData["AlertMessage"] = WsConstant.ForgotPass.SentAlert;
                 return Redirect("/#/Home");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("SendMailFailed", "Email can't be send!");
                 return Redirect("/#/Error");

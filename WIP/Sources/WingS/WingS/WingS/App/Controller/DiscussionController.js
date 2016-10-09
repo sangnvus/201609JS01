@@ -1,4 +1,4 @@
-﻿app.controller("DiscussionController", function ($scope, $http) {
+﻿app.controller("DiscussionController", function ($scope, $http, $sce) {
     //Load 8 Thread mới nhất to Discussion page
     $http.get("/api/Thread/NewestThread").success(function (response) {
         $scope.Thread = response.Data;
@@ -15,4 +15,7 @@
         };
 
     });
+    $scope.SkipValidation = function (value) {
+        return $sce.trustAsHtml(value);
+    };
 });

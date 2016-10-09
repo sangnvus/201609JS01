@@ -45,6 +45,7 @@
                 <div class="breadcrumbs">
                     <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Thảo Luận</a> &nbsp;/&nbsp; <span>Tạo thảo Luận</span>
                 </div>
+
                 @using (Html.BeginForm("CreateDiscussion","Thread",FormMethod.Post, new { @id = "LoginForm", enctype = "multipart/form-data" })) {
                 <div class="row-fluid">
                     <div class="span9 offset1">
@@ -54,7 +55,7 @@
                                     <h3 style="margin-top:25px;"><strong>Tiêu đề</strong></h3>
                                 </div>
                                 <div class="span8">
-                                    <input type="text" style="margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:100%;" name="Title" />
+                                    <input type="text" style="margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:100%;" id="Title" name="Title" />
                                     <p>
                                         Nhập vào tiêu đề không dài quá 50 kí tự.
                                     </p>
@@ -76,7 +77,7 @@
                                 </div>
                                 <div class="span8">
                                     <p>Chọn hình ảnh bạn có<span style="color:red;">    BẮT BUỘC</span></p>
-                                    <input type="file" class="multiple" name="Images" multiple/>
+                                    <input type="file" class="multiple" name="Images" multiple required  accept="image/*"/>
                                     <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với  1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
 
 
@@ -128,6 +129,9 @@
             height:300px;
         }
     </style>
+    <script>
+        $("#Title").focus();
+    </script>
     <script src="../../Content/scripts/default.js" type="text/javascript"></script>
     <script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
     <script type="text/javascript">$(window).load(function () {var options = {autoResize: true,container: $('#gridArea'),offset: 10};var handler = $('#tiles li');handler.wookmark(options);$('#tiles li').each(function () { var imgm = 0; if($(this).find('img').length>0)imgm=parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5;if($(this).find('iframe').height()) newHeight = newHeight+15;$(this).css('height', newHeight + 'px');});handler.wookmark(options);handler.wookmark(options);});</script>
