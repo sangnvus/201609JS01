@@ -139,10 +139,10 @@
                             var thread = response.data[i];
                             result += '<div class = "searchImg">' + '<a href="/#/ThreadDetail/' + thread.ThreadID + '">' +
                                 '<img src="' + thread.ImageUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
-                                '<div class = "searchContent"><br/><b>Title : </b>' + thread.ThreadName + '<br/>' +
-                                '<b> Content :</b>' + thread.Content + '<br/>' +
-                                '<b> Views :</b>' + thread.Views + '<br/>' +
-                                '<b> Created Date :</b>' + thread.CreatedDate + '</div>';
+                                '<div class = "searchContent"><br/><b>Tiêu đề : </b>' + thread.ThreadName + '<br/>' +
+                                '<b> Nội dung :</b>' + thread.Content + '<br/>' +
+                                '<b> Lượt xem :</b>' + thread.Views + '<br/>' +
+                                '<b> Ngày khởi tạo :</b>' + thread.CreatedDate + '</div>';
                         };
                     } 
                     else if (response.type === "user") {
@@ -150,10 +150,10 @@
                             var user = response.data[j];
                             result += '<div class = "searchImg">' + '<a href="/#/UserDetail/' + user.UserID + '">' +
                                 '<img src="' + user.ProfileImage + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
-                                '<div class = "searchContent"><br/><b>FullName : </b>' + user.FullName + '<br/>' +
-                                '<b> User Address :</b>' + user.UserAddress + '<br/>' +
-                                '<b> Phone :</b>' + user.Phone + '<br/>' +
-                                '<b> Facebook Url :</b>' + user.FacebookUrl + '</div>';
+                                '<div class = "searchContent"><br/><b>Tên đầy đủ : </b>' + user.FullName + '<br/>' +
+                                '<b> Địa chỉ :</b>' + user.UserAddress + '<br/>' +
+                                '<b> Số điện thoại :</b>' + user.Phone + '<br/>' +
+                                '<b> Địa chỉ Facebook :</b>' + user.FacebookUrl + '</div>';
                         };
                     }
                     else if (response.type === "event") {
@@ -161,10 +161,10 @@
                             var event = response.data[k];
                             result += '<div class = "searchImg">' + '<a href="/#/EventDetail/' + event.EventID + '">' +
                                 '<img src="' + event.ImageUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
-                                '<div class = "searchContent"><br/><b>Event Name : </b>' + event.EventName + '<br/>' +
-                                '<b> Content :</b>' + event.Content + '<br/>' +
-                                '<b> Views :</b>' + event.Views + '<br/>' +
-                                '<b> Created Date :</b>' + event.CreatedDate + '</div>';
+                                '<div class = "searchContent"><br/><b>Tên sự kiện : </b>' + event.EventName + '<br/>' +
+                                '<b> Nội dung :</b>' + event.Content + '<br/>' +
+                                '<b> Lượt xem :</b>' + event.Views + '<br/>' +
+                                '<b> Ngày khởi tạo :</b>' + event.CreatedDate + '</div>';
                         };
                     }
                     else if (response.type === "organization") {
@@ -172,12 +172,12 @@
                             var organization = response.data[l];
                             result += '<div class = "searchImg">' + '<a href="/#/OrganizationDetail/' + organization.OrganazationID + '">' +
                                 '<img src="' + organization.LogoUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
-                                '<div class = "searchContent"><br/><b>Organazation Name : </b>' + organization.OrganazationName + '<br/>' +
-                                '<b> Introduction :</b>' + organization.Introduction + '<br/>' +
-                                '<b> Phone :</b>' + organization.Phone + '<br/>' +
+                                '<div class = "searchContent"><br/><b>Tên tổ chức : </b>' + organization.OrganazationName + '<br/>' +
+                                '<b> Giới thiệu :</b>' + organization.Introduction + '<br/>' +
+                                '<b> Số điện thoaị :</b>' + organization.Phone + '<br/>' +
                                 '<b> Email :</b>' + organization.Email + '<br/>' +
-                                '<b> Address :</b>' + organization.Address + '<br/>' +
-                                '<b> Points :</b>' + organization.Point + '</div>';
+                                '<b> Địa chỉ :</b>' + organization.Address + '<br/>' +
+                                '<b> Số điểm :</b>' + organization.Point + '</div>';
                         };
                     }
                     $("#resultDiv").append(result);
