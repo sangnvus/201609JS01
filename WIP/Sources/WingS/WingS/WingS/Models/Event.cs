@@ -19,6 +19,7 @@
         public DateTime? Finish_Date { get; set; }
         public DateTime Updated_Date { get; set; }
         public string Description { get; set; }
+        public string Location { get; set; }
         public string VideoUrl { get; set; }
         public int TotalPoint { get; set; }
         public bool Status { get; set; }
