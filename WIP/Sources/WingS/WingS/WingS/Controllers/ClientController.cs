@@ -52,5 +52,11 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Search/_Search.cshtml");
         }
+        public ActionResult Profile()
+        {
+            return PartialView("~/Views/User/_Profile.cshtml");
+        }
+
+        
     }
 }

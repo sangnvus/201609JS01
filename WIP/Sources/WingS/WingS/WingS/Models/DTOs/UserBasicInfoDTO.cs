@@ -14,6 +14,14 @@ namespace WingS.Models.DTOs
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
         public string Email { get; set; }
+        public string Gender { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public int NumberOfPost { get; set; }
+        public string DOB { get; set; }
+        public string Country { get; set; }
+        public string CreateDate { get; set; }
+
 
         public UserBasicInfoDTO()
         {
@@ -24,6 +32,14 @@ namespace WingS.Models.DTOs
             FullName = "";
             ProfileImage = "";
             Email = "";
+            Gender = "";
+            Phone = "";
+            Address = "";
+            NumberOfPost = 0;
+            DOB = "";
+            Country = "";
+            CreateDate = "";
+
         }
     }
 }

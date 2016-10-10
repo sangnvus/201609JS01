@@ -258,6 +258,14 @@ namespace WingS.DataAccess
 
             return threadMainImage;
         }
+        public int GetNumberOfPostPerUser(string userName)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int numberOfPost = db.Threads.Where(x => x.Ws_User.UserName.Equals(userName)).Count();
+                return numberOfPost;                
+            }
+        }
 
         public void Dispose()
         {

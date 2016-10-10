@@ -72,7 +72,14 @@ app.config(function ($routeProvider) {
         templateUrl: "/Client/Event",
         title: "Sự kiện",
         controller: "EventController"
-    });
+    })
+    .when("/Profile/:UserName", {
+        templateUrl: "/Client/Profile",
+        title: "Thông tin cá nhân",
+        controller: "ProfileController"
+    })
+
+    ;
  
 
 });

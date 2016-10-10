@@ -112,7 +112,36 @@ namespace WingS.DataAccess
                                        IsActive = user.IsActive,
                                        ProfileImage = user.User_Information.ProfileImage,
                                        UserName = user.UserName,
+                                       AccountType = user.AccountType,                                    
+                                 }).FirstOrDefault();
+                return currentUser;
+            }
+        }
+
+        //Get user information (Profile page)
+        public UserBasicInfoDTO GetUserInfo(string userNameOrEmail)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var currentUser = (from user in db.Ws_User
+                                   where user.UserName.Equals(userNameOrEmail) || user.Email.Equals(userNameOrEmail)
+                                   select new UserBasicInfoDTO
+                                   {
+                                       UserId = user.UserID,
+                                       FullName = user.User_Information.FullName,
+                                       IsActive = user.IsActive,
+                                       ProfileImage = user.User_Information.ProfileImage,
+                                       UserName = user.UserName,
                                        AccountType = user.AccountType,
+                                       Email = user.Email,
+                                       Address = user.User_Information.UserAddress,
+                                       Country = user.User_Information.Country,
+                                       Gender = user.User_Information.Gender,
+                                       Phone = user.User_Information.Phone,
+                                      // CreateDate = user.CreatedDate.ToString("H:mm:ss MM/dd/yy"),
+                                       //DOB = user.User_Information.DoB.ToString("MM/dd/yy"),
+     
+
                                    }).FirstOrDefault();
                 return currentUser;
             }

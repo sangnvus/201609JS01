@@ -27,7 +27,7 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="full.html">Tin nhắn</a></li>
                                                 <li><a href="2-column.html">Thông báo</a></li>
-                                                <li><a href="3-column.html">Thông tin tài khoản</a></li>
+                                                <li><a href=@Url.Content("/#/Profile/{{User_Information.UserName}}")>Thông tin tài khoản</a></li>
                                                 <li><a href="@Url.Action("Logout", "Login")">Đăng xuất {{User_Information.FullName}}</a></li>
                                             </ul>
                                         </li>

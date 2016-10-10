@@ -51,5 +51,39 @@ namespace WingS.Controllers.WebApi
                 Data = currentUser
             });
         }
+        public IHttpActionResult GetCurrentUser (string userName)
+        {
+            UserBasicInfoDTO userInfo = new UserBasicInfoDTO();
+            using(var db = new UserDAL() )
+            {
+                var user = db.GetUserInfo(userName);
+                {
+                    userInfo.UserName = user.UserName;
+                    userInfo.Email = user.Email;
+                    userInfo.FullName = user.FullName;
+                    userInfo.Gender = user.Gender;
+                    userInfo.Phone = user.Phone;
+                    userInfo.Country = user.Country;
+                    userInfo.Address = user.Address;
+                    userInfo.ProfileImage = user.ProfileImage;
+                    userInfo.CreateDate = user.CreateDate;
+                    userInfo.DOB = user.DOB;
+                }
+            }
+            using(var db = new ThreadDAL() )
+            {
+                userInfo.NumberOfPost = db.GetNumberOfPostPerUser(userName);
+            }
+
+            
+            return Ok(new HTTPMessageDTO
+            {
+                Status = WsConstant.HttpMessageType.SUCCESS,
+                Message = "",
+                Type = "",
+                Data = userInfo
+            });
+        }
     }
+
 }
