@@ -1,0 +1,216 @@
+﻿@model WingS.Models.DTOs.CreateEventInfo
+<body id="pageBody">
+
+    <div id="divBoxed" class="container">
+
+        <div class="transparent-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
+
+        <div class="divPanel notop nobottom">
+            @Html.Partial("../Home/_NavigationBar")
+            <div class="row-fluid">
+                <div class="span12">
+                    <div id="contentInnerSeparator"></div>
+                </div>
+            </div>
+        </div>
+    <div class="contentArea">
+
+        <div class="divPanel notop page-content">
+
+            <div class="breadcrumbs">
+                <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Sự kiện</a> &nbsp;/&nbsp; <span>Tạo sự kiện</span>
+            </div>
+	<!-- Content-->
+	<div class="row-fluid">
+	<div class="span11">
+	<ul class="nav nav-tabs">
+	  <li class="active"><a data-toggle="tab"  href="#home">Nội dung</a></li>
+	  <li><a data-toggle="tab"  href="#menu1">Lịch trình</a></li>
+	  <li><a data-toggle="tab"  href="#menu2">Hình ảnh và Video</a></li>
+	  <button  type="button" class="btn btn-navbar-highlight btn-medium btn-primary" >Tạo sự kiện </button>
+	</ul>
+
+	  <div class="tab-content">
+	  <!-- Tab content -->
+	  <div id="home" class="tab-pane fade in active">
+	      <!--Loại sự kiện-->
+@using (Html.BeginForm("CreateEvent", "EventPage", FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+        <div class="row-fluid">
+            <div class="span3" align="center">
+                <h3 style="margin-top: 25px;"><strong>Loại sự kiện</strong>
+                </h3>
+            </div>
+            <div class="span9">
+                <select name="EventType" style="height: 42px; margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px;">
+                    <option value="1">Giáo dục</option>
+                    <option value="2">Văn hóa</option>
+                    <option value="3">Y tế</option>
+                    <option value="0">Khác</option>
+                </select>
+                <p>Chọn loại sự kiện mà bạn muốn tổ chức
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <!--Chủ đề-->
+    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+        <div class="row-fluid">
+            <div class="span3" align="center">
+                <h3 style="margin-top: 25px;"><strong>Chủ đề</strong>
+                </h3>
+            </div>
+            <div class="span9">
+                <input name="EventName" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;" id="eventTitle" />
+                <p>Nhập vào chủ đề không dài quá 50 kí tự.
+                </p>
+                <p>Chủ bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <!--Địa điểm-->
+    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+        <div class="row-fluid">
+            <div class="span3" align="center">
+                <h3 style="margin-top: 25px;"><strong>Địa điểm</strong>
+                </h3>
+            </div>
+            <div class="span9">
+                <input name="Location" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;"/>
+                <p>Địa điểm tổ chức sự kiện</p>
+            </div>
+        </div>
+    </div>
+    <!--Nội dung-->
+    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+        <div class="row-fluid">
+            <div class="span3" align="center">
+                <h3 style="margin-top: 25px;"><strong>Nội dung</strong>
+                </h3>
+            </div>
+            <div class="span9">
+                <p>Mô tả sự kiện của bạn </p>
+                @Html.TextAreaFor(eventInfo => eventInfo.Content)
+            </div>
+        </div>
+    </div>
+}
+	  </div>
+	   <!-- Tab Timeline -->
+	  <div id="menu1" class="tab-pane fade">
+			 <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); " >   
+				 <div class="row-fluid" >		
+				 <p><strong>Thời gian diễn ra</strong></p>				 
+					 <div class="row-fluid" >
+					 <span class="span6">
+						 <span class="span3" style="padding-top:10px;">Từ ngày</span>
+						 <span class="span9"><input type="date" name="StartDate" id="starDate" style="padding:10px; border-color:rgb(224, 95, 3);border-radius:10px;" /></span>
+					 </span>
+					 
+					  <span class="span6">
+						 <span class="span2" style="padding-top:10px;">đến ngày</span>
+						 <span class="span10"><input type="date" name="EndDate" id="endDate" style="padding:10px; border-color:rgb(224, 95, 3);border-radius:10px;"/></span>
+					 </span>
+					 </div>
+				 </div>
+			 </div>
+			 <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); " >   	
+				 <p><strong>Lịch trình chi tiết</strong></p>				 
+					 <!--Timeline-->
+					 <div id='TextBoxesGroup'>
+						 <div id="TextBoxDiv">
+						 <div class="row-fluid" >
+						 <span class="span6">
+							 <span class="span3" style="padding-top:10px;">Từ ngày</span>
+							 <span class="span9"><input type="date" name="FromDate" id="fromDate" style="padding:10px; border-color:rgb(224, 95, 3);border-radius:10px;"/></span>
+						 </span>
+						 
+						  <span class="span6">
+							 <span class="span2" style="padding-top:10px;">đến ngày</span>
+							 <span class="span10"><input type="date" name="ToDate" id="toDate"style="padding:10px; border-color:rgb(224, 95, 3);border-radius:10px;"/></span>
+						 </span>
+						 </div>
+						<div class="row-fluid" >		
+						<p></p>				 
+						 <div class="row-fluid" >
+						 <span class="span12">
+							 <span style="padding-top:25px;">Mô tả</span>
+							 <span style="margin-left:66px"><textarea name="Description" id="descrip" class="form-control" rows="4" style="width:72%;"></textarea>
+							 </span>
+						 </span>
+						 </div>
+						</div>
+						<hr style="border-color:rgb(211,211,211);border-radius:5px;">
+						</div>
+					</div>
+				 <div class="row-fluid" >		
+				 <button id="addButton" type="button" class="btn btn-medium btn-info" style="margin-left: 470px;margin-right: 20px;">
+				 <i class="fa fa-plus" aria-hidden="true"></i> Thêm lịch trình</button>
+				 <button id="removeButton" type="button" class="btn btn-medium btn-danger">
+				 <i class="fa fa-minus" aria-hidden="true"></i> Xóa lịch trình</button>
+				 </div>
+			 </div>
+			 </div>
+			
+		
+		
+	
+	  <!-- Tab Image and Video -->
+	  <div id="menu2" class="tab-pane fade">
+			<div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); " >   
+				<div class="row-fluid" >			
+					<div class = "span3" align = "center" >
+					<h3 style="margin-top:25px;"><strong>Hình ảnh </strong></h3>
+					</div>
+					<div class = "span9">
+							<p>Chọn hình ảnh bạn có<span style ="color:red;"> 	BẮT BUỘC</span></p>	
+                        <input type="file" class="multiple" name="Images" multiple required accept="image/*">
+							<p style ="font-weight: bold;">Chọn file với định dạng JPEG, PNG, GIF, hoặc BMP. Ít nhất với  1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
+							
+					</div>
+				</div>     
+			 </div>
+			 <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); " >   
+				<div class="row-fluid" >			
+					<div class = "span3" align = "center" >
+					<h3 style="margin-top:25px;"><strong>Video</strong></h3>
+					</div>
+					<div class = "span9">
+							<input type="text" name="VideoUrl" style=" margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:80%;"/>							
+							<p>Nhập vào đường link của đoạn phim bạn có
+							</p>			
+					</div>
+				</div>     
+			 </div>
+			 <div style="padding-bottom:100px"></div>
+
+	  </div>
+	    </div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+            <div id="footerOuterSeparator"></div>
+
+            @Html.Partial("../Home/_Footer")
+<br/><br/><br/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../../Content/js/AddMoreTimeline.js"></script>
+    <script src="../../Content/scripts/default.js" type="text/javascript"></script>
+    <script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
+    <script type="text/javascript">$(window).load(function () { var options = { autoResize: true, container: $('#gridArea'), offset: 10 }; var handler = $('#tiles li'); handler.wookmark(options); $('#tiles li').each(function () { var imgm = 0; if ($(this).find('img').length > 0) imgm = parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5; if ($(this).find('iframe').height()) newHeight = newHeight + 15; $(this).css('height', newHeight + 'px'); }); handler.wookmark(options); handler.wookmark(options); });</script>
+    <script src="../../Content/scripts/yoxview/yox.js" type="text/javascript"></script>
+    <script src="../../Content/scripts/yoxview/jquery.yoxview-2.21.js" type="text/javascript"></script>
+    <script type="text/javascript">$(document).ready(function () { $('.yoxview').yoxview({ autoHideInfo: false, renderInfoPin: false, backgroundColor: '#ffffff', backgroundOpacity: 0.8, infoBackColor: '#000000', infoBackOpacity: 1 }); $('.yoxview a img').hover(function () { $(this).animate({ opacity: 0.7 }, 300) }, function () { $(this).animate({ opacity: 1 }, 300) }); });</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#eventTitle').focus();
+        });
+    </script>
+</body>
+

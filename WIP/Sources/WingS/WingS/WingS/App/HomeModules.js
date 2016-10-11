@@ -78,10 +78,17 @@ app.config(function ($routeProvider) {
         title: "Thông tin cá nhân",
         controller: "ProfileController"
     })
-
-    ;
- 
-
+	.when("/CreateEvent", {
+            templateUrl: "/Client/CreateEvent",
+            resolve: {
+                'check': function($location, $window) {
+                    if ($window.sessionStorage.isAuthen == "false") {
+                        $location.path('/Login');
+                    }
+                }
+            },
+            title: "Tạo thảo luận"
+	});
 });
 
 

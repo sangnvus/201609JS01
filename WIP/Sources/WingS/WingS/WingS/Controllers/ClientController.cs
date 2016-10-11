@@ -56,7 +56,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/User/_Profile.cshtml");
         }
-
+		public ActionResult CreateEvent()
+        {
+            return PartialView("~/Views/Event/_CreateEvent.cshtml");
+        }
         
     }
 }

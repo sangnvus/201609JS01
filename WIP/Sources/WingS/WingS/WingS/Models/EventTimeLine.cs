@@ -14,8 +14,8 @@ namespace WingS.Models
         [ForeignKey("evt")]
         public int EventId { get; set; }
         public string Content { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime FinishDate { get; set; }
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
         public bool Status { get; set; }
         public virtual Event evt { get;set; }
     }
