@@ -229,13 +229,13 @@ namespace WingS.Controllers.WebApi
                     NewestThread = db.GetNewestThreadByCreatedDate();
                     foreach (Thread thread in NewestThread)
                     {
-                        var threadMainImage = db.GetMainImageThreadById(thread.ThreadId);
+                        List<String> threadImage = db.GetAllImageThreadById(thread.ThreadId);
                         basicThreadList.Add(new ThreadBasicInfo
                         {
                             ThreadID = thread.ThreadId,
                             UserID = thread.UserId,
                             ThreadName = thread.Title,
-                            ImageUrl = null,//threadMainImage.ImageUrl,
+                            ImageUrl = threadImage,
                             Content = thread.Content,
                             Likes = thread.Likes,
                             Views = thread.Views,
