@@ -88,7 +88,19 @@ app.config(function ($routeProvider) {
                 }
             },
             title: "Tạo thảo luận"
-	});
+	})
+    .when("/CreateOrganization", {
+        templateUrl: "/Client/CreateOrganization",
+        resolve: {
+            'check': function($location, $window) {
+                if ($window.sessionStorage.isAuthen == "false") {
+                    $location.path('/Login');
+                }
+            }
+        },
+        title: "Tạo tổ chức"
+
+    });
 });
 
 
