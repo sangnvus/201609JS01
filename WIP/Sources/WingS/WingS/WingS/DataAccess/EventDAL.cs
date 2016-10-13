@@ -8,13 +8,13 @@ namespace WingS.DataAccess
     public class EventDAL : IDisposable
     {
 
-        public List<Event> GetTopEventByView(int eventNumber)
+        public List<Event> GetTopFourEventByPoint(int eventNumber)
         {
             List<Event> list = null;
         
             using (var db = new Ws_DataContext())
             {
-                var topEvent = db.Events.OrderByDescending(x => x.Views).Where(x => x.Status == true).Take(eventNumber);
+                var topEvent = db.Events.OrderByDescending(x => x.TotalPoint).Where(x => x.Status == true).Take(eventNumber);
                 list = topEvent.ToList();
             }
             return list;

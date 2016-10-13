@@ -15,14 +15,14 @@ namespace WingS.Controllers
     {
         //Get top view event
         [HttpGet]
-        public IHttpActionResult GetTopFourViewedEvent()
+        public IHttpActionResult GetTopFourEventByPoint()
         {
             List<Event> topEvent = null;
             var basicEventList = new List<EventBasicInfo>();
             using (var db = new EventDAL())
             {
                 //Get top event.
-                topEvent = db.GetTopEventByView(4);
+                topEvent = db.GetTopFourEventByPoint(4);
                 foreach(Event e in topEvent)
                 {
                     //Lấy ra ảnh tương ứng với mỗi 1 event với Status = 1
@@ -31,8 +31,6 @@ namespace WingS.Controllers
 
                     basicEventList.Add(new EventBasicInfo
                     {
-                        Likes = e.Likes,
-                        Views = e.Views,
                         CreatedDate = e.Created_Date.ToString("H:mm:ss MM/dd/yy"),
                         EventID = e.EventID,
                         EventName = e.EventName,
@@ -57,7 +55,7 @@ namespace WingS.Controllers
                 using (var db = new EventDAL())
                 {
                     //Get top event.
-                    topEvent = db.GetTopEventByView(1);
+                    topEvent = db.GetTopFourEventByPoint(1);
                     foreach (Event e in topEvent)
                     {
                         //Lấy ra ảnh tương ứng với mỗi 1 event với Status = true
@@ -66,8 +64,6 @@ namespace WingS.Controllers
 
                         basicEventList.Add(new EventBasicInfo
                         {
-                            Likes = e.Likes,
-                            Views = e.Views,
                             CreatedDate = e.Created_Date.ToString("H:mm:ss MM/dd/yy"),
                             EventID = e.EventID,
                             EventName = e.EventName,
@@ -109,8 +105,6 @@ namespace WingS.Controllers
                             EventName = events.EventName,
                             ImageUrl = eventMainImage.ImageUrl,
                             Content = events.Description,
-                            Likes = events.Likes,
-                            Views = events.Views,
                             Status = true,
                             CreatedDate = DateTime.Now.ToString("H:mm:ss MM/dd/yy")
                         });

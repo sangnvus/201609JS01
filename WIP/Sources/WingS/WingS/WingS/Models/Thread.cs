@@ -16,8 +16,6 @@
         public string VideoUrl { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public int Likes { get; set; }
-        public int Views { get; set; }
         public bool Status { get; set; }
         public virtual ICollection<CommentThread> CommentThreads { get; set; }
         public virtual Ws_User Ws_User { get; set; }

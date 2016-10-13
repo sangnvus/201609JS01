@@ -24,6 +24,15 @@
 
         });
     });
+   //Get NumberOfLike
+   $http({
+       url: "/api/Thread/CountLikeInThread",
+       method: "GET",
+       params: { threadId: threadId },
+       contentType: "application/json",
+   }).success(function (response) {
+       $scope.Likes = response.Data;
+   });
     //Load All Commend to view.
     $http({
         url: "/api/Thread/GetAllComment",

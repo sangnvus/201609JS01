@@ -16,6 +16,35 @@ namespace WingS.Controllers.WebApi
     public class ThreadController : ApiController
     {
         [HttpGet]
+        public IHttpActionResult CheckCurrentUserIsLikedOrNot(int ThreadId)
+        {
+            bool isLiked = false;
+            using (var db = new ThreadDAL())
+            {
+                isLiked = db.CheckUserIsLikedOrNot(ThreadId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = isLiked });
+        }
+        [HttpGet]
+        public IHttpActionResult CountLikeInThread(int ThreadId)
+        {
+            int numberOfLikes = 0;
+            using (var db = new ThreadDAL())
+            {
+                numberOfLikes = db.CountLikeInThread(ThreadId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = numberOfLikes });
+        }
+        [HttpPut]
+        public IHttpActionResult ChangeLikeState(int ThreadId)
+        {
+            using (var db = new ThreadDAL())
+            {
+                var change = db.CountLikeInThread(ThreadId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
+        }
+        [HttpGet]
         public IHttpActionResult CheckExistedSubCommentOrNot()
         {
             using (var db = new ThreadDAL())
@@ -110,7 +139,7 @@ namespace WingS.Controllers.WebApi
         }
         // Get 4 Thread có View lớn nhiều nhất
         [HttpGet]
-        public IHttpActionResult GetTopFourThread()
+        public IHttpActionResult GetTopThreadByCreatedDate()
         {
             List<Thread> topFourThread = null;
             var basicThreadList = new List<ThreadBasicInfo>();
@@ -118,7 +147,7 @@ namespace WingS.Controllers.WebApi
             {
                 using (var db = new ThreadDAL())
                 {
-                    topFourThread = db.GetTopThreadByView(4);
+                    topFourThread = db.GetTopThreadByCreatedDate(4);
                     foreach (Thread thread in topFourThread)
                     {
                         List<String> threadImage = db.GetAllImageThreadById(thread.ThreadId);
@@ -129,8 +158,6 @@ namespace WingS.Controllers.WebApi
                             ThreadName = thread.Title,
                             ImageUrl = threadImage,
                             Content = thread.Content,   
-                            Likes = thread.Likes,
-                            Views = thread.Views,
                             Status = true,
                             CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
 
@@ -169,8 +196,6 @@ namespace WingS.Controllers.WebApi
                     threadBasic.ThreadName = current.Title;
                     threadBasic.ImageUrl = db.GetAllImageThreadById(id);
                     threadBasic.Content = current.Content;
-                    threadBasic.Likes = current.Likes;
-                    threadBasic.Views = current.Views;
                     threadBasic.Status = current.Status;
                     threadBasic.CreatedDate = current.CreatedDate.ToString("H:mm:ss | MM/dd/yyyy");
                     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = threadBasic });
@@ -237,8 +262,6 @@ namespace WingS.Controllers.WebApi
                             ThreadName = thread.Title,
                             ImageUrl = threadImage,
                             Content = thread.Content,
-                            Likes = thread.Likes,
-                            Views = thread.Views,
                             Status = true,
                             CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
                         });

@@ -42,8 +42,6 @@ namespace WingS.Controllers
                                 ThreadName = thread.Title,
                                 ImageUrl = threadImage,
                                 Content = thread.Content,
-                                Likes = thread.Likes,
-                                Views = thread.Views,
                                 Status = thread.Status,
                                 CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
                             });
@@ -96,8 +94,6 @@ namespace WingS.Controllers
                                 EventName = events.EventName,
                                 ImageUrl = eventMainImage.ImageUrl,
                                 Content = events.Description,
-                                Likes = events.Likes,
-                                Views = events.Views,
                                 Status = events.Status,
                                 CreatedDate = DateTime.Now.ToString("H:mm:ss MM/dd/yy")
                             });

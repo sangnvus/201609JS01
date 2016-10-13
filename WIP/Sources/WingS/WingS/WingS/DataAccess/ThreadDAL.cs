@@ -10,6 +10,51 @@ namespace WingS.DataAccess
 {
     public class ThreadDAL : IDisposable
     {
+        public int CountLikeInThread(int ThreadId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int CountLike = db.LikeThreads.OrderByDescending(x => x.ThreadId == ThreadId && x.Status == true).Count();
+                return CountLike;
+            }
+
+        }
+        public bool CheckUserIsLikedOrNot(int ThreadId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var isLike = db.LikeThreads.OrderByDescending(x => x.ThreadId == ThreadId && x.UserId == WsConstant.CurrentUser.UserId && x.Status == true);
+                if (isLike != null) return true;
+                else return false;
+            }
+        }
+        public bool ChangelikeState(int ThreadId)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    //Check current like status.
+                    LikeThreads current = (
+                                           from p in db.LikeThreads
+                                           where p.ThreadId == ThreadId && p.UserId == WsConstant.CurrentUser.UserId
+                                           select p
+                                           ).SingleOrDefault();
+                    if (current != null)
+                    {
+                        current.Status = !current.Status;
+                    }
+                    else
+                    {
+                        db.LikeThreads.Add(new LikeThreads() { ThreadId = ThreadId, UserId = WsConstant.CurrentUser.UserId, Status = true });
+                    }
+                    db.SaveChanges();
+                    return true;
+
+                }
+            }
+            catch (Exception) { return false; }
+        }
         public List<int> GetAllCommentIdAndSubCommentId()
         {
             List<int> list = new List<int>();
@@ -150,13 +195,13 @@ namespace WingS.DataAccess
             }
           
         }
-        public List<Thread> GetTopThreadByView(int threadNumber)
+        public List<Thread> GetTopThreadByCreatedDate(int threadNumber)
         {
             List<Thread> listThreads = null;
 
             using (var db = new Ws_DataContext())
             {
-                var topThread = db.Threads.OrderByDescending(x => x.Views).Where(x=>x.Status== true).Take(threadNumber);
+                var topThread = db.Threads.OrderByDescending(x => x.CreatedDate).Where(x=>x.Status== true).Take(threadNumber);
                 listThreads = topThread.ToList();
             }
 
@@ -209,8 +254,6 @@ namespace WingS.DataAccess
                 thread.VideoUrl = "";
                 thread.CreatedDate = DateTime.Now;
                 thread.UpdatedDate = DateTime.Now;
-                thread.Views = 0;
-                thread.Likes = 0;
                 thread.Status = true;
                 return thread;
             }

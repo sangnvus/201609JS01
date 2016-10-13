@@ -16,7 +16,6 @@
         public int EventType { get; set; }
         public string EventName { get; set; }
         public DateTime Created_Date { get; set; }
-        public DateTime? Start_Date { get; set; }
         public DateTime? Finish_Date { get; set; }
         public DateTime Updated_Date { get; set; }
         public string Description { get; set; }
@@ -24,8 +23,6 @@
         public string VideoUrl { get; set; }
         public int TotalPoint { get; set; }
         public bool Status { get; set; }
-        public int Views { get; set; }
-        public int Likes { get; set; }
         public virtual ICollection<CommentEvent> CommentEvents { get; set; }
         public virtual ICollection<Donation> Donations { get; set; }
         public virtual ICollection<EventAlbumImage> Album { get; set; }
