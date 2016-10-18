@@ -24,7 +24,6 @@
         public virtual ICollection<CommentThread> CommentThreads { get; set; }
         public virtual ICollection<SubCommentThread> SubcommentThreads { get; set; }
         public virtual ICollection<Donation> Donations { get; set; }
-        public virtual Organazation Organazation { get; set; }
         public virtual ICollection<ReportEvent> ReportEvents { get; set; }
         public virtual ICollection<Thread> Threads { get; set; }
         public virtual User_Information User_Information { get; set; }

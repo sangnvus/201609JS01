@@ -72,20 +72,62 @@ namespace WingS.DataAccess
 
             return eventMainImage;
         }
-        /*public Event AddNewThread(CreateEventInfo eventInfo)
+
+        public Event GetEventById(int eventId)
         {
-            var newEvent = CreateEmptyEvent();
-            newThread.UserId = WsConstant.CurrentUser.UserId;
-            newThread. = eventInfo.EventType;
-            newThread.Content = eventInfo.Content;
             using (var db = new Ws_DataContext())
             {
-                db.Threads.Add(newThread);
-                db.SaveChanges();
-                return GetThreadById(newThread.ThreadId);
+                var currentThread = db.Events.FirstOrDefault(x => x.EventID == eventId);
+                return currentThread;
             }
 
-        }*/
+        }
+        public Organization GetOrganiIdByUserId(int userId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var organi = db.Organizations.FirstOrDefault(x => x.UserId == userId);
+                return organi;
+            }
+
+        }
+        public Event AddNewEvent(CreateEventInfo eventInfo)
+        {
+            var newEvent = CreateEmptyEvent();
+            newEvent.CreatorID = GetOrganiIdByUserId(WsConstant.CurrentUser.UserId).OrganizationId;
+            newEvent.EventType = eventInfo.EventType;
+            newEvent.EventName = eventInfo.EventName;
+            newEvent.Start_Date = DateTime.Parse(eventInfo.StartDate);
+            newEvent.Finish_Date = DateTime.Parse(eventInfo.FinishDate);
+            newEvent.Location = eventInfo.Location;
+            newEvent.ExpectedMoney = eventInfo.ExpectedMoney;
+            newEvent.Description = eventInfo.Content;
+            newEvent.Contact = eventInfo.Contact;
+            newEvent.VideoUrl = eventInfo.VideoUrl;
+            using (var db = new Ws_DataContext())
+            {
+                db.Events.Add(newEvent);
+                db.SaveChanges();
+                return GetEventById(newEvent.EventID);
+            }
+
+        }
+        public void AddNewEventTimeLine(CreateEventSchedule eventInfo, int eventId)
+        {
+            var newEventSchedule = CreateEmptyEventTimeLine();
+            newEventSchedule.EventId = eventId;
+            newEventSchedule.Content = eventInfo.Description;
+            //newEventSchedule.FromDate =  DateTime.ParseExact(eventInfo.FromDate, "yyyy-MM-dd HH:mm:ss,fff",System.Globalization.CultureInfo.InvariantCulture);
+            //newEventSchedule.ToDate = DateTime.ParseExact(eventInfo.ToDate, "yyyy-MM-dd HH:mm:ss,fff",System.Globalization.CultureInfo.InvariantCulture);
+            newEventSchedule.FromDate = DateTime.Parse(eventInfo.FromDate);
+            newEventSchedule.ToDate = DateTime.Parse(eventInfo.ToDate);
+            using (var db = new Ws_DataContext())
+            {
+                db.ETimeLine.Add(newEventSchedule);
+                db.SaveChanges();
+            }
+
+        }
         public Event CreateEmptyEvent()
         {
             using (var db = new Ws_DataContext())
@@ -95,11 +137,24 @@ namespace WingS.DataAccess
                 eventInfo.EventType = 0;
                 eventInfo.EventName = "";
                 eventInfo.Location = "";
+                eventInfo.Contact = "";
                 eventInfo.Description = "";
                 eventInfo.TotalPoint = 0;
                 eventInfo.VideoUrl = "";
                 eventInfo.Created_Date = DateTime.Now;
                 eventInfo.Updated_Date = DateTime.Now;
+                eventInfo.Status = true;
+                return eventInfo;
+            }
+        }
+
+        public EventTimeLine CreateEmptyEventTimeLine()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var eventInfo = db.ETimeLine.Create();
+                eventInfo.EventId = 0;
+                eventInfo.Content = "";
                 eventInfo.Status = true;
                 return eventInfo;
             }

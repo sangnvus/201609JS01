@@ -10,12 +10,12 @@ namespace WingS.DataAccess
 {
     public class OrganizationDAL : IDisposable
     {
-        public Organazation AddNewOrganazation(CreateOrganization organizationBasic)
+        public Organization AddNewOrganization(CreateOrganization organizationBasic)
         {
             var newOrg = CreatEmptyOrganization();
 
-            newOrg.OrganazationID = WsConstant.CurrentUser.UserId;
-            newOrg.OrganazationName = organizationBasic.OrganazationName;
+            newOrg.OrganizationId = WsConstant.CurrentUser.UserId;
+            newOrg.OrganizationName = organizationBasic.OrganizationName;
             newOrg.Introduction = organizationBasic.Introduction;
             newOrg.LogoUrl = organizationBasic.LogoUrl;
             newOrg.Phone = organizationBasic.Phone;
@@ -24,19 +24,19 @@ namespace WingS.DataAccess
 
             using (var db = new Ws_DataContext())
             {
-                db.Organazations.Add(newOrg);
+                db.Organizations.Add(newOrg);
                 db.SaveChanges();
-                return GetOrganizationById(newOrg.OrganazationID);
+                return GetOrganizationById(newOrg.OrganizationId);
             }
         }
 
-        public Organazation CreatEmptyOrganization()
+        public Organization CreatEmptyOrganization()
         {
             using (var db = new Ws_DataContext())
             {
-                var org = db.Organazations.Create();
+                var org = db.Organizations.Create();
                 
-                org.OrganazationName = "";
+                org.OrganizationName = "";
                 org.Introduction = "";
                 org.LogoUrl = "";
                 org.Phone = "";
@@ -49,11 +49,11 @@ namespace WingS.DataAccess
             }
         }
 
-        public Organazation GetOrganizationById(int orgId)
+        public Organization GetOrganizationById(int orgId)
         {
             using (var db = new Ws_DataContext())
             {
-                var org = db.Organazations.FirstOrDefault(x => x.OrganazationID == orgId);
+                var org = db.Organizations.FirstOrDefault(x => x.OrganizationId == orgId);
                 return org;
             }
         }
@@ -63,12 +63,12 @@ namespace WingS.DataAccess
         /// </summary>
         /// <param name="numberOrg"></param>
         /// <returns></returns>
-        public List<Organazation> GetTopThreeOrganazations(int numberOrg)
+        public List<Organization> GetTopThreeOrganizations(int numberOrg)
         {
-            List<Organazation> orgList = null;
+            List<Organization> orgList = null;
             using (var db = new Ws_DataContext())
             {
-                var topOrg = db.Organazations.OrderByDescending(x => x.Point).Take(numberOrg);
+                var topOrg = db.Organizations.OrderByDescending(x => x.Point).Take(numberOrg);
                 orgList = topOrg.ToList();
             }
             return orgList;

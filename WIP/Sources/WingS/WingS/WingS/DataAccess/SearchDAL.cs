@@ -79,12 +79,12 @@ namespace WingS.DataAccess
 
             return eventMainImage;
         }
-        public List<Organazation> SearchOrganazations(string searchString)
+        public List<Organization> SearchOrganizations(string searchString)
         {
-            List<Organazation> orgList = null;
+            List<Organization> orgList = null;
             using (var db = new Ws_DataContext())
             {
-                var getOrg = db.Organazations.OrderByDescending(x => x.Point).Where(x => x.OrganazationName == searchString || x.Email == searchString || x.Phone == searchString || x.Address == searchString);
+                var getOrg = db.Organizations.OrderByDescending(x => x.Point).Where(x => x.OrganizationName == searchString || x.Email == searchString || x.Phone == searchString || x.Address == searchString);
                 orgList = getOrg.ToList();
             }
             return orgList;

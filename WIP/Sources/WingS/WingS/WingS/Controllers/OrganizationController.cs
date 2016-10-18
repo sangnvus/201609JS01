@@ -14,7 +14,7 @@ namespace WingS.Controllers
     {
         public ActionResult CreateOrganization(CreateOrganization organization, HttpPostedFileBase LogoImage)
         {
-            //Models.Organazation newOrganazation;
+            //Models.Organization newOrganization;
 
             try
             {
@@ -25,7 +25,7 @@ namespace WingS.Controllers
 
                 using (var db = new OrganizationDAL())
                 {
-                    db.AddNewOrganazation(organization);
+                    db.AddNewOrganization(organization);
                 }
             }
             catch (Exception)

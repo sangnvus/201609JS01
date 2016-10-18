@@ -106,17 +106,17 @@ namespace WingS.Controllers
                     var resultOrgz = new List<OrganizationBasicInfo>();
                     using (var db = new SearchDAL())
                     {
-                        List<Organazation> getOrg = db.SearchOrganazations(searchKey);
+                        List<Organization> getOrg = db.SearchOrganizations(searchKey);
                         if (getOrg.Count < 1)
                         {
                             return Json(new { status = "empty" }, JsonRequestBehavior.AllowGet);
                         }
-                        foreach (Organazation org in getOrg)
+                        foreach (Organization org in getOrg)
                         {
                             resultOrgz.Add(new OrganizationBasicInfo
                             {
-                                OrganazationID = org.OrganazationID,
-                                OrganazationName = org.OrganazationName,
+                                OrganizationId = org.OrganizationId,
+                                OrganizationName = org.OrganizationName,
                                 Introduction = org.Introduction,
                                 LogoUrl = org.LogoUrl,
                                 Phone = org.Phone,

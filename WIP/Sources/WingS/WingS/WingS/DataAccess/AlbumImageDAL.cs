@@ -32,6 +32,30 @@ namespace WingS.DataAccess
                 return album;
                 }
         }
+        public EventAlbumImage AddEventAlbum(EventAlbumImageDTO album)
+        {
+            var eventAlbum = CreateEmptyEventAlbum();
+            eventAlbum.EventId = album.EventId;
+            eventAlbum.ImageUrl = album.ImageUrl;
+            using (var db = new Ws_DataContext())
+            {
+                db.EventAlbum.Add(eventAlbum);
+                db.SaveChanges();
+                return eventAlbum;
+            }
+
+        }
+        public EventAlbumImage CreateEmptyEventAlbum()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var album = db.EventAlbum.Create();
+                album.EventId = 0;
+                album.ImageUrl = "";
+                album.status = true;
+                return album;
+            }
+        }
         public void Dispose()
         {
          

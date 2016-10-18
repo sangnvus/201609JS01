@@ -6,12 +6,13 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public class Organazation
+    public class Organization
     {
         [Key]
+        public int OrganizationId { get; set; }
         [ForeignKey("Ws_User")]
-        public int OrganazationID { get; set; }
-        public string OrganazationName { get; set; }
+        public int UserId { get; set; }
+        public string OrganizationName { get; set; }
         public string Introduction { get; set; }
         public string LogoUrl { get; set; }
         public string Phone { get; set; }

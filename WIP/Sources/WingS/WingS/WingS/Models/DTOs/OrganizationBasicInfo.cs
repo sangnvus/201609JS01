@@ -7,8 +7,8 @@ namespace WingS.Models.DTOs
 {
     public class OrganizationBasicInfo
     {
-        public int OrganazationID { get; set; }
-        public string OrganazationName { get; set; }
+        public int OrganizationId { get; set; }
+        public string OrganizationName { get; set; }
         public string Introduction { get; set; }
         public string LogoUrl { get; set; }
         public string Phone { get; set; }
@@ -19,8 +19,8 @@ namespace WingS.Models.DTOs
 
         public OrganizationBasicInfo()
         {
-            OrganazationID = 0;
-            OrganazationName = "";
+            OrganizationId = 0;
+            OrganizationName = "";
             Introduction = "";
             LogoUrl = "";
             Phone = "";

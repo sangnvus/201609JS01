@@ -10,7 +10,7 @@
     {
         [Key]
         public int EventID { get; set; }
-        [ForeignKey("Organazation")]
+        [ForeignKey("Organization")]
         public int CreatorID { get; set; }
         [ForeignKey("EType")]
         public int EventType { get; set; }
@@ -23,13 +23,14 @@
         public string Description { get; set; }
         public string Location { get; set; }
         public string VideoUrl { get; set; }
+        public double ExpectedMoney { get; set; }
         public int TotalPoint { get; set; }
         public bool Status { get; set; }
         public virtual ICollection<CommentEvent> CommentEvents { get; set; }
         public virtual ICollection<Donation> Donations { get; set; }
         public virtual ICollection<EventAlbumImage> Album { get; set; }
         public virtual EventType EType { get; set; }
-        public virtual Organazation Organazation { get; set; }
+        public virtual Organization Organization { get; set; }
         public virtual ICollection<ReportEvent> ReportEvents { get; set; }
         public virtual ICollection<EventTimeLine> Etimelines { get; set; }
 

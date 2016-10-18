@@ -170,9 +170,9 @@
                     else if (response.type === "organization") {
                         for (var l = 0; l < response.data.length; l++) {
                             var organization = response.data[l];
-                            result += '<div class = "searchImg">' + '<a href="/#/OrganizationDetail/' + organization.OrganazationID + '">' +
+                            result += '<div class = "searchImg">' + '<a href="/#/OrganizationDetail/' + organization.OrganizationId + '">' +
                                 '<img src="' + organization.LogoUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
-                                '<div class = "searchContent"><br/><b>Tên tổ chức : </b>' + organization.OrganazationName + '<br/>' +
+                                '<div class = "searchContent"><br/><b>Tên tổ chức : </b>' + organization.OrganizationName + '<br/>' +
                                 '<b> Giới thiệu : </b>' + organization.Introduction + '<br/>' +
                                 '<b> Số điện thoaị : </b>' + organization.Phone + '<br/>' +
                                 '<b> Email : </b>' + organization.Email + '<br/>' +

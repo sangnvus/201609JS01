@@ -19,13 +19,13 @@ namespace WingS.Controllers.WebApi
             var basicOrgList = new List<OrganizationBasicInfo>();
             using (var db = new OrganizationDAL())
             {
-                List<Organazation> topOrg = db.GetTopThreeOrganazations(3);
-                foreach (Organazation org in topOrg)
+                List<Organization> topOrg = db.GetTopThreeOrganizations(3);
+                foreach (Organization org in topOrg)
                 {
                     basicOrgList.Add(new OrganizationBasicInfo
                     {
-                        OrganazationID = org.OrganazationID,
-                        OrganazationName = org.OrganazationName,
+                        OrganizationId = org.OrganizationId,
+                        OrganizationName = org.OrganizationName,
                         Introduction = org.Introduction,
                         LogoUrl = org.LogoUrl,
                         Phone = org.Phone,

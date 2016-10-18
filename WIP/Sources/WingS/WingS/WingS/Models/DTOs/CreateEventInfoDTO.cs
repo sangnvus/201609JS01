@@ -12,15 +12,13 @@ namespace WingS.Models.DTOs
         public int EventType { get; set; }
         public string EventName { get; set; }
         public string Location { get; set; }
+        public double ExpectedMoney { get; set; }
         [AllowHtml]
         public string Contact { get; set; }
         [AllowHtml]
         public string Content { get; set; }
         public string StartDate { get; set; }
         public string FinishDate { get; set; }
-        public string FromDate { get; set; }
-        public string ToDate { get; set; }
-        public string Description { get; set; }
         public string FromDate1 { get; set; }
         public string ToDate1 { get; set; }
         public string Description1 { get; set; }
@@ -48,6 +46,9 @@ namespace WingS.Models.DTOs
         public string FromDate9 { get; set; }
         public string ToDate9 { get; set; }
         public string Description9 { get; set; }
+        public string FromDate10 { get; set; }
+        public string ToDate10 { get; set; }
+        public string Description10 { get; set; }
         public string VideoUrl { get; set; }
 
         public CreateEventInfo()
@@ -60,9 +61,9 @@ namespace WingS.Models.DTOs
             StartDate = "";
             FinishDate = "";
             VideoUrl = "";
-            FromDate = "";
-            ToDate = "";
-            Description = "";
+            FromDate10 = "";
+            ToDate10 = "";
+            Description10 = "";
             FromDate1 = "";
             ToDate1 = "";
             Description1 = "";

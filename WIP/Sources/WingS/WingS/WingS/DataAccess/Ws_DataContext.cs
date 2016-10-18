@@ -16,7 +16,7 @@ namespace WingS.DataAccess
         public virtual DbSet<Donation> Donations { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventType> EventTypes { get; set; }
-        public virtual DbSet<Organazation> Organazations { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<ReportEvent> ReportEvents { get; set; }
         public virtual DbSet<Thread> Threads { get; set; }
         public virtual DbSet<User_Information> User_Information { get; set; }
