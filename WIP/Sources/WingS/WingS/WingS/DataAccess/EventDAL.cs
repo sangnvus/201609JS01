@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WingS.DataHelper;
 using WingS.Models;
+using WingS.Models.DTOs;
+
 namespace WingS.DataAccess
 {
     public class EventDAL : IDisposable
@@ -68,8 +71,39 @@ namespace WingS.DataAccess
             }
 
             return eventMainImage;
-        } 
+        }
+        /*public Event AddNewThread(CreateEventInfo eventInfo)
+        {
+            var newEvent = CreateEmptyEvent();
+            newThread.UserId = WsConstant.CurrentUser.UserId;
+            newThread. = eventInfo.EventType;
+            newThread.Content = eventInfo.Content;
+            using (var db = new Ws_DataContext())
+            {
+                db.Threads.Add(newThread);
+                db.SaveChanges();
+                return GetThreadById(newThread.ThreadId);
+            }
 
+        }*/
+        public Event CreateEmptyEvent()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var eventInfo = db.Events.Create();
+                eventInfo.CreatorID = 0;
+                eventInfo.EventType = 0;
+                eventInfo.EventName = "";
+                eventInfo.Location = "";
+                eventInfo.Description = "";
+                eventInfo.TotalPoint = 0;
+                eventInfo.VideoUrl = "";
+                eventInfo.Created_Date = DateTime.Now;
+                eventInfo.Updated_Date = DateTime.Now;
+                eventInfo.Status = true;
+                return eventInfo;
+            }
+        }
         public void Dispose()
         {
           

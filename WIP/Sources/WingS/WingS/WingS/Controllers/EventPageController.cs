@@ -18,10 +18,9 @@ namespace WingS.Controllers
         public ActionResult CreateEvent(CreateEventInfo eventInfo, IEnumerable<HttpPostedFileBase> Images)
         {
             Event newEvent = null;
-            //Add thread to DB
             using (var db = new EventDAL())
             {
-                //newEvent = db.AddNewThread(eventInfo);
+                //newEvent = db.AddNewEvent(eventInfo);
             }
             //Add Imgaes of Discussion to server
             try
