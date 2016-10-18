@@ -97,8 +97,14 @@ namespace WingS.DataAccess
             newEvent.CreatorID = GetOrganiIdByUserId(WsConstant.CurrentUser.UserId).OrganizationId;
             newEvent.EventType = eventInfo.EventType;
             newEvent.EventName = eventInfo.EventName;
-            newEvent.Start_Date = DateTime.Parse(eventInfo.StartDate);
-            newEvent.Finish_Date = DateTime.Parse(eventInfo.FinishDate);
+            if (eventInfo.StartDate != "")
+            {
+                newEvent.Start_Date = DateTime.Parse(eventInfo.StartDate);
+            }
+            if (eventInfo.FinishDate != "")
+            {
+                newEvent.Finish_Date = DateTime.Parse(eventInfo.FinishDate);
+            }
             newEvent.Location = eventInfo.Location;
             newEvent.ExpectedMoney = eventInfo.ExpectedMoney;
             newEvent.Description = eventInfo.Content;
@@ -119,8 +125,14 @@ namespace WingS.DataAccess
             newEventSchedule.Content = eventInfo.Description;
             //newEventSchedule.FromDate =  DateTime.ParseExact(eventInfo.FromDate, "yyyy-MM-dd HH:mm:ss,fff",System.Globalization.CultureInfo.InvariantCulture);
             //newEventSchedule.ToDate = DateTime.ParseExact(eventInfo.ToDate, "yyyy-MM-dd HH:mm:ss,fff",System.Globalization.CultureInfo.InvariantCulture);
-            newEventSchedule.FromDate = DateTime.Parse(eventInfo.FromDate);
-            newEventSchedule.ToDate = DateTime.Parse(eventInfo.ToDate);
+            if (eventInfo.FromDate != "")
+            {
+                newEventSchedule.FromDate = DateTime.Parse(eventInfo.FromDate);
+            }
+            if (eventInfo.ToDate != "")
+            {
+                newEventSchedule.ToDate = DateTime.Parse(eventInfo.ToDate);
+            }
             using (var db = new Ws_DataContext())
             {
                 db.ETimeLine.Add(newEventSchedule);
