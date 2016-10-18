@@ -35,12 +35,12 @@ namespace WingS.Controllers.WebApi
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = numberOfLikes });
         }
-        [HttpPut]
+        [HttpGet]
         public IHttpActionResult ChangeLikeState(int ThreadId)
         {
             using (var db = new ThreadDAL())
             {
-                var change = db.CountLikeInThread(ThreadId);
+                var change = db.ChangelikeState(ThreadId);
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
         }

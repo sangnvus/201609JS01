@@ -1,8 +1,14 @@
-﻿app.controller("ThreadDetailController", function ($scope, $http, $routeParams, $sce, $location) {
+﻿app.controller("ThreadDetailController", function ($scope, $http, $routeParams, $sce, $location, $rootScope) {
     $scope.CurrentPath = $location.absUrl();
     var threadId = $routeParams.Id;
     var emptySubComment = new Array();
     $scope.SubCommentThread = emptySubComment;
+    $scope.isLikeStyle =
+         {
+             "color": "black"
+         }
+    //Flag to change color like button
+    var flag = false;
     $("#isComment").hide();
     //Load ThreadDetail
     $http({
@@ -24,15 +30,50 @@
 
         });
     });
-   //Get NumberOfLike
-   $http({
+    //Get NumberOfLike
+    function countLike(){
+       $http({
        url: "/api/Thread/CountLikeInThread",
        method: "GET",
        params: { threadId: threadId },
        contentType: "application/json",
-   }).success(function (response) {
+       }).success(function (response) {
        $scope.Likes = response.Data;
+       });
+    }
+    countLike();
+    // CheckCurrentUserIsLikedOrNot
+    $http({
+       url: "/api/Thread/CheckCurrentUserIsLikedOrNot",
+       method: "GET",
+       params: { threadId: threadId },
+       contentType: "application/json",
+    }).success(function (response) {
+        if (response.Data == true) {
+            flag = true;
+            //Set Color for like button.
+            $scope.isLikeStyle =
+            {
+                "color": "rgb(224, 95, 3)"
+            }
+        }
    });
+    //AddLike When Click
+   $scope.doLike = function ()
+   {
+       flag = !flag;
+       if (flag == true)
+           $scope.isLikeStyle ={"color": "rgb(224, 95, 3)"}
+       else $scope.isLikeStyle = { "color": "black" }
+       $http({
+           url: "/api/Thread/ChangeLikeState",
+           method: "get",
+           params: { threadId: threadId },
+           contentType: "application/json",
+       }).success(function (response) {
+           countLike();
+       });
+   }
     //Load All Commend to view.
     $http({
         url: "/api/Thread/GetAllComment",
@@ -57,9 +98,10 @@
     });
     $scope.checkIsExistedSubComment = function (threadId)
     {
-        for(var i = 0; i<= $scope.isSubcommentExisted.length ; i++ )
-        {
-            if ($scope.isSubcommentExisted[i] == threadId) return true;
+        if ($scope.isSubcommentExisted != null) {
+            for (var i = 0; i <= $scope.isSubcommentExisted.length ; i++) {
+                if ($scope.isSubcommentExisted[i] == threadId) return true;
+            }
         }
         return false;
     }

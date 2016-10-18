@@ -14,7 +14,7 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                int CountLike = db.LikeThreads.OrderByDescending(x => x.ThreadId == ThreadId && x.Status == true).Count();
+                int CountLike = db.LikeThreads.Count(x => x.ThreadId == ThreadId && x.Status == true);
                 return CountLike;
             }
 
@@ -23,7 +23,9 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                var isLike = db.LikeThreads.OrderByDescending(x => x.ThreadId == ThreadId && x.UserId == WsConstant.CurrentUser.UserId && x.Status == true);
+                var isLike = (from p in db.LikeThreads
+                              where p.ThreadId == ThreadId && p.UserId == WsConstant.CurrentUser.UserId && p.Status == true
+                              select p).SingleOrDefault();
                 if (isLike != null) return true;
                 else return false;
             }
@@ -42,13 +44,16 @@ namespace WingS.DataAccess
                                            ).SingleOrDefault();
                     if (current != null)
                     {
-                        current.Status = !current.Status;
+                        if (current.Status == true) current.Status = false;
+                        else current.Status = true;
+                        db.SaveChanges();
                     }
                     else
                     {
                         db.LikeThreads.Add(new LikeThreads() { ThreadId = ThreadId, UserId = WsConstant.CurrentUser.UserId, Status = true });
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
+                    
                     return true;
 
                 }
