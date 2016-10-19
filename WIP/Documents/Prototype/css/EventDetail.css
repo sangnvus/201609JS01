@@ -30,7 +30,8 @@
 }
 .nav-tabs {
     margin-top: 15px; 
-	width:343px;
+	width:504px;
+	background-color: #f6f6f6;
 }
 .nav-tabs li a{
     color: #38383f;
@@ -119,4 +120,28 @@
     font-family: FontAwesome;
     font-size: 14px;
     font-weight: normal;
+}
+.urgent-progress {
+    float: left;
+	margin-left: -5px;
+    width: 101%;
+	border: 1px solid #ddd;
+    background-color: #f6f6f6;
+	margin-bottom: 20px;
+}
+.urgent-progress .row > div {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+    margin-left: -3px;
+    padding-left: 18px;
+}
+.amount{
+    float: left;
+    font-family: 'Open Sans', 'sans-serif';
+    letter-spacing: 0.3px;
+    width: 100%;
+	padding-top:20px;
+	padding-left:10px;
+	padding-bottom:20px;
 }
