@@ -10,6 +10,23 @@ namespace WingS.DataAccess
 {
     public class OrganizationDAL : IDisposable
     {
+        /// <summary>
+        /// Get Organization with sort descending follow point
+        /// </summary>
+        /// <returns>List of Organization</returns>
+        public List<Organization> GetOrganizationWithSortedPoint()
+        {
+            List<Organization> listOrg;
+
+            using (var db = new Ws_DataContext())
+            {
+                var allSortedOrg = db.Organizations.OrderByDescending(x => x.Point).Where(x => x.Status == true);
+                listOrg = allSortedOrg.ToList();
+            }
+
+            return listOrg;
+        } 
+
         public Organization AddNewOrganization(CreateOrganization organizationBasic)
         {
             var newOrg = CreatEmptyOrganization();

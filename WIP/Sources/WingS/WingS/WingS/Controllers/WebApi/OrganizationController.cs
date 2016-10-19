@@ -14,6 +14,76 @@ namespace WingS.Controllers.WebApi
     public class OrganizationController : ApiController
     {
         [HttpGet]
+        public IHttpActionResult GetOrganizationBeLongToUser(int orgId)
+        {
+            OrganizationBasicInfo orgBasicInfo = new OrganizationBasicInfo();
+            try
+            {
+                using (var db = new OrganizationDAL())
+                {
+                    Organization org = db.GetOrganizationById(orgId);
+                    orgBasicInfo.OrganizationId = org.OrganizationId;
+                    orgBasicInfo.UserId = org.UserId;
+                    orgBasicInfo.OrganizationName = org.OrganizationName;
+                    orgBasicInfo.Introduction = org.Introduction;
+                    orgBasicInfo.LogoUrl = org.LogoUrl;
+                    orgBasicInfo.Phone = org.Phone;
+                    orgBasicInfo.Email = org.Email;
+                    orgBasicInfo.Address = org.Address;
+                    orgBasicInfo.Status = org.Status;
+                    orgBasicInfo.Point = org.Point;
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = orgBasicInfo
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetOrganizationSortByPoint()
+        {
+            var orgBasicInforList = new List<OrganizationBasicInfo>();
+            List<Organization> orgSortedPointList;
+            using (var db = new OrganizationDAL())
+            {
+                orgSortedPointList = db.GetOrganizationWithSortedPoint();
+                foreach (Organization org in orgSortedPointList)
+                {
+                    orgBasicInforList.Add(new OrganizationBasicInfo
+                    {
+                        OrganizationId = org.OrganizationId,
+                        OrganizationName = org.OrganizationName,
+                        Introduction = org.Introduction,
+                        LogoUrl = org.LogoUrl,
+                        Phone = org.Phone,
+                        Email = org.Email,
+                        Address = org.Address,
+                        Status = org.Status,
+                        Point = org.Point
+                    });
+                }
+            }
+
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = orgBasicInforList });
+        }
+
+        [HttpGet]
         public IHttpActionResult GetTopThreeOrganization()
         {
             var basicOrgList = new List<OrganizationBasicInfo>();

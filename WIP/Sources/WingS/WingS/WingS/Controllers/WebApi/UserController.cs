@@ -12,6 +12,44 @@ namespace WingS.Controllers.WebApi
 {
     public class UserController : ApiController
     {
+        public IHttpActionResult GetCurrentUserId()
+        {
+            UserBasicInfoDTO currentUser;
+            try
+            {
+                if (User.Identity == null || !User.Identity.IsAuthenticated)
+                {
+                    return
+                        Ok(new HTTPMessageDTO
+                        {
+                            Status = WsConstant.HttpMessageType.ERROR,
+                            Message = "",
+                            Type = WsConstant.HttpMessageType.NOT_AUTHEN
+                        });
+                }
+                using (var db = new UserDAL())
+                    currentUser = db.GetUserBasicInfo(User.Identity.Name);
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = WsConstant.HttpMessageType.BAD_REQUEST
+                });
+            }
+
+            return Ok(new HTTPMessageDTO
+            {
+                Status = WsConstant.HttpMessageType.SUCCESS,
+                Message = "",
+                Type = "",
+                Data = currentUser.UserId
+            });
+        }
+
         [HttpGet]
         public IHttpActionResult CheckLoginStatus()
         {

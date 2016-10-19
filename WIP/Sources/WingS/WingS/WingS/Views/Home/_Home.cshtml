@@ -23,21 +23,24 @@
                                     <li class="active"><a href=@Url.Content("/#/Home")>Trang chủ</a></li>
                                     <li><a href=@Url.Content("/#/Event")>Sự kiện</a></li>
                                     <li><a href=@Url.Content("/#/Discussion")>Thảo luận</a></li>
+                                    <li><a href=@Url.Content("/#/Organization")>Tổ chức</a></li>
                                     <li><a href="portfolio.html">Về chúng tôi</a></li>
                                     <li><a href="contact.php">Liên hệ</a></li>
                                     @if (User.Identity == null || !User.Identity.IsAuthenticated)
                                     {
-                                    <li><a href=@Url.Content("/#/Login")> Đăng nhập</a></li>
-                                    } else {
-                                    <li class="active dropdown">
-                                        <img  src="{{User_Information.ProfileImage}}" style="width:38px;height:38px; margin-top:2px;" /> <b class="caret"></b>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="full.html">Tin nhắn</a></li>
-                                            <li><a href="2-column.html">Thông báo</a></li>
-                                            <li><a href=@Url.Content("/#/Profile/{{User_Information.UserName}}")>Thông tin tài khoản</a></li>
-                                            <li><a href="@Url.Action("Logout", "Login")">Đăng xuất {{User_Information.FullName}}</a></li>
-                                        </ul>
-                                    </li>
+                                        <li><a href=@Url.Content("/#/Login")> Đăng nhập</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="active dropdown">
+                                            <img src="{{User_Information.ProfileImage}}" style="width:38px;height:38px; margin-top:2px;" /> <b class="caret"></b>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="full.html">Tin nhắn</a></li>
+                                                <li><a href="2-column.html">Thông báo</a></li>
+                                                <li><a href=@Url.Content("/#/Profile/{{User_Information.UserName}}")>Thông tin tài khoản</a></li>
+                                                <li><a href="@Url.Action("Logout", "Login")">Đăng xuất {{User_Information.FullName}}</a></li>
+                                            </ul>
+                                        </li>
                                     }
                                 </ul>
                             </div>
@@ -117,9 +120,9 @@
                             <div class="span3">
                                 <div class="box">
                                     <a href="@Url.Content("/#/CreateOrganization")"><i class="icon-share"></i></a>
-                                    <h4 class="title">Góp ý </h4> <hr/>
+                                    <h4 class="title">Tạo tổ chức </h4> <hr />
                                     <p>
-                                        Góp ý với chúng tôi.
+                                        Tổ chức có thể hoạt động tốt hơn cá nhân
                                     </p>
                                 </div>
                             </div>

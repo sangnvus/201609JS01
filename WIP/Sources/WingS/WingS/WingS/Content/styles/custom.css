@@ -504,6 +504,31 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
      height: 45px;
  }
 
-.organization-content {
-    height: 88px;
+
+.organization-name{
+    height: 70px;
+    overflow: hidden;
 }
+
+.organization-logo{
+    height: 156px;
+
+}
+
+.organization-logo a img{ 
+    height: 156px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.organization-content .introduction{
+    height: 88px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.organization-content .basic-infor{
+    height: 20px;
+    overflow: hidden;
+}
+

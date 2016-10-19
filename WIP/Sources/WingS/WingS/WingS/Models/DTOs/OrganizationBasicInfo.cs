@@ -8,6 +8,7 @@ namespace WingS.Models.DTOs
     public class OrganizationBasicInfo
     {
         public int OrganizationId { get; set; }
+        public int UserId { get; set; }
         public string OrganizationName { get; set; }
         public string Introduction { get; set; }
         public string LogoUrl { get; set; }
@@ -20,6 +21,7 @@ namespace WingS.Models.DTOs
         public OrganizationBasicInfo()
         {
             OrganizationId = 0;
+            UserId = 0;
             OrganizationName = "";
             Introduction = "";
             LogoUrl = "";

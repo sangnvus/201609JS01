@@ -60,6 +60,11 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Event/_CreateEvent.cshtml");
         }
+
+        public ActionResult Organization()
+        {
+            return PartialView("~/Views/Organization/_Organization.cshtml");
+        }
         public ActionResult CreateOrganization()
         {
             return PartialView("~/Views/Organization/_CreateOrganization.cshtml");
