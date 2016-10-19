@@ -55,7 +55,7 @@
 	  <li><a data-toggle="tab" href="#menu1" onclick=" return false">Lịch trình</a></li>
 	  <li><a data-toggle="tab" href="#menu2" onclick=" return false">Hình ảnh và Video</a></li>
 	</ul>
-@using (Html.BeginForm("CreateEvent", "EventPage", FormMethod.Post, new {enctype = "multipart/form-data"}))
+@using (Html.BeginForm("CreateEvent", "EventPage", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CreateEventForm"}))
 {
     <div class="tab-content">
         <!-- Tab content -->
@@ -88,10 +88,10 @@
                         </h3>
                     </div>
                     <div class="span9">
-                        <input name="EventName" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;" id="eventTitle"/>
+                        <input name="EventName" required type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;" id="eventTitle"/>
                         <p>Nhập vào chủ đề không dài quá 50 kí tự.
                         </p>
-                        <p>Chủ bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
+                        <p>Chủ đề bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
                         </p>
 
                     </div>
@@ -105,7 +105,7 @@
                         </h3>
                     </div>
                     <div class="span9">
-                        <input name="Location" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;"/>
+                        <input name="Location" required type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;"/>
                         <p>Địa điểm tổ chức sự kiện</p>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                         </h3>
                     </div>
                     <div class="span9">
-                        <input name="ExpectedMoney" type="number" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;" />
+                        <input name="ExpectedMoney" required type="number" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;" />
                         <p>Đơn vị VNĐ</p>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                     </div>
                     <div class="span9">
                         <p>Chọn hình ảnh bạn có<span style ="color: red;"> 	BẮT BUỘC</span></p>
-                        <input type="file" class="multiple" name="Images" multiple required accept="image/*">
+                        <input type="file" class="multiple" name="images" multiple required accept="image/*">
                         <p style="font-weight: bold;">Chọn file với định dạng JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
 
                     </div>
@@ -293,7 +293,6 @@
             }
             counter--;
             $("#TextBoxDiv" + counter).remove();
-
         });
     });
 </script>

@@ -12,11 +12,6 @@
         padding: 1em;
         overflow: hidden;
     }
-    img .thread-image {
-        width: 300px;
-        height: 200px;
-        margin: 5px 0px 15px;
-    }
     .search-box {
         margin-top: -18px;
         padding: 10px;
@@ -138,7 +133,7 @@
                         for (var i = 0; i < response.data.length; i++) {
                             var thread = response.data[i];
                             result += '<div class = "searchImg">' + '<a href="/#/ThreadDetail/' + thread.ThreadID + '">' +
-                                '<img src="' + thread.ImageUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                                '<img src="' + thread.ImageUrl + '" class="img-polaroid" style="max-height:110px;max-weight:170px" alt="thread img"></a>' + '</div>' +
                                 '<div class = "searchContent"><br/><b>Tiêu đề : </b>' + thread.ThreadName + '<br/>' +
                                 '<b> Nội dung : </b>' + thread.Content + '<br/>' +
                                 '<b> Lượt xem : </b>' + thread.Views + '<br/>' +
@@ -148,8 +143,8 @@
                     else if (response.type === "user") {
                         for (var j = 0; j < response.data.length; j++) {
                             var user = response.data[j];
-                            result += '<div class = "searchImg">' + '<a href="/#/UserDetail/' + user.UserID + '">' +
-                                '<img src="' + user.ProfileImage + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                            result += '<div class = "searchImg">' + '<a href="/#/Profile/' + user.userName + '">' +
+                                '<img src="' + user.ProfileImage + '" class="img-polaroid" style="max-height:110px;max-weight:160px" alt="user img"></a>' + '</div>' +
                                 '<div class = "searchContent"><br/><b>Tên đầy đủ : </b>' + user.FullName + '<br/>' +
                                 '<b> Địa chỉ : </b>' + user.UserAddress + '<br/>' +
                                 '<b> Số điện thoại : </b>' + user.Phone + '<br/>' +
@@ -160,7 +155,7 @@
                         for (var k = 0; k < response.data.length; k++) {
                             var event = response.data[k];
                             result += '<div class = "searchImg">' + '<a href="/#/EventDetail/' + event.EventID + '">' +
-                                '<img src="' + event.ImageUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                                '<img src="' + event.ImageUrl + '" class="img-polaroid" style="max-height:110px;max-weight:160px" alt="event img"></a>' + '</div>' +
                                 '<div class = "searchContent"><br/><b>Tên sự kiện : </b>' + event.EventName + '<br/>' +
                                 '<b> Nội dung : </b>' + event.Content + '<br/>' +
                                 '<b> Lượt xem : </b>' + event.Views + '<br/>' +
@@ -171,7 +166,7 @@
                         for (var l = 0; l < response.data.length; l++) {
                             var organization = response.data[l];
                             result += '<div class = "searchImg">' + '<a href="/#/OrganizationDetail/' + organization.OrganizationId + '">' +
-                                '<img src="' + organization.LogoUrl + '" class="img-polaroid thread-image" alt="thread img"></a>' + '</div>' +
+                                '<img src="' + organization.LogoUrl + '" class="img-polaroid" style="max-height:110px;max-weight:160px" alt="organi img"></a>' + '</div>' +
                                 '<div class = "searchContent"><br/><b>Tên tổ chức : </b>' + organization.OrganizationName + '<br/>' +
                                 '<b> Giới thiệu : </b>' + organization.Introduction + '<br/>' +
                                 '<b> Số điện thoaị : </b>' + organization.Phone + '<br/>' +
