@@ -73,6 +73,11 @@ app.config(function ($routeProvider) {
         title: "Sự kiện",
         controller: "EventController"
     })
+    .when("/EventDetail", {
+              templateUrl: "/Client/EventDetail",
+              title: "Chi Tiết Sự kiện",
+              controller: "EventController"
+     })
     .when("/Profile/:UserName", {
         templateUrl: "/Client/Profile",
         title: "Thông tin cá nhân",

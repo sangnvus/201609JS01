@@ -48,6 +48,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Event/_Event.cshtml");
         }
+        public ActionResult EventDetail()
+        {
+            return PartialView("~/Views/Event/_EventDetail.cshtml");
+        }
         public ActionResult Search()
         {
             return PartialView("~/Views/Search/_Search.cshtml");
