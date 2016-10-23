@@ -82,6 +82,24 @@ namespace WingS.DataAccess
             }
 
         }
+        public EventBasicInfo GetEventBasicInfoByIf(int eventId)
+        {
+            EventBasicInfo EvtBasicInfo = new EventBasicInfo();
+            using (var db = new Ws_DataContext())
+            {
+                var currentEvent = db.Events.FirstOrDefault(x => x.EventID == eventId);
+                EvtBasicInfo.CreatorID = currentEvent.CreatorID;
+                EvtBasicInfo.CreatorName = currentEvent.Organization.OrganizationName;
+                EvtBasicInfo.VideoUrl = currentEvent.VideoUrl;
+                EvtBasicInfo.EventName = currentEvent.EventName;
+                EvtBasicInfo.EventType = currentEvent.EType.EventName;
+                EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("MM/dd/yy");
+                EvtBasicInfo.Content = currentEvent.Description;
+                EvtBasicInfo.ExpectedMoney = currentEvent.ExpectedMoney;
+                EvtBasicInfo.Location = currentEvent.Location;
+                return EvtBasicInfo;
+            }
+        }
         public Organization GetOrganiIdByUserId(int userId)
         {
             using (var db = new Ws_DataContext())

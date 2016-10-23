@@ -13,6 +13,20 @@ namespace WingS.Controllers
 {
     public class EventController : ApiController
     {
+        [HttpGet]
+        public IHttpActionResult GetEventDetailById(int id)
+        {
+            EventBasicInfo EvtBasicInfo = new EventBasicInfo();
+            try { 
+                using (var db = new EventDAL()){
+                EvtBasicInfo = db.GetEventBasicInfoByIf(id);
+                }
+            }catch(Exception)
+            {
+                return Redirect("/#/Error");
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = EvtBasicInfo });
+        }
         //Get top view event
         [HttpGet]
         public IHttpActionResult GetTopFourEventByPoint()

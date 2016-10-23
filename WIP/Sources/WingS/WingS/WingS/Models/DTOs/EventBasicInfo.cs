@@ -9,23 +9,28 @@ namespace WingS.Models.DTOs
     {
         public int EventID { get; set; }
         public int CreatorID { get; set; }
+        public string CreatorName { get; set; }
         public string EventName { get; set; }
         public string Content { get; set; }
         public string ImageUrl { get; set; }
+        public string Location { get; set; }
+        public string VideoUrl { get; set; }
         public bool Status { get; set; }
+        public double ExpectedMoney { get; set; }
+        public string EventType { get; set; }
         public string CreatedDate { get; set; }
-        public int Likes { get; set; }
-        public int Views { get; set; }
         public EventBasicInfo()
         {
+            CreatorName = "";
+            EventType = "";
+            ExpectedMoney = 0;
+            VideoUrl = "";
             CreatedDate = "";
             EventID = 0;
             CreatorID = 0;
             EventName = "";
             Content = "";
             ImageUrl = "";
-            Likes = 0;
-            Views = 0;
             Status = false;
         }
     }
