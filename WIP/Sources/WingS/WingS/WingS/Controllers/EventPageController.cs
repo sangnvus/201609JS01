@@ -15,13 +15,22 @@ namespace WingS.Controllers
     public class EventPageController : Controller
     {
         [HttpPost]
-        public ActionResult CreateEvent(CreateEventInfo eventInfo, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult CreateEvent(CreateEventInfo eventInfo,  IEnumerable<HttpPostedFileBase> images)
         {
+            //Get Event Time Lines
+            string[] FromDate = Request.Form.GetValues("FromDate");
+            string[] ToDate = Request.Form.GetValues("ToDate");
+            string[] Description = Request.Form.GetValues("Description");
+            List<CreateEventSchedule> eventTimeLine = new List<CreateEventSchedule>();
+            for(int i = 0; i<FromDate.Length;i++)
+            {
+                eventTimeLine.Add(new CreateEventSchedule(FromDate[i],ToDate[i],Description[i]));
+            }
             Event newEvent = null;
             using (var db = new EventDAL())
             {
                 newEvent = db.AddNewEvent(eventInfo);
-                foreach (var scheduleInfo in AddScheduleToList(eventInfo))
+                foreach (var scheduleInfo in eventTimeLine)
                 {
                     db.AddNewEventTimeLine(scheduleInfo, newEvent.EventID);
                 }
@@ -50,88 +59,5 @@ namespace WingS.Controllers
             return Redirect("/#/Home");
         }
 
-        public List<CreateEventSchedule> AddScheduleToList(CreateEventInfo eventInfo)
-        {
-            var timelineList = new List<CreateEventSchedule>();
-            if (eventInfo.FromDate1 != "" && eventInfo.ToDate1 != "" && eventInfo.Description1 != "")
-            {
-                timelineList.Add(new CreateEventSchedule(eventInfo.FromDate1, eventInfo.ToDate1, eventInfo.Description1));
-                if (eventInfo.FromDate2 != "" && eventInfo.ToDate2 != "" && eventInfo.Description2 != "")
-                {
-                    timelineList.Add(new CreateEventSchedule(eventInfo.FromDate2, eventInfo.ToDate2, eventInfo.Description2));
-                    if (eventInfo.FromDate3 != "" && eventInfo.ToDate3 != "" && eventInfo.Description3 != "")
-                    {
-                        timelineList.Add(new CreateEventSchedule(eventInfo.FromDate3, eventInfo.ToDate3, eventInfo.Description3));
-                        if (eventInfo.FromDate4 != "" && eventInfo.ToDate4 != "" && eventInfo.Description4 != "")
-                        {
-                            timelineList.Add(new CreateEventSchedule(eventInfo.FromDate4, eventInfo.ToDate4, eventInfo.Description4));
-                            if (eventInfo.FromDate5 != "" && eventInfo.ToDate5 != "" && eventInfo.Description5 != "")
-                            {
-                                timelineList.Add(new CreateEventSchedule(eventInfo.FromDate5, eventInfo.ToDate5, eventInfo.Description5));
-                                if (eventInfo.FromDate6 != "" && eventInfo.ToDate6 != "" && eventInfo.Description6 != "")
-                                {
-                                    timelineList.Add(new CreateEventSchedule(eventInfo.FromDate6, eventInfo.ToDate6, eventInfo.Description6));
-                                    if (eventInfo.FromDate7 != "" && eventInfo.ToDate7 != "" && eventInfo.Description7 != "")
-                                    {
-                                        timelineList.Add(new CreateEventSchedule(eventInfo.FromDate7, eventInfo.ToDate7, eventInfo.Description7));
-                                        if (eventInfo.FromDate8 != "" && eventInfo.ToDate8 != "" && eventInfo.Description8 != "")
-                                        {
-                                            timelineList.Add(new CreateEventSchedule(eventInfo.FromDate8, eventInfo.ToDate8, eventInfo.Description8));
-                                            if (eventInfo.FromDate9 != "" && eventInfo.ToDate9 != "" && eventInfo.Description9 != "")
-                                            {
-                                                timelineList.Add(new CreateEventSchedule(eventInfo.FromDate9, eventInfo.ToDate9, eventInfo.Description9));
-                                                if (eventInfo.FromDate10 != "" && eventInfo.ToDate10 != "" && eventInfo.Description10 != "")
-                                                {
-                                                    timelineList.Add(new CreateEventSchedule(eventInfo.FromDate10, eventInfo.ToDate10, eventInfo.Description10));
-                                                }
-                                                else
-                                                {
-                                                    return timelineList;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                return timelineList;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            return timelineList;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        return timelineList;
-                                    }
-                                }
-                                else
-                                {
-                                    return timelineList;
-                                }
-                            }
-                            else
-                            {
-                                return timelineList;
-                            }
-                        }
-                        else
-                        {
-                            return timelineList;
-                        }
-                    }
-                    else
-                    {
-                        return timelineList;
-                    }
-                    
-                }
-                else
-                {
-                    return timelineList;
-                }
-                
-            }
-            return timelineList;
-        }
     }
 }
