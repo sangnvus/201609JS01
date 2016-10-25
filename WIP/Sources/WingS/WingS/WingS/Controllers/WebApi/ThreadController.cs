@@ -159,7 +159,7 @@ namespace WingS.Controllers.WebApi
                             ImageUrl = threadImage,
                             Content = thread.Content,   
                             Status = true,
-                            CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
+                            CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd/MM/yy")
 
                         });
                     }

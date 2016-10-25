@@ -82,7 +82,15 @@ namespace WingS.DataAccess
             }
 
         }
-        public EventBasicInfo GetEventBasicInfoByIf(int eventId)
+        public List<EventTimeLine> GetEventTimeLineByEventId(int eventId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var currentTimeLine = db.ETimeLine.OrderByDescending(x => x.EventId == eventId && x.Status == true).ToList();
+                return currentTimeLine;
+            }
+        }
+        public EventBasicInfo GetEventBasicInfoById(int eventId)
         {
             EventBasicInfo EvtBasicInfo = new EventBasicInfo();
             using (var db = new Ws_DataContext())
@@ -93,18 +101,20 @@ namespace WingS.DataAccess
                 EvtBasicInfo.VideoUrl = currentEvent.VideoUrl;
                 EvtBasicInfo.EventName = currentEvent.EventName;
                 EvtBasicInfo.EventType = currentEvent.EType.EventName;
-                EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("MM/dd/yy");
+                EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("dd/MM/yy");
                 EvtBasicInfo.Content = currentEvent.Description;
                 EvtBasicInfo.ExpectedMoney = currentEvent.ExpectedMoney;
                 EvtBasicInfo.Location = currentEvent.Location;
+                EvtBasicInfo.Start_Date = currentEvent.Start_Date.ToString("dd/MM/yy"); ;
+                EvtBasicInfo.Finish_Date = currentEvent.Finish_Date.ToString("dd/MM/yy");
                 return EvtBasicInfo;
             }
         }
-        public Organization GetOrganiIdByUserId(int userId)
+        public Organization GetOrganizationById(int orgId)
         {
             using (var db = new Ws_DataContext())
             {
-                var organi = db.Organizations.FirstOrDefault(x => x.UserId == userId);
+                var organi = db.Organizations.FirstOrDefault(x => x.OrganizationId == orgId);
                 return organi;
             }
 
@@ -112,7 +122,7 @@ namespace WingS.DataAccess
         public Event AddNewEvent(CreateEventInfo eventInfo)
         {
             var newEvent = CreateEmptyEvent();
-            newEvent.CreatorID = GetOrganiIdByUserId(WsConstant.CurrentUser.UserId).OrganizationId;
+            newEvent.CreatorID = GetOrganizationById(WsConstant.CurrentUser.UserId).OrganizationId;
             newEvent.EventType = eventInfo.EventType;
             newEvent.EventName = eventInfo.EventName;
             if (eventInfo.StartDate != "")

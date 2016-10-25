@@ -9,9 +9,8 @@
     public class Organization
     {
         [Key]
-        public int OrganizationId { get; set; }
         [ForeignKey("Ws_User")]
-        public int UserId { get; set; }
+        public int OrganizationId { get; set; }
         public string OrganizationName { get; set; }
         public string Introduction { get; set; }
         public string LogoUrl { get; set; }

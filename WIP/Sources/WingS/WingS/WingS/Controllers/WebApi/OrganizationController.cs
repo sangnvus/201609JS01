@@ -23,7 +23,6 @@ namespace WingS.Controllers.WebApi
                 {
                     Organization org = db.GetOrganizationById(orgId);
                     orgBasicInfo.OrganizationId = org.OrganizationId;
-                    orgBasicInfo.UserId = org.UserId;
                     orgBasicInfo.OrganizationName = org.OrganizationName;
                     orgBasicInfo.Introduction = org.Introduction;
                     orgBasicInfo.LogoUrl = org.LogoUrl;

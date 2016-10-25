@@ -19,13 +19,34 @@ namespace WingS.Controllers
             EventBasicInfo EvtBasicInfo = new EventBasicInfo();
             try { 
                 using (var db = new EventDAL()){
-                EvtBasicInfo = db.GetEventBasicInfoByIf(id);
+                EvtBasicInfo = db.GetEventBasicInfoById(id);
                 }
             }catch(Exception)
             {
                 return Redirect("/#/Error");
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = EvtBasicInfo });
+        }
+        //Get EventTimeLine       
+        [HttpGet]
+        public IHttpActionResult GetEventTimeLineByEventId(int id)
+        {
+            List <EventTimeLineBasicInfo> eventTimeLine = new List<EventTimeLineBasicInfo>();
+            var EventList = new List<EventTimeLine>();
+            using (var db = new EventDAL())
+            {
+                EventList = db.GetEventTimeLineByEventId(id);
+                foreach(var eTimeLine in EventList)
+                {
+                    eventTimeLine.Add(new EventTimeLineBasicInfo
+                    {
+                        FromDate = eTimeLine.FromDate.ToString("dd/MM/yy"),
+                        ToDate = eTimeLine.ToDate.ToString("dd/MM/yy"),
+                        Content = eTimeLine.Content
+                    });
+                }
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = eventTimeLine });
         }
         //Get top view event
         [HttpGet]
@@ -45,7 +66,7 @@ namespace WingS.Controllers
 
                     basicEventList.Add(new EventBasicInfo
                     {
-                        CreatedDate = e.Created_Date.ToString("H:mm:ss MM/dd/yy"),
+                        CreatedDate = e.Created_Date.ToString("H:mm:ss dd/MM/yy"),
                         EventID = e.EventID,
                         EventName = e.EventName,
                         Content = e.Description,
@@ -78,7 +99,7 @@ namespace WingS.Controllers
 
                         basicEventList.Add(new EventBasicInfo
                         {
-                            CreatedDate = e.Created_Date.ToString("H:mm:ss MM/dd/yy"),
+                            CreatedDate = e.Created_Date.ToString("H:mm:ss dd/MM/yy"),
                             EventID = e.EventID,
                             EventName = e.EventName,
                             Content = e.Description,
@@ -120,7 +141,7 @@ namespace WingS.Controllers
                             ImageUrl = eventMainImage.ImageUrl,
                             Content = events.Description,
                             Status = true,
-                            CreatedDate = DateTime.Now.ToString("H:mm:ss MM/dd/yy")
+                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
                         });
                     }
                 }

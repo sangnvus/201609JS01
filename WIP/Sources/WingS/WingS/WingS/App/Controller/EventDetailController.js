@@ -13,6 +13,15 @@
         $scope.Event.VideoUrl = $sce.trustAsResourceUrl($scope.Event.VideoUrl);
         $scope.Event.Content = $sce.trustAsHtml($scope.Event.Content);
     });
+    // Load TimeLine
+    $http({
+        url: "/api/Event/GetEventTimeLineByEventId",
+        method: "Get",
+        params: { id: eventId },
+        contentType: "application/json",
+    }).success(function (response) {
+        $scope.EventTimeLine = response.Data;
+    });
     function getYoutubeId(url)
     {
         var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

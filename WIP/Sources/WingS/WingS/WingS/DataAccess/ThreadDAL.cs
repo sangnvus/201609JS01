@@ -103,7 +103,7 @@ namespace WingS.DataAccess
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
                             bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
-                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss MM/dd/yy");
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         list.Add(bs);
                     }
@@ -136,7 +136,7 @@ namespace WingS.DataAccess
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
                             bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
-                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss MM/dd/yy");
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         list.Add(bs);
                     }
@@ -169,7 +169,7 @@ namespace WingS.DataAccess
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
                             bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
-                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss MM/dd/yy");
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         list.Add(bs);
                     }

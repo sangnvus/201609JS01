@@ -54,7 +54,7 @@
                         </ul>
                         <div class="tab-content">
                             <!-- Content -->
-                            <div id="contentEvt" class="tab-pane fade in active">
+                            <div id="contentEvt" class="tab-pane fade in active" style="background-color: #f6f6f6; padding-left:3px;padding-right:3px;">
                                 <div class="contentEvent">
                                     <p ng-bind-html="Event.Content"><p>
                                 </div>
@@ -92,25 +92,11 @@
                             </div>
                             <!-- Timeline -->
                             <div id="timeline" class="tab-pane fade" style="background-color: #f6f6f6;">
-                                <p><span style="font-weight: 600;;color:blue">Thời gian diễn ra sự kiện:</span> 12/10/2016 - 15/10/2016</p>
+                                <p ><span style="font-weight: 600;;color:blue">Thời gian diễn ra sự kiện:</span>  {{Event.Start_Date}}-{{Event.Finish_Date}}  </p>
                                 <p style="font-weight: 600;color:blue;">Lịch trình cụ thể:</p>
-                                <p>
-                                    <span style="font-weight: 600;">Từ ngày 12/10/2016 đến ngày 13/10/2016</span></br>
-                                    Tặng 1000 phần tại trường Trương Văn Bang,  huyện Cần Giuộc ( trao 50 xuất học bổng trị giá 150 ngàn cho các em học sinh nghèo của trường.</br>
-                                    13h00 : tập trung tại chùa pháp giới 110/55 tô hiệu p.hiệp tân q.tân phú</br>
-                                    13h30 : xe khởi hành đi Cần Giuộc</br>
-                                    14h30: tới trường trương văn ban xã tân kim huyện cần giuộc tỉnh long an</br>
-                                    + trang trí sân khấu và vô quà bánh cho các em</br>
-                                    15h30 : khai mạc chương trình văn nghệ </br>
-                                    19h30 : kết thúc chương trình</br>
-                                </p>
-
-                                <p>
-                                    <span style="font-weight: 600;">Từ ngày 13/10/2016 đến ngày 14/10/2016</span></br>
-                                    Tặng 350 phần tại trường THCS Trường Bình huyện Cần Giuộc Tỉnh Long An</br>
-                                    14h00 : tập trung tại chùa pháp giới 110/55 tô hiệu p.hiệp tân q.tân phú</br>
-                                    14h30 : xe khởi hành đi Chùa Pháp Môn</br>
-                                    15h30: tới Chùa Pháp Môn xã tân kim huyện cần giuộc tỉnh long an </br>
+                                <p ng-repeat="item in EventTimeLine">
+                                    <span style="font-weight: 600;">Từ ngày {{item.FromDate}} đến ngày {{item.ToDate}}</span></br>
+                                    {{item.Content}}
                                 </p>
                             </div>
 

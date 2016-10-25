@@ -19,6 +19,8 @@ namespace WingS.Models.DTOs
         public double ExpectedMoney { get; set; }
         public string EventType { get; set; }
         public string CreatedDate { get; set; }
+        public string Start_Date { get; set; }
+        public string Finish_Date { get; set; }
         public EventBasicInfo()
         {
             CreatorName = "";

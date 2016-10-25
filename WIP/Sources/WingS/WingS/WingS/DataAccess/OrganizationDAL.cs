@@ -30,7 +30,6 @@ namespace WingS.DataAccess
         public Organization AddNewOrganization(CreateOrganization organizationBasic)
         {
             var newOrg = CreatEmptyOrganization();
-
             newOrg.OrganizationId = WsConstant.CurrentUser.UserId;
             newOrg.OrganizationName = organizationBasic.OrganizationName;
             newOrg.Introduction = organizationBasic.Introduction;
@@ -59,7 +58,7 @@ namespace WingS.DataAccess
                 org.Phone = "";
                 org.Email = "";
                 org.Address = "";
-                org.Status = false;
+                org.Status = true;
                 org.Point = 0;
 
                 return org;
