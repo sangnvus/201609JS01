@@ -152,7 +152,6 @@
 			  <li><a data-toggle="tab"  href="#timeline">Lịch trình</a></li>
 			  <li><a data-toggle="tab"  href="#list">Danh sách đóng góp</a></li>
 			  <li><a data-toggle="tab"  href="#contact">Liên hệ</a></li>
-			  <li><a data-toggle="tab"  href="#comment">Bình luận</a></li>
 			</ul>
 			<div class="tab-content">
 				<!-- Content -->
@@ -344,8 +343,14 @@
 					</p>
 				</div>
 				
+			</div>
+
+		</section>
+		</div>
+		<hr>
+		<h3>Bình Luận</h3>
 				<!-- Comment -->
-				<div id="comment" class="tab-pane fade">
+				<div id="comment">
 				  <div class="media" ng-repeat="item in CommentThread| limitTo: paginationLimit()">
 							<a class="pull-left" href="#">
 								<img src="{{item.UserImageProfile}}" style="width:64px; height:64px;" class="img-rounded" alt="" />
@@ -377,11 +382,7 @@
 								</div>
 							</div>
 						</div>
-				</div>
-			</div>
-
-		</section>
-		</div>
+				</div>		
 
 			
  
