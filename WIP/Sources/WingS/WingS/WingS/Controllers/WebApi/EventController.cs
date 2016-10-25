@@ -14,6 +14,128 @@ namespace WingS.Controllers
     public class EventController : ApiController
     {
         [HttpGet]
+        public IHttpActionResult CountLikeInEvent(int EventId)
+        {
+            int numberOfLikes = 0;
+            using (var db = new EventDAL())
+            {
+                numberOfLikes = db.CountLikeInEvent(EventId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = numberOfLikes });
+        }
+        [HttpGet]
+        public IHttpActionResult CheckCurrentUserIsLikedOrNot(int EventId)
+        {
+            bool isLiked = false;
+            using (var db = new EventDAL())
+            {
+                isLiked = db.CheckUserIsLikedOrNot(EventId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = isLiked });
+        }
+        [HttpGet]
+        public IHttpActionResult ChangeLikeState(int EventId)
+        {
+            using (var db = new EventDAL())
+            {
+                var change = db.ChangelikeState(EventId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
+        }
+        [HttpGet]
+        public IHttpActionResult CheckExistedSubCommentOrNot()
+        {
+            using (var db = new EventDAL())
+            {
+                var commentList = db.GetAllCommentIdAndSubCommentId();
+                if (commentList == null || commentList.Count == 0)
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = commentList });
+            }
+
+        }
+        //Get All Commend in current thread.
+        [HttpGet]
+        public IHttpActionResult GetAllComment(int eventId)
+        {
+            using (var db = new EventDAL())
+            {
+                var commentList = db.GetAllCommentInEvent(eventId);
+                if (commentList == null || commentList.Count == 0)
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = commentList });
+            }
+
+        }
+        [HttpPost]
+        public IHttpActionResult AddComment(AddCommentDTO comment)
+        {
+            var newComment = new CommentEvent
+            {
+                UserId = WsConstant.CurrentUser.UserId,
+                EventId = comment.ThreadId,
+                Content = comment.CommentContent,
+                Status = true,
+                CommentDate = DateTime.Now
+            };
+            using (var db = new EventDAL())
+            {
+                newComment = db.AddNewComment(newComment);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = newComment });
+        }
+        //Add subcomment for thread to DB
+        [HttpPost]
+        public IHttpActionResult AddSubComment(AddSubCommentDTO comment)
+        {
+            var newSubComment = new SubCommentEvent
+            {
+                UserId = WsConstant.CurrentUser.UserId,
+                CommentEventId = comment.CommentThreadId,
+                Content = comment.CommentContent,
+                Status = true,
+                CommentDate = DateTime.Now
+            };
+            using (var db = new EventDAL())
+            {
+                try
+                {
+                    newSubComment = db.AddNewSubComment(newSubComment);
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
+                }
+                catch (Exception)
+                {
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+                }
+            }
+
+        }
+        [HttpGet]
+        public IHttpActionResult GetSubCommentByCommentId(int CommentId)
+        {
+            //Select All SubComment and return
+            using (var db = new EventDAL())
+            {
+
+                var SubcommentList = db.GetSubCommentInEventById(CommentId);
+                if (SubcommentList == null) return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = SubcommentList });
+            }
+        }
+        //Get All SubComment
+        [HttpGet]
+        public IHttpActionResult GetAllSubComment()
+        {
+            //Select All SubComment and return
+            using (var db = new EventDAL())
+            {
+
+                var SubcommentList = db.GetAllSubCommentInEvent();
+                if (SubcommentList == null) return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = SubcommentList });
+            }
+        }
+        [HttpGet]
         public IHttpActionResult GetEventDetailById(int id)
         {
             EventBasicInfo EvtBasicInfo = new EventBasicInfo();
@@ -70,8 +192,9 @@ namespace WingS.Controllers
                         EventID = e.EventID,
                         EventName = e.EventName,
                         Content = e.Description,
+                        ShortDescription = e.ShortDescription,
                         CreatorID = e.CreatorID,
-                        ImageUrl = eventMainImage.ImageUrl,
+                        MainImageUrl = eventMainImage.ImageUrl,
                         Status = e.Status
                     });
                 }
@@ -103,8 +226,9 @@ namespace WingS.Controllers
                             EventID = e.EventID,
                             EventName = e.EventName,
                             Content = e.Description,
+                            ShortDescription = e.ShortDescription,
                             CreatorID = e.CreatorID,
-                            ImageUrl = eventMainImage.ImageUrl,
+                            MainImageUrl = eventMainImage.ImageUrl,
                             Status = e.Status
                         });
                     }
@@ -138,8 +262,9 @@ namespace WingS.Controllers
                             EventID = events.EventID,
                             CreatorID = events.CreatorID,
                             EventName = events.EventName,
-                            ImageUrl = eventMainImage.ImageUrl,
+                            MainImageUrl = eventMainImage.ImageUrl,
                             Content = events.Description,
+                            ShortDescription = events.ShortDescription,
                             Status = true,
                             CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
                         });

@@ -12,6 +12,7 @@ namespace WingS.Models.DTOs
         public int EventType { get; set; }
         public string EventName { get; set; }
         public string Location { get; set; }
+        public string ShortDescription { get; set; }
         public double ExpectedMoney { get; set; }
         [AllowHtml]
         public string Contact { get; set; }

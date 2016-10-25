@@ -9,7 +9,6 @@ namespace WingS.Models.DTOs
     public class CreateOrganization
     {
         public string OrganizationName { get; set; }
-        [AllowHtml]
         public string Introduction { get; set; }
         public string LogoUrl { get; set; }
         public string Phone { get; set; }

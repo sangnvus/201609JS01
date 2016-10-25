@@ -11,12 +11,14 @@
         [Key]
         public int CommentEventId { get; set; }
         [ForeignKey("Ws_User")]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
         [ForeignKey("Event")]
-        public int EventID { get; set; }
+        public int EventId { get; set; }
         public string Content { get; set; }
         public DateTime CommentDate { get; set; }
+        public bool Status { get; set; }
         public virtual Event Event { get; set; }
         public virtual Ws_User Ws_User { get; set; }
+        public ICollection<SubCommentEvent> SubComment { get; set; }
     }
 }

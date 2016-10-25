@@ -25,7 +25,9 @@ namespace WingS.DataAccess
         public virtual DbSet<EventAlbumImage> EventAlbum { get; set; }
         public virtual DbSet<EventTimeLine> ETimeLine { get; set; }
         public virtual DbSet<SubCommentThread> SubCommentThread { get; set; }
+        public virtual DbSet<SubCommentEvent> SubCommentEvent { get; set; }
         public virtual DbSet<LikeThreads> LikeThreads { get; set; }
+        public virtual DbSet<LikeEvents> LikeEvents { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }

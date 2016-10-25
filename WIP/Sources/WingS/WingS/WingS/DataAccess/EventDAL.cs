@@ -10,7 +10,197 @@ namespace WingS.DataAccess
 {
     public class EventDAL : IDisposable
     {
+        public int CountLikeInEvent(int EventId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int CountLike = db.LikeEvents.Count(x => x.EventId == EventId && x.Status == true);
+                return CountLike;
+            }
 
+        }
+        public bool CheckUserIsLikedOrNot(int EventId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var isLike = (from p in db.LikeEvents
+                              where p.EventId == EventId && p.UserId == WsConstant.CurrentUser.UserId && p.Status == true
+                              select p).SingleOrDefault();
+                if (isLike != null) return true;
+                else return false;
+            }
+        }
+    
+    public bool ChangelikeState(int EventId)
+    {
+        try
+        {
+            using (var db = new Ws_DataContext())
+            {
+                //Check current like status.
+                LikeEvents current = (
+                                       from p in db.LikeEvents
+                                       where p.EventId == EventId && p.UserId == WsConstant.CurrentUser.UserId
+                                       select p
+                                       ).SingleOrDefault();
+                if (current != null)
+                {
+                    if (current.Status == true) current.Status = false;
+                    else current.Status = true;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.LikeEvents.Add(new LikeEvents() { EventId = EventId, UserId = WsConstant.CurrentUser.UserId, Status = true });
+                    db.SaveChanges();
+                }
+
+                return true;
+
+            }
+        }
+        catch (Exception) { return false; }
+    }
+        public List<int> GetAllCommentIdAndSubCommentId()
+        {
+            List<int> list = new List<int>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.SubCommentEvent
+                        .Where(x => x.Status == true)
+                        .Select(x => new { x.CommentEventId });
+                    foreach (var item in listComment)
+                    {
+                        list.Add(item.CommentEventId);
+                    }
+
+                }
+                catch (Exception) { return null; }
+
+            }
+            return list;
+        }
+        public List<BasicCommentThread> GetAllCommentInEvent(int eventId)
+        {
+            List<BasicCommentThread> list = new List<BasicCommentThread>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.CommentEvents
+                        .Where(x => x.Status == true && x.EventId == eventId)
+                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.CommentEventId, x.Content, x.CommentDate })
+                        .OrderByDescending(x => x.CommentDate).ToList();
+                    foreach (var item in listComment)
+                    {
+                        BasicCommentThread bs = new BasicCommentThread();
+                        bs.UserCommentedId = item.UserId;
+                        bs.UserCommentedName = item.UserName;
+                        bs.UserImageProfile = item.ProfileImage;
+                        bs.CommentId = item.CommentEventId;
+                        bs.Content = item.Content;
+                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
+                        else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        list.Add(bs);
+                    }
+
+                }
+                catch (Exception) { return null; }
+
+            }
+            return list;
+        }
+        public CommentEvent AddNewComment(CommentEvent comment)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var newComment = db.CommentEvents.Add(comment);
+                db.SaveChanges();
+                return newComment;
+            }
+
+        }
+        public SubCommentEvent AddNewSubComment(SubCommentEvent subComment)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var newComment = db.SubCommentEvent.Add(subComment);
+                db.SaveChanges();
+                return newComment;
+            }
+
+        }
+        public List<BasicCommentThread> GetSubCommentInEventById(int CommentId)
+        {
+            List<BasicCommentThread> list = new List<BasicCommentThread>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.SubCommentEvent
+                        .Where(x => x.Status == true && x.CommentEventId == CommentId)
+                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.CommentEventId, x.Content, x.CommentDate })
+                        .OrderByDescending(x => x.CommentDate).ToList();
+                    foreach (var item in listComment)
+                    {
+                        BasicCommentThread bs = new BasicCommentThread();
+                        bs.UserCommentedId = item.UserId;
+                        bs.UserCommentedName = item.UserName;
+                        bs.UserImageProfile = item.ProfileImage;
+                        bs.CommentId = CommentId;
+                        bs.Content = item.Content;
+                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
+                        else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        list.Add(bs);
+                    }
+
+                }
+                catch (Exception) { return null; }
+
+            }
+            return list;
+        }
+        public List<BasicCommentThread> GetAllSubCommentInEvent()
+        {
+            List<BasicCommentThread> list = new List<BasicCommentThread>();
+            using (var db = new Ws_DataContext())
+            {
+                try
+                {
+                    var listComment = db.SubCommentEvent
+                        .Where(x => x.Status == true)
+                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.CommentEventId, x.Content, x.CommentDate })
+                        .OrderByDescending(x => x.CommentDate).ToList();
+                    foreach (var item in listComment)
+                    {
+                        BasicCommentThread bs = new BasicCommentThread();
+                        bs.UserCommentedId = item.UserId;
+                        bs.UserCommentedName = item.UserName;
+                        bs.UserImageProfile = item.ProfileImage;
+                        bs.CommentId = item.CommentEventId;
+                        bs.Content = item.Content;
+                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                            bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
+                        else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        list.Add(bs);
+                    }
+
+                }
+                catch (Exception) { return null; }
+
+            }
+            return list;
+        }
         public List<Event> GetTopFourEventByPoint(int eventNumber)
         {
             List<Event> list = null;
@@ -105,10 +295,21 @@ namespace WingS.DataAccess
                 EvtBasicInfo.Content = currentEvent.Description;
                 EvtBasicInfo.ExpectedMoney = currentEvent.ExpectedMoney;
                 EvtBasicInfo.Location = currentEvent.Location;
+                EvtBasicInfo.ContactInfo = currentEvent.Contact;
+                EvtBasicInfo.ShortDescription = currentEvent.ShortDescription;
                 EvtBasicInfo.Start_Date = currentEvent.Start_Date.ToString("dd/MM/yy"); ;
                 EvtBasicInfo.Finish_Date = currentEvent.Finish_Date.ToString("dd/MM/yy");
-                return EvtBasicInfo;
+              
             }
+            //Get ImageAlbum
+            using (var db = new Ws_DataContext())
+            {
+                var imgInEvent = (from p in db.EventAlbum
+                                  where p.EventId == eventId
+                                  select p.ImageUrl).ToList();
+                EvtBasicInfo.ImageAlbum = imgInEvent;
+            }
+            return EvtBasicInfo;
         }
         public Organization GetOrganizationById(int orgId)
         {

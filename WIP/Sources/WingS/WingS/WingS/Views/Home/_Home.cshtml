@@ -138,10 +138,10 @@
                                     <a href="#"><h4 class="text-info">{{item.EventName}}</h4></a>
                                 </div>
                                 <div class="event-img">
-                                    <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.ImageUrl}}" class="img-polaroid" alt="" style="width: 242px; height: 156px; margin: 5px 0px 15px;"></a>
+                                    <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.MainImageUrl}}" class="img-polaroid" alt="" style="width: 242px; height: 156px; margin: 5px 0px 15px;"></a>
                                 </div>
                                 <div class="event-content">
-                                    <p>{{item.Content}}
+                                    <p ng-bind-html="SkipValidation(item.Content)">
                                     </p>
                                 </div>
                                 <div class="thread-footer">
@@ -168,7 +168,7 @@
                                         <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}" class="img-polaroid" alt="" style="width:242px;height:156px; margin: 5px 0px 15px;"></a>
                                     </div>
                                     <div class="thread-content">
-                                        <p>{{item.Content}}</p>
+                                        <p>{{item.ShortDescription}}</p>
                                     </div>
                                 <div class="thread-footer">
                                     <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span>
