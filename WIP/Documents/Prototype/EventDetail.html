@@ -151,6 +151,7 @@
 			  <li class="active"><a data-toggle="tab"  href="#content" >Nội dung</a></li>
 			  <li><a data-toggle="tab"  href="#timeline">Lịch trình</a></li>
 			  <li><a data-toggle="tab"  href="#list">Danh sách đóng góp</a></li>
+			    <li><a data-toggle="tab"  href="#AlbumImage">Hình Ảnh</a></li>
 			  <li><a data-toggle="tab"  href="#contact">Liên hệ</a></li>
 			</ul>
 			<div class="tab-content">
@@ -348,42 +349,86 @@
 		</section>
 		</div>
 		<hr>
-		<h3>Bình Luận</h3>
-				<!-- Comment -->
-				<div id="comment">
-				  <div class="media" ng-repeat="item in CommentThread| limitTo: paginationLimit()">
-							<a class="pull-left" href="#">
-								<img src="{{item.UserImageProfile}}" style="width:64px; height:64px;" class="img-rounded" alt="" />
-							</a>
-							<div class="media-body">
-								<strong class="media-heading"> {{item.UserCommentedName}}</strong>&nbsp;{{item.Content}}
-							</div>
-							<div class="media-bottom" style="margin-left:66px;">
-								<i class="general foundicon-clock" style="font-size: 12px;"></i> <small>{{item.CommentedTime}}</small>&nbsp;&nbsp;<span ng-show="checkIsExistedSubComment({{item.CommentId}})"><strong style="color:rgb(208, 88, 3);">Đã có một vài trả lời</strong> </span>&nbsp;&nbsp;<a href="#" onclick="return false;" @*ng-if="User_Information.IsAuthen"*@ ng-click="showReply[$index]=true;getSubcomment(item.CommentId, $index)">Trả lời</a>
-							</div>
-							<div ng-show="showReply[$index]">
-								<div class="media" style="margin-left: 67px;" ng-repeat="subcomment in SubCommentThread[$index]">
-									<a class="pull-left" href="#">
-										<img src="{{subcomment.UserImageProfile}}" style="width:64px; height:64px;" class="img-rounded" alt="" />
-									</a>
-									<div class="media-body">
-										<strong class="media-heading"> {{subcomment.UserCommentedName}}</strong>&nbsp;{{subcomment.Content}}
-									</div>
-									<div class="media-bottom" style="margin-left:67px;">
-										<i class="general foundicon-clock" style="font-size: 12px;"></i> <small>{{subcomment.CommentedTime}}</small>
-									</div>
-								</div>
+		     <div class="row-fluid">
+			<!--Infor of User-->
+                <div class="span3">                    
+                 <p><span style="font-weight: bold">Người tạo:</span>  <span>TuấnDV</span></p>
+				 <p><span style="font-weight: bold">Địa chỉ Email:</span> <span>TuanDV@gmail.com</span></p>     
+				 <p><span style="font-weight: bold">Điểm tích lũy:</span> <span>600</span></p>     	
+                 <p><span style="font-weight: bold">Ảnh đại diện</span><p>        
+                 <p><img src="images/windmill.jpg" class="img-polaroid" alt=""></p>
+		  
+                 <a href="#" style="color: #333"><i class="icon-envelope-alt"></i> Nhắn tin</a>
+				 &nbsp; &nbsp;<a href="#" style="color: #333"><i class="icon-ban-circle"></i> Báo cáo người dùng</a>
+          </div>
+				<!--/End Infor of User  -->        				    				
+					                 
+            	<!--Edit Main Content Area here-->
+                <div class="span9" id="divMain">
 
-								<div ng-if="User_Information.IsAuthen" style="margin-left:67px;">
-									<br />
-									<a class="pull-left" href="#">
-										<img src="{{User_Information.ProfileImage}}" style="width:40px; height:40px;" class="img-rounded" alt="" />
-									</a>&nbsp;&nbsp;&nbsp;<input class="subContent" type="text" placeholder="Nhập bình luận" style="width:50%; height:40px; " ng-model="$parent.Subcontent" my-Enter="addSubComment(Subcontent,{{item.CommentId}},$index)" />
-								</div>
-							</div>
-						</div>
-				</div>		
+                    
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Media heading</h4>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                </div>
 
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                    </a>
+                    <div class="media-body">
+                    <h4 class="media-heading">Media heading</h4>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Media heading</h4>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+				  <div class="media">
+                    <a class="pull-left" href="#">
+                        <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Media heading</h4>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                </div>
+				<div class="media">
+                    <a class="pull-left" href="#">
+                        <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Media heading</h4>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                </div>
+				<br>
+				  <div align="center" style="margin-right:15px;">
+                                        <a class="btn btn-primary" href="#" ng-click="reloadComment()" onclick="return false;"><i class="icon-refresh icon-spin"></i> Tải lại bình luận</a>
+                                    </div>
+				
+				</div>	                             
+                    					                  
+				<!--/End Main Content Area here-->	                
+					
+							
+            </div>
+			
+                </div>
+            <!--End Main Content-->
+            </div>
 			
  
 
