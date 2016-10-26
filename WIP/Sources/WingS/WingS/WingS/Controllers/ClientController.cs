@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using WingS.DataAccess;
+using WingS.Models.DTOs;
 
 namespace WingS.Controllers
 {
@@ -62,7 +64,12 @@ namespace WingS.Controllers
         }
 		public ActionResult CreateEvent()
         {
-            return PartialView("~/Views/Event/_CreateEvent.cshtml");
+            EventTypeDropList eventTypeDropList = new EventTypeDropList();
+            using (var db = new EventDAL())
+            {
+                eventTypeDropList = db.GetEventType();
+            }
+            return PartialView("~/Views/Event/_CreateEvent.cshtml", eventTypeDropList);
         }
 
         public ActionResult Organization()

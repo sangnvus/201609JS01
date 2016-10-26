@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 using WingS.DataHelper;
 using WingS.Models;
 using WingS.Models.DTOs;
@@ -272,6 +272,27 @@ namespace WingS.DataAccess
             }
 
         }
+        public EventTypeDropList GetEventType()
+        {
+            EventTypeDropList eventType = new EventTypeDropList();
+            using (var db = new Ws_DataContext())
+            {
+                var eventtypeList = db.EventTypes.ToList();
+                foreach (var eventtype in eventtypeList)
+                {
+                    eventType.EventTypeList.Add(new SelectListItem
+                    {
+                        Text = eventtype.EventName,
+                        Value = eventtype.EventTypeID.ToString()
+                    });
+                }
+                if (eventType.EventTypeList.Count > 0)
+                {
+                    eventType.Selected = 1;
+                }
+                return eventType;
+            }
+        }
         public List<EventTimeLine> GetEventTimeLineByEventId(int eventId)
         {
             using (var db = new Ws_DataContext())
@@ -291,14 +312,14 @@ namespace WingS.DataAccess
                 EvtBasicInfo.VideoUrl = currentEvent.VideoUrl;
                 EvtBasicInfo.EventName = currentEvent.EventName;
                 EvtBasicInfo.EventType = currentEvent.EType.EventName;
-                EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("dd/MM/yy");
+                EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("dd/MM/yyyy");
                 EvtBasicInfo.Content = currentEvent.Description;
                 EvtBasicInfo.ExpectedMoney = currentEvent.ExpectedMoney;
                 EvtBasicInfo.Location = currentEvent.Location;
                 EvtBasicInfo.ContactInfo = currentEvent.Contact;
                 EvtBasicInfo.ShortDescription = currentEvent.ShortDescription;
-                EvtBasicInfo.Start_Date = currentEvent.Start_Date.ToString("dd/MM/yy"); ;
-                EvtBasicInfo.Finish_Date = currentEvent.Finish_Date.ToString("dd/MM/yy");
+                EvtBasicInfo.Start_Date = currentEvent.Start_Date.ToString("dd/MM/yyyy"); ;
+                EvtBasicInfo.Finish_Date = currentEvent.Finish_Date.ToString("dd/MM/yyyy");
               
             }
             //Get ImageAlbum
