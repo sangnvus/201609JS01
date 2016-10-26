@@ -137,6 +137,23 @@ namespace WingS.DataAccess
             }
             return orgList;
         }
+        /// <summary>
+        /// Chuyển tiếng việt có dấu thành tiếng việt không dấu (khoảng trắng thay  bằng dấu -)
+        /// </summary>
+        /// <param name="strVietnamese">tiếng việt có dấu</param>
+        /// <returns>tiếng việt không dấu</returns>
+        public string ConvertToVietnameseNotSignature(string strVietnamese)
+        {
+            const string FindText = "áàảãạâấầẩẫậăắằẳẵặđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶĐÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴ #%&*:|.";
+            const string ReplText = "aaaaaaaaaaaaaaaaadeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyAAAAAAAAAAAAAAAAADEEEEEEEEEEEIIIIIOOOOOOOOOOOOOOOOOUUUUUUUUUUUYYYYY-       ";
+            int index = -1;
+            while ((index = strVietnamese.IndexOfAny(FindText.ToCharArray())) != -1)
+            {
+                int index2 = FindText.IndexOf(strVietnamese[index]);
+                strVietnamese = strVietnamese.Replace(strVietnamese[index], ReplText[index2]);
+            }
+            return strVietnamese;
+        }
         public void Dispose()
         {
         }
