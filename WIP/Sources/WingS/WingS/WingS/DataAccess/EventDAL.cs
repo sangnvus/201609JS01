@@ -312,14 +312,14 @@ namespace WingS.DataAccess
                 EvtBasicInfo.VideoUrl = currentEvent.VideoUrl;
                 EvtBasicInfo.EventName = currentEvent.EventName;
                 EvtBasicInfo.EventType = currentEvent.EType.EventName;
-                EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("dd/MM/yy");
+                EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("dd/MM/yyyy");
                 EvtBasicInfo.Content = currentEvent.Description;
                 EvtBasicInfo.ExpectedMoney = currentEvent.ExpectedMoney;
                 EvtBasicInfo.Location = currentEvent.Location;
                 EvtBasicInfo.ContactInfo = currentEvent.Contact;
                 EvtBasicInfo.ShortDescription = currentEvent.ShortDescription;
-                EvtBasicInfo.Start_Date = currentEvent.Start_Date.ToString("dd/MM/yy"); ;
-                EvtBasicInfo.Finish_Date = currentEvent.Finish_Date.ToString("dd/MM/yy");
+                EvtBasicInfo.Start_Date = currentEvent.Start_Date.ToString("dd/MM/yyyy"); ;
+                EvtBasicInfo.Finish_Date = currentEvent.Finish_Date.ToString("dd/MM/yyyy");
               
             }
             //Get ImageAlbum
