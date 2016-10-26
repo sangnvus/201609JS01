@@ -21,7 +21,11 @@ namespace WingS.Controllers
             ViewBag.Title = WsConstant.PageTitle.Home;
            return View();
         }
-
+        [Route("Admin")]
+        public ActionResult Admin()
+        {
+            return View();
+        }
       
     }
 }

@@ -1,0 +1,52 @@
+﻿
+<!DOCTYPE HTML>
+<html ng-app="AdminApp">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login</title>
+
+    <!-- GLOBAL STYLES -->
+    <link href="~/Content/Admin/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel="stylesheet" type="text/css">
+    <link href="~/Content/Admin/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <!-- THEME STYLES -->
+    <link href="~/Content/Admin/css/style.css" rel="stylesheet">
+    <link href="~/Content/Admin/css/plugins.css" rel="stylesheet">
+
+    <!-- THEME DEMO STYLES -->
+    <link href="~/Content/Admin/css/demo.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</head>
+
+<body>
+    <style>
+        #loading-bar-spinner .spinner-icon {
+            width: 25px;
+            height: 25px;
+            border: solid 4px transparent;
+            border-top-color: green;
+            border-left-color: green;
+            border-radius: 10px;
+        }
+    </style>
+    @RenderBody();
+
+</body>
+
+</html>
