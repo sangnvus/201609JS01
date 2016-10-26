@@ -144,3 +144,36 @@
 	padding-left:10px;
 	padding-bottom:20px;
 }
+.stylish{
+	display:block;
+	width:100px;
+	height:100px;
+	border-radius:50px;
+	font-size:20px;	
+	line-height:100px;
+	text-shadow:0 1px 0 #666;
+	text-align:center;
+	text-decoration:none;
+	box-shadow:1px 1px 2px #000;
+	background:#ADD8E6;
+	opacity:0.95
+}
+.stylish:hover{
+	text-shadow:0 0 1px #666;
+	text-decoration:none;
+	box-shadow:0 0 4px #222 inset;
+	background:#e05f03;
+	opacity:1
+}
+.circle a{
+	color:#333;
+}
+.circle a:hover{
+	color:#eee;
+}
+.circle span{
+	font-size:16px;
+	font-family:'Open Sans', 'sans-serif';
+	font-weight: 500;
+	margin-top:5px;
+}
