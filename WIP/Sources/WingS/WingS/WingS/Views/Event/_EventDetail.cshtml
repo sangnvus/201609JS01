@@ -3,6 +3,7 @@
     <link href="~/Content/css/EventDetail.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/Content/css/progressbar.css">
     <link rel="stylesheet" href="~/Content/css/paging.css">
+    <link rel="stylesheet" href="~/Content/css/timeline.css">
     <script src="../../Content/scripts/lightbox/dist/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
     <div id="divBoxed" class="container">
 
@@ -70,7 +71,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#contentEvt" onclick="return false">Nội dung</a></li>
                             <li><a data-toggle="tab" href="#AlbumImage" onclick="return false">Hình Ảnh</a></li>
-                            <li><a data-toggle="tab" href="#timeline" onclick="return false">Lịch trình</a></li>
+                            <li><a data-toggle="tab" href="#timelineTab" onclick="return false">Lịch trình</a></li>
                             <li><a data-toggle="tab" href="#list" onclick="return false">Danh sách đóng góp</a></li>
                             <li><a data-toggle="tab" href="#contact" onclick="return false">Liên hệ</a></li>
 
@@ -86,16 +87,43 @@
                                 </div>
                                 
                                 <br>
-                                <hr>
+
                             </div>
                             <!-- Timeline -->
-                            <div id="timeline" class="tab-pane fade" style="padding:0px 3px 3px 10px">
-                                <p><span style="font-weight: 600;;color:blue">Thời gian diễn ra sự kiện:</span>  {{Event.Start_Date}}-{{Event.Finish_Date}}  </p>
-                                <p style="font-weight: 600;color:blue;">Lịch trình cụ thể:</p>
-                                <p ng-repeat="item in EventTimeLine">
-                                    <span style="font-weight: 600;">Từ ngày {{item.FromDate}} đến ngày {{item.ToDate}}</span></br>
-                                    {{item.Content}}
-                                </p>
+                            <div id="timelineTab" class="tab-pane fade" >
+                                <section id="timeline" >
+                                    <article ng-repeat="item in EventTimeLine">
+                                        <div class="inner">
+                                            <span class="date">
+                                                <span class="month">{{Event.StartedDate}}</span>
+                                            </span>
+                                            <h2>Từ ngày {{item.FromDate}} Đến ngày {{item.ToDate}}</h2>
+                                            <p>{{item.Content}}</p>
+                                        </div>
+                                    </article>
+                                    @*<article>
+                                        <div class="inner">
+                                            <span class="date">
+                                                <span class="day">26<sup>th</sup></span>
+                                                <span class="month">Jan</span>
+                                                <span class="year">2014</span>
+                                            </span>
+                                            <h2>The Title</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+                                        </div>
+                                    </article>
+                                    <article>
+                                        <div class="inner">
+                                            <span class="date">
+                                                <span class="day">26<sup>th</sup></span>
+                                                <span class="month">Jan</span>
+                                                <span class="year">2014</span>
+                                            </span>
+                                            <h2>The Title</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+                                        </div>
+                                    </article>*@
+                                </section>
                             </div>
 
                             <!-- List User Donated -->
@@ -237,34 +265,13 @@
 
                 </div>
                 <br />
+                <hr>
                 <div class="row-fluid">
                     <!--Infor of User-->
-                    <div class="span3">
-                        <p><span style="font-weight: bold">Người tạo:</span>  <span>TuấnDV</span></p>
-                        <p><span style="font-weight: bold">Địa chỉ Email:</span> <span>TuanDV@gmail.com</span></p>
-                        <p><span style="font-weight: bold">Điểm tích lũy:</span> <span>600</span></p>
-                        <p><span style="font-weight: bold">Ảnh đại diện</span><p>
-                        <p><img src="images/windmill.jpg" class="img-polaroid" alt=""></p>
-
-                        <a href="#" style="color: #333"><i class="icon-envelope-alt"></i> Nhắn tin</a>
-                        &nbsp; &nbsp;<a href="#" style="color: #333"><i class="icon-ban-circle"></i> Báo cáo người dùng</a>
-                    </div>
+                   
                     <!--/End Infor of User  -->
                     <!--Edit Main Content Area here-->
-                    <div class="span9" id="divMain">
-                        <div class="row-fluid">
-                            <div class="span3 ">
-                                @if (User.Identity.Name == null || User.Identity.Name == "")
-                                {
-                                    <i class="fa fa-thumbs-up" style="color:black;" aria-hidden="true" title="Số lượt thích"></i><span><strong> &nbsp; &nbsp;&nbsp;{{Likes}}</strong></span>
-                                }
-                                else
-                                {
-                                    <a href="#" onclick="return false;" ng-click="doLike()"><i class="fa fa-thumbs-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i></a><span><strong> &nbsp; &nbsp;&nbsp;{{Likes}}</strong></span>
-                                }
-                            </div>
-                        </div>
-                        <hr />
+                    <div class="span10 offset1" id="divMain">
                         <div class="row-fluid" id="isComment">
                             <br />
                             <div class="span6 offset1">
