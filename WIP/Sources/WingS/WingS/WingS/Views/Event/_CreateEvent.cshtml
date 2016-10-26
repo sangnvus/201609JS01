@@ -5,20 +5,19 @@
     // Initialize your tinyMCE Editor with your preferred options
     tinyMCE.init({
         // General options
-        selector: "textarea",
+        selector: "#Content",
         theme: "modern",
+        toolbar: "insertfile undo redo | fontsizeselect | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor",
         // Theme options
-        theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
-        theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
-        theme_advanced_buttons4: "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
-        theme_advanced_toolbar_location: "top",
-        theme_advanced_toolbar_align: "left",
-        theme_advanced_statusbar_location: "bottom",
-        theme_advanced_resizing: true,
 
+        theme_advanced_resizing: true,
         // Example content CSS (should be your site CSS)
         //content_css: "css/example.css",
+    });
+    tinyMCE.init({
+        // General options
+        selector: "#Contact",
+        toolbar: "insertfile undo redo | fontsizeselect | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor",
     });
 </script>
 <style>
@@ -123,6 +122,20 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
+                <!--Nội dung-->
+                <div class="row-fluid">
+                    <div class="span3" align="center">
+                        <strong><h3 style="margin-top:25px;">Mô tả ngắn</h3></strong>
+                    </div>
+                    <div class="span9">
+                        <span style=" margin-top:10px">
+                            <textarea name="ShortDescription" id="descrip" class="form-control" rows="4" style="width:60%; height:40%;"></textarea>
+                            <p>Nhập 1 đoạn mô tả ngắn về sự kiện bạn muốn tổ chức</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <!--Nội dung-->
             <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                 <div class="row-fluid">
@@ -132,7 +145,7 @@
                     </div>
                     <div class="span9">
                         <p>Mô tả sự kiện của bạn </p>
-                        <textarea name="Content"></textarea>
+                        <textarea id="Content" name="Content"></textarea>
                     </div>
                 </div>
             </div>
@@ -145,7 +158,7 @@
                     </div>
                     <div class="span9">
                         <p>Thông tin liên hệ của bạn: </p>
-                        <textarea name="Contact"></textarea>
+                        <textarea id ="Contact" name="Contact" style="height:60%;height:80%;"></textarea>
                     </div>
                 </div>
             </div>

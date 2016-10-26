@@ -11,8 +11,11 @@ namespace WingS.Models.DTOs
         public int CreatorID { get; set; }
         public string CreatorName { get; set; }
         public string EventName { get; set; }
+        public string ShortDescription { get; set; }
         public string Content { get; set; }
-        public string ImageUrl { get; set; }
+        public string ContactInfo { get; set; }
+        public string MainImageUrl { get; set; }
+        public List<string> ImageAlbum { get; set; }
         public string Location { get; set; }
         public string VideoUrl { get; set; }
         public bool Status { get; set; }
@@ -32,7 +35,7 @@ namespace WingS.Models.DTOs
             CreatorID = 0;
             EventName = "";
             Content = "";
-            ImageUrl = "";
+            MainImageUrl = "";
             Status = false;
         }
     }

@@ -92,7 +92,7 @@ namespace WingS.Controllers
                                 EventID = events.EventID,
                                 CreatorID = events.CreatorID,
                                 EventName = events.EventName,
-                                ImageUrl = eventMainImage.ImageUrl,
+                                MainImageUrl = eventMainImage.ImageUrl,
                                 Content = events.Description,
                                 Status = events.Status,
                                 CreatedDate = DateTime.Now.ToString("H:mm:ss MM/dd/yy")
