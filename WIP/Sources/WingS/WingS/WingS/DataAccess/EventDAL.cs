@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 using WingS.DataHelper;
 using WingS.Models;
 using WingS.Models.DTOs;
@@ -271,6 +271,27 @@ namespace WingS.DataAccess
                 return currentThread;
             }
 
+        }
+        public EventTypeDropList GetEventType()
+        {
+            EventTypeDropList eventType = new EventTypeDropList();
+            using (var db = new Ws_DataContext())
+            {
+                var eventtypeList = db.EventTypes.ToList();
+                foreach (var eventtype in eventtypeList)
+                {
+                    eventType.EventTypeList.Add(new SelectListItem
+                    {
+                        Text = eventtype.EventName,
+                        Value = eventtype.EventTypeID.ToString()
+                    });
+                }
+                if (eventType.EventTypeList.Count > 0)
+                {
+                    eventType.Selected = 1;
+                }
+                return eventType;
+            }
         }
         public List<EventTimeLine> GetEventTimeLineByEventId(int eventId)
         {

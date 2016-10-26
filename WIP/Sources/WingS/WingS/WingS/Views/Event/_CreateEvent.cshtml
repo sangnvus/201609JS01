@@ -1,4 +1,5 @@
 ﻿@model WingS.Models.DTOs.CreateEventInfo
+@model WingS.Models.DTOs.EventTypeDropList
 @*<script src="../../Content/scripts/bootstrap/css/bootstrap.min.css" type="text/javascript"></script>*@
 <script src="../../Content/scripts/tinymce/js/tinymce/tinymce.min.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -67,12 +68,13 @@
                         </h3>
                     </div>
                     <div class="span9">
-                        <select name="EventType" style="height: 42px; margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px;">
+                        @*<select name="EventType" style="height: 42px; margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px;">
                             <option value="1">Giáo dục</option>
                             <option value="2">Văn hóa</option>
                             <option value="3">Y tế</option>
                             <option value="0">Khác</option>
                         </select>
+                        @Html.DropDownListFor(x => x.selected, Model.lstCategory)*@
                         <p>Chọn loại sự kiện mà bạn muốn tổ chức
                         </p>
 
