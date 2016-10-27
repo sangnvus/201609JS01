@@ -69,6 +69,10 @@ namespace WingS.Controllers
             {
                 eventTypeDropList = db.GetEventType();
             }
+		    if (eventTypeDropList.EventTypeList.Count <= 0)
+		    {
+                return PartialView("~/Views/Error/_Error.cshtml");
+		    }
             return PartialView("~/Views/Event/_CreateEvent.cshtml", eventTypeDropList);
         }
 
