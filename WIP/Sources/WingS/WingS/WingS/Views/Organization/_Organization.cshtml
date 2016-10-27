@@ -54,16 +54,16 @@
 
 
                 <div class="row-fluid">
-                    <div id="orgUser" class="span3">
-                        @*<div class="organization-name ">
-                            <a href="#" style="text-decoration: none; color: inherit;">
+                    <div id="orgUser" class="span3" ng-show="showOrgUser()">
+                        <div class="organization-name" >
+                            <a href="@Url.Content("/#/OrganizationDetail/{{orgBelongUser.OrganizationId}}")" style="text-decoration: none; color: inherit;">
                                 <h4 class="text-info" style="text-transform: capitalize;">
-                                    <strong>{{orgBelongUser.OrganazationName}}</strong>
+                                    <strong>{{orgBelongUser.OrganizationName}}</strong>
                                 </h4>
                             </a>
                         </div>
                         <div class="organization-logo ">
-                            <a href="#" style="text-decoration: none; color: inherit;">
+                            <a href="@Url.Content("/#/OrganizationDetail/{{orgBelongUser.OrganizationId}}")" style="text-decoration: none; color: inherit;">
                                 <img src="{{orgBelongUser.LogoUrl}}" class="img-polaroid" alt="">
                             </a>
                         </div>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="thread-footer ">
                             <a href="#">Xem chi tiết &raquo;</a>
-                        </div>*@
+                        </div>
                     </div>
 
 
@@ -98,7 +98,7 @@
 
                     <div class="span3" style="width:242px" ng-repeat="item in OrgList| limitTo: paginationLimit()">
                         <div class="organization-name ">
-                            <a href="#" style="text-decoration: none; color: inherit;">
+                            <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
                                 <h3 class="text-info" style="text-transform: capitalize;">
                                     <strong>{{item.OrganizationName}}</strong>
                                 </h3>
@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="organization-logo ">
-                            <a href="#" style="text-decoration: none; color: inherit;">
+                            <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
                                 <img src="{{item.LogoUrl}}" class="img-polaroid" alt="">
                             </a>
                         </div>
@@ -131,7 +131,7 @@
 
                         <div class="thread-footer ">
 
-                            <a href="#">Xem chi tiết &raquo;</a>
+                            <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">Xem chi tiết &raquo;</a>
                         </div>
                         <br />
                         <br />

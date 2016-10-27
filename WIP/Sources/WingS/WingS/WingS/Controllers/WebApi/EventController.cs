@@ -281,5 +281,90 @@ namespace WingS.Controllers
 
         }
 
+        public IHttpActionResult GetEventListOfOrganization(int orgId)
+        {
+            var eventListBasicInfo = new List<EventBasicInfo>();
+            try
+            {
+                using (var db = new EventDAL())
+                {
+                    var eventList = db.GetEventsBelongToCreator(orgId);
+
+                    foreach (Event events in eventList)
+                    {
+                        var eventMainImage = db.GetMainImageEventById(events.EventID);
+                        eventListBasicInfo.Add(new EventBasicInfo
+                        {
+                            EventID = events.EventID,
+                            CreatorID = events.CreatorID,
+                            EventName = events.EventName,
+                            MainImageUrl = eventMainImage.ImageUrl,
+                            Content = events.Description,
+                            ShortDescription = events.ShortDescription,
+                            Status = true,
+                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
+                        });
+                    }
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = eventListBasicInfo
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
+
+        public IHttpActionResult GetTopOneViewedEventOfOrganization(int orgId)
+        {
+            var basicEventList = new List<EventBasicInfo>();
+            try
+            {
+                using (var db = new EventDAL())
+                {
+                    //Get top event.
+                    var topEvent = db.GetTopOneEventOfOrganization(orgId);
+                    foreach (Event e in topEvent)
+                    {
+                        //Lấy ra ảnh tương ứng với mỗi 1 event với Status = true
+                        //Note: ảnh có status bằng "true" là ảnh dùng để hiển thị trên trang Event
+                        var eventMainImage = db.GetMainImageEventById(e.EventID);
+
+                        basicEventList.Add(new EventBasicInfo
+                        {
+                            CreatedDate = e.Created_Date.ToString("H:mm:ss dd/MM/yy"),
+                            EventID = e.EventID,
+                            EventName = e.EventName,
+                            Content = e.Description,
+                            ShortDescription = e.ShortDescription,
+                            CreatorID = e.CreatorID,
+                            MainImageUrl = eventMainImage.ImageUrl,
+                            Status = e.Status
+                        });
+                    }
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = basicEventList });
+            }
+            catch (Exception)
+            {
+
+                return Redirect("/#/Error");
+            }
+
+        }
+        
+
     }
 }

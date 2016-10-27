@@ -3,47 +3,47 @@ var app = angular.module('ClientApp', ['ngRoute', 'angular-loading-bar', 'ngAnim
     
 app.config(function ($routeProvider) {
     $routeProvider
-    .when("/", {
-        tittle: "Hãy đến với chúng tôi để chia sẻ từ thiện",
-        templateUrl: "/Client/Home",
-        controller: "HomeController"
+        .when("/", {
+            tittle: "Hãy đến với chúng tôi để chia sẻ từ thiện",
+            templateUrl: "/Client/Home",
+            controller: "HomeController"
 
-    })
-   .when("/Login", {
-       tittle: "Đăng nhập",
-       templateUrl: "/Client/Login"
+        })
+        .when("/Login", {
+            tittle: "Đăng nhập",
+            templateUrl: "/Client/Login"
 
-   })
-    .when("/Register", {
-        tittle: "Đăng ký",
-        templateUrl: "/Client/Register"
-    })
-    .when("/Home", {
-        templateUrl: "/Client/Home",
-        title: "Hãy đến với chúng tôi để chia sẻ từ thiện",
-        controller: "HomeController"
-    })
-    .when("/ForgotPassword", {
-        templateUrl: "/Client/ForgotPassword",
-        title: "Quên mật khẩu"
-    })
-    .when("/Error", {
-        templateUrl: "/Client/Error",
-        title: "Đã xảy ra lỗi"
-    })
-    .when("/Search", {
-        templateUrl: "/Client/Search",
-        title: "Tìm kiếm"
-    })
-    .when("/Discussion", {
-        templateUrl: "/Client/Discussion",
-        title: "Xem thảo luận",
-        controller: "DiscussionController"
-    })
+        })
+        .when("/Register", {
+            tittle: "Đăng ký",
+            templateUrl: "/Client/Register"
+        })
+        .when("/Home", {
+            templateUrl: "/Client/Home",
+            title: "Hãy đến với chúng tôi để chia sẻ từ thiện",
+            controller: "HomeController"
+        })
+        .when("/ForgotPassword", {
+            templateUrl: "/Client/ForgotPassword",
+            title: "Quên mật khẩu"
+        })
+        .when("/Error", {
+            templateUrl: "/Client/Error",
+            title: "Đã xảy ra lỗi"
+        })
+        .when("/Search", {
+            templateUrl: "/Client/Search",
+            title: "Tìm kiếm"
+        })
+        .when("/Discussion", {
+            templateUrl: "/Client/Discussion",
+            title: "Xem thảo luận",
+            controller: "DiscussionController"
+        })
         .when("/CreateDiscussion", {
             templateUrl: "/Client/CreateDiscussion",
             resolve: {
-                'check': function ($location, $window) {
+                'check': function($location, $window) {
                     if ($window.sessionStorage.isAuthen == "false") {
                         $location.path('/Login');
                     }
@@ -52,38 +52,37 @@ app.config(function ($routeProvider) {
             title: "Tạo thảo luận",
 
         })
-
-    .when("/RegisterSuccess", {
-        templateUrl: "/Client/RegisterSuccess",
-        title: "Đăng ký thành công",
-        controller: "RegisterSuccessController"
-    })
-    .when("/VerifyAccount", {
-        templateUrl: "/Client/VerifyAccount",
-        title: "Xác nhận tài khoản",
-        controller: "VerifyAccountController"
-    })
-    .when("/ThreadDetail/:Id", {
-        templateUrl: "/Client/ThreadDetail",
-        title: "Chi tiết thảo luận",
-        controller: "ThreadDetailController"
-    })
-    .when("/Event", {
-        templateUrl: "/Client/Event",
-        title: "Sự kiện",
-        controller: "EventController"
-    })
-     .when("/EventDetail/:Id", {
-         templateUrl: "/Client/EventDetail",
-         title: "Chi tiết sự kiện",
-         controller: "EventDetailController"
-     })
-    .when("/Profile/:UserName", {
-        templateUrl: "/Client/Profile",
-        title: "Thông tin cá nhân",
-        controller: "ProfileController"
-    })
-	.when("/CreateEvent", {
+        .when("/RegisterSuccess", {
+            templateUrl: "/Client/RegisterSuccess",
+            title: "Đăng ký thành công",
+            controller: "RegisterSuccessController"
+        })
+        .when("/VerifyAccount", {
+            templateUrl: "/Client/VerifyAccount",
+            title: "Xác nhận tài khoản",
+            controller: "VerifyAccountController"
+        })
+        .when("/ThreadDetail/:Id", {
+            templateUrl: "/Client/ThreadDetail",
+            title: "Chi tiết thảo luận",
+            controller: "ThreadDetailController"
+        })
+        .when("/Event", {
+            templateUrl: "/Client/Event",
+            title: "Sự kiện",
+            controller: "EventController"
+        })
+        .when("/EventDetail/:Id", {
+            templateUrl: "/Client/EventDetail",
+            title: "Chi tiết sự kiện",
+            controller: "EventDetailController"
+        })
+        .when("/Profile/:UserName", {
+            templateUrl: "/Client/Profile",
+            title: "Thông tin cá nhân",
+            controller: "ProfileController"
+        })
+        .when("/CreateEvent", {
             templateUrl: "/Client/CreateEvent",
             resolve: {
                 'check': function($location, $window) {
@@ -93,24 +92,29 @@ app.config(function ($routeProvider) {
                 }
             },
             title: "Tạo thảo luận"
-	})
-    .when("/Organization", {
-        templateUrl: "/Client/Organization",
-        title: "Tổ chức",
-        controller: "OrganizationController"
-    })
-    .when("/CreateOrganization", {
-        templateUrl: "/Client/CreateOrganization",
-        resolve: {
-            'check': function($location, $window) {
-                if ($window.sessionStorage.isAuthen == "false") {
-                    $location.path('/Login');
+        })
+        .when("/Organization", {
+            templateUrl: "/Client/Organization",
+            title: "Tổ chức",
+            controller: "OrganizationController"
+        })
+        .when("/CreateOrganization", {
+            templateUrl: "/Client/CreateOrganization",
+            resolve: {
+                'check': function($location, $window) {
+                    if ($window.sessionStorage.isAuthen === "false") {
+                        $location.path('/Login');
+                    }
                 }
-            }
-        },
-        title: "Tạo tổ chức"
+            },
+            title: "Tạo tổ chức"
 
-    });
+        })
+        .when("/OrganizationDetail/:OrgId", {
+            templateUrl: "/Client/OrganizationDetail",
+            title: "Chi tiết Tổ chức",
+            controller: "OrganizationDetailController"
+        });
 });
 
 

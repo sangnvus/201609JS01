@@ -74,6 +74,7 @@ namespace WingS.DataAccess
             }
         }
 
+        
         /// <summary>
         /// Get top 3 organization sort by Point
         /// </summary>

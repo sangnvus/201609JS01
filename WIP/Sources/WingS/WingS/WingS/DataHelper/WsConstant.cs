@@ -32,14 +32,15 @@ namespace WingS.DataHelper
             public static string CreateEvent = "Khởi tạo một event";
         }
 
-        public enum Level
+        public static class Level
         {
-            Diamon = 2000,
-            Golden = 1000,
-            Silver = 500,
-            Bronze = 200,
-            Newbie = 0
-        };
+            public static readonly int Diamon = 10000;
+            public static readonly int Golden = 2000;
+            public static readonly int Silver = 500;
+            public static readonly int Bronze = 200;
+            public static readonly int New = 0;
+        }
+
 
         public static class HttpMessageType
         {
