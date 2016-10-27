@@ -66,6 +66,10 @@
     transform: translateX(-50%);
 	text-decoration: none;
 }
+.progressbar a:hover{
+	background:#e05f03;
+	color:white;
+}
  @keyframes 
 toggle {  0% {
  opacity: 0;
