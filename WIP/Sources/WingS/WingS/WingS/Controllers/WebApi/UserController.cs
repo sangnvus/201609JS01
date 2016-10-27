@@ -106,6 +106,7 @@ namespace WingS.Controllers.WebApi
                     userInfo.ProfileImage = user.ProfileImage;
                     userInfo.CreateDate = user.CreateDate;
                     userInfo.DOB = user.DOB;
+                    userInfo.Point = user.Point;
                 }
             }
             using(var db = new ThreadDAL() )
