@@ -510,6 +510,11 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
     overflow: hidden;
 }
 
+.organization-name a, .organization-logo a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .organization-logo{
     height: 156px;
 

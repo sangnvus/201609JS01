@@ -80,6 +80,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Organization/_Organization.cshtml");
         }
+        public ActionResult OrganizationDetail()
+        {
+            return PartialView("~/Views/Organization/_OrganizationDetail.cshtml");
+        }
         public ActionResult CreateOrganization()
         {
             return PartialView("~/Views/Organization/_CreateOrganization.cshtml");

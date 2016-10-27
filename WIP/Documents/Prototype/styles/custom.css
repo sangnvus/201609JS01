@@ -495,7 +495,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 }
 
 .organization-content .introduction{
-    height: 100px;
+    height: 88px;
     overflow: hidden;
     margin-top: 10px;
 }
@@ -504,5 +504,14 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
     height: 20px;
     overflow: hidden;
 }
-
+.addborder{
+	border: 1px solid #bdc3c7;
+}
+.addborder img{
+	height: 245px;
+}
+.contentTop{
+	margin-left: 5px;
+	margin-right: 5px;
+}
 

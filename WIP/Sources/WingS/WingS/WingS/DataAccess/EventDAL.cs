@@ -231,6 +231,7 @@ namespace WingS.DataAccess
 
             return eventImagesList;
         }
+
         // Get Event by Created
         public List<Event> GetNewestEventByCreatedDate()
         {
@@ -244,6 +245,8 @@ namespace WingS.DataAccess
 
             return listEvents;
         }
+
+        
 
         /// <summary>
         /// Get main image of an Event
@@ -421,6 +424,43 @@ namespace WingS.DataAccess
                 return eventInfo;
             }
         }
+
+        /// <summary>
+        /// Get all event of a organization with its id
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns>List of Event</returns>
+        public List<Event> GetEventsBelongToCreator(int organizationId)
+        {
+            List<Event> eventsOfCreator;
+
+            using (var db = new Ws_DataContext())
+            {
+                var listEvent = db.Events.OrderByDescending(x => x.Created_Date).Where(x => x.Status == true && x.CreatorID == organizationId);
+                eventsOfCreator = listEvent.ToList();
+            }
+
+            return eventsOfCreator;
+        }
+
+        /// <summary>
+        /// Get Event that has greatest point of a Organization
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns>Event</returns>
+        public List<Event> GetTopOneEventOfOrganization(int orgId)
+        {
+            List<Event> list;
+
+            using (var db = new Ws_DataContext())
+            {
+                var topEvent = db.Events.OrderByDescending(x => x.TotalPoint).Where(x => x.Status == true && x.CreatorID == orgId).Take(1);
+                list = topEvent.ToList();
+            }
+            return list;
+
+        }
+
         public void Dispose()
         {
           

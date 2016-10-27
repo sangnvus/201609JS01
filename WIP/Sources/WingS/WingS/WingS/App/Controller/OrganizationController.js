@@ -9,7 +9,7 @@
 
             //get organization of current user
             $http({
-                url: "/api/Organization/GetOrganizationBeLongToUser",
+                url: "/api/Organization/GetOrganizationUsingId",
                 method: "GET",
                 params: { orgId: loginUserId },
                 contentType: "application/json"

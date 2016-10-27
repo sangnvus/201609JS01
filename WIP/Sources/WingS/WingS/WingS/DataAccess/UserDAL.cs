@@ -138,6 +138,7 @@ namespace WingS.DataAccess
                                        Country = user.User_Information.Country,
                                        Gender = user.User_Information.Gender,
                                        Phone = user.User_Information.Phone,
+                                       Point = user.User_Information.Point,
                                       // CreateDate = user.CreatedDate.ToString("H:mm:ss dd/MM/yy"),
                                        //DOB = user.User_Information.DoB.ToString("dd/MM/yy"),
      
