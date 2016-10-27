@@ -21,6 +21,7 @@ namespace WingS.Models.DTOs
         public string DOB { get; set; }
         public string Country { get; set; }
         public string CreateDate { get; set; }
+        public int Point { get; set; }
 
 
         public UserBasicInfoDTO()
@@ -39,7 +40,7 @@ namespace WingS.Models.DTOs
             DOB = "";
             Country = "";
             CreateDate = "";
-
+            Point = 0;
         }
     }
 }
