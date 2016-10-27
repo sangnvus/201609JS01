@@ -26,7 +26,10 @@ namespace WingS.Controllers
             {
                 for(int i = 0; i<FromDate.Length;i++)
                 {
-                    eventTimeLine.Add(new CreateEventSchedule(FromDate[i],ToDate[i],Description[i]));
+                    if (FromDate[i] != "" && ToDate[i] != "" && Description[i] !="")
+                    {
+                        eventTimeLine.Add(new CreateEventSchedule(FromDate[i],ToDate[i],Description[i]));
+                    }
                 }
             }
             Event newEvent = new Event();
