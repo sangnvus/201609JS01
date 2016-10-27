@@ -22,11 +22,14 @@ namespace WingS.Controllers
             string[] ToDate = Request.Form.GetValues("ToDate");
             string[] Description = Request.Form.GetValues("Description");
             List<CreateEventSchedule> eventTimeLine = new List<CreateEventSchedule>();
-            for(int i = 0; i<FromDate.Length;i++)
+            if (FromDate!= null && FromDate.Length<=1)
             {
-                eventTimeLine.Add(new CreateEventSchedule(FromDate[i],ToDate[i],Description[i]));
+                for(int i = 0; i<FromDate.Length;i++)
+                {
+                    eventTimeLine.Add(new CreateEventSchedule(FromDate[i],ToDate[i],Description[i]));
+                }
             }
-            Event newEvent = null;
+            Event newEvent = new Event();
             using (var db = new EventDAL())
             {
                 newEvent = db.AddNewEvent(eventInfo);
