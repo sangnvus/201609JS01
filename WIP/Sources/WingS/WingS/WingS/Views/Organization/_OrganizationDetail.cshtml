@@ -23,176 +23,111 @@
             </div>
         </div>
 
-       <div class="contentArea">
+    <div class="contentArea">
 
-            <div class="divPanel notop page-content">
-
-                <div class="breadcrumbs">
-                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Tổ chức</span>
-                </div>
-
-                <div class="row-fluid">
-                    <strong>
-                        <h2>Thông tin chung</h2>
-                    </strong>
-                </div>
-                <hr style="margin-top: 0" />
-
-                <div class="row-fluid">
-                    <div class="span4">
-                        <img src="{{currentOrg.LogoUrl}}" class="img-polaroid " alt="">
-
-                        <h3 align="center">{{currentOrg.OrganizationName}}</h3>
-
-                        <p align="center" style="margin-bottom: 0px;">300/500</p>
-                        <div class="progress">
-                            <div id="orgPoint" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="color: green !important;background-color: green;">
-                                &nbsp;
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="span7 offset1" style="font-size: 18px;">
-                        <div class="row-fluid">
-                            <div class="span1">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                            </div>
-                            <div class="span8">
-                                <p>{{currentOrg.Phone}}</p>
-                            </div>
-                        </div>
-
-                        <div class="row-fluid">
-                            <div class="span1">
-                                <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                            </div>
-                            <div class="span8">
-                                <p>{{currentOrg.Address}}</p>
-                            </div>
-                        </div>
-
-                        <div class="row-fluid">
-                            <div class="span1">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </div>
-                            <div class="span8">
-                                <p>{{currentOrg.Email}}</p>
-                            </div>
-                        </div>
-
-
-                        <div class="row-fluid">
-                            <div class="span1">
-                                <i class="fa fa-scribd" aria-hidden="true"></i>
-                            </div>
-                            <div class="span8">
-                                <p>{{currentOrg.Status}}</p>
-                            </div>
-                        </div>
-
-
-                        <div class="row-fluid">
-                            <div class="span1">
-                                <i class="fa fa-info" aria-hidden="true"></i>
-                            </div>
-                            <div class="span11">
-
-                                <blockquote>
-                                    <p>{{currentOrg.Introduction}}</p>
-                                </blockquote>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <br />
-                <br />
-                <br />
-                <br />
-
-                <div class="row-fluid">
-                    <strong>
-                        <h2>Sự kiện thuộc tổ chức</h2>
-                    </strong>
-                </div>
-                <hr style="margin-top: 0;" />
-                <!-- Event part -->
-
+        <div class="divPanel notop page-content">
+            <div class="breadcrumbs">
+                <a href="@Url.Content("/#/Home")">Trang chủ</a> &nbsp;/&nbsp;<a href="@Url.Content("/#/Organization")">Tổ chức</a>&nbsp;/&nbsp;<a href="@Url.Content("/#/OrganizationDetail/{{currentOrg.OrganizationId}}")">Chi tiết tổ chức #{{currentOrg.OrganizationId}}</a>
+            </div>
 
             <div class="row-fluid">
-                <div class="span6" >
-                    <div class="event-img">
-                        <a href="@Url.Content("/#/EventDetail/{{topEventsOfOrganization[0].EventID}}")" style="text-decoration: none; color: inherit;">
-                            <img src="{{topEventsOfOrganization[0].MainImageUrl}}" class="img-polaroid" alt="" style="width: 600px; height: 400px">
-                        </a>
-                    </div>
-                </div>
+                <h1>
+                    <strong>{{currentOrg.OrganizationName}}</strong>
+                </h1>
+            </div>
+            <hr/>
 
-                <div class="span6">
-                    <div class="event-title">
-                        <a href="@Url.Content("/#/EventDetail/{{topEventsOfOrganization[0].EventID}}")" style="text-decoration: none; color: inherit;">
-                            <h4 class="text-info" style="text-transform: capitalize;"><strong>{{topEventsOfOrganization[0].EventName}}</strong></h4>
-                        </a>
+            <div class="row-fluid">
+                <div class="span8" >
+                    <h2><strong>Mục tiêu của chúng tôi</strong></h2>
+                    <p>{{currentOrg.Introduction}}</p>
+                    <hr />
+                    <h2><strong>Các sự kiện</strong></h2>
+
+                    <div class="row-fluid" ng-repeat="item in eventsOfOrganization| limitTo: paginationLimit()">
+                        <div class="span3">
+                            <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.MainImageUrl}}" class="img-polaroid" alt="" style=" margin: 5px 0px 15px;"></a>
+                        </div>
+                        <div class="span9">
+                            <div class="event-title" style="height: 30px;">
+                                <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">
+                                    <h3 class="text-info" style="margin-top: 1px;">{{item.EventName}}</h3>
+                                </a>
+                            </div>
+                            <div class="event-content">
+                                <p>{{item.Content}}</p>
+                            </div>
+                            <div class="event-footer">
+                                <i class="foundicon-thumb-up"></i>
+
+                                <span>
+                                    <strong>{{item.Likes}}</strong>
+                                </span>
+                                &nbsp; &nbsp;&nbsp; &nbsp;
+                                <i class="foundicon-chat"></i>
+                                <span>
+                                    <strong>30</strong>
+                                </span>
+                                &nbsp; &nbsp;&nbsp; &nbsp;
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <span>
+                                    <strong>500</strong>
+                                </span>
+                                &nbsp; &nbsp;&nbsp; &nbsp;
+                                <span><a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">Xem thêm &raquo;</a></span>
+                            </div>
+                        </div>
+                        <hr />
                     </div>
 
-                    <div class="event-content" style="overflow: hidden;">
-                        <p class="">{{topEventsOfOrganization[0].Content}}</p>
+                    
 
-                    </div>
                     
                 </div>
-            </div>
 
-            <br /><br /><br/>
+                <div class="span4 sidebar">
+                    <div class="sidebox" style="margin-top: 8px;">
+                        <div align="center">
+                            <img src="{{currentOrg.LogoUrl}}" class=" img-circle" style="height: 150px; width: 150px; margin:5px 0px 15px;" alt="">
+                        </div>
+                        <div class="organization-content " style="overflow: hidden;">
+                            <p class="basic-infor"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Phone}}</p>
+                            <p class="basic-infor"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Address}}</p>
+                            <p class="basic-infor"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Email}}</p>
+                            <p class="basic-infor"><i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;300.000.000 VNĐ</p>
+                            <strong>Xếp hạng:</strong> 5 trên tổng số các tổ chức
+                        </div>
 
-            <div class="row">
-                <div class="span3" style="width:242px" ng-repeat="item in eventsOfOrganization| limitTo: paginationLimit()">
-                    <div class="event-img">
-                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.MainImageUrl}}" class="img-polaroid" alt="" style="width: 300px; height: 200px; margin: 5px 0px 15px;"></a>
+                        <ul>
+                            <li><a href="#">Gửi tin nhắn cho chúng tôi</a></li>
+                            <li><a href="#">Đóng góp để gây quĩ</a></li>
+                        </ul>
+
+
+                        <h4 class="sidebox-title">Thống kê</h4>
+
+                        <h5>Đã có: 40 người tham gia các sự kiện</h5>
+                        <div class="progress progress-info">
+                            <div class="bar" style="width: 20%"></div>
+                        </div>
+
+                        <h5>Đã kêu gọi được( 80% ) số tiền cần thiết</h5>
+                        <div class="progress progress-success">
+                            <div class="bar" style="width: 40%"></div>
+                        </div>
+                        <h5>Đã đạt được 800 điểm</h5>
+                        <div class="progress progress-danger">
+                            <div class="bar" style="width: 40%"></div>
+                        </div>
+
+
+
                     </div>
-                    <div class="event-title">
-                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">
-                            <h4 class="text-info">{{item.EventName}}</h4>
-                        </a>
-                    </div>
-                    <div class="event-content">
-                        <p>{{item.Content}}</p>
-                    </div>
-                    <div class="event-footer">
-                        <i class="foundicon-thumb-up"></i>
 
-                        <span>
-                            <strong>{{item.Likes}}</strong>
-                        </span>
-                        &nbsp; &nbsp;&nbsp; &nbsp;
-                        <i class="foundicon-chat"></i>
-                        <span>
-                            <strong>30</strong>
-                        </span>
-                        &nbsp; &nbsp;&nbsp; &nbsp;
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                        <span>
-                            <strong>500</strong>
-                        </span>
-                        <br />
-                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">Xem thêm &raquo;</a>
-                    </div>
-                </div>
-   
-            </div>
-
-            <br /><br /><br />
-
-            <div class="row-fluid">
-                <div align="center">
-                    <a class="btn btn-primary" href="#" onclick=" return false; " ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">
-                        <i class="icon-refresh icon-spin"></i> Xem thêm...
-                    </a>
                 </div>
             </div>
+
+                
 
                
         </div>
