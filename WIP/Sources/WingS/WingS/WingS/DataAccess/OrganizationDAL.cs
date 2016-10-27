@@ -46,6 +46,36 @@ namespace WingS.DataAccess
             }
         }
 
+        public Boolean EditOrganization(CreateOrganization organizationBasic)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    var currentOrg = db.Organizations.Find(WsConstant.CurrentUser.UserId);
+
+                    currentOrg.OrganizationName = organizationBasic.OrganizationName;
+                    currentOrg.OrganizationName = organizationBasic.OrganizationName;
+                    currentOrg.Introduction = organizationBasic.Introduction;
+                    currentOrg.LogoUrl = organizationBasic.LogoUrl;
+                    currentOrg.Phone = organizationBasic.Phone;
+                    currentOrg.Email = organizationBasic.Email;
+                    currentOrg.Address = organizationBasic.Address;
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+                //throw;
+            }
+            
+            
+           
+        }
         public Organization CreatEmptyOrganization()
         {
             using (var db = new Ws_DataContext())

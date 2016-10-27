@@ -87,14 +87,21 @@
 
                 <div class="span4 sidebar">
                     <div class="sidebox" style="margin-top: 8px;">
+                        <div class="row-fluid">
+                            <a href="@Url.Content("/#/EditOrganization/{{currentOrg.OrganizationId}}")" style="margin-top: 0; float: right;"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Chỉnh sửa</a>
+                        </div>
                         <div align="center">
-                            <img src="{{currentOrg.LogoUrl}}" class=" img-circle" style="height: 150px; width: 150px; margin:5px 0px 15px;" alt="">
+                            <img src="{{currentOrg.LogoUrl}}" class=" img-circle" style="height: 150px; width: 150px; margin: 0px 0px 15px;" alt="">
                         </div>
                         <div class="organization-content " style="overflow: hidden;">
-                            <p class="basic-infor"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Phone}}</p>
-                            <p class="basic-infor"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Address}}</p>
-                            <p class="basic-infor"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Email}}</p>
-                            <p class="basic-infor"><i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;300.000.000 VNĐ</p>
+                            <p class="basic-infor"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Phone}}
+                            </p>
+                            <p class="basic-infor"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Address}}
+                            </p>
+                            <p class="basic-infor"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Email}}
+                            </p>
+                            <p class="basic-infor"><i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;300.000.000 VNĐ
+                            </p>
                             <strong>Xếp hạng:</strong> 5 trên tổng số các tổ chức
                         </div>
 
@@ -126,7 +133,9 @@
 
                 </div>
             </div>
-
+            <div align="center">
+                <a class="btn btn-primary" href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()"><i class="icon-refresh icon-spin"></i> Xem thêm...</a>
+            </div>
                 
 
                

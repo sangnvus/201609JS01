@@ -1,0 +1,207 @@
+﻿@model WingS.Models.DTOs.CreateOrganization
+
+<body id="pageBody">
+
+    <div id="divBoxed" class="container">
+
+        <div class="transparent-bg" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
+
+        <div class="divPanel notop nobottom">
+            @Html.Partial("../Home/_NavigationBar")
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div id="contentInnerSeparator"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="contentArea">
+
+            <div class="divPanel notop page-content">
+
+                <div class="breadcrumbs">
+                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Tổ chức</a> &nbsp;/&nbsp; <span>Tạo Tổ chức</span>
+                </div>
+                @using (Html.BeginForm("EditOrganization", "Organization", FormMethod.Post, new { @id = "LoginForm", enctype = "multipart/form-data" }))
+                {
+                    <div class="row-fluid">
+                        <div class="span9 offset1">
+                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                                <div class="row-fluid">
+                                    <div class="span4" align="center">
+                                        <h3 style="margin-top: 25px;">
+                                            <strong>Tên Tổ Chức</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="span8">
+                                        <input name="OrganizationName" type="text" value="{{editOrg.OrganizationName}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                        <p>
+                                            Tên tổ chức không dài quá 200 kí tự.
+                                        </p>
+                                        <p>
+                                            Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span9 offset1">
+                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                                <div class="row-fluid">
+                                    <div class="span4" align="center">
+                                        <h3 style="margin-top: 25px;">
+                                            <strong>Logo</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="span8">
+                                        <p>Chọn hình ảnh bạn có<span style="color: red;"> 	BẮT BUỘC</span></p>
+                                        <img src="{{editOrg.LogoUrl}}" class=" img-circle" style="height: 150px; width: 150px; margin: 0px 0px 0px;" alt="" />
+                                        <br />
+                                        <p><input name="LogoImage" type="file" required></p>
+                                        <p style="font-weight: bold;">Chọn file với định dạng JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span9 offset1">
+                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                                <div class="row-fluid">
+                                    <div class="span4" align="center">
+
+                                        <h3 style="margin-top: 25px;">
+                                            <strong>Giới Thiệu</strong>
+                                        </h3>
+                                        
+                                    </div>
+                                    <div class="span8">
+                                        <p>Hãy viết phần giời thiệu về tổ chức </p>
+                                        @*<div id="txtEditor" style="background-color: #fff; height: 300px; margin-bottom: 30px;"></div>*@
+                                        <textarea name="Introduction" style="width:450px; height:300px;">{{editOrg.Introduction}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span9 offset1">
+                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                                <div class="row-fluid">
+                                    <div class="span4" align="center">
+
+                                        <h3 style="margin-top: 25px;">
+                                            <strong>Số điện thoại</strong>
+                                        </h3>
+                                        
+                                    </div>
+                                    <div class="span8">
+                                        <input name="Phone" type="text" value="{{editOrg.Phone}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                        <p>
+                                            Số điện thoại sẽ hiển thị trên trang của tổ chức, giúp cho việc liên lạc của các thành viên WingS với tổ chức của bạn thuận tiện.
+                                        </p>
+                                        <!-- <p>Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.</p> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span9 offset1">
+                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                                <div class="row-fluid">
+                                    <div class="span4" align="center">
+
+                                        <h3 style="margin-top: 25px;">
+                                            <strong>Email</strong>
+                                        </h3>
+                                        
+                                    </div>
+                                    <div class="span8">
+                                        <input name="Email" type="text" value="{{editOrg.Email}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                        <p>
+                                            Nếu tổ chức của bạn có địa chỉ Email cụ thể thì hãy nhập địa chỉ Email vào đây.
+                                        </p>
+                                        <!-- <p>Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
+                                        </p> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span9 offset1">
+                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                                <div class="row-fluid">
+                                    <div class="span4" align="center">
+
+                                        <h3 style="margin-top: 25px;">
+                                            <strong>Địa Chỉ</strong>
+                                        </h3>
+                                       
+                                    </div>
+                                    <div class="span8">
+                                        <input name="Address" type="text" value="{{editOrg.Address}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                        <p>
+                                            Nếu tổ chức của bạn có địa chỉ cụ thể thì hãy nhập địa chỉ vào đây.
+                                        </p>
+                                        <!-- <p>Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
+                                        </p> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span9 offset1" align="right">
+                            <button type="submit" class="btn btn-navbar-highlight btn-large btn-primary">Lưu</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="footerOuterSeparator"></div>
+
+    @Html.Partial("../Home/_Footer")
+
+
+
+    <style>
+        textarea {
+            height: 300px;
+        }
+    </style>
+    <script>
+        $("#Title").focus();
+    </script>
+    <script src="../../Content/scripts/default.js" type="text/javascript"></script>
+    <script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
+    <script type="text/javascript">$(window).load(function () { var options = { autoResize: true, container: $('#gridArea'), offset: 10 }; var handler = $('#tiles li'); handler.wookmark(options); $('#tiles li').each(function () { var imgm = 0; if ($(this).find('img').length > 0) imgm = parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5; if ($(this).find('iframe').height()) newHeight = newHeight + 15; $(this).css('height', newHeight + 'px'); }); handler.wookmark(options); handler.wookmark(options); });</script>
+    <script src="../../Content/scripts/yoxview/yox.js" type="text/javascript"></script>
+    <script src="../../Content/scripts/yoxview/jquery.yoxview-2.21.js" type="text/javascript"></script>
+    <script type="text/javascript">$(document).ready(function () { $('.yoxview').yoxview({ autoHideInfo: false, renderInfoPin: false, backgroundColor: '#ffffff', backgroundOpacity: 0.8, infoBackColor: '#000000', infoBackOpacity: 1 }); $('.yoxview a img').hover(function () { $(this).animate({ opacity: 0.7 }, 300) }, function () { $(this).animate({ opacity: 1 }, 300) }); });</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#title').focus();
+        });
+    </script>
+</body>

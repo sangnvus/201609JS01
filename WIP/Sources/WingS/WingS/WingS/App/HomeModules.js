@@ -114,6 +114,11 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/OrganizationDetail",
             title: "Chi tiết Tổ chức",
             controller: "OrganizationDetailController"
+        })
+        .when("/EditOrganization/:OrgId", {
+            templateUrl: "/Client/EditOrganization",
+            title: "Chi tiết Tổ chức",
+            controller: "EditOrganizationController"
         });
 });
 
