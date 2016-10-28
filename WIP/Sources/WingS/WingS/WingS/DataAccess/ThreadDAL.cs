@@ -90,7 +90,7 @@ namespace WingS.DataAccess
                 {
                     var listComment = db.CommentThreads
                         .Where(x=>x.Status==true&&x.ThreadId==threadId)
-                        .Select(x=> new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage,x.CommentThreadId, x.Content, x.CommentDate})
+                        .Select(x=> new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage,x.CommentThreadId, x.Content, x.CommentDate, x.SubComment.Count})
                         .OrderByDescending(x=>x.CommentDate).ToList();
                     foreach(var item in listComment)
                     {
@@ -100,6 +100,7 @@ namespace WingS.DataAccess
                         bs.UserImageProfile = item.ProfileImage;
                         bs.CommentId = item.CommentThreadId;
                         bs.Content = item.Content;
+                        bs.NumberSubComment = item.Count;
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
                             bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)

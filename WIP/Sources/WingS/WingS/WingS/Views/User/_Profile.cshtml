@@ -99,17 +99,19 @@
 
                         <div class="sidebox">
                             <div align="center">
-                                <img src="{{UserInfo.ProfileImage}}" class="img-polaroid img-circle" style="margin:5px 0px 15px;" alt="">
+                                <img src="{{UserInfo.ProfileImage}}" class="img-polaroid img-circle" style="margin:5px 0px 15px; width:115px; height:115px;" alt="">
                             </div>
                             <div class="organization-content " style="overflow: hidden;">
-                                <p class="basic-infor"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{UserInfo.Phone}} </p>
                                 <p class="basic-infor"><i class="fa fa-envelope" aria-hidden="true"></i></i>&nbsp;&nbsp;{{UserInfo.Email}}</p>
-                                <p class="basic-infor"><i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;300.000.000 VNĐ</p>
-                                <strong>Xếp hạng:</strong> 5 trên tổng số người dùng
-                            </div>
+                                <p class="basic-infor"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{UserInfo.Phone}} </p>
+
+                                <strong>Đã đóng góp:</strong>&nbsp;&nbsp;300.000.000 VNĐ</p>
+                                    <strong>Xếp hạng:</strong> 5 trên tổng số người dùng
+</div>
 
                             <ul>
                                 <li><a href="#">Gửi tin nhắn</a></li>
+                                <li><a href="#">Báo cáo</a></li>
                             </ul>
 
 
@@ -118,7 +120,6 @@
                             <h5>Đã tham gia: 40 sự kiện</h5>
                             <h5>Đã tạo: {{UserInfo.NumberOfPost}} bài thảo luận</h5>
 
-                            <h5>Đã đóng góp: 40.000.000 VNĐ </h5>
                             <h5>Đã đạt được {{UserInfo.Point}} điểm</h5>
                             <div class="progress progress-success">
                                 <div class="bar" style="width: 40%"></div>

@@ -89,23 +89,6 @@
             $scope.CommentThread = response.Data;
         }
     });
-    //Check is Existed subcomment in each comment
-    $http({
-        url: "/api/Thread/CheckExistedSubCommentOrNot",
-        method: "GET",
-    }).success(function (response) {
-        $scope.isSubcommentExisted = response.Data;
-    });
-    $scope.checkIsExistedSubComment = function (threadId)
-    {
-        if ($scope.isSubcommentExisted != null) {
-            for (var i = 0; i <= $scope.isSubcommentExisted.length ; i++) {
-                if ($scope.isSubcommentExisted[i] == threadId) return true;
-            }
-        }
-        return false;
-    }
-  
     //Load SubCommentIfExisted
     function LoadSubComment(Id, index)
     {

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="~/Content/css/progressbar.css">
     <link rel="stylesheet" href="~/Content/css/paging.css">
     <link rel="stylesheet" href="~/Content/css/timeline.css">
+    <link href="~/Content/css/ThreadDetail.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/scripts/lightbox/dist/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
     <div id="divBoxed" class="container">
 
@@ -64,7 +65,7 @@
                             <span>
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                 {{Event.CreatedDate}}
-                            </span>
+                            </span><a href="#" data-toggle="modal" data-target="#sendMessage"><span><i class="fa fa-envelope"></i></span></a>
                         </div>
                         </br>
                         <!-- Tab content -->
@@ -266,10 +267,35 @@
                 </div>
                 <br />
                 <hr>
+                <div class="circle row-fluid" style="margin-top: 5px;" align="center">
+<!-- 					<div class="span2">
+						<span id="like" onclick="changeLikeStt()"><i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
+					</div>
+					<div class="span2">
+						<i class="fa fa-users" aria-hidden="true" title="Số người tham gia sự kiện"></i> 500
+					</div>
+					<div class="span2">
+						<i class="icon-share-alt" title="Hãy chia sẻ nội dung này đến mọi người"></i> Chia sẻ
+					</div>
+					<div style="margin-left: 400px;">
+						<i class="icon-flag"></i> Báo cáo sự kiện
+					</div> -->
+					<div class="span2 offset2">
+						<a href="#" class="stylish">50</a>
+						<h3>Tham gia</h3>
+					</div>
+					<div class="span2">
+						<a href="#" class="stylish">50</a>
+						<h3>Thích</h3>
+					</div>
+					<div class="span2">
+						<a href="#" class="stylish">Chia sẻ</a>
+					</div>
+					<div class="span2">
+						<a href="#" class="stylish">50</a>
+					</div>					
+					</div>
                 <div class="row-fluid">
-                    <!--Infor of User-->
-                   
-                    <!--/End Infor of User  -->
                     <!--Edit Main Content Area here-->
                     <div class="span10 offset1" id="divMain">
                         <div class="row-fluid" id="isComment">
@@ -284,32 +310,35 @@
                         </div>
                         <div class="media" ng-repeat="item in CommentEvent| limitTo: paginationLimit()">
                             <a class="pull-left" href="#">
-                                <img src="{{item.UserImageProfile}}" style="width:64px; height:64px;" class="img-rounded" alt="" />
+                                <img src="{{item.UserImageProfile}}" style="width:64px; height:64px;" class="img-circle" alt="" />
                             </a>
                             <div class="media-body">
-                                <strong class="media-heading"> {{item.UserCommentedName}}</strong>&nbsp;{{item.Content}}
+                                <h4 class="media-heading">{{item.UserCommentedName}} <span><small>{{item.CommentedTime}}</small></span></h4>
+                                {{item.Content}}
                             </div>
-                            <div class="media-bottom" style="margin-left:67px;">
-                                <i class="general foundicon-clock" style="font-size: 12px;"></i> <small>{{item.CommentedTime}}</small>&nbsp;&nbsp;<span ng-show="checkIsExistedSubComment({{item.CommentId}})"><strong style="color:rgb(208, 88, 3);">Đã có một vài trả lời</strong> </span>&nbsp;&nbsp;<a href="#" onclick="return false;" @*ng-if="User_Information.IsAuthen"*@ ng-click="showReply[$index]=true;getSubcomment(item.CommentId, $index)">Trả lời</a>
+                            <br>
+                            <div class="media-footer">
+                                <a href="#" class="voteButton" onclick="return false;">Vote | 50 </a> <a href="#" style="color: #999; font-size: 13px;"> DownVote </a> | <a href="#" onclick="return false" style="color: #999; font-size: 13px;" ng-click="showReply[$index]=true;getSubcomment(item.CommentId, $index)"> Trả lời ({{item.NumberSubComment}}) </a>
                             </div>
+                            <hr>
                             <div ng-show="showReply[$index]">
                                 <div class="media" style="margin-left: 67px;" ng-repeat="subcomment in SubCommentEvent[$index]">
                                     <a class="pull-left" href="#">
-                                        <img src="{{subcomment.UserImageProfile}}" style="width:40px; height:40px;" class="img-rounded" alt="" />
+                                        <img src="{{subcomment.UserImageProfile}}" style="width:45px; height:45px;"  class="img-circle" alt="" />
                                     </a>
                                     <div class="media-body">
-                                        <strong class="media-heading"> {{subcomment.UserCommentedName}}</strong>&nbsp;{{subcomment.Content}}
+                                        <h4 class="media-heading">{{subcomment.UserCommentedName}} <span><small>{{subcomment.CommentedTime}}</small></span></h4>
+                                        {{subcomment.Content}}
                                     </div>
-                                    <div class="media-bottom" style="margin-left:67px;">
-                                        <i class="general foundicon-clock" style="font-size: 12px;"></i> <small>{{subcomment.CommentedTime}}</small>
-                                    </div>
+                                    <hr />
                                 </div>
 
                                 <div ng-if="User_Information.IsAuthen" style="margin-left:67px;">
                                     <br />
                                     <a class="pull-left" href="#">
-                                        <img src="{{User_Information.ProfileImage}}" style="width:40px; height:40px;" class="img-rounded" alt="" />
+                                        <img src="{{User_Information.ProfileImage}}" style="width:40px; height:40px;" class="img-circle" alt="" />
                                     </a>&nbsp;&nbsp;&nbsp;<input class="subContent" type="text" placeholder="Nhập bình luận" style="width:50%; height:40px; " ng-model="$parent.Subcontent" my-Enter="addSubComment(Subcontent,{{item.CommentId}},$index)" />
+                                    <hr />
                                 </div>
                             </div>
                         </div>
@@ -333,7 +362,25 @@
             <!--End Main Content-->
         </div>
 
+        <div class="modal fade" id="sendMessage" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Gửi tin nhắn tới tổ chức: WingS</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="t" id="email" value="" class="input-block-level" placeholder="Chủ đề" />
+                        <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Gửi tin nhắn</button>
+                    </div>
+                </div>
 
+            </div>
+        </div>
 
         <hr>
         <!--Rank of Organization-->

@@ -13,8 +13,10 @@ namespace WingS.Models.DTOs
         public int CommentId { get; set; }
         public string Content { get; set; }
         public string CommentedTime { get; set; }
+        public int NumberSubComment { get; set; }
         public BasicCommentThread()
         {
+            NumberSubComment = 0;
             UserCommentedId = 0;
             UserCommentedName = "";
             Content = "";

@@ -141,7 +141,7 @@
                                     <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.MainImageUrl}}" class="img-polaroid" alt="" style="width: 242px; height: 156px; margin: 5px 0px 15px;"></a>
                                 </div>
                                 <div class="event-content">
-                                    <p ng-bind-html="SkipValidation(item.Content)">
+                                    <p ng-bind-html="item.ShortDescription">
                                     </p>
                                 </div>
                                 <div class="thread-footer">

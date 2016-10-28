@@ -189,7 +189,6 @@ img {max-width:100%;height:auto;width:auto;-moz-box-sizing:border-box;-webkit-bo
 	text-align: center;
 	margin-bottom: 30px;
 }
-
 .box i{
 	font-size: 50px;
 	color: #E05F03;
@@ -224,7 +223,7 @@ img.pull-left { margin-right:15px !important; margin-top:7px !important;}
 .navbar .nav-pills > li > a:hover, .navbar .nav-pills li.dropdown.open.active > .dropdown-toggle {-webkit-transition: ease-in-out .2s;-moz-transition: ease-in-out .2s;-o-transition: ease-in-out .2s;-ms-transition: ease-in-out .2s; transition: ease-in-out .2s;}
 
 
-body {background-image: url(scribble_light.png);  background-position: inherit; background-repeat: repeat repeat;}
+body {background-image: url(scribble_light.png);  background-position: inherit inherit; background-repeat: repeat repeat;}
 
 
 #divLogo{margin-top: 48px; margin-bottom: 0px; text-align: left;}
@@ -265,13 +264,13 @@ body {background-image: url(scribble_light.png);  background-position: inherit; 
 
 .cap5 > div {opacity: 0.85;filter:alpha(opacity=85);}
 
-.camera_full_width {margin-left:-40px;margin-right:-40px; margin-top: -55px;}
+.camera_full_width {margin-left:-35px;margin-right:-35px; margin-top: -55px;}
 
 h1 {font-weight: normal; font-style: normal; letter-spacing: 0px; line-height: 65px; margin-top: 0px; font-family: 'Source Sans Pro', sans-serif; color: rgb(0, 0, 0); font-size: 40px;}
 
 .page-content {line-height: 22px; font-family: 'Open Sans', sans-serif;}
 
-.page-content a {color: rgb(208, 88, 3); font-family: 'Open Sans', sans-serif;}
+.page-content a {color: #2865a1; font-family: 'Open Sans', sans-serif;}
 
 .sidebox {background-color: rgb(250, 250, 250); -webkit-box-shadow: none; box-shadow: none; padding: 18px; margin-top: 26px; border: 1px solid rgb(235, 235, 235); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; font-family: 'Open Sans', sans-serif; line-height: 24px; color: rgb(51, 51, 51);}
 
@@ -321,13 +320,13 @@ a.btn, a.btn-large, a.btn-small, a.btn-mini {color:#333}
 
  .btn-secondary, .btn-secondary:hover, a.btn-secondary, a.btn-secondary:hover {color:#323232;}
 
- .btn-secondary {border:1px solid #dfdfdf;border-bottom:1px solid #afafaf;background-color:#fafafa;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e1e1e1));background-image:-webkit-linear-gradient(top, #fafafa, #e1e1e1);background-image:-moz-linear-gradient(top, #fafafa, #e1e1e1);background-image:-ms-linear-gradient(top, #fafafa, #e1e1e1);background-image:-o-linear-gradient(top, #fafafa, #e1e1e1);background-image:-linear-gradient(top, #fafafa, #e1e1e1);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#fafafa, endColorstr=#e1e1e1, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
+ .btn-secondary {border:1px solid #dfdfdf;border-bottom:1px solid #afafaf;background-color:#fafafa;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e1e1e1));background-image:-webkit-linear-gradient(top, #fafafa, #e1e1e1);background-image:-moz-linear-gradient(top, #fafafa, #e1e1e1);background-image:-ms-linear-gradient(top, #fafafa, #e1e1e1);background-image:-o-linear-gradient(top, #fafafa, #e1e1e1);background-image:linear-gradient(top, #fafafa, #e1e1e1);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#fafafa, endColorstr=#e1e1e1, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
 
  .btn-secondary:hover, .btn-secondary:active, .btn-secondary.active, .btn-secondary.disabled, .btn-secondary[disabled] {background-color:#dfdfdf;}
 
 .btn-primary, .btn-primary:hover, a.btn-primary, a.btn-primary:hover {color:#ffffff;}
 
- .btn-primary {border:1px solid #c75503;border-bottom:1px solid #9d4302;background-color:#e05f03;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#e05f03), to(#ca5603));background-image:-webkit-linear-gradient(top, #e05f03, #ca5603);background-image:-moz-linear-gradient(top, #e05f03, #ca5603);background-image:-ms-linear-gradient(top, #e05f03, #ca5603);background-image:-o-linear-gradient(top, #e05f03, #ca5603);background-image:-linear-gradient(top, #e05f03, #ca5603);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#e05f03, endColorstr=#ca5603, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
+ .btn-primary {border:1px solid #c75503;border-bottom:1px solid #9d4302;background-color:#e05f03;background-repeat: repeat-x;background-image:-webkit-gradient(linear, left top, left bottom, from(#e05f03), to(#ca5603));background-image:-webkit-linear-gradient(top, #e05f03, #ca5603);background-image:-moz-linear-gradient(top, #e05f03, #ca5603);background-image:-ms-linear-gradient(top, #e05f03, #ca5603);background-image:-o-linear-gradient(top, #e05f03, #ca5603);background-image:linear-gradient(top, #e05f03, #ca5603);filter: progid:dximagetransform.microsoft.gradient(startColorstr=#e05f03, endColorstr=#ca5603, GradientType=0);filter: progid:dximagetransform.microsoft.gradient(enabled=false);}
 
  .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {background-color:#c75503;}
 
@@ -478,41 +477,9 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 }
 
-
-
-/*Set OverFlow for content*/
-.event-title, .event-content, .event-img, .event-footer,
-.thread-title, .thread-content, .thread-img, .event-footer,
-.organization-title, .organization-img, .organization-content, .organization-footer {
-    overflow: hidden;
-}
-
-/*.event-img img,.thread-img img {
-    height: 135px;
-}*/
-
- .event-title, .thread-title, .organization-title {
-     height: 57px;
- }
-
- .event-content, .thread-content {
-     height: 110px;
- }
-
- .event-footer, .thread-footer, .organization-footer {
-     
-     height: 45px;
- }
-
-
 .organization-name{
     height: 70px;
     overflow: hidden;
-}
-
-.organization-name a, .organization-logo a{
-    text-decoration: none;
-    color: inherit;
 }
 
 .organization-logo{
@@ -535,5 +502,15 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 .organization-content .basic-infor{
     height: 20px;
     overflow: hidden;
+}
+.addborder{
+	border: 1px solid #bdc3c7;
+}
+.addborder img{
+	height: 245px;
+}
+.contentTop{
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
