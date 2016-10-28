@@ -1409,6 +1409,7 @@ fieldset[disabled] .btn-dark-blue.active {
  .img-profile {
     margin-bottom: 10px;
     border: 1px solid #34495e;
+	margin-top: 20px;
 }
 
 .profile-edit {
