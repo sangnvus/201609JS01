@@ -57,7 +57,10 @@ namespace WingS.DataAccess
                     currentOrg.OrganizationName = organizationBasic.OrganizationName;
                     currentOrg.OrganizationName = organizationBasic.OrganizationName;
                     currentOrg.Introduction = organizationBasic.Introduction;
-                    currentOrg.LogoUrl = organizationBasic.LogoUrl;
+                    if (organizationBasic.LogoUrl != "" && organizationBasic.LogoUrl != null)
+                    {
+                        currentOrg.LogoUrl = organizationBasic.LogoUrl;
+                    }
                     currentOrg.Phone = organizationBasic.Phone;
                     currentOrg.Email = organizationBasic.Email;
                     currentOrg.Address = organizationBasic.Address;
