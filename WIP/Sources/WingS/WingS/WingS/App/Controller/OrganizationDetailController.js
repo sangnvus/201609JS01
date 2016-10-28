@@ -10,6 +10,15 @@
         $scope.currentOrg = response.Data;
     });
 
+    $.getJSON("api/User/GetCurrentUserId").done(function (data) {
+        var currentUserId = data.Data.toString();
+        if (data.Status === "success" && currentUserId === organizationId) {
+            $scope.isOwnerOrg = { "visibility": "visible" };
+        } else {
+            $scope.isOwnerOrg = { "visibility": "hidden" };
+        }
+    });
+
     $http({
         url: "/api/Organization/GetRankOfOrganization",
         method: "GET",

@@ -88,7 +88,9 @@
                 <div class="span4 sidebar">
                     <div class="sidebox" style="margin-top: 8px;">
                         <div class="row-fluid">
-                            <a href="@Url.Content("/#/EditOrganization/{{currentOrg.OrganizationId}}")" style="margin-top: 0; float: right;"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Chỉnh sửa</a>
+                            <a href="@Url.Content("/#/EditOrganization/{{currentOrg.OrganizationId}}")" style="margin-top: 0; float: right;" ng-style="isOwnerOrg">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Chỉnh sửa
+                            </a>
                         </div>
                         <div align="center">
                             <img src="{{currentOrg.LogoUrl}}" class=" img-circle" style="height: 150px; width: 150px; margin: 0px 0px 15px;" alt="">
