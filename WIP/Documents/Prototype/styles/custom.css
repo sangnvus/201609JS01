@@ -270,7 +270,7 @@ h1 {font-weight: normal; font-style: normal; letter-spacing: 0px; line-height: 6
 
 .page-content {line-height: 22px; font-family: 'Open Sans', sans-serif;}
 
-.page-content a {color: rgb(208, 88, 3); font-family: 'Open Sans', sans-serif;}
+.page-content a {color: #2865a1; font-family: 'Open Sans', sans-serif;}
 
 .sidebox {background-color: rgb(250, 250, 250); -webkit-box-shadow: none; box-shadow: none; padding: 18px; margin-top: 26px; border: 1px solid rgb(235, 235, 235); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; font-family: 'Open Sans', sans-serif; line-height: 24px; color: rgb(51, 51, 51);}
 
