@@ -141,9 +141,8 @@
 			<div class="info">
 				<span>Tạo bởi:</span> Hội chữ thập đỏ<span class="space"></span>
 				<span>Thể loại:</span> Y tế <span class="space"></span>
-				<span>
-				<i class="fa fa-calendar" aria-hidden="true"></i>
-				12/12/2016</span>
+				<span><i class="fa fa-calendar" aria-hidden="true"></i>12/12/2016 <span class="space"></span>
+					<a href="#" data-toggle="modal" data-target="#sendMessage" ><span><i class="fa fa-envelope"></i></span></a>
 			</div>
 			</br>
 			<!-- Tab content -->
@@ -454,8 +453,27 @@
                 </div>
             <!--End Main Content-->
             </div>
-			
- 
+		  <!--End Main Content-->	
+		<div class="modal fade" id="sendMessage" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				<div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Gửi tin nhắn tới tổ chức: WingS</h4>
+				</div>
+				<div class="modal-body">
+					<input type="text" name="text" id="email" value="" class="input-block-level" placeholder="Chủ đề"/>
+					<textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung"></textarea>
+
+				</div>
+          <div class="modal-footer">
+		  <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Gửi tin nhắn</button>
+        </div>
+         </div>
+      
+       </div>
+     </div>
 
 				<hr>
 				<!--Rank of Organization-->
