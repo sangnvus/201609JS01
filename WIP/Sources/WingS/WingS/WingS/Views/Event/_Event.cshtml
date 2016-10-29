@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../Content/css/eventList.css">
 <script src="../../Content/scripts/default.js" type="text/javascript"></script>
 <script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
 <script type="text/javascript">$(window).load(function () {var options = {autoResize: true,container: $('#gridArea'),offset: 10};var handler = $('#tiles li');handler.wookmark(options);$('#tiles li').each(function () { var imgm = 0; if($(this).find('img').length>0)imgm=parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5;if($(this).find('iframe').height()) newHeight = newHeight+15;$(this).css('height', newHeight + 'px');});handler.wookmark(options);handler.wookmark(options);});</script>
@@ -31,7 +32,7 @@
 
                 <hr>
                 <!--Edit Portfolio Content Area here-->
-                <div class="row-fluid" ng-repeat="item in Top1Event">
+                @*<div class="row-fluid" ng-repeat="item in Top1Event">
                         <li class="span6">
                             <div class="event-img">
                                 <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.MainImageUrl}}" class="img-polaroid" alt="" style="width: 600px; height: 400px; margin: 5px 0px 15px;"></a>
@@ -68,14 +69,130 @@
                             <a href="#">Xem thêm &raquo;</a></p>
                         </div>
                     </div>
+                </div>*@
+                <div class="row-fluid">
+                    <section class="col-8">
+                        <div class="contentList" ng-repeat="item in Event| limitTo: paginationLimit()">
+                            <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">
+                                <img src="{{item.MainImageUrl}}" alt=""/>
+                            </a>
+                            <!-- Title -->
+                            <div class="title">
+                                {{item.EventName}}
+                            </div>
+                            <!-- Infor basic of event -->
+                            <div class="info">
+                                <span>Tạo bởi:</span>&nbsp;{{item.CreatorName}}<span class="space"></span>
+                                <span>Thể loại:</span>&nbsp;{{item.EventType}}&nbsp;<span class="space"></span>
+                                <span>
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>{{item.CreatedDate}}
+                                </span>
+                            </div>
+                            <br />
+                            <div class="contentEvent">
+                                <p>{{item.ShortDescription}}<p>
+                            </div>
+                            <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">Xem thêm &raquo;</a>
+                            <hr>
+                        </div>
+                    </section>
+
+                    <aside class="col-4">
+                        <!-- Start Search -->
+                        <div class="search">
+                            <input id="search" type="text" placeholder="Nhập tìm kiếm" class="form-control" />
+                            <span>
+                                <i class="icon-search"></i>
+                            </span>
+                        </div>
+                        <!-- End Search -->
+                        <!-- Tab Aside content -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#popular">Sự kiện phổ biến nhất</a></li>
+                            <li><a data-toggle="tab" href="#newest">Sự kiện mới nhất</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <!-- Popular event -->
+                            <div id="popular" class="tab-pane fade in active">
+                                <div class="asideContentEvent" style="display: block;">
+                                    <!-- First content -->
+                                    <div class="item">
+                                        <div class="col-3">
+                                            <img style="height:73px;" src="portfolio/600x400.png" />
+                                        </div>
+                                        <div class="col-9">
+                                            <a href="" class="title1">Phát động chương trình "Ngọt ngào ước mơ đêm trung thu lần 5" năm 2016</a>
+                                        </div>
+                                        <div class="info">
+                                            <i class="fa fa-users" aria-hidden="true" title="Số người tham gia sự kiện"></i> 500
+                                            <span style="padding-left: 84px;"><i class="fa fa-calendar-o"></i> 12/10/2016</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End popular Event -->
+                            <!-- Newest event -->
+                            <div id="newest" class="tab-pane fade">
+                                <div class="asideContentEvent" style="display: block;">
+                                    <!-- First content -->
+                                    <div class="item">
+                                        <div class="col-3">
+                                            <img style="height:73px;" src="portfolio/600x400.png" />
+                                        </div>
+                                        <div class="col-9">
+                                            <a href="" class="title1">Phát động chương trình "Ngọt ngào ước mơ đêm trung thu lần 5" năm 2016</a>
+                                        </div>
+                                        <div class="info">
+                                            <span><i class="fa fa-calendar-o"></i> 12/10/2016</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Newest Event -->
+                        </div>
+                        <!-- End tab aside -->
+                        <!--Event type-->
+                        <h3 class="title">Thể loại</h3>
+                        <div class="asideContentCatelogy" style="display: block;">
+                            <ul style="list-style-type: circle;">
+                                <li>
+                                    <a href="#">Văn hóa - Xã hội</a>
+                                </li>
+                                <li>
+                                    <a href="#">Giáo dục</a>
+                                </li>
+                                <li>
+                                    <a href="#">Y tế</a>
+                                </li>
+                                <li>
+                                    <a href="#">Khác</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <!--Create Event-->
+                        <div class="span12">
+                            <div class="box">
+                                <a href="#"><i class="icon-tasks"></i></a>
+                                <a href="#" style="color:#333;"><h4>TẠO SỰ KIỆN</h4></a>
+                                <hr>
+                                <p>
+                                    Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
+                                </p>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
+                
                 <!--/End Portfolio Content Area-->
                 <br />
                 <div align="center">
                     <a class="btn btn-primary" href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()"><i class="icon-refresh icon-spin"></i> Xem thêm...</a>
                 </div>
                 <div id="footerInnerSeparator"></div>
-                <hr>
+               
                 <div class="row-fluid">
                     <!--Edit Main Content Area here-->
                     <div class="span12" id="divMain">
