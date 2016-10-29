@@ -477,6 +477,24 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 }
 
+.event-title, .event-content, .event-footer,
+.thread-title, .thread-content, .event-footer,
+.organization-title, .organization-content, .organization-footer {
+    overflow: hidden;
+}
+
+ .event-title, .thread-title, .organization-title {
+     height: 57px;
+ }
+ 
+ .event-content, .thread-content {
+     height: 110px;
+ }
+
+ .event-footer, .thread-footer, .organization-footer {
+     height: 45px;
+ }
+
 .organization-name{
     height: 70px;
     overflow: hidden;
@@ -505,9 +523,13 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 }
 .addborder{
 	border: 1px solid #bdc3c7;
+    border-radius: 6px 6px 6px 6px;
 }
 .addborder img{
+    border-radius: 6px 6px 0 0;
 	height: 245px;
+    width: 100%;
+
 }
 .contentTop{
 	margin-left: 5px;

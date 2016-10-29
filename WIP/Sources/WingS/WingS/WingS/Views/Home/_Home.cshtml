@@ -133,7 +133,7 @@
                             <span><h2><strong>Sự kiện</strong></h2></span>
                         </div>
                         <div class="row-fluid">
-                            <div class="span3" ng-repeat="item in Event track by $index">
+                            @*<div class="span3" ng-repeat="item in Event track by $index">
                                 <div class="event-title">
                                     <a href="#"><h4 class="text-info">{{item.EventName}}</h4></a>
                                 </div>
@@ -149,7 +149,26 @@
                                     <a href="#">Xem thêm &raquo;</a>
                                 </div>
 
+                            </div>*@
+
+                            <div class="span3 addborder" ng-repeat="item in Event track by $index">
+                                @*<img src="images/home-image.jpg" alt="">*@
+                                <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")"><img src="{{item.MainImageUrl}}"></a>
+                                <div class="contentTop">
+                                    <div class="event-title">
+                                        <h5 class="text-info">{{item.EventName}}</h5>
+                                    </div>
+                                    <div class="event-content">
+                                        <p>{{item.ShortDescription}}</p>
+                                    </div>
+                                    <div class="event-footer">
+                                        <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
+                                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">Read More &raquo;</a>
+                                    </div>
+                                </div>
+                                
                             </div>
+
 
 
                         </div>
@@ -160,7 +179,7 @@
                         <div class="row-fluid">
 
 
-                            <div class="span3" ng-repeat="item in Thread track by $index">
+                            @*<div class="span3" ng-repeat="item in Thread track by $index">
                                     <div class="thread-title">
                                         <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><h4 class="text-info">{{item.ThreadName}}</h4></a>
                                      </div>
@@ -175,8 +194,24 @@
                                     <a href="#">Xem thêm &raquo;</a>
                                 </div>
                        
+                            </div>*@
+                            <div class="span3 addborder" ng-repeat="item in Thread track by $index">
+                                @*<img src="images/home-image.jpg" alt="">*@
+                                <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}"></a>
+                                <div class="contentTop">
+                                    <div class="event-title">
+                                        <h5 class="text-info">{{item.ThreadName}}</h5>
+                                    </div>
+                                    <div class="event-content">
+                                        <p>{{item.ShortDescription}}</p>
+                                    </div>
+                                    <div class="event-footer">
+                                        <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
+                                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Read More &raquo;</a>
+                                    </div>
+                                </div>
+
                             </div>
-                            
                             
                         </div>
 
