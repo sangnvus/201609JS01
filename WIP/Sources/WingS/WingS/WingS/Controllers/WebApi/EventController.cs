@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -257,15 +258,32 @@ namespace WingS.Controllers
                     foreach (Event events in NewestEvent)
                     {
                         var eventMainImage = db.GetMainImageEventById(events.EventID);
+                        //get name of organizationt which is owner of this event.
+                        string organizationName;
+                        string eventType;
+                        using (var dbOrg = new OrganizationDAL())
+                        {
+                            var orgOwner = dbOrg.GetOrganizationById(events.CreatorID);
+                            organizationName = orgOwner.OrganizationName;
+                        }
+                        //get type of this event.
+                        using (var dbWscontext = new Ws_DataContext())
+                        {
+                            var eventTypes = dbWscontext.EventTypes.Find(events.EventType);
+                            eventType = eventTypes.EventName;
+                        }
+                       
                         basicEventList.Add(new EventBasicInfo
                         {
                             EventID = events.EventID,
                             CreatorID = events.CreatorID,
+                            CreatorName = organizationName,
                             EventName = events.EventName,
                             MainImageUrl = eventMainImage.ImageUrl,
                             Content = events.Description,
                             ShortDescription = events.ShortDescription,
                             Status = true,
+                            EventType = eventType,
                             CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
                         });
                     }
