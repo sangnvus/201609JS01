@@ -155,6 +155,21 @@
             }
         });
     };
+    //Send message 
+    $scope.sendMessage = function(titleMessage, content)
+    {
+        $http({
+            url: "/api/Message/AddMessage",
+            method: "Post",
+            data: { Title: titleMessage, Content: content, ReceiverName: $scope.Event.CreatorUserName },
+            contentType: "application/json",
+        }).success(function (response) {
+            $(".modal-body").hide();
+            $(".sendMessage").hide();
+            $(".modal-message").show();
+            $(".closeForm").show();
+        });
+    }
     $scope.SkipValidation = function(value)
     {
         return $sce.trustAsHtml(value);

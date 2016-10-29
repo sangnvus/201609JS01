@@ -324,7 +324,7 @@ namespace WingS.DataAccess
                 EvtBasicInfo.ShortDescription = currentEvent.ShortDescription;
                 EvtBasicInfo.Start_Date = currentEvent.Start_Date.ToString("dd/MM/yyyy"); ;
                 EvtBasicInfo.Finish_Date = currentEvent.Finish_Date.ToString("dd/MM/yyyy");
-              
+                EvtBasicInfo.CreatorUserName = currentEvent.Organization.Ws_User.UserName;
             }
             //Get ImageAlbum
             using (var db = new Ws_DataContext())
@@ -359,6 +359,7 @@ namespace WingS.DataAccess
             {
                 newEvent.Finish_Date = DateTime.Parse(eventInfo.FinishDate);
             }
+            newEvent.ShortDescription = eventInfo.ShortDescription;
             newEvent.Location = eventInfo.Location;
             newEvent.ExpectedMoney = eventInfo.ExpectedMoney;
             newEvent.Description = eventInfo.Content;

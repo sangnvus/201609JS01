@@ -64,7 +64,7 @@
                         </h3>
                     </div>
                     <div class="span9">
-                        @Html.DropDownListFor(x => x.Selected, Model.EventTypeList)
+                        @Html.DropDownListFor(x => x.EventType, Model.EventTypeList)
                         <p>
                             Chọn loại sự kiện mà bạn muốn tổ chức
                         </p>
@@ -82,11 +82,11 @@
                     </div>
                     <div class="span9">
                         <input name="EventName" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;"
-                               id="eventTitle" ng-model="EventName" ng-minlength="6" ng-maxlength="50" required />
+                               id="eventTitle" ng-model="EventName" ng-minlength="6" ng-maxlength="100" required />
                         <p><span style="color: red" ng-show="CreateEventForm.EventName.$dirty && CreateEventForm.EventName.$invalid">
                                 <span ng-show="CreateEventForm.EventName.$error.required">Tên Sự kiện không được để trống</span>
                                 <span ng-show="CreateEventForm.EventName.$error.minlength">Tên Sự kiện phải trên 6 kí tự</span>
-                                <span ng-show="CreateEventForm.EventName.$error.maxlength">Tên Sự kiện không vượt quá 50 kí tự</span>
+                                <span ng-show="CreateEventForm.EventName.$error.maxlength">Tên Sự kiện không vượt quá 100 kí tự</span>
                             </span></p>
                         <p>
                             Chủ đề bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
@@ -143,7 +143,7 @@
                     </div>
                     <div class="span9">
                         <p>Nhập 1 đoạn mô tả ngắn về sự kiện bạn muốn tổ chức</p>
-                        <textarea name="ShortDescription" id="descrip" class="form-control" rows="4" style="width: 60%; height: 40%;"
+                        <textarea name="ShortDescription" id="ShortDescription" class="form-control" rows="4" style="width: 60%; height: 40%;"
                                   ng-model="ShortDescription" ng-minlength="6" required></textarea>
                         <p>
                             <span style="color: red" ng-show="CreateEventForm.ShortDescription.$dirty && CreateEventForm.ShortDescription.$invalid">
@@ -287,7 +287,7 @@
                 <div align="right">
                     <button type="submit" id="createEventBtn" class="btn btn-navbar-highlight btn-medium btn-primary"
                             style="width: 150px; height: 50px" 
-                            ng-disabled="!CreateEventForm.$dirty || (CreateEventForm.$dirty && CreateEventForm.$invalid)">
+                            @*ng-disabled="!CreateEventForm.$dirty || (CreateEventForm.$dirty && CreateEventForm.$invalid)"*@>
                         Tạo sự kiện
                     </button>
                 </div>

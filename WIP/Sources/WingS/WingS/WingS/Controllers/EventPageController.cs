@@ -22,7 +22,7 @@ namespace WingS.Controllers
             string[] ToDate = Request.Form.GetValues("ToDate");
             string[] Description = Request.Form.GetValues("Description");
             List<CreateEventSchedule> eventTimeLine = new List<CreateEventSchedule>();
-            if (FromDate!= null && FromDate.Length<=1)
+            if (FromDate!= null && FromDate.Length>=1)
             {
                 for(int i = 0; i<FromDate.Length;i++)
                 {

@@ -28,12 +28,25 @@ namespace WingS.DataAccess
         public virtual DbSet<SubCommentEvent> SubCommentEvent { get; set; }
         public virtual DbSet<LikeThreads> LikeThreads { get; set; }
         public virtual DbSet<LikeEvents> LikeEvents { get; set; }
+        public virtual DbSet <Message> Messages { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Message>()
+                   .HasRequired(m => m.Creator)
+                   .WithMany(t => t.CreatorMessage)
+                   .HasForeignKey(m => m.CreatorId)
+                   .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Message>()
+                  .HasRequired(m => m.Receiver)
+                  .WithMany(t => t.ReceiverMessage)
+                  .HasForeignKey(m => m.ReceiverId)
+                  .WillCascadeOnDelete(false);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
