@@ -11,15 +11,14 @@ namespace WingS.Models
     {
         [Key]
         public int MessageId { get; set; }
-        public int CreatorId { get; set; }
-        public int ReceiverId { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
+        [ForeignKey("ConserVation")]
+        public int ConservationId { get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
         public DateTime CreatedDate { get; set; }
-        public bool isRead { get; set; }
-        public bool isHidden { get; set; }
+        public string Content { get; set; }
         public bool Status { get; set; }
-        public virtual Ws_User Creator { get; set; }
-        public virtual Ws_User Receiver { get; set; }
+        public virtual Conservation ConserVation { get; set; }
+        public virtual Ws_User User { get; set;}
     }
 }

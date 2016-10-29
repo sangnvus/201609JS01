@@ -9,13 +9,13 @@ namespace WingS.DataAccess
 {
     public class MessageDAL : IDisposable
     {
-       public MessageBasicInfoDTO AddMessage(Message newMessage)
+       public MessageBasicInfoDTO AddMessage(Conservation newMessage)
         {
             MessageBasicInfoDTO Message = new MessageBasicInfoDTO();
             
             using (var db = new Ws_DataContext())
             {
-                db.Messages.Add(newMessage);
+                db.Conservation.Add(newMessage);
                 db.SaveChanges();
             }
                 return Message;
