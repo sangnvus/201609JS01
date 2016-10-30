@@ -156,11 +156,10 @@
         });
     };
     //Send message 
-    $scope.sendMessage = function(titleMessage, content)
-    {
+    $scope.sendMessage = function (titleMessage, content) {
         $http({
-            url: "/api/Message/AddMessage",
-            method: "Post",
+            url: "/api/Conservation/AddConservation",
+            method: "post",
             data: { Title: titleMessage, Content: content, ReceiverName: $scope.Event.CreatorUserName },
             contentType: "application/json",
         }).success(function (response) {
@@ -169,7 +168,7 @@
             $(".modal-message").show();
             $(".closeForm").show();
         });
-    }
+    };
     $scope.SkipValidation = function(value)
     {
         return $sce.trustAsHtml(value);

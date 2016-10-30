@@ -373,12 +373,12 @@
                         Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#">Message</a>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMe" />
+                        <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" />
                         <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung"  ng-model="content"></textarea>
                     </div>
                     <div class="modal-footer">
                         <div class="sendMessage">
-                        <button type="button" ng-click="sendMessage(title, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
+                        <button type="button" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
                         </div>
                         <div class="closeForm">
                             <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
