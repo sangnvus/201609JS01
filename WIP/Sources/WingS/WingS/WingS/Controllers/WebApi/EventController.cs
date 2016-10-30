@@ -299,6 +299,134 @@ namespace WingS.Controllers
 
         }
 
+        /// <summary>
+        /// Get list event that sort by point and set them as Data to tranfer
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ActionName("EventsSortByPoint")]
+        public IHttpActionResult GetEventsSortByPoint()
+        {
+            List<Event> EventFollowPoint = null;
+            var basicEventList = new List<EventBasicInfo>();
+            try
+            {
+                using (var db = new EventDAL())
+                {
+                    EventFollowPoint = db.GetEventSortByPoint();
+                    foreach (Event events in EventFollowPoint)
+                    {
+                        var eventMainImage = db.GetMainImageEventById(events.EventID);
+                        //get name of organizationt which is owner of this event.
+                        string organizationName;
+                        string eventType;
+                        using (var dbOrg = new OrganizationDAL())
+                        {
+                            var orgOwner = dbOrg.GetOrganizationById(events.CreatorID);
+                            organizationName = orgOwner.OrganizationName;
+                        }
+                        //get type of this event.
+                        using (var dbWscontext = new Ws_DataContext())
+                        {
+                            var eventTypes = dbWscontext.EventTypes.Find(events.EventType);
+                            eventType = eventTypes.EventName;
+                        }
+
+                        basicEventList.Add(new EventBasicInfo
+                        {
+                            EventID = events.EventID,
+                            CreatorID = events.CreatorID,
+                            CreatorName = organizationName,
+                            EventName = events.EventName,
+                            MainImageUrl = eventMainImage.ImageUrl,
+                            Content = events.Description,
+                            ShortDescription = events.ShortDescription,
+                            Status = true,
+                            EventType = eventType,
+                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
+                        });
+                    }
+                }
+
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = basicEventList });
+            }
+            catch (Exception)
+            {
+                //ViewBag.ErrorMessage = ex;
+                return Redirect("/#/Error");
+            }
+
+        }
+
+        /// <summary>
+        /// Get event follow type event
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetEventsFollowEventType(int typeEventId)
+        {
+            List<Event> EventFollowEventType = null;
+            var basicEventList = new List<EventBasicInfo>();
+            try
+            {
+                using (var db = new EventDAL())
+                {
+                    EventFollowEventType = db.GetEventFollowEventType(typeEventId);
+                    foreach (Event events in EventFollowEventType)
+                    {
+                        var eventMainImage = db.GetMainImageEventById(events.EventID);
+                        //get name of organizationt which is owner of this event.
+                        string organizationName;
+                        string eventType;
+                        using (var dbOrg = new OrganizationDAL())
+                        {
+                            var orgOwner = dbOrg.GetOrganizationById(events.CreatorID);
+                            organizationName = orgOwner.OrganizationName;
+                        }
+                        //get type of this event.
+                        using (var dbWscontext = new Ws_DataContext())
+                        {
+                            var eventTypes = dbWscontext.EventTypes.Find(events.EventType);
+                            eventType = eventTypes.EventName;
+                        }
+
+                        basicEventList.Add(new EventBasicInfo
+                        {
+                            EventID = events.EventID,
+                            CreatorID = events.CreatorID,
+                            CreatorName = organizationName,
+                            EventName = events.EventName,
+                            MainImageUrl = eventMainImage.ImageUrl,
+                            Content = events.Description,
+                            ShortDescription = events.ShortDescription,
+                            Status = true,
+                            EventType = eventType,
+                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
+                        });
+                    }
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = basicEventList
+                });
+                
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+
+        }
+
         public IHttpActionResult GetEventListOfOrganization(int orgId)
         {
             var eventListBasicInfo = new List<EventBasicInfo>();

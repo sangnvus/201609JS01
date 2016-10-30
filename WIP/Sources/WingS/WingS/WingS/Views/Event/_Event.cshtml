@@ -72,9 +72,9 @@
                 </div>*@
                 <div class="row-fluid">
                     <section class="col-8">
-                        <div class="contentList" ng-repeat="item in Event| limitTo: paginationLimit()">
+                        <div class="contentList" ng-repeat="item in EventList| limitTo: paginationLimit()">
                             <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">
-                                <img src="{{item.MainImageUrl}}" alt=""/>
+                                <img src="{{item.MainImageUrl}}" alt="" />
                             </a>
                             <!-- Title -->
                             <div class="title">
@@ -106,10 +106,21 @@
                             </span>
                         </div>
                         <!-- End Search -->
+
                         <!-- Tab Aside content -->
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#popular">Sự kiện phổ biến nhất</a></li>
-                            <li><a data-toggle="tab" href="#newest">Sự kiện mới nhất</a></li>
+                        <div class="form-group">
+                            <label >Sắp xếp sự kiện theo:</label>
+                            <select ng-options="option for option in listOfOptions"
+                                    ng-model="selectedItem"
+                                    ng-change="LoadEventSortByPoint()">
+                                @*<option>Ngày Tạo</option>
+                                <option ng-change="LoadEventSortByPoint">Điểm</option>*@
+
+                            </select>
+                        </div>
+                        @*<ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#newest" onclick=" return false" ng-click="loadNewestEvent()">Sự kiện mới nhất</a></li>
+                            <li ><a data-toggle="tab" href="#popular" onclick=" return false " ng-click="loadFollowEvent()">Sự kiện được quan tâm</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -151,23 +162,23 @@
                                 </div>
                             </div>
                             <!-- End Newest Event -->
-                        </div>
+                        </div>*@
                         <!-- End tab aside -->
                         <!--Event type-->
                         <h3 class="title">Thể loại</h3>
                         <div class="asideContentCatelogy" style="display: block;">
                             <ul style="list-style-type: circle;">
-                                <li>
-                                    <a href="#">Văn hóa - Xã hội</a>
+                                <li ng-click="getEventSocial()">
+                                    <a >Văn hóa - Xã hội</a>
                                 </li>
                                 <li>
-                                    <a href="#">Giáo dục</a>
+                                    <a ng-click="getEventEducation()">Giáo dục</a>
                                 </li>
                                 <li>
-                                    <a href="#">Y tế</a>
+                                    <a ng-click="getEventMedical()">Y tế</a>
                                 </li>
                                 <li>
-                                    <a href="#">Khác</a>
+                                    <a ng-click="getEventOther()">Khác</a>
                                 </li>
                             </ul>
                         </div>

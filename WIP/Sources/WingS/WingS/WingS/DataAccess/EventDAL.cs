@@ -247,6 +247,35 @@ namespace WingS.DataAccess
             return listEvents;
         }
 
+        /// <summary>
+        /// Get all event sort by point
+        /// </summary>
+        /// <returns></returns>
+        public List<Event> GetEventSortByPoint()
+        {
+            List<Event> listEvents = null;
+            //Get All event sort by point
+            using (var db = new Ws_DataContext())
+            {
+                var events = db.Events.OrderByDescending(x => x.TotalPoint).Where(x => x.Status == true);
+                listEvents = events.ToList();
+            }
+
+            return listEvents;
+        }
+
+        public List<Event> GetEventFollowEventType(int eventType)
+        {
+            List<Event> listEvents = null;
+            //Get All event sort by point
+            using (var db = new Ws_DataContext())
+            {
+                var events = db.Events.OrderByDescending(x => x.TotalPoint).Where(x => x.Status == true && x.EventType == eventType);
+                listEvents = events.ToList();
+            }
+
+            return listEvents;
+        }
         
 
         /// <summary>
