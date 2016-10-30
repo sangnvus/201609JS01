@@ -91,7 +91,7 @@ app.config(function ($routeProvider) {
                     }
                 }
             },
-            title: "Tạo thảo luận"
+            title: "Tạo sự kiện"
         })
         .when("/Organization", {
             templateUrl: "/Client/Organization",

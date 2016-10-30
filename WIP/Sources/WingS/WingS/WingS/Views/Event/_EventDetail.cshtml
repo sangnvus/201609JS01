@@ -11,7 +11,6 @@
         <div class="transparent-bg" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
 
         <div class="divPanel notop nobottom">
-
             @Html.Partial("../Home/_NavigationBar")
             <div class="row-fluid">
                 <div class="span12">
@@ -25,7 +24,7 @@
             <div class="divPanel notop page-content">
 
                 <div class="breadcrumbs" style="font-size: 18px; padding-bottom:20px;">
-                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Chi tiết sự kiện</span>
+                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Chi tiết</span>
                 </div>
 
                 <!--Star event content -->
@@ -65,7 +64,7 @@
                             <span>
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                 {{Event.CreatedDate}}
-                            </span><a href="#" data-toggle="modal" data-target="#sendMessage"><span><i class="fa fa-envelope"></i></span></a>
+                            </span> | <a href="#" onclick="return false;" data-toggle="modal" data-target="#sendMessage"><i class="fa fa-envelope"></i></a>
                         </div>
                         </br>
                         <!-- Tab content -->
@@ -362,7 +361,7 @@
             <!--End Main Content-->
         </div>
 
-        <div class="modal fade" id="sendMessage" role="dialog">
+        <div class="modal fade" id="sendMessage" role="dialog" hidden>
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -370,12 +369,20 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Gửi tin nhắn tới tổ chức: WingS</h4>
                     </div>
+                    <div class="modal-message" align="center" style="margin-top:50px; margin-bottom:50px;" >
+                        Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#">Message</a>
+                    </div>
                     <div class="modal-body">
-                        <input type="text" name="t" id="email" value="" class="input-block-level" placeholder="Chủ đề" />
-                        <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung"></textarea>
+                        <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMe" />
+                        <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung"  ng-model="content"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Gửi tin nhắn</button>
+                        <div class="sendMessage">
+                        <button type="button" ng-click="sendMessage(title, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
+                        </div>
+                        <div class="closeForm">
+                            <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                        </div>
                     </div>
                 </div>
 
@@ -420,6 +427,8 @@
 	$('input').on('click', function () {
 		 $(".progressbar").loading();
 	});
+	$(".modal-message").hide();
+	$(".closeForm").hide();
         </script>
 
 </body>

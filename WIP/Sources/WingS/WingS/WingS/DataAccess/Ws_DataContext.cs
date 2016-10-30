@@ -28,12 +28,26 @@ namespace WingS.DataAccess
         public virtual DbSet<SubCommentEvent> SubCommentEvent { get; set; }
         public virtual DbSet<LikeThreads> LikeThreads { get; set; }
         public virtual DbSet<LikeEvents> LikeEvents { get; set; }
+        public virtual DbSet <Conservation> Conservation { get; set; }
+        public virtual DbSet<Message> Message { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Conservation>()
+                   .HasRequired(m => m.Creator)
+                   .WithMany(t => t.CreatorConservation)
+                   .HasForeignKey(m => m.CreatorId)
+                   .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Conservation>()
+                  .HasRequired(m => m.Receiver)
+                  .WithMany(t => t.ReceiverConservation)
+                  .HasForeignKey(m => m.ReceiverId)
+                  .WillCascadeOnDelete(false);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }

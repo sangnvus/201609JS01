@@ -10,6 +10,7 @@ namespace WingS.Models.DTOs
     {
         public List<SelectListItem> EventTypeList { get; set; }
         public Int16 Selected { get; set; }
+        public string EventType { get; set; }
 
         public EventTypeDropList()
         {
