@@ -15,7 +15,7 @@ namespace WingS.Controllers
     public class EventPageController : Controller
     {
         [HttpPost]
-        public ActionResult CreateEvent(CreateEventInfo eventInfo,  IEnumerable<HttpPostedFileBase> images)
+        public ActionResult CreateEvent(CreateEventInfo eventInfo, IEnumerable<HttpPostedFileBase> FileUpload)
         {
             //Get Event Time Lines
             string[] FromDate = Request.Form.GetValues("FromDate");
@@ -44,7 +44,7 @@ namespace WingS.Controllers
             //Add Image to server
             try
             {
-                foreach (HttpPostedFileBase img in images)
+                foreach (HttpPostedFileBase img in FileUpload)
                 {
                     //rebuild image name
                     string imageName = WsConstant.randomString() + Path.GetExtension(img.FileName).ToLower();
