@@ -4,10 +4,14 @@ var app = angular.module('AdminApp', ['ngRoute', 'angular-loading-bar', 'ngAnima
 app.config(function ($routeProvider) {
     $routeProvider
    .when("/", {
-       tittle: "DashBoard",
-       templateUrl: "/Admin/UserDashBoard",
-       controller: "AdminDashBoardController"
-   });
+       tittle: "Admin Login",
+       templateUrl: "/Admin/AdminLogin"
+       
+   }).when("/UserDashBoard", {
+        tittle: "DashBoard",
+        templateUrl: "/Admin/UserDashBoard",
+        controller: "AdminDashBoardController"
+    });
 });
 
 

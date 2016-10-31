@@ -13,5 +13,15 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/_UserDashBoard.cshtml");
         }
+
+        public ActionResult AdminLogin()
+        {
+            return PartialView("~/Views/Admin/_AdminLogin.cshtml");
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }
