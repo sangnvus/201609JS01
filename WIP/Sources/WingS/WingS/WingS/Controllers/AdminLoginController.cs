@@ -37,7 +37,7 @@ namespace WingS.Controllers
                 //Add remember me
 
 
-                return RedirectToAction("UserDashBoard", "Admin");
+                return RedirectToAction("DashBoard", "Admin");
             }
         }
 	}
