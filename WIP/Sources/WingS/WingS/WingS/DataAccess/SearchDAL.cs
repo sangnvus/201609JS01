@@ -63,18 +63,29 @@ namespace WingS.DataAccess
                 foreach (var term in searchTerms)
                 {
                     var currentTerm = term.Trim();
-                    var userGet =
-                        db.User_Information.OrderByDescending(x => x.FullName)
-                            .Where(
-                                x =>
-                                    x.FullName.Contains(currentTerm) || x.Phone.Contains(currentTerm) ||
-                                    x.UserAddress.Contains(currentTerm));
+                    var userGet = (from p in db.User_Information
+                        where
+                            p.FullName.Contains(currentTerm) || p.Phone.Contains(currentTerm) ||
+                            p.UserAddress.Contains((currentTerm))
+                        select p).OrderByDescending(x => x.FullName).Distinct();
                     listUsers.AddRange(userGet.ToList());
                     if (listUsers.Count >= 30)
                     {
                         break;
                     }
                 }
+            }
+            
+            int checkExisted = 0;
+            for (int i = 0; i < listUsers.Count; i++)
+            {
+                User_Information  currentUser = listUsers[i];
+                for (int j = 0; j < listUsers.Count; j++)
+                {
+                        if (currentUser.Equals(listUsers[j])) checkExisted++;
+                        if (checkExisted >= 2) listUsers.Remove(listUsers[j]);
+                }
+             
             }
             return listUsers;
         }
