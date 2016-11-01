@@ -43,6 +43,9 @@
 	<!-- PAGE LEVEL PLUGIN STYLES -->
 	<link href="css/plugins/datatables/datatables.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/pagination.css">
+	<!-- REFERENCE CHATBOX CSS STYLE -->
+	<link href="css/chatbox.css" rel="stylesheet" type="text/css" />
+	
 </head>
 <body id="pageBody">
 
@@ -598,6 +601,32 @@
     </div>
 </div>
 <br /><br /><br />
+
+<div class="chatbox chatbox--tray chatbox--empty">
+    <div class="chatbox__title">
+        <h5><a href="#">Thảo Luận</a></h5>
+        <button class="chatbox__title__tray">
+            <span></span>
+        </button>
+        <button class="chatbox__title__close">
+            <span>
+                <svg viewBox="0 0 12 12" width="12px" height="12px">
+                    <line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                    <line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+                </svg>
+            </span>
+        </button>
+    </div>
+    <div class="chatbox__body">
+         
+    </div>
+    <form class="chatbox__credentials">
+        Đăng nhập để được vào phòng thảo luận
+        <button type="submit" class="btn btn-success btn-block">Vào phòng</button>
+    </form>
+    <textarea class="chatbox__message" placeholder="Write something...."></textarea>
+</div>
+
 <script src="scripts/lightbox/dist/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -612,6 +641,32 @@
 	$('input').on('click', function () {
 		 $(".progressbar").loading();
 	});
+</script>
+
+<!-- CHATBOX SCRIPTS -->
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function() {
+        var $chatbox = $('.chatbox'),
+            $chatboxTitle = $('.chatbox__title'),
+            $chatboxTitleClose = $('.chatbox__title__close'),
+            $chatboxCredentials = $('.chatbox__credentials');
+        $chatboxTitle.on('click', function() {
+            $chatbox.toggleClass('chatbox--tray');
+        });
+        $chatboxTitleClose.on('click', function(e) {
+            e.stopPropagation();
+            $chatbox.addClass('chatbox--closed');
+        });
+        $chatbox.on('transitionend', function() {
+            if ($chatbox.hasClass('chatbox--closed')) $chatbox.remove();
+        });
+        $chatboxCredentials.on('submit', function(e) {
+            e.preventDefault();
+            $chatbox.removeClass('chatbox--empty');
+        });
+    });
+})(jQuery);
 </script>
 
 </body>
