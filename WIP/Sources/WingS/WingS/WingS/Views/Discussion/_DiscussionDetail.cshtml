@@ -44,7 +44,7 @@
                     <br />
                     <div class="row-fluid">
                         <div>
-                            <a ng-repeat="item in Thread.ImageUrl" class="example-image-link" href="{{item}}" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                            <a ng-repeat="item in Thread.ImageUrl track by $index" class="example-image-link" href="{{item}}" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
                                 <img style="height: 125px;" class="example-image" src="{{item}}" alt="" />
                             </a>
                         </div>
