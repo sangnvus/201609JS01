@@ -82,6 +82,18 @@ app.config(function ($routeProvider) {
             title: "Thông tin cá nhân",
             controller: "ProfileController"
         })
+          .when("/Messages", {
+              templateUrl: "/Client/Messages",
+              resolve: {
+                  'check': function ($location, $window) {
+                      if ($window.sessionStorage.isAuthen == "false") {
+                          $location.path('/Login');
+                      }
+                  }
+              },
+              title: "Tin nhắn",
+              controller: "MessagesController"
+          })
         .when("/CreateEvent", {
             templateUrl: "/Client/CreateEvent",
             resolve: {

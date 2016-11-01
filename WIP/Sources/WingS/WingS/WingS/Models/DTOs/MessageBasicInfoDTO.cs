@@ -7,6 +7,7 @@ namespace WingS.Models.DTOs
 {
     public class MessageBasicInfoDTO
     {
+        public string CreatorImage { get; set; }
         public string CreatorName { get; set; }
         public string Content { get; set; }
         public string CreatedDate { get; set; }

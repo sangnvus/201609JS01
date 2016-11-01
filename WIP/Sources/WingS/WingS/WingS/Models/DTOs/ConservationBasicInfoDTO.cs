@@ -9,6 +9,7 @@ namespace WingS.Models.DTOs
     {
         public string CreatorName { get; set;}
         public string ReceiverName { get; set; }
+        public string AvatarUrl { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string CreatedDate { get; set; }

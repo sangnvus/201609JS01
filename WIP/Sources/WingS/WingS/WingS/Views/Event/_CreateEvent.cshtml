@@ -214,8 +214,8 @@
                                                 <span class="span6">
                                                     <span class="span2" style="padding-top: 10px;">đến ngày</span>
                                                     <span class="span10"><input type="date" name="FinishDate" id="endDate" ng-model="FinishDate"
-                                                   required style="padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px;"
-                                                   min="2010-01-01" max="2099-12-31" start-date="{{StartDate.yyyymmdd()}}" compare-with-start-date /></span>
+       required style="padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px;"
+       min="{{StartDate.yyyymmdd()}}" max="2099-12-31" @*start-date="{{StartDate.yyyymmdd()}}" compare-with-start-date*@ /></span>
                                                 </span>
                                                 <p>
                                                     <span style="color: red" ng-show="CreateEventForm.StartDate.$dirty && CreateEventForm.StartDate.$invalid">
