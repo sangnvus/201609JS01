@@ -15,6 +15,7 @@ namespace WingS.Models
         public int ReceiverId { get; set; }
         public string Title { get; set; }
         public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedTime { get; set; }
         public bool isHidden { get; set; }
         public bool isRead { get; set; }
         public bool Status { get; set; }

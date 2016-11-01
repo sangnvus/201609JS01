@@ -28,6 +28,7 @@ namespace WingS.Controllers.WebApi
                 CreatorId = WsConstant.CurrentUser.UserId,
                 ReceiverId = receiverId,
                 Title = newConservation.Title,
+                UpdatedTime = DateTime.Now,
                 CreatedDate = DateTime.Now,
                 Status = true,
                 isHidden = false,
@@ -56,5 +57,30 @@ namespace WingS.Controllers.WebApi
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
         }
+
+        [HttpGet]
+        public IHttpActionResult GetAllConservation()
+        {
+            List<ConservationBasicInfoDTO> ConservationList;
+            using (var db = new ConservationDAL())
+            {
+                ConservationList = db.GetAllConservationByUserId(WsConstant.CurrentUser.UserId);
+            }
+            if (ConservationList != null)
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = ConservationList });
+            else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+        }
+        //[HttpGet]
+        //public IHttpActionResult GetAllMessageByConservationId(int conservationId)
+        //{
+        //    List<MessageBasicInfoDTO> MessageList;
+        //    using (var db = new ConservationDAL())
+        //    {
+        //        MessageList = db.GetAllMessageByConservationId(conservationId);
+        //    }
+        //     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = MessageList });
+          
+        //}
+
     }
 }

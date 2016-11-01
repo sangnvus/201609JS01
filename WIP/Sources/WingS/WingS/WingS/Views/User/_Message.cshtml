@@ -1,0 +1,107 @@
+﻿
+
+<body id="pageBody">
+    <div id="divBoxed" class="container">
+
+        <div class="transparent-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
+
+        <div class="divPanel notop nobottom">
+            @Html.Partial("../Home/_NavigationBar")
+            <div class="row-fluid">
+                <div class="span12">
+                    <div id="contentInnerSeparator"></div>
+                </div>
+            </div>
+        </div>
+        <div class="contentArea">
+
+            <div class="divPanel notop page-content">
+
+                <div class="breadcrumbs">
+                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Tin nhắn</span>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span4 sidebar">
+
+                        <div class="sidebox">
+                            <div class="row-fluid">
+                                <select>
+                                    <option value="volvo">Tất cả</option>
+                                    <option value="saab">Chưa đọc</option>
+                                    <option value="sent">Đã gửi</option>
+                                </select>
+                            </div>
+                            <hr>
+                            <div ng-repeat="item in Conservation track by $index">
+                                <div class="row-fluid">
+                                    <a class="pull-left" href="#">
+                                        <img src="{{item.AvatarUrl}}" style="width:60px; height:60px;" class="img-circle" alt="" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
+                                        {{item.Title}}
+                                    </div>
+
+                                </div>
+                                <hr>
+                            </div>
+                            <a class="btn btn-info pull-right" href="#">Soạn tin mới</a>
+                        </div>
+
+                    </div>
+                    <!--Edit Main Content Area here-->
+                    <div class="span8" id="divMain">
+
+                        <h1>Tin nhắn</h1>
+                        <hr>
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                            </a>
+                            <div class="media-body">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                            </a>
+                            <div class="media-body">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                            </a>
+                            <div class="media-body">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                            </a>
+                            <div class="media-body">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                            <a class="pull-left" href="#">
+                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                            </a>&nbsp;&nbsp;&nbsp;<input class="subContent" type="text" placeholder="Nhập tin nhắn" style="width:64%; height:50px; " />
+                        </div>
+                        <div align="center">
+                            <a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i>Tải lại</a>
+                        </div>
+                    </div>
+                    <!--End Sidebar Content here-->
+                    <div id="footerInnerSeparator"></div>
+                </div>
+            </div>
+            @Html.Partial("../Home/_Footer")
+        </div>
+        <br /><br /><br />
+</body>
