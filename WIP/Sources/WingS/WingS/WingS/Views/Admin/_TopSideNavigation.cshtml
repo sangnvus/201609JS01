@@ -1,0 +1,343 @@
+﻿<body>
+<div id="wrapper">
+
+    <!-- begin TOP NAVIGATION -->
+    <nav class="navbar-top" role="navigation">
+
+        <!-- begin BRAND HEADING -->
+        <div class="navbar-header">
+            @*<button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse">
+                <i class="fa fa-bars"></i> Menu
+            </button>*@
+            <div class="navbar-brand">
+                <img src="~/Content/images/WingS-logo.jpg" class="img-responsive" title="WingS Logo" alt="WingS Logo" style="width:30px;">
+            </div>
+            <div style="padding-top:15px;color:white;font-size: 18px;"><span style="font-weight:700;">WingS</span> Admin</div>
+        </div>
+        <!-- end BRAND HEADING -->
+
+        <div class="nav-top">
+            <!-- begin MESSAGES/ALERTS/TASKS/USER ACTIONS DROPDOWNS -->
+            <ul class="nav navbar-right">
+
+                <!-- begin MESSAGES DROPDOWN -->
+                <li class="dropdown">
+                    <a href="#" onclick="return false" class="messages-link dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope"></i>
+                        <span class="number">4</span> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-scroll dropdown-messages">
+
+                        <!-- Messages Dropdown Heading -->
+                        <li class="dropdown-header">
+                            <i class="fa fa-envelope"></i> 4 Tin nhắn mới
+                        </li>
+
+                        <!-- Messages Dropdown Body - This is contained within a SlimScroll fixed height box. You can change the height using the SlimScroll jQuery features. -->
+                        <li id="messageScroll">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#">
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                <img class="img-circle" src="~/Content/images/user-profile-1.jpg" alt="">
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <p>
+                                                    <strong>Jane Smith</strong>: Hi again! I wanted to let you know that the order...
+                                                </p>
+                                                <p class="small">
+                                                    <i class="fa fa-clock-o"></i> 12 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                <img class="img-circle" src="img/user-profile-2.jpg" alt="">
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <p>
+                                                    <strong>Roddy Austin</strong>: Thanks for the info, if you need anything from...
+                                                </p>
+                                                <p class="small">
+                                                    <i class="fa fa-clock-o"></i> 3:39 PM
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                <img class="img-circle" src="img/user-profile-3.jpg" alt="">
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <p>
+                                                    <strong>Stacy Gibson</strong>: Hey, what was the purchase order number for the...
+                                                </p>
+                                                <p class="small">
+                                                    <i class="fa fa-clock-o"></i> Yesterday at 10:23 AM
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                <img class="img-circle" src="img/user-profile-4.jpg" alt="">
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <p>
+                                                    <strong>Jeffrey Cortez</strong>: Check out this video I found the other day, it's...
+                                                </p>
+                                                <p class="small">
+                                                    <i class="fa fa-clock-o"></i> Tuesday at 12:23 PM
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Messages Dropdown Footer -->
+                        <li class="dropdown-footer">
+                            <a href="mailbox.html">Xem tất cả</a>
+                        </li>
+
+                    </ul>
+                    <!-- /.dropdown-menu -->
+                </li>
+                <!-- /.dropdown -->
+                <!-- end MESSAGES DROPDOWN -->
+                <!-- begin ALERTS DROPDOWN -->
+                <li class="dropdown">
+                    <a href="#" onclick="return false" class="alerts-link dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell"></i>
+                        <span class="number">2</span><i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-scroll dropdown-alerts">
+
+                        <!-- Alerts Dropdown Heading -->
+                        <li class="dropdown-header">
+                            <i class="fa fa-bell"></i> 2 Thông báo mới
+                        </li>
+
+                        <!-- Alerts Dropdown Body - This is contained within a SlimScroll fixed height box. You can change the height using the SlimScroll jQuery features. -->
+                        <li id="alertScroll">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#">
+                                        <div class="alert-icon blue pull-left">
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        New Comments
+                                        <span class="badge blue pull-right">15</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <div class="alert-icon green pull-left">
+                                            <i class="fa fa-plus-circle"></i>
+                                        </div>
+                                        New Users
+                                        <span class="badge green pull-right">5</span>
+                                    </a>
+                                </li>
+
+
+
+                            </ul>
+                        </li>
+
+                        <!-- Alerts Dropdown Footer -->
+                        <li class="dropdown-footer">
+                            <a href="#">Xem tất cả</a>
+                        </li>
+
+                    </ul>
+                    <!-- /.dropdown-menu -->
+                </li>
+                <!-- /.dropdown -->
+                <!-- end ALERTS DROPDOWN -->
+                <!-- begin USER ACTIONS DROPDOWN -->
+                <li class="dropdown">
+                    <a href="#" onclick="return false" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="userprofile.html">
+                                <i class="fa fa-user"></i> Thông tin cá nhân
+                            </a>
+                        </li>
+                        <li>
+                            <a href="message.html">
+                                <i class="fa fa-envelope"></i> Tin nhắn
+                                <span class="badge green pull-right">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-bell"></i> Thông báo
+                                <span class="badge orange pull-right">2</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="logout_open" href="#logout">
+                                <i class="fa fa-sign-out"></i> Đăng xuất
+                                <strong>Anh Tuấn</strong>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-menu -->
+                </li>
+                <!-- /.dropdown -->
+                <!-- end USER ACTIONS DROPDOWN -->
+
+            </ul>
+            <!-- /.nav -->
+            <!-- end MESSAGES/ALERTS/TASKS/USER ACTIONS DROPDOWNS -->
+
+        </div>
+        <!-- /.nav-top -->
+    </nav>
+    <!-- /.navbar-top -->
+    <!-- end TOP NAVIGATION -->
+    <!-- begin SIDE NAVIGATION -->
+    <nav class="navbar-side" role="navigation">
+        <div class="navbar-collapse sidebar-collapse collapse">
+            <ul id="side" class="nav navbar-nav side-nav">
+                <!-- begin SIDE NAV USER PANEL -->
+                <li class="side-user hidden-xs">
+                    <img class="img-circle" src="~/Content/images/avatar_default.png" style="width:150px; height:150px;" alt="">
+                    <p class="welcome">
+                        <i class="fa fa-key"></i> Đăng nhập với
+                    </p>
+                    <p class="name tooltip-sidebar-logout">
+                        Anh
+                        <span class="last-name">Tuấn</span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Logout"><i class="fa fa-sign-out"></i></a>
+                    </p>
+                    <div class="clearfix"></div>
+                </li>
+                <!-- end SIDE NAV USER PANEL -->
+                <!-- begin DASHBOARD LINK -->
+                <li>
+                    <a href="dashboard.html" class="active">
+                        <i class="fa fa-dashboard"></i> Thống kê chung
+                    </a>
+                </li>
+                <!-- end DASHBOARD LINK -->
+                <!-- begin USERS DROPDOWN -->
+                <li class="panel">
+                    <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#users">
+                        <i class="fa fa-files-o"></i> Thành viên <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="collapse nav" id="users">
+                        <li>
+                            <a href="userDashboard.html">
+                                <i class="fa fa-angle-double-right"></i> Thống kê thành viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href=@Url.Content("~/Admin/#/UserList")>
+                                <i class="fa fa-angle-double-right"></i> Danh sách thành viên
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- end USERS DROPDOWN -->
+                <!-- begin PROJECTS DROPDOWN -->
+                <li class="panel">
+                    <a data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#projects">
+                        <i class="fa fa-bar-chart-o"></i> Project
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="collapse nav" id="projects">
+                        <li>
+                            <a href="project.html">
+                                <i class="fa fa-angle-double-right"></i> Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="new-project.html">
+                                <i class="fa fa-angle-double-right"></i> Projects List
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- end PROJECTS DROPDOWN -->
+                <!-- begin BACKINGS DROPDOWN -->
+                <li class="panel">
+                    <a href="backing.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
+                        <i class="fa fa-bar-chart-o"></i> Backing
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                    </a>
+                </li>
+                <!-- end BACKINGS DROPDOWN -->
+                <!-- begin CATEGORIES DROPDOWN -->
+                <li class="panel">
+                    <a href="category.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
+                        <i class="fa fa-bar-chart-o"></i> Category
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                    </a>
+                </li>
+                <!-- end CATEGORIES DROPDOWN -->
+                <!-- begin SLIDERS DROPDOWN -->
+                <li class="panel">
+                    <a href="slider.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
+                        <i class="fa fa-bar-chart-o"></i> Slider
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                    </a>
+                </li>
+                <!-- end SLIDERS DROPDOWN -->
+                <!-- begin MESSAGES DROPDOWN -->
+                <li class="panel">
+                    <a href="message.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
+                        <i class="fa fa-bar-chart-o"></i> Message
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                    </a>
+                </li>
+                <!-- end MESSAGES DROPDOWN -->
+                <!-- begin REPORT -->
+                <li class="panel">
+                    <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#reports">
+                        <i class="fa fa-flag"></i> Báo cáo <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="collapse nav" id="reports">
+                        <li>
+                            <a href="report-user.html">
+                                <i class="fa fa-angle-double-right"></i> Thành viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="report-thread.html">
+                                <i class="fa fa-angle-double-right"></i> Bài viết
+                            </a>
+                        </li>
+                        <li>
+                            <a href="report-event.html">
+                                <i class="fa fa-angle-double-right"></i> Sự kiện
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- end REPORT -->
+            </ul>
+            <!-- /.side-nav -->
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <!-- /.navbar-side -->
+<!-- end SIDE NAVIGATION -->
+    </div>
+</body>
