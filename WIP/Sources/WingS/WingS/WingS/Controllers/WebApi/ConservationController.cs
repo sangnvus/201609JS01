@@ -64,23 +64,23 @@ namespace WingS.Controllers.WebApi
             List<ConservationBasicInfoDTO> ConservationList;
             using (var db = new ConservationDAL())
             {
-                ConservationList = db.GetAllConservationByUserId(WsConstant.CurrentUser.UserId);
+                ConservationList = db.GetAllConservationByUserId();
             }
             if (ConservationList != null)
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = ConservationList });
             else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
         }
-        //[HttpGet]
-        //public IHttpActionResult GetAllMessageByConservationId(int conservationId)
-        //{
-        //    List<MessageBasicInfoDTO> MessageList;
-        //    using (var db = new ConservationDAL())
-        //    {
-        //        MessageList = db.GetAllMessageByConservationId(conservationId);
-        //    }
-        //     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = MessageList });
-          
-        //}
+        [HttpGet]
+        public IHttpActionResult GetAllMessageByConservationId(int conservationId)
+        {
+            List<MessageBasicInfoDTO> MessageList;
+            using (var db = new ConservationDAL())
+            {
+                MessageList = db.GetAllMessageByConservationId(conservationId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = MessageList });
+
+        }
 
     }
 }

@@ -34,17 +34,20 @@
                             </div>
                             <hr>
                             <div ng-repeat="item in Conservation track by $index">
-                                <div class="row-fluid">
-                                    <a class="pull-left" href="#">
-                                        <img src="{{item.AvatarUrl}}" style="width:60px; height:60px;" class="img-circle" alt="" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
-                                        {{item.Title}}
-                                    </div>
+                              
+                                    <div class="row-fluid">
+                                        <a class="pull-left" href="#">
+                                            <img src="{{item.AvatarUrl}}" style="width:60px; height:60px;" class="img-circle" alt="" />
+                                        </a>
+                                        <a href="#" onclick="return false" ng-click="getMessage(item.CreatorName,item.ConservationId)" style="text-decoration: none;">
+                                            <div class="media-body" style="margin-left:62px;">
+                                                <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
+                                                <p style="color: black"> {{item.Title}}</p>
+                                            </div>
 
-                                </div>
-                                <hr>
+                                        </div>
+                                    <hr>  </a>
+                              
                             </div>
                             <a class="btn btn-info pull-right" href="#">Soạn tin mới</a>
                         </div>
@@ -53,44 +56,22 @@
                     <!--Edit Main Content Area here-->
                     <div class="span8" id="divMain">
 
-                        <h1>Tin nhắn</h1>
+                        <h1>{{MessageName}}</h1>
                         <hr>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
-                            </a>
-                            <div class="media-body">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
-                            </a>
-                            <div class="media-body">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
-                            </a>
-                            <div class="media-body">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
-                            </a>
-                            <div class="media-body">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <div ng-repeat="item in Message track by $index">
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img src="{{item.CreatorImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
+                                </a>
+                                <div class="media-body"><h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
+                                   {{item.Content}}
+                                </div>
                             </div>
                         </div>
                         <br>
                         <div>
                             <a class="pull-left" href="#">
-                                <img src="http://placehold.it/64x64" class="img-rounded" alt="" />
+                                <img src="{{User_Information.ProfileImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
                             </a>&nbsp;&nbsp;&nbsp;<input class="subContent" type="text" placeholder="Nhập tin nhắn" style="width:64%; height:50px; " />
                         </div>
                         <div align="center">

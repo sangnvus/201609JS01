@@ -7,6 +7,7 @@ namespace WingS.Models.DTOs
 {
     public class ConservationBasicInfoDTO
     {
+        public int ConservationId { get; set; }
         public string CreatorName { get; set;}
         public string ReceiverName { get; set; }
         public string AvatarUrl { get; set; }
