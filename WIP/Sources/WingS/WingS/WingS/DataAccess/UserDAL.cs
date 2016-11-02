@@ -56,11 +56,11 @@ namespace WingS.DataAccess
 
             return newUser;
         }
-        public  Ws_User GetUserByUserNameAndPassword(string UsernameOrEmail, string Password)
+        public  Ws_User GetUserByUserNameAndPassword(string UsernameOrEmail, string Password,  bool accountType)
         {
             using (var db = new Ws_DataContext())
             {
-                var User = db.Ws_User.FirstOrDefault(x => ((x.UserName.Equals(UsernameOrEmail) || x.Email.Equals(UsernameOrEmail)) && x.UserPassword.Equals(Password)));
+                var User = db.Ws_User.FirstOrDefault(x => ((x.UserName.Equals(UsernameOrEmail) || x.Email.Equals(UsernameOrEmail)) && x.UserPassword.Equals(Password) && x.AccountType.Equals(accountType)));
                 return User;
             }
         }

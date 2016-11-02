@@ -23,7 +23,7 @@ namespace WingS.Controllers
             string encryptpass = MD5Helper.MD5Encrypt(account.PassWord);
             using (var userDal = new UserDAL())
             {
-                var AccountInfo = userDal.GetUserByUserNameAndPassword(account.UserName, encryptpass);
+                var AccountInfo = userDal.GetUserByUserNameAndPassword(account.UserName, encryptpass,false);
                 if (AccountInfo == null)
                 {
                     ModelState.AddModelError("WrongPassword", "Sai mật khẩu hoặc tài khoản không tồn tại!");
@@ -198,13 +198,13 @@ namespace WingS.Controllers
 
 
         //Check UserName and PassWord
-        public JsonResult ValidateUser(string UserName, string PassWord)
+        public JsonResult ValidateUser(string UserName, string PassWord, bool AccountType)
         {
             string messageError = "";
             string encryptpass = MD5Helper.MD5Encrypt(PassWord);
             using (var userDal = new UserDAL())
             {
-                var AccountInfo = userDal.GetUserByUserNameAndPassword(UserName, encryptpass);
+                var AccountInfo = userDal.GetUserByUserNameAndPassword(UserName, encryptpass, AccountType);
                 if (AccountInfo == null)
                 {
                     messageError = "WrongPass";

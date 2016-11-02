@@ -193,7 +193,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="logout_open" href="#logout">
+                            <a class="logout_open" href="#logout" onclick="return false">
                                 <i class="fa fa-sign-out"></i> Đăng xuất
                                 <strong>Anh Tuấn</strong>
                             </a>
@@ -339,5 +339,26 @@
     </nav>
     <!-- /.navbar-side -->
 <!-- end SIDE NAVIGATION -->
+    <!-- Logout Notification Box -->
+    <div id="logout">
+        <div class="logout-message">
+            <img class="img-circle img-logout" src="img/profile-pic.jpg" alt="">
+            <h3>
+                <i class="fa fa-sign-out text-green"></i> Ready to go?
+            </h3>
+            <p>Select "Logout" below if you are ready<br> to end your current session.</p>
+            <ul class="list-inline">
+                <li>
+                    <a href="@Url.Action("AdminLogout", "AdminLogin")" class="btn btn-green">
+                        <strong>Logout</strong>
+                    </a>
+                </li>
+                <li>
+                    <button class="logout_close btn btn-green">Cancel</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /#logout -->
     </div>
 </body>

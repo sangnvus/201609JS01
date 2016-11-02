@@ -73,7 +73,7 @@
         $(function () {
             $('#logInBtn').click(function() {
                 $('#ErrorMessage').html("Đang đăng nhập...");
-                $.getJSON("/Login/ValidateUser", { UserName: $("#UserNameInput").val(), PassWord: $("#PassWordInput").val() }, function(data) {
+                $.getJSON("/Login/ValidateUser", { UserName: $("#UserNameInput").val(), PassWord: $("#PassWordInput").val(), AccountType: false }, function (data) {
                     if (data == "WrongPass") {
                         $('#ErrorMessage').html("Sai tên đăng nhập hoặc mật khẩu!");
                         return false;
