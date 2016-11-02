@@ -7,10 +7,16 @@ app.config(function ($routeProvider) {
        tittle: "Admin Login",
        templateUrl: "/Admin/AdminLogin"
        
-   }).when("/UserDashBoard", {
-        tittle: "DashBoard",
-        templateUrl: "/Admin/UserDashBoard",
+   })
+   .when("/DashBoard", {
+        tittle: "Thống kê chung",
+        templateUrl: "/Admin/DashBoard",
         controller: "AdminDashBoardController"
+   })
+   .when("/UserList", {
+        tittle: "Danh sách thành viên",
+        templateUrl: "/Admin/UserList",
+        controller: ""
     });
 });
 
