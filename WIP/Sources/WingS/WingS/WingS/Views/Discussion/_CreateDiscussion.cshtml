@@ -33,18 +33,27 @@
                     <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Thảo Luận</a> &nbsp;/&nbsp; <span>Tạo thảo Luận</span>
                 </div>
 
-                @using (Html.BeginForm("CreateDiscussion","Thread",FormMethod.Post, new { @id = "LoginForm", enctype = "multipart/form-data" })) {
+                @using (Html.BeginForm("CreateDiscussion","Thread",FormMethod.Post, new { @id = "CreateThread",@name="CreateThread", enctype = "multipart/form-data" })) {
                 <div class="row-fluid">
                     <div class="span9 offset1">
+                        <p>
+                            Những mục có dấu <span style="color: red">*</span> không được để trống
+                        </p>
                         <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                             <div class="row-fluid">
                                 <div class="span4" align="center">
-                                    <h3 style="margin-top:25px;"><strong>Tiêu đề</strong></h3>
+                                    <h3 style="margin-top: 25px;"><strong>Tiêu đề<span style="color: red"> *</span></strong>
+                                    </h3>
                                 </div>
                                 <div class="span8">
-                                    <input type="text" style="margin-top:7px;padding:10px; border-color:rgb(224, 95, 3);border-radius:10px; width:100%;" id="Title" name="Title" />
+                                    <input type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" id="Title" name="Title"
+                                           ng-model="Title" ng-minlength="6" ng-maxlength="100" required/>
                                     <p>
-                                        Nhập vào tiêu đề không dài quá 50 kí tự.
+                                        <span style="color: red" ng-show="CreateThread.Title.$dirty && CreateThread.Title.$invalid">
+                                            <span ng-show="CreateThread.Title.$error.required">Tiêu đề phần thảo luận không được để trống</span>
+                                            <span ng-show="CreateThread.Title.$error.minlength">Tiêu đề phần thảo luận phải trên 6 kí tự</span>
+                                            <span ng-show="CreateThread.Title.$error.maxlength">Tiêu đề phần thảo luận không vượt quá 100 kí tự</span>
+                                        </span>
                                     </p>
                                     <p>
                                         Tiêu đề bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
@@ -60,13 +69,17 @@
                         <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                             <div class="row-fluid">
                                 <div class="span4" align="center">
-                                    <h3 style="margin-top:25px;"><strong>Hình ảnh </strong></h3>
+                                    <h3 style="margin-top:25px;"><strong>Hình ảnh <span style="color: red"> *</span></strong></h3>
                                 </div>
                                 <div class="span8">
-                                    <p>Chọn hình ảnh bạn có<span style="color:red;">    BẮT BUỘC</span></p>
-                                    <input type="file" class="multiple" name="Images" multiple required  accept="image/*"/>
+                                    <p>Chọn hình ảnh bạn có</p>
+                                    <input type="file" class="multiple" name="Images" multiple valid-file ng-model="Images" required accept="image/*" />
                                     <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với  1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
-
+                                    <p>
+                                        <span style="color: red" ng-show="CreateThread.Images.$dirty && CreateEventForm.FileUpload.$invalid">
+                                            <span ng-show="CreateThread.Images.$error.required">Bạn phải chọn ảnh để upload</span>
+                                        </span>
+                                    </p>
 
                                 </div>
                             </div>
@@ -82,7 +95,7 @@
                                 </div>
                                 <div class="span8">
                                     <p>Mô tả nội dung của bạn </p>
-                                    @Html.TextAreaFor(thread => thread.Content)
+                                    <textarea id="ThreadContent" name="Content" style="height: 60%; height: 80%;"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +103,7 @@
                     </div>
                 <div class="row-fluid">
                     <div class="span9 offset1" align="right">
-                        <button type="submit" class="btn btn-navbar-highlight btn-large btn-primary">
+                        <button type="submit" ng-disabled="!CreateThread.$dirty || (CreateThread.$dirty && CreateThread.$invalid)" class=" btn btn-navbar-highlight btn-large btn-primary">
                             Tạo thảo luận
                         </button>
                     </div>

@@ -28,6 +28,17 @@ namespace WingS.DataAccess
                     }
                 }
             }
+            int checkExisted = 0;
+            for (int i = 0; i < listThreads.Count; i++)
+            {
+                Thread currentThread = listThreads[i];
+                for (int j = 0; j < listThreads.Count; j++)
+                {
+                    if (currentThread.Equals(listThreads[j])) checkExisted++;
+                    if (checkExisted >= 2) listThreads.Remove(listThreads[j]);
+                }
+
+            }
             return listThreads;
         }
         /// <summary>
@@ -109,7 +120,17 @@ namespace WingS.DataAccess
                     }
                 }
             }
+            int checkExisted = 0;
+            for (int i = 0; i < listEvents.Count; i++)
+            {
+                Event currentEvent = listEvents[i];
+                for (int j = 0; j < listEvents.Count; j++)
+                {
+                    if (currentEvent.Equals(listEvents[j])) checkExisted++;
+                    if (checkExisted >= 2) listEvents.Remove(listEvents[j]);
+                }
 
+            }
             return listEvents;
         }
         public EventAlbumImage GetMainImageEventById(int eventId)
@@ -145,6 +166,17 @@ namespace WingS.DataAccess
                         break;
                     }
                 }
+            }
+            int checkExisted = 0;
+            for (int i = 0; i < orgList.Count; i++)
+            {
+                Organization currentoOrganization = orgList[i];
+                for (int j = 0; j < orgList.Count; j++)
+                {
+                    if (currentoOrganization.Equals(orgList[j])) checkExisted++;
+                    if (checkExisted >= 2) orgList.Remove(orgList[j]);
+                }
+
             }
             return orgList;
         }

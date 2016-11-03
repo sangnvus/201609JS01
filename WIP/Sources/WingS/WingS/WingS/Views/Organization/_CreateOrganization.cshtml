@@ -24,20 +24,32 @@
             <div class="breadcrumbs">
                 <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Tổ chức</a> &nbsp;/&nbsp; <span>Tạo Tổ chức</span>
             </div>
-            @using (Html.BeginForm("CreateOrganization", "Organization", FormMethod.Post, new { @id = "LoginForm", enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("CreateOrganization", "Organization", FormMethod.Post, new { @id = "CreateOrganization", @name = "CreateOrganization", enctype = "multipart/form-data" }))
             {
             <div class="row-fluid">
                 <div class="span9 offset1">
+                    <p>
+                        Những mục có dấu <span style="color: red">*</span> không được để trống
+                    </p>
                     <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                         <div class="row-fluid">
                             <div class="span4" align="center">
-                                <strong>
-                                    <h3 style="margin-top: 25px;">Tên Tổ Chức</h3></strong>
+
+                                <h3 style="margin-top: 25px;">
+                                    <strong>
+                                        Tên Tổ Chức<span style="color: red"> *</span>
+                                    </strong>
+                                </h3>
                             </div>
                             <div class="span8">
-                                <input name="OrganizationName" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                <input name="OrganizationName" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;"
+                                       ng-model="OrganizationName" ng-minlength="6" ng-maxlength="100" required/>
                                 <p>
-                                    Tên tổ chức không dài quá 200 kí tự.
+                                    <span style="color: red" ng-show="CreateOrganization.OrganizationName.$dirty && CreateOrganization.OrganizationName.$invalid">
+                                        <span ng-show="CreateOrganization.OrganizationName.$error.required">Tên Tổ chức không được để trống</span>
+                                        <span ng-show="CreateOrganization.OrganizationName.$error.minlength">Tên Tổ chức phải trên 6 kí tự</span>
+                                        <span ng-show="CreateOrganization.OrganizationName.$error.maxlength">Tên Tổ chức không vượt quá 100 kí tự</span>
+                                    </span>
                                 </p>
                                 <p>
                                     Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
@@ -55,15 +67,19 @@
                     <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                         <div class="row-fluid">
                             <div class="span4" align="center">
-                                <strong>
-                                    <h3 style="margin-top: 25px;">Logo</h3>
-                                </strong>
+                                <h3 style="margin-top: 25px;">
+                                    <strong>Logo<span style="color: red"> *</span></strong>
+                                </h3>
                             </div>
                             <div class="span8">
-                                <p>Chọn hình ảnh bạn có<span style="color: red;"> 	BẮT BUỘC</span></p>
-                                <input name="LogoImage" type="file" required>
+                                <p>Chọn hình ảnh bạn có</p>
+                                <input name="LogoImage" type="file" valid-file ng-model="LogoImage" required>
                                 <p style="font-weight: bold;">Chọn file với định dạng JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
-
+                                <p>
+                                    <span style="color: red" ng-show="CreateOrganization.LogoImage.$dirty && CreateOrganization.LogoImage.$invalid">
+                                        <span ng-show="CreateOrganization.LogoImage.$error.required">Bạn phải chọn ảnh để upload</span>
+                                    </span>
+                                </p>
 
                             </div>
                         </div>
@@ -75,14 +91,21 @@
                     <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                         <div class="row-fluid">
                             <div class="span4" align="center">
-                                <strong>
-                                    <h3 style="margin-top: 25px;">Giới Thiệu</h3>
-                                </strong>
+                                <h3 style="margin-top: 25px;">
+                                    <strong>Giới Thiệu<span style="color: red"> *</span></strong>
+                                </h3>
                             </div>
                             <div class="span8">
-                                <p>Hãy viết phần giời thiệu về tổ chức </p>
+                                <p>Hãy viết phần giới thiệu về tổ chức </p>
                                 @*<div id="txtEditor" style="background-color: #fff; height: 300px; margin-bottom: 30px;"></div>*@
-                               <textarea name="Introduction" style="width:450px; height:300px;"></textarea>
+                                <textarea name="Introduction" style="width: 450px; height: 300px;" ng-model="Introduction" ng-minlength="6" ng-maxlength="100" required></textarea>
+                                <p>
+                                    <span style="color: red" ng-show="CreateOrganization.Introduction.$dirty && CreateOrganization.Introduction.$invalid">
+                                        <span ng-show="CreateOrganization.Introduction.$error.required">Phần giới thiệu không được để trống</span>
+                                        <span ng-show="CreateOrganization.Introduction.$error.minlength">Phần giới thiệu hệ phải trên 6 kí tự</span>
+                                        <span ng-show="CreateOrganization.Introduction.$error.maxlength">Phần giới thiệu hệ không quá 100 kí tự</span>
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -94,34 +117,45 @@
                     <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                         <div class="row-fluid">
                             <div class="span4" align="center">
-                                <strong>
-                                    <h3 style="margin-top: 25px;">Số điện thoại</h3>
-                                </strong>
+                                <h3 style="margin-top: 25px;">
+                                    <strong>Số điện thoại<span style="color: red"> *</span></strong>
+                                </h3>
                             </div>
                             <div class="span8">
-                                <input name="Phone" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                <input name="Phone" type="number" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;"
+                                       ng-model="Phone" required />
+                                <p>
+                                    <span style="color: red" ng-show="CreateOrganization.Phone.$dirty && CreateOrganization.Phone.$invalid">
+                                        <span ng-show="CreateOrganization.Phone.$error.required">Số điện thoại không được để trống</span>
+                                    </span>
+                                </p>
                                 <p>
                                     Số điện thoại sẽ hiển thị trên trang của tổ chức, giúp cho việc liên lạc của các thành viên WingS với tổ chức của bạn thuận tiện.
                                 </p>
-                                <!-- <p>Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.</p> -->
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="row-fluid">
                 <div class="span9 offset1">
                     <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                         <div class="row-fluid">
                             <div class="span4" align="center">
-                                <strong>
-                                    <h3 style="margin-top: 25px;">Email</h3>
-                                </strong>
+                                <h3 style="margin-top: 25px;">
+                                    <strong>Email</strong>
+                                </h3>
                             </div>
                             <div class="span8">
-                                <input name="Email" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                <input name="Email" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;"
+                                       ng-model="Email" />
+                                <p>
+                                    <span style="color: red" ng-show="CreateOrganization.Email.$dirty && CreateOrganization.Email.$invalid">
+                                        <span ng-show="CreateOrganization.Email.$error.email">Địa chỉ Email không đúng định dạng</span>
+                                    </span>
+                                </p>
                                 <p>
                                     Nếu tổ chức của bạn có địa chỉ Email cụ thể thì hãy nhập địa chỉ Email vào đây.
                                 </p>
@@ -132,16 +166,16 @@
                         </div>
                     </div>
                 </div>
-            </div>    
-                
+            </div>
+
             <div class="row-fluid">
                 <div class="span9 offset1">
                     <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                         <div class="row-fluid">
                             <div class="span4" align="center">
-                                <strong>
-                                    <h3 style="margin-top: 25px;">Địa Chỉ</h3>
-                                </strong>
+                                <h3 style="margin-top: 25px;">
+                                    <strong>Địa Chỉ</strong>
+                                </h3>
                             </div>
                             <div class="span8">
                                 <input name="Address" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
@@ -159,11 +193,11 @@
 
             <div class="row-fluid">
                 <div class="span9 offset1" align="right">
-                    <button type="submit" class="btn btn-navbar-highlight btn-large btn-primary">Tạo Tổ Chức</button>
+                    <button type="submit" class="btn btn-navbar-highlight btn-large btn-primary" ng-disabled="!CreateOrganization.$dirty || (CreateOrganization.$dirty && CreateOrganization.$invalid)">Tạo Tổ Chức</button>
                 </div>
             </div>
             }
-            
+
         </div>
 
         </div>
@@ -174,7 +208,7 @@
     @Html.Partial("../Home/_Footer")
 
 
-    
+
     <style>
         textarea {
             height: 300px;
