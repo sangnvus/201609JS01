@@ -380,6 +380,7 @@ namespace WingS.DataAccess
             newEvent.CreatorID = GetOrganizationById(WsConstant.CurrentUser.UserId).OrganizationId;
             newEvent.EventType = eventInfo.EventType;
             newEvent.EventName = eventInfo.EventName;
+            newEvent.EEventName = ConvertToUnSign.Convert(newEvent.EventName);
             if (eventInfo.StartDate != "")
             {
                 newEvent.Start_Date = DateTime.Parse(eventInfo.StartDate);

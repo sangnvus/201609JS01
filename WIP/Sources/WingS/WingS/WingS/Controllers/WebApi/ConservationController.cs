@@ -81,6 +81,22 @@ namespace WingS.Controllers.WebApi
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = MessageList });
 
         }
+        [HttpGet]
+        public IHttpActionResult AddMessage(int ConservationId, string newMessage)
+        {
+            Message mess = new Message();
+            mess.ConservationId = ConservationId;
+            mess.Content = newMessage;
+            mess.CreatedDate = DateTime.Now;
+            mess.UserId = WsConstant.CurrentUser.UserId;
+            mess.Status = true;
+            using (var db = new ConservationDAL())
+            {
+                db.AddNewMessage(mess);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
+
+        }
 
     }
 }

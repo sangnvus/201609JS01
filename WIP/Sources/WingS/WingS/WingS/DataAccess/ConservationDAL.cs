@@ -20,15 +20,15 @@ namespace WingS.DataAccess
         }
         public List<MessageBasicInfoDTO> GetAllMessageByConservationId(int id)
         {
-            List<MessageBasicInfoDTO> MessageList = new List<MessageBasicInfoDTO>();
-            MessageBasicInfoDTO current = new MessageBasicInfoDTO();
+            List<MessageBasicInfoDTO> messageList = new List<MessageBasicInfoDTO>();
+           
             using (var db = new Ws_DataContext())
             {
-                var list = (from p in db.Message
-                            where p.ConservationId == id
-                            select p).ToList();
+
+                var list = db.Message.OrderByDescending(x => x.ConservationId == id).ToList();
                 foreach (var item in list)
                 {
+                    MessageBasicInfoDTO current = new MessageBasicInfoDTO();
                     //Set time
                     if (DateTime.Now.Subtract(item.CreatedDate).Hours <= 24 && DateTime.Now.Subtract(item.CreatedDate).Hours >= 1)
                         current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).Hours + " Tiếng cách đây";
@@ -39,10 +39,10 @@ namespace WingS.DataAccess
                     current.CreatorImage = item.User.User_Information.ProfileImage;
                     current.CreatorName = item.User.UserName;
                     current.Content = item.Content;
-                    MessageList.Add(current);
+                    messageList.Add(current);
                 }
             }
-            return MessageList;
+            return messageList;
 
         }
         public List<ConservationBasicInfoDTO> GetAllConservationByUserId()

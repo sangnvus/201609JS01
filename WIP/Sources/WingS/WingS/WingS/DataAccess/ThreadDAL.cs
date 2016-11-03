@@ -240,6 +240,7 @@ namespace WingS.DataAccess
             var newThread = CreateEmptyThread();
             newThread.UserId = WsConstant.CurrentUser.UserId;
             newThread.Title = thread.Title;
+            newThread.Etitle = ConvertToUnSign.Convert(thread.Title);
             newThread.Content = thread.Content;
             using (var db = new Ws_DataContext())
                  {

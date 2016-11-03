@@ -32,6 +32,7 @@ namespace WingS.DataAccess
             var newOrg = CreatEmptyOrganization();
             newOrg.OrganizationId = WsConstant.CurrentUser.UserId;
             newOrg.OrganizationName = organizationBasic.OrganizationName;
+            newOrg.EOrganizationName = ConvertToUnSign.Convert(organizationBasic.OrganizationName);
             newOrg.Introduction = organizationBasic.Introduction;
             newOrg.LogoUrl = organizationBasic.LogoUrl;
             newOrg.Phone = organizationBasic.Phone;
@@ -86,6 +87,7 @@ namespace WingS.DataAccess
                 var org = db.Organizations.Create();
                 
                 org.OrganizationName = "";
+                org.EOrganizationName = "";
                 org.Introduction = "";
                 org.LogoUrl = "";
                 org.Phone = "";

@@ -38,6 +38,7 @@ namespace WingS.DataAccess
                 {
                     UserAddress = me.location,
                     FullName = me.name,
+                    EFullName = ConvertToUnSign.Convert(me.name),
                     Gender = me.gender,
                     DoB = (Convert.ToDateTime(me.birthday)!=DateTime.MinValue)?Convert.ToDateTime(me.birthday):null,
                     FacebookUrl = me.link,

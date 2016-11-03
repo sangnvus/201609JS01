@@ -17,7 +17,6 @@ namespace WingS.Models
         public int UserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Content { get; set; }
-        public bool OnlineStatus { get; set; }
         public bool Status { get; set; }
         public virtual Conservation ConserVation { get; set; }
         public virtual Ws_User User { get; set;}

@@ -12,8 +12,10 @@ namespace WingS.Models
         [ForeignKey("Ws_User")]
         public int UserID { get; set; }
         public string FullName { get; set; }
+        public string EFullName { get; set; }
         public string ProfileImage { get; set; }
         public string UserAddress { get; set; }
+        public string EUserAddress { get; set; }
         public DateTime? DoB { get; set; }
         public string Phone { get; set; }
         public string Gender { get; set; }

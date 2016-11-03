@@ -15,6 +15,7 @@
         [ForeignKey("EType")]
         public int EventType { get; set; }
         public string EventName { get; set; }
+        public string EEventName { get; set; }
         public DateTime Created_Date { get; set; }
         public DateTime Start_Date { get; set; }
         public DateTime Finish_Date { get; set; }

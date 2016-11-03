@@ -12,6 +12,7 @@
         [ForeignKey("Ws_User")]
         public int OrganizationId { get; set; }
         public string OrganizationName { get; set; }
+        public string EOrganizationName { get; set; }
         public string Introduction { get; set; }
         public string LogoUrl { get; set; }
         public string Phone { get; set; }

@@ -7,6 +7,8 @@
     //Load All Message by ConservationId
     $scope.getMessage = function(userName, conservationId)
     {
+        $scope.replyShow = true;
+        $scope.CurrentConservationId = conservationId;
         $scope.MessageName = userName;
         $http({
             url: "/api/Conservation/GetAllMessageByConservationId",
@@ -15,6 +17,17 @@
             contentType: "application/json",
         }).success(function (response) {
             $scope.Message = response.Data;
+        });
+    }
+    $scope.addMessage = function(message, conservationId)
+    {
+        $http({
+            url: "/api/Conservation/AddMessage",
+            method: "GET",
+            params: { ConservationId: conservationId, newMessage: message },
+            contentType: "application/json",
+        }).success(function (response) {
+            $(".newMesage").val("");
         });
     }
 });

@@ -76,7 +76,8 @@ namespace WingS.Controllers
                     {
                      ProfileImage = "Content/Images/avatar_default.png",
                      FullName = account.FullName,
-                     }
+                     EFullName = ConvertToUnSign.Convert(account.FullName)
+                    }
             };
             using (var userDal = new UserDAL())
             {

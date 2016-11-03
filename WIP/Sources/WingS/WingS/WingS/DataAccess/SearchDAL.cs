@@ -12,33 +12,15 @@ namespace WingS.DataAccess
         public List<Thread> SearchThreads(string searchString)
         {
             List<Thread> listThreads = new List<Thread>();
-            string[] searchTerms = searchString.Split(' ');
+            string SqlQuery = "select * from Thread where FREETEXT(*, '" + searchString + "')";
+            //var s = FtsInterceptor.Fts(searchString);
             using (var db = new Ws_DataContext())
             {
-                foreach (var term in searchTerms)
-                {
-                    var currentTerm = term.Trim();
-                    var topThread =
-                    db.Threads.OrderByDescending(x => x.CreatedDate)
-                    .Where(x => x.Status == true && x.Title.Contains(currentTerm));
-                    listThreads.AddRange(topThread.ToList());
-                    if (listThreads.Count >= 30)
-                    {
-                        break;
-                    }
-                }
+                var userGet = db.Threads.SqlQuery(SqlQuery).ToList();
+                //var userGet = db.User_Information.Where(x => x.EFullName.Contains(s)||x.Ws_User.UserName.Contains(s)||x.Ws_User.Email.Contains(s)).ToList();
+                listThreads.AddRange(userGet.ToList());
             }
-            int checkExisted = 0;
-            for (int i = 0; i < listThreads.Count; i++)
-            {
-                Thread currentThread = listThreads[i];
-                for (int j = 0; j < listThreads.Count; j++)
-                {
-                    if (currentThread.Equals(listThreads[j])) checkExisted++;
-                    if (checkExisted >= 2) listThreads.Remove(listThreads[j]);
-                }
 
-            }
             return listThreads;
         }
         /// <summary>
@@ -68,69 +50,28 @@ namespace WingS.DataAccess
         public List<User_Information> SearchUsers(string searchString)
         {
             List<User_Information> listUsers = new List<User_Information>();
-            string[] searchTerms = searchString.Split(' ');
+            string SqlQuery = "select * from User_Information where FREETEXT(*, '"+searchString+"')";
+            //var s = FtsInterceptor.Fts(searchString);
             using (var db = new Ws_DataContext())
             {
-                foreach (var term in searchTerms)
-                {
-                    var currentTerm = term.Trim();
-                    var userGet = (from p in db.User_Information
-                        where
-                            p.FullName.Contains(currentTerm) || p.Phone.Contains(currentTerm) ||
-                            p.UserAddress.Contains((currentTerm))
-                        select p).OrderByDescending(x => x.FullName).Distinct();
-                    listUsers.AddRange(userGet.ToList());
-                    if (listUsers.Count >= 30)
-                    {
-                        break;
-                    }
-                }
-            }
-            
-            int checkExisted = 0;
-            for (int i = 0; i < listUsers.Count; i++)
-            {
-                User_Information  currentUser = listUsers[i];
-                for (int j = 0; j < listUsers.Count; j++)
-                {
-                        if (currentUser.Equals(listUsers[j])) checkExisted++;
-                        if (checkExisted >= 2) listUsers.Remove(listUsers[j]);
-                }
-             
+                var userGet = db.User_Information.SqlQuery(SqlQuery).ToList();
+                //var userGet = db.User_Information.Where(x => x.EFullName.Contains(s)||x.Ws_User.UserName.Contains(s)||x.Ws_User.Email.Contains(s)).ToList();
+                listUsers.AddRange(userGet.ToList());
             }
             return listUsers;
         }
         public List<Event> SearchEvent(string searchString)
         {
             List<Event> listEvents = new List<Event>();
-            string[] searchTerms = searchString.Split(' ');
-            //Get All event by created Date
+            string SqlQuery = "select * from Event where FREETEXT(*, '" + searchString + "')";
+            //var s = FtsInterceptor.Fts(searchString);
             using (var db = new Ws_DataContext())
             {
-                foreach (var term in searchTerms)
-                {
-                    var currentTerm = term.Trim();
-                    var Event =
-                        db.Events.OrderByDescending(x => x.Created_Date)
-                            .Where(x => x.Status == true && x.EventName.Contains(currentTerm));
-                    listEvents.AddRange(Event.ToList());
-                    if (listEvents.Count >= 30)
-                    {
-                        break;
-                    }
-                }
+                var userGet = db.Events.SqlQuery(SqlQuery).ToList();
+                //var userGet = db.User_Information.Where(x => x.EFullName.Contains(s)||x.Ws_User.UserName.Contains(s)||x.Ws_User.Email.Contains(s)).ToList();
+                listEvents.AddRange(userGet.ToList());
             }
-            int checkExisted = 0;
-            for (int i = 0; i < listEvents.Count; i++)
-            {
-                Event currentEvent = listEvents[i];
-                for (int j = 0; j < listEvents.Count; j++)
-                {
-                    if (currentEvent.Equals(listEvents[j])) checkExisted++;
-                    if (checkExisted >= 2) listEvents.Remove(listEvents[j]);
-                }
 
-            }
             return listEvents;
         }
         public EventAlbumImage GetMainImageEventById(int eventId)
@@ -147,55 +88,15 @@ namespace WingS.DataAccess
         }
         public List<Organization> SearchOrganizations(string searchString)
         {
-            List<Organization> orgList = new List<Organization>();
-            string[] searchTerms = searchString.Split(' ');
+            List<Organization> listOrgs = new List<Organization>();
+            string SqlQuery = "select * from Organization where FREETEXT(*, '" + searchString + "')";
+            //var s = FtsInterceptor.Fts(searchString);
             using (var db = new Ws_DataContext())
             {
-                foreach (var term in searchTerms)
-                {
-                    var currentTerm = term.Trim();
-                    var getOrg =
-                        db.Organizations.OrderByDescending(x => x.Point)
-                            .Where(
-                                x =>
-                                    x.OrganizationName.Contains(currentTerm) || x.Email.Contains(currentTerm) ||
-                                    x.Phone.Contains(currentTerm) || x.Address.Contains(currentTerm));
-                    orgList.AddRange(getOrg.ToList());
-                    if (orgList.Count >= 30)
-                    {
-                        break;
-                    }
-                }
+                var userGet = db.Organizations.SqlQuery(SqlQuery).ToList();
+                listOrgs.AddRange(userGet.ToList());
             }
-            int checkExisted = 0;
-            for (int i = 0; i < orgList.Count; i++)
-            {
-                Organization currentoOrganization = orgList[i];
-                for (int j = 0; j < orgList.Count; j++)
-                {
-                    if (currentoOrganization.Equals(orgList[j])) checkExisted++;
-                    if (checkExisted >= 2) orgList.Remove(orgList[j]);
-                }
-
-            }
-            return orgList;
-        }
-        /// <summary>
-        /// Chuyển tiếng việt có dấu thành tiếng việt không dấu (khoảng trắng thay  bằng dấu -)
-        /// </summary>
-        /// <param name="strVietnamese">tiếng việt có dấu</param>
-        /// <returns>tiếng việt không dấu</returns>
-        public string ConvertToVietnameseNotSignature(string strVietnamese)
-        {
-            const string FindText = "áàảãạâấầẩẫậăắằẳẵặđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶĐÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴ #%&*:|.";
-            const string ReplText = "aaaaaaaaaaaaaaaaadeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyAAAAAAAAAAAAAAAAADEEEEEEEEEEEIIIIIOOOOOOOOOOOOOOOOOUUUUUUUUUUUYYYYY-       ";
-            int index = -1;
-            while ((index = strVietnamese.IndexOfAny(FindText.ToCharArray())) != -1)
-            {
-                int index2 = FindText.IndexOf(strVietnamese[index]);
-                strVietnamese = strVietnamese.Replace(strVietnamese[index], ReplText[index2]);
-            }
-            return strVietnamese;
+            return listOrgs;
         }
         public void Dispose()
         {

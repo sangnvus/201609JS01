@@ -134,7 +134,7 @@ namespace WingS.Controllers
                     return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //ViewBag.ErrorMessage = ex;
                 return Redirect("/#/Error");

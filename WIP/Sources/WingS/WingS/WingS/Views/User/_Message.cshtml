@@ -39,7 +39,7 @@
                                         <a class="pull-left" href="#">
                                             <img src="{{item.AvatarUrl}}" style="width:60px; height:60px;" class="img-circle" alt="" />
                                         </a>
-                                        <a href="#" onclick="return false" ng-click="getMessage(item.CreatorName,item.ConservationId)" style="text-decoration: none;">
+                                        <a href="#" onclick="return false" ng-click="getMessage(item.Title,item.ConservationId)" style="text-decoration: none;">
                                             <div class="media-body" style="margin-left:62px;">
                                                 <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
                                                 <p style="color: black"> {{item.Title}}</p>
@@ -67,16 +67,21 @@
                                    {{item.Content}}
                                 </div>
                             </div>
+                            <hr />
+                        </div>
+                        <div>
+                        
                         </div>
                         <br>
-                        <div>
+   
+                        <div ng-show="replyShow">
                             <a class="pull-left" href="#">
                                 <img src="{{User_Information.ProfileImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
-                            </a>&nbsp;&nbsp;&nbsp;<input class="subContent" type="text" placeholder="Nhập tin nhắn" style="width:64%; height:50px; " />
+                            </a>&nbsp;&nbsp;&nbsp;<input class="newMesage" type="text" ng-model="newMessage" placeholder="Nhập tin nhắn" style="width:64%; height:50px; " my-Enter="addMessage(newMessage,{{CurrentConservationId}})" />
                         </div>
-                        <div align="center">
+                        @*<div align="center">
                             <a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i>Tải lại</a>
-                        </div>
+                        </div>*@
                     </div>
                     <!--End Sidebar Content here-->
                     <div id="footerInnerSeparator"></div>
