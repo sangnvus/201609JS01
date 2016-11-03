@@ -18,7 +18,7 @@ namespace WingS.Controllers
             string encryptpass = MD5Helper.MD5Encrypt(account.PassWord);
             using (var userDal = new UserDAL())
             {
-                var AccountInfo = userDal.GetUserByUserNameAndPassword(account.UserName, encryptpass);
+                var AccountInfo = userDal.GetUserByUserNameAndPassword(account.UserName, encryptpass,true);
                 if (AccountInfo == null)
                 {
                     ModelState.AddModelError("WrongPassword", "Sai mật khẩu hoặc tài khoản không tồn tại!");
@@ -37,8 +37,16 @@ namespace WingS.Controllers
                 //Add remember me
 
 
-                return RedirectToAction("DashBoard", "Admin");
+                //return RedirectToAction("DashBoard", "Admin");
+                return Redirect("/Admin/#/DashBoard");
             }
+        }
+
+        public ActionResult AdminLogout()
+        {   //Set logout Authentication
+            FormsAuthentication.SignOut();
+            //Clear Cookies
+            return Redirect("/Admin");
         }
 	}
 }

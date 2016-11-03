@@ -30,5 +30,7 @@
         public virtual ICollection<Conservation> CreatorConservation { get; set; }
         public virtual ICollection<Conservation> ReceiverConservation { get; set; }
         public virtual ICollection<Message> Message { get; set; }
+        public virtual ICollection<PublicRoom> PublicRoom { get; set; }
+        public virtual ICollection<PublicMessageDetail> PublicMessage{ get; set; }
     }
 }
