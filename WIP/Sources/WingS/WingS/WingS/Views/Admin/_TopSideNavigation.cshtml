@@ -10,9 +10,11 @@
                 <i class="fa fa-bars"></i> Menu
             </button>*@
             <div class="navbar-brand">
-                <img src="~/Content/images/WingS-logo.jpg" class="img-responsive" title="WingS Logo" alt="WingS Logo" style="width:30px;">
+                <a href=@Url.Content("~/Admin/#/DashBoard")><img src="~/Content/images/WingS-logo.jpg" class="img-responsive" title="WingS Logo" alt="WingS Logo" style="width:30px;"></a>
             </div>
-            <div style="padding-top:15px;color:white;font-size: 18px;"><span style="font-weight:700;">WingS</span> Admin</div>
+            <div style="padding-top: 15px; color: white; font-size: 18px;">
+                <a href=@Url.Content("~/Admin/#/DashBoard") style="color: white;text-decoration: none;"><span style="font-weight: 700;">WingS</span> Admin</a>
+        </div>
         </div>
         <!-- end BRAND HEADING -->
 
@@ -193,7 +195,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="logout_open" href="#logout" onclick="return false">
+                            <a class="logout_open" href="@Url.Action("AdminLogout", "AdminLogin")">
                                 <i class="fa fa-sign-out"></i> Đăng xuất
                                 <strong>Anh Tuấn</strong>
                             </a>
@@ -225,14 +227,14 @@
                     </p>
                     <p class="name tooltip-sidebar-logout">
                         Anh
-                        <span class="last-name">Tuấn</span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Logout"><i class="fa fa-sign-out"></i></a>
+                        <span class="last-name">Tuấn</span> <a style="color: inherit" class="logout_open" href="@Url.Action("AdminLogout", "AdminLogin")" data-toggle="tooltip" data-placement="top" title="Logout"><i class="fa fa-sign-out"></i></a>
                     </p>
                     <div class="clearfix"></div>
                 </li>
                 <!-- end SIDE NAV USER PANEL -->
                 <!-- begin DASHBOARD LINK -->
                 <li>
-                    <a href="dashboard.html" class="active">
+                    <a href=@Url.Content("~/Admin/#/DashBoard") class="active">
                         <i class="fa fa-dashboard"></i> Thống kê chung
                     </a>
                 </li>
@@ -244,7 +246,7 @@
                     </a>
                     <ul class="collapse nav" id="users">
                         <li>
-                            <a href="userDashboard.html">
+                            <a href=@Url.Content("~/Admin/#/UserDashBoard")>
                                 <i class="fa fa-angle-double-right"></i> Thống kê thành viên
                             </a>
                         </li>
@@ -339,26 +341,6 @@
     </nav>
     <!-- /.navbar-side -->
 <!-- end SIDE NAVIGATION -->
-    <!-- Logout Notification Box -->
-    <div id="logout">
-        <div class="logout-message">
-            <img class="img-circle img-logout" src="img/profile-pic.jpg" alt="">
-            <h3>
-                <i class="fa fa-sign-out text-green"></i> Ready to go?
-            </h3>
-            <p>Select "Logout" below if you are ready<br> to end your current session.</p>
-            <ul class="list-inline">
-                <li>
-                    <a href="@Url.Action("AdminLogout", "AdminLogin")" class="btn btn-green">
-                        <strong>Logout</strong>
-                    </a>
-                </li>
-                <li>
-                    <button class="logout_close btn btn-green">Cancel</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- /#logout -->
+
     </div>
 </body>

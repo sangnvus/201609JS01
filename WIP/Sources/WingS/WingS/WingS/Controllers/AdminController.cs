@@ -18,11 +18,18 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/_AdminLogin.cshtml");
         }
+        public ActionResult UserDashBoard()
+        {
+            return PartialView("~/Views/Admin/UserManage/_UserDashBoard.cshtml");
+        }
         public ActionResult UserList()
         {
             return PartialView("~/Views/Admin/UserManage/_UserList.cshtml");
         }
-
+        public ActionResult UserProfile()
+        {
+            return PartialView("~/Views/Admin/UserManage/_UserProfile.cshtml");
+        }
         public ActionResult Index()
         {
             return View();
