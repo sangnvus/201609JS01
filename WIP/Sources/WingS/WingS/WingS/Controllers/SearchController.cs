@@ -54,7 +54,24 @@ namespace WingS.Controllers
                     var resultUser = new List<SearchUser>();
                     using (var db = new SearchDAL())
                     {
-                        List<User_Information> searchUser = db.SearchUsers(searchKey);
+                        List<Ws_User> searchUser = db.SearchUsers(searchKey);
+                        if (searchUser.Count < 1)
+                        {
+                            return Json(new { status = "empty" }, JsonRequestBehavior.AllowGet);
+                        }
+                        foreach (Ws_User user in searchUser)
+                        {
+                            resultUser.Add(db.GetUserInfoById(user.UserID,user.UserName));
+                        }
+                    }
+                    return Json(new { data = resultUser, type = searchType }, JsonRequestBehavior.AllowGet);
+                }
+                else if (searchType == "userinfo")
+                {
+                    var resultUser = new List<SearchUser>();
+                    using (var db = new SearchDAL())
+                    {
+                        List<User_Information> searchUser = db.SearchUserInfo(searchKey);
                         if (searchUser.Count < 1)
                         {
                             return Json(new { status = "empty" }, JsonRequestBehavior.AllowGet);
@@ -64,6 +81,7 @@ namespace WingS.Controllers
                             resultUser.Add(new SearchUser
                             {
                                 UserID = user.UserID,
+                                UserName = db.GetUserNameById(user.UserID),
                                 FullName = user.FullName,
                                 ProfileImage = user.ProfileImage,
                                 UserAddress = user.UserAddress,
