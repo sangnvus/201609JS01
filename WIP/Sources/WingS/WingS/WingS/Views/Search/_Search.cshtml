@@ -31,7 +31,7 @@
         font-size: 120%;
         vertical-align: middle;
         cursor: pointer;
-        width: 115px;
+        width: 150px;
     }
 </style>
 <body id="pageBody">
@@ -61,10 +61,13 @@
             <div class="input-group box">
                 <input type="text" class="form-control search-box" placeholder="Nhập từ khóa để tìm kiếm" id="SearchKey" name="searchKey" required/>
                 <a id="SearchBtn" style="padding-left: 20px; width: 46px; height: 50px"><i class="icon-search"></i></a>
-                <div class="radio-inline">
+                <div class="radio-inline" style="background: #ffffcc; padding-top: 10px;padding-bottom: 10px">
                     <label><b>Mục tìm kiếm : </b></label>
                     <label>
-                        <input type="radio" name="searchType" value="user"> User
+                        <input type="radio" name="searchType" value="user"> Người dùng
+                    </label>
+                    <label>
+                        <input type="radio" name="searchType" value="userinfo"> Cá nhân
                     </label>
                     <label>
                         <input type="radio" name="searchType" value="thread"> Bài viết
@@ -78,6 +81,7 @@
                 </div>
                 <div>
                     <h3 id="ErrorMessage2" style="color: red;"> </h3>
+                    <p id="messageHelper" style="font-size: 120%"></p>
                 </div>
             </div>
         </div>
@@ -95,6 +99,28 @@
 <br/><br/><br/>
 </body>
 <script type="text/javascript">
+    $(function () {
+
+        $('input:radio').change(
+            function () {
+                if ($('input[name=searchType]:checked').val()=="user") {
+                    $("#messageHelper").html("Bạn nên nhập vào email hoặc tên người dùng để tìm!");
+                }
+                else if ($('input[name=searchType]:checked').val() == "userinfo") {
+                    $("#messageHelper").html("Bạn nên nhập vào tên đầy đủ,địa chỉ hoặc số điện thoại để tìm!");
+                }
+                else if ($('input[name=searchType]:checked').val() == "thread") {
+                    $("#messageHelper").html("Bạn nên nhập vào Tiêu đề để tìm");
+                }
+                else if ($('input[name=searchType]:checked').val() == "event") {
+                    $("#messageHelper").html("Bạn nên nhập vào tên sự kiện hoặc địa điểm tổ chức để tìm!");
+                }
+                else if ($('input[name=searchType]:checked').val() == "organization") {
+                    $("#messageHelper").html("Bạn nên nhập vào Email,tên tổ chức hoặc số điện thoại để tìm!");
+                }
+            }
+        );
+    });
     $("#SearchBtn").click(function () {
         $("#ErrorMessage2").html("");
         if ($("#SearchKey").val() === "") {
@@ -108,10 +134,10 @@
             return false;
         }
         else {
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Content("/Search/SearchResult")",
-                    datatype: "JSON",
+            $.ajax({
+                type: "GET",
+                url: "@Url.Content("/Search/SearchResult")",
+                datatype: "JSON",
                 data: {
                     searchKey: $("#SearchKey").val(),
                     searchType: $('input[name=searchType]:checked').val()
@@ -123,9 +149,11 @@
                     var result = "";
                     if (response.status === "empty") {
                         $("#ErrorMessage2").html("Không có kết quả nào khớp với từ khóa của bạn!");
+                        $("#messageHelper").html("");
                         return false;
                     } else if (response.status === "error") {
                         $("#ErrorMessage2").html("Đã có lỗi xảy ra với server.Vui lòng thử lại sau!");
+                        $("#messageHelper").html("");
                         return false;
                     }
                     //show thread result
@@ -140,10 +168,10 @@
                                 '<b> Ngày khởi tạo : </b>' + thread.CreatedDate + '</div>';
                         };
                     } 
-                    else if (response.type === "user") {
+                    else if (response.type === "user" || response.type === "userinfo") {
                         for (var j = 0; j < response.data.length; j++) {
                             var user = response.data[j];
-                            result += '<div class = "searchImg">' + '<a href="/#/Profile/' + user.userName + '">' +
+                            result += '<div class = "searchImg">' + '<a href="/#/Profile/' + user.UserName + '">' +
                                 '<img src="' + user.ProfileImage + '" class="img-polaroid" style="max-height:110px;max-weight:160px" alt="user img"></a>' + '</div>' +
                                 '<div class = "searchContent"><br/><b>Tên đầy đủ : </b>' + user.FullName + '<br/>' +
                                 '<b> Địa chỉ : </b>' + user.UserAddress + '<br/>' +
@@ -176,8 +204,9 @@
                         };
                     }
                     $("#resultDiv").append(result);
+                    $("#messageHelper").html("");
                 }
-                }); // end ajax
+            }); // end ajax
             return true;
         }
     });
