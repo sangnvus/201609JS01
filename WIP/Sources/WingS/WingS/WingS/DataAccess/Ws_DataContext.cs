@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.SignalR.Infrastructure;
 using WingS.DataHelper;
 using WingS.Models;
 
@@ -31,6 +32,8 @@ namespace WingS.DataAccess
         public virtual DbSet <Conservation> Conservation { get; set; }
         public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<Connection> Connection { get; set; }
+        public virtual DbSet<PublicRoom> PublicRooms { get; set; }
+        public virtual DbSet<PublicMessageDetail> PublicMessageDetails { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }
