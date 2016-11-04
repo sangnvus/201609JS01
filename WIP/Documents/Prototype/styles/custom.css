@@ -513,4 +513,68 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 	margin-left: 5px;
 	margin-right: 5px;
 }
+.dropdown .number {
+    position: absolute;
+    bottom: 19px;
+    left: 1px;
+    width: 20px;
+    height: 20px;
+    padding-right: 1px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 11px;
+    line-height: 20px;
+    background-color: #008080;
+}
+.nav-collapse .dropdown .alertslink {
+	padding-left: 15px;
+	padding-right: 0px;
+	background-color: #16a085;
+	color: white;
+}
+.dropdown-alerts{
+    left: inherit;
+    width: 250px;
+	border-color: #f9ce89;
+}
+.dropdown-scroll {
+    margin: 0;
+    padding: 0;
+}
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+	margin-left: 0px;
+}
+.dropdown-header{
+    color: #fff;
+    background: #e05f03; !important;
+	padding: 10px 10px;
+	margin-top: -5px;
+	text-align: center;
+}
+.dropdown-footer{
+    color: #fff;
+	padding-top: 3px;
+	text-align: center;
+	background-color:#e0e7e8;
+}
+.blue{
+	background-color: #2980b9;
+}
+.dropdown #alertScroll .list-unstyled a:hover{
+	background-color: #66CCFF;
+	color:black;
+}
+.dropdown #alertScroll .list-unstyled li{
+	border-bottom: 1px solid #ccc;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+
 
