@@ -30,6 +30,7 @@ namespace WingS.DataAccess
         public virtual DbSet<LikeEvents> LikeEvents { get; set; }
         public virtual DbSet <Conservation> Conservation { get; set; }
         public virtual DbSet<Message> Message { get; set; }
+        public virtual DbSet<Connection> Connection { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }
