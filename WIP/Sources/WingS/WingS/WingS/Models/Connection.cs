@@ -15,5 +15,6 @@ namespace WingS.Models
         public int UserId { get; set; }
         public string ConnectionString { get; set; }
         public virtual Ws_User User { get; set; }
+        public ICollection<PublicRoom> Room { get; set; }
     }
 }

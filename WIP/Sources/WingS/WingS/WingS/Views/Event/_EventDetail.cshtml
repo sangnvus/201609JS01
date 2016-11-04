@@ -6,7 +6,6 @@
     <link href="~/Content/css/plugins/datatables/datatables.css" rel="stylesheet">
     <link href="~/Content/css/pagination.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGIN STYLES -->
-    
 
 <!-- REFERENCE CHATBOX CSS STYLE -->
     <link href="~/Content/css/ChatStyle.css" rel="stylesheet" type="text/css" />
@@ -493,45 +492,24 @@
 </script></div></div>
     
     
-@*<script type="text/javascript">
-    $(function() {
-
-            var refreshId = null;
-
-            function scrollTop(ctrId) {
-                var height = $('#' + ctrId).find('#divMessage')[0].scrollHeight;
-                $('#' + ctrId).find('#divMessage').scrollTop(height);
-            }
-
-            //clearInterval(refreshId);
-
-            //declare a proxy to reference the hub
-            var chatHub = connection.chatHub;
-            $.connection.hub.logging = true;
-            registerClientMethods(chatHub);
-
-            // Start Hub
-            $.connection.hub.start()
-                .done(function() {
-                    registerEvents(chatHub)
-                });
-        }
-    );
-
-    function registerEvents(chatHub) {
-        $("#btnStartChat").click(function () {
-            
-            //    chatHub.server.connect(id, event);
-            
-            //$int UserId = 1;
-            //$int EventId = 1;
-
-            chatHub.server.connect(UserId, EventId);
-
+@if (User.Identity.Name != "")
+{
+    <script type="text/javascript">
+        window.hubReady.done(function () {
+            registerEvent( window.globalHub);
         });
-
-
-        $("#txtMessage").keypress(function (e) {
+        function registerEvent(global)
+        {
+            $("#btnStartChat").click(function () {
+                global.server.joinRoom(eventId);
+            });
+            $('.chatbox__title__close').click(function () {
+                global.server.disconnectRoom(eventId);
+            });
+        }
+    </script>
+}
+        @*$("#txtMessage").keypress(function (e) {
             if (e.which == 13) {
                 $('#btnSendMsg').click();
             }
@@ -579,7 +557,7 @@
 
     //Add User
     function AddUser(chatHub, id, userId, eventId) {
-        
+
     }
 
     // Add Message
@@ -591,4 +569,4 @@
     }
 </script>*@
 
-</body>
+        </body>

@@ -1,5 +1,6 @@
-﻿app.controller("EventDetailController", function ($scope, $http, $routeParams, $sce, $location) {
+﻿app.controller("EventDetailController", function ($scope, $http, $routeParams, $sce, $location,$window) {
     var eventId = $routeParams.Id;
+    $window.eventId = eventId;
     var emptySubComment = new Array();
     $scope.SubCommentEvent = emptySubComment;
     $scope.isLikeStyle =
@@ -183,4 +184,6 @@
             return "";
         }
     }
+
+
 });

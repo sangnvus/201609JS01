@@ -11,12 +11,11 @@ namespace WingS.Models
     {
         [Key]
         public int PublicRoomId { get; set; }
-        [ForeignKey("User")]
-        public int UserId { get; set; }
+        [ForeignKey("ConnectionRoom")]
+        public int ConnectionId { get; set; }
         [ForeignKey("Event")]
         public int EventId { get; set;}
-        public string ConnectionId { get; set; }
-        public virtual Ws_User User { get; set; }
+        public virtual Connection ConnectionRoom { get; set; }
         public virtual Event Event { get; set; }
     }
 }

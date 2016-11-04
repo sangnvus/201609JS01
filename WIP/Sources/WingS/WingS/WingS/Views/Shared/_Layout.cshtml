@@ -59,27 +59,24 @@ border-radius: 10px;
     </style>
     @if (User.Identity.Name != "")
     {
-    <script type="text/javascript">
-        $(function () {
-
+        <script type="text/javascript">
+            $(function () {
             // Declare a proxy to reference the hub.
-            var globalHub = $.connection.globalHub;
+            window.globalHub = $.connection.globalHub;
             $.connection.hub.logging = true;
-            globalHub.client.notify = function (msg)
-            {
+            window.globalHub.client.notify = function (msg) {
                 alert(msg);
             }
-
-            // Start Hub
-            $.connection.hub.start().done(function () {
-                globalHub.server.connect();
+            window.hubReady = $.connection.hub.start();
+            window.hubReady.done(function () {
+                window.globalHub.server.connect();
             });
-        });
-    </script>
+    });
+        </script>
     }
 
     @RenderBody()
-   
+  
 </body>
 
 </html>
