@@ -26,8 +26,6 @@ namespace WingS.ChatHub
                 db.Connection.Add(UserDetail);
                 db.SaveChanges();
             }
-            //Send message to caller
-            Clients.Caller.Notify("Successfull");
            
         }
         //Join chat room
@@ -48,7 +46,6 @@ namespace WingS.ChatHub
                 }
 
             }
-            Clients.Caller.Notify("Connected To Room");
         }
         //Disconnect chat room
         public void DisconnectRoom (int eventId)
@@ -56,8 +53,9 @@ namespace WingS.ChatHub
             using (var db = new Ws_DataContext())
             {
                 var item = db.Connection.FirstOrDefault(x => x.ConnectionString.Equals(Context.ConnectionId));
-                db.PublicRooms.Remove(db.PublicRooms.FirstOrDefault(x => x.ConnectionId == item.ConnectionId));
-            }
+                try {db.PublicRooms.Remove(db.PublicRooms.FirstOrDefault(x => x.ConnectionId == item.ConnectionId));
+                }catch(Exception){}
+                }
             Clients.Caller.Notify("Disconnected To Room");
         }
         public void SendMessage(int ConservationId, string Message )
@@ -105,6 +103,38 @@ namespace WingS.ChatHub
             foreach(var item in ListConnetion)
             {
                 Clients.Client(item).ReceiverMessage(info);
+            }
+
+        }
+        public void SendMessageInRoom(int eventId, string mess)
+        {
+            MessageBasicInfoDTO returnedMessage = new MessageBasicInfoDTO();
+            using (var db = new Ws_DataContext())
+            {
+                //Add mesage to db
+                PublicMessageDetail newMessage = new PublicMessageDetail();
+                newMessage.UserId = WsConstant.CurrentUser.UserId;
+                newMessage.EventId = eventId;
+                newMessage.Message = mess;
+                newMessage.CreatedDate = DateTime.Now;
+                newMessage.Status = true;
+                newMessage = db.PublicMessageDetails.Add(newMessage);
+                db.SaveChanges();
+                //Set retured message
+                returnedMessage.CreatorImage = db.User_Information.SingleOrDefault(x => x.UserID == newMessage.UserId).ProfileImage;
+                returnedMessage.Content = newMessage.Message;
+                returnedMessage.CreatedDate = newMessage.CreatedDate.ToString("H:mm dd/MM");
+                returnedMessage.CreatorName = db.Ws_User.SingleOrDefault(x => x.UserID == newMessage.UserId).UserName;
+            }
+            //Send it to ALL clients is connecting this room
+            using (var db = new Ws_DataContext())
+            {
+                var list = db.PublicRooms.Where(x => x.EventId == eventId)
+                                         .Select(x=>x.ConnectionRoom.ConnectionString).ToList();
+                foreach(var item in list)
+                {
+                    Clients.Client(item).ReceivePublicMessage(returnedMessage);
+                }
             }
 
         }

@@ -76,9 +76,7 @@
             $scope.EventList = response.Data;
         });
     };
-    
-
-
+  
     //Load 3 organization to Event page
     $http.get("/api/Organization/GetTopThreeOrganization").success(function (response) {
         $scope.Organization = response.Data;

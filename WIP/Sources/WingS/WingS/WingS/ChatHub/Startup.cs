@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
 
+
 [assembly: OwinStartup(typeof(WingS.ChatHub.Startup))]
 
 namespace WingS.ChatHub
@@ -13,6 +14,7 @@ namespace WingS.ChatHub
         {
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
             app.MapSignalR();
+
         }
     }
 }

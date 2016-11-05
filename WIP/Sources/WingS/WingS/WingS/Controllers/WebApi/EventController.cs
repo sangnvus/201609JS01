@@ -427,6 +427,17 @@ namespace WingS.Controllers
 
         }
 
+        //Get public Message in event
+        [HttpGet]
+        public IHttpActionResult GetpublicMessage(int EventId)
+        {
+            List<MessageBasicInfoDTO> publicMessage = new List<MessageBasicInfoDTO>();
+            using (var db = new EventDAL())
+            {
+                publicMessage = db.GetAllPublicMessage(EventId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = publicMessage });
+        }
         public IHttpActionResult GetEventListOfOrganization(int orgId)
         {
             var eventListBasicInfo = new List<EventBasicInfo>();

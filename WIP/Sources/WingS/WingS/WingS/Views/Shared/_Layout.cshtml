@@ -67,6 +67,11 @@ border-radius: 10px;
             window.globalHub.client.notify = function (msg) {
                 alert(msg);
             }
+            window.globalHub.client.ReceivePublicMessage = function (info) {
+                $('#msgContainer').append('<div class="media"><a class="pull-left" href="#"><img src="' + info.CreatorImage + '" style="width: 50px; height:50px;" class="img-rounded" alt="" /></a>' + '<div class="media-body"><h4 class="media-heading"><small>' + info.CreatorName + '</small> <span><small>' + info.CreatedDate + '</small></span></h4>' + info.Content + '</div> <br /></div>');
+                var height = $('#msgContainer')[0].scrollHeight;
+                $('#msgContainer').scrollTop(height);
+            }
             window.hubReady = $.connection.hub.start();
             window.hubReady.done(function () {
                 window.globalHub.server.connect();

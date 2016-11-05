@@ -82,6 +82,29 @@ namespace WingS.DataAccess
             }
             return list;
         }
+        public List<MessageBasicInfoDTO> GetAllPublicMessage(int eventId)
+        {
+            List<MessageBasicInfoDTO> list = new List<MessageBasicInfoDTO>();
+            using (var db = new Ws_DataContext())
+            {
+                var current = (from p in db.PublicMessageDetails
+                               where p.EventId == eventId
+                               orderby p.CreatedDate
+                               select new { p, p.User.User_Information.ProfileImage, p.User.UserName }).ToList();
+                              
+                            
+                foreach(var item in current)
+                {
+                    MessageBasicInfoDTO mess = new MessageBasicInfoDTO();
+                    mess.Content = item.p.Message;
+                    mess.CreatedDate = item.p.CreatedDate.ToString("H:mm dd/MM");
+                    mess.CreatorImage = item.ProfileImage;
+                    mess.CreatorName = item.UserName;
+                    list.Add(mess);
+                }
+            }
+            return list;
+        }
         public List<BasicCommentThread> GetAllCommentInEvent(int eventId)
         {
             List<BasicCommentThread> list = new List<BasicCommentThread>();

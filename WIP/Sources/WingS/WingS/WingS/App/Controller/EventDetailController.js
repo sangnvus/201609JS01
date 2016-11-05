@@ -156,6 +156,16 @@
             }
         });
     };
+
+    //Load List Public message 
+        $http({
+            url: "/api/Event/GetpublicMessage",
+            method: "GET",
+            params: { eventId: eventId },
+            contentType: "application/json"
+        }).success(function (response) {
+            $scope.MessageList = response.Data;
+        });
     //Send message 
     $scope.sendMessage = function (titleMessage, content) {
         $http({

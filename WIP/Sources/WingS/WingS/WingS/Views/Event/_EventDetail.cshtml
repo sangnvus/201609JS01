@@ -411,7 +411,7 @@
 
 <div class="chatbox chatbox--tray chatbox--empty">
     <div class="chatbox__title">
-        <h5><a href="">Thảo Luận</a></h5>
+        <h5><a href="">Thảo luận về sự kiện</a></h5>
         <button class="chatbox__title__tray">
             <span></span>
         </button>
@@ -425,8 +425,19 @@
         </button>
     </div>
     <div id="msgContainer" class="chatbox__body">
-
+    <div ng-repeat="item in MessageList">
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img src="{{item.CreatorImage}}" style="width: 50px; height:50px;" class="img-rounded" alt="" />
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading"><small>{{item.CreatorName}}</small> <span><small>{{item.CreatedDate}}</small></span></h4>
+            {{item.Content}}
+        </div>
+        <br />
     </div>
+    </div>
+   </div>
     <form class="chatbox__credentials">
         @if (User.Identity == null || !User.Identity.IsAuthenticated)
         {
@@ -438,16 +449,14 @@
         }
         else
         {
-            <button type="submit" id="btnStartChat" class="btn btn-success btn-block">Vào phòng thảo luận</button>
+            <button type="submit" id="btnStartChat" class="btn btn-success btn-block" >Vào phòng thảo luận</button>
         }
         <input id="hdId" type="hidden" />
         <input id="hdUserId" type="hidden" />
         <input id="hdEventId" type="hidden" />
     </form>
     <textarea id="txtMessage" class="chatbox__message" placeholder="Write something...."></textarea>
-    <span class="input-group-btn">
-        <button class="btn btn-primary btn-sm" id="btnSendMsg">Senddddddddddd</button>
-    </span>
+
 </div>
 
 <!-- PAGE LEVEL PLUGIN SCRIPTS -->
@@ -467,6 +476,7 @@
 
 <!-- CHATBOX SCRIPTS -->
 <script type="text/javascript">
+
     (function ($) {
         $(document).ready(function () {
             var $chatbox = $('.chatbox'),
@@ -487,9 +497,10 @@
                 e.preventDefault();
                 $chatbox.removeClass('chatbox--empty');
             });
+
         });
     })(jQuery);
-</script></div></div>
+</script>
     
     
 @if (User.Identity.Name != "")
@@ -501,72 +512,28 @@
         function registerEvent(global)
         {
             $("#btnStartChat").click(function () {
+                var height = $('#msgContainer')[0].scrollHeight;
+                $('#msgContainer').scrollTop(height);
                 global.server.joinRoom(eventId);
+
             });
             $('.chatbox__title__close').click(function () {
                 global.server.disconnectRoom(eventId);
             });
+            $("#txtMessage").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    var mess =  $("#txtMessage").val();
+                    global.server.sendMessageInRoom(eventId, mess);
+                    $("#txtMessage").val("");
+                    return false;
+                }
+            });
+           
+
+
         }
     </script>
 }
-        @*$("#txtMessage").keypress(function (e) {
-            if (e.which == 13) {
-                $('#btnSendMsg').click();
-            }
-        });
 
-        $('#btnSendMsg').click(function () {
-            var msg = $("#txtMessage").val();
-            if (msg.length > 0) {
-
-                var userId = $('#hdUserName').val();
-                chatHub.server.sendMessageToAll(userId, msg);
-                $("#txtMessage").val('');
-            }
-        });
-
-    }
-
-    function registerClientMethods(chatHub) {
-        //Calls when user enter chat room
-        chatHub.client.onConnected = function (id, userId, allUsers, messages) {
-
-            $('#hdId').val(id);
-            $('#hdUserId').val(userId);
-            $('#hdEventId').val(eventId);
-
-
-            for (i = 0; i < allUsers.length; i++) {
-                // Add Existing Messages
-                for (i = 0; i < messages.length; i++)
-                {
-                    AddMessage(messages[i].UserId, messages[i].Message);
-                }
-            }
-
-            // On New User Connected
-            chatHub.client.onNewUserConnected = function (id, userId, eventId) {
-                AddUser(chatHub, id, userId, eventId);
-            }
-
-            chatHub.client.messageReceived = function (userId, message) {
-                AddMessage(UserId, message);
-            }
-        }
-    }
-
-    //Add User
-    function AddUser(chatHub, id, userId, eventId) {
-
-    }
-
-    // Add Message
-    function AddMessage(userId, message) {
-        $('#msgContainer').append('<div class="message"><span class="userId">' + userId + '</span>: ' + message + '</div>');
-
-        var height = $('#msgContainer')[0].scrollHeight;
-        $('#msgContainer').scrollTop(height);
-    }
-</script>*@
 
         </body>
