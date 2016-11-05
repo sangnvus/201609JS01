@@ -45,19 +45,24 @@ namespace WingS.DataAccess
             return messageList;
 
         }
-        public List<ConservationBasicInfoDTO> GetAllConservationByUserId()
+        public List<ConservationBasicInfoDTO> GetAllConservationByUserId(string name)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(name).UserID;
+            }
             List<ConservationBasicInfoDTO> ConservationList = new List<ConservationBasicInfoDTO>();
             using (var db = new Ws_DataContext())
             {
                 var list = (from p in db.Conservation
-                            where p.CreatorId == WsConstant.CurrentUser.UserId || p.ReceiverId == WsConstant.CurrentUser.UserId
+                            where p.CreatorId == CurrenUser || p.ReceiverId == CurrenUser
                             select p).OrderByDescending(x=>x.UpdatedTime).ToList();
                 foreach (var item in list)
                 {
                     ConservationBasicInfoDTO current = new ConservationBasicInfoDTO();
                     //Set Image
-                    if (item.ReceiverId == WsConstant.CurrentUser.UserId)
+                    if (item.ReceiverId == CurrenUser)
                     {
                         current.AvatarUrl = item.Creator.User_Information.ProfileImage;
                         current.CreatorName = item.Creator.UserName;

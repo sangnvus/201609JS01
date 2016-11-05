@@ -16,16 +16,18 @@ namespace WingS.Controllers.WebApi
         public IHttpActionResult AddConservation(ConservationBasicInfoDTO newConservation)
         {
             int receiverId = 0;
+            int CurrentUser = 0;
             Conservation returnedConservation;
        try {
             using (var db = new UserDAL())
             {
+               CurrentUser = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
                 receiverId = db.GetUserByUserNameOrEmail(newConservation.ReceiverName).UserID;
             }
             //Add conservation
             var conservation = new Conservation
             {
-                CreatorId = WsConstant.CurrentUser.UserId,
+                CreatorId = CurrentUser,
                 ReceiverId = receiverId,
                 Title = newConservation.Title,
                 UpdatedTime = DateTime.Now,
@@ -41,7 +43,7 @@ namespace WingS.Controllers.WebApi
             //Add First Message of Conservation
             var message = new Message
             {
-                UserId = WsConstant.CurrentUser.UserId,
+                UserId = CurrentUser,
                 ConservationId = returnedConservation.ConservationId,
                 Content = newConservation.Content,
                 CreatedDate = DateTime.Now,
@@ -64,7 +66,7 @@ namespace WingS.Controllers.WebApi
             List<ConservationBasicInfoDTO> ConservationList;
             using (var db = new ConservationDAL())
             {
-                ConservationList = db.GetAllConservationByUserId();
+                ConservationList = db.GetAllConservationByUserId(User.Identity.Name);
             }
             if (ConservationList != null)
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = ConservationList });
@@ -84,11 +86,16 @@ namespace WingS.Controllers.WebApi
         [HttpGet]
         public IHttpActionResult AddMessage(int ConservationId, string newMessage)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
+            }
             Message mess = new Message();
             mess.ConservationId = ConservationId;
             mess.Content = newMessage;
             mess.CreatedDate = DateTime.Now;
-            mess.UserId = WsConstant.CurrentUser.UserId;
+            mess.UserId = CurrenUser;
             mess.Status = true;
             using (var db = new ConservationDAL())
             {

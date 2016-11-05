@@ -14,12 +14,9 @@ namespace WingS.Controllers
     {
         public ActionResult Index()
         {
-            //Set Current UserId 
-            if (User.Identity.Name!="") { 
-            WsConstant.CurrentUser.UserId = GetCurrentUser().UserID;
-            }
+
             ViewBag.Title = WsConstant.PageTitle.Home;
-           return View();
+            return View();
         }
         [Route("Admin")]
         public ActionResult Admin()

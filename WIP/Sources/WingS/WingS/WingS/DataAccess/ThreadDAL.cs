@@ -19,27 +19,37 @@ namespace WingS.DataAccess
             }
 
         }
-        public bool CheckUserIsLikedOrNot(int ThreadId)
+        public bool CheckUserIsLikedOrNot(int ThreadId, string UserName)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
             using (var db = new Ws_DataContext())
             {
                 var isLike = (from p in db.LikeThreads
-                              where p.ThreadId == ThreadId && p.UserId == WsConstant.CurrentUser.UserId && p.Status == true
+                              where p.ThreadId == ThreadId && p.UserId == CurrenUser && p.Status == true
                               select p).SingleOrDefault();
                 if (isLike != null) return true;
                 else return false;
             }
         }
-        public bool ChangelikeState(int ThreadId)
+        public bool ChangelikeState(int ThreadId, string UserName)
         {
             try
             {
+                int CurrenUser = 0;
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+                }
                 using (var db = new Ws_DataContext())
                 {
                     //Check current like status.
                     LikeThreads current = (
                                            from p in db.LikeThreads
-                                           where p.ThreadId == ThreadId && p.UserId == WsConstant.CurrentUser.UserId
+                                           where p.ThreadId == ThreadId && p.UserId == CurrenUser
                                            select p
                                            ).SingleOrDefault();
                     if (current != null)
@@ -50,7 +60,7 @@ namespace WingS.DataAccess
                     }
                     else
                     {
-                        db.LikeThreads.Add(new LikeThreads() { ThreadId = ThreadId, UserId = WsConstant.CurrentUser.UserId, Status = true });
+                        db.LikeThreads.Add(new LikeThreads() { ThreadId = ThreadId, UserId = CurrenUser, Status = true });
                         db.SaveChanges();
                     }
                     
@@ -235,10 +245,15 @@ namespace WingS.DataAccess
             }
           
         }
-        public Thread AddNewThread(CreateThreadInfo thread)
+        public Thread AddNewThread(CreateThreadInfo thread, string UserName)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
             var newThread = CreateEmptyThread();
-            newThread.UserId = WsConstant.CurrentUser.UserId;
+            newThread.UserId = CurrenUser;
             newThread.Title = thread.Title;
             newThread.Etitle = ConvertToUnSign.Convert(thread.Title);
             newThread.Content = thread.Content;

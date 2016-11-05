@@ -19,28 +19,38 @@ namespace WingS.DataAccess
             }
 
         }
-        public bool CheckUserIsLikedOrNot(int EventId)
+        public bool CheckUserIsLikedOrNot(int EventId, string UserName)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
             using (var db = new Ws_DataContext())
             {
                 var isLike = (from p in db.LikeEvents
-                              where p.EventId == EventId && p.UserId == WsConstant.CurrentUser.UserId && p.Status == true
+                              where p.EventId == EventId && p.UserId == CurrenUser && p.Status == true
                               select p).SingleOrDefault();
                 if (isLike != null) return true;
                 else return false;
             }
         }
     
-    public bool ChangelikeState(int EventId)
+    public bool ChangelikeState(int EventId, string UserName)
     {
         try
         {
-            using (var db = new Ws_DataContext())
+            int CurrenUser = 0;
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+                }
+                using (var db = new Ws_DataContext())
             {
                 //Check current like status.
                 LikeEvents current = (
                                        from p in db.LikeEvents
-                                       where p.EventId == EventId && p.UserId == WsConstant.CurrentUser.UserId
+                                       where p.EventId == EventId && p.UserId == CurrenUser
                                        select p
                                        ).SingleOrDefault();
                 if (current != null)
@@ -51,12 +61,10 @@ namespace WingS.DataAccess
                 }
                 else
                 {
-                    db.LikeEvents.Add(new LikeEvents() { EventId = EventId, UserId = WsConstant.CurrentUser.UserId, Status = true });
+                    db.LikeEvents.Add(new LikeEvents() { EventId = EventId, UserId = CurrenUser, Status = true });
                     db.SaveChanges();
                 }
-
                 return true;
-
             }
         }
         catch (Exception) { return false; }
@@ -397,10 +405,15 @@ namespace WingS.DataAccess
             }
 
         }
-        public Event AddNewEvent(CreateEventInfo eventInfo)
+        public Event AddNewEvent(CreateEventInfo eventInfo, string UserName)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
             var newEvent = CreateEmptyEvent();
-            newEvent.CreatorID = GetOrganizationById(WsConstant.CurrentUser.UserId).OrganizationId;
+            newEvent.CreatorID = GetOrganizationById(CurrenUser).OrganizationId;
             newEvent.EventType = eventInfo.EventType;
             newEvent.EventName = eventInfo.EventName;
             newEvent.EEventName = ConvertToUnSign.Convert(newEvent.EventName);

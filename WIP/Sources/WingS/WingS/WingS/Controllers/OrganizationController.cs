@@ -25,7 +25,7 @@ namespace WingS.Controllers
 
                 using (var db = new OrganizationDAL())
                 {
-                    db.AddNewOrganization(organization);
+                    db.AddNewOrganization(organization, User.Identity.Name);
                 }
             }
             catch (Exception)
@@ -50,7 +50,7 @@ namespace WingS.Controllers
                 
                 using (var db = new OrganizationDAL())
                 {
-                    db.EditOrganization(organization);
+                    db.EditOrganization(organization,User.Identity.Name);
                 }
             }
             catch (Exception)

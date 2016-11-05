@@ -13,16 +13,21 @@ namespace WingS.ChatHub
     {
         public void Connect()
         {
+            ;
             var ConnectionString = Context.ConnectionId;
-            int UserId = WsConstant.CurrentUser.UserId;
+            int UserId = 0;
+            using (var db = new UserDAL())
+            {
+                UserId = db.GetUserByUserNameOrEmail(HttpContext.Current.User.Identity.Name).UserID;
+            }
             //Check User is connected or not
             using (var db = new Ws_DataContext())
             {
                 Connection UserDetail = new Connection
-                    {
-                        UserId = UserId,
-                        ConnectionString = ConnectionString
-                    };
+                {
+                    UserId = UserId,
+                    ConnectionString = ConnectionString
+                };
                 db.Connection.Add(UserDetail);
                 db.SaveChanges();
             }
@@ -58,8 +63,13 @@ namespace WingS.ChatHub
                 }
             Clients.Caller.Notify("Disconnected To Room");
         }
-        public void SendMessage(int ConservationId, string Message )
+        public void SendMessage(int ConservationId, string Message, string UserName )
         {
+            int UserId = 0;
+            using (var db = new UserDAL())
+            {
+                UserId = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
             Message newMess = new Message();
             using (var db = new Ws_DataContext())
             {
@@ -67,7 +77,7 @@ namespace WingS.ChatHub
                 newMess.Content = Message;
                 newMess.CreatedDate = DateTime.Now;
                 newMess.Status = true;
-                newMess.UserId = WsConstant.CurrentUser.UserId;
+                newMess.UserId = UserId;
                 newMess = db.Message.Add(newMess);
                 db.SaveChanges();
             }
@@ -109,11 +119,16 @@ namespace WingS.ChatHub
         public void SendMessageInRoom(int eventId, string mess)
         {
             MessageBasicInfoDTO returnedMessage = new MessageBasicInfoDTO();
+            int UserId = 0;
+            using (var db = new UserDAL())
+            {
+                UserId = db.GetUserByUserNameOrEmail(HttpContext.Current.User.Identity.Name).UserID;
+            }
             using (var db = new Ws_DataContext())
             {
                 //Add mesage to db
                 PublicMessageDetail newMessage = new PublicMessageDetail();
-                newMessage.UserId = WsConstant.CurrentUser.UserId;
+                newMessage.UserId = UserId;
                 newMessage.EventId = eventId;
                 newMessage.Message = mess;
                 newMessage.CreatedDate = DateTime.Now;

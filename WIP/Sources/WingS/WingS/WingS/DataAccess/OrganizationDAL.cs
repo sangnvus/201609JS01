@@ -27,10 +27,15 @@ namespace WingS.DataAccess
             return listOrg;
         } 
 
-        public Organization AddNewOrganization(CreateOrganization organizationBasic)
+        public Organization AddNewOrganization(CreateOrganization organizationBasic, string UserName)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
             var newOrg = CreatEmptyOrganization();
-            newOrg.OrganizationId = WsConstant.CurrentUser.UserId;
+            newOrg.OrganizationId = CurrenUser;
             newOrg.OrganizationName = organizationBasic.OrganizationName;
             newOrg.EOrganizationName = ConvertToUnSign.Convert(organizationBasic.OrganizationName);
             newOrg.Introduction = organizationBasic.Introduction;
@@ -47,13 +52,18 @@ namespace WingS.DataAccess
             }
         }
 
-        public Boolean EditOrganization(CreateOrganization organizationBasic)
+        public Boolean EditOrganization(CreateOrganization organizationBasic, string UserName)
         {
             try
             {
+                int CurrenUser = 0;
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+                }
                 using (var db = new Ws_DataContext())
                 {
-                    var currentOrg = db.Organizations.Find(WsConstant.CurrentUser.UserId);
+                    var currentOrg = db.Organizations.Find(CurrenUser);
 
                     currentOrg.OrganizationName = organizationBasic.OrganizationName;
                     currentOrg.OrganizationName = organizationBasic.OrganizationName;

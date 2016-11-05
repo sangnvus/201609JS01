@@ -11,7 +11,7 @@ namespace WingS.DataAccess
 {
     public class UserDAL: IDisposable
     {
-        public  Ws_User GetUserByUserNameOrEmail (string UsernameOrEmail)
+        public Ws_User GetUserByUserNameOrEmail (string UsernameOrEmail)
         {
             using (var db = new Ws_DataContext())
             {

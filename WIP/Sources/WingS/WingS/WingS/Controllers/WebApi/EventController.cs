@@ -30,7 +30,7 @@ namespace WingS.Controllers
             bool isLiked = false;
             using (var db = new EventDAL())
             {
-                isLiked = db.CheckUserIsLikedOrNot(EventId);
+                isLiked = db.CheckUserIsLikedOrNot(EventId,User.Identity.Name);
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = isLiked });
         }
@@ -39,7 +39,7 @@ namespace WingS.Controllers
         {
             using (var db = new EventDAL())
             {
-                var change = db.ChangelikeState(EventId);
+                var change = db.ChangelikeState(EventId, User.Identity.Name);
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
         }
@@ -71,9 +71,14 @@ namespace WingS.Controllers
         [HttpPost]
         public IHttpActionResult AddComment(AddCommentDTO comment)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
+            }
             var newComment = new CommentEvent
             {
-                UserId = WsConstant.CurrentUser.UserId,
+                UserId = CurrenUser,
                 EventId = comment.ThreadId,
                 Content = comment.CommentContent,
                 Status = true,
@@ -89,9 +94,14 @@ namespace WingS.Controllers
         [HttpPost]
         public IHttpActionResult AddSubComment(AddSubCommentDTO comment)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
+            }
             var newSubComment = new SubCommentEvent
             {
-                UserId = WsConstant.CurrentUser.UserId,
+                UserId = CurrenUser,
                 CommentEventId = comment.CommentThreadId,
                 Content = comment.CommentContent,
                 Status = true,

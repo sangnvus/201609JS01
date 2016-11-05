@@ -35,7 +35,7 @@ namespace WingS.Controllers
             Event newEvent = new Event();
             using (var db = new EventDAL())
             {
-                newEvent = db.AddNewEvent(eventInfo);
+                newEvent = db.AddNewEvent(eventInfo, User.Identity.Name);
                 foreach (var scheduleInfo in eventTimeLine)
                 {
                     db.AddNewEventTimeLine(scheduleInfo, newEvent.EventID);

@@ -21,7 +21,7 @@ namespace WingS.Controllers.WebApi
             bool isLiked = false;
             using (var db = new ThreadDAL())
             {
-                isLiked = db.CheckUserIsLikedOrNot(ThreadId);
+                isLiked = db.CheckUserIsLikedOrNot(ThreadId, User.Identity.Name);
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = isLiked });
         }
@@ -40,7 +40,7 @@ namespace WingS.Controllers.WebApi
         {
             using (var db = new ThreadDAL())
             {
-                var change = db.ChangelikeState(ThreadId);
+                var change = db.ChangelikeState(ThreadId, User.Identity.Name);
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
         }
@@ -73,9 +73,14 @@ namespace WingS.Controllers.WebApi
         [HttpPost]
         public IHttpActionResult AddComment(AddCommentDTO comment )
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
+            }
             var newComment = new CommentThread
             {
-                UserId=WsConstant.CurrentUser.UserId,
+                UserId=CurrenUser,
                 ThreadId = comment.ThreadId,
                 Content = comment.CommentContent,
                 Status = true,
@@ -91,9 +96,14 @@ namespace WingS.Controllers.WebApi
         [HttpPost]
         public IHttpActionResult AddSubComment(AddSubCommentDTO comment)
         {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
+            }
             var newSubComment = new SubCommentThread
             {
-                UserId = WsConstant.CurrentUser.UserId,
+                UserId = CurrenUser,
                 CommentThreadId = comment.CommentThreadId,
                 Content = comment.CommentContent,
                 Status = true,

@@ -21,7 +21,7 @@ namespace WingS.Controllers
             //Add thread to DB
             using (var db = new ThreadDAL())
             {
-                newThread = db.AddNewThread(thread);
+                newThread = db.AddNewThread(thread, User.Identity.Name);
             }
             //Add Imgaes of Discussion to server
             try
