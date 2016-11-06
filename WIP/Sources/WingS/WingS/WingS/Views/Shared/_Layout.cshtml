@@ -67,6 +67,12 @@ border-radius: 10px;
             window.globalHub.client.notify = function (msg) {
                 alert(msg);
             }
+            window.globalHub.client.ReceiverMessage = function (info)
+            {
+                $('#messContainer').append(' <div class="media"><a class="pull-left" href="#"><img src="' + info.CreatorImage + '" style="width: 64px; height:64px;" class="img-rounded" alt="" /></a><div class="media-body"><h4 class="media-heading">' + info.CreatorName + '<span><small>' + info.CreatedDate + '</small></span></h4>' + info.Content + '</div></div><hr/>');
+                var height = $('#MessageBox')[0].scrollHeight;
+                $('#MessageBox').scrollTop(height);
+            }
             window.globalHub.client.ReceivePublicMessage = function (info) {
                 $('#msgContainer').append('<div class="media"><a class="pull-left" href="#"><img src="' + info.CreatorImage + '" style="width: 50px; height:50px;" class="img-rounded" alt="" /></a>' + '<div class="media-body"><h4 class="media-heading"><small>' + info.CreatorName + '</small> <span><small>' + info.CreatedDate + '</small></span></h4>' + info.Content + '</div> <br /></div>');
                 var height = $('#msgContainer')[0].scrollHeight;

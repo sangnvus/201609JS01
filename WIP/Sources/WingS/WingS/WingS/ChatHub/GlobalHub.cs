@@ -60,17 +60,17 @@ namespace WingS.ChatHub
                 var item = db.Connection.FirstOrDefault(x => x.ConnectionString.Equals(Context.ConnectionId));
                 try {db.PublicRooms.Remove(db.PublicRooms.FirstOrDefault(x => x.ConnectionId == item.ConnectionId));
                 }catch(Exception){}
-                }
-            Clients.Caller.Notify("Disconnected To Room");
+            }
         }
-        public void SendMessage(int ConservationId, string Message, string UserName )
+        public void SendMessage(int ConservationId, string Message)
         {
             int UserId = 0;
             using (var db = new UserDAL())
             {
-                UserId = db.GetUserByUserNameOrEmail(UserName).UserID;
+                UserId = db.GetUserByUserNameOrEmail(HttpContext.Current.User.Identity.Name).UserID;
             }
             Message newMess = new Message();
+            MessageBasicInfoDTO info = new MessageBasicInfoDTO();
             using (var db = new Ws_DataContext())
             {
                 newMess.ConservationId = ConservationId;
@@ -80,27 +80,27 @@ namespace WingS.ChatHub
                 newMess.UserId = UserId;
                 newMess = db.Message.Add(newMess);
                 db.SaveChanges();
+                var GetInfo = (from p in db.Message
+                               where p.MessageId == newMess.MessageId
+                               select new { p.User.UserName, p.User.User_Information.ProfileImage }).SingleOrDefault();
+                info.CreatorImage = GetInfo.ProfileImage;
+                info.CreatorName = GetInfo.UserName;
+                info.Content = newMess.Content;
             }
-            MessageBasicInfoDTO info = new MessageBasicInfoDTO();
-            info.CreatorImage = newMess.User.User_Information.ProfileImage;
-            info.CreatorName = newMess.User.UserName;
-            info.Content = newMess.Content;
+      
+         
             if (DateTime.Now.Subtract(newMess.CreatedDate).Hours <= 24 && DateTime.Now.Subtract(newMess.CreatedDate).Hours >= 1)
                 info.CreatedDate = DateTime.Now.Subtract(newMess.CreatedDate).Hours + " Tiếng cách đây";
             else if (DateTime.Now.Subtract(newMess.CreatedDate).Hours > 24)
                 info.CreatedDate = newMess.CreatedDate.ToString("H:mm:ss dd/MM/yy");
             else info.CreatedDate = DateTime.Now.Subtract(newMess.CreatedDate).Minutes + " Phút cách đây";
-
-            //Send new Message to Caller 
-            Clients.Caller.ReceiverMessage(info);
-
             //Get list connection Id specify by UserId
             List<string> ListConnetion = new List<string>();
             using (var db = new Ws_DataContext())
             {
                 //Get Id of Receiver 
                 var Id = (from p in db.Conservation
-                          where p.ConservationId == ConservationId
+                          where p.ConservationId == ConservationId 
                           select new { p.CreatorId, p.ReceiverId } ).SingleOrDefault();
                 if(newMess.UserId==Id.CreatorId)
                 {
@@ -108,12 +108,14 @@ namespace WingS.ChatHub
                 }
                 else ListConnetion = db.Connection.Where(x => x.UserId == Id.CreatorId).Select(x => x.ConnectionString).ToList();
             }
-
+            //Send it to caller
+            Clients.Caller.ReceiverMessage(info);
             //Send new Message to Receiver if Connecting 
-            foreach(var item in ListConnetion)
-            {
-                Clients.Client(item).ReceiverMessage(info);
+            foreach (var item in ListConnetion)
+            {  
+              Clients.Client(item).ReceiverMessage(info);
             }
+
 
         }
         public void SendMessageInRoom(int eventId, string mess)
@@ -155,6 +157,7 @@ namespace WingS.ChatHub
         }
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
+            try { 
             using (var db = new Ws_DataContext())
             {
                 var item = db.Connection.FirstOrDefault(x => x.ConnectionString == Context.ConnectionId);
@@ -169,6 +172,10 @@ namespace WingS.ChatHub
                     db.Connection.Remove(item);
                     db.SaveChanges();
                 }
+            }
+            }catch(Exception ex)
+            {
+
             }
             return base.OnDisconnected(stopCalled);
         }

@@ -512,10 +512,9 @@
         function registerEvent(global)
         {
             $("#btnStartChat").click(function () {
+                global.server.joinRoom(eventId);
                 var height = $('#msgContainer')[0].scrollHeight;
                 $('#msgContainer').scrollTop(height);
-                global.server.joinRoom(eventId);
-
             });
             $('.chatbox__title__close').click(function () {
                 global.server.disconnectRoom(eventId);

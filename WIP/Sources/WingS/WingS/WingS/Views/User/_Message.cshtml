@@ -58,31 +58,32 @@
 
                         <h1>{{MessageName}}</h1>
                         <hr>
-                        <div ng-repeat="item in Message track by $index">
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img src="{{item.CreatorImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
-                                </a>
-                                <div class="media-body"><h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
-                                   {{item.Content}}
+                        <div id="MessageBox" style="width: 690px; max-height:400px;  overflow-y: auto;">
+                            <div id="messContainer">
+                                <div ng-repeat="item in Message track by $index">
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img src="{{item.CreatorImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
+                                            {{item.Content}}
+                                        </div>
+                                    </div>
+                                    <hr />
                                 </div>
                             </div>
-                            <hr />
+                            <br>
                         </div>
-                        <div>
-                        
+                            <div ng-show="replyShow">
+                                <a class="pull-left" href="#">
+                                    <img src="{{User_Information.ProfileImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
+                                </a>&nbsp;&nbsp;&nbsp;<input class="newMesage" id="newMessage" type="text" @*ng-model="newMessage"*@ placeholder="Nhập tin nhắn" style="width:64%; height:50px; " @*my-Enter="addMessage(newMessage,{{CurrentConservationId}})"*@ />
+                            </div>
+                            @*<div align="center">
+                <a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i>Tải lại</a>
+            </div>*@
                         </div>
-                        <br>
-   
-                        <div ng-show="replyShow">
-                            <a class="pull-left" href="#">
-                                <img src="{{User_Information.ProfileImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
-                            </a>&nbsp;&nbsp;&nbsp;<input class="newMesage" type="text" ng-model="newMessage" placeholder="Nhập tin nhắn" style="width:64%; height:50px; " my-Enter="addMessage(newMessage,{{CurrentConservationId}})" />
-                        </div>
-                        @*<div align="center">
-                            <a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i>Tải lại</a>
-                        </div>*@
-                    </div>
                     <!--End Sidebar Content here-->
                     <div id="footerInnerSeparator"></div>
                 </div>
@@ -90,4 +91,25 @@
             @Html.Partial("../Home/_Footer")
         </div>
         <br /><br /><br />
+      
+        @if (User.Identity.Name != "")
+        {
+            <script type="text/javascript">
+        window.hubReady.done(function () {
+            registerEvent( window.globalHub);
+        });
+        function registerEvent(global)
+        {
+            $("#newMessage").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    var mess = $("#newMessage").val();
+                    global.server.sendMessage(conservationId, mess);
+                    $("#newMessage").val("");
+                    return false;
+                }
+            });
+
+        }
+            </script>
+        }
 </body>

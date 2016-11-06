@@ -1,4 +1,4 @@
-﻿app.controller("MessagesController", function ($scope, $http) {
+﻿app.controller("MessagesController", function ($scope, $http,$window) {
     //Get All conservation
     $scope.MessageName =  "Tin nhắn";
     $http.get("/api/Conservation/GetAllConservation").success(function (response) {
@@ -7,6 +7,7 @@
     //Load All Message by ConservationId
     $scope.getMessage = function(userName, conservationId)
     {
+        $window.conservationId = conservationId;
         $scope.replyShow = true;
         $scope.CurrentConservationId = conservationId;
         $scope.MessageName = userName;
