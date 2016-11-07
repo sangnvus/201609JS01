@@ -32,7 +32,7 @@
 
     <!-- THEME DEMO STYLES - Use these styles for reference if needed. Otherwise they can be deleted. -->
     <link href="css/demo.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="css/comment.css">
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
@@ -430,10 +430,8 @@
                         <div class="portlet portlet-default">
                             <div class="portlet-body">
                                 <ul id="userTab" class="nav nav-tabs">
-                                    <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-                                    <li><a href="#campaign" data-toggle="tab">Campaign</a></li>
-									<li><a href="#updates" data-toggle="tab">Updates</a></li>
-									<li><a href="#comments" data-toggle="tab">Comments</a></li>
+                                    <li class="active"><a href="#overview" data-toggle="tab">Tổng quan</a></li>
+                                    <li><a href="#campaign" data-toggle="tab">Lịch trình</a></li>
                                 </ul>
                                 <div id="userTabContent" class="tab-content">
 									<!-- tab overview -->
@@ -441,9 +439,9 @@
 
                                         <!-- begin project detail row -->
 										<div class="row">
-											<div class="title text-center">
-												<h2>Divinity: Original Sin 2</h2>
-												<p>by <a href="userprofile.html">John Smith</a> - <span class="badge green">Art Project</span> - <span class="badge blue">Approved</span></p>
+											<div class="title text-center" style="margin-bottom: 30px;">
+												<h2>Xây trường học cho học sinh nghèo miền núi Tây Bắc</h2>
+												<p>Tạo bởi: <a href="OrganizationDetail.html"><span class="badge purple">Tổ chức vì Giáo dục</span></a> - <span class="badge green">Y tế</span> - <span class="badge blue">Sắp diễn ra</span></p>
 											</div>
 											<div class="col-lg-7">
 											  <div class="responsive-video form-group">
@@ -453,43 +451,16 @@
 											<div class="col-lg-5">
 												<!-- circle title -->
 												<div class="row">
-													<div class="col-lg-6 col-md-12">
-														<div class="circle-tile">
-															<a href="#">
-																<div class="circle-tile-heading orange">
-																	<i class="fa fa-bell fa-fw fa-3x"></i>
-																</div>
-															</a>
-															<div class="circle-tile-content orange">
-																<div class="circle-tile-description text-faded">
-																	Days To Go
-																</div>
-																<div class="circle-tile-number text-faded">
-																	30
-																</div>
-																<a href="#" class="circle-tile-footer">Running <i class="fa fa-chevron-circle-right"></i></a>
+													<div class="col-lg-12 col-md-12">
+														  <h3 style="text-align:center;margin-top: 0px;margin-bottom: 60px;">Tiến trình ủng hộ</h3>
+														  <div class="progress">
+															<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+															  40%
 															</div>
-														</div>
+														  </div>																										 
+
 													</div>
-													<div class="col-lg-6 col-md-12">
-														<div class="circle-tile">
-															<a href="#">
-																<div class="circle-tile-heading red">
-																	<i class="fa fa-shopping-cart fa-fw fa-3x"></i>
-																</div>
-															</a>
-															<div class="circle-tile-content red">
-																<div class="circle-tile-description text-faded">
-																	Pledge Amount
-																</div>
-																<div class="circle-tile-number text-faded">
-																	$1100
-																	<span id="sparklineC"></span>
-																</div>
-																<a href="#" class="circle-tile-footer">Running <i class="fa fa-chevron-circle-right"></i></a>
-															</div>
-														</div>
-													</div>
+													<div class="col-lg-12 col-md-12"style="margin-bottom: 45px;"></div>
 													<div class="col-lg-6 col-md-12">
 														<div class="circle-tile">
 															<a href="#">
@@ -499,12 +470,11 @@
 															</a>
 															<div class="circle-tile-content green">
 																<div class="circle-tile-description text-faded">
-																	Funding Goal
+																	Đã ủng hộ
 																</div>
 																<div class="circle-tile-number text-faded">
 																	$326,5
 																</div>
-																<a href="#" class="circle-tile-footer">Running <i class="fa fa-chevron-circle-right"></i></a>
 															</div>
 														</div>
 													</div>
@@ -517,53 +487,45 @@
 															</a>
 															<div class="circle-tile-content dark-blue">
 																<div class="circle-tile-description text-faded">
-																	 Backers
+																	 Số người ủng hộ
 																</div>
 																<div class="circle-tile-number text-faded">
 																	265
 																	<span id="sparklineA"></span>
-																</div>
-																<a href="project-backers.html" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+																</div>	
 															</div>
 														</div>
 													</div>
 												</div>
-												<!-- end circle title -->
-												<div class="row">
-													<div class="col-lg-12 col-sm-12">
-														<button class="btn btn-danger btn-lg pull-right" data-toggle="modal" data-target="#ConfirmModal">Suspend this project</button>
-													</div>
-												</div>				
+												<!-- end circle title -->		
 											</div>
 										</div>
 										<!-- end project detail row -->
 										
-										<!-- project chart -->
+										<!--event content -->
 										<div class="row">
-											<!-- Line Chart Example -->
 											<div class="col-lg-12">
-												<div class="portlet portlet-green">
-													<div class="portlet-heading">
-														<div class="portlet-title">
-															<h4>Daily Statistic Chart</h4>
-														</div>
-														<div class="portlet-widgets">
-															<a href="javascript:;"><i class="fa fa-refresh"></i></a>
-															<span class="divider"></span>
-															<a data-toggle="collapse" data-parent="#accordion" href="#lineChart"><i class="fa fa-chevron-down"></i></a>
-														</div>
-														<div class="clearfix"></div>
+												<h4>Nội dung</h4>
+												<div id="content" class="tab-pane fade in active">
+													<div class="contentEvent">
+														<p>Một mùa Trung Thu nữa lại đến – mùa mà mọi trẻ em trên khắp đất nước Việt Nam đâu đâu cũng mong chờ. Mùa của những chiếc bánh Nướng – bánh Dẻo, mùa của những mâm cỗ với bưởi, trái cây, mùa của những chiếc đèn lồng mơ ước để cùng nhau rước trong đêm trăng rằm. Ấy vậy mà đâu đó nơi đây, chỉ cách trung tâm Thành Phố HCM vài chục km, nơi có những căn nhà chắp vá lụp xụp, có những cánh đồng ngô cỗi cằn, có những đứa trẻ trong bộ quần áo xộc xệch cáu bẩn, thậm chí có em từ khi sinh ra đã chẳng có cho mình được một cái tên… Những đứa trẻ nghèo với đôi chân trần và đôi mắt đầy ngây thơ ấy cũng có một mong ước nhỏ bé như bao đứa trẻ khác: có một chiếc lồng đèn để được đi vòng quanh xóm đón Chị Hằng – Chú Cuội nhưng hình như chưa bao giờ ước mơ ấy đến được với các em…<p>
 													</div>
-													<div id="lineChart" class="panel-collapse collapse in">
-														<div class="portlet-body">
-															<div id="morris-chart-line"></div>
-														</div>
+													<div>
+														<p style="font-weight: 600;">Sự kiện được thực hiện tại: Thành phố Hà Nội</p> 
 													</div>
-												</div>
+													<div class="row-fluid">
+													<div>
+													  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-3.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" alt=""style="height: 150px;"/></a>
+													  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-4.jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-4.jpg" alt="" style="height: 150px;"/></a>
+													  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-5.jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-5.jpg" alt="" style="height: 150px;"/></a>
+													  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-6.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg" alt="" style="height: 150px;"/></a>
+													</div>
+													</div>											
+												</div>											
 											</div>
 											<!-- /.col-lg-12 -->
 										</div>
-										<!-- end project chart -->
+										<!-- end event content -->
 
                                     </div>
                                     <!-- end tab overview -->
@@ -571,269 +533,71 @@
 									<!-- tab campaign -->
 									<div class="tab-pane fade" id="campaign">
 										<div class="row">
-											<div class="col-md-8">
-											  <div class="padding10">
-												<h3>About this project</h3>
-											  </div> <!-- end About this project -->
-											  <div id="load_content" class="padding30">
-												<img src="img/img1.jpg" alt="" class="img-responsive">
-												<p class="padding30">Thank you for taking the time to check out Divinity: Original Sin 2, our biggest and most ambitious RPG to date!</p>
-												<h1>What the press says</h1>
-												<p>"I can't help but think that another Kickstarter success could help make Divinity: Original Sin 2 one of the most engaging RPGs to date." - <a href="">PC Gamer</a></p>
-												<p>“This sequel has some wild new ideas and ambitions far beyond the scope of the already-impressive first game” - <a href="">Polygon</a></p>
-												<p>“This sequel has some wild new ideas and ambitions far beyond the scope of the already-impressive first game” - <a href="">Polygon</a></p>
-												<p>“This sequel has some wild new ideas and ambitions far beyond the scope of the already-impressive first game” - <a href="">Polygon</a></p>
-												<h1>A couple of quick facts</h1>
-												<p>Divinity: Original Sin 2 is a single- and multiplayer top-down, party-based role-playing game with pen & paper RPG-like levels of freedom.It features turn-based combat, a strong focus on systematic gameplay and a well-grounded narrative. </p>
-												<p>Divinity: Original Sin 2 is the sequel to the critically acclaimed Divinity: Original Sin, winner of over 150 Game of the Year awards and nominations. Winner of GameSpot’s “PC Game of The Year 2014”.</p>
-												<p>Divinity: Original Sin 2 is currently in development for PC in English. Subtitles will be available in German, French, and Russian. Other platforms and languages may be announced at a later stage, once development is more advanced. </p>
-												<img src="img/img2.jpg" alt="" class="img-responsive">
-												<p>You'll be able to recruit up to three companions, each of whom is just as detailed as the character you're playing, with their own origin story and motivation to help you in your quest. </p>
-												<p>This makes it possible for each companion to become a player character in multiplayer mode; every party member is equally important to the whole.</p>
-												<img src="img/img3.png" alt="" class="img-responsive">
-											  </div> <!-- end load_content -->
-											  <div id="riskandchallenges" class="padding30">
-												<h1>Risks and challenges</h1>
-												<p>We're already funding the game ourselves and are coming to Kickstarter with the aim of expanding the game's feature-set and seeking funds to integrate community input. The biggest risks are that we'll be late (a real possibility), or that certain features that we are planning on now might be changed (or even cut) as we move ahead with development.</p>
-												<p>If that happens, it'll be because we hit a real roadblock or because some other feature ended up taking significantly more time and resources than we expected. Those kinds of things happen, but they shouldn't affect our ability to finish and release an innovative game that'll be a whole world of fun.</p>
-												<p class="bold"><a href="">Learn about accountability on DoI</a></p>
-											  </div> <!-- end Risks and challeges -->
+											<div class="col-md-12">
+												<section id="timeline">
+												  <article>
+													<div class="inner">
+													  <span class="date">
+														<span class="day">30<sup>th</sup></span>
+														<span class="month">Jan</span>
+														<span class="year">2014</span>
+													  </span>
+													  <h2>The Title</h2>
+													  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+													</div>
+												  </article>
+												  <article>
+													<div class="inner">
+													  <span class="date">
+														<span class="day">26<sup>th</sup></span>
+														<span class="month">Jan</span>
+														<span class="year">2014</span>
+													  </span>
+													  <h2>The Title</h2>
+													  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+													</div>
+												  </article>
+												  <article>
+													<div class="inner">
+													  <span class="date">
+														<span class="day">26<sup>th</sup></span>
+														<span class="month">Jan</span>
+														<span class="year">2014</span>
+													  </span>
+													  <h2>The Title</h2>
+													  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+													</div>
+												  </article>
+												  <article>
+													<div class="inner">
+													  <span class="date">
+														<span class="day">26<sup>th</sup></span>
+														<span class="month">Jan</span>
+														<span class="year">2014</span>
+													  </span>
+													  <h2>The Title</h2>
+													  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+													</div>
+												  </article>
+												  <article>
+													<div class="inner">
+													  <span class="date">
+														<span class="day">26<sup>th</sup></span>
+														<span class="month">Jan</span>
+														<span class="year">2014</span>
+													  </span>
+													  <h2>The Title</h2>
+													  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+													</div>
+												  </article>
+												</section>
 											</div> <!-- end col-md-8 -->
 
-											<div class="col-md-4">
-											  <div class="padding10">
-												<h3>Rewards</h3>
-											  </div> <!-- end Rewards -->
-											  <div>
-												<div class="well">
-												  <label for="">Pledge £10 or more</label>
-												  <p><span class="glyphicon glyphicon-asterisk"></span>24 backers</p>
-												  <p>Thank the Seven! Err-- Five!</p>
-												  <p>Thank you for your pledge! For this sign of support, we here at Larian Studios are truly grateful.</p>
-												  <div class="padding20">
-													<label>Estimated delivery:</label>
-													<p>Oct 2015</p>
-												  </div>
-												</div>
-												<div class="well">
-												  <label>Pledge £25 or more</label>
-												  <p><span class="glyphicon glyphicon-asterisk"></span> 1370 backers Limited</p>
-												  <p>Kickstarter Special</p>
-												  <p>Divinity: Original Sin 2 as a digital download for PC, available from Steam with Alpha and Beta access included, or DRM-free from GOG.com. Also comes with a Digital Game Manual, a 'Backer' Forum Badge and behind-the-scenes footage.</p>
-												  <div>
-													<label>Estimated delivery:</label>
-													<p>Dec 2016</p>
-												  </div>
-												</div>
-												<div class="well">
-												  <label>Pledge £50 or more</label>
-												  <p><span class="glyphicon glyphicon-asterisk"></span> 1669 backers Limited</p>
-												  <p>Original Sin Pack</p>
-												  <p>Get a copy of Divinity: Original Sin 2 and a copy of Divinity: Original Sin - Enhanced Edition as digital downloads for PC, available from Steam with Alpha and Beta access included, or DRM-free from GOG.com. Also comes with a Digital Game Manual, a 'Backer' Forum Badge and behind-the-scenes footage.</p>
-												  <div>
-													<label>Estimated delivery:</label>
-													<p>Dec 2016</p>
-												  </div>
-												</div>
-											  </div>
-											</div> <!-- end col-md-8 -->
 										  </div>
 									</div>
 									<!-- end tab campaign -->
 									
-									<!-- tab updates -->
-									<div class="tab-pane fade" id="updates">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-													<div class="panel panel-default">
-														<div class="panel-heading" role="tab" id="headingOne">
-														  <h4 class="panel-title">
-															<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-															  Update #1
-															</a>
-														  </h4>
-														</div>
-														<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-														  <div class="panel-body">
-															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-														  </div>
-														</div>
-													  </div>
-													  <div class="panel panel-default">
-														<div class="panel-heading" role="tab" id="headingTwo">
-														  <h4 class="panel-title">
-															<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-															  Update #2
-															</a>
-														  </h4>
-														</div>
-														<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-														  <div class="panel-body">
-															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-														  </div>
-														</div>
-													  </div>
-													  <div class="panel panel-default">
-														<div class="panel-heading" role="tab" id="headingThree">
-														  <h4 class="panel-title">
-															<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-															  Update #3
-															</a>
-														  </h4>
-														</div>
-														<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-														  <div class="panel-body">
-															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-														  </div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- end tab updated -->
 									
-									<!-- tab comments -->
-									<div class="tab-pane fade" id="comments">
-										<div class="portlet-body chat-widget">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="text-center text-muted small">January 1, 2014 at 12:23 PM</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Jane Smith
-                                                                <span class="small pull-right">12:23 PM</span>
-                                                            </h4>
-                                                            <p>Hi, I wanted to make sure you got the latest product report. Did Roddy get it to you?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/profile-pic-small.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">John Smith
-                                                                <span class="small pull-right">12:28 PM</span>
-                                                            </h4>
-                                                            <p>Yeah I did. Everything looks good.</p>
-                                                            <p>Did you have an update on purchase order #302?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Jane Smith
-                                                                <span class="small pull-right">12:39 PM</span>
-                                                            </h4>
-                                                            <p>No not yet, the transaction hasn't cleared yet. I will let you know as soon as everything goes through. Any idea where you want to get lunch today?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-											<hr>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Jane Smith
-                                                                <span class="small pull-right">12:39 PM</span>
-                                                            </h4>
-                                                            <p>No not yet, the transaction hasn't cleared yet. I will let you know as soon as everything goes through. Any idea where you want to get lunch today?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-											<hr>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Jane Smith
-                                                                <span class="small pull-right">12:39 PM</span>
-                                                            </h4>
-                                                            <p>No not yet, the transaction hasn't cleared yet. I will let you know as soon as everything goes through. Any idea where you want to get lunch today?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-											<hr>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Jane Smith
-                                                                <span class="small pull-right">12:39 PM</span>
-                                                            </h4>
-                                                            <p>No not yet, the transaction hasn't cleared yet. I will let you know as soon as everything goes through. Any idea where you want to get lunch today?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-											<hr>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Jane Smith
-                                                                <span class="small pull-right">12:39 PM</span>
-                                                            </h4>
-                                                            <p>No not yet, the transaction hasn't cleared yet. I will let you know as soon as everything goes through. Any idea where you want to get lunch today?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-											<hr>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="media">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Jane Smith
-                                                                <span class="small pull-right">12:39 PM</span>
-                                                            </h4>
-                                                            <p>No not yet, the transaction hasn't cleared yet. I will let you know as soon as everything goes through. Any idea where you want to get lunch today?</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                        </div>
-									</div>
-									<!-- end tab comments -->
 								</div>
                             </div>
                             <!-- /.portlet-body -->
