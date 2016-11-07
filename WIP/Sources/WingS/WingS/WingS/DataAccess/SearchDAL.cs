@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using WingS.Models;
 using WingS.Models.DTOs;
 
@@ -17,7 +16,9 @@ namespace WingS.DataAccess
         public List<Thread> SearchThreads(string searchString)
         {
             List<Thread> listThreads = new List<Thread>();
-            string SqlQuery = "select * from Thread where FREETEXT(*, '" + searchString + "')";
+            //string SqlQuery = "select * from Thread where FREETEXT(*, '" + searchString + "')";
+            string SqlQuery = "SELECT KEY_Search.RANK, Result_Search.* FROM Thread AS Result_Search INNER JOIN FREETEXTTABLE(Thread,*, "
+            + "'" + searchString + "') AS KEY_Search ON Result_Search.ThreadID = KEY_Search.[KEY] WHERE KEY_Search.RANK >= 20 ORDER BY KEY_Search.RANK DESC ";
             using (var db = new Ws_DataContext())
             {
                 var userGet = db.Threads.SqlQuery(SqlQuery).ToList();
@@ -29,24 +30,13 @@ namespace WingS.DataAccess
                             var currentTerm = term.Trim();
                             var topThread =
                             db.Threads.OrderByDescending(x => x.CreatedDate)
-                            .Where(x => x.Status == true && x.Title.Contains(currentTerm));
+                            .Where(x => x.Status == true && (x.Title.Contains(currentTerm) || x.Etitle.Contains(currentTerm)));
                             listThreads.AddRange(topThread.ToList());
                             if (listThreads.Count >= 20)
                             {
                                 break;
                             }
                         }
-                    int checkExisted = 0;
-                    for (int i = 0; i < listThreads.Count; i++)
-                    {
-                        Thread currentThread = listThreads[i];
-                        for (int j = 0; j < listThreads.Count; j++)
-                        {
-                            if (currentThread.Equals(listThreads[j])) checkExisted++;
-                            if (checkExisted >= 2) listThreads.Remove(listThreads[j]);
-                        }
-
-                    }
                     return listThreads;
                 }
                 listThreads.AddRange(userGet.ToList());
@@ -85,7 +75,9 @@ namespace WingS.DataAccess
         public List<User_Information> SearchUserInfo(string searchString)
         {
             List<User_Information> listUsers = new List<User_Information>();
-            string SqlQuery = "select * from User_Information where FREETEXT(*, '"+searchString+"')";
+            //string SqlQuery = "select * from User_Information where FREETEXT(*, '"+searchString+"')";
+            string SqlQuery = "SELECT KEY_Search.RANK, Result_Search.* FROM User_Information AS Result_Search INNER JOIN FREETEXTTABLE(User_Information,*, "
+            + "'" + searchString + "') AS KEY_Search ON Result_Search.UserID = KEY_Search.[KEY] WHERE KEY_Search.RANK >= 20 ORDER BY KEY_Search.RANK DESC ";
             string[] searchTerms = searchString.Split(' ');
             using (var db = new Ws_DataContext())
             {
@@ -97,7 +89,7 @@ namespace WingS.DataAccess
                         var currentTerm = term.Trim();
                         var dataget = (from p in db.User_Information
                                        where
-                                           p.FullName.Contains(currentTerm) || p.Phone.Contains(currentTerm) ||
+                                           p.FullName.Contains(currentTerm) || p.EFullName.Contains(currentTerm) || p.EUserAddress.Contains(currentTerm) || p.Phone.Contains(currentTerm) ||
                                            p.UserAddress.Contains((currentTerm))
                                        select p).OrderByDescending(x => x.FullName);
                         listUsers.AddRange(dataget.ToList());
@@ -105,17 +97,6 @@ namespace WingS.DataAccess
                         {
                             break;
                         }
-                    }
-                    int checkExisted = 0;
-                    for (int i = 0; i < listUsers.Count; i++)
-                    {
-                        User_Information currentUser = listUsers[i];
-                        for (int j = 0; j < listUsers.Count; j++)
-                        {
-                            if (currentUser.Equals(listUsers[j])) checkExisted++;
-                            if (checkExisted >= 2) listUsers.Remove(listUsers[j]);
-                        }
-
                     }
                     return listUsers;
                 }
@@ -131,7 +112,9 @@ namespace WingS.DataAccess
         public List<Ws_User> SearchUsers(string searchString)
         {
             List<Ws_User> listUsers = new List<Ws_User>();
-            string SqlQuery = "select * from Ws_User where FREETEXT(*, '" + searchString + "')";
+            //string SqlQuery = "select * from Ws_User where FREETEXT(*, '" + searchString + "')";
+            string SqlQuery = "SELECT KEY_Search.RANK, Result_Search.* FROM Ws_User AS Result_Search INNER JOIN FREETEXTTABLE(Ws_User,*, "
+            + "'" + searchString + "') AS KEY_Search ON Result_Search.UserID = KEY_Search.[KEY] WHERE KEY_Search.RANK >= 20 ORDER BY KEY_Search.RANK DESC ";
             string[] searchTerms = searchString.Split(' ');
             using (var db = new Ws_DataContext())
             {
@@ -148,17 +131,6 @@ namespace WingS.DataAccess
                             break;
                         }
                     }
-                    int checkExisted = 0;
-                    for (int i = 0; i < listUsers.Count; i++)
-                    {
-                        Ws_User currentUser = listUsers[i];
-                        for (int j = 0; j < listUsers.Count; j++)
-                        {
-                            if (currentUser.Equals(listUsers[j])) checkExisted++;
-                            if (checkExisted >= 2) listUsers.Remove(listUsers[j]);
-                        }
-
-                    }
                     return listUsers;
                 }
                 listUsers.AddRange(userGet.ToList());
@@ -173,7 +145,9 @@ namespace WingS.DataAccess
         public List<Event> SearchEvent(string searchString)
         {
             List<Event> listEvents = new List<Event>();
-            string SqlQuery = "select * from Event where FREETEXT(*, '" + searchString + "')";
+            //string SqlQuery = "select * from Event where FREETEXT(*, '" + searchString + "')";
+            string SqlQuery = "SELECT KEY_Search.RANK, Result_Search.* FROM Event AS Result_Search INNER JOIN FREETEXTTABLE(Event,*, "
+            + "'" + searchString + "') AS KEY_Search ON Result_Search.EventID = KEY_Search.[KEY] WHERE KEY_Search.RANK >= 20 ORDER BY KEY_Search.RANK DESC ";
             string[] searchTerms = searchString.Split(' ');
             using (var db = new Ws_DataContext())
             {
@@ -185,21 +159,11 @@ namespace WingS.DataAccess
                         var currentTerm = term.Trim();
                         var Event =
                             db.Events.OrderByDescending(x => x.Created_Date)
-                                .Where(x => x.Status == true && (x.EventName.Contains(currentTerm) || x.Location.Contains(currentTerm)));
+                                .Where(x => x.Status == true && (x.EEventName.Contains(currentTerm) || x.EventName.Contains(currentTerm) || x.Location.Contains(currentTerm)));
                         listEvents.AddRange(Event.ToList());
                         if (listEvents.Count >= 20)
                         {
                             break;
-                        }
-                    }
-                    int checkExisted = 0;
-                    for (int i = 0; i < listEvents.Count; i++)
-                    {
-                        Event currentEvent = listEvents[i];
-                        for (int j = 0; j < listEvents.Count; j++)
-                        {
-                            if (currentEvent.Equals(listEvents[j])) checkExisted++;
-                            if (checkExisted >= 2) listEvents.Remove(listEvents[j]);
                         }
                     }
                     return listEvents;
@@ -234,7 +198,9 @@ namespace WingS.DataAccess
         public List<Organization> SearchOrganizations(string searchString)
         {
             List<Organization> listOrgs = new List<Organization>();
-            string SqlQuery = "select * from Organization where FREETEXT(*, '" + searchString + "')";
+            //string SqlQuery = "select * from Organization where FREETEXT(*, '" + searchString + "')";
+            string SqlQuery = "SELECT KEY_Search.RANK, Result_Search.* FROM Organization AS Result_Search INNER JOIN FREETEXTTABLE(Organization,*, "
+            + "'" + searchString + "') AS KEY_Search ON Result_Search.OrganizationId = KEY_Search.[KEY] WHERE KEY_Search.RANK >= 20 ORDER BY KEY_Search.RANK DESC ";
             string[] searchTerms = searchString.Split(' ');
             using (var db = new Ws_DataContext())
             {
@@ -248,24 +214,13 @@ namespace WingS.DataAccess
                             db.Organizations.OrderByDescending(x => x.Point)
                                 .Where(
                                     x =>
-                                        x.OrganizationName.Contains(currentTerm) || x.Email.Contains(currentTerm) ||
+                                        x.OrganizationName.Contains(currentTerm) || x.EOrganizationName.Contains(currentTerm) || x.Email.Contains(currentTerm) ||
                                         x.Phone.Contains(currentTerm) || x.Address.Contains(currentTerm));
                         listOrgs.AddRange(getOrg.ToList());
                         if (listOrgs.Count >= 20)
                         {
                             break;
                         }
-                    }
-                    int checkExisted = 0;
-                    for (int i = 0; i < listOrgs.Count; i++)
-                    {
-                        Organization currentoOrganization = listOrgs[i];
-                        for (int j = 0; j < listOrgs.Count; j++)
-                        {
-                            if (currentoOrganization.Equals(listOrgs[j])) checkExisted++;
-                            if (checkExisted >= 2) listOrgs.Remove(listOrgs[j]);
-                        }
-
                     }
                     return listOrgs;
                 }

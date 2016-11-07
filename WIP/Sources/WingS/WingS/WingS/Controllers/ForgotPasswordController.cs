@@ -51,6 +51,7 @@ namespace WingS.Controllers
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
+                    Timeout = 30000,
                     Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
                 };
                 using (var message = new MailMessage(fromAddress, toAddress)
