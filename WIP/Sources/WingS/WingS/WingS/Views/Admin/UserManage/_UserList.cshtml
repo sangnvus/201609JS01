@@ -140,7 +140,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 80px;">STT</th>
-                                            <th style="width: 220px;">Họ và tên</th>
+                                            <th style="width: 220px;">Tài khoản</th>
                                             <th style="width: 220px;">Địa chỉ Email</th>
                                             <th>Ngày tạo</th>
                                             <th>Trạng thái</th>
@@ -148,160 +148,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
+                                        <tr class="gradeX" ng-repeat="x in UserList">
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ x.UserName }}</td>
+                                            <td>{{ x.Email }}</td>
+                                            <td>{{ x.CreatedDate }}</td>
                                             <td>
-                                                <button class="btn btn-default">Bị Cấm</button>
-                                                <!-- <button class="btn btn-green">Active</button> -->
+                                                if(!{{ x.AccountType }}){
+                                                    if(!{{x.IsVerify}}){
+                                                        <button class="btn btn-block" disabled="">Chưa kích hoạt</button>
+                                                }
+                                                else if({{x.IsActive}})
+                                                    <button class="btn btn-default">Đang hoạt động</button>
+                                                }
+                                                else if(!{{x.IsActive}}){
+                                                    <button class="btn btn-danger">Bị cấm</button>
+                                                }
                                             </td>
                                             <td>
                                                 <a href="/Admin/#/UserProfile"><button class="btn btn-blue">Xem chi tiết</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>2</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Đang hoạt động</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">Nhấp để xem chi tiết</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>3</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <button class="btn btn-default">Chưa kích hoạt</button>
-                                                <!-- <button class="btn btn-green">Active</button> -->
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">Nhấp để xem chi tiết</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>4</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>5</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <button class="btn btn-default">Inactive</button>
-                                                <!-- <button class="btn btn-green">Active</button> -->
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>6</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>7</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>8</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>9</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>10</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>11</td>
-                                            <td>Test</td>
-                                            <td>anhtuan@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>12</td>
-                                            <td>baba</td>
-                                            <td>heodat@gmail.com</td>
-                                            <td>12/10/2016</td>
-                                            <td>
-                                                <!-- <button class="btn btn-default">Inactive</button> -->
-                                                <button class="btn btn-green">Active</button>
-                                            </td>
-                                            <td>
-                                                <a href="userprofile.html"><button class="btn btn-blue">View</button></a>
                                             </td>
                                         </tr>
                                     </tbody>

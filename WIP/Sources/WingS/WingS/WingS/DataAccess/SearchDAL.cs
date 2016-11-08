@@ -194,7 +194,7 @@ namespace WingS.DataAccess
         /// Search organization
         /// </summary>
         /// <param name="searchString"></param>
-        /// <returns></returns>
+        /// <returns>List Organization</returns>
         public List<Organization> SearchOrganizations(string searchString)
         {
             List<Organization> listOrgs = new List<Organization>();

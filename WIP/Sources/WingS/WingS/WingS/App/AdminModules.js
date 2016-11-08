@@ -25,8 +25,8 @@ app.config(function ($routeProvider) {
         })
         .when("/UserList", {
             tittle: "Danh sách thành viên",
-            templateUrl: "/Admin/UserList"
-
+            templateUrl: "/Admin/UserList",
+            controller: "UserListController"
         });
 
 });

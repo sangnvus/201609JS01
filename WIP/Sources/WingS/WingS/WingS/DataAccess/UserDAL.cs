@@ -177,7 +177,18 @@ namespace WingS.DataAccess
                 return currentUserInfo;
             }
         }
-    
+        /// <summary>
+        /// Get All User in WS_USER
+        /// </summary>
+        /// <returns>list ws_user</returns>
+        public List<Ws_User> GetAllUser()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var allUser = (from row in db.Ws_User select row).ToList();
+                return allUser;
+            }
+        }
         public void Dispose()
         {
             
