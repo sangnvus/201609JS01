@@ -14,6 +14,7 @@ namespace WingS.Models
         public int UserId { get; set; }
         [ForeignKey("Event")]
         public int EventId { get; set; }
+        public decimal DonatedMoney { get; set; }
         public string DonatedDate { get; set; }
         public bool IsPublic { get; set; }
         public virtual Event Event { get; set; }

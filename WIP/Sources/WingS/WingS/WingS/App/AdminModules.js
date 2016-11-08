@@ -14,9 +14,9 @@ app.config(function ($routeProvider) {
 
         })
         .when("/UserDashBoard", {
-                    tittle: "Thống kê chung",
-                    templateUrl: "/Admin/UserDashBoard"
-
+            tittle: "Thống kê chung",
+            templateUrl: "/Admin/UserDashBoard",
+            controller: "UserDashboardController"
         })
         .when("/UserProfile", {
             tittle: "Thông tin cá nhân",
@@ -25,8 +25,8 @@ app.config(function ($routeProvider) {
         })
         .when("/UserList", {
             tittle: "Danh sách thành viên",
-            templateUrl: "/Admin/UserList"
-
+            templateUrl: "/Admin/UserList",
+            controller: "UserDashboardController"
         });
 
 });
