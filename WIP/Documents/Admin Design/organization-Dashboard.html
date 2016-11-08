@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Event List</title>
+    <title>Organization Dashboard</title>
 
     <!-- PACE LOAD BAR PLUGIN - This creates the subtle load bar effect at the top of the page. -->
     <link href="css/plugins/pace/pace.css" rel="stylesheet">
@@ -334,6 +334,26 @@
                         </ul>
                     </li>
                     <!-- end PROJECTS DROPDOWN -->
+                    <!-- begin OR DROPDOWN -->
+                    <li class="panel">
+                        <a data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#organization">
+                            <i class="fa fa-bar-chart-o"></i> Tổ chức
+							<i class="fa fa-caret-down"></i>
+                        </a>
+						<ul class="collapse nav" id="organization">
+                            <li>
+                                <a href="organization-Dashboard.html">
+                                    <i class="fa fa-angle-double-right"></i> Thống kê
+                                </a>
+                            </li>
+                            <li>
+                                <a href="organization-list.html">
+                                    <i class="fa fa-angle-double-right"></i> Danh sách tổ chức
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- end OR DROPDOWN -->						
 					<!-- begin BACKINGS DROPDOWN -->
 					<li class="panel">
                         <a href="backing.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
@@ -408,12 +428,12 @@
                     <div class="col-lg-12">
                         <div class="page-title">
                             <h1>
-                                Sự kiện     
+                                Tổ chức
                             </h1>
                             <ol class="breadcrumb">
-                                <li><i class="fa fa-dashboard"></i>  <a href="index-2.html">Thống kê</a>
+                                <li><i class="fa fa-dashboard"></i>  <a href="index-2.html">Tổ chức</a>
                                 </li>
-                                <li class="active">Danh sách sự kiện</li>
+                                <li class="active">Thống kê tổ chức</li>
                             </ol>
                         </div>
                     </div>
@@ -426,13 +446,12 @@
                         <div class="circle-tile">
 							<a href="event-list.html">
                                 <div class="circle-tile-heading blue">
-                                    <i class="fa fa-star fa-fw fa-3x"></i>
+                                    <i class="fa fa-spinner fa-fw fa-3x"></i>
                                 </div>
 							</a>
-                            <div class="circle-tile-content blue">
- 							<a href="event-list.html">                              
+                            <div class="circle-tile-content blue">                            
 							   <div class="circle-tile-description text-faded">
-                                    Sắp diễn ra
+                                    Chờ phê duyệt
                                 </div>
                                 <div class="circle-tile-number text-faded">
                                     10
@@ -448,14 +467,30 @@
                                     <i class="fa fa-check fa-fw fa-3x"></i>
                                 </div>
 							</a>
-                            <div class="circle-tile-content green">
-							<a href="event-list.html">                                
+                            <div class="circle-tile-content green">                          
 								<div class="circle-tile-description text-faded">
-                                    Đã xong
+                                    Đang hoạt động
                                 </div>
                                 <div class="circle-tile-number text-faded">
                                     201
                                 </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+ 							<a href="event-list.html">                               
+								<div class="circle-tile-heading purple">
+                                    <i class="fa fa-times fa-fw fa-3x"></i>
+                                </div>
+							</a>
+                            <div class="circle-tile-content purple">
+                                <div class="circle-tile-description text-faded">
+                                    Từ chối
+                                </div>
+                                <div class="circle-tile-number text-faded">
+                                    10
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -475,17 +510,17 @@
                                 </div> 
                             </div>
                         </div>
-                    </div>
+                    </div>					
 					<div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
   							<a href="event-list.html">                                
 								<div class="circle-tile-heading orange">
-                                    <i class="fa fa-heart fa-fw fa-3x"></i>
+                                    <i class="fa fa-star fa-fw fa-3x"></i>
                                 </div>
 							</a>
                             <div class="circle-tile-content orange">
                                 <div class="circle-tile-description text-faded">
-                                    Số sự kiện
+                                    Số tổ chức
                                 </div>
                                 <div class="circle-tile-number text-faded">
                                     241
@@ -495,285 +530,214 @@
                         </div>
                     </div>
                 </div>
-                <!-- end DASHBOARD CIRCLE TILES -->				
+                <!-- end DASHBOARD CIRCLE TILES -->
 				<!-- begin ADVANCED TABLES ROW -->
                 <div class="row">
-
-                    <div class="col-lg-12">
-
-                        <div class="portlet portlet-default">
-                            <div class="portlet-heading">
-                                <div class="portlet-title">
-                                    <h4>Danh sách sự kiện</h4>
-                                </div>
+					<!-- newest event-->
+					<div class="col-lg-6">
+						<div class="portlet portlet-purple">
+							<div class="portlet-heading">
+								<div class="portlet-title">
+									<h4><i class="fa fa-exchange fa-fw"></i> Tổ chức mới nhất</h4>
+								</div>
 								<div class="portlet-widgets">
-									<a data-toggle="collapse" data-parent="#accordion" href="#NewProjectTable"><i class="fa fa-chevron-down"></i></a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-							<div id="#EventTable">
+									<a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div id="transactionsPortlet3" class="panel-collapse collapse in">
 								<div class="portlet-body">
-									<div class="table-responsive">
-										<table id="example-table" class="table table-striped table-bordered table-hover table-green">
+									<div class="table-responsive dashboard-demo-table">
+										<table class="table table-bordered table-striped table-hover">
 											<thead>
 												<tr>
-													<th>STT</th>
-													<th>Tên sự kiện</th>
-													<th>Thể loại</th>
-													<th style="width:100px;">Tổ chức</th>
-													<th style="width:100px;">Người tạo</th>
-													<th>Ngày tạo</th>
-													<th style="width:150px;">Số tiền dự kiến</th>
+													<th>Tên tổ chức</th>
+													<th>Người đăng ký</th>
+													<th>Ngày đăng ký</th>
 													<th>Trạng thái</th>
-													<th>Hành động</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="odd">
-													<td>#1</td>
-													<td>Around the World in 80 Days - with Street View Sketches</td>
-													<td>Art</td>
-													<td class="center">ngocmanh1712@gmail.com</td>
-													<td class="center">Tuấn</td>
-													<td class="center">20-2-2016</td>
-													<td class="center">$15.000</td>
-													<td class="center">
-														<span class="label center-block" style="background-color:#16a085;">Đã xong</span>
+												<tr>
+													<td>
+														<h4>Test Test</h4>
 													</td>
-													<td class="center">
-														<a href="event-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
-														</a>
+													<td>anhtuan</td>
+													<td>20-2-2016</td>
+													<td><a class="btn btn-xs btn-blue">Chờ duyệt</a>
 													</td>
 												</tr>
-												<tr class="even">
-													<td>#2</td>
-													<td>MapCloth: Custom Waterproof Printing for All</td>
-													<td>Technology</td>
-													<td class="center">chinhvc@fpt.edu.vn</td>
-													<td class="center">$3.000</td>
-													<td class="center">9 Nov,2015</td>
-													<td class="center">$0</td>
-													<td class="center">
-														<span class="label label-primary center-block">Sắp diễn ra</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
 														</a>
+														<h4>Tạ Ngọc Duy</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>50</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
 													</td>
 												</tr>
-												<tr class="odd">
-													<td>#3</td>
-													<td>Around the World in 80 Days - with Street View Sketches</td>
-													<td>Art</td>
-													<td class="center">ngocmanh1712@gmail.com</td>
-													<td class="center">$30.000</td>
-													<td class="center">10 Feb,2015</td>
-													<td class="center">$15.000</td>
-													<td class="center">
-														<span class="label label-danger center-block">Bị cấm</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
 														</a>
+														<h4>Đào Trọng Nghĩa</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>1</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
 													</td>
 												</tr>
-												<tr class="even">
-													<td>#4</td>
-													<td>MapCloth: Custom Waterproof Printing for All</td>
-													<td>Technology</td>
-													<td class="center">chinhvc@fpt.edu.vn</td>
-													<td class="center">$3.000</td>
-													<td class="center">9 Nov,2015</td>
-													<td class="center">$0</td>
-													<td class="center">
-														<span class="label label-danger center-block">Suspended</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
 														</a>
+														<h4>Lê Hồng Nhiên</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>0</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
 													</td>
 												</tr>
-												<tr class="odd">
-													<td>#5</td>
-													<td>Around the World in 80 Days - with Street View Sketches</td>
-													<td>Art</td>
-													<td class="center">ngocmanh1712@gmail.com</td>
-													<td class="center">$30.000</td>
-													<td class="center">10 Feb,2015</td>
-													<td class="center">$15.000</td>
-													<td class="center">
-														<span class="label label-default center-block">Expired</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
 														</a>
+														<h4>Lê Hồng Nhiên</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>0</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
 													</td>
 												</tr>
-												<tr class="even">
-													<td>#6</td>
-													<td>MapCloth: Custom Waterproof Printing for All</td>
-													<td>Technology</td>
-													<td class="center">chinhvc@fpt.edu.vn</td>
-													<td class="center">$3.000</td>
-													<td class="center">9 Nov,2015</td>
-													<td class="center">$0</td>
-													<td class="center">
-														<span class="label label-success center-block">Approved</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
 														</a>
+														<h4>Lê Hồng Nhiên</h4>
 													</td>
-												</tr>
-												<tr class="odd">
-													<td>#7</td>
-													<td>Around the World in 80 Days - with Street View Sketches</td>
-													<td>Art</td>
-													<td class="center">ngocmanh1712@gmail.com</td>
-													<td class="center">$30.000</td>
-													<td class="center">10 Feb,2015</td>
-													<td class="center">$15.000</td>
-													<td class="center">
-														<span class="label label-success center-block">Approved</span>
+													<td>test@gmail.com</td>
+													<td>0</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
 													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
-														</a>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>#8</td>
-													<td>MapCloth: Custom Waterproof Printing for All</td>
-													<td>Technology</td>
-													<td class="center">chinhvc@fpt.edu.vn</td>
-													<td class="center">$3.000</td>
-													<td class="center">9 Nov,2015</td>
-													<td class="center">$0</td>
-													<td class="center">
-														<span class="label label-success center-block">Approved</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
-														</a>
-													</td>
-												</tr>
-												<tr class="odd">
-													<td>#9</td>
-													<td>Around the World in 80 Days - with Street View Sketches</td>
-													<td>Art</td>
-													<td class="center">ngocmanh1712@gmail.com</td>
-													<td class="center">$30.000</td>
-													<td class="center">10 Feb,2015</td>
-													<td class="center">$15.000</td>
-													<td class="center">
-														<span class="label label-success center-block">Approved</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
-														</a>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>#10</td>
-													<td>MapCloth: Custom Waterproof Printing for All</td>
-													<td>Technology</td>
-													<td class="center">chinhvc@fpt.edu.vn</td>
-													<td class="center">$3.000</td>
-													<td class="center">9 Nov,2015</td>
-													<td class="center">$0</td>
-													<td class="center">
-														<span class="label label-success center-block">Approved</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
-														</a>
-													</td>
-												</tr>
-												<tr class="odd">
-													<td>#11</td>
-													<td>Around the World in 80 Days - with Street View Sketches</td>
-													<td>Art</td>
-													<td class="center">ngocmanh1712@gmail.com</td>
-													<td class="center">$30.000</td>
-													<td class="center">10 Feb,2015</td>
-													<td class="center">$15.000</td>
-													<td class="center">
-														<span class="label label-success center-block">Approved</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
-														</a>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>#12</td>
-													<td>MapCloth: Custom Waterproof Printing for All</td>
-													<td>Technology</td>
-													<td class="center">chinhvc@fpt.edu.vn</td>
-													<td class="center">$3.000</td>
-													<td class="center">9 Nov,2015</td>
-													<td class="center">$0</td>
-													<td class="center">
-														<span class="label label-success center-block">Approved</span>
-													</td>
-													<td class="center">
-														<a href="project-detail.html">
-															<button class="btn btn-primary btn-sm" type="button" id="dropdownMenu1">
-																<i class="fa fa-eye"></i>
-															</button>
-														</a>
-													</td>
-												</tr>
+												</tr>												
 											</tbody>
 										</table>
 									</div>
-									<!-- /.table-responsive -->
 								</div>
-                            <!-- /.portlet-body -->
 							</div>
 						</div>
-                        <!-- /.portlet -->
-
-                    </div>
-                    <!-- /.col-lg-12 -->
+					</div>
+					
+					<!-- popular Event -->
+					<div class="col-lg-6">
+						<div class="portlet portlet-purple">
+							<div class="portlet-heading">
+								<div class="portlet-title">
+									<h4><i class="fa fa-exchange fa-fw"></i> Xếp hạng tổ chức</h4>
+								</div>
+								<div class="portlet-widgets">
+									<a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div id="transactionsPortlet3" class="panel-collapse collapse in">
+								<div class="portlet-body">
+									<div class="table-responsive dashboard-demo-table">
+										<table class="table table-bordered table-striped table-hover">
+											<thead>
+												<tr>
+													<th>Tên tổ chức</th>
+													<th>Điểm số</th>
+													<th>Xếp hạng</th>
+													<th>Trạng thái</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<h4>Tuấn Tuấn</h4>
+													</td>
+													<td>100</td>
+													<td>A</td>
+													<td><a class="btn btn-xs btn-blue">Đang hoạt động</a>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<h4>Tạ Ngọc Duy</h4>
+													</td>
+													<td>Y tế</td>
+													<td>50</td>
+													<td><a class="btn btn-xs btn-green">Đã xong</a>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+														</a>
+														<h4>Đào Trọng Nghĩa</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>1</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+														</a>
+														<h4>Lê Hồng Nhiên</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>0</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+														</a>
+														<h4>Lê Hồng Nhiên</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>0</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<a class="pull-left" href="#">
+															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+														</a>
+														<h4>Lê Hồng Nhiên</h4>
+													</td>
+													<td>test@gmail.com</td>
+													<td>0</td>
+													<td><a class="btn btn-xs btn-green">Active</a>
+													</td>
+												</tr>												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>					
+					<!-- end popular Event -->	
 
                 </div>
-            </div>
-			</div>
-            <!-- /.page-content -->
+            
+				<!-- /.page-content -->
 
         </div>
         <!-- /#page-wrapper -->
@@ -821,6 +785,11 @@
     <!-- THEME SCRIPTS -->
     <script src="js/flex.js"></script>
     <script src="js/demo/advanced-tables-demo.js"></script>
+	<script>
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip({container: 'body'});
+		})
+	</script>
 </body>
 
 
