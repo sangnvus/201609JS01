@@ -25,102 +25,7 @@
             <!-- /.row -->
             <!-- end PAGE TITLE ROW -->
             <!-- begin DASHBOARD CIRCLE TILES -->
-            <div class="row centered">
-                <div class="col-lg-2 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading orange">
-                                <i class="fa fa-bell fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content orange">
-                            <div class="circle-tile-description text-faded">
-                                Mới tạo
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                9
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading blue">
-                                <i class="fa fa-user fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content blue">
-                            <div class="circle-tile-description text-faded">
-                                Chưa kích hoạt
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                10
-                                <span id="sparklineB"></span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading green">
-                                <i class="fa fa-tasks fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content green">
-                            <div class="circle-tile-description text-faded">
-                                Bị cấm
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                10
-                                <span id="sparklineB"></span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading purple">
-                                <i class="fa fa-user fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content purple">
-                            <div class="circle-tile-description text-faded">
-                                Đang hoạt động
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                96
-                                <span id="sparklineD"></span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading dark-blue">
-                                <i class="fa fa-users fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content dark-blue">
-                            <div class="circle-tile-description text-faded">
-                                Tổng số
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                265
-                                <span id="sparklineA"></span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @Html.Partial("../Admin/UserManage/_DashboardCircleTiles")
             <!-- end DASHBOARD CIRCLE TILES -->
             <!-- begin NEW USER TABLES ROW -->
             <div class="row">
@@ -149,58 +54,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in newCreatedUser">
                                                 <td>
-                                                    <a class="pull-left" href="/Admin/#/UserProfile">
-                                                        <img class="media-object img-circle" src="~/Content/images/user-profile-1.jpg" alt="">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
+                                                        <img style="height: 40px; width: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
                                                     </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
+                                                    <h4>{{item.FullName}}</h4>
                                                 </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2016-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Đang hoạt động</a>
+                                                <td>{{item.Email}}</td>
+                                                <td>{{item.CreateDate}}</td>
+                                                
+                                                <td ng-switch="item.IsVerify">
+                                                    <div ng-switch-when="false">
+                                                        <a class="btn btn-xs btn-warning">Chưa kích hoạt</a>
+                                                    </div>
+                                                    <div ng-switch-when="true" ng-switch="item.IsActive">
+                                                        <a class="btn btn-xs btn-green" ng-switch-when="true">Đang hoạt động</a>
+                                                        <a class="btn btn-xs btn-danger" ng-switch-when="false">Bị cấm</a>
+                                                    </div>
+
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                                    </a>
-                                                    <h4>Tạ Ngọc Duy</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Chưa kích hoạt</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                    </a>
-                                                    <h4>lê Hồng NHiên</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                                    </a>
-                                                    <h4>Đào Trọng Nghĩa</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

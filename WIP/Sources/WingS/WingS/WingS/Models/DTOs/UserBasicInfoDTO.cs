@@ -11,6 +11,7 @@ namespace WingS.Models.DTOs
         public string UserName { get; set; }
         public bool AccountType { get; set; }
         public bool IsActive { get; set; }
+        public bool IsVerify { get; set; }
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
         public string Email { get; set; }
@@ -22,6 +23,8 @@ namespace WingS.Models.DTOs
         public string Country { get; set; }
         public string CreateDate { get; set; }
         public int Point { get; set; }
+        public int NumberEventDonatedIn { get; set; }
+        public decimal TotalMoneyDonatedIn { get; set; }
 
 
         public UserBasicInfoDTO()
@@ -30,6 +33,7 @@ namespace WingS.Models.DTOs
             UserName = "";
             AccountType = false;
             IsActive = false;
+            IsVerify = false;
             FullName = "";
             ProfileImage = "";
             Email = "";
@@ -41,6 +45,8 @@ namespace WingS.Models.DTOs
             Country = "";
             CreateDate = "";
             Point = 0;
+            NumberEventDonatedIn = 0;
+            TotalMoneyDonatedIn = 0;
         }
     }
 }

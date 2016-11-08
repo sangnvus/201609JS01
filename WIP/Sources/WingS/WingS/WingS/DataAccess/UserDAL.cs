@@ -189,6 +189,93 @@ namespace WingS.DataAccess
                 return allUser;
             }
         }
+        /// <summary>
+        /// Count number of user is actived or not
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+        public int CountUserActiveOrNot(bool isActive)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int numberUser;
+                if (isActive)
+                {
+                    numberUser = db.Ws_User.Count(x => x.IsActive == isActive && x.IsVerify == isActive && x.AccountType == false);
+                }
+                else
+                {
+                    numberUser = db.Ws_User.Count(x => x.IsActive == isActive && x.AccountType == false);
+                }
+                return numberUser;
+            }
+        }
+
+        /// <summary>
+        /// Count number of user is verified or not
+        /// </summary>
+        /// <param name="isVerify"></param>
+        /// <returns></returns>
+        public int CountUserVerifyOrNot(bool isVerify)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int numberUser = 0;
+                if (isVerify)
+                {
+                    numberUser = db.Ws_User.Count(x => x.IsVerify == isVerify && x.AccountType == false);
+                }
+                else
+                {
+                    numberUser = db.Ws_User.Count(x => x.IsVerify == isVerify && x.AccountType == false);
+                }
+                return numberUser;
+            }
+        }
+
+        /// <summary>
+        /// count total user of wings
+        /// </summary>
+        /// <param name="isVerify"></param>
+        /// <returns></returns>
+        public int CountTotalUser()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var numberUser = db.Ws_User.Count(x => x.AccountType == false);
+                return numberUser;
+            }
+        }
+
+        /// <summary>
+        /// Count number of new user which have been created less than 3 day
+        /// </summary>
+        /// <returns></returns>
+        public int CountNewUser()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                DateTime dateBeforeThreeDay = DateTime.UtcNow.AddDays(-3);
+                var numberUser = db.Ws_User.Count(x => x.CreatedDate >= dateBeforeThreeDay);
+                return numberUser;
+            }
+        }
+
+        /// <summary>
+        /// Get users have been create less than 3 day
+        /// </summary>
+        /// <returns></returns>
+        public List<Ws_User> GetNewUser()
+        {
+            List<Ws_User> listUser;
+            using (var db = new Ws_DataContext())
+            {
+                DateTime dateBeforeThreeDay = DateTime.UtcNow.AddDays(-3);
+                var users = db.Ws_User.OrderByDescending(x => x.CreatedDate).Where(x => x.CreatedDate >= dateBeforeThreeDay && x.AccountType == false);
+                listUser = users.ToList();
+            }
+            return listUser;
+        }
         public void Dispose()
         {
             
