@@ -18,11 +18,10 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -85,11 +84,27 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -176,6 +191,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ChatHub\GlobalHub.cs" />
+    <Compile Include="ChatHub\Startup.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EventPageController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
@@ -184,9 +203,16 @@
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
+    <Compile Include="Controllers\WebApi\AdminUserDashboardController.cs" />
+    <Compile Include="Controllers\WebApi\ConservationController.cs" />
     <Compile Include="Controllers\WebApi\EventController.cs" />
+    <Compile Include="Controllers\WebApi\OrganizationController.cs" />
+    <Compile Include="Controllers\WebApi\ThreadController.cs" />
     <Compile Include="Controllers\WebApi\UserController.cs" />
+    <Compile Include="Controllers\WebApi\UserListController.cs" />
     <Compile Include="DataAccess\AlbumImageDAL.cs" />
+    <Compile Include="DataAccess\ConservationDAL.cs" />
+    <Compile Include="DataAccess\DonationDAL.cs" />
     <Compile Include="DataAccess\EventDAL.cs" />
     <Compile Include="DataAccess\MD5Helper.cs" />
     <Compile Include="DataAccess\OrganizationDAL.cs" />
@@ -195,17 +221,22 @@
     <Compile Include="DataAccess\UserDAL.cs" />
     <Compile Include="DataAccess\WsData_Initializer.cs" />
     <Compile Include="DataAccess\Ws_DataContext.cs" />
+    <Compile Include="DataHelper\ConvertToUnSign.cs" />
     <Compile Include="DataHelper\ModelAccess.cs" />
     <Compile Include="DataHelper\WsConstant.cs" />
+    <Compile Include="DataHelper\WsRanking.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CommentEvent.cs" />
     <Compile Include="Models\CommentThread.cs" />
+    <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\Conservation.cs" />
     <Compile Include="Models\Donation.cs" />
     <Compile Include="Models\DTOs\AddCommentDTO.cs" />
     <Compile Include="Models\DTOs\AddSubCommentDTO.cs" />
     <Compile Include="Models\DTOs\BasicCommentThread.cs" />
+    <Compile Include="Models\DTOs\ConservationBasicInfoDTO.cs" />
     <Compile Include="Models\DTOs\CreateEventInfoDTO.cs" />
     <Compile Include="Models\DTOs\CreateEventSchedule.cs" />
     <Compile Include="Models\DTOs\CreateOrganization.cs" />
@@ -216,11 +247,14 @@
     <Compile Include="Models\DTOs\EventTypeDropList.cs" />
     <Compile Include="Models\DTOs\HTTPMessageDTO.cs" />
     <Compile Include="Models\DTOs\LoginInfoDTO.cs" />
+    <Compile Include="Models\DTOs\MessageBasicInfoDTO.cs" />
     <Compile Include="Models\DTOs\OrganizationBasicInfo.cs" />
+    <Compile Include="Models\DTOs\RankingDTO.cs" />
     <Compile Include="Models\DTOs\SearchDTO.cs" />
     <Compile Include="Models\DTOs\ThreadAlbumImageDTO.cs" />
     <Compile Include="Models\DTOs\ThreadBasicInfo.cs" />
     <Compile Include="Models\DTOs\UserBasicInfoDTO.cs" />
+    <Compile Include="Models\DTOs\UserManageBasicInforDTO.cs" />
     <Compile Include="Models\DTOs\UserRegisterDTO.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventAlbumImage.cs" />
@@ -228,7 +262,10 @@
     <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\LikeEvents.cs" />
     <Compile Include="Models\LikeThreads.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Organization.cs" />
+    <Compile Include="Models\PublicMessageDetail.cs" />
+    <Compile Include="Models\PublicRoom.cs" />
     <Compile Include="Models\ReportEvent.cs" />
     <Compile Include="Models\SubCommentEvent.cs" />
     <Compile Include="Models\SubCommentThread.cs" />
@@ -239,20 +276,151 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\AdminController\AdminDashboardController.js" />
+    <Content Include="App\AdminController\UserDashboardController.js" />
+    <Content Include="App\AdminController\UserListController.js" />
+    <Content Include="App\AdminModules.js" />
     <Content Include="App\Controller\DiscussionController.js" />
+    <Content Include="App\Controller\EditOrganizationController.js" />
     <Content Include="App\Controller\EventController.js" />
     <Content Include="App\Controller\EventDetailController.js" />
     <Content Include="App\Controller\HomeController.js" />
+    <Content Include="App\Controller\MessagesController.js" />
+    <Content Include="App\Controller\OrganizationController.js" />
+    <Content Include="App\Controller\OrganizationDetailController.js" />
     <Content Include="App\Controller\ProfileController.js" />
     <Content Include="App\Controller\ThreadDetailController.js" />
     <Content Include="App\Directives\passWordmatch.js" />
     <Content Include="App\HomeModules.js" />
+    <Content Include="Content\Admin\css\demo.css" />
+    <Content Include="Content\Admin\css\plugins.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap-datepicker\datepicker3.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap-multiselect\bootstrap-multiselect.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap-social\bootstrap-social.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap-timepicker\bootstrap-timepicker.min.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap-tokenfield\bootstrap-tokenfield.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap-tokenfield\tokenfield-typeahead.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Admin\css\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Admin\css\plugins\datatables\datatables.css" />
+    <Content Include="Content\Admin\css\plugins\daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="Content\Admin\css\plugins\dropzone\css\dropzone.css" />
+    <Content Include="Content\Admin\css\plugins\dropzone\images\spritemap%402x.png" />
+    <Content Include="Content\Admin\css\plugins\dropzone\images\spritemap.png" />
+    <Content Include="Content\Admin\css\plugins\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Admin\css\plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\Admin\css\plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="Content\Admin\css\plugins\ladda\ladda-themeless.min.css" />
+    <Content Include="Content\Admin\css\plugins\messenger\messenger-theme-flat.css" />
+    <Content Include="Content\Admin\css\plugins\messenger\messenger.css" />
+    <Content Include="Content\Admin\css\plugins\morris\morris.css" />
+    <Content Include="Content\Admin\css\plugins\pace\pace.css" />
+    <Content Include="Content\Admin\css\plugins\summernote\summernote-bs3.css" />
+    <Content Include="Content\Admin\css\plugins\summernote\summernote.css" />
+    <Content Include="Content\Admin\css\project-screen.css" />
+    <Content Include="Content\Admin\css\style.css" />
+    <Content Include="Content\Admin\icons\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\Admin\icons\font-awesome\fonts\fontawesome-webfontba72.svg" />
+    <Content Include="Content\Admin\img\avatar_default.png" />
+    <Content Include="Content\Admin\img\checkmark.png" />
+    <Content Include="Content\Admin\img\datatables\sort_asc.png" />
+    <Content Include="Content\Admin\img\datatables\sort_asc_disabled.png" />
+    <Content Include="Content\Admin\img\datatables\sort_both.png" />
+    <Content Include="Content\Admin\img\datatables\sort_desc.png" />
+    <Content Include="Content\Admin\img\datatables\sort_desc_disabled.png" />
+    <Content Include="Content\Admin\img\flex-admin-logo.png" />
+    <Content Include="Content\Admin\img\img1.jpg" />
+    <Content Include="Content\Admin\img\img2.jpg" />
+    <Content Include="Content\Admin\img\img3.png" />
+    <Content Include="Content\Admin\img\logoCompany.jpg" />
+    <Content Include="Content\Admin\img\profile-full.jpg" />
+    <Content Include="Content\Admin\img\profile-pic-small.jpg" />
+    <Content Include="Content\Admin\img\profile-pic.jpg" />
+    <Content Include="Content\Admin\img\projectimage1.jpg" />
+    <Content Include="Content\Admin\img\projectimage2.jpg" />
+    <Content Include="Content\Admin\img\projectimage4.png" />
+    <Content Include="Content\Admin\img\slider1.jpg" />
+    <Content Include="Content\Admin\img\slider2.jpg" />
+    <Content Include="Content\Admin\img\slider3.jpg" />
+    <Content Include="Content\Admin\img\user-profile-1.jpg" />
+    <Content Include="Content\Admin\img\user-profile-2.jpg" />
+    <Content Include="Content\Admin\img\user-profile-3.jpg" />
+    <Content Include="Content\Admin\img\user-profile-4.jpg" />
+    <Content Include="Content\Admin\img\widget-bg-afternoon.jpg" />
+    <Content Include="Content\Admin\img\widget-bg-evening.jpg" />
+    <Content Include="Content\Admin\img\widget-bg-midnight.jpg" />
+    <Content Include="Content\Admin\img\widget-bg-morning.jpg" />
+    <Content Include="Content\Admin\img\WingS-logo.jpg" />
+    <Content Include="Content\Admin\img\wings-logo.png" />
+    <Content Include="Content\Admin\js\dashboard-demo.js" />
+    <Content Include="Content\Admin\js\demo\advanced-form-demo.js" />
+    <Content Include="Content\Admin\js\demo\advanced-tables-demo.js" />
+    <Content Include="Content\Admin\js\demo\buttons-demo.js" />
+    <Content Include="Content\Admin\js\demo\calendar-demo.js" />
+    <Content Include="Content\Admin\js\demo\dashboard-demo.js" />
+    <Content Include="Content\Admin\js\demo\mailbox-demo.js" />
+    <Content Include="Content\Admin\js\demo\map-demo-data.js" />
+    <Content Include="Content\Admin\js\demo\notifications-demo.js" />
+    <Content Include="Content\Admin\js\demo\sliders-demo.js" />
+    <Content Include="Content\Admin\js\demo\validation-demo.js" />
+    <Content Include="Content\Admin\js\demo\wysiwyg-demo.js" />
+    <Content Include="Content\Admin\js\flex.js" />
+    <Content Include="Content\Admin\js\jquery.min.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-datepicker\bootstrap-datepicker.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-maxlength\bootstrap-maxlength.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-multiselect\bootstrap-multiselect.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-tokenfield\affix.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-tokenfield\bootstrap-tokenfield.min.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-tokenfield\scrollspy.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-tokenfield\typeahead.min.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap\bootstrap.min_oldver.js" />
+    <Content Include="Content\Admin\js\plugins\datatables\datatables-bs3.js" />
+    <Content Include="Content\Admin\js\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="Content\Admin\js\plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\Admin\js\plugins\daterangepicker\moment.js" />
+    <Content Include="Content\Admin\js\plugins\dropzone\dropzone.js" />
+    <Content Include="Content\Admin\js\plugins\easypiechart\jquery.easypiechart.min.js" />
+    <Content Include="Content\Admin\js\plugins\flot\flot-demo-data.js" />
+    <Content Include="Content\Admin\js\plugins\flot\jquery.flot.js" />
+    <Content Include="Content\Admin\js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="Content\Admin\js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Content\Admin\js\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Content\Admin\js\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\Admin\js\plugins\fullcalendar\jquery-ui.custom.min.js" />
+    <Content Include="Content\Admin\js\plugins\highcharts\exporting.js" />
+    <Content Include="Content\Admin\js\plugins\highcharts\highcharts.js" />
+    <Content Include="Content\Admin\js\plugins\hisrc\hisrc.js" />
+    <Content Include="Content\Admin\js\plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Content\Admin\js\plugins\jvectormap\maps\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Content\Admin\js\plugins\ladda\ladda.min.js" />
+    <Content Include="Content\Admin\js\plugins\ladda\spin.min.js" />
+    <Content Include="Content\Admin\js\plugins\messenger\messenger-theme-flat.js" />
+    <Content Include="Content\Admin\js\plugins\messenger\messenger.min.js" />
+    <Content Include="Content\Admin\js\plugins\moment\moment.min.js" />
+    <Content Include="Content\Admin\js\plugins\morris\morris-demo-data.js" />
+    <Content Include="Content\Admin\js\plugins\morris\morris.js" />
+    <Content Include="Content\Admin\js\plugins\morris\raphael-2.1.0.min.js" />
+    <Content Include="Content\Admin\js\plugins\pace\pace.js" />
+    <Content Include="Content\Admin\js\plugins\popupoverlay\defaults.js" />
+    <Content Include="Content\Admin\js\plugins\popupoverlay\jquery.popupoverlay.js" />
+    <Content Include="Content\Admin\js\plugins\popupoverlay\logout.js" />
+    <Content Include="Content\Admin\js\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Content\Admin\js\plugins\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Content\Admin\js\plugins\summernote\summernote.min.js" />
+    <Content Include="Content\Admin\js\plugins\validate\jquery.validate.min.js" />
+    <Content Include="Content\Admin\js\project-detail-demo.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\chatbox.css" />
     <Content Include="Content\css\EventDetail.css" />
+    <Content Include="Content\css\eventList.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\paging.css" />
     <Content Include="Content\css\progressbar.css" />
+    <Content Include="Content\css\ThreadDetail.css" />
+    <Content Include="Content\css\timeline.css" />
     <Content Include="Content\email\validation.js" />
     <Content Include="Content\icons\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\icons\font-awesome\fonts\fontawesome-webfontba72.svg" />
@@ -596,6 +764,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
@@ -639,6 +808,19 @@
     <Content Include="Content\scripts\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Content\scripts\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Content\scripts\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Content\Admin\css\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Admin\css\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Admin\css\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Admin\css\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Admin\css\plugins\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Admin\css\plugins\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Admin\css\plugins\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Admin\css\plugins\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Content\Admin\icons\font-awesome\fonts\fontawesome-webfontba72.eot" />
+    <Content Include="Content\Admin\icons\font-awesome\fonts\fontawesome-webfontba72.ttf" />
+    <Content Include="Content\Admin\icons\font-awesome\fonts\fontawesome-webfontba72.woff" />
+    <Content Include="Content\Admin\icons\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\Admin\img\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -654,7 +836,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -686,11 +870,25 @@
     <Content Include="Views\Login\_RegisterSuccess.cshtml" />
     <Content Include="Views\Login\_VerifyAccount.cshtml" />
     <Content Include="Views\User\_Profile.cshtml" />
+    <Content Include="Views\Organization\_OrganizationDetail.cshtml" />
+    <Content Include="Views\Organization\_EditOrganization.cshtml" />
+    <Content Include="Views\Admin\_UserDashBoard.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_AdminLogin.cshtml" />
+    <Content Include="Views\User\_Message.cshtml" />
+    <Content Include="Views\Admin\_DashBoard.cshtml" />
+    <Content Include="Views\Admin\_TopSideNavigation.cshtml" />
+    <Content Include="Views\Admin\UserManage\_UserList.cshtml" />
+    <Content Include="Views\Admin\UserManage\_UserDashBoard.cshtml" />
+    <Content Include="Views\Admin\UserManage\_UserProfile.cshtml" />
+    <Content Include="Views\Admin\UserManage\_DashboardCircleTiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Service\" />
     <Folder Include="App_Data\" />
     <Folder Include="fonts\FrontEndController\" />
+    <Folder Include="Views\AdminLogin\" />
     <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
