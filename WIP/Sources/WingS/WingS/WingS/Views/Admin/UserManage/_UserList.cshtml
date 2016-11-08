@@ -59,16 +59,9 @@
                                             <td>{{ x.Email }}</td>
                                             <td>{{ x.CreatedDate }}</td>
                                             <td>
-                                                if(!{{ x.AccountType }}){
-                                                    if(!{{x.IsVerify}}){
-                                                        <button class="btn btn-block" disabled="">Chưa kích hoạt</button>
-                                                }
-                                                else if({{x.IsActive}})
-                                                    <button class="btn btn-default">Đang hoạt động</button>
-                                                }
-                                                else if(!{{x.IsActive}}){
-                                                    <button class="btn btn-danger">Bị cấm</button>
-                                                }
+                                                <button class="btn btn-block" disabled="" ng-if="!x.IsVerify">Chưa kích hoạt</button>
+                                                <button class="btn btn-default" ng-if="x.IsActive && x.IsVerify">Đang hoạt động</button>
+                                                <button class="btn btn-danger" ng-if="!x.IsActive && x.IsVerify">Bị cấm</button>
                                             </td>
                                             <td>
                                                 <a href="/Admin/#/UserProfile"><button class="btn btn-blue">Xem chi tiết</button></a>
