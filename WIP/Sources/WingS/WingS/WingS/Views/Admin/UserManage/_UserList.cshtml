@@ -25,7 +25,102 @@
             <!-- /.row -->
             <!-- end PAGE TITLE ROW -->
             <!-- begin DASHBOARD CIRCLE TILES -->
-            @Html.Partial("../Admin/UserManage/_DashboardCircleTiles")
+            <div class="row centered">
+                <div class="col-lg-2 col-sm-6">
+                    <div class="circle-tile">
+                        <a href="#">
+                            <div class="circle-tile-heading orange">
+                                <i class="fa fa-bell fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content orange">
+                            <div class="circle-tile-description text-faded">
+                                Mới tạo
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                9
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="circle-tile">
+                        <a href="#">
+                            <div class="circle-tile-heading blue">
+                                <i class="fa fa-user fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content blue">
+                            <div class="circle-tile-description text-faded">
+                                Chưa kích hoạt
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                10
+                                <span id="sparklineB"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="circle-tile">
+                        <a href="#">
+                            <div class="circle-tile-heading green">
+                                <i class="fa fa-tasks fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content green">
+                            <div class="circle-tile-description text-faded">
+                                Bị cấm
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                10
+                                <span id="sparklineB"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="circle-tile">
+                        <a href="#">
+                            <div class="circle-tile-heading purple">
+                                <i class="fa fa-user fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content purple">
+                            <div class="circle-tile-description text-faded">
+                                Đang hoạt động
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                96
+                                <span id="sparklineD"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="circle-tile">
+                        <a href="#">
+                            <div class="circle-tile-heading dark-blue">
+                                <i class="fa fa-users fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-description text-faded">
+                                Tổng số
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                265
+                                <span id="sparklineA"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- end DASHBOARD CIRCLE TILES -->
             <!-- begin NEW USER TABLES ROW -->
             <div class="row">
@@ -59,16 +154,9 @@
                                             <td>{{ x.Email }}</td>
                                             <td>{{ x.CreatedDate }}</td>
                                             <td>
-                                                if(!{{ x.AccountType }}){
-                                                    if(!{{x.IsVerify}}){
-                                                        <button class="btn btn-block" disabled="">Chưa kích hoạt</button>
-                                                }
-                                                else if({{x.IsActive}})
-                                                    <button class="btn btn-default">Đang hoạt động</button>
-                                                }
-                                                else if(!{{x.IsActive}}){
-                                                    <button class="btn btn-danger">Bị cấm</button>
-                                                }
+                                                <button class="btn btn-block" disabled="" ng-if="!x.IsVerify">Chưa kích hoạt</button>
+                                                <button class="btn btn-default" ng-if="x.IsActive && x.IsVerify">Đang hoạt động</button>
+                                                <button class="btn btn-danger" ng-if="!x.IsActive && x.IsVerify">Bị cấm</button>
                                             </td>
                                             <td>
                                                 <a href="/Admin/#/UserProfile"><button class="btn btn-blue">Xem chi tiết</button></a>
@@ -94,7 +182,7 @@
 
     </div>
     <!-- /#page-wrapper -->
-<!-- end MAIN PAGE CONTENT -->
+    <!-- end MAIN PAGE CONTENT -->
     <!-- GLOBAL SCRIPTS -->
     <script src="~/Content/Admin/js/jquery.min.js"></script>
     <script src="~/Content/Admin/js/plugins/bootstrap/bootstrap.min.js"></script>

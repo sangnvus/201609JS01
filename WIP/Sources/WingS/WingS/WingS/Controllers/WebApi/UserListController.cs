@@ -21,13 +21,27 @@ namespace WingS.Controllers.WebApi
         public IHttpActionResult GetAllUser()
         {
             List<Ws_User> listUser = new List<Ws_User>();
+            var basicUserList = new List<UserBasicDTO>();
             try
             {
                 using (var db = new UserDAL())
                 {
                     listUser = db.GetAllUser();
                 }
-                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = listUser });
+                foreach (var e in listUser)
+                {
+                    basicUserList.Add(new UserBasicDTO
+                    {
+                        UserId = e.UserID,
+                        UserName = e.UserName,
+                        AccountType = e.AccountType,
+                        IsActive = e.IsActive,
+                        IsVerify = e.IsVerify,
+                        CreatedDate = e.CreatedDate.ToString("dd/MM/yyyy"),
+                        Email = e.Email
+                    });
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = basicUserList});
             }
             catch (Exception)
             {
