@@ -2,4 +2,5 @@
     $http.get("/api/UserList/GetAllUser").success(function (response) {
         $scope.UserList = response.Data;
     });
+    
 });
