@@ -73,7 +73,7 @@ namespace WingS.Controllers.WebApi
                         int numberOfPost;
                         using (var dbThread = new ThreadDAL())
                         {
-                            numberOfPost=dbThread.GetNumberOfPostPerUser(user.UserName);
+                            numberOfPost=dbThread.GetNumberOfPostPerUser(user.UserID);
                         }
 
                         userListBasic.Add(new UserBasicInfoDTO
@@ -118,8 +118,12 @@ namespace WingS.Controllers.WebApi
             }
         }
 
+        /// <summary>
+        /// Get top Donator
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetTopTenMostDonatedUser()
+        public IHttpActionResult GetTopMostDonatedUser()
         {
             try
             {
@@ -139,6 +143,40 @@ namespace WingS.Controllers.WebApi
                     Message = "",
                     Type = "",
                     Data = topTenDonate
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
+
+
+        [HttpGet]
+        public IHttpActionResult GetTopUserCreateThread()
+        {
+            try
+            {
+                List<UserBasicInfoDTO> topTheadCreator;
+
+
+                using (var db = new DonationDAL())
+                {
+                    topTheadCreator = db.GetTopNumberThreadCreator(5);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = topTheadCreator
                 });
             }
             catch (Exception)

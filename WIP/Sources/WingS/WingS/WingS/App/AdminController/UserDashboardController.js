@@ -11,9 +11,14 @@
     });
 
     //Load  information for donation table
-    $http.get("/api/AdminUserDashboard/GetTopTenMostDonatedUser").success(function (response) {
+    $http.get("/api/AdminUserDashboard/GetTopMostDonatedUser").success(function (response) {
         $scope.TopFiveDonator = response.Data;
 
     });
 
+    // Load information of user who created most thread
+    $http.get("/api/AdminUserDashboard/GetTopUserCreateThread").success(function (response) {
+        $scope.TopFiveUserCreateThread = response.Data;
+
+    });
 });

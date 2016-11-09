@@ -323,13 +323,22 @@ namespace WingS.DataAccess
 
             return threadMainImage;
         }
-        public int GetNumberOfPostPerUser(string userName)
+        public int GetNumberOfPostPerUser(int userId)
         {
-            using (var db = new Ws_DataContext())
+            int numberOfPost = 0;
+            try
             {
-                int numberOfPost = db.Threads.Where(x => x.Ws_User.UserName.Equals(userName)).Count();
-                return numberOfPost;                
+                using (var db = new Ws_DataContext())
+                {
+                    numberOfPost = db.Threads.Count(x => x.UserId.Equals(userId));
+                }
             }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+            return numberOfPost;
         }
 
         public void Dispose()

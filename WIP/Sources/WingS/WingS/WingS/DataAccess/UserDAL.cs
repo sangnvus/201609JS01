@@ -150,17 +150,92 @@ namespace WingS.DataAccess
         }
 
         /// <summary>
+        /// Get full information of User
+        /// #Note: If you add new field to UserBasicInfoDTO model -
+        ///        Please write code to set that information in this function
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>UserBasicInfoDTO</returns>
+        public UserBasicInfoDTO GetFullInforOfUserAsBasicUser(int userId)
+        {
+            UserBasicInfoDTO currentUser = new UserBasicInfoDTO();
+
+            int numberEventDonatedIn = 0;
+            decimal totalMoneyDonatedIn = 0;
+            int numberOfPost = 0;
+
+            try
+            {
+                Ws_User wsUser = GetUserById(userId);
+                User_Information userInformation = GetUserInformation(userId);
+
+                //Get infomation about donation of this user
+                using (var db = new DonationDAL())
+                {
+                    numberEventDonatedIn = db.GetNumberEventDonatedInByUsingUserId(userId);
+                    totalMoneyDonatedIn = db.GetTotalMoneyDonatedInByUsingUserId(userId);
+                }
+
+                //Get number of post for current user
+                using (var db = new ThreadDAL())
+                {
+                    numberOfPost = db.GetNumberOfPostPerUser(userId);
+                }
+
+                //Set information for user which want to get
+                currentUser.UserId = userId;
+                currentUser.UserName = wsUser.UserName;
+                currentUser.AccountType = wsUser.AccountType;
+                currentUser.IsActive = wsUser.IsActive;
+                currentUser.IsVerify = wsUser.IsVerify;
+                currentUser.FullName = userInformation.FullName;
+                currentUser.ProfileImage = userInformation.ProfileImage;
+                currentUser.Email = wsUser.Email;
+                currentUser.Gender = userInformation.Gender;
+                currentUser.Phone = userInformation.Phone;
+                currentUser.Address = userInformation.UserAddress;
+                currentUser.NumberOfPost = numberOfPost;
+                if (userInformation.DoB != null)
+                {
+                    currentUser.DOB = userInformation.DoB.Value.ToString("dd/MM/yy");
+                }
+                currentUser.Country = userInformation.Country;
+                currentUser.CreateDate = wsUser.CreatedDate.ToString("H:mm:ss dd/MM/yy");
+                currentUser.Point = userInformation.Point;
+                currentUser.NumberEventDonatedIn = numberEventDonatedIn;
+                currentUser.TotalMoneyDonatedIn = totalMoneyDonatedIn;
+            }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+
+            return currentUser;
+        }
+
+        /// <summary>
         /// Get user using user id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public Ws_User GetUserById(int id)
         {
-            using (var db = new Ws_DataContext())
+            Ws_User currentUser = new Ws_User();
+            try
             {
-                var currentUser = db.Ws_User.FirstOrDefault(x => x.UserID == id);
-                return currentUser;
+                using (var db = new Ws_DataContext())
+                {
+                    currentUser = db.Ws_User.FirstOrDefault(x => x.UserID == id);
+                }
             }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+
+            return currentUser;
         }
 
         /// <summary>
@@ -170,12 +245,21 @@ namespace WingS.DataAccess
         /// <returns></returns>
         public User_Information GetUserInformation(int userId)
         {
-
-            using (var db = new Ws_DataContext())
+            User_Information currentUserInfo = new User_Information();
+            try
             {
-                var currentUserInfo = db.User_Information.FirstOrDefault(x => x.UserID == userId);
-                return currentUserInfo;
+                using (var db = new Ws_DataContext())
+                {
+                    currentUserInfo = db.User_Information.FirstOrDefault(x => x.UserID == userId);
+                }
             }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+
+            return currentUserInfo;
         }
         /// <summary>
         /// Get All User in WS_USER

@@ -96,6 +96,7 @@ namespace WingS.Controllers.WebApi
             {
                 var user = db.GetUserInfo(userName);
                 {
+                    userInfo.UserId = user.UserId;
                     userInfo.UserName = user.UserName;
                     userInfo.Email = user.Email;
                     userInfo.FullName = user.FullName;
@@ -111,7 +112,7 @@ namespace WingS.Controllers.WebApi
             }
             using(var db = new ThreadDAL() )
             {
-                userInfo.NumberOfPost = db.GetNumberOfPostPerUser(userName);
+                userInfo.NumberOfPost = db.GetNumberOfPostPerUser(userInfo.UserId);
             }
 
             
