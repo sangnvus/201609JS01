@@ -269,7 +269,7 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                var allUser = (from row in db.Ws_User select row).ToList();
+                var allUser = (from row in db.Ws_User where row.AccountType == false select row).ToList();
                 return allUser;
             }
         }
