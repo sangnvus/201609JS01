@@ -60,8 +60,8 @@
                                             <td>{{ x.CreatedDate }}</td>
                                             <td>
                                                 <button class="btn btn-block" disabled="" ng-if="!x.IsVerify">Chưa kích hoạt</button>
-                                                <button class="btn btn-default" ng-if="x.IsActive && x.IsVerify">Đang hoạt động</button>
-                                                <button class="btn btn-danger" ng-if="!x.IsActive && x.IsVerify">Bị cấm</button>
+                                                <button class="btn btn-default" ng-if="x.IsActive && x.IsVerify" ng-click="DoChangeStatus(x.UserID)">Đang hoạt động</button>
+                                                <button class="btn btn-danger" ng-if="!x.IsActive && x.IsVerify" ng-click="DoChangeStatus(x.UserID)">Bị cấm</button>
                                             </td>
                                             <td>
                                                 <a href="/Admin/#/UserProfile"><button class="btn btn-blue">Xem chi tiết</button></a>
@@ -101,7 +101,6 @@
     <script src="~/Content/Admin/js/plugins/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/Admin/js/plugins/datatables/datatables-bs3.js"></script>
     <script src="~/Content/Admin/js/demo/advanced-tables-demo.js"></script>
-
 
     <!-- THEME SCRIPTS -->
     <script src="~/Content/Admin/js/flex.js"></script>

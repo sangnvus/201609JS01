@@ -48,7 +48,26 @@ namespace WingS.Controllers.WebApi
                 //ViewBag.ErrorMessage = ex;
                 return Redirect("/#/Error");
             }
+        }
 
+        [HttpGet]
+        [ActionName("ChangeStatusUser")]
+        public IHttpActionResult ChangeStatusUser(int userid)
+        {
+            try
+            {
+                using (var userDal = new UserDAL())
+                {
+                    var user = userDal.GetUserById(userid);
+                    user.IsActive = !user.IsActive;
+                    userDal.UpdateUser(user);
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
         }
     }
 }
