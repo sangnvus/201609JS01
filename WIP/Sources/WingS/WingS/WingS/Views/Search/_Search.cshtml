@@ -64,7 +64,7 @@
                 <div class="radio-inline" style="background: #ffffcc; padding-top: 10px;padding-bottom: 10px">
                     <label><b>Mục tìm kiếm : </b></label>
                     <label>
-                        <input type="radio" name="searchType" value="user"> Người dùng
+                        <input type="radio" name="searchType" value="user"> Tài khoản
                     </label>
                     <label>
                         <input type="radio" name="searchType" value="userinfo"> Cá nhân
@@ -104,7 +104,7 @@
         $('input:radio').change(
             function () {
                 if ($('input[name=searchType]:checked').val()=="user") {
-                    $("#messageHelper").html("Bạn nên nhập vào email hoặc tên người dùng để tìm!");
+                    $("#messageHelper").html("Bạn nên nhập vào email hoặc tên tài khoản để tìm!");
                 }
                 else if ($('input[name=searchType]:checked').val() == "userinfo") {
                     $("#messageHelper").html("Bạn nên nhập vào tên đầy đủ,địa chỉ hoặc số điện thoại để tìm!");

@@ -50,7 +50,7 @@ namespace WingS.Controllers.WebApi
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("ChangeStatusUser")]
         public IHttpActionResult ChangeStatusUser(int userid)
         {
