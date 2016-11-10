@@ -540,7 +540,9 @@
                                             <tr>
                                                 <th style="width: 80px;">STT</th>
                                                 <th style="width: 220px;">Họ và tên</th>
+                                                <th style="width: 220px;">Tên đăng nhập</th>
                                                 <th style="width: 220px;">Địa chỉ Email</th>
+                                                <th style="">Loại tài khoản</th>
                                                 <th>Ngày tạo</th>
                                                 <th>Trạng thái</th>
 												<th>Hành động</th>
@@ -550,10 +552,12 @@
                                             <tr class="odd gradeX">
                                                 <td>1</td>
                                                 <td>Test</td>
+                                                <td>Test</td>
                                                 <td>anhtuan@gmail.com</td>
+                                                <td>Thành viên</td>
 												<td>12/10/2016</td>
                                                 <td>
-													<button class="btn btn-default">Bị Cấm</button>
+													<button class="btn btn-default" data-toggle="modal" data-target="#unBanUser">Bị Cấm</button>
 													<!-- <button class="btn btn-green">Active</button> -->
 												</td>
 												<td>
@@ -563,11 +567,13 @@
                                             <tr class="even gradeC">
                                                 <td>2</td>
                                                 <td>Test</td>
+                                                <td>Test</td>
                                                 <td>anhtuan@gmail.com</td>
+                                                <td>Admin</td>
 												<td>12/10/2016</td>
                                                 <td>
 													<!-- <button class="btn btn-default">Inactive</button> -->
-													<button class="btn btn-green">Đang hoạt động</button>
+													<button class="btn btn-default" data-toggle="modal" data-target="#banUser">Đang hoạt động</button>
 												</td>
 												<td>
 													<a href="userprofile.html"><button class="btn btn-blue">Nhấp để xem chi tiết</button></a>
@@ -724,7 +730,55 @@
         </div>
         <!-- /#page-wrapper -->
         <!-- end MAIN PAGE CONTENT -->
-
+		<!-- /.modal -->
+		<!-- Unban Modal -->
+		<div class="modal modal-flex fade" id="unBanUser" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="margin-top:250px;width: 300px;">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="flexModalLabel">
+					  Mở khóa tài khoản
+					</h4>
+				  </div>
+				  <div class="modal-body">
+				  <div class="form-group">
+					  <p>Bạn muốn mở khóa tài khoản này?</p>
+					</div>
+				  </div>
+				  <div class="modal-footer">
+                    <button type="button" class="btn btn-green">Có</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Không</button> 
+                    
+				  </div>
+			  </div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+        
+		<!-- Ban Modal -->
+		<div class="modal modal-flex fade" id="banUser" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="margin-top:250px;width: 300px;">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="flexModalLabel">
+					  Khóa tài khoản
+					</h4>
+				  </div>
+				  <div class="modal-body">
+				  <div class="form-group">
+					  <p>Bạn muốn khóa tài khoản này?</p>
+					</div>
+				  </div>
+				  <div class="modal-footer">
+                    <button type="button" class="btn btn-green">Có</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Không</button> 
+                    
+				  </div>
+			  </div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>        
+		<!-- /.modal -->
     </div>
     <!-- /#wrapper -->
 

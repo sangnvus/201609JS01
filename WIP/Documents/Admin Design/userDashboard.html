@@ -1,109 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from themes.startbootstrap.com/flex-admin-v1.2/blank.html by HTTrack Website Copier/3.x [XR&CO'2013], Wed, 19 Mar 2014 06:24:44 GMT -->
-<head>
 
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>User Dashboard</title>
-
     <!-- PACE LOAD BAR PLUGIN - This creates the subtle load bar effect at the top of the page. -->
     <link href="css/plugins/pace/pace.css" rel="stylesheet">
     <script src="js/plugins/pace/pace.js"></script>
-
     <!-- GLOBAL STYLES - Include these on every page. -->
     <link href="css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel="stylesheet" type="text/css">
     <link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
     <!-- PAGE LEVEL PLUGIN STYLES -->
-	<link href="css/plugins/datatables/datatables.css" rel="stylesheet">
+    <link href="css/plugins/datatables/datatables.css" rel="stylesheet">
     <link href="css/plugins/bootstrap-multiselect/bootstrap-multiselect.css" rel="stylesheet">
-
     <!-- THEME STYLES - Include these on every page. -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/plugins.css" rel="stylesheet">
-	<link href="css/project-screen.css" rel="stylesheet">
-
+    <link href="css/project-screen.css" rel="stylesheet">
     <!-- THEME DEMO STYLES - Use these styles for reference if needed. Otherwise they can be deleted. -->
     <link href="css/demo.css" rel="stylesheet">
-
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-
+              <script src="js/html5shiv.js"></script>
+              <script src="js/respond.min.js"></script>
+            <![endif]-->
 </head>
 
 <body>
-
     <div id="wrapper">
-
         <!-- begin TOP NAVIGATION -->
         <nav class="navbar-top" role="navigation">
-
             <!-- begin BRAND HEADING -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <i class="fa fa-bars"></i> Menu
-                </button>
-                <div class="navbar-brand" >
-					 <a href="#"><img src="img/WingS-logo.jpg" class="img-responsive" title="WingS Logo"alt="WingS Logo" style="width:30px;"></a> 
+                <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse"> <i class="fa fa-bars"></i> Menu </button>
+                <div class="navbar-brand">
+                    <a href="#"><img src="img/WingS-logo.jpg" class="img-responsive" title="WingS Logo" alt="WingS Logo" style="width:30px;"></a>
                 </div>
-				<a href="#"><div style="padding-top:15px;color:white;font-size: 18px;"><span style="font-weight:700;">WingS</span> Admin</div></a>
+                <a href="#">
+                    <div style="padding-top:15px;color:white;font-size: 18px;"><span style="font-weight:700;">WingS</span> Admin</div>
+                </a>
             </div>
             <!-- end BRAND HEADING -->
-
             <div class="nav-top">
                 <!-- begin LEFT SIDE WIDGETS -->
                 <ul class="nav navbar-left">
                     <li class="tooltip-sidebar-toggle">
-                        <a href="#" id="sidebar-toggle" data-toggle="tooltip" data-placement="right" title="Sidebar Toggle">
-                            <i class="fa fa-bars"></i>
-                        </a>
+                        <a href="#" id="sidebar-toggle" data-toggle="tooltip" data-placement="right" title="Sidebar Toggle"> <i class="fa fa-bars"></i> </a>
                     </li>
                     <!-- You may add more widgets here using <li> -->
                 </ul>
                 <!-- end LEFT SIDE WIDGETS -->
-
                 <!-- begin MESSAGES/ALERTS/TASKS/USER ACTIONS DROPDOWNS -->
                 <ul class="nav navbar-right">
-				
-					                    <!-- begin MESSAGES DROPDOWN -->
+                    <!-- begin MESSAGES DROPDOWN -->
                     <li class="dropdown">
-                        <a href="#" class="messages-link dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope"></i>
-                            <span class="number">4</span> <i class="fa fa-caret-down"></i>
-                        </a>
+                        <a href="#" class="messages-link dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-envelope"></i> <span class="number">4</span> <i class="fa fa-caret-down"></i> </a>
                         <ul class="dropdown-menu dropdown-scroll dropdown-messages">
-
                             <!-- Messages Dropdown Heading -->
-                            <li class="dropdown-header">
-                                <i class="fa fa-envelope"></i> 4 Tin nhắn mới
-                            </li>
-
+                            <li class="dropdown-header"> <i class="fa fa-envelope"></i> 4 Tin nhắn mới </li>
                             <!-- Messages Dropdown Body - This is contained within a SlimScroll fixed height box. You can change the height using the SlimScroll jQuery features. -->
                             <li id="messageScroll">
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="#">
                                             <div class="row">
-                                                <div class="col-xs-2">
-                                                    <img class="img-circle" src="img/user-profile-1.jpg" alt="">
-                                                </div>
+                                                <div class="col-xs-2"> <img class="img-circle" src="img/user-profile-1.jpg" alt=""> </div>
                                                 <div class="col-xs-10">
-                                                    <p>
-                                                        <strong>Jane Smith</strong>: Hi again! I wanted to let you know that the order...
-                                                    </p>
-                                                    <p class="small">
-                                                        <i class="fa fa-clock-o"></i> 12 minutes ago
-                                                    </p>
+                                                    <p> <strong>Jane Smith</strong>: Hi again! I wanted to let you know that the order... </p>
+                                                    <p class="small"> <i class="fa fa-clock-o"></i> 12 minutes ago </p>
                                                 </div>
                                             </div>
                                         </a>
@@ -111,16 +80,10 @@
                                     <li>
                                         <a href="#">
                                             <div class="row">
-                                                <div class="col-xs-2">
-                                                    <img class="img-circle" src="img/user-profile-2.jpg" alt="">
-                                                </div>
+                                                <div class="col-xs-2"> <img class="img-circle" src="img/user-profile-2.jpg" alt=""> </div>
                                                 <div class="col-xs-10">
-                                                    <p>
-                                                        <strong>Roddy Austin</strong>: Thanks for the info, if you need anything from...
-                                                    </p>
-                                                    <p class="small">
-                                                        <i class="fa fa-clock-o"></i> 3:39 PM
-                                                    </p>
+                                                    <p> <strong>Roddy Austin</strong>: Thanks for the info, if you need anything from... </p>
+                                                    <p class="small"> <i class="fa fa-clock-o"></i> 3:39 PM </p>
                                                 </div>
                                             </div>
                                         </a>
@@ -128,16 +91,10 @@
                                     <li>
                                         <a href="#">
                                             <div class="row">
-                                                <div class="col-xs-2">
-                                                    <img class="img-circle" src="img/user-profile-3.jpg" alt="">
-                                                </div>
+                                                <div class="col-xs-2"> <img class="img-circle" src="img/user-profile-3.jpg" alt=""> </div>
                                                 <div class="col-xs-10">
-                                                    <p>
-                                                        <strong>Stacy Gibson</strong>: Hey, what was the purchase order number for the...
-                                                    </p>
-                                                    <p class="small">
-                                                        <i class="fa fa-clock-o"></i> Yesterday at 10:23 AM
-                                                    </p>
+                                                    <p> <strong>Stacy Gibson</strong>: Hey, what was the purchase order number for the... </p>
+                                                    <p class="small"> <i class="fa fa-clock-o"></i> Yesterday at 10:23 AM </p>
                                                 </div>
                                             </div>
                                         </a>
@@ -145,252 +102,161 @@
                                     <li>
                                         <a href="#">
                                             <div class="row">
-                                                <div class="col-xs-2">
-                                                    <img class="img-circle" src="img/user-profile-4.jpg" alt="">
-                                                </div>
+                                                <div class="col-xs-2"> <img class="img-circle" src="img/user-profile-4.jpg" alt=""> </div>
                                                 <div class="col-xs-10">
-                                                    <p>
-                                                        <strong>Jeffrey Cortez</strong>: Check out this video I found the other day, it's...
-                                                    </p>
-                                                    <p class="small">
-                                                        <i class="fa fa-clock-o"></i> Tuesday at 12:23 PM
-                                                    </p>
+                                                    <p> <strong>Jeffrey Cortez</strong>: Check out this video I found the other day, it's... </p>
+                                                    <p class="small"> <i class="fa fa-clock-o"></i> Tuesday at 12:23 PM </p>
                                                 </div>
                                             </div>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-
                             <!-- Messages Dropdown Footer -->
-                            <li class="dropdown-footer">
-                                <a href="mailbox.html">Xem tất cả</a>
-                            </li>
-
+                            <li class="dropdown-footer"> <a href="mailbox.html">Xem tất cả</a> </li>
                         </ul>
                         <!-- /.dropdown-menu -->
                     </li>
                     <!-- /.dropdown -->
                     <!-- end MESSAGES DROPDOWN -->
-					
                     <!-- begin ALERTS DROPDOWN -->
                     <li class="dropdown">
-                        <a href="#" class="alerts-link dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell"></i> 
-                            <span class="number">2</span><i class="fa fa-caret-down"></i>
-                        </a>
+                        <a href="#" class="alerts-link dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-bell"></i> <span class="number">2</span><i class="fa fa-caret-down"></i> </a>
                         <ul class="dropdown-menu dropdown-scroll dropdown-alerts">
-
                             <!-- Alerts Dropdown Heading -->
-                            <li class="dropdown-header">
-                                <i class="fa fa-bell"></i> 2 Thông báo mới
-                            </li>
-
+                            <li class="dropdown-header"> <i class="fa fa-bell"></i> 2 Thông báo mới </li>
                             <!-- Alerts Dropdown Body - This is contained within a SlimScroll fixed height box. You can change the height using the SlimScroll jQuery features. -->
                             <li id="alertScroll">
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="#">
-                                            <div class="alert-icon blue pull-left">
-                                                <i class="fa fa-comment"></i>
-                                            </div>
-                                            New Comments
-                                            <span class="badge blue pull-right">15</span>
-                                        </a>
+                                            <div class="alert-icon blue pull-left"> <i class="fa fa-comment"></i> </div> New Comments <span class="badge blue pull-right">15</span> </a>
                                     </li>
-
                                     <li>
                                         <a href="#">
-                                            <div class="alert-icon green pull-left">
-                                                <i class="fa fa-plus-circle"></i>
-                                            </div>
-                                            New Users
-                                            <span class="badge green pull-right">5</span>
-                                        </a>
+                                            <div class="alert-icon green pull-left"> <i class="fa fa-plus-circle"></i> </div> New Users <span class="badge green pull-right">5</span> </a>
                                     </li>
-
-
-
                                 </ul>
                             </li>
-
                             <!-- Alerts Dropdown Footer -->
-                            <li class="dropdown-footer">
-                                <a href="#">Xem tất cả</a>
-                            </li>
-
+                            <li class="dropdown-footer"> <a href="#">Xem tất cả</a> </li>
                         </ul>
                         <!-- /.dropdown-menu -->
                     </li>
                     <!-- /.dropdown -->
                     <!-- end ALERTS DROPDOWN -->
-				
-
                     <!-- begin USER ACTIONS DROPDOWN -->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user"></i>  <i class="fa fa-caret-down"></i>
-                        </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i> <i class="fa fa-caret-down"></i> </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <a href="userprofile.html">
-                                    <i class="fa fa-user"></i> Thông tin cá nhân
-                                </a>
+                                <a href="userprofile.html"> <i class="fa fa-user"></i> Thông tin cá nhân </a>
                             </li>
                             <li>
-                                <a href="message.html">
-                                    <i class="fa fa-envelope"></i> Tin nhắn
-                                    <span class="badge green pull-right">4</span>
-                                </a>
+                                <a href="message.html"> <i class="fa fa-envelope"></i> Tin nhắn <span class="badge green pull-right">4</span> </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-bell"></i> Thông báo
-                                    <span class="badge orange pull-right">2</span>
-                                </a>
+                                <a href="#"> <i class="fa fa-bell"></i> Thông báo <span class="badge orange pull-right">2</span> </a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a class="logout_open" href="#logout">
-                                    <i class="fa fa-sign-out"></i> Đăng xuất
-                                    <strong>Anh Tuấn</strong>
-                                </a>
+                                <a class="logout_open" href="#logout"> <i class="fa fa-sign-out"></i> Đăng xuất <strong>Anh Tuấn</strong> </a>
                             </li>
                         </ul>
                         <!-- /.dropdown-menu -->
                     </li>
                     <!-- /.dropdown -->
                     <!-- end USER ACTIONS DROPDOWN -->
-
                 </ul>
                 <!-- /.nav -->
                 <!-- end MESSAGES/ALERTS/TASKS/USER ACTIONS DROPDOWNS -->
-
             </div>
             <!-- /.nav-top -->
         </nav>
         <!-- /.navbar-top -->
         <!-- end TOP NAVIGATION -->
-
         <!-- begin SIDE NAVIGATION -->
         <nav class="navbar-side" role="navigation">
             <div class="navbar-collapse sidebar-collapse collapse">
                 <ul id="side" class="nav navbar-nav side-nav">
                     <!-- begin SIDE NAV USER PANEL -->
-                    <li class="side-user hidden-xs">
-                        <img class="img-circle" src="img/avatar_default.png"  style="width:150px; height:150px;"alt="">
-                        <p class="welcome">
-                            <i class="fa fa-key"></i> Đăng nhập với
-                        </p>
-                        <p class="name tooltip-sidebar-logout">
-                            Anh
-                            <span class="last-name">Tuấn</span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Logout"><i class="fa fa-sign-out"></i></a>
-                        </p>
+                    <li class="side-user hidden-xs"> <img class="img-circle" src="img/avatar_default.png" style="width:150px; height:150px;" alt="">
+                        <p class="welcome"> <i class="fa fa-key"></i> Đăng nhập với </p>
+                        <p class="name tooltip-sidebar-logout"> Anh <span class="last-name">Tuấn</span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Logout"><i class="fa fa-sign-out"></i></a> </p>
                         <div class="clearfix"></div>
                     </li>
                     <!-- end SIDE NAV USER PANEL -->
-					<!-- begin DASHBOARD LINK -->
+                    <!-- begin DASHBOARD LINK -->
                     <li>
-                        <a href="dashboard.html" class="active">
-                            <i class="fa fa-dashboard"></i> Thống kê chung
-                        </a>
+                        <a href="dashboard.html" class="active"> <i class="fa fa-dashboard"></i> Thống kê chung </a>
                     </li>
                     <!-- end DASHBOARD LINK -->
                     <!-- begin USERS DROPDOWN -->
                     <li class="panel">
-                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#users">
-                            <i class="fa fa-files-o"></i> Thành viên <i class="fa fa-caret-down"></i>
-                        </a>
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#users"> <i class="fa fa-files-o"></i> Thành viên <i class="fa fa-caret-down"></i> </a>
                         <ul class="collapse nav" id="users">
                             <li>
-                                <a href="userDashboard.html">
-                                    <i class="fa fa-angle-double-right"></i> Thống kê thành viên
-                                </a>
+                                <a href="userDashboard.html"> <i class="fa fa-angle-double-right"></i> Thống kê thành viên </a>
                             </li>
                             <li>
-                                <a href="userlist.html">
-                                    <i class="fa fa-angle-double-right"></i> Danh sách thành viên
-                                </a>
+                                <a href="userlist.html"> <i class="fa fa-angle-double-right"></i> Danh sách thành viên </a>
                             </li>
                         </ul>
                     </li>
                     <!-- end USERS DROPDOWN -->
                     <!-- begin PROJECTS DROPDOWN -->
                     <li class="panel">
-                        <a data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#projects">
-                            <i class="fa fa-bar-chart-o"></i> Project
-							<i class="fa fa-caret-down"></i>
-                        </a>
-						<ul class="collapse nav" id="projects">
+                        <a data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#projects"> <i class="fa fa-bar-chart-o"></i> Project <i class="fa fa-caret-down"></i> </a>
+                        <ul class="collapse nav" id="projects">
                             <li>
-                                <a href="project.html">
-                                    <i class="fa fa-angle-double-right"></i> Dashboard
-                                </a>
+                                <a href="project.html"> <i class="fa fa-angle-double-right"></i> Dashboard </a>
                             </li>
                             <li>
-                                <a href="new-project.html">
-                                    <i class="fa fa-angle-double-right"></i> Projects List
-                                </a>
+                                <a href="new-project.html"> <i class="fa fa-angle-double-right"></i> Projects List </a>
                             </li>
                         </ul>
                     </li>
                     <!-- end PROJECTS DROPDOWN -->
-					<!-- begin BACKINGS DROPDOWN -->
-					<li class="panel">
-                        <a href="backing.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
-                            <i class="fa fa-bar-chart-o"></i> Backing 
-							<!-- <i class="fa fa-caret-down"></i> -->
-                        </a>
-					</li>
-					<!-- end BACKINGS DROPDOWN -->
-					<!-- begin CATEGORIES DROPDOWN -->
-					<li class="panel">
-                        <a href="category.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
-                            <i class="fa fa-bar-chart-o"></i> Category 
-							<!-- <i class="fa fa-caret-down"></i> -->
-                        </a>
-					</li>
-					<!-- end CATEGORIES DROPDOWN -->
-					<!-- begin SLIDERS DROPDOWN -->
-					<li class="panel">
-                        <a href="slider.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
-                            <i class="fa fa-bar-chart-o"></i> Slider 
-							<!-- <i class="fa fa-caret-down"></i> -->
-                        </a>
-					</li>
-					<!-- end SLIDERS DROPDOWN -->
-					<!-- begin MESSAGES DROPDOWN -->
-					<li class="panel">
-                        <a href="message.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
-                            <i class="fa fa-bar-chart-o"></i> Message 
-							<!-- <i class="fa fa-caret-down"></i> -->
-                        </a>
-					</li>
-					<!-- end MESSAGES DROPDOWN -->
-					<!-- begin REPORT -->
-					<li class="panel">
-						<a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#reports">
-                            <i class="fa fa-flag"></i> Báo cáo <i class="fa fa-caret-down"></i>
-                        </a>
+                    <!-- begin BACKINGS DROPDOWN -->
+                    <li class="panel">
+                        <a href="backing.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts"> <i class="fa fa-bar-chart-o"></i> Backing
+                            <!-- <i class="fa fa-caret-down"></i> --></a>
+                    </li>
+                    <!-- end BACKINGS DROPDOWN -->
+                    <!-- begin CATEGORIES DROPDOWN -->
+                    <li class="panel">
+                        <a href="category.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts"> <i class="fa fa-bar-chart-o"></i> Category
+                            <!-- <i class="fa fa-caret-down"></i> --></a>
+                    </li>
+                    <!-- end CATEGORIES DROPDOWN -->
+                    <!-- begin SLIDERS DROPDOWN -->
+                    <li class="panel">
+                        <a href="slider.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts"> <i class="fa fa-bar-chart-o"></i> Slider
+                            <!-- <i class="fa fa-caret-down"></i> --></a>
+                    </li>
+                    <!-- end SLIDERS DROPDOWN -->
+                    <!-- begin MESSAGES DROPDOWN -->
+                    <li class="panel">
+                        <a href="message.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts"> <i class="fa fa-bar-chart-o"></i> Message
+                            <!-- <i class="fa fa-caret-down"></i> --></a>
+                    </li>
+                    <!-- end MESSAGES DROPDOWN -->
+                    <!-- begin REPORT -->
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#reports"> <i class="fa fa-flag"></i> Báo cáo <i class="fa fa-caret-down"></i> </a>
                         <ul class="collapse nav" id="reports">
                             <li>
-                                <a href="report-user.html">
-                                    <i class="fa fa-angle-double-right"></i> Thành viên
-                                </a>
+                                <a href="report-user.html"> <i class="fa fa-angle-double-right"></i> Thành viên </a>
                             </li>
                             <li>
-                                <a href="report-thread.html">
-                                    <i class="fa fa-angle-double-right"></i> Bài viết
-                                </a>
+                                <a href="report-thread.html"> <i class="fa fa-angle-double-right"></i> Bài viết </a>
                             </li>
                             <li>
-                                <a href="report-event.html">
-                                    <i class="fa fa-angle-double-right"></i> Sự kiện
-                                </a>
-                            </li>							
+                                <a href="report-event.html"> <i class="fa fa-angle-double-right"></i> Sự kiện </a>
+                            </li>
                         </ul>
-					</li>
-					<!-- end REPORT -->
+                    </li>
+                    <!-- end REPORT -->
                 </ul>
                 <!-- /.side-nav -->
             </div>
@@ -398,22 +264,18 @@
         </nav>
         <!-- /.navbar-side -->
         <!-- end SIDE NAVIGATION -->
-
         <!-- begin MAIN PAGE CONTENT -->
         <div id="page-wrapper">
-
             <div class="page-content">
-
                 <!-- begin PAGE TITLE ROW -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="page-title">
                             <h1>
-                                Thống kê thành viên
-                            </h1>
+                                        Thống kê thành viên
+                                    </h1>
                             <ol class="breadcrumb">
-                                <li><i class="fa fa-dashboard"></i>  <a href="#">Thống kê</a>
-                                </li>
+                                <li><i class="fa fa-dashboard"></i> <a href="#">Thống kê</a> </li>
                                 <li class="active">Thống kê thành viên</li>
                             </ol>
                         </div>
@@ -422,342 +284,137 @@
                 </div>
                 <!-- /.row -->
                 <!-- end PAGE TITLE ROW -->
-
-				<!-- begin DASHBOARD CIRCLE TILES -->
-                <div class="row centered" >
-					<div class="col-lg-2 col-sm-6">
-						<div class="circle-tile">
-							<a href="#">
-								<div class="circle-tile-heading orange">
-									<i class="fa fa-bell fa-fw fa-3x"></i>
-								</div>
-							</a>
-							<div class="circle-tile-content orange">
-								<div class="circle-tile-description text-faded">
-									Mới tạo
-								</div>
-								<div class="circle-tile-number text-faded">
-									9
-								</div>
-								
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-6">
-						<div class="circle-tile">
-							<a href="#">
-								<div class="circle-tile-heading blue">
-									<i class="fa fa-user fa-fw fa-3x"></i>
-								</div>
-							</a>
-							<div class="circle-tile-content blue">
-								<div class="circle-tile-description text-faded">
-									Chưa kích hoạt
-								</div>
-								<div class="circle-tile-number text-faded">
-									10
-									<span id="sparklineB"></span>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-6">
-						<div class="circle-tile">
-							<a href="#">
-								<div class="circle-tile-heading green">
-									<i class="fa fa-tasks fa-fw fa-3x"></i>
-								</div>
-							</a>
-							<div class="circle-tile-content green">
-								<div class="circle-tile-description text-faded">
-									 Bị cấm
-								</div>
-								<div class="circle-tile-number text-faded">
-									10
-									<span id="sparklineB"></span>
-								</div>
-								
-							</div>
-						</div>
-					</div>					
-					<div class="col-lg-2 col-sm-6">
-						<div class="circle-tile">
-							<a href="#">
-								<div class="circle-tile-heading purple">
-									<i class="fa fa-user fa-fw fa-3x"></i>
-								</div>
-							</a>
-							<div class="circle-tile-content purple">
-								<div class="circle-tile-description text-faded">
-									Đang hoạt động
-								</div>
-								<div class="circle-tile-number text-faded">
-									96
-									<span id="sparklineD"></span>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-6">
-						<div class="circle-tile">
-							<a href="#">
-								<div class="circle-tile-heading dark-blue">
-									<i class="fa fa-users fa-fw fa-3x"></i>
-								</div>
-							</a>
-							<div class="circle-tile-content dark-blue">
-								<div class="circle-tile-description text-faded">
-									 Tổng số
-								</div>
-								<div class="circle-tile-number text-faded">
-									265
-									<span id="sparklineA"></span>
-								</div>
-								
-							</div>
-						</div>
-					</div>
+                <!-- begin DASHBOARD CIRCLE TILES -->
+                <div class="row centered">
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="#">
+                                <div class="circle-tile-heading orange"> <i class="fa fa-bell fa-fw fa-3x"></i> </div>
+                            </a>
+                            <div class="circle-tile-content orange">
+                                <div class="circle-tile-description text-faded"> Mới tạo </div>
+                                <div class="circle-tile-number text-faded"> 9 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="#">
+                                <div class="circle-tile-heading blue"> <i class="fa fa-user fa-fw fa-3x"></i> </div>
+                            </a>
+                            <div class="circle-tile-content blue">
+                                <div class="circle-tile-description text-faded"> Chưa kích hoạt </div>
+                                <div class="circle-tile-number text-faded"> 10 <span id="sparklineB"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="#">
+                                <div class="circle-tile-heading green"> <i class="fa fa-tasks fa-fw fa-3x"></i> </div>
+                            </a>
+                            <div class="circle-tile-content green">
+                                <div class="circle-tile-description text-faded"> Bị cấm </div>
+                                <div class="circle-tile-number text-faded"> 10 <span id="sparklineB"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="#">
+                                <div class="circle-tile-heading purple"> <i class="fa fa-user fa-fw fa-3x"></i> </div>
+                            </a>
+                            <div class="circle-tile-content purple">
+                                <div class="circle-tile-description text-faded"> Đang hoạt động </div>
+                                <div class="circle-tile-number text-faded"> 96 <span id="sparklineD"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="#">
+                                <div class="circle-tile-heading dark-blue"> <i class="fa fa-users fa-fw fa-3x"></i> </div>
+                            </a>
+                            <div class="circle-tile-content dark-blue">
+                                <div class="circle-tile-description text-faded"> Tổng số </div>
+                                <div class="circle-tile-number text-faded"> 265 <span id="sparklineA"></span> </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- end DASHBOARD CIRCLE TILES -->
-				
-				<!-- begin NEW USER TABLES ROW -->
+                <!-- begin NEW USER TABLES ROW -->
                 <div class="row">
-					<!-- new users -->
-					<div class="col-lg-6">
-						<div class="portlet portlet-dark-blue">
-							<div class="portlet-heading">
-								<div class="portlet-title">
-									<h4><i class="fa fa-exchange fa-fw"></i> Mới tạo</h4>
-								</div>
-								<div class="portlet-widgets">
-									<a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div id="transactionsPortlet3" class="panel-collapse collapse in">
-								<div class="portlet-body">
-									<div class="table-responsive dashboard-demo-table">
-										<table class="table table-bordered table-striped table-hover">
-											<thead>
-												<tr>
-													<th>Họ và tên</th>
-													<th>Địa chỉ Email</th>
-													<th>Ngày tạo</th>
-													<th>Trạng thái</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-														</a>
-														<h4>Đỗ Văn Tuấn</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>2016-09-24 09:46:07</td>
-													<td><a class="btn btn-xs btn-green">Đang hoạt động</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-														</a>
-														<h4>Tạ Ngọc Duy</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>2015-09-24 09:46:07</td>
-													<td><a class="btn btn-xs btn-green">Chưa kích hoạt</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-														</a>
-														<h4>lê Hồng NHiên</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>2015-09-24 09:46:07</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-														</a>
-														<h4>Đào Trọng Nghĩa</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>2015-09-24 09:46:07</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>					
-					<!-- end new users -->
-					
-					<!-- Top Creators -->
-							<div class="col-lg-6">
-								<div class="portlet portlet-green">
-									<div class="portlet-heading">
-										<div class="portlet-title">
-											<h4><i class="fa fa-exchange fa-fw"></i> Quyên góp nhiều nhất</h4>
-										</div>
-										<div class="portlet-widgets">
-											<a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet2"><i class="fa fa-chevron-down"></i></a>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-									<div id="transactionsPortlet2" class="panel-collapse collapse in">
-										<div class="portlet-body">
-											<div class="table-responsive dashboard-demo-table">
-												<table class="table table-bordered table-striped table-hover">
-													<thead>
-														<tr>
-															<th>Họ và tên</th>
-															<th>Tổng số sự kiện</th>
-															<th>Tổng số tiền</th>
-															<th>Trạng thái</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-																</a>
-																<h4>Đỗ Văn Tuấn</h4>
-															</td>
-															<td>50</td>
-															<td>50.000$</td>
-															<td><a class="btn btn-xs btn-green">Active</a>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-																</a>
-																<h4>Đỗ Văn Tuấn</h4>
-															</td>
-															<td>20</td>
-															<td>45.000$</td>
-															<td><a class="btn btn-xs btn-green">Active</a>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-																</a>
-																<h4>Tạ Ngọc Duy</h4>
-															</td>
-															<td>10</td>
-															<td>40.000$</td>
-															<td><a class="btn btn-xs btn-green">Active</a>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-																</a>
-																<h4>Lê Hồng Nhiên</h4>
-															</td>
-															<td>5</td>
-															<td>10.000$</td>
-															<td><a class="btn btn-xs btn-green">Active</a>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>	
-					<!-- End Top Creators -->
-					</div>
-                    <!-- /.col-lg-12 -->
-                <!-- /.row -->
-				
-				<!-- Recent user and top Created thread -->
-				<div class="row">
-						<!-- Recent user -->
-						<div class="col-lg-6">
-                                <div class="portlet portlet-purple">
+                    <!-- new users -->
+                    <!-- <div class="col-lg-6">
+                                <div class="portlet portlet-dark-blue">
                                     <div class="portlet-heading">
                                         <div class="portlet-title">
-                                            <h4><i class="fa fa-exchange fa-fw"></i> Vừa đăng nhập</h4>
+                                            <h4><i class="fa fa-exchange fa-fw"></i> Mới tạo</h4>
                                         </div>
                                         <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet"><i class="fa fa-chevron-down"></i></a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div id="transactionsPortlet" class="panel-collapse collapse in">
+                                    <div id="transactionsPortlet3" class="panel-collapse collapse in">
                                         <div class="portlet-body">
                                             <div class="table-responsive dashboard-demo-table">
                                                 <table class="table table-bordered table-striped table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>Tên đăng nhập</th>
-                                                            <th>Lần đăng nhập cuối</th>
+                                                            <th>Họ và tên</th>
+                                                            <th>Địa chỉ Email</th>
+                                                            <th>Ngày tạo</th>
                                                             <th>Trạng thái</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
                                                             <td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-																</a>
-																<h4>Đỗ Văn Tuấn</h4>
-															</td>
+                                                                <a class="pull-left" href="#">
+                                                                    <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                                </a>
+                                                                <h4>Đỗ Văn Tuấn</h4>
+                                                            </td>
+                                                            <td>test@gmail.com</td>
                                                             <td>2016-09-24 09:46:07</td>
+                                                            <td><a class="btn btn-xs btn-green">Đang hoạt động</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a class="pull-left" href="#">
+                                                                    <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
+                                                                </a>
+                                                                <h4>Tạ Ngọc Duy</h4>
+                                                            </td>
+                                                            <td>test@gmail.com</td>
+                                                            <td>2015-09-24 09:46:07</td>
+                                                            <td><a class="btn btn-xs btn-green">Chưa kích hoạt</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a class="pull-left" href="#">
+                                                                    <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                                </a>
+                                                                <h4>lê Hồng NHiên</h4>
+                                                            </td>
+                                                            <td>test@gmail.com</td>
+                                                            <td>2015-09-24 09:46:07</td>
                                                             <td><a class="btn btn-xs btn-green">Active</a>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-																</a>
-																<h4>Tạ Ngọc Duy</h4>
-															</td>
-                                                            <td>2016-09-24 09:46:07</td>
-                                                            <td><a class="btn btn-xs btn-green">Active</a>
+                                                                <a class="pull-left" href="#">
+                                                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                                                </a>
+                                                                <h4>Đào Trọng Nghĩa</h4>
                                                             </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-																</a>
-																<h4>Lê Hồng Nhiên</h4>
-															</td>
-                                                            <td>2016-09-24 09:46:07</td>
-                                                            <td><a class="btn btn-xs btn-green">Active</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-																<a class="pull-left" href="#">
-																	<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-																</a>
-																<h4>Hoàng Anh Tuấn</h4>
-															</td>
-                                                            <td>2016-09-24 09:46:07</td>
+                                                            <td>test@gmail.com</td>
+                                                            <td>2015-09-24 09:46:07</td>
                                                             <td><a class="btn btn-xs btn-green">Active</a>
                                                             </td>
                                                         </tr>
@@ -767,186 +424,321 @@
                                         </div>
                                     </div>
                                 </div>
-							</div>	
-							
-					<!-- Top created thread -->
-					<div class="col-lg-6">
-						<div class="portlet portlet-blue">
-							<div class="portlet-heading">
-								<div class="portlet-title">
-									<h4><i class="fa fa-exchange fa-fw"></i> Tạo nhiều bài viết nhất</h4>
-								</div>
-								<div class="portlet-widgets">
-									<a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div id="transactionsPortlet3" class="panel-collapse collapse in">
-								<div class="portlet-body">
-									<div class="table-responsive dashboard-demo-table">
-										<table class="table table-bordered table-striped table-hover">
-											<thead>
-												<tr>
-													<th>Họ và tên</th>
-													<th>Địa chỉ Email</th>
-													<th>Số bài viết</th>
-													<th>Trạng thái</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-														</a>
-														<h4>Đỗ Văn Tuấn</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>100</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-														</a>
-														<h4>Tạ Ngọc Duy</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>50</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-														</a>
-														<h4>Đào Trọng Nghĩa</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>1</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-														</a>
-														<h4>Lê Hồng Nhiên</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>0</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<!-- Top Rank -->
-					<div class="col-lg-6">
-						<div class="portlet portlet-orange">
-							<div class="portlet-heading">
-								<div class="portlet-title">
-									<h4><i class="fa fa-exchange fa-fw"></i> Xếp hạng cao nhất</h4>
-								</div>
-								<div class="portlet-widgets">
-									<a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div id="transactionsPortlet3" class="panel-collapse collapse in">
-								<div class="portlet-body">
-									<div class="table-responsive dashboard-demo-table">
-										<table class="table table-bordered table-striped table-hover">
-											<thead>
-												<tr>
-													<th>Họ và tên</th>
-													<th>Điểm số</th>
-													<th>Xếp hạng</th>
-													<th>Trạng thái</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-														</a>
-														<h4>Đỗ Văn Tuấn</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>100</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-														</a>
-														<h4>Tạ Ngọc Duy</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>50</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-														</a>
-														<h4>Đào Trọng Nghĩa</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>1</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<a class="pull-left" href="#">
-															<img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-														</a>
-														<h4>Lê Hồng Nhiên</h4>
-													</td>
-													<td>test@gmail.com</td>
-													<td>0</td>
-													<td><a class="btn btn-xs btn-green">Active</a>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>					
-					<!-- end new users -->
-					
-
-					<!-- end top creators -->
-				</div>
-				<!-- end new users and top creator -->
-				
+                            </div>					 -->
+                    <!-- end new users -->
+                    <!-- Top Creators -->
+                    <div class="col-lg-12">
+                        <div class="portlet portlet-green">
+                            <div class="portlet-heading">
+                                <div class="portlet-title">
+                                    <h4><i class="fa fa-exchange fa-fw"></i> Quyên góp nhiều nhất</h4> </div>
+                                <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet2"><i class="fa fa-chevron-down"></i></a> </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div id="transactionsPortlet2" class="panel-collapse collapse in">
+                                <div class="portlet-body">
+                                    <div class="table-responsive dashboard-demo-table">
+                                        <table class="table table-bordered table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 25px;">STT</th>
+                                                    <th style="width: 200px;">Họ và tên</th>
+                                                    <th style="width: 125px;">Tên đăng nhập</th>
+                                                    <th style="width: 128px;">Tổng số sự kiện</th>
+                                                    <th style="width: 128px;">Tổng số tiền</th>
+                                                    <th style="width: 152px;">Lần quyên góp cuối</th>
+                                                    <th style="width: 152px;">Ngày quyên góp cuối</th>
+                                                    <th>Trạng thái</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>anhtuan</td>
+                                                    <td>50</td>
+                                                    <td>50.000$</td>
+                                                    <td>50.000$</td>
+                                                    <td>20-2-2106</td>
+                                                    <td><a class="btn btn-xs btn-green">Đang hoạt động</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>anhtuan</td>
+                                                    <td>50</td>
+                                                    <td>50.000$</td>
+                                                    <td>50.000$</td>
+                                                    <td>20-2-2106</td>
+                                                    <td><a class="btn btn-xs btn-green">Đang hoạt động</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>anhtuan</td>
+                                                    <td>50</td>
+                                                    <td>50.000$</td>
+                                                    <td>50.000$</td>
+                                                    <td>20-2-2106</td>
+                                                    <td><a class="btn btn-xs btn-green">Đang hoạt động</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>anhtuan</td>
+                                                    <td>50</td>
+                                                    <td>50.000$</td>
+                                                    <td>50.000$</td>
+                                                    <td>20-2-2106</td>
+                                                    <td><a class="btn btn-xs btn-green">Đang hoạt động</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>anhtuan</td>
+                                                    <td>50</td>
+                                                    <td>50.000$</td>
+                                                    <td>50.000$</td>
+                                                    <td>20-2-2106</td>
+                                                    <td><a class="btn btn-xs btn-green">Đang hoạt động</a> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Top Creators -->
+                </div>
+                <!-- /.col-lg-12 -->
+                <!-- /.row -->
+                <!-- Recent user and top Created thread -->
+                <div class="row">
+                    <!-- Recent user -->
+                    <!-- 						<div class="col-lg-6">
+                                        <div class="portlet portlet-purple">
+                                            <div class="portlet-heading">
+                                                <div class="portlet-title">
+                                                    <h4><i class="fa fa-exchange fa-fw"></i> Vừa đăng nhập</h4>
+                                                </div>
+                                                <div class="portlet-widgets">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet"><i class="fa fa-chevron-down"></i></a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div id="transactionsPortlet" class="panel-collapse collapse in">
+                                                <div class="portlet-body">
+                                                    <div class="table-responsive dashboard-demo-table">
+                                                        <table class="table table-bordered table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Tên đăng nhập</th>
+                                                                    <th>Lần đăng nhập cuối</th>
+                                                                    <th>Trạng thái</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a class="pull-left" href="#">
+                                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                                        </a>
+                                                                        <h4>Đỗ Văn Tuấn</h4>
+                                                                    </td>
+                                                                    <td>2016-09-24 09:46:07</td>
+                                                                    <td><a class="btn btn-xs btn-green">Active</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a class="pull-left" href="#">
+                                                                            <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
+                                                                        </a>
+                                                                        <h4>Tạ Ngọc Duy</h4>
+                                                                    </td>
+                                                                    <td>2016-09-24 09:46:07</td>
+                                                                    <td><a class="btn btn-xs btn-green">Active</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a class="pull-left" href="#">
+                                                                            <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                                        </a>
+                                                                        <h4>Lê Hồng Nhiên</h4>
+                                                                    </td>
+                                                                    <td>2016-09-24 09:46:07</td>
+                                                                    <td><a class="btn btn-xs btn-green">Active</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a class="pull-left" href="#">
+                                                                            <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                                                        </a>
+                                                                        <h4>Hoàng Anh Tuấn</h4>
+                                                                    </td>
+                                                                    <td>2016-09-24 09:46:07</td>
+                                                                    <td><a class="btn btn-xs btn-green">Active</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>	 -->
+                    <!-- Top created thread -->
+                    <div class="col-lg-6">
+                        <div class="portlet portlet-blue">
+                            <div class="portlet-heading">
+                                <div class="portlet-title">
+                                    <h4><i class="fa fa-exchange fa-fw"></i> Tạo nhiều bài viết nhất</h4> </div>
+                                <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a> </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div id="transactionsPortlet3" class="panel-collapse collapse in">
+                                <div class="portlet-body">
+                                    <div class="table-responsive dashboard-demo-table">
+                                        <table class="table table-bordered table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 125px">Họ và tên</th>
+                                                    <th>Tên đăng nhập</th>
+                                                    <th style="width: 125px">Địa chỉ Email</th>
+                                                    <th>Số bài viết</th>
+                                                    <th>Trạng thái</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>anhtuan</td>
+                                                    <td>test@gmail.com</td>
+                                                    <td>100</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>anhtuan</td>
+                                                    <td>test@gmail.com</td>
+                                                    <td>100</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <th>anhtuan</th>
+                                                    <td>test@gmail.com</td>
+                                                    <td>100</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <th>anhtuan</th>
+                                                    <td>test@gmail.com</td>
+                                                    <td>100</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top Rank -->
+                    <div class="col-lg-6">
+                        <div class="portlet portlet-orange">
+                            <div class="portlet-heading">
+                                <div class="portlet-title">
+                                    <h4><i class="fa fa-exchange fa-fw"></i> Xếp hạng cao nhất</h4> </div>
+                                <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a> </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div id="transactionsPortlet3" class="panel-collapse collapse in">
+                                <div class="portlet-body">
+                                    <div class="table-responsive dashboard-demo-table">
+                                        <table class="table table-bordered table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 125px">Họ và tên</th>
+                                                    <th>Tên đăng nhập</th>
+                                                    <th>Điểm số</th>
+                                                    <th>Xếp hạng</th>
+                                                    <th>Trạng thái</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đỗ Văn Tuấn</h4> </td>
+                                                    <td>test@gmail.com</td>
+                                                    <td>100</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-3.jpg" alt=""> </a>
+                                                        <h4>Tạ Ngọc Duy</h4> </td>
+                                                    <td>test@gmail.com</td>
+                                                    <td>50</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-1.jpg" alt=""> </a>
+                                                        <h4>Đào Trọng Nghĩa</h4> </td>
+                                                    <td>test@gmail.com</td>
+                                                    <td>1</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a class="pull-left" href="#"> <img class="media-object img-circle" src="img/user-profile-2.jpg" alt=""> </a>
+                                                        <h4>Lê Hồng Nhiên</h4> </td>
+                                                    <td>test@gmail.com</td>
+                                                    <td>0</td>
+                                                    <td><a class="btn btn-xs btn-green">Active</a> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end new users -->
+                    <!-- end top creators -->
+                </div>
+                <!-- end new users and top creator -->
             </div>
             <!-- /.page-content -->
-
         </div>
         <!-- /#page-wrapper -->
         <!-- end MAIN PAGE CONTENT -->
-
     </div>
     <!-- /#wrapper -->
-
     <!-- GLOBAL SCRIPTS -->
     <script src="js/jquery.min.js"></script>
     <script src="js/plugins/bootstrap/bootstrap.min.js"></script>
@@ -955,17 +747,15 @@
     <script src="js/plugins/popupoverlay/defaults.js"></script>
     <!-- Logout Notification Box -->
     <div id="logout">
-        <div class="logout-message">
-            <img class="img-circle img-logout" src="img/profile-pic.jpg" alt="">
+        <div class="logout-message"> <img class="img-circle img-logout" src="img/profile-pic.jpg" alt="">
             <h3>
-                <i class="fa fa-sign-out text-green"></i> Ready to go?
-            </h3>
-            <p>Select "Logout" below if you are ready<br> to end your current session.</p>
+                        <i class="fa fa-sign-out text-green"></i> Ready to go?
+                    </h3>
+            <p>Select "Logout" below if you are ready
+                <br> to end your current session.</p>
             <ul class="list-inline">
                 <li>
-                    <a href="login.html" class="btn btn-green">
-                        <strong>Logout</strong>
-                    </a>
+                    <a href="login.html" class="btn btn-green"> <strong>Logout</strong> </a>
                 </li>
                 <li>
                     <button class="logout_close btn btn-green">Cancel</button>
@@ -978,29 +768,22 @@
     <script src="js/plugins/popupoverlay/logout.js"></script>
     <!-- HISRC Retina Images -->
     <script src="js/plugins/hisrc/hisrc.js"></script>
-
     <!-- PAGE LEVEL PLUGIN SCRIPTS -->
     <script src="js/plugins/datatables/jquery.dataTables.js"></script>
     <script src="js/plugins/datatables/datatables-bs3.js"></script>
-	<script src="js/plugins/ladda/spin.min.js"></script>
+    <script src="js/plugins/ladda/spin.min.js"></script>
     <script src="js/plugins/ladda/ladda.min.js"></script>
-	<script src="js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	
-
-	
+    <script src="js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
     <!-- Morris Charts -->
     <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
     <script src="js/plugins/morris/morris.js"></script>
     <!-- Morris Demo/Dummy Data -->
     <script src="js/plugins/morris/morris-demo-data.js"></script>
-
     <!-- THEME SCRIPTS -->
     <script src="js/flex.js"></script>
-	<script src="js/demo/advanced-tables-demo.js"></script>
-	<script src="js/demo/buttons-demo.js"></script>
-
+    <script src="js/demo/advanced-tables-demo.js"></script>
+    <script src="js/demo/buttons-demo.js"></script>
 </body>
-
-
 <!-- Mirrored from themes.startbootstrap.com/flex-admin-v1.2/blank.html by HTTrack Website Copier/3.x [XR&CO'2013], Wed, 19 Mar 2014 06:24:44 GMT -->
+
 </html>
