@@ -30,6 +30,14 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/UserManage/_UserProfile.cshtml");
         }
+        public ActionResult ThreadDashBoard()
+        {
+            return PartialView("~/Views/Admin/ThreadManage/_ThreadDashBoard.cshtml");
+        }
+        public ActionResult ThreadList()
+        {
+            return PartialView("~/Views/Admin/ThreadManage/_ThreadList.cshtml");
+        }
         public ActionResult Index()
         {
             return View();

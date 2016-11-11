@@ -27,6 +27,14 @@ app.config(function ($routeProvider) {
             tittle: "Danh sách thành viên",
             templateUrl: "/Admin/UserList",
             controller: "UserListController"
+        })
+        .when("/ThreadDashBoard", {
+            tittle: "Danh sách bài viết",
+            templateUrl: "/Admin/ThreadDashBoard"
+        })
+        .when("/ThreadList", {
+            tittle: "Chi tiết bài viết",
+            templateUrl: "/Admin/ThreadList"
         });
 
 });
