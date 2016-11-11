@@ -1,0 +1,266 @@
+﻿<body>
+    @Html.Partial("../Admin/_TopSideNavigation")
+<!-- begin MAIN PAGE CONTENT -->
+<div id="page-wrapper">
+<div class="page-content">
+<!-- begin PAGE TITLE ROW -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-title">
+            <h1>
+                Bài viết
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i> <a href="index-2.html">Bài viết</a>
+                </li>
+                <li class="active">Thống kê bài viết</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- end PAGE TITLE ROW -->
+    @Html.Partial("../Admin/ThreadManage/_ThreadCircleTitle")
+<!-- begin ADVANCED TABLES ROW -->
+<div class="row">
+<!-- newest event-->
+<div class="col-lg-6">
+    <div class="portlet portlet-purple">
+        <div class="portlet-heading">
+            <div class="portlet-title">
+                <h4><i class="fa fa-exchange fa-fw"></i> Bài viết mới nhất</h4>
+            </div>
+            <div class="portlet-widgets">
+                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="transactionsPortlet3" class="panel-collapse collapse in">
+            <div class="portlet-body">
+                <div class="table-responsive dashboard-demo-table">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tên bài viết</th>
+                            <th>Người tạo</th>
+                            <th>Ngày tạo</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h4>Test Test</h4>
+                            </td>
+                            <td>Y tế</td>
+                            <td>20-2-2016</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Đang hoạt động</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
+                                </a>
+                                <h4>Tạ Ngọc Duy</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>50</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                </a>
+                                <h4>Đào Trọng Nghĩa</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>1</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popular Event -->
+<div class="col-lg-6">
+    <div class="portlet portlet-purple">
+        <div class="portlet-heading">
+            <div class="portlet-title">
+                <h4><i class="fa fa-exchange fa-fw"></i> Bài viết được quan tâm nhiều nhất</h4>
+            </div>
+            <div class="portlet-widgets">
+                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="transactionsPortlet3" class="panel-collapse collapse in">
+            <div class="portlet-body">
+                <div class="table-responsive dashboard-demo-table">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tên bài viết</th>
+                            <th>Người tạo</th>
+                            <th>Số lượt thích</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h4>Tuấn Tuấn</h4>
+                            </td>
+                            <td>Y tế</td>
+                            <td>100</td>
+                            <td>
+                                <a class="btn btn-xs btn-blue">Sắp diễn ra</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Tạ Ngọc Duy</h4>
+                            </td>
+                            <td>Y tế</td>
+                            <td>50</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Đã xong</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                </a>
+                                <h4>Đào Trọng Nghĩa</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>1</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end popular Event -->
+</div>
+
+<!-- /.page-content -->
+</div>
+<!-- /#page-wrapper -->
+<!-- end MAIN PAGE CONTENT -->
+</div>
+<!-- /#wrapper -->
+    <!-- GLOBAL SCRIPTS -->
+    <script src="~/Content/Admin/js/jquery.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+    <script src="~/Content/Admin/js/plugins/popupoverlay/defaults.js"></script>
+    <!-- HISRC Retina Images -->
+    <script src="~/Content/Admin/js/plugins/hisrc/hisrc.js"></script>
+
+    <!-- PAGE LEVEL PLUGIN SCRIPTS -->
+    <script src="~/Content/Admin/js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/Admin/js/plugins/datatables/datatables-bs3.js"></script>
+    <script src="~/Content/Admin/js/demo/advanced-tables-demo.js"></script>
+
+
+    <!-- THEME SCRIPTS -->
+    <script src="~/Content/Admin/js/flex.js"></script>
+</body>
