@@ -158,6 +158,10 @@ namespace WingS.Controllers.WebApi
         }
 
 
+        /// <summary>
+        /// Get top user who create most thread
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetTopUserCreateThread()
         {
@@ -177,6 +181,39 @@ namespace WingS.Controllers.WebApi
                     Message = "",
                     Type = "",
                     Data = topTheadCreator
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetTopFiveRankUser()
+        {
+            try
+            {
+                List<UserBasicInfoDTO> topRankUser;
+
+
+                using (var db = new UserDAL())
+                {
+                    topRankUser = db.GetTopNumberRankingUser(5);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = topRankUser
                 });
             }
             catch (Exception)

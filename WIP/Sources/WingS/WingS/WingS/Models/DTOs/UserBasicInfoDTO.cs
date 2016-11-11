@@ -23,9 +23,12 @@ namespace WingS.Models.DTOs
         public string Country { get; set; }
         public string CreateDate { get; set; }
         public int Point { get; set; }
+        public string CurrentRank { get; set; }
+        public double RankPercent { get; set; } 
         public int NumberEventDonatedIn { get; set; }
         public decimal TotalMoneyDonatedIn { get; set; }
 
+        
 
         public UserBasicInfoDTO()
         {
@@ -45,6 +48,8 @@ namespace WingS.Models.DTOs
             Country = "";
             CreateDate = "";
             Point = 0;
+            CurrentRank = "";
+            RankPercent = 0;
             NumberEventDonatedIn = 0;
             TotalMoneyDonatedIn = 0;
         }

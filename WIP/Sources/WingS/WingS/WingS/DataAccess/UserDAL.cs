@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using WingS.DataHelper;
 using WingS.Models;
 using WingS.Models.DTOs;
@@ -182,6 +183,11 @@ namespace WingS.DataAccess
                     numberOfPost = db.GetNumberOfPostPerUser(userId);
                 }
 
+                //get ranking information
+                WsRanking ranking = new WsRanking();
+                RankingDTO rank = ranking.RankingWithPoint(userInformation.Point);
+               
+
                 //Set information for user which want to get
                 currentUser.UserId = userId;
                 currentUser.UserName = wsUser.UserName;
@@ -199,9 +205,36 @@ namespace WingS.DataAccess
                 {
                     currentUser.DOB = userInformation.DoB.Value.ToString("dd/MM/yy");
                 }
+
                 currentUser.Country = userInformation.Country;
                 currentUser.CreateDate = wsUser.CreatedDate.ToString("H:mm:ss dd/MM/yy");
                 currentUser.Point = userInformation.Point;
+                if (rank.CurrentRank==0)
+                {
+                    currentUser.CurrentRank = "New";
+                }
+                else if (rank.CurrentRank == 200)
+                {
+                    currentUser.CurrentRank = "Bronze";
+                }
+                else if (rank.CurrentRank == 500)
+                {
+                    currentUser.CurrentRank = "Silver";
+                }
+                else if (rank.CurrentRank == 2000)
+                {
+                    currentUser.CurrentRank = "Golden";
+                }
+                else if (rank.CurrentRank == 5000)
+                {
+                    currentUser.CurrentRank = "Plantium";
+                }
+                else if (rank.CurrentRank == 10000)
+                {
+                    currentUser.CurrentRank = "Diamon";
+                }
+
+                currentUser.RankPercent = rank.RankPercent;
                 currentUser.NumberEventDonatedIn = numberEventDonatedIn;
                 currentUser.TotalMoneyDonatedIn = totalMoneyDonatedIn;
             }
@@ -360,6 +393,35 @@ namespace WingS.DataAccess
             }
             return listUser;
         }
+
+        [HttpGet]
+        public List<UserBasicInfoDTO> GetTopNumberRankingUser(int top)
+        {
+            var topRankingUser = new List<UserBasicInfoDTO>();
+
+            try
+            {
+                List<int> listUserId;
+                using (var db = new Ws_DataContext())
+                {
+                    listUserId = db.User_Information.OrderByDescending(x=>x.Point).Select(x=>x.UserID).Take(5).ToList();
+                }
+
+                foreach (int userId in listUserId)
+                {
+                    UserBasicInfoDTO userBasic = GetFullInforOfUserAsBasicUser(userId);
+                    topRankingUser.Add(userBasic);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return topRankingUser;
+        }
+         
         public void Dispose()
         {
             

@@ -31,6 +31,7 @@ namespace WingS.DataHelper
         public static class Level
         {
             public static readonly int Diamon = 10000;
+            public static readonly int Plantium = 5000;
             public static readonly int Golden = 2000;
             public static readonly int Silver = 500;
             public static readonly int Bronze = 200;
