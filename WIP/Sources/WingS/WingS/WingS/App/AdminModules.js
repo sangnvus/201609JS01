@@ -30,7 +30,8 @@ app.config(function ($routeProvider) {
         })
         .when("/ThreadDashBoard", {
             tittle: "Danh sách bài viết",
-            templateUrl: "/Admin/ThreadDashBoard"
+            templateUrl: "/Admin/ThreadDashBoard",
+            controller: "AdminThreadController"
         })
         .when("/ThreadList", {
             tittle: "Chi tiết bài viết",

@@ -340,6 +340,31 @@ namespace WingS.DataAccess
             }
             return numberOfPost;
         }
+        /// <summary>
+        /// count total threads
+        /// </summary>
+        /// <returns></returns>
+        public int CountTotalThread()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var numberThread = db.Threads.Count();
+                return numberThread;
+            }
+        }
+        /// <summary>
+        /// Count number of new Thread which have been created less than 3 day
+        /// </summary>
+        /// <returns></returns>
+        public int CountNewThread()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                DateTime dateBeforeThreeDay = DateTime.UtcNow.AddDays(-3);
+                var numberThread = db.Ws_User.Count(x => x.CreatedDate >= dateBeforeThreeDay);
+                return numberThread;
+            }
+        }
 
         public void Dispose()
         {
