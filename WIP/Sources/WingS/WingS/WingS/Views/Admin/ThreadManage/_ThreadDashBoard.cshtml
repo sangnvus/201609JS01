@@ -26,14 +26,14 @@
 <!-- begin ADVANCED TABLES ROW -->
 <div class="row">
 <!-- newest event-->
-<div class="col-lg-6">
+<div class="col-lg-12">
     <div class="portlet portlet-purple">
         <div class="portlet-heading">
             <div class="portlet-title">
                 <h4><i class="fa fa-exchange fa-fw"></i> Bài viết mới nhất</h4>
             </div>
             <div class="portlet-widgets">
-                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3" onclick="return false"><i class="fa fa-chevron-down"></i></a>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -44,87 +44,21 @@
                         <thead>
                         <tr>
                             <th>Tên bài viết</th>
-                            <th>Người tạo</th>
-                            <th>Ngày tạo</th>
+                            <th style="width:120px">Người tạo</th>
+                            <th style="width:128px">Ngày tạo</th>
                             <th>Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <h4>Test Test</h4>
-                            </td>
-                            <td>Y tế</td>
-                            <td>20-2-2016</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Đang hoạt động</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                </a>
-                                <h4>Tạ Ngọc Duy</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>50</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                </a>
-                                <h4>Đào Trọng Nghĩa</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>1</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                </a>
-                                <h4>Lê Hồng Nhiên</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>0</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                </a>
-                                <h4>Lê Hồng Nhiên</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>0</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                </a>
-                                <h4>Lê Hồng Nhiên</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>0</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
+                            <tr ng-repeat="item in newCreatedThread">
+                                <td><a href="Admin/#/ThreadDetail"><strong>{{item.ThreadName}}</strong></a></td>
+                                <td>{{item.Creator}}</td>
+                                <td>{{item.CreatedDate}}</td>
+                                <td>
+                                    <button class="btn btn-green" style="width:125px" ng-if="item.Status">Đang thảo luận</button>
+                                    <button class="btn btn-danger" style="width:125px" ng-if="!item.Status">Bị cấm</button>  
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -134,18 +68,18 @@
 </div>
 
 <!-- popular Event -->
-<div class="col-lg-6">
+<div class="col-lg-12">
     <div class="portlet portlet-purple">
         <div class="portlet-heading">
             <div class="portlet-title">
                 <h4><i class="fa fa-exchange fa-fw"></i> Bài viết được quan tâm nhiều nhất</h4>
             </div>
             <div class="portlet-widgets">
-                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet4" onclick="return false"><i class="fa fa-chevron-down"></i></a>
             </div>
             <div class="clearfix"></div>
         </div>
-        <div id="transactionsPortlet3" class="panel-collapse collapse in">
+        <div id="transactionsPortlet4" class="panel-collapse collapse in">
             <div class="portlet-body">
                 <div class="table-responsive dashboard-demo-table">
                     <table class="table table-bordered table-striped table-hover">

@@ -353,17 +353,45 @@ namespace WingS.DataAccess
             }
         }
         /// <summary>
-        /// Count number of new Thread which have been created less than 3 day
+        /// Count number of new Thread which have been created less than 1 day
         /// </summary>
         /// <returns></returns>
         public int CountNewThread()
         {
             using (var db = new Ws_DataContext())
             {
-                DateTime dateBeforeThreeDay = DateTime.UtcNow.AddDays(-3);
-                var numberThread = db.Ws_User.Count(x => x.CreatedDate >= dateBeforeThreeDay);
+                DateTime dateBeforeThreeDay = DateTime.UtcNow.AddDays(-1);
+                var numberThread = db.Threads.Count(x => x.CreatedDate >= dateBeforeThreeDay);
                 return numberThread;
             }
+        }
+        /// <summary>
+        /// Count number of user is actived or not
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+        public int CountThreadIsBan()
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var numberThread = db.Threads.Count(x => x.Status == false);
+                return numberThread;
+            }
+        }
+        /// <summary>
+        /// Get Thread have been create less than 1 day
+        /// </summary>
+        /// <returns></returns>
+        public List<Thread> GetNewThread()
+        {
+            List<Thread> listThread;
+            using (var db = new Ws_DataContext())
+            {
+                DateTime dateBeforeThreeDay = DateTime.UtcNow.AddDays(-1);
+                var threads = db.Threads.OrderByDescending(x => x.CreatedDate).Where(x => x.CreatedDate >= dateBeforeThreeDay);
+                listThread = threads.ToList();
+            }
+            return listThread;
         }
 
         public void Dispose()

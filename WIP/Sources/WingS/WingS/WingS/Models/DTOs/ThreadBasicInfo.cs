@@ -9,6 +9,7 @@ namespace WingS.Models.DTOs
     {
         public int ThreadID { get; set; }
         public int UserID { get; set; }
+        public string Creator { get; set; }
         public string ThreadName { get; set; }
         public List<String> ImageUrl { get; set; }
         public string Content { get; set; }
@@ -21,6 +22,7 @@ namespace WingS.Models.DTOs
             ImageUrl = null;
             ThreadID = 0;
             UserID = 0;
+            Creator = "";
             ThreadName = "";
             Content = "";
             Likes = 0;

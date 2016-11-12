@@ -35,7 +35,8 @@ app.config(function ($routeProvider) {
         })
         .when("/ThreadList", {
             tittle: "Chi tiết bài viết",
-            templateUrl: "/Admin/ThreadList"
+            templateUrl: "/Admin/ThreadList",
+            controller: "AdminThreadController"
         });
 
 });
