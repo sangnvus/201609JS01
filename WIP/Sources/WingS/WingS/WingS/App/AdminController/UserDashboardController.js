@@ -21,4 +21,10 @@
         $scope.TopFiveUserCreateThread = response.Data;
 
     });
+
+    // Load information of user who in top 5 rank
+    $http.get("/api/AdminUserDashboard/GetTopFiveRankUser").success(function (response) {
+        $scope.TopFiveRankingUser = response.Data;
+
+    });
 });

@@ -30,6 +30,12 @@ namespace WingS.DataHelper
                 rank.CurrentRank = WsConstant.Level.Golden;
                 rank.RankPercent = Math.Round((double)(point * 100) / WsConstant.Level.Golden, 2);
             }
+            else if (point > WsConstant.Level.Golden && point <= WsConstant.Level.Plantium)
+            {
+                rank.Point = point;
+                rank.CurrentRank = WsConstant.Level.Plantium;
+                rank.RankPercent = Math.Round((double)(point * 100) / WsConstant.Level.Plantium, 2);
+            }
             else if (point > WsConstant.Level.Golden && point <= WsConstant.Level.Diamon)
             {
                 rank.Point = point;

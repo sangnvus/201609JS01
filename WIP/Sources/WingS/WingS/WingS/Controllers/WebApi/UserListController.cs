@@ -21,7 +21,7 @@ namespace WingS.Controllers.WebApi
         public IHttpActionResult GetAllUser()
         {
             List<Ws_User> listUser = new List<Ws_User>();
-            var basicUserList = new List<UserBasicDTO>();
+            var basicUserList = new List<UserBasicInfoDTO>();
             try
             {
                 using (var db = new UserDAL())
@@ -30,14 +30,14 @@ namespace WingS.Controllers.WebApi
                 }
                 foreach (var e in listUser)
                 {
-                    basicUserList.Add(new UserBasicDTO
+                    basicUserList.Add(new UserBasicInfoDTO
                     {
                         UserId = e.UserID,
                         UserName = e.UserName,
                         AccountType = e.AccountType,
                         IsActive = e.IsActive,
                         IsVerify = e.IsVerify,
-                        CreatedDate = e.CreatedDate.ToString("dd/MM/yyyy"),
+                        CreateDate = e.CreatedDate.ToString("dd/MM/yyyy"),
                         Email = e.Email
                     });
                 }
