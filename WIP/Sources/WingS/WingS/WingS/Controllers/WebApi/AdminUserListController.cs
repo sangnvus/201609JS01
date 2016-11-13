@@ -13,35 +13,21 @@ using WingS.Models.DTOs;
 
 namespace WingS.Controllers.WebApi
 {
-    public class UserListController : ApiController
+    public class AdminUserListController : ApiController
     {
         // Get list thread by create date
         [HttpGet]
         [ActionName("GetAllUser")]
         public IHttpActionResult GetAllUser()
         {
-            List<Ws_User> listUser = new List<Ws_User>();
-            var basicUserList = new List<UserBasicInfoDTO>();
+            List<UserBasicDTO> listUser = new List<UserBasicDTO>();
             try
             {
                 using (var db = new UserDAL())
                 {
                     listUser = db.GetAllUser();
                 }
-                foreach (var e in listUser)
-                {
-                    basicUserList.Add(new UserBasicInfoDTO
-                    {
-                        UserId = e.UserID,
-                        UserName = e.UserName,
-                        AccountType = e.AccountType,
-                        IsActive = e.IsActive,
-                        IsVerify = e.IsVerify,
-                        CreateDate = e.CreatedDate.ToString("dd/MM/yyyy"),
-                        Email = e.Email
-                    });
-                }
-                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = basicUserList });
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = listUser });
             }
             catch (Exception)
             {
@@ -50,19 +36,21 @@ namespace WingS.Controllers.WebApi
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [ActionName("ChangeStatusUser")]
         public IHttpActionResult ChangeStatusUser(int userid)
         {
             try
             {
+                bool statusUser;
                 using (var userDal = new UserDAL())
                 {
                     var user = userDal.GetUserById(userid);
                     user.IsActive = !user.IsActive;
+                    statusUser = user.IsActive;
                     userDal.UpdateUser(user);
                 }
-                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = statusUser });
             }
             catch (Exception)
             {
