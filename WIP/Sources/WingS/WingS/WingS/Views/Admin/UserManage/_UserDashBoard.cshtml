@@ -57,7 +57,7 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="item in TopFiveDonator">
-                                                <td>1</td>
+                                                <td>{{$index + 1}}</td>
                                                 <td>
                                                     <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
                                                         <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
@@ -67,8 +67,8 @@
                                                 <td>{{item.UserName}}</td>
                                                 <td>{{item.NumberEventDonatedIn}}</td>
                                                 <td>{{item.TotalMoneyDonatedIn}}&nbsp;vnd</td>
-                                                <td>{{}}</td>
-                                                <td>{{}}</td>
+                                                <td>{{item.LastDonateMoney}}</td>
+                                                <td>{{item.LastDonateDate}}</td>
                                                 <td ng-switch="item.IsVerify">
                                                     <div ng-switch-when="false">
                                                         <a class="btn btn-xs btn-warning">Chưa kích hoạt</a>
@@ -179,7 +179,7 @@
                                                     </a>
                                                     <h4>{{item.FullName}}</h4>
                                                 </td>
-                                                <td>{{item.Email}}</td>
+                                                <td>{{item.UserName}}</td>
                                                 <td>{{item.Point}}</td>
                                                 <td>{{item.CurrentRank}}</td>
                                                 <td ng-switch="item.IsVerify">

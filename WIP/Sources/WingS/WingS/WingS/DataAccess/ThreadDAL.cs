@@ -393,6 +393,55 @@ namespace WingS.DataAccess
             }
             return listThread;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public List<UserBasicInfoDTO> GetTopNumberThreadCreator(int top)
+        {
+            List<UserBasicInfoDTO> topThreadCreator = new List<UserBasicInfoDTO>();
+
+            try
+            {
+                List<UserBasicInfoDTO> listUser = new List<UserBasicInfoDTO>();
+
+
+                // lay ra nhung userid co trong bang Thread
+                List<int> listUserIdInDonation;
+
+                using (var db = new Ws_DataContext())
+                {
+                    var listUserId = db.Threads.Select(x => x.UserId).Distinct();
+                    listUserIdInDonation = listUserId.ToList();
+                }
+
+                // Lay thong tin cua nhung user ma co id trong Donation
+                foreach (int userId in listUserIdInDonation)
+                {
+                    UserBasicInfoDTO userBasic;
+
+                    using (var db = new UserDAL())
+                    {
+                        userBasic = db.GetFullInforOfUserAsBasicUser(userId);
+                    }
+
+                    listUser.Add(userBasic);
+                }
+
+                // Lay top 10 user donate nhieu nhat
+                topThreadCreator = listUser.OrderByDescending(x => x.NumberOfPost).Take(top).ToList();
+
+
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return topThreadCreator;
+        } 
 
         public void Dispose()
         {

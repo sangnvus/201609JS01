@@ -9,6 +9,11 @@ namespace WingS.DataAccess
 {
     public class DonationDAL: IDisposable
     {
+        /// <summary>
+        /// Get Number event which user donate in 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>int</returns>
         public int GetNumberEventDonatedInByUsingUserId(int userId)
         {
             int numberEvent = 0;
@@ -28,6 +33,11 @@ namespace WingS.DataAccess
             return numberEvent;
         }
 
+        /// <summary>
+        /// Get total money which user has donated.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>decimal</returns>
         public decimal GetTotalMoneyDonatedInByUsingUserId(int userId)
         {
             decimal totalMoney = 0;
@@ -59,7 +69,6 @@ namespace WingS.DataAccess
             try
             {
                 List<UserBasicInfoDTO> listUserDonate = new List<UserBasicInfoDTO>();
-                
 
                 // lay ra nhung userid co trong bang Donation
                 List<int> listUserIdInDonation;
@@ -73,44 +82,16 @@ namespace WingS.DataAccess
                 // Lay thong tin cua nhung user ma co id trong Donation
                 foreach (int userId in listUserIdInDonation)
                 {
-                    Ws_User user;
                     UserBasicInfoDTO userBasic;
-
                     using (var db = new UserDAL())
                     {
-                        user = db.GetUserById(userId);
-                        userBasic = db.GetUserInfo(user.UserName);
-
-                        userBasic.NumberEventDonatedIn = GetNumberEventDonatedInByUsingUserId(user.UserID);
-                        userBasic.TotalMoneyDonatedIn = GetTotalMoneyDonatedInByUsingUserId(user.UserID);
+                        userBasic = db.GetFullInforOfUserAsBasicUser(userId);
                     }
-
-                    listUserDonate.Add(new UserBasicInfoDTO
-                    {
-                        UserName = user.UserName,
-                        AccountType = user.AccountType,
-                        IsActive = user.IsActive,
-                        IsVerify = user.IsVerify,
-                        FullName = userBasic.FullName,
-                        ProfileImage = userBasic.ProfileImage,
-                        Email = user.Email,
-                        Gender = userBasic.Gender,
-                        Phone = userBasic.Phone,
-                        Address = userBasic.Address,
-                        //NumberOfPost = numberOfPost,
-                        DOB = userBasic.DOB,
-                        Country = userBasic.Country,
-                        CreateDate = user.CreatedDate.ToString("H:mm:ss dd/MM/yy"),
-                        Point = userBasic.Point,
-                        NumberEventDonatedIn = userBasic.NumberEventDonatedIn,
-                        TotalMoneyDonatedIn = userBasic.TotalMoneyDonatedIn
-                    });
+                    listUserDonate.Add(userBasic);
                 }
                 
                 // Lay top 10 user donate nhieu nhat
                 topTenDonator = listUserDonate.OrderByDescending(x => x.TotalMoneyDonatedIn).Take(top).ToList();
-
-                
             }
             catch (Exception)
             {
@@ -120,49 +101,22 @@ namespace WingS.DataAccess
             return topTenDonator;
         }
 
-        public List<UserBasicInfoDTO> GetTopNumberThreadCreator(int top)
+        public Donation GetLastDonateInformation(int userId)
         {
-            List<UserBasicInfoDTO> topThreadCreator = new List<UserBasicInfoDTO>();
-
+            Donation donationInfor = new Donation();
             try
             {
-                List<UserBasicInfoDTO> listUser = new List<UserBasicInfoDTO>();
-
-
-                // lay ra nhung userid co trong bang Thread
-                List<int> listUserIdInDonation;
-
                 using (var db = new Ws_DataContext())
                 {
-                    var listUserId = db.Threads.Select(x => x.UserId).Distinct();
-                    listUserIdInDonation = listUserId.ToList();
+                    donationInfor = db.Donations.OrderByDescending(x=>x.DonatedDate).FirstOrDefault(x => x.UserId == userId);
                 }
-
-                // Lay thong tin cua nhung user ma co id trong Donation
-                foreach (int userId in listUserIdInDonation)
-                {
-                    UserBasicInfoDTO userBasic;
-
-                    using (var db = new UserDAL())
-                    {
-                        userBasic = db.GetFullInforOfUserAsBasicUser(userId);
-                    }
-
-                    listUser.Add(userBasic);
-                }
-
-                // Lay top 10 user donate nhieu nhat
-                topThreadCreator = listUser.OrderByDescending(x => x.NumberOfPost).Take(top).ToList();
-
-
             }
             catch (Exception)
             {
-
                 //throw;
             }
-            return topThreadCreator;
-        } 
+            return donationInfor;
+        }
 
         public void Dispose()
         {

@@ -18,10 +18,10 @@ app.config(function ($routeProvider) {
             templateUrl: "/Admin/UserDashBoard",
             controller: "UserDashboardController"
         })
-        .when("/UserProfile", {
+        .when("/UserProfile/:UserId", {
             tittle: "Thông tin cá nhân",
-            templateUrl: "/Admin/UserProfile"
-
+            templateUrl: "/Admin/UserProfile",
+            controller: "UserProfileController"
         })
         .when("/UserList", {
             tittle: "Danh sách thành viên",

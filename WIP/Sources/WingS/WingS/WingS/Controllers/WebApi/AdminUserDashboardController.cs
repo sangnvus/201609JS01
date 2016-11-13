@@ -170,7 +170,7 @@ namespace WingS.Controllers.WebApi
                 List<UserBasicInfoDTO> topTheadCreator;
 
 
-                using (var db = new DonationDAL())
+                using (var db = new UserDAL())
                 {
                     topTheadCreator = db.GetTopNumberThreadCreator(5);
                 }

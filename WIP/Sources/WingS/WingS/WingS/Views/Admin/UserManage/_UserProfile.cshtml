@@ -35,14 +35,16 @@
                                 <div class="tab-pane fade in active" id="overview">
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <img class="img-responsive img-profile" src="~/Content/images/avatar_default.png" alt="">
+                                            <img class="img-responsive img-profile" src="{{currentUserProfile.ProfileImage}}" alt="">
                                             <div class="list-group">
                                                 <a href="#" class="list-group-item active" style="text-align: center;">Tổng quan</a>
-                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">9</span></a>
-                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Số bài viết đã tạo<span class="badge purple">9</span></a>
-                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Tổng số điểm<span class="badge orange">100</span></a>
-                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">A</span></a>
-                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Trạng thái<span class="badge blue">Đang hoạt động</span></a>
+                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">{{currentUserProfile.NumberEventDonatedIn}}</span></a>
+                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Số bài viết đã tạo<span class="badge purple">{{currentUserProfile.NumberOfPost}}</span></a>
+                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Tổng số điểm<span class="badge orange">{{currentUserProfile.Point}}</span></a>
+                                                <a href="#" class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">{{currentUserProfile.CurrentRank}}</span></a>
+                                                <a href="#" class="list-group-item" style="padding-left: 10px;" ng-if="currentUserProfile.IsActive && currentUserProfile.IsVerify">Trạng thái<span class="badge green">Đang hoạt động</span></a>
+                                                <a href="#" class="list-group-item" style="padding-left: 10px;" ng-if="!currentUserProfile.IsVerify">Trạng thái<span class="badge" style="background-color: #f0ad4e;">Chưa kích hoạt</span></a>
+                                                <a href="#" class="list-group-item" style="padding-left: 10px;" ng-if="!currentUserProfile.IsActive && currentUserProfile.IsVerify">Trạng thái<span class="badge gray">Bị cấm</span></a>
                                             </div>
                                         </div>
                                         <div class="col-lg-9">
@@ -52,49 +54,49 @@
                                                         <h4 class="page-header" style="margin-top: 20px;">Thông tin cá nhân:</h4>
                                                         <div class="form-group">
                                                             <label>Tên đầy đủ</label>
-                                                            <input type="text" class="form-control" value="Đỗ Văn Tuấn" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.FullName}}" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Số điện thoại</label>
-                                                            <input type="tel" class="form-control" value="0123456789" disabled>
+                                                            <input type="tel" class="form-control" value="{{currentUserProfile.Phone}}" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Địa chỉ</label>
-                                                            <input type="text" class="form-control" value="Hòa Lạc, Hà Nội" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.Address}}" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Quốc gia</label>
-                                                            <input type="text" class="form-control" value="Việt Nam" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.Country}}" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Giới tính</label>
-                                                            <input type="text" class="form-control" value="Nam" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.Gender}}" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Ngày sinh</label>
-                                                            <input type="text" class="form-control" value="17/08/1994" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.DOB}}" disabled>
                                                         </div>
                                                         <h4 class="page-header">Thông tin liên lạc:</h4>
                                                         <div class="form-group">
                                                             <label>Địa chỉ Email</label>
-                                                            <input type="text" class="form-control" value="anhtuan@gmail.com" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.Email}}" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Đường dẫn Facebook</label>
-                                                            <input type="text" class="form-control" value="https://www.facebook.com/Tuan.Dragon.DoVan" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.FacebookUri}}" disabled>
                                                         </div>
                                                         <h4 class="page-header">Thông tin thêm:</h4>
                                                         <div class="form-group">
                                                             <label>Tổ chức</label>
-                                                            <input type="text" class="form-control" value="Những người đẹp trai" disabled>
+                                                            <input type="text" class="form-control" value="Chua bind" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Ngày tham gia</label>
-                                                            <input type="text" class="form-control" value="17/08/2016" disabled>
+                                                            <input type="text" class="form-control" value="{{currentUserProfile.CreateDate}}" disabled>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Mô tả</label>
-                                                            <input type="text" class="form-control" value="Anh Tuấn" disabled>
+                                                            <input type="text" class="form-control" value="chua co tron database" disabled>
                                                         </div>
 
                                                     </form>

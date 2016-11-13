@@ -32,7 +32,7 @@ namespace WingS.Controllers
                 {
                     AccountInfo.LastLogin = DateTime.Now;
                     userDal.UpdateUser(AccountInfo);
-                    FormsAuthentication.SetAuthCookie(AccountInfo.UserName, false);
+                    //FormsAuthentication.SetAuthCookie(AccountInfo.UserName, false);
                 }
                 //Add remember me
 

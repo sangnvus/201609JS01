@@ -21,12 +21,16 @@ namespace WingS.Models.DTOs
         public int NumberOfPost { get; set; }
         public string DOB { get; set; }
         public string Country { get; set; }
+        public string FacebookUri { get; set; }
         public string CreateDate { get; set; }
         public int Point { get; set; }
         public string CurrentRank { get; set; }
         public double RankPercent { get; set; } 
         public int NumberEventDonatedIn { get; set; }
         public decimal TotalMoneyDonatedIn { get; set; }
+        public decimal LastDonateMoney { get; set; }
+        public string LastDonateDate { get; set; }
+
 
         
 

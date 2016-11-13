@@ -163,6 +163,9 @@ namespace WingS.DataAccess
 
             int numberEventDonatedIn = 0;
             decimal totalMoneyDonatedIn = 0;
+            decimal lastDonateMoney = 0;
+            string lastDonateDate = "";
+            
             int numberOfPost = 0;
 
             try
@@ -175,6 +178,10 @@ namespace WingS.DataAccess
                 {
                     numberEventDonatedIn = db.GetNumberEventDonatedInByUsingUserId(userId);
                     totalMoneyDonatedIn = db.GetTotalMoneyDonatedInByUsingUserId(userId);
+
+                    Donation lasDonation = db.GetLastDonateInformation(userId);
+                    lastDonateMoney = lasDonation.DonatedMoney;
+                    lastDonateDate = lasDonation.DonatedDate.ToString("H:mm:ss dd/MM/yy");
                 }
 
                 //Get number of post for current user
@@ -207,6 +214,7 @@ namespace WingS.DataAccess
                 }
 
                 currentUser.Country = userInformation.Country;
+                currentUser.FacebookUri = userInformation.FacebookUrl;
                 currentUser.CreateDate = wsUser.CreatedDate.ToString("H:mm:ss dd/MM/yy");
                 currentUser.Point = userInformation.Point;
                 if (rank.CurrentRank==0)
@@ -237,6 +245,8 @@ namespace WingS.DataAccess
                 currentUser.RankPercent = rank.RankPercent;
                 currentUser.NumberEventDonatedIn = numberEventDonatedIn;
                 currentUser.TotalMoneyDonatedIn = totalMoneyDonatedIn;
+                currentUser.LastDonateMoney = lastDonateMoney;
+                currentUser.LastDonateDate = lastDonateDate;
             }
             catch (Exception)
             {
@@ -421,6 +431,55 @@ namespace WingS.DataAccess
             }
             return topRankingUser;
         }
+
+        /// <summary>
+        /// Get top user who create most thread
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public List<UserBasicInfoDTO> GetTopNumberThreadCreator(int top)
+        {
+            List<UserBasicInfoDTO> topThreadCreator = new List<UserBasicInfoDTO>();
+
+            try
+            {
+                List<UserBasicInfoDTO> listUser = new List<UserBasicInfoDTO>();
+
+
+                // lay ra nhung userid co trong bang Thread
+                List<int> listUserIdInDonation;
+
+                using (var db = new Ws_DataContext())
+                {
+                    var listUserId = db.Threads.Select(x => x.UserId).Distinct();
+                    listUserIdInDonation = listUserId.ToList();
+                }
+
+                // Lay thong tin cua nhung user ma co id trong Donation
+                foreach (int userId in listUserIdInDonation)
+                {
+                    UserBasicInfoDTO userBasic;
+
+                    using (var db = new UserDAL())
+                    {
+                        userBasic = db.GetFullInforOfUserAsBasicUser(userId);
+                    }
+
+                    listUser.Add(userBasic);
+                }
+
+                // Lay top 10 user donate nhieu nhat
+                topThreadCreator = listUser.OrderByDescending(x => x.NumberOfPost).Take(top).ToList();
+
+
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return topThreadCreator;
+        } 
          
         public void Dispose()
         {
