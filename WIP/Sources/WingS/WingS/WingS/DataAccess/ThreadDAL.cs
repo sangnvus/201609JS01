@@ -393,45 +393,45 @@ namespace WingS.DataAccess
             }
             return listThread;
         }
-        
         /// <summary>
-        /// 
+        /// Get list newest thread 
         /// </summary>
-        /// <param name="top"></param>
         /// <returns></returns>
-        public List<UserBasicInfoDTO> GetTopNumberThreadCreator(int top)
+        public List<ThreadBasicInfo> GetNewestNumberThread(int top)
         {
-            List<UserBasicInfoDTO> topThreadCreator = new List<UserBasicInfoDTO>();
+            List<ThreadBasicInfo> topNewestThread = new List<ThreadBasicInfo>();
 
             try
             {
-                List<UserBasicInfoDTO> listUser = new List<UserBasicInfoDTO>();
-
-
-                // lay ra nhung userid co trong bang Thread
-                List<int> listUserIdInDonation;
-
-                using (var db = new Ws_DataContext())
+                var threadListBasic = new List<ThreadBasicInfo>();
+                using (var db = new ThreadDAL())
                 {
-                    var listUserId = db.Threads.Select(x => x.UserId).Distinct();
-                    listUserIdInDonation = listUserId.ToList();
-                }
-
-                // Lay thong tin cua nhung user ma co id trong Donation
-                foreach (int userId in listUserIdInDonation)
-                {
-                    UserBasicInfoDTO userBasic;
-
-                    using (var db = new UserDAL())
+                    List<Thread> threadList = db.GetNewThread();
+                    if (threadList != null)
                     {
-                        userBasic = db.GetFullInforOfUserAsBasicUser(userId);
+                        foreach (Thread thread in threadList)
+                        {
+                            //Get Creator of Thread
+                            Ws_User creatorThread;
+                            using (var dbUser = new UserDAL())
+                            {
+                                creatorThread = dbUser.GetUserById(thread.UserId);
+                            }
+                            threadListBasic.Add(new ThreadBasicInfo
+                            {
+                                ThreadName = thread.Title,
+                                Creator = creatorThread.UserName,
+                                CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd-MM-yy"),
+                                Status = thread.Status,
+                            });
+                        }
                     }
 
-                    listUser.Add(userBasic);
+
                 }
 
-                // Lay top 10 user donate nhieu nhat
-                topThreadCreator = listUser.OrderByDescending(x => x.NumberOfPost).Take(top).ToList();
+                // Get top newest Thread
+                topNewestThread = threadListBasic.OrderByDescending(x => x.CreatedDate).Take(top).ToList();
 
 
             }
@@ -440,9 +440,63 @@ namespace WingS.DataAccess
 
                 //throw;
             }
-            return topThreadCreator;
-        } 
+            return topNewestThread;
+        }
+        /// <summary>
+        /// Get list thread follow Like
+        /// </summary>
+        /// <returns></returns>
+        public List<ThreadBasicInfo> GetTopLikeNumberThread(int top)
+        {
+            List<ThreadBasicInfo> topLikeThread = new List<ThreadBasicInfo>();
 
+            try
+            {
+                var threadListBasic = new List<ThreadBasicInfo>();
+                List<Thread> threadList = null;
+                //Get all thread in Thread table
+                using (var db = new Ws_DataContext())
+                {
+                    var threads = db.Threads.OrderBy(x => x.ThreadId);
+                    threadList = threads.ToList();
+                }               
+                if (threadList != null)
+                    {
+                        foreach (Thread thread in threadList)
+                        {
+                            //Get Creator of Thread
+                            Ws_User creatorThread;
+                            using (var dbUser = new UserDAL())
+                            {
+                                creatorThread = dbUser.GetUserById(thread.UserId);
+                            }
+                            int like;
+                            using (var dbThread = new ThreadDAL())
+                            {
+                                like = dbThread.CountLikeInThread(thread.ThreadId);
+                            }
+                            threadListBasic.Add(new ThreadBasicInfo
+                            {
+                                ThreadName = thread.Title,
+                                Creator = creatorThread.UserName,
+                                Likes = like,
+                                Status = thread.Status,
+                            });
+                        }
+                    }
+
+
+                // Get top 10 newest Thread
+                topLikeThread = threadListBasic.OrderByDescending(x => x.Likes).Take(top).ToList();
+
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return topLikeThread;
+        }
         public void Dispose()
         {
             
