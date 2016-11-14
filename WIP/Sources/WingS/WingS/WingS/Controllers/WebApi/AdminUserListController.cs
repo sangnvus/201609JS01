@@ -20,7 +20,7 @@ namespace WingS.Controllers.WebApi
         [ActionName("GetAllUser")]
         public IHttpActionResult GetAllUser()
         {
-            List<UserBasicDTO> listUser = new List<UserBasicDTO>();
+            List<UserBasicInfoDTO> listUser = new List<UserBasicInfoDTO>();
             try
             {
                 using (var db = new UserDAL())

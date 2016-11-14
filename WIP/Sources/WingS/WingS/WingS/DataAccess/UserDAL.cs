@@ -121,33 +121,25 @@ namespace WingS.DataAccess
         }
 
         //Get user information (Profile page)
-        public UserBasicInfoDTO GetUserInfo(string userNameOrEmail)
+        public UserBasicInfoDTO GetUserInfoUsingUserNameOrEmail(string userNameOrEmail)
         {
-            using (var db = new Ws_DataContext())
+            UserBasicInfoDTO userBasic = new UserBasicInfoDTO();
+            try
             {
-                var currentUser = (from user in db.Ws_User
-                                   where user.UserName.Equals(userNameOrEmail) || user.Email.Equals(userNameOrEmail)
-                                   select new UserBasicInfoDTO
-                                   {
-                                       UserId = user.UserID,
-                                       FullName = user.User_Information.FullName,
-                                       IsActive = user.IsActive,
-                                       ProfileImage = user.User_Information.ProfileImage,
-                                       UserName = user.UserName,
-                                       AccountType = user.AccountType,
-                                       Email = user.Email,
-                                       Address = user.User_Information.UserAddress,
-                                       Country = user.User_Information.Country,
-                                       Gender = user.User_Information.Gender,
-                                       Phone = user.User_Information.Phone,
-                                       Point = user.User_Information.Point,
-                                      // CreateDate = user.CreatedDate.ToString("H:mm:ss dd/MM/yy"),
-                                       //DOB = user.User_Information.DoB.ToString("dd/MM/yy"),
-     
+                Ws_User user;
+                using (var db = new Ws_DataContext())
+                {
+                    user = db.Ws_User.FirstOrDefault(x => x.UserName == userNameOrEmail || x.Email == userNameOrEmail);
+                }
 
-                                   }).FirstOrDefault();
-                return currentUser;
+                userBasic = GetFullInforOfUserAsBasicUser(user.UserID);
             }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return userBasic;
         }
 
         /// <summary>
@@ -210,7 +202,7 @@ namespace WingS.DataAccess
                 currentUser.NumberOfPost = numberOfPost;
                 if (userInformation.DoB != null)
                 {
-                    currentUser.DOB = userInformation.DoB.Value.ToString("dd/MM/yy");
+                    currentUser.DOB = userInformation.DoB.Value.ToString("dd/MM/yyyy");
                 }
 
                 currentUser.Country = userInformation.Country;
@@ -308,28 +300,33 @@ namespace WingS.DataAccess
         /// Get All User in WS_USER
         /// </summary>
         /// <returns>list ws_user</returns>
-        public List<UserBasicDTO> GetAllUser()
+        public List<UserBasicInfoDTO> GetAllUser()
         {
-            var listUser = new List<UserBasicDTO>();
-            using (var db = new Ws_DataContext())
+            var listUser = new List<UserBasicInfoDTO>();
+            try
             {
-                var allUser = (from row in db.Ws_User select row).ToList();
-                foreach (var e in allUser)
+                List<int> userIdList;
+                using (var db = new Ws_DataContext())
                 {
-                    listUser.Add(new UserBasicDTO
-                    {
-                        UserId = e.UserID,
-                        UserName = e.UserName,
-                        FullName = GetFullNameById(e.UserID),
-                        AccountType = e.AccountType,
-                        IsActive = e.IsActive,
-                        IsVerify = e.IsVerify,
-                        CreatedDate = e.CreatedDate.ToString("dd/MM/yyyy"),
-                        Email = e.Email
-                    });
+                    userIdList = db.Ws_User.Select(x => x.UserID).ToList();
                 }
-                return listUser;
+
+                using (var db = new UserDAL())
+                {
+                    foreach (int userId in userIdList)
+                    {
+                        UserBasicInfoDTO userBasic = db.GetFullInforOfUserAsBasicUser(userId);
+                        listUser.Add(userBasic);
+                    }
+                }
+
             }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return listUser;
         }
         /// <summary>
         /// Get User Name By Id
