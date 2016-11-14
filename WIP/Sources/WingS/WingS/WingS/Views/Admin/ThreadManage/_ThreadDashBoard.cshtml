@@ -43,6 +43,7 @@
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
+                            <th>STT</th>
                             <th>Tên bài viết</th>
                             <th style="width:120px">Người tạo</th>
                             <th style="width:128px">Ngày tạo</th>
@@ -50,15 +51,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in newCreatedThread">
-                                <td><a href="Admin/#/ThreadDetail"><strong>{{item.ThreadName}}</strong></a></td>
-                                <td>{{item.Creator}}</td>
-                                <td>{{item.CreatedDate}}</td>
-                                <td>
-                                    <button class="btn btn-green" style="width:125px" ng-if="item.Status">Đang thảo luận</button>
-                                    <button class="btn btn-danger" style="width:125px" ng-if="!item.Status">Bị cấm</button>  
-                                </td>
-                            </tr>
+                        <tr ng-repeat="item in newCreatedThread">
+                            <td>{{ $index + 1 }}</td>
+                            <td><a href="Admin/#/ThreadDetail"><strong>{{item.ThreadName}}</strong></a></td>
+                            <td>{{item.Creator}}</td>
+                            <td>{{item.CreatedDate}}</td>
+                            <td>
+                                <button class="btn btn-green" style="width: 125px" ng-if="item.Status">Đang thảo luận</button>
+                                <button class="btn btn-danger" style="width: 125px" ng-if="!item.Status">Bị cấm</button>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -67,7 +69,7 @@
     </div>
 </div>
 
-<!-- popular Event -->
+<!-- popular Thread -->
 <div class="col-lg-12">
     <div class="portlet portlet-purple">
         <div class="portlet-heading">
@@ -84,86 +86,25 @@
                 <div class="table-responsive dashboard-demo-table">
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
-                        <tr>
-                            <th>Tên bài viết</th>
-                            <th>Người tạo</th>
-                            <th>Số lượt thích</th>
-                            <th>Trạng thái</th>
-                        </tr>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên bài viết</th>
+                                <th style="width:120px">Người tạo</th>
+                                <th style="width:128px">Số lượt thích</th>
+                                <th>Trạng thái</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <h4>Tuấn Tuấn</h4>
-                            </td>
-                            <td>Y tế</td>
-                            <td>100</td>
-                            <td>
-                                <a class="btn btn-xs btn-blue">Sắp diễn ra</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Tạ Ngọc Duy</h4>
-                            </td>
-                            <td>Y tế</td>
-                            <td>50</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Đã xong</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                </a>
-                                <h4>Đào Trọng Nghĩa</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>1</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                </a>
-                                <h4>Lê Hồng Nhiên</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>0</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                </a>
-                                <h4>Lê Hồng Nhiên</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>0</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                </a>
-                                <h4>Lê Hồng Nhiên</h4>
-                            </td>
-                            <td>test@gmail.com</td>
-                            <td>0</td>
-                            <td>
-                                <a class="btn btn-xs btn-green">Active</a>
-                            </td>
-                        </tr>
+                            <tr ng-repeat="item in topLikeThread">
+                                <td>{{ $index + 1 }}</td>
+                                <td><a href="Admin/#/ThreadDetail"><strong>{{item.ThreadName}}</strong></a></td>
+                                <td>{{item.Creator}}</td>
+                                <td style="text-align: center;">{{item.Likes}}</td>
+                                <td>
+                                    <button class="btn btn-green" style="width: 125px" ng-if="item.Status">Đang thảo luận</button>
+                                    <button class="btn btn-danger" style="width: 125px" ng-if="!item.Status">Bị cấm</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -171,7 +112,7 @@
         </div>
     </div>
 </div>
-<!-- end popular Event -->
+<!-- end popular Thread -->
 </div>
 
 <!-- /.page-content -->

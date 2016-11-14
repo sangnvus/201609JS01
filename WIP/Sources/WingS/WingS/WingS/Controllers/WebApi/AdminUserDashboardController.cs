@@ -67,33 +67,8 @@ namespace WingS.Controllers.WebApi
                     foreach (Ws_User user in userList)
                     {
                         //Get information of user
-                        UserBasicInfoDTO userBasic = db.GetUserInfo(user.UserName);
-                        
-                        //get number of post
-                        int numberOfPost;
-                        using (var dbThread = new ThreadDAL())
-                        {
-                            numberOfPost=dbThread.GetNumberOfPostPerUser(user.UserID);
-                        }
-
-                        userListBasic.Add(new UserBasicInfoDTO
-                        {
-                            UserName = user.UserName,
-                            AccountType = user.AccountType,
-                            IsActive = user.IsActive,
-                            IsVerify = user.IsVerify,
-                            FullName = userBasic.FullName,
-                            ProfileImage = userBasic.ProfileImage,
-                            Email = user.Email,
-                            Gender = userBasic.Gender,
-                            Phone = userBasic.Phone,
-                            Address = userBasic.Address,
-                            NumberOfPost = numberOfPost,
-                            DOB = userBasic.DOB,
-                            Country = userBasic.Country,
-                            CreateDate = user.CreatedDate.ToString("H:mm:ss dd/MM/yy"),
-                            Point = userBasic.Point,
-                        });
+                        UserBasicInfoDTO userBasic = db.GetFullInforOfUserAsBasicUser(user.UserID);
+                        userListBasic.Add(userBasic);
                     }
 
                 }

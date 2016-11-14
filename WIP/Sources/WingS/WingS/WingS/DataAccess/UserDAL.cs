@@ -308,13 +308,46 @@ namespace WingS.DataAccess
         /// Get All User in WS_USER
         /// </summary>
         /// <returns>list ws_user</returns>
-        public List<Ws_User> GetAllUser()
+        public List<UserBasicDTO> GetAllUser()
         {
+            var listUser = new List<UserBasicDTO>();
             using (var db = new Ws_DataContext())
             {
-                var allUser = (from row in db.Ws_User where row.AccountType == false select row).ToList();
-                return allUser;
+                var allUser = (from row in db.Ws_User select row).ToList();
+                foreach (var e in allUser)
+                {
+                    listUser.Add(new UserBasicDTO
+                    {
+                        UserId = e.UserID,
+                        UserName = e.UserName,
+                        FullName = GetFullNameById(e.UserID),
+                        AccountType = e.AccountType,
+                        IsActive = e.IsActive,
+                        IsVerify = e.IsVerify,
+                        CreatedDate = e.CreatedDate.ToString("dd/MM/yyyy"),
+                        Email = e.Email
+                    });
+                }
+                return listUser;
             }
+        }
+        /// <summary>
+        /// Get User Name By Id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public string GetFullNameById(int userId)
+        {
+            string userNm = "";
+            using (var db = new Ws_DataContext())
+            {
+                var value = db.User_Information.FirstOrDefault(x => x.UserID == userId);
+                if (value != null)
+                {
+                    userNm = value.FullName;
+                }
+            }
+            return userNm;
         }
         /// <summary>
         /// Count number of user is actived or not

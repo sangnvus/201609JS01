@@ -101,6 +101,11 @@ namespace WingS.DataAccess
             return topTenDonator;
         }
 
+        /// <summary>
+        /// Get donation information that has been donated by an user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>Donation</returns>
         public Donation GetLastDonateInformation(int userId)
         {
             Donation donationInfor = new Donation();
@@ -118,6 +123,41 @@ namespace WingS.DataAccess
             return donationInfor;
         }
 
+
+        //public List<DonationDAL> GetDonationHistoryOfUser(int userId)
+        //{
+            
+        //}
+
+        public DonationDTO GetFullInformationOfDonation(int donationId)
+        {
+            DonationDTO currentDonation = new DonationDTO();
+            try
+            {
+                Donation donation;
+                using (var db = new Ws_DataContext())
+                {
+                    donation = db.Donations.FirstOrDefault(x => x.DonationId == donationId);
+                }
+
+                using (var db = new EventDAL())
+                {
+                    currentDonation.EventBasicInformation = db.GetEventBasicInfoById(donation.EventId);
+                }
+
+                currentDonation.DonationId = donation.DonationId;
+                currentDonation.UserId = donation.UserId;
+                currentDonation.EventId = donation.EventId;
+                currentDonation.DonatedMoney = donation.DonatedMoney;
+                currentDonation.DonatedDate = donation.DonatedDate.ToString("hh:mm:ss dd/MM/yy");
+                currentDonation.IsPublic = donation.IsPublic;
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+            return currentDonation;
+        }
         public void Dispose()
         {
             

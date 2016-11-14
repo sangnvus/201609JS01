@@ -91,38 +91,31 @@ namespace WingS.Controllers.WebApi
         }
         public IHttpActionResult GetCurrentUser (string userName)
         {
-            UserBasicInfoDTO userInfo = new UserBasicInfoDTO();
-            using(var db = new UserDAL() )
+            try
             {
-                var user = db.GetUserInfo(userName);
+                UserBasicInfoDTO userInfo = new UserBasicInfoDTO();
+                using (var db = new UserDAL())
                 {
-                    userInfo.UserId = user.UserId;
-                    userInfo.UserName = user.UserName;
-                    userInfo.Email = user.Email;
-                    userInfo.FullName = user.FullName;
-                    userInfo.Gender = user.Gender;
-                    userInfo.Phone = user.Phone;
-                    userInfo.Country = user.Country;
-                    userInfo.Address = user.Address;
-                    userInfo.ProfileImage = user.ProfileImage;
-                    userInfo.CreateDate = user.CreateDate;
-                    userInfo.DOB = user.DOB;
-                    userInfo.Point = user.Point;
+                    userInfo = db.GetUserInfoUsingUserNameOrEmail(userName);
                 }
-            }
-            using(var db = new ThreadDAL() )
-            {
-                userInfo.NumberOfPost = db.GetNumberOfPostPerUser(userInfo.UserId);
-            }
 
-            
-            return Ok(new HTTPMessageDTO
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = userInfo
+                });
+            }
+            catch (Exception)
             {
-                Status = WsConstant.HttpMessageType.SUCCESS,
-                Message = "",
-                Type = "",
-                Data = userInfo
-            });
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
         }
     }
 

@@ -9,6 +9,7 @@ namespace WingS.Models.DTOs
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string FullName { get; set; }
         public bool AccountType { get; set; }
         public bool IsActive { get; set; }
         public bool IsVerify { get; set; }
@@ -18,6 +19,7 @@ namespace WingS.Models.DTOs
         {
             UserId = 0;
             UserName = "";
+            FullName = "";
             AccountType = false;
             IsActive = false;
             IsVerify = false;

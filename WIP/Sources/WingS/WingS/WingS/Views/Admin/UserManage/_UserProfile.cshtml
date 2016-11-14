@@ -131,86 +131,17 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr class="odd gradeX">
-                                                                    <td>1</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
+                                                                <tr class="odd gradeX" ng-repeat="item in currentUserDonation">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{item.EventBasicInformation.EventName}}</td>
+                                                                    <td>{{item.EventBasicInformation.EventType}}</td>
+                                                                    <td>{{item.DonatedMoney}}</td>
+                                                                    <td>{{item.DonatedDate}}</td>
                                                                     <td>
                                                                         <a href="project-detail.html"><button class="btn btn-blue">Xem chi tiết</button></a>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="even gradeC">
-                                                                    <td>2</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
-                                                                    <td>
-                                                                        <a href="project-detail.html"><button class="btn btn-blue">View</button></a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="odd gradeA">
-                                                                    <td>3</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
-                                                                    <td>
-                                                                        <a href="project-detail.html"><button class="btn btn-blue">View</button></a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="even gradeA">
-                                                                    <td>4</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
-                                                                    <td>
-                                                                        <a href="project-detail.html"><button class="btn btn-blue">View</button></a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="odd gradeA">
-                                                                    <td>5</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
-                                                                    <td>
-                                                                        <a href="project-detail.html"><button class="btn btn-blue">View</button></a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="even gradeA">
-                                                                    <td>6</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
-                                                                    <td>
-                                                                        <a href="project-detail.html"><button class="btn btn-blue">View</button></a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="gradeA">
-                                                                    <td>7</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
-                                                                    <td>
-                                                                        <a href="project-detail.html"><button class="btn btn-blue">View</button></a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="gradeA">
-                                                                    <td>8</td>
-                                                                    <td>Test</td>
-                                                                    <td>Giáo dục</td>
-                                                                    <td>100$</td>
-                                                                    <td>12-10-2016 08:00</td>
-                                                                    <td>
-                                                                        <a href="project-detail.html"><button class="btn btn-blue">View</button></a>
-                                                                    </td>
-                                                                </tr>
+                                                                
                                                             </tbody>
                                                         </table>
                                                     </div>
