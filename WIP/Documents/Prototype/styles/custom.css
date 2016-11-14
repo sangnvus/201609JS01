@@ -528,7 +528,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 }
 .nav-collapse .dropdown .alertslink {
 	padding-left: 15px;
-	padding-right: 0px;
+	padding-right: 13px;
 	background-color: #16a085;
 	color: white;
 }
