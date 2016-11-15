@@ -12,6 +12,11 @@ namespace WingS.Controllers.WebApi
 {
     public class AdminUserProfileController : ApiController
     {
+        /// <summary>
+        /// Get user profile using id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetUserProfileWithId(int userId)
         {
@@ -39,6 +44,49 @@ namespace WingS.Controllers.WebApi
                     Status = WsConstant.HttpMessageType.ERROR,
                     Message = "Cannot Get User Profile!",
                     Type= ""
+                });
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GeUsertDonationInformation(int userId)
+        {
+            try
+            {
+                List<DonationDTO> userDonationInfor = new List<DonationDTO>();
+                List<int> donationIdList = new List<int>();
+
+                using (var db = new Ws_DataContext())
+                {
+                    donationIdList = db.Donations.Where(x => x.UserId == userId).Select(x => x.DonationId).ToList();
+                }
+
+                foreach (int donationId in donationIdList)
+                {
+                    DonationDTO donation;
+                    using (var db = new DonationDAL())
+                    {
+                        donation = db.GetFullInformationOfDonation(donationId);
+                    }
+
+                    userDonationInfor.Add(donation);
+                }
+                
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get User Profile Successfully",
+                    Type = "",
+                    Data = userDonationInfor
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get User Donation Infomation!",
+                    Type = ""
                 });
             }
         }
