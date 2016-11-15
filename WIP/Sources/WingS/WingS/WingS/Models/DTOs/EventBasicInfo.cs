@@ -25,19 +25,28 @@ namespace WingS.Models.DTOs
         public string CreatedDate { get; set; }
         public string Start_Date { get; set; }
         public string Finish_Date { get; set; }
+
         public EventBasicInfo()
         {
-            CreatorName = "";
-            EventType = "";
-            ExpectedMoney = 0;
-            VideoUrl = "";
-            CreatedDate = "";
             EventID = 0;
             CreatorID = 0;
+            CreatorUserName = "";
+            CreatorName = "";
             EventName = "";
+            ShortDescription = "";
             Content = "";
+            ContactInfo = "";
             MainImageUrl = "";
+            ImageAlbum = null;
+            Location = "";
+            VideoUrl = "";
             Status = false;
+            ExpectedMoney = 0;
+            EventType = "";
+            CreatedDate = "";
+            Start_Date = "";
+            Finish_Date = "";
+
         }
     }
 }

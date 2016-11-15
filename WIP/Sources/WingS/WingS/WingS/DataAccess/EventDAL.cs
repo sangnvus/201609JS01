@@ -544,6 +544,64 @@ namespace WingS.DataAccess
             }
             return circleInfor;
         }
+
+        public EventBasicInfo GetFullEventBasicInformation(int eventId)
+        {
+            EventBasicInfo eventBasicInfo = new EventBasicInfo();
+
+            try
+            {
+                Event wsEvent;
+                string creatorUserName;
+                string creatorName;
+                List<string> imageAlbum;
+                
+                using (var db = new Ws_DataContext())
+                {
+                    //Get event model
+                    wsEvent = db.Events.FirstOrDefault(x => x.EventID == eventId);
+                    //Get user name
+                    creatorUserName = db.Ws_User.Where(x => x.UserID == wsEvent.CreatorID).Select(x => x.UserName).ToString();
+                    //Get user full name
+                    creatorName = db.User_Information.Where(x => x.UserID == wsEvent.CreatorID).Select(x => x.FullName).ToString();
+                    //Get image album
+                    imageAlbum = db.EventAlbum.Where(x => x.EventId == eventId).Select(x => x.ImageUrl).ToList();
+
+                }
+                
+                // Get main image
+                string mainImageUrl = GetMainImageEventById(eventId).ImageUrl;
+                //Get image album
+                
+
+                eventBasicInfo.EventID = eventId;
+                eventBasicInfo.CreatorID = wsEvent.CreatorID;
+                eventBasicInfo.CreatorUserName = creatorUserName;
+                eventBasicInfo.CreatorName = creatorName;
+                eventBasicInfo.EventName = wsEvent.EventName;
+                eventBasicInfo.ShortDescription = wsEvent.ShortDescription;
+                eventBasicInfo.Content = wsEvent.Description;
+                eventBasicInfo.ContactInfo = wsEvent.Contact;
+                eventBasicInfo.MainImageUrl = mainImageUrl;
+                eventBasicInfo.ImageAlbum = imageAlbum;
+                eventBasicInfo.Location = wsEvent.Location;
+                eventBasicInfo.VideoUrl = wsEvent.VideoUrl;
+                eventBasicInfo.Status = wsEvent.Status;
+                eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
+                eventBasicInfo.EventType = wsEvent.EType.EventName;
+                eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("H:mm:ss dd/MM/yy");
+                eventBasicInfo.Start_Date = wsEvent.Start_Date.ToString("H:mm:ss dd/MM/yy");
+                eventBasicInfo.Finish_Date = wsEvent.Finish_Date.ToString("H:mm:ss dd/MM/yy");
+                
+            }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+
+            return eventBasicInfo;
+        }
         public void Dispose()
         {
           
