@@ -506,12 +506,19 @@ namespace WingS.DataAccess
         public List<ThreadBasicInfo> GetThreadsOfUser(int userId)
         {
             List<ThreadBasicInfo> threadList = new List<ThreadBasicInfo>();
-
+            
             try
             {
+                List<int> threadIdList;
                 using (var db = new Ws_DataContext())
                 {
-                    
+                    threadIdList = db.Threads.Where(x => x.UserId == userId).Select(x => x.ThreadId).ToList();
+                }
+
+                foreach (int threadId in threadIdList)
+                {
+                    ThreadBasicInfo thread = GetFullThreadBasicInformation(threadId);
+                    threadList.Add(thread);
                 }
             }
             catch (Exception)

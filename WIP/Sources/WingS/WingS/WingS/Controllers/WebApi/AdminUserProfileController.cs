@@ -97,14 +97,22 @@ namespace WingS.Controllers.WebApi
             }
         }
 
+        /// <summary>
+        /// Get threads that have been created by user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetCreatedThreadOfUser(int userId)
         {
             try
             {
-                List<ThreadBasicInfo> userCreatedThread = new List<ThreadBasicInfo>();
-                
+                List<ThreadBasicInfo> userCreatedThread;
 
+                using (var db = new ThreadDAL())
+                {
+                    userCreatedThread = db.GetThreadsOfUser(userId);
+                }
 
                 return Ok(new HTTPMessageDTO
                 {
