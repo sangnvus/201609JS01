@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using WingS.DataAccess;
 using WingS.DataHelper;
@@ -48,6 +49,11 @@ namespace WingS.Controllers.WebApi
             }
         }
 
+        /// <summary>
+        /// Get donation information of user using Id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GeUsertDonationInformation(int userId)
         {
@@ -78,6 +84,34 @@ namespace WingS.Controllers.WebApi
                     Message = "Get User Profile Successfully",
                     Type = "",
                     Data = userDonationInfor
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get User Donation Infomation!",
+                    Type = ""
+                });
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetCreatedThreadOfUser(int userId)
+        {
+            try
+            {
+                List<ThreadBasicInfo> userCreatedThread = new List<ThreadBasicInfo>();
+                
+
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get User Profile Successfully",
+                    Type = "",
+                    Data = userCreatedThread
                 });
             }
             catch (Exception)

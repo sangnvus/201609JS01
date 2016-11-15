@@ -497,6 +497,74 @@ namespace WingS.DataAccess
             }
             return topLikeThread;
         }
+
+        /// <summary>
+        /// Get threads that belong to a user using user id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<ThreadBasicInfo> GetThreadsOfUser(int userId)
+        {
+            List<ThreadBasicInfo> threadList = new List<ThreadBasicInfo>();
+
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return threadList;
+        }
+
+        
+        /// <summary>
+        /// Get information of thread as a thread basic 
+        /// </summary>
+        /// <param name="threadId"></param>
+        /// <returns></returns>
+        public ThreadBasicInfo GetFullThreadBasicInformation(int threadId)
+        {
+            ThreadBasicInfo currentThread= new ThreadBasicInfo();
+
+            try
+            {
+                Thread thread;
+                Ws_User user;
+                using (var db = new Ws_DataContext())
+                {
+                    thread = db.Threads.FirstOrDefault(x => x.ThreadId == threadId);
+                }
+
+                using (var db = new Ws_DataContext())
+                {
+                    user = db.Ws_User.FirstOrDefault(x => x.UserID == thread.UserId);
+                }
+
+                currentThread.ThreadID = thread.ThreadId;
+                currentThread.UserID = thread.UserId;
+                currentThread.Creator = user.UserName;
+                currentThread.ThreadName = thread.Title;
+                currentThread.ImageUrl = GetAllImageThreadById(thread.ThreadId);
+                currentThread.Content = thread.Content;
+                currentThread.Likes = CountLikeInThread(thread.ThreadId);
+                currentThread.Status = thread.Status;
+                currentThread.CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd/MM/yy");
+
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return currentThread;
+        }
+
         public void Dispose()
         {
             
