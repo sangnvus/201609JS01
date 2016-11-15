@@ -11,7 +11,6 @@
         }).success(function (response) {
             $scope.UserList[index].IsActive = response.Data;
         });
-        // Returns the promise - Contains result once request completes
         return true;
     };
 });

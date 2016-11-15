@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Mapping;
 using System.Linq;
 using System.Web.Mvc;
 using WingS.DataHelper;
@@ -529,6 +530,20 @@ namespace WingS.DataAccess
 
         }
 
+        public EventCircleTileDTO GetEventCircleTile()
+        {
+            EventCircleTileDTO circleInfor = new EventCircleTileDTO();
+            using (var db = new Ws_DataContext())
+            {
+                circleInfor.NumberInComeEvent = db.Events.Count(x => DateTime.Now < x.Start_Date);
+                circleInfor.NumberActiveEvent = db.Events.Count(x => x.Status);
+                circleInfor.NumberDoneEvent = db.Events.Count(x => DateTime.Now > x.Finish_Date);
+                circleInfor.NumberBanEvent = db.Events.Count(x => !x.Status);
+                circleInfor.NumberAllEvent = db.Events.Count();
+                
+            }
+            return circleInfor;
+        }
         public void Dispose()
         {
           
