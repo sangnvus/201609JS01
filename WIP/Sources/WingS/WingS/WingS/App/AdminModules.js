@@ -38,10 +38,10 @@ app.config(function ($routeProvider) {
             templateUrl: "/Admin/ThreadList",
             controller: "AdminThreadController"
         })
-        .when("/ThreadDetail", {
+        .when("/ThreadDetail/:ThreadID", {
             tittle: "Chi tiết bài viết",
             templateUrl: "/Admin/ThreadDetail",
-            controller: "AdminThreadController"
+            controller: "AdminThreadDetailController"
         });
 
 });

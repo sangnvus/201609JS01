@@ -53,7 +53,7 @@
                         <tbody>
                         <tr ng-repeat="item in newCreatedThread">
                             <td>{{ $index + 1 }}</td>
-                            <td><a href="Admin/#/ThreadDetail"><strong>{{item.ThreadName}}</strong></a></td>
+                            <td><a href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")"><strong>{{item.ThreadName}}</strong></a></td>
                             <td>{{item.Creator}}</td>
                             <td>{{item.CreatedDate}}</td>
                             <td>
@@ -97,7 +97,7 @@
                         <tbody>
                             <tr ng-repeat="item in topLikeThread">
                                 <td>{{ $index + 1 }}</td>
-                                <td><a href="Admin/#/ThreadDetail"><strong>{{item.ThreadName}}</strong></a></td>
+                                <td><a href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")"><strong>{{item.ThreadName}}</strong></a></td>
                                 <td>{{item.Creator}}</td>
                                 <td style="text-align: center;">{{item.Likes}}</td>
                                 <td>

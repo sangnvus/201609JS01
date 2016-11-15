@@ -150,5 +150,41 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+        /// <summary>
+        /// Get thread using id
+        /// </summary>
+        /// <param name="threadId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ActionName("GetThreadWithId")]
+        public IHttpActionResult GetThreadWithId(int threadId)
+        {
+            try
+            {
+                ThreadBasicInfo currentThread;
+
+                using (var db = new ThreadDAL())
+                {
+                    currentThread = db.GetFullThreadBasicInformation(threadId);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get Thread with ID Successfully",
+                    Type = "",
+                    Data = currentThread
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Thread with ID",
+                    Type = ""
+                });
+            }
+        }
     }
 }

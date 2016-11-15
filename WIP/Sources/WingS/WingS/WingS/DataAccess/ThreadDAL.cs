@@ -419,9 +419,10 @@ namespace WingS.DataAccess
                             }
                             threadListBasic.Add(new ThreadBasicInfo
                             {
+                                ThreadID = thread.ThreadId,
                                 ThreadName = thread.Title,
                                 Creator = creatorThread.UserName,
-                                CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd-MM-yy"),
+                                CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd/MM/yy"),
                                 Status = thread.Status,
                             });
                         }
@@ -477,6 +478,7 @@ namespace WingS.DataAccess
                             }
                             threadListBasic.Add(new ThreadBasicInfo
                             {
+                                ThreadID = thread.ThreadId,
                                 ThreadName = thread.Title,
                                 Creator = creatorThread.UserName,
                                 Likes = like,
@@ -560,6 +562,7 @@ namespace WingS.DataAccess
                 currentThread.ImageUrl = GetAllImageThreadById(thread.ThreadId);
                 currentThread.Content = thread.Content;
                 currentThread.Likes = CountLikeInThread(thread.ThreadId);
+                currentThread.Comments = CountCommentInThread(thread.ThreadId);
                 currentThread.Status = thread.Status;
                 currentThread.CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd/MM/yy");
 
@@ -602,6 +605,28 @@ namespace WingS.DataAccess
             }
 
             return listThread;
+        }
+        /// <summary>
+        /// Count Comment in Thread
+        /// </summary>
+        /// <returns>int</returns>
+        public int CountCommentInThread(int ThreadId)
+        {
+            int countComment = 0;
+            try
+            {
+                
+                using (var db = new Ws_DataContext())
+                {
+                   countComment = db.CommentThreads.Count(x => x.ThreadId == ThreadId && x.Status == true);  
+                }
+            }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+            return countComment;
         }
         public void Dispose()
         {

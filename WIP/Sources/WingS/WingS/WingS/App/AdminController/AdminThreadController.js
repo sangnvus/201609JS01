@@ -1,5 +1,5 @@
 ﻿app.controller("AdminThreadController", function ($scope, $http, $sce) {
-    //Load Thread static information
+    //Load Thread overview information
     $http.get("/api/AdminThread/GetThreadManageBasicInfor").success(function (response) {
         $scope.threadManageInfor = response.Data;
     });
