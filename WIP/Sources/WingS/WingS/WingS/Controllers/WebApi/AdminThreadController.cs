@@ -126,5 +126,29 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+        // Get all Thread in Thread table
+        [HttpGet]
+        [ActionName("GetAllThread")]
+        public IHttpActionResult GetAllThread()
+        {
+            List<ThreadBasicInfo> listThread = new List<ThreadBasicInfo>();
+            try
+            {
+                using (var db = new ThreadDAL())
+                {
+                    listThread = db.GetAllThread();
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = listThread });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
     }
 }

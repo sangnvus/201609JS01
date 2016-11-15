@@ -2036,6 +2036,19 @@ input[type="checkbox"]:checked::after,
 .input-group-addon input[type="checkbox"] {
     margin-bottom: -3px;
 }
+.info {
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 400;
+    font-size: 14px;
+    float: left;
+	display: inline;
+	color: #b7b7b7;
+}
+.space {
+	border-right: 1px solid #e5e5e5;
+	margin-left: 15px; 
+	margin-right: 15px;
+}
 
 @media(min-width:768px) {
     .navbar-form .form-group {

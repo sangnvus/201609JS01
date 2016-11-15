@@ -29,13 +29,18 @@ app.config(function ($routeProvider) {
             controller: "UserListController"
         })
         .when("/ThreadDashBoard", {
-            tittle: "Danh sách bài viết",
+            tittle: "Thống kê bài viết",
             templateUrl: "/Admin/ThreadDashBoard",
             controller: "AdminThreadController"
         })
         .when("/ThreadList", {
-            tittle: "Chi tiết bài viết",
+            tittle: "Danh sách bài viết",
             templateUrl: "/Admin/ThreadList",
+            controller: "AdminThreadController"
+        })
+        .when("/ThreadDetail", {
+            tittle: "Chi tiết bài viết",
+            templateUrl: "/Admin/ThreadDetail",
             controller: "AdminThreadController"
         });
 

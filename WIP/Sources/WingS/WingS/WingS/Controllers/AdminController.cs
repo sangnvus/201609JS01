@@ -38,6 +38,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/ThreadManage/_ThreadList.cshtml");
         }
+        public ActionResult ThreadDetail()
+        {
+            return PartialView("~/Views/Admin/ThreadManage/_ThreadDetail.cshtml");
+        }
         public ActionResult Index()
         {
             return View();

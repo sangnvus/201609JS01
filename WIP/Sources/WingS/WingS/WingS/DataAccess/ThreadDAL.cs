@@ -571,7 +571,38 @@ namespace WingS.DataAccess
 
             return currentThread;
         }
+        /// <summary>
+        /// Get All Thread in Thread table
+        /// </summary>
+        /// <returns>list</returns>
+        public List<ThreadBasicInfo> GetAllThread()
+        {
+            var listThread = new List<ThreadBasicInfo>();
+            try
+            {
+                List<int> userIdThread;
+                using (var db = new Ws_DataContext())
+                {
+                    userIdThread = db.Threads.Select(x => x.ThreadId).ToList();
+                }
 
+                using (var db = new ThreadDAL())
+                {
+                    foreach (int threadId in userIdThread)
+                    {
+                        ThreadBasicInfo threadBasic = db.GetFullThreadBasicInformation(threadId);
+                        listThread.Add(threadBasic);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return listThread;
+        }
         public void Dispose()
         {
             

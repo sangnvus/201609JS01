@@ -11,4 +11,8 @@
     $http.get("/api/AdminThread/GetTopLikeThread").success(function (response) {
         $scope.topLikeThread = response.Data;
     });
+    // Get all Thread in Thread table
+    $http.get("/api/AdminThread/GetAllThread").success(function (response) {
+        $scope.allThread = response.Data;
+    });
 });
