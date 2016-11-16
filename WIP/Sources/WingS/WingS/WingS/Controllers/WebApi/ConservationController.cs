@@ -100,7 +100,12 @@ namespace WingS.Controllers.WebApi
             using (var db = new ConservationDAL())
             {
                 db.AddNewMessage(mess);
+                Conservation current = db.GetConservationById(ConservationId);
+                current.UpdatedTime = DateTime.Now;
+                db.UpdateTime(current);
             }
+            //Update Updated Time for Conservation
+
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
 
         }

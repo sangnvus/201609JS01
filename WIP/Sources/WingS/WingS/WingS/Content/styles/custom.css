@@ -205,7 +205,7 @@ img.pull-left { margin-right:15px !important; margin-top:7px !important;}
 
 .divPanel.notop {padding-top:0px}
 
-.divPanel.nobottom {padding-bottom:0px}
+.divPanel.nobottom {padding-bottom:0px;}
 
 
 /***** BOOTSTRAP CSS BASE OVERRIDE *****/
@@ -278,7 +278,7 @@ h1 {font-weight: normal; font-style: normal; letter-spacing: 0px; line-height: 6
 
 .sidebox-title {font-weight: normal; font-style: normal; font-size: 20px; letter-spacing: 0px; line-height: 40px; font-family: 'Source Sans Pro', sans-serif; color: rgb(51, 51, 51);}
 
-.sidebox a {font-family: 'Open Sans', sans-serif;}
+.sidebox a {color: rgb(208, 88, 3); font-family: 'Open Sans', sans-serif;}
 
 #divFooter{
 	border-bottom-left-radius: 0px;
@@ -477,24 +477,6 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 }
 
-.event-title, .event-content, .event-footer,
-.thread-title, .thread-content, .event-footer,
-.organization-title, .organization-content, .organization-footer {
-    overflow: hidden;
-}
-
- .event-title, .thread-title, .organization-title {
-     height: 57px;
- }
- 
- .event-content, .thread-content {
-     height: 110px;
- }
-
- .event-footer, .thread-footer, .organization-footer {
-     height: 45px;
- }
-
 .organization-name{
     height: 70px;
     overflow: hidden;
@@ -523,16 +505,76 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 }
 .addborder{
 	border: 1px solid #bdc3c7;
-    border-radius: 6px 6px 6px 6px;
 }
 .addborder img{
-    border-radius: 6px 6px 0 0;
 	height: 245px;
-    width: 100%;
-
 }
 .contentTop{
 	margin-left: 5px;
 	margin-right: 5px;
 }
+.dropdown .number {
+    position: absolute;
+    bottom: 19px;
+    left: 1px;
+    width: 20px;
+    height: 20px;
+    padding-right: 1px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 11px;
+    line-height: 20px;
+    background-color: #008080;
+}
+.nav-collapse .dropdown .alertslink {
+	padding-left: 15px;
+	padding-right: 13px;
+	background-color: #16a085;
+	color: white;
+}
+.dropdown-alerts{
+    left: inherit;
+    width: 250px;
+	border-color: #f9ce89;
+}
+.dropdown-scroll {
+    margin: 0;
+    padding: 0;
+}
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+	margin-left: 0px;
+}
+.dropdown-header{
+    color: #fff;
+    background: #e05f03; !important;
+	padding: 10px 10px;
+	margin-top: -5px;
+	text-align: center;
+}
+.dropdown-footer{
+    color: #fff;
+	padding-top: 3px;
+	text-align: center;
+	background-color:#e0e7e8;
+}
+.blue{
+	background-color: #2980b9;
+}
+.dropdown #alertScroll .list-unstyled a:hover{
+	background-color: #66CCFF;
+	color:black;
+}
+.dropdown #alertScroll .list-unstyled li{
+	border-bottom: 1px solid #ccc;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+
 

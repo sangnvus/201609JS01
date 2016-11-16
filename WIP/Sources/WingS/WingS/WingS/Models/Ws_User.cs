@@ -32,5 +32,6 @@
         public virtual ICollection<Message> Message { get; set; }
         public virtual ICollection<PublicMessageDetail> PublicMessage{ get; set; }
         public virtual ICollection<Connection> Connection { get; set; }
+        public virtual ICollection<Activity> Notification { get; set; }
     }
 }

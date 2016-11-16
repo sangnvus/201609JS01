@@ -30,6 +30,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/User/_Message.cshtml");
         }
+        public ActionResult Notification()
+        {
+            return PartialView("~/Views/User/_Notification.cshtml");
+        }
         public ActionResult Discussion()
         {
             return PartialView("~/Views/Discussion/_Discussion.cshtml");

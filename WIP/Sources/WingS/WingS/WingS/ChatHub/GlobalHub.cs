@@ -80,6 +80,12 @@ namespace WingS.ChatHub
                 newMess.UserId = UserId;
                 newMess = db.Message.Add(newMess);
                 db.SaveChanges();
+                using (var dbCurrent = new ConservationDAL())
+                {
+                    Conservation current = dbCurrent.GetConservationById(ConservationId);
+                    current.UpdatedTime = DateTime.Now;
+                    dbCurrent.UpdateTime(current);
+                }
                 var GetInfo = (from p in db.Message
                                where p.MessageId == newMess.MessageId
                                select new { p.User.UserName, p.User.User_Information.ProfileImage }).SingleOrDefault();
@@ -112,8 +118,9 @@ namespace WingS.ChatHub
             Clients.Caller.ReceiverMessage(info);
             //Send new Message to Receiver if Connecting 
             foreach (var item in ListConnetion)
-            {  
-              Clients.Client(item).ReceiverMessage(info);
+            {
+                Clients.Client(item).NewMessageNotification("Bạn đã nhận 1 tin nhắn mới, xem tại Tin nhắn!");
+                Clients.Client(item).ReceiverMessage(info);
             }
 
 

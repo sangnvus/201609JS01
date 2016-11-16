@@ -34,6 +34,7 @@ namespace WingS.DataAccess
         public virtual DbSet<Models.Connection> Connection { get; set; }
         public virtual DbSet<PublicRoom> PublicRooms { get; set; }
         public virtual DbSet<PublicMessageDetail> PublicMessageDetails { get; set; }
+        public virtual DbSet<Activity> Activity { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }

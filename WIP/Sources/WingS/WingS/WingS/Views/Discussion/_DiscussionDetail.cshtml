@@ -1,6 +1,5 @@
 ﻿
 <script src="../../Content/scripts/lightbox/dist/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
-<body id="pageBody">
     <div id="fb-root"></div>
     <script>
 (function(d, s, id) {
@@ -14,17 +13,7 @@
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     </script>
     <link href="~/Content/css/ThreadDetail.css" rel="stylesheet" type="text/css" />
-    <div id="divBoxed" class="container">
-
-        <div class="transparent-bg" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
-
         <div class="divPanel notop nobottom">
-            @Html.Partial("../Home/_NavigationBar")
-            <div class="row-fluid">
-                <div class="span12">
-                    <div id="contentInnerSeparator"></div>
-                </div>
-            </div>
         </div>
 
         <hr>
@@ -145,8 +134,6 @@
             </div>
             <div id="footerInnerSeparator"></div>
         </div>
-    </div>
-
         <div id="footerOuterSeparator"></div>
     @Html.Partial("../Home/_Footer")
     <br /><br /><br />
@@ -161,4 +148,3 @@
       }
   </style>
 
-</body>
