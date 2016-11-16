@@ -10,8 +10,8 @@ app.config(function ($routeProvider) {
         })
         .when("/DashBoard", {
             tittle: "Thống kê chung",
-            templateUrl: "/Admin/DashBoard"
-
+            templateUrl: "/Admin/DashBoard",
+            controller: "AdminDashboardController"
         })
         .when("/UserDashBoard", {
             tittle: "Thống kê chung",

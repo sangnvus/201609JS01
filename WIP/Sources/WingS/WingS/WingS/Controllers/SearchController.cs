@@ -140,7 +140,7 @@ namespace WingS.Controllers
                                 Phone = org.Phone,
                                 Email = org.Email,
                                 Address = org.Address,
-                                Status = org.Status,
+                                IsActive = org.IsActive,
                                 Point = org.Point
                             });
                         }

@@ -65,7 +65,7 @@ namespace WingS.Controllers.WebApi
                     orgBasicInfo.Phone = org.Phone;
                     orgBasicInfo.Email = org.Email;
                     orgBasicInfo.Address = org.Address;
-                    orgBasicInfo.Status = org.Status;
+                    orgBasicInfo.IsActive = org.IsActive;
                     orgBasicInfo.Point = org.Point;
                 }
 
@@ -110,7 +110,7 @@ namespace WingS.Controllers.WebApi
                         Phone = org.Phone,
                         Email = org.Email,
                         Address = org.Address,
-                        Status = org.Status,
+                        IsActive = org.IsActive,
                         Point = org.Point
                     });
                 }
@@ -137,12 +137,44 @@ namespace WingS.Controllers.WebApi
                         Phone = org.Phone,
                         Email = org.Email,
                         Address = org.Address,
-                        Status = org.Status,
+                        IsActive = org.IsActive,
                         Point = org.Point
                     });
                 }
 
                 return Ok(new HTTPMessageDTO {Status = WsConstant.HttpMessageType.SUCCESS, Data = basicOrgList});
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetTopOrganization(int top)
+        {
+            try
+            {
+                List<OrganizationBasicInfo> orgList;
+
+                using (var db = new OrganizationDAL())
+                {
+                    orgList = db.GetTopOrganization(top);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = orgList
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
             }
         }
     }

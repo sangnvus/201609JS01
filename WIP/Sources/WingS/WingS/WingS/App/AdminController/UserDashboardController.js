@@ -1,6 +1,6 @@
 ﻿app.controller("UserDashboardController", function ($scope, $http, $sce) {
-    //Load user static information
-    $http.get("/api/AdminUserDashboard/GetUserManageBasicInfor").success(function (response) {
+    //Load user static information for user circle tiles
+    $http.get("/api/AdminUserDashboard/GetStatisticManageBasicInfor").success(function (response) {
         $scope.userManageInfor = response.Data;
         
     });

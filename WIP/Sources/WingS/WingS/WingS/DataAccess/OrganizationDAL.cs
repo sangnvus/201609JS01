@@ -20,7 +20,7 @@ namespace WingS.DataAccess
 
             using (var db = new Ws_DataContext())
             {
-                var allSortedOrg = db.Organizations.OrderByDescending(x => x.Point).Where(x => x.Status == true);
+                var allSortedOrg = db.Organizations.OrderByDescending(x => x.Point).Where(x => x.IsActive == true);
                 listOrg = allSortedOrg.ToList();
             }
 
@@ -103,7 +103,8 @@ namespace WingS.DataAccess
                 org.Phone = "";
                 org.Email = "";
                 org.Address = "";
-                org.Status = true;
+                org.IsActive = false;
+                org.IsVerify = false;
                 org.Point = 0;
 
                 return org;
@@ -134,8 +135,102 @@ namespace WingS.DataAccess
                 orgList = topOrg.ToList();
             }
             return orgList;
+        }
+
+        /// <summary>
+        /// Get top of organization sorting by point
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public List<OrganizationBasicInfo> GetTopOrganization(int top)
+        {
+            List<OrganizationBasicInfo> orgList = new List<OrganizationBasicInfo>();
+
+            try
+            {
+                List<int> orgIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    orgIdList = db.Organizations.OrderByDescending(x => x.Point).Select(x=>x.OrganizationId).Take(top).ToList();
+                }
+
+                foreach (int orgId in orgIdList)
+                {
+                    OrganizationBasicInfo organization = GetFullOrganizationBasicInformation(orgId);
+                    orgList.Add(organization);
+                }
+            }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+
+            return orgList;
         } 
 
+        public OrganizationBasicInfo GetFullOrganizationBasicInformation(int orgId)
+        {
+            OrganizationBasicInfo organizationBasic = new OrganizationBasicInfo();
+
+            try
+            {
+                Organization org = GetOrganizationById(orgId);
+                //get ranking information
+                
+
+                organizationBasic.OrganizationId = orgId;
+                if (org != null)
+                {
+                    organizationBasic.OrganizationName = org.OrganizationName;
+                    organizationBasic.Introduction = org.Introduction;
+                    organizationBasic.LogoUrl = org.LogoUrl;
+                    organizationBasic.Phone = org.Phone;
+                    organizationBasic.Email = org.Email;
+                    organizationBasic.Address = org.Address;
+                    organizationBasic.IsActive = org.IsActive;
+                    organizationBasic.IsVerify = org.IsVerify;
+                    organizationBasic.Point = org.Point;
+
+                    WsRanking ranking = new WsRanking();
+                    RankingDTO rank = ranking.RankingWithPoint(org.Point);
+                    if (rank.CurrentRank == 0)
+                    {
+                        organizationBasic.CurrentRank = "New";
+                    }
+                    else if (rank.CurrentRank == 200)
+                    {
+                        organizationBasic.CurrentRank = "Bronze";
+                    }
+                    else if (rank.CurrentRank == 500)
+                    {
+                        organizationBasic.CurrentRank = "Silver";
+                    }
+                    else if (rank.CurrentRank == 2000)
+                    {
+                        organizationBasic.CurrentRank = "Golden";
+                    }
+                    else if (rank.CurrentRank == 5000)
+                    {
+                        organizationBasic.CurrentRank = "Plantium";
+                    }
+                    else if (rank.CurrentRank == 10000)
+                    {
+                        organizationBasic.CurrentRank = "Diamon";
+                    }
+                    
+                }
+
+                
+            }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+
+            return organizationBasic;
+        }
         public void Dispose()
         {
            

@@ -15,8 +15,10 @@ namespace WingS.Models.DTOs
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
-        public bool Status { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsVerify { get; set; }
         public int Point { get; set; }
+        public string CurrentRank { get; set; }
 
         public OrganizationBasicInfo()
         {
@@ -28,7 +30,7 @@ namespace WingS.Models.DTOs
             Phone = "";
             Email = "";
             Address = "";
-            Status = false;
+            IsActive = false;
             Point = 0;
         }
     }

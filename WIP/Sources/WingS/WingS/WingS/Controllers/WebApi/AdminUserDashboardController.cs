@@ -14,24 +14,31 @@ namespace WingS.Controllers.WebApi
     public class AdminUserDashboardController : ApiController
     {
         /// <summary>
-        /// Get user manage basisc information
+        /// Get statistic manage basisc information
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetUserManageBasicInfor()
+        public IHttpActionResult GetStatisticManageBasicInfor()
         {
             try
             {
-                UserManageBasicInforDTO userManageInfor = new UserManageBasicInforDTO();
+                StatisticManageBasicInforDTO statistic = new StatisticManageBasicInforDTO();
                 
                 using (var db = new UserDAL())
                 {
-                    userManageInfor.NumberActiveUser = db.CountUserActiveOrNot(true);
-                    userManageInfor.NumberNotActiveUser = db.CountUserActiveOrNot(false);
-                    userManageInfor.NumberVerifyUser = db.CountUserVerifyOrNot(true);
-                    userManageInfor.NumberNotVerifyUser = db.CountUserVerifyOrNot(false);
-                    userManageInfor.NumberNewCreateUser = db.CountNewUser();
-                    userManageInfor.NumberTotalUser = db.CountTotalUser();
+                    statistic.NumberActiveUser = db.CountUserActiveOrNot(true);
+                    statistic.NumberNotActiveUser = db.CountUserActiveOrNot(false);
+                    statistic.NumberVerifyUser = db.CountUserVerifyOrNot(true);
+                    statistic.NumberNotVerifyUser = db.CountUserVerifyOrNot(false);
+                    statistic.NumberNewCreateUser = db.CountNewUser();
+                    statistic.NumberTotalUser = db.CountTotalUser();
+                    
+                    //Get number of organization
+                    statistic.NumberTotalOrganization = db.CountTotalOrganization();
+                    //Get number of event
+                    statistic.NumberTotalEvent = db.CountTotalEvent();
+                    //Get number of post
+                    statistic.NumberTotalThread = db.CountTotalThread();
                 }
 
                 return Ok(new HTTPMessageDTO
@@ -39,7 +46,7 @@ namespace WingS.Controllers.WebApi
                     Status = WsConstant.HttpMessageType.SUCCESS,
                     Message = "",
                     Type = "",
-                    Data = userManageInfor
+                    Data = statistic
                 });
             }
             catch (Exception)

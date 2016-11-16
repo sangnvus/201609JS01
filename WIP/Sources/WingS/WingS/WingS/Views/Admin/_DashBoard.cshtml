@@ -22,7 +22,7 @@
             <div class="row centered">
                 <div class="col-lg-2 col-sm-6">
                     <div class="circle-tile">
-                        <a href="userlist.html">
+                        <a href="@Url.Content("~/Admin/#/UserList")">
                             <div class="circle-tile-heading dark-blue">
                                 <i class="fa fa-users fa-fw fa-3x"></i>
                             </div>
@@ -32,7 +32,7 @@
                                 Số thành viên
                             </div>
                             <div class="circle-tile-number text-faded">
-                                265
+                                {{dashboardManageInfor.NumberTotalUser}}
                                 <span id="sparklineA"></span>
                             </div>
 
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="circle-tile">
-                        <a href="project.html">
+                        <a href="@Url.Content("~/Admin/#/Organization")">
                             <div class="circle-tile-heading blue">
                                 <i class="fa fa-tasks fa-fw fa-3x"></i>
                             </div>
@@ -51,7 +51,7 @@
                                 Số tổ chức
                             </div>
                             <div class="circle-tile-number text-faded">
-                                10
+                                {{dashboardManageInfor.NumberTotalOrganization}}
                                 <span id="sparklineB"></span>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="circle-tile">
-                        <a href="#">
+                        <a href="@Url.Content("~/Admin/#/EventList")">
                             <div class="circle-tile-heading orange">
                                 <i class="fa fa-heart fa-fw fa-3x"></i>
                             </div>
@@ -69,7 +69,7 @@
                                 Số sự kiện
                             </div>
                             <div class="circle-tile-number text-faded">
-                                10
+                                {{dashboardManageInfor.NumberTotalEvent}}
                                 <span id="sparklineC"></span>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="circle-tile">
-                        <a href="#">
+                        <a href="@Url.Content("~/Admin/#/ThreadList")">
                             <div class="circle-tile-heading red">
                                 <i class="fa fa-rocket fa-fw fa-3x"></i>
                             </div>
@@ -87,7 +87,7 @@
                                 Số bài viết
                             </div>
                             <div class="circle-tile-number text-faded">
-                                10
+                                {{dashboardManageInfor.NumberTotalThread}}
                                 <span id="sparklineC"></span>
                             </div>
                         </div>
@@ -122,58 +122,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in TopFiveRankingUser">
                                                 <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
                                                     </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
+                                                    <h4>{{item.FullName}}</h4>
                                                 </td>
-                                                <td>test@gmail.com</td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
+                                                <td>{{item.Point}}</td>
+                                                <td>{{item.CurrentRank}}</td>
+                                                <td ng-switch="item.IsVerify">
+                                                    <div ng-switch-when="false">
+                                                        <a class="btn btn-xs btn-warning">Chưa kích hoạt</a>
+                                                    </div>
+                                                    <div ng-switch-when="true" ng-switch="item.IsActive">
+                                                        <a class="btn btn-xs btn-green" ng-switch-when="true">Đang hoạt động</a>
+                                                        <a class="btn btn-xs btn-danger" ng-switch-when="false">Bị cấm</a>
+                                                    </div>
+
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                                    </a>
-                                                    <h4>Tạ Ngọc Duy</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>50</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                    </a>
-                                                    <h4>Đào Trọng Nghĩa</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                                    </a>
-                                                    <h4>Lê Hồng Nhiên</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>0</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -207,58 +176,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in TopFiveRankingOrg">
                                                 <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/Organization/{{item.OrganizationId}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.LogoUrl}}" alt="">
                                                     </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
+                                                    <h4>{{item.OrganizationName}}</h4>
                                                 </td>
-                                                <td>test@gmail.com</td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
+                                                <td>{{item.Point}}</td>
+                                                <td>{{item.CurrentRank}}</td>
+                                                <td ng-switch="item.IsVerify">
+                                                    <div ng-switch-when="false">
+                                                        <a class="btn btn-xs btn-warning">Chưa kích hoạt</a>
+                                                    </div>
+                                                    <div ng-switch-when="true" ng-switch="item.IsActive">
+                                                        <a class="btn btn-xs btn-green" ng-switch-when="true">Đang hoạt động</a>
+                                                        <a class="btn btn-xs btn-danger" ng-switch-when="false">Bị cấm</a>
+                                                    </div>
+
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                                    </a>
-                                                    <h4>Tạ Ngọc Duy</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>50</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                    </a>
-                                                    <h4>Đào Trọng Nghĩa</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                                    </a>
-                                                    <h4>Lê Hồng Nhiên</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>0</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
