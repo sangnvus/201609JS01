@@ -14,7 +14,7 @@ namespace WingS.DataAccess
             List<NotificationBasicInfoDTO> returnedList = new List<NotificationBasicInfoDTO>();
             using (var db = new Ws_DataContext())
             {
-                var returnedConservation = db.Notifications.OrderByDescending(x=>x.User.UserName==UserName&&x.Status==true).ToList();
+                var returnedConservation = db.Activity.OrderByDescending(x=>x.User.UserName==UserName&&x.Status==true).ToList();
                 foreach(var item in returnedConservation)
                 {
                     NotificationBasicInfoDTO itemInfo = new NotificationBasicInfoDTO();
@@ -32,11 +32,11 @@ namespace WingS.DataAccess
             }
             return returnedList;
         }
-        public Notification AddNotification(Notification newNotification)
+        public Activity AddNotification(Activity newNotification)
         {
             using (var db = new Ws_DataContext())
             {
-                newNotification = db.Notifications.Add(newNotification);
+                newNotification = db.Activity.Add(newNotification);
                 db.SaveChanges();
             }
             return newNotification;

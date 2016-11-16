@@ -7,10 +7,10 @@ using System.Web;
 
 namespace WingS.Models
 {
-    public class Notification
+    public class Activity
     {
         [Key]
-        public int NotifficationId { get; set; }
+        public int ActivityId { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
         public string CreatorName { get; set; }

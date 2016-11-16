@@ -89,7 +89,7 @@
         return pageShow * index;
     };
     $scope.hasMoreItemsToShow = function () {
-        return pageShow < ($scope.Event.length / index);
+        return pageShow < ($scope.EventList.length / index);
     };
     $scope.showMoreItems = function () {
         index = index + 1;

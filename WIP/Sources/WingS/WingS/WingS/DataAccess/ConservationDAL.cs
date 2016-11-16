@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
 using WingS.DataHelper;
@@ -17,6 +18,23 @@ namespace WingS.DataAccess
                 db.SaveChanges();
                 return returnedConservation;
             }
+        }
+        public Conservation GetConservationById(int Id)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var returnedConservation = db.Conservation.Where(x => x.ConservationId == Id).SingleOrDefault();
+                return returnedConservation;
+            }
+        }
+        public void UpdateTime(Conservation currentConservation)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                db.Conservation.AddOrUpdate(currentConservation);
+                db.SaveChanges();
+            }
+          
         }
         public List<MessageBasicInfoDTO> GetAllMessageByConservationId(int id)
         {
