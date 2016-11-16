@@ -12,6 +12,7 @@ namespace WingS.Models.DTOs
         public string Creator { get; set; }
         public string ThreadName { get; set; }
         public List<String> ImageUrl { get; set; }
+        public string ShortDescription { get; set; }
         public string Content { get; set; }
         public int Likes { get; set; }
         public int Comments { get; set; }

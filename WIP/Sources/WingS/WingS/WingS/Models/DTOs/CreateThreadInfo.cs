@@ -10,6 +10,7 @@ namespace WingS.Models.DTOs
     {
         public int CreatorID { get; set; }
         public string Title { get; set; }
+        public string ShortDescription { get; set; }
         [AllowHtml]
         public string Content { get; set; }
 

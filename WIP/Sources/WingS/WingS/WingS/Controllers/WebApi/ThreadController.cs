@@ -168,6 +168,7 @@ namespace WingS.Controllers.WebApi
                             ThreadName = thread.Title,
                             ImageUrl = threadImage,
                             Content = thread.Content,   
+                            ShortDescription = thread.ShortDescription,
                             Status = true,
                             CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd/MM/yy")
 
@@ -272,6 +273,7 @@ namespace WingS.Controllers.WebApi
                             ThreadName = thread.Title,
                             ImageUrl = threadImage,
                             Content = thread.Content,
+                            ShortDescription =  thread.ShortDescription,
                             Status = true,
                             CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
                         });

@@ -223,7 +223,7 @@ img.pull-left { margin-right:15px !important; margin-top:7px !important;}
 .navbar .nav-pills > li > a:hover, .navbar .nav-pills li.dropdown.open.active > .dropdown-toggle {-webkit-transition: ease-in-out .2s;-moz-transition: ease-in-out .2s;-o-transition: ease-in-out .2s;-ms-transition: ease-in-out .2s; transition: ease-in-out .2s;}
 
 
-body {background-image: url(scribble_light.png);  background-position: inherit inherit; background-repeat: repeat repeat;}
+body {background-image: url(scribble_light.png);  background-position: inherit; background-repeat: repeat repeat;}
 
 
 #divLogo{margin-top: 48px; margin-bottom: 0px; text-align: left;}
@@ -575,6 +575,16 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 	padding-top:5px;
 	padding-bottom:5px;
 }
-
+.event-title,.thread-title, .organization-title {
+    overflow: hidden;
+    height: 66px;
+}
+.event-title h5, .thread-title h5, .organization-title h5 {
+    font-size: 17px;
+}
+.event-content,.thread-content, .organization-content {
+    overflow: hidden;
+    height: 91px;
+}
 
 

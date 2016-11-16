@@ -275,6 +275,7 @@ namespace WingS.DataAccess
             newThread.Title = thread.Title;
             newThread.Etitle = ConvertToUnSign.Convert(thread.Title);
             newThread.Content = thread.Content;
+            newThread.ShortDescription = thread.ShortDescription;
             using (var db = new Ws_DataContext())
                  {
                      db.Threads.Add(newThread);

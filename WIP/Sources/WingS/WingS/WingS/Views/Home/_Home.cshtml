@@ -79,8 +79,9 @@
                                         <p>{{item.ShortDescription}}</p>
                                     </div>
                                     <div class="event-footer">
-                                        <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">Read More &raquo;</a>
+                                        <i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50
+                                        <i class="fa fa-comment-o"   aria-hidden="true" title="Số bình luận" style="padding-left:35px"></i> 50
+                                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")" style="padding-left:43px">Read More &raquo;</a>
                                     </div>
                                 </div>
                                 
@@ -98,15 +99,16 @@
                             <div class="span3 addborder" ng-repeat="item in Thread track by $index">
                                 <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}"></a>
                                 <div class="contentTop">
-                                    <div class="event-title">
+                                    <div class="thread-title">
                                         <h5 class="text-info">{{item.ThreadName}}</h5>
                                     </div>
-                                    <div class="event-content">
+                                    <div class="thread-content">
                                         <p>{{item.ShortDescription}}</p>
                                     </div>
-                                    <div class="event-footer">
-                                        <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Read More &raquo;</a>
+                                    <div class="thread-footer">
+                                        <i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50
+                                        <i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận" style="padding-left:35px"></i> 50
+                                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")" style="padding-left:43px">Read More &raquo;</a>
                                     </div>
                                 </div>
 
@@ -122,7 +124,7 @@
                 <div class="row-fluid">
                     <!--Edit Main Content Area here-->
                     <div class="span12" id="divMain">
-                        <h1>Xếp hạng các tổ chức</h1>
+                        <h2><strong> Xếp hạng tổ chức</strong></h2>
                         <hr>
 
                         <br />
@@ -132,7 +134,7 @@
 
                         <div class="span4" align="center" ng-repeat="item in Organization track by $index">
                             <div class="organization-title">
-                                <h4 class="text-info">{{item.OrganizationName}}</h4>
+                                <h5 class="text-info">{{item.OrganizationName}}</h5>
                             </div>
                             <div class="organization-img">
                                 <img src="{{item.LogoUrl}}" class="img-polaroid img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;" >
@@ -140,14 +142,11 @@
                             <div class="organization-content">
                                 <p>{{item.Introduction}}</p>
                             </div>
-                            <div class="organization-footer">
-                                <a href="#">Read More &raquo;</a>
-                            </div>
                         </div>
 
                     </div>
                 </div>
-                <div align="center"><a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i> Xem xếp hạng...</a></div>
+                <div align="center"><a class="btn btn-primary" href="#"> Xem danh sách</a></div>
                 <div id="footerInnerSeparator"></div>
             </div>
 

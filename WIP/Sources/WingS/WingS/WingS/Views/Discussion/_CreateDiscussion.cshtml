@@ -4,7 +4,7 @@
         // Initialize your tinyMCE Editor with your preferred options
         tinyMCE.init({
             // General options
-            selector: "textarea",
+            selector: "#ThreadContent",
         });
 </script>
         <div class="divPanel notop nobottom">
@@ -49,28 +49,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="row-fluid">
-                    <div class="span9 offset1">
-                        <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
-                            <div class="row-fluid">
-                                <div class="span4" align="center">
-                                    <h3 style="margin-top:25px;"><strong>Hình ảnh <span style="color: red"> *</span></strong></h3>
-                                </div>
-                                <div class="span8">
-                                    <p>Chọn hình ảnh bạn có</p>
-                                    <input type="file" class="multiple" name="Images" multiple valid-file ng-model="Images" required accept="image/*" />
-                                    <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với  1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
-                                    <p>
-                                        <span style="color: red" ng-show="CreateThread.Images.$dirty && CreateEventForm.FileUpload.$invalid">
+                    <div class="row-fluid">
+                        <div class="span9 offset1">
+                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                                <div class="row-fluid">
+                                    <div class="span4" align="center">
+                                        <h3 style="margin-top: 25px;"><strong>Hình ảnh <span style="color: red"> *</span></strong>
+                                        </h3>
+                                    </div>
+                                    <div class="span8">
+                                        <p>Chọn hình ảnh bạn có</p>
+                                        <input type="file" class="multiple" name="Images" multiple valid-file ng-model="Images" required accept="image/*"/>
+                                        <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
+                                        <p>
+                                            <span style="color: red" ng-show="CreateThread.Images.$dirty && CreateEventForm.FileUpload.$invalid">
                                             <span ng-show="CreateThread.Images.$error.required">Bạn phải chọn ảnh để upload</span>
                                         </span>
-                                    </p>
+                                        </p>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                     <div class="row-fluid">
+                         <div class="span9 offset1">
+                             <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
+                                 <div class="row-fluid">
+                                     <div class="span4" align="center">
+                                         <h3 style="margin-top:25px;"><strong>Mô tả ngắn<span style="color: red"> *</span></strong></h3>
+                                     </div>
+                                     <div class="span8">
+                                         <p>Nhập vào mô tả ngắn </p>
+                                         <textarea name="ShortDescription" style="height: 60%; height: 80%;"></textarea>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
                 <div class="row-fluid">
                     <div class="span9 offset1">
                         <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
