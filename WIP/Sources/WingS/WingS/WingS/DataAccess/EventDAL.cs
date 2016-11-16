@@ -554,6 +554,7 @@ namespace WingS.DataAccess
                 Event wsEvent;
                 string creatorUserName="";
                 string creatorName="";
+                string organizationName = "";
                 List<string> imageAlbum;
                 
                 using (var db = new Ws_DataContext())
@@ -574,7 +575,11 @@ namespace WingS.DataAccess
                     }
                     //Get image album
                     imageAlbum = db.EventAlbum.Where(x => x.EventId == eventId).Select(x => x.ImageUrl).ToList();
-
+                    var organiGet = db.Organizations.FirstOrDefault(x => x.OrganizationId == wsEvent.CreatorID);
+                    if (organiGet != null)
+                    {
+                        organizationName = organiGet.OrganizationName;
+                    }
                 
                 
                 // Get main image
@@ -585,6 +590,7 @@ namespace WingS.DataAccess
                 eventBasicInfo.EventID = eventId;
                 eventBasicInfo.CreatorID = wsEvent.CreatorID;
                 eventBasicInfo.CreatorUserName = creatorUserName;
+                eventBasicInfo.OrganizationName = organizationName;
                 eventBasicInfo.CreatorName = creatorName;
                 eventBasicInfo.EventName = wsEvent.EventName;
                 eventBasicInfo.ShortDescription = wsEvent.ShortDescription;
@@ -613,9 +619,9 @@ namespace WingS.DataAccess
                 }
                 eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
                 eventBasicInfo.EventType = wsEvent.EType.EventName;
-                eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("H:mm:ss dd/MM/yy");
-                eventBasicInfo.Start_Date = wsEvent.Start_Date.ToString("H:mm:ss dd/MM/yy");
-                eventBasicInfo.Finish_Date = wsEvent.Finish_Date.ToString("H:mm:ss dd/MM/yy");
+                eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("dd/MM/yyyy");
+                eventBasicInfo.Start_Date = wsEvent.Start_Date.ToString("dd/MM/yyyy");
+                eventBasicInfo.Finish_Date = wsEvent.Finish_Date.ToString("dd/MM/yyyy");
                 }   
             }
             catch (Exception)

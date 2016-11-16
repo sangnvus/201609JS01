@@ -44,7 +44,7 @@
                                     <div class="row">
                                         <div class="title text-center" style="margin-bottom: 30px;">
                                             <h2>{{currentEvent.EventName}}</h2>
-                                            <p>Tạo bởi: <a href="OrganizationDetail.html"><span class="badge purple">Tổ chức vì Giáo dục</span></a> - <span class="badge green">{{currentEvent.EventType}}</span> - <span class="badge blue" ng-if="currentEvent.TimeStatus == 'income'">Sắp diễn ra</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'process'">Đang hoạt động</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'ban'">Bị Cấm</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'done'">Đã hoàn thành</span></p>
+                                            <p>Tạo bởi: <a href="@Url.Content("/Admin/#/OrganizationDetail/{{currentEvent.CreatorID}}")"><span class="badge purple">{{currentEvent.OrganizationName}}</span></a> - <span class="badge green">{{currentEvent.EventType}}</span> - <span class="badge blue" ng-if="currentEvent.TimeStatus == 'income'">Sắp diễn ra</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'process'">Đang hoạt động</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'ban'">Bị Cấm</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'done'">Đã hoàn thành</span></p>
                                         </div>
                                         <div class="col-lg-7">
                                             <div class="responsive-video form-group">

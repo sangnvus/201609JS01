@@ -10,6 +10,7 @@ namespace WingS.Models.DTOs
         public int EventID { get; set; }
         public int CreatorID { get; set; }
         public string CreatorUserName { get; set; }
+        public string OrganizationName { get; set; }
         public string CreatorName { get; set; }
         public string EventName { get; set; }
         public string ShortDescription { get; set; }
@@ -32,6 +33,7 @@ namespace WingS.Models.DTOs
             EventID = 0;
             CreatorID = 0;
             CreatorUserName = "";
+            OrganizationName = "";
             CreatorName = "";
             EventName = "";
             ShortDescription = "";
