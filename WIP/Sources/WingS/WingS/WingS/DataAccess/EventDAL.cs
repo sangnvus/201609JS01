@@ -535,9 +535,9 @@ namespace WingS.DataAccess
             EventCircleTileDTO circleInfor = new EventCircleTileDTO();
             using (var db = new Ws_DataContext())
             {
-                circleInfor.NumberInComeEvent = db.Events.Count(x => DateTime.Now < x.Start_Date);
-                circleInfor.NumberActiveEvent = db.Events.Count(x => x.Status);
-                circleInfor.NumberDoneEvent = db.Events.Count(x => DateTime.Now > x.Finish_Date);
+                circleInfor.NumberInComeEvent = db.Events.Count(x => x.Status && DateTime.Now < x.Start_Date);
+                circleInfor.NumberActiveEvent = db.Events.Count(x => x.Status && DateTime.Now > x.Start_Date && DateTime.Now < x.Finish_Date);
+                circleInfor.NumberDoneEvent = db.Events.Count(x => x.Status && DateTime.Now > x.Finish_Date);
                 circleInfor.NumberBanEvent = db.Events.Count(x => !x.Status);
                 circleInfor.NumberAllEvent = db.Events.Count();
                 
@@ -587,6 +587,22 @@ namespace WingS.DataAccess
                 eventBasicInfo.Location = wsEvent.Location;
                 eventBasicInfo.VideoUrl = wsEvent.VideoUrl;
                 eventBasicInfo.Status = wsEvent.Status;
+                if (!wsEvent.Status)
+                {
+                    eventBasicInfo.TimeStatus = "ban";
+                }
+                else if (wsEvent.Status && DateTime.Now > wsEvent.Finish_Date)
+                {
+                    eventBasicInfo.TimeStatus = "done";
+                }
+                else if (wsEvent.Status && DateTime.Now < wsEvent.Start_Date)
+                {
+                    eventBasicInfo.TimeStatus = "income";
+                }
+                else
+                {
+                    eventBasicInfo.TimeStatus = "process";
+                }
                 eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
                 eventBasicInfo.EventType = wsEvent.EType.EventName;
                 eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("H:mm:ss dd/MM/yy");
@@ -601,6 +617,87 @@ namespace WingS.DataAccess
             }
 
             return eventBasicInfo;
+        }
+        public List<EventBasicInfo> GetAllEvents()
+        {
+            var listEvent = new List<EventBasicInfo>();
+            try
+            {
+                List<int> IdList;
+                using (var db = new Ws_DataContext())
+                {
+                    IdList = db.Events.Select(x => x.EventID).ToList();
+                }
+
+                using (var db = new EventDAL())
+                {
+                    foreach (int eventId in IdList)
+                    {
+                        EventBasicInfo eventBasic = db.GetFullEventBasicInformation(eventId);
+                        listEvent.Add(eventBasic);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return listEvent;
+        }
+
+        public List<EventBasicInfo> GetTopNewEvent()
+        {
+            var topEvent = new List<EventBasicInfo>();
+
+            try
+            {
+                List<int> listEventId;
+                using (var db = new Ws_DataContext())
+                {
+                    listEventId = db.Events.OrderByDescending(x => x.Created_Date).Select(x => x.EventID).Take(10).ToList();
+                }
+
+                foreach (int userId in listEventId)
+                {
+                    EventBasicInfo eventBasic = GetFullEventBasicInformation(userId);
+                    topEvent.Add(eventBasic);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return topEvent;
+        }
+        public List<EventBasicInfo> GetTopHotEvent()
+        {
+            var topEvent = new List<EventBasicInfo>();
+
+            try
+            {
+                List<int> listEventId;
+                using (var db = new Ws_DataContext())
+                {
+                    listEventId = db.Events.OrderByDescending(x => x.TotalPoint).Select(x => x.EventID).Take(10).ToList();
+                }
+
+                foreach (int userId in listEventId)
+                {
+                    EventBasicInfo eventBasic = GetFullEventBasicInformation(userId);
+                    topEvent.Add(eventBasic);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return topEvent;
         }
         public void Dispose()
         {

@@ -20,6 +20,7 @@ namespace WingS.Models.DTOs
         public string Location { get; set; }
         public string VideoUrl { get; set; }
         public bool Status { get; set; }
+        public string TimeStatus { get; set; }
         public double ExpectedMoney { get; set; }
         public string EventType { get; set; }
         public string CreatedDate { get; set; }
@@ -41,6 +42,7 @@ namespace WingS.Models.DTOs
             Location = "";
             VideoUrl = "";
             Status = false;
+            TimeStatus = "";
             ExpectedMoney = 0;
             EventType = "";
             CreatedDate = "";

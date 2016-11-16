@@ -1,0 +1,153 @@
+﻿<body>
+    @Html.Partial("../Admin/_TopSideNavigation")
+    <!-- begin MAIN PAGE CONTENT -->
+    <div id="page-wrapper">
+
+        <div class="page-content">
+
+            <!-- begin PAGE TITLE ROW -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h1>
+                            Sự kiện
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index-2.html">Sự kiện</a>
+                            </li>
+                            <li class="active">Thống kê sự kiện</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <!-- end PAGE TITLE ROW -->
+            <!-- begin DASHBOARD CIRCLE TILES -->
+            @Html.Partial("../Admin/EventManage/_EventCircleTile")
+            <!-- end DASHBOARD CIRCLE TILES -->
+            <!-- begin ADVANCED TABLES ROW -->
+            <div class="row">
+                <!-- newest event-->
+                <div class="col-lg-12">
+                    <div class="portlet portlet-purple">
+                        <div class="portlet-heading">
+                            <div class="portlet-title">
+                                <h4><i class="fa fa-exchange fa-fw"></i> Sự kiện mới nhất</h4>
+                            </div>
+                            <div class="portlet-widgets">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3" onclick="return false"><i class="fa fa-chevron-down"></i></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div id="transactionsPortlet3" class="panel-collapse collapse in">
+                            <div class="portlet-body">
+                                <div class="table-responsive dashboard-demo-table">
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên sự kiện</th>
+                                                <th>Thể loại</th>
+                                                <th>Ngày tạo</th>
+                                                <th>Địa điểm</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in TopNewEvent">
+                                                <td>
+                                                    <h4>{{x.EventName}}</h4>
+                                                </td>
+                                                <td>{{x.EventType}}</td>
+                                                <td>{{x.CreatedDate}}</td>
+                                                <td>{{x.Location}}</td>
+                                                <td>
+                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'process'">Đang hoạt động</span>
+                                                    <span class="label center-block btn-danger" ng-if="x.TimeStatus == 'ban'">Bị Cấm</span>
+                                                    <span class="label center-block btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
+                                                    <span class="label center-block btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- popular Event -->
+                <div class="col-lg-12">
+                    <div class="portlet portlet-purple">
+                        <div class="portlet-heading">
+                            <div class="portlet-title">
+                                <h4><i class="fa fa-exchange fa-fw"></i> Sự kiện được ủng hộ nhiều nhất</h4>
+                            </div>
+                            <div class="portlet-widgets">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet4" onclick="return false"><i class="fa fa-chevron-down"></i></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div id="transactionsPortlet4" class="panel-collapse collapse in">
+                            <div class="portlet-body">
+                                <div class="table-responsive dashboard-demo-table">
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên sự kiện</th>
+                                                <th>Thể loại</th>
+                                                <th>Địa điểm</th>
+                                                <th>Số tiền dự kiến</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in TopHotEvent">
+                                                <td>
+                                                    <h4>{{x.EventName}}</h4>
+                                                </td>
+                                                <td>{{x.EventType}}</td>
+                                                <td>{{x.Location}}</td>
+                                                <td>{{x.ExpectedMoney}} Vnđ</td>
+                                                <td>
+                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'process'">Đang hoạt động</span>
+                                                    <span class="label center-block btn-danger" ng-if="x.TimeStatus == 'ban'">Bị Cấm</span>
+                                                    <span class="label center-block btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
+                                                    <span class="label center-block btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end popular Event -->
+
+            </div>
+        </div>
+        <!-- /.page-content -->
+
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- end MAIN PAGE CONTENT -->
+    <!-- GLOBAL SCRIPTS -->
+    <script src="~/Content/Admin/js/jquery.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+    <script src="~/Content/Admin/js/plugins/popupoverlay/defaults.js"></script>
+    <!-- HISRC Retina Images -->
+    <script src="~/Content/Admin/js/plugins/hisrc/hisrc.js"></script>
+
+    <!-- PAGE LEVEL PLUGIN SCRIPTS -->
+    <script src="~/Content/Admin/js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/Admin/js/plugins/datatables/datatables-bs3.js"></script>
+    <script src="~/Content/Admin/js/demo/advanced-tables-demo.js"></script>
+
+
+    <!-- THEME SCRIPTS -->
+    <script src="~/Content/Admin/js/flex.js"></script>
+</body>

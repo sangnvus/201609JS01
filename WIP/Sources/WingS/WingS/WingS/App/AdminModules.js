@@ -42,6 +42,21 @@ app.config(function ($routeProvider) {
             tittle: "Chi tiết bài viết",
             templateUrl: "/Admin/ThreadDetail",
             controller: "AdminThreadDetailController"
+        })
+        .when("/EventDashBoard", {
+            tittle: "Thống kê sự kiện",
+            templateUrl: "/Admin/EventDashBoard",
+            controller: "AdminEventController"
+        })
+        .when("/EventList", {
+            tittle: "Danh sách sự kiện",
+            templateUrl: "/Admin/EventList",
+            controller: "AdminEventController"
+        })
+        .when("/EventDetail/:EventID", {
+            tittle: "Chi tiết sự kiện",
+            templateUrl: "/Admin/EventDetail",
+            controller: "AdminEventController"
         });
 
 });
