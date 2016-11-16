@@ -22,6 +22,7 @@ namespace WingS.Models.DTOs
         public string VideoUrl { get; set; }
         public bool Status { get; set; }
         public string TimeStatus { get; set; }
+        public int DonatedUser { get; set; }
         public double ExpectedMoney { get; set; }
         public decimal RaisedMoney { get; set; }
         public string EventType { get; set; }
@@ -46,7 +47,9 @@ namespace WingS.Models.DTOs
             VideoUrl = "";
             Status = false;
             TimeStatus = "";
+            DonatedUser = 0;
             ExpectedMoney = 0;
+            RaisedMoney = 0;
             EventType = "";
             CreatedDate = "";
             Start_Date = "";

@@ -620,6 +620,7 @@ namespace WingS.DataAccess
                 {
                     eventBasicInfo.TimeStatus = "process";
                 }
+                eventBasicInfo.DonatedUser = GetTotalDonatedUserOfEvent(eventId);
                 eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
                 eventBasicInfo.RaisedMoney = raisedMoney;
                 eventBasicInfo.EventType = wsEvent.EType.EventName;
@@ -691,33 +692,6 @@ namespace WingS.DataAccess
             }
             return topEvent;
         }
-        public List<EventBasicInfo> GetTopHotEvent()
-        {
-            var topEvent = new List<EventBasicInfo>();
-
-            try
-            {
-                List<int> listEventId;
-                using (var db = new Ws_DataContext())
-                {
-                    listEventId = db.Events.OrderByDescending(x => x.TotalPoint).Select(x => x.EventID).Take(10).ToList();
-                }
-
-                foreach (int userId in listEventId)
-                {
-                    EventBasicInfo eventBasic = GetFullEventBasicInformation(userId);
-                    topEvent.Add(eventBasic);
-                }
-
-            }
-            catch (Exception)
-            {
-
-                //throw;
-            }
-            return topEvent;
-        }
-
         public List<EventBasicInfo> GetTopEventSortByMoneyDonateIn(int top)
         {
             List<EventBasicInfo> eventList = new List<EventBasicInfo>();
@@ -765,7 +739,24 @@ namespace WingS.DataAccess
 
             return raisedMoney;
         }
+        public int GetTotalDonatedUserOfEvent(int eventId)
+        {
+            int numUser = 0;
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    numUser = db.Donations.Count(x => x.EventId == eventId);
+                }
+            }
+            catch (Exception)
+            {
 
+                //throw;
+            }
+
+            return numUser;
+        }
         public void Dispose()
         {
           

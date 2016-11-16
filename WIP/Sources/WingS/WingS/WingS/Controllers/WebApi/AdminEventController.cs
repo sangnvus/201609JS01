@@ -71,14 +71,14 @@ namespace WingS.Controllers.WebApi
             }
         }
         [HttpGet]
-        public IHttpActionResult GetTopHotEvent()
+        public IHttpActionResult GetTopDonatedEvent()
         {
             List<EventBasicInfo> listEvent = new List<EventBasicInfo>();
             try
             {
                 using (var db = new EventDAL())
                 {
-                    listEvent = db.GetTopHotEvent();
+                    listEvent = db.GetTopEventSortByMoneyDonateIn(10);
                 }
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = listEvent });
             }
@@ -87,7 +87,7 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot Get Top Hot Event",
+                    Message = "Cannot Get Top Donated Event",
                     Type = ""
                 });
             }
