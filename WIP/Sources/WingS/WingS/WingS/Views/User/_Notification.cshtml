@@ -1,0 +1,55 @@
+﻿
+        <div class="divPanel notop nobottom">
+ 
+        </div>
+
+        <div class="contentArea">
+
+            <div class="divPanel notop page-content">
+
+                <div class="breadcrumbs" style="font-size: 18px; padding-bottom:20px;">
+                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Thông báo</span>
+                </div>
+
+                <!--Star event content -->
+                <div class="row-fluid">
+                    <!--Infor of User-->
+                    <div class="span10 offset1" id="divMain">
+                        <div ng-repeat="item in Notification track by $index">
+                            <a href="@Url.Content("/#/{{item.NotifyUrl}}")" onclick="return false"  style="text-decoration: none;">
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img src="{{item.ImageUrl}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
+                                        {{item.Content}}
+                                    </div>
+                                </div>
+                                <hr />
+                                </a>
+                        </div>
+                        <br>
+                        <div align="center" style="margin-right:15px;">
+                            <a class="btn btn-primary" href="#" ng-click="reloadComment()" onclick="return false;"><i class="icon-refresh icon-spin"></i> Tải thêm thông báo</a>
+                        </div>
+
+                    </div>
+
+                    <!--/End Main Content Area here-->
+
+
+                </div>
+
+
+                <!--End Main Content-->
+            </div>
+
+            <hr>
+        </div>
+
+    <div id="footerOuterSeparator"></div>
+
+    @Html.Partial("../Home/_Footer")
+    <br /><br /><br />
+

@@ -94,6 +94,18 @@ app.config(function ($routeProvider) {
               title: "Tin nhắn",
               controller: "MessagesController"
           })
+          .when("/Notification", {
+              templateUrl: "/Client/Notification",
+              resolve: {
+                  'check': function ($location, $window) {
+                      if ($window.sessionStorage.isAuthen == "false") {
+                          $location.path('/Login');
+                      }
+                  }
+              },
+              title: "Thông báo",
+              controller: "NotificationController"
+          })
         .when("/CreateEvent", {
             templateUrl: "/Client/CreateEvent",
             resolve: {
