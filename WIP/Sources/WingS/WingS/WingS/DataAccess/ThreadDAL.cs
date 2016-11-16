@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using WingS.DataHelper;
@@ -34,6 +35,23 @@ namespace WingS.DataAccess
                 if (isLike != null) return true;
                 else return false;
             }
+        }
+        // Update Thread
+        public Thread UpdateThread(Thread thread)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    db.Threads.AddOrUpdate(thread);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+            return thread;
         }
         public bool ChangelikeState(int ThreadId, string UserName)
         {
@@ -586,7 +604,7 @@ namespace WingS.DataAccess
                 List<int> userIdThread;
                 using (var db = new Ws_DataContext())
                 {
-                    userIdThread = db.Threads.Select(x => x.ThreadId).ToList();
+                    userIdThread = db.Threads.OrderBy(x => x.ThreadId).Select(x => x.ThreadId).ToList();
                 }
 
                 using (var db = new ThreadDAL())

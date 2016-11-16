@@ -53,8 +53,8 @@
                                     <td>{{item.Creator}}</td>
                                     <td>{{item.CreatedDate}}</td>
                                     <td>
-                                        <button class="btn btn-green" style="width: 125px" ng-if="item.Status">Đang thảo luận</button>
-                                        <button class="btn btn-danger" style="width: 125px" ng-if="!item.Status">Bị cấm</button>
+                                        <button class="btn btn-green" style="width: 125px" ng-if="item.Status" ng-click="ban($index,item.ThreadID)">Đang thảo luận</button>
+                                        <button class="btn btn-danger" style="width: 125px" ng-if="!item.Status" ng-click="unBan($index,item.ThreadID)">Bị cấm</button>
                                     </td>
                                     <td>
                                         <a href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")" class="btn btn-blue">Xem chi tiết</a>

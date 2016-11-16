@@ -186,5 +186,31 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+        /// <summary>
+        /// Change status of thread
+        /// </summary>
+        /// <param name="threadId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ActionName("ChangeStatusThread")]
+        public IHttpActionResult ChangeStatusThread(int threadId)
+        {
+            try
+            {
+                bool statusThread;
+                using (var threadDal = new ThreadDAL())
+                {
+                    var thread = threadDal.GetThreadById(threadId);
+                    thread.Status = !thread.Status;
+                    statusThread = thread.Status;
+                    threadDal.UpdateThread(thread);
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = statusThread });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
     }
 }

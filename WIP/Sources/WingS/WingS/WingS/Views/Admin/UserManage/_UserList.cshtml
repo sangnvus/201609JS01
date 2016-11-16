@@ -64,9 +64,9 @@
                                     </td>
                                     <td>{{ x.CreatedDate }}</td>
                                     <td>
-                                        <button class="btn btn-block" style="width: 150px" disabled="" ng-if="!x.IsVerify">Chưa kích hoạt</button>
-                                        <button class="btn btn-default" style="width: 150px" @*data-toggle="modal" data-target="#banUser"*@ ng-if="x.IsActive && x.IsVerify" ng-click="DoChangeStatus($index,x.UserId)">Đang hoạt động</button>
-                                        <button class="btn btn-danger" style="width: 150px" @*data-toggle="modal" data-target="#unBanUser"*@ ng-if="!x.IsActive && x.IsVerify" ng-click="DoChangeStatus($index,x.UserId)">Bị cấm</button>
+                                        <button class="btn btn-default" style="width: 125px" ng-if="!x.IsVerify">Chưa kích hoạt</button>
+                                        <button class="btn btn-green" style="width: 125px" ng-if="x.IsActive && x.IsVerify" ng-click="ban($index,x.UserId)">Đang hoạt động</button>
+                                        <button class="btn btn-danger" style="width: 125px" ng-if="!x.IsActive && x.IsVerify" ng-click="unBan($index,x.UserId)">Bị cấm</button>
                                     </td>
                                     <td>
                                         <a href="/Admin/#/UserProfile"><button class="btn btn-blue">Xem chi tiết</button></a>
@@ -89,56 +89,6 @@
 
     </div>
     <!-- /.page-content -->
-
-</div>
-    <!-- Unban Modal -->
-    <div class="modal modal-flex fade" id="unBanUser" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="margin-top:250px;width: 300px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="flexModalLabel">
-                        Mở khóa tài khoản
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <p>Bạn muốn mở khóa tài khoản này?</p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-green">Có</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-
-    <!-- Ban Modal -->
-    <div class="modal modal-flex fade" id="banUser" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="margin-top:250px;width: 300px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="flexModalLabel">
-                        Khóa tài khoản
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <p>Bạn muốn khóa tài khoản này?</p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-green">Có</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
     <!-- /#page-wrapper -->
 <!-- end MAIN PAGE CONTENT -->
     <!-- GLOBAL SCRIPTS -->

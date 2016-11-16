@@ -5,9 +5,12 @@
 <div ng-view=""></div>
 @*Import all scrips for admin page there*@
 @section scripts{
-    
+    <!-- Load Jquery scripts -->
+    <script src="~/Content/scripts/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Content/scripts/data-tables/angular-datatables.min.js"></script>
     <!-- Load angular scripts -->
     @Scripts.Render("~/bundles/angular")
+    <!--Load Controller-->
     <script src="~/Content/scripts/data-tables/angular-datatables.min.js"></script>
     <script src="~/App/AdminModules.js"></script>
     <script src="~/App/AdminController/UserListController.js"></script>
@@ -15,7 +18,8 @@
     <script src="~/App/AdminController/UserProfileController.js"></script>
     <script src="~/App/AdminController/AdminThreadController.js"></script>
     <script src="~/App/AdminController/AdminThreadDetailController.js"></script>
-    <!--Load Controller-->
+    <!--Load Directive-->
+    <script src="~/App/Directives/SweetAlert.min.js"></script>
 
     <!--Javascripts-->
 
