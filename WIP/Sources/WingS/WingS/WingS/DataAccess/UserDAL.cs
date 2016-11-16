@@ -171,9 +171,13 @@ namespace WingS.DataAccess
                     numberEventDonatedIn = db.GetNumberEventDonatedInByUsingUserId(userId);
                     totalMoneyDonatedIn = db.GetTotalMoneyDonatedInByUsingUserId(userId);
 
-                    Donation lasDonation = db.GetLastDonateInformation(userId);
-                    lastDonateMoney = lasDonation.DonatedMoney;
-                    lastDonateDate = lasDonation.DonatedDate.ToString("H:mm:ss dd/MM/yy");
+                    Donation lastDonation = db.GetLastDonateInformation(userId);
+
+                    if (lastDonation != null)
+                    {
+                        lastDonateMoney = lastDonation.DonatedMoney;
+                        lastDonateDate = lastDonation.DonatedDate.ToString("H:mm:ss dd/MM/yy");
+                    }
                 }
 
                 //Get number of post for current user

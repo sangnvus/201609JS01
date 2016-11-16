@@ -353,7 +353,7 @@ namespace WingS.DataAccess
             }
             catch (Exception)
             {
-                
+                return 0;
                 //throw;
             }
             return numberOfPost;

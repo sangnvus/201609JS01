@@ -26,7 +26,7 @@ namespace WingS.DataAccess
             }
             catch (Exception)
             {
-                
+                return 0;
                 //throw;
             }
 
@@ -50,7 +50,7 @@ namespace WingS.DataAccess
             }
             catch (Exception)
             {
-
+                return 0;
                 //throw;
             }
 
@@ -108,19 +108,21 @@ namespace WingS.DataAccess
         /// <returns>Donation</returns>
         public Donation GetLastDonateInformation(int userId)
         {
-            Donation donationInfor = new Donation();
             try
             {
+                Donation donationInfor;
                 using (var db = new Ws_DataContext())
                 {
                     donationInfor = db.Donations.OrderByDescending(x=>x.DonatedDate).FirstOrDefault(x => x.UserId == userId);
                 }
+
+                return donationInfor;
             }
             catch (Exception)
             {
+                return null;
                 //throw;
             }
-            return donationInfor;
         }
 
 
