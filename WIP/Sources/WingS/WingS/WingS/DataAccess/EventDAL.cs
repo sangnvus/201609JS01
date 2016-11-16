@@ -556,7 +556,8 @@ namespace WingS.DataAccess
                 string creatorName="";
                 string organizationName = "";
                 List<string> imageAlbum;
-                
+                decimal raisedMoney;
+
                 using (var db = new Ws_DataContext())
                 {
                     //Get event model
@@ -580,7 +581,9 @@ namespace WingS.DataAccess
                     {
                         organizationName = organiGet.OrganizationName;
                     }
-                
+
+                    //Get total money which has been raised
+                    raisedMoney = GetTotalRaisedMoneyOfEvent(eventId);
                 
                 // Get main image
                 string mainImageUrl = GetMainImageEventById(eventId).ImageUrl;
@@ -618,6 +621,7 @@ namespace WingS.DataAccess
                     eventBasicInfo.TimeStatus = "process";
                 }
                 eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
+                eventBasicInfo.RaisedMoney = raisedMoney;
                 eventBasicInfo.EventType = wsEvent.EType.EventName;
                 eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("dd/MM/yyyy");
                 eventBasicInfo.Start_Date = wsEvent.Start_Date.ToString("dd/MM/yyyy");
@@ -713,6 +717,55 @@ namespace WingS.DataAccess
             }
             return topEvent;
         }
+
+        public List<EventBasicInfo> GetTopEventSortByMoneyDonateIn(int top)
+        {
+            List<EventBasicInfo> eventList = new List<EventBasicInfo>();
+            try
+            {
+                List<int> eventIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    eventIdList = db.Donations.Select(x => x.EventId).Distinct().ToList();
+                }
+
+                List<EventBasicInfo> eventFullList = new List<EventBasicInfo>();
+                foreach (int eventId in eventIdList)
+                {
+                    EventBasicInfo e = GetFullEventBasicInformation(eventId);
+                    eventFullList.Add(e);
+                }
+
+                eventList = eventFullList.OrderByDescending(x => x.RaisedMoney).Take(top).ToList();
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+
+            return eventList;
+        }
+
+        public decimal GetTotalRaisedMoneyOfEvent(int eventId)
+        {
+            decimal raisedMoney = 0;
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    raisedMoney = db.Donations.Where(x => x.EventId == eventId).Select(x => x.DonatedMoney).Sum();
+                }
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+
+            return raisedMoney;
+        }
+
         public void Dispose()
         {
           

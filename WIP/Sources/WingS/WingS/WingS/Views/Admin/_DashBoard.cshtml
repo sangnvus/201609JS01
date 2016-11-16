@@ -235,58 +235,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in TopFiveRankingRaisedMoneyEvent">
                                                 <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/Event/{{item.OrganizationId}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.MainImageUrl}}" alt="">
                                                     </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
+                                                    <h4>{{item.EventName}}</h4>
                                                 </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2016-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Đang hoạt động</a>
+                                                <td>{{item.EventType}}</td>
+                                                <td>{{item.RaisedMoney}}</td>
+                                                <td ng-switch="item.TimeStatus">
+                                                    <div ng-switch-when="income">
+                                                        <a class="btn btn-xs btn-warning">Chưa diễn ra</a>
+                                                    </div>
+                                                    <div ng-switch-when="process">
+                                                        <a class="btn btn-xs btn-green">Đang diễn ra</a>
+
+                                                    </div>
+                                                    <div ng-switch-when="ban">
+                                                        <a class="btn btn-xs btn-danger">Bị cấm</a>
+                                                    </div>
+                                                    <div ng-switch-when="done">
+                                                        <a class="btn btn-xs btn-danger">Hoàn thành</a>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                                    </a>
-                                                    <h4>Tạ Ngọc Duy</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Chưa kích hoạt</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                    </a>
-                                                    <h4>lê Hồng NHiên</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                                    </a>
-                                                    <h4>Đào Trọng Nghĩa</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

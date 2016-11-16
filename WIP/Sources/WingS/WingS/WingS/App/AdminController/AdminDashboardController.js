@@ -12,7 +12,6 @@
     });
 
     // Load information of organization which in top 5 rank
-   
     $http({
         url: "/api/Organization/GetTopOrganization",
         method: "GET",
@@ -20,6 +19,16 @@
         contentType: "application/json"
     }).success(function(response) {
         $scope.TopFiveRankingOrg = response.Data;
+    });
+
+    // Load information of most donated event which in top 5 rank
+    $http({
+        url: "/api/Event/GetTopEventSortByMoneyDonateIn",
+        method: "GET",
+        params: { top: 5 },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.TopFiveRankingRaisedMoneyEvent = response.Data;
     });
 
 });

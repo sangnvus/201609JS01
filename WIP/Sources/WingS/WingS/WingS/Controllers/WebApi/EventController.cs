@@ -531,7 +531,37 @@ namespace WingS.Controllers
             }
 
         }
-        
 
+        [HttpGet]
+        public IHttpActionResult GetTopEventSortByMoneyDonateIn(int top)
+        {
+            try
+            {
+                List<EventBasicInfo> eventList;
+
+                using (var db = new EventDAL())
+                {
+                    eventList = db.GetTopEventSortByMoneyDonateIn(top);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = eventList
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
     }
 }
