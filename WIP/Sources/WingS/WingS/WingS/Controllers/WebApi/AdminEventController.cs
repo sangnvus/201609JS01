@@ -36,10 +36,11 @@ namespace WingS.Controllers.WebApi
             }
             catch (Exception)
             {
-
                 return Ok(new HTTPMessageDTO
                 {
-                    Status = WsConstant.HttpMessageType.ERROR
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Event info for Circle Tiles",
+                    Type = ""
                 });
             }
         }
@@ -61,8 +62,12 @@ namespace WingS.Controllers.WebApi
             }
             catch (Exception)
             {
-                //ViewBag.ErrorMessage = ex;
-                return Redirect("/#/Error");
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Top New Event",
+                    Type = ""
+                });
             }
         }
         [HttpGet]
@@ -79,8 +84,12 @@ namespace WingS.Controllers.WebApi
             }
             catch (Exception)
             {
-                //ViewBag.ErrorMessage = ex;
-                return Redirect("/#/Error");
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Top Hot Event",
+                    Type = ""
+                });
             }
         }
         [HttpGet]
@@ -97,8 +106,42 @@ namespace WingS.Controllers.WebApi
             }
             catch (Exception)
             {
-                //ViewBag.ErrorMessage = ex;
-                return Redirect("/#/Error");
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Event for Event List Page",
+                    Type = ""
+                });
+            }
+        }
+        [HttpGet]
+        public IHttpActionResult GetEventWithId(int eventId)
+        {
+            try
+            {
+                EventBasicInfo currentThread;
+
+                using (var db = new EventDAL())
+                {
+                    currentThread = db.GetFullEventBasicInformation(eventId);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get Thread with ID Successfully",
+                    Type = "",
+                    Data = currentThread
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Event with ID",
+                    Type = ""
+                });
             }
         }
     }

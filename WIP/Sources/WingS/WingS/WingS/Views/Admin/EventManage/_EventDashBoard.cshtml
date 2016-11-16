@@ -57,7 +57,9 @@
                                         <tbody>
                                             <tr ng-repeat="x in TopNewEvent">
                                                 <td>
-                                                    <h4>{{x.EventName}}</h4>
+                                                    <a href="@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")">
+                                                        <h4>{{x.EventName}}</h4>
+                                                    </a>
                                                 </td>
                                                 <td>{{x.EventType}}</td>
                                                 <td>{{x.CreatedDate}}</td>
@@ -105,7 +107,9 @@
                                         <tbody>
                                             <tr ng-repeat="x in TopHotEvent">
                                                 <td>
-                                                    <h4>{{x.EventName}}</h4>
+                                                    <a href="@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")">
+                                                        <h4>{{x.EventName}}</h4>
+                                                    </a>
                                                 </td>
                                                 <td>{{x.EventType}}</td>
                                                 <td>{{x.Location}}</td>

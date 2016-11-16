@@ -552,8 +552,8 @@ namespace WingS.DataAccess
             try
             {
                 Event wsEvent;
-                string creatorUserName;
-                string creatorName;
+                string creatorUserName="";
+                string creatorName="";
                 List<string> imageAlbum;
                 
                 using (var db = new Ws_DataContext())
@@ -561,13 +561,21 @@ namespace WingS.DataAccess
                     //Get event model
                     wsEvent = db.Events.FirstOrDefault(x => x.EventID == eventId);
                     //Get user name
-                    creatorUserName = db.Ws_User.Where(x => x.UserID == wsEvent.CreatorID).Select(x => x.UserName).ToString();
+                    var userGet1 = db.Ws_User.FirstOrDefault(x => x.UserID == wsEvent.CreatorID);
+                    if (userGet1!=null)
+                    {
+                        creatorUserName = userGet1.UserName;
+                    }
                     //Get user full name
-                    creatorName = db.User_Information.Where(x => x.UserID == wsEvent.CreatorID).Select(x => x.FullName).ToString();
+                    var userGet2 = db.User_Information.FirstOrDefault(x => x.UserID == wsEvent.CreatorID);
+                    if (userGet2 != null)
+                    {
+                        creatorName = userGet2.FullName;
+                    }
                     //Get image album
                     imageAlbum = db.EventAlbum.Where(x => x.EventId == eventId).Select(x => x.ImageUrl).ToList();
 
-                }
+                
                 
                 // Get main image
                 string mainImageUrl = GetMainImageEventById(eventId).ImageUrl;
@@ -608,7 +616,7 @@ namespace WingS.DataAccess
                 eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("H:mm:ss dd/MM/yy");
                 eventBasicInfo.Start_Date = wsEvent.Start_Date.ToString("H:mm:ss dd/MM/yy");
                 eventBasicInfo.Finish_Date = wsEvent.Finish_Date.ToString("H:mm:ss dd/MM/yy");
-                
+                }   
             }
             catch (Exception)
             {

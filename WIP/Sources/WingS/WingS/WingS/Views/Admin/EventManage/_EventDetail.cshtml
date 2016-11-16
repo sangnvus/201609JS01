@@ -1,1 +1,193 @@
-﻿
+﻿<body>
+    @Html.Partial("../Admin/_TopSideNavigation")
+    <!-- begin MAIN PAGE CONTENT -->
+    <div id="page-wrapper">
+
+        <div class="page-content">
+
+            <!-- begin PAGE TITLE ROW -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h1>
+                            Sự kiện chi tiết
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index-2.html">Thống kê</a>
+                            </li>
+                            <li class="active"><a href="new-project.html">Sự kiện</a></li>
+                            <li class="active">Sự kiện chi tiết</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <!-- end PAGE TITLE ROW -->
+            <!-- begin ADVANCED TABLES ROW -->
+            <!-- content -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="portlet portlet-default">
+                        <div class="portlet-body">
+                            <ul id="userTab" class="nav nav-tabs">
+                                <li class="active"><a href="#overview" data-toggle="tab" onclick="return false">Tổng quan</a></li>
+                                <li><a href="#campaign" data-toggle="tab" onclick="return false">Lịch trình</a></li>
+                            </ul>
+                            <div id="userTabContent" class="tab-content">
+                                <!-- tab overview -->
+                                <div class="tab-pane fade in active" id="overview">
+
+                                    <!-- begin project detail row -->
+                                    <div class="row">
+                                        <div class="title text-center" style="margin-bottom: 30px;">
+                                            <h2>{{currentEvent.EventName}}</h2>
+                                            <p>Tạo bởi: <a href="OrganizationDetail.html"><span class="badge purple">Tổ chức vì Giáo dục</span></a> - <span class="badge green">{{currentEvent.EventType}}</span> - <span class="badge blue" ng-if="currentEvent.TimeStatus == 'income'">Sắp diễn ra</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'process'">Đang hoạt động</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'ban'">Bị Cấm</span><span class="badge blue" ng-if="currentEvent.TimeStatus == 'done'">Đã hoàn thành</span></p>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="responsive-video form-group">
+                                                <iframe src="{{currentEvent.VideoUrl}}" frameborder="0"></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <!-- circle title -->
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <h3 style="text-align:center;margin-top: 0px;margin-bottom: 60px;">Tiến trình ủng hộ</h3>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                                            40%
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-12 col-md-12" style="margin-bottom: 45px;"></div>
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="circle-tile">
+                                                        <a href="#">
+                                                            <div class="circle-tile-heading green">
+                                                                <i class="fa fa-money fa-fw fa-3x"></i>
+                                                            </div>
+                                                        </a>
+                                                        <div class="circle-tile-content green">
+                                                            <div class="circle-tile-description text-faded">
+                                                                Đã ủng hộ
+                                                            </div>
+                                                            <div class="circle-tile-number text-faded">
+                                                                $326,5
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="circle-tile">
+                                                        <a href="project-backers.html">
+                                                            <div class="circle-tile-heading dark-blue">
+                                                                <i class="fa fa-users fa-fw fa-3x"></i>
+                                                            </div>
+                                                        </a>
+                                                        <div class="circle-tile-content dark-blue">
+                                                            <div class="circle-tile-description text-faded">
+                                                                Số người ủng hộ
+                                                            </div>
+                                                            <div class="circle-tile-number text-faded">
+                                                                265
+                                                                <span id="sparklineA"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end circle title -->
+                                        </div>
+                                    </div>
+                                    <!-- end project detail row -->
+                                    <!--event content -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h4>Nội dung</h4>
+                                            <div id="content" class="tab-pane fade in active">
+                                                <div class="contentEvent">
+                                                    <p>{{currentEvent.Content}}<p>
+                                                </div>
+                                                <div>
+                                                    <p style="font-weight: 600;">Sự kiện được thực hiện tại: {{currentEvent.Location}}</p>
+                                                </div>
+                                                <div class="row-fluid">
+                                                    <span ng-repeat="item in currentEvent.ImageAlbum">
+                                                        <a class="example-image-link" href="{{item}}" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="{{item}}" alt="" style="height: 150px;" /></a>
+                                                    </span>
+                                                </div>
+                                                
+                                                <div class="info" style="font-size:17px">
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"> Số lượt thích:</i> 50
+                                                    <i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận" style="padding-left:20px"> Số bình luận:</i> 50
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col-lg-12 -->
+                                    </div>
+                                    <!-- end event content -->
+
+                                </div>
+                                <!-- end tab overview -->
+                                <!-- tab campaign -->
+                                <div class="tab-pane fade" id="campaign">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <section id="timeline">
+                                                <article>
+                                                    <div class="inner">
+                                                        <span class="date">
+                                                            <span class="day">30<sup>th</sup></span>
+                                                            <span class="month">Jan</span>
+                                                            <span class="year">2014</span>
+                                                        </span>
+                                                        <h2>The Title</h2>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+                                                    </div>
+                                                </article>
+                                            </section>
+                                        </div> <!-- end col-md-8 -->
+
+                                    </div>
+                                </div>
+                                <!-- end tab campaign -->
+
+
+                            </div>
+                        </div>
+                        <!-- /.portlet-body -->
+                    </div>
+                    <!-- /.portlet -->
+
+
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.page-content -->
+
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- end MAIN PAGE CONTENT -->
+    <!-- GLOBAL SCRIPTS -->
+    <script src="~/Content/Admin/js/jquery.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/Admin/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+    <script src="~/Content/Admin/js/plugins/popupoverlay/defaults.js"></script>
+    <!-- HISRC Retina Images -->
+    <script src="~/Content/Admin/js/plugins/hisrc/hisrc.js"></script>
+
+    <!-- PAGE LEVEL PLUGIN SCRIPTS -->
+    <script src="~/Content/Admin/js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/Admin/js/plugins/datatables/datatables-bs3.js"></script>
+    <script src="~/Content/Admin/js/demo/advanced-tables-demo.js"></script>
+
+    <!-- THEME SCRIPTS -->
+    <script src="~/Content/Admin/js/flex.js"></script>
+</body>

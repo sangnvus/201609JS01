@@ -62,7 +62,7 @@
                                         <tbody>
                                             <tr ng-repeat="x in AllEventlist">
                                                 <td>{{$index+1}}</td>
-                                                <td>{{x.EventName}}</td>
+                                                <td><a href="@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")">{{x.EventName}}</a></td>
                                                 <td>{{x.EventType}}</td>
                                                 <td class="center">.....</td>
                                                 <td class="center">{{x.CreatorName}}</td>
@@ -75,7 +75,7 @@
                                                     <span class="label center-block btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>
                                                 </td>
                                                 <td class="center">
-                                                    <a href="#">
+                                                    <a href=@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")>
                                                         <button class="btn btn-primary btn-sm" type="button">
                                                             <i class="fa fa-eye"></i>
                                                         </button>
