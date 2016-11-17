@@ -586,5 +586,12 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
     overflow: hidden;
     height: 91px;
 }
-
-
+#lgout {
+    width: 355px;
+    margin-top: 85px;
+    margin-left: -190px;
+}
+#lgout .modal-dialog .modal-content .modal-footer a:hover {
+	background: #e05f03;
+    color: white;
+}
