@@ -1,11 +1,16 @@
 .col-8{
-	width: 745px;
+	width: 690px;
 	float: left;
 }
 .col-4{
-	width: 320px;
+	width: 375px;
 	float: left;
 	padding-left: 25px;
+}
+.col-2{
+	width: 180px;
+	float: left;
+	padding-left: 6px;
 }
 .title {
     display: block;
@@ -15,6 +20,16 @@
     color: #484849;
     text-transform: uppercase;
     margin: 20px 0;
+}
+.col-4 .urgent-progress .proTitle {
+    display: block;
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700;
+    font-size: 19px;
+    color: #484849;
+    text-transform: uppercase;
+	margin-top: 5px;
+    text-align: center;
 }
 .info {
     font-family: 'Open Sans', 'sans-serif';
@@ -30,7 +45,7 @@
 }
 .nav-tabs {
     margin-top: 15px; 
-	width:504px;
+	width:452px;
 	background-color: #f6f6f6;
 }
 .nav-tabs li a{
@@ -166,7 +181,7 @@
 	background:#e05f03;
 	opacity:1
 }
-.circle a{
+.xcircle a{
 	color:#333;
 }
 .circle a:hover{
@@ -177,4 +192,89 @@
 	font-family:'Open Sans', 'sans-serif';
 	font-weight: 500;
 	margin-top:5px;
+}
+
+
+/* -- Circle Tiles */
+
+.circle-tile {
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.circle-tile-heading {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto -40px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 100%;
+    color: #fff;
+    transition: all ease-in-out .3s;
+}
+
+.circle-tile-heading .fa {
+    line-height: 80px;
+}
+
+.circle-tile-content {
+    padding-top: 50px;
+}
+
+.circle-tile-number {
+    padding: 5px 0 15px;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.circle-tile-description {
+    text-transform: uppercase;
+}
+
+.circle-tile-footer {
+    display: block;
+    padding: 5px;
+    color: rgba(255,255,255,0.5);
+    background-color: rgba(0,0,0,0.1);
+    transition: all ease-in-out .3s;
+}
+
+.circle-tile-footer:hover {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    background-color: rgba(0,0,0,0.2);
+}
+
+.circle-tile-heading.dark-blue:hover {
+    background-color: #2e4154;
+}
+
+.circle-tile-heading.green:hover {
+    background-color: #138f77;
+}
+
+.circle-tile-heading.orange:hover {
+    background-color: #da8c10;
+}
+
+.circle-tile-heading.blue:hover {
+    background-color: #2473a6;
+}
+
+.circle-tile-heading.red:hover {
+    background-color: #cf4435;
+}
+
+.circle-tile-heading.purple:hover {
+    background-color: #7f3d9b;
+}
+.green {
+    background-color: #16a085;
+}
+.blue {
+    background-color: #2980b9;
+}
+.text-faded {
+    color: rgba(255,255,255,0.7);
 }

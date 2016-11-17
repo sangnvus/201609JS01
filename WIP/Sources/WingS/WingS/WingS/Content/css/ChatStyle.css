@@ -1,7 +1,7 @@
 ﻿.chatbox {
     position: fixed;
     bottom: 0;
-    right: 30px;
+    right: 90px;
     width: 350px;
     height: 400px;
     background-color: #fff;
@@ -55,7 +55,7 @@
     line-height: 50px;
     position: relative;
     padding-left: 20px;
-
+    font-size: 16px;
     -webkit-flex-grow: 1;
     flex-grow: 1;
 }
@@ -200,7 +200,7 @@
 }
 
 .chatbox--empty {
-    height: 262px;
+    height: 255px;
 }
 
 .chatbox--empty.chatbox--tray {

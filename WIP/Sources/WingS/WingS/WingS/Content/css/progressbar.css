@@ -1,7 +1,10 @@
 
 .position {
   float: left;
-  padding: 23px 50px 90px 55px;
+  padding-top: 23px;
+  padding-right: 50px;
+  padding-bottom: 61px;
+  padding-left: 93px;
 }
 
 .progressbar {
@@ -52,12 +55,12 @@
 }
 .progressbar a {
     border: 2px solid #e05f03;
-    bottom: 93px;
+    bottom: 60px;
     color: #e05f03;
     font-family: roboto;
     font-size: 16px;
     font-weight: 700;
-    left: 50%;
+    left: 56%;
     line-height: 15px;
     overflow: hidden;
     padding: 5px 12px;
