@@ -1,6 +1,8 @@
 ﻿app.controller("AdminEventController", function ($scope, $http,$sce, $routeParams) {
     //Load user static information
-
+    $scope.parseFloat=function(val) {
+    return isNaN(parseFloat(val)) ? 0: parseFloat(val);
+    }
     $http.get("/api/AdminEvent/GetEventManageBasicInfor").success(function (response) {
         $scope.EventManageInfor = response.Data;
     });

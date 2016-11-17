@@ -629,7 +629,9 @@ namespace WingS.DataAccess
                 {
                     eventBasicInfo.TimeStatus = "process";
                 }
-                eventBasicInfo.DonatedUser = GetTotalDonatedUserOfEvent(eventId);
+                eventBasicInfo.DonatedUser = CountDonatedUserOfEvent(eventId);
+                eventBasicInfo.Likes = CountLikeInEvent(eventId);
+                eventBasicInfo.NumberOfComments = CountCommentInEvent(eventId);
                 eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
                 eventBasicInfo.RaisedMoney = raisedMoney;
                 eventBasicInfo.EventType = wsEvent.EType.EventName;
@@ -748,7 +750,7 @@ namespace WingS.DataAccess
 
             return raisedMoney;
         }
-        public int GetTotalDonatedUserOfEvent(int eventId)
+        public int CountDonatedUserOfEvent(int eventId)
         {
             int numUser = 0;
             try

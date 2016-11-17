@@ -57,8 +57,8 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <h3 style="text-align:center;margin-top: 0px;margin-bottom: 60px;">Tiến trình ủng hộ</h3>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{currentEvent.RaisedMoney}}/{{currentEvent.ExpectedMoney}}" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                                                            {{currentEvent.RaisedMoney}}/{{currentEvent.ExpectedMoney}}%
+                                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" ng-style="{{width :(parseFloat(currentEvent.RaisedMoney)/parseFloat(currentEvent.ExpectedMoney)+'%')}}">
+                                                            {{parseFloat(currentEvent.RaisedMoney)/parseFloat(currentEvent.ExpectedMoney)}}%
                                                         </div>
                                                     </div>
 
@@ -122,8 +122,8 @@
                                                 </div>
                                                 
                                                 <div class="info" style="font-size:17px">
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"> Số lượt thích:</i> 50
-                                                    <i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận" style="padding-left:20px"> Số bình luận:</i> 50
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"> Số lượt thích:</i> {{currentEvent.Like}}
+                                                    <i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận" style="padding-left:20px"> Số bình luận:</i> {{currentEvent.Comment}}
                                                 </div>
                                             </div>
                                         </div>
