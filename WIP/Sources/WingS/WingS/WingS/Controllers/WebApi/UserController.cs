@@ -67,8 +67,10 @@ namespace WingS.Controllers.WebApi
                             Type = WsConstant.HttpMessageType.NOT_AUTHEN
                         });
                 }
-                using(var db = new UserDAL())
-                currentUser = db.GetUserBasicInfo(User.Identity.Name);
+                using (var db = new UserDAL())
+                {
+                    currentUser = db.GetUserBasicInfo(User.Identity.Name);
+                }
             }
             catch (Exception)
             {

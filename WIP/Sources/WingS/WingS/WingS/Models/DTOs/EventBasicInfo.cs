@@ -21,6 +21,8 @@ namespace WingS.Models.DTOs
         public string Location { get; set; }
         public string VideoUrl { get; set; }
         public bool Status { get; set; }
+        public int Likes { get; set; }
+        public int NumberOfComments { get; set; }
         public string TimeStatus { get; set; }
         public int DonatedUser { get; set; }
         public double ExpectedMoney { get; set; }

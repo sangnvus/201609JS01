@@ -80,6 +80,7 @@
                                                 <li><a href="@Url.Content("/#/Messages/")"><i class="fa fa-envelope"></i> Tin nhắn<span class="badge green pull-right">4</span></a></li>
                                                 <li><a href="@Url.Content("/#/Notification/")"><i class="fa fa-bell"></i> Hoạt động<span class="badge orange pull-right">2</span></a></li>
                                                 <li><a href=@Url.Content("/#/Profile/{{User_Information.UserName}}")><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+                                                <li ng-if="User_Information.IsOrganazation==true"><a href=@Url.Content("/#/OrganizationDetail/{{User_Information.UserId}}")><i class="fa fa-user"></i> Tổ chức của bạn</a></li>
                                                 <li><a id="Logout" href="@Url.Action("Logout", "Login")"><i class="fa fa-sign-out"></i> Đăng xuất {{User_Information.FullName}}</a></li>
                                             </ul>
                                         </li>
@@ -113,12 +114,13 @@
                 }
             </style>
     <script>
-        //$(function () {
-        //    $('.nav .nav-pills .ddmenu > li').on('click', function () {
-        //        $(this).addClass('active');
-        //        $(this).siblings().removeClass('active');
-        //    });
-        //});
+        $(function () {
+            $(".nav li").on("click", function () {
+                $(".nav li").removeClass("active");
+                $(this).addClass("active");
+            });
+
+        });
     </script>
             @if (User.Identity.Name != "")
             {

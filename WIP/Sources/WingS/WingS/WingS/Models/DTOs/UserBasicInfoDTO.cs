@@ -12,6 +12,7 @@ namespace WingS.Models.DTOs
         public bool AccountType { get; set; }
         public bool IsActive { get; set; }
         public bool IsVerify { get; set; }
+        public bool IsOrganazation { get; set; }
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
         public string Email { get; set; }
@@ -52,6 +53,7 @@ namespace WingS.Models.DTOs
             Country = "";
             CreateDate = "";
             Point = 0;
+            IsOrganazation = false;
             CurrentRank = "";
             RankPercent = 0;
             NumberEventDonatedIn = 0;

@@ -20,6 +20,15 @@ namespace WingS.DataAccess
             }
 
         }
+        public int CountCommentInEvent(int EventId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int CountComment = db.CommentEvents.Count(x => x.EventId == EventId && x.Status == true);
+                return CountComment;
+            }
+
+        }
         public bool CheckUserIsLikedOrNot(int EventId, string UserName)
         {
             int CurrenUser = 0;

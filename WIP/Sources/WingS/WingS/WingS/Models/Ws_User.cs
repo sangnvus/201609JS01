@@ -27,6 +27,7 @@
         public virtual ICollection<ReportEvent> ReportEvents { get; set; }
         public virtual ICollection<Thread> Threads { get; set; }
         public virtual User_Information User_Information { get; set; }
+        public virtual Organization Organazation { get; set; }
         public virtual ICollection<Conservation> CreatorConservation { get; set; }
         public virtual ICollection<Conservation> ReceiverConservation { get; set; }
         public virtual ICollection<Message> Message { get; set; }

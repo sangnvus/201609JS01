@@ -160,6 +160,8 @@ namespace WingS.Controllers.WebApi
                     topFourThread = db.GetTopThreadByCreatedDate(4);
                     foreach (Thread thread in topFourThread)
                     {
+                        int Like = db.CountLikeInThread(thread.ThreadId);
+                        int Comment = db.CountCommentInThread(thread.ThreadId);
                         List<String> threadImage = db.GetAllImageThreadById(thread.ThreadId);
                         basicThreadList.Add(new ThreadBasicInfo
                         {
@@ -169,8 +171,10 @@ namespace WingS.Controllers.WebApi
                             ImageUrl = threadImage,
                             Content = thread.Content,   
                             ShortDescription = thread.ShortDescription,
+                            Likes = Like,
+                            Comments = Comment,
                             Status = true,
-                            CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd/MM/yy")
+                            CreatedDate = thread.CreatedDate.ToString("H:mm:ss dd/MM/yy"),
 
                         });
                     }

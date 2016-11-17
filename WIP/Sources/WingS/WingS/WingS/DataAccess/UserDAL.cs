@@ -100,7 +100,7 @@ namespace WingS.DataAccess
 
                 return GetUserByUserNameOrEmail(User.UserName);
             }
-        }
+        }   
         public UserBasicInfoDTO GetUserBasicInfo(string userNameOrEmail)
         {
             using (var db = new Ws_DataContext())
@@ -114,7 +114,8 @@ namespace WingS.DataAccess
                                        IsActive = user.IsActive,
                                        ProfileImage = user.User_Information.ProfileImage,
                                        UserName = user.UserName,
-                                       AccountType = user.AccountType,                                    
+                                       AccountType = user.AccountType,
+                                       IsOrganazation = (user.Organazation != null&&user.Organazation.IsVerify == true) ? true : false                                   
                                  }).FirstOrDefault();
                 return currentUser;
             }

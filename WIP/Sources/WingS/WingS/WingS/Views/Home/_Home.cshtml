@@ -9,31 +9,12 @@
                 <div class="row-fluid">
                     <!--Edit Main Content Area here-->
                     <div class="span12" id="divMain">
-                        <h1>Dịch vụ của chúng tôi</h1>
-                        <p>
-                            <strong>
-                                Hãy cùng nhau chia sẻ những thông tin về từ thiện trên khắp đất nước.
-                                Cùng đóng góp và sẻ chia
-                            </strong>
-                        </p>
+                        <h1>Hãy cùng nhau đóng góp</h1>
 
                         <br />
                         <br />
 
                         <div class="row-fluid">
-                            <div class="span3">
-                                <div class="box">
-                                     <a href="@Url.Content("/#/CreateEvent")">
-                                        <i class="icon-tasks"></i>
-                                    </a>
-                                    <h4 class="title">Tạo sự kiện</h4> <hr/>
-                                    <p>
-                                        Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
-
-                                    </p>
-                                </div>
-                            </div>
-
                             <div class="span3">
 
                                 <div class="box">
@@ -41,6 +22,27 @@
                                     <h4 class="title">Tạo thảo luận</h4> <hr/>
                                     <p>
                                         Hãy chia sẻ cho chúng tôi những thông tin về những nơi cần việc từ thiện.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="span3" ng-if="User_Information.IsOrganazation==true">
+                                <div class="box">
+                                    <a href="@Url.Content("/#/CreateEvent")">
+                                        <i class="icon-tasks"></i>
+                                    </a>
+                                    <h4 class="title">Tạo sự kiện</h4> <hr />
+                                    <p>
+                                        Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="span3" ng-if="User_Information.IsOrganazation==false">
+                                <div class="box">
+                                    <a href="@Url.Content("/#/CreateOrganization")"><i class="icon-share"></i></a>
+                                    <h4 class="title">Tạo tổ chức </h4> <hr />
+                                    <p>
+                                        Tạo ra tổ chức để có đủ uy tín tổ chức những sự kiện quyên góp.
                                     </p>
                                 </div>
                             </div>
@@ -55,13 +57,14 @@
                             </div>
                             <div class="span3">
                                 <div class="box">
-                                    <a href="@Url.Content("/#/CreateOrganization")"><i class="icon-share"></i></a>
-                                    <h4 class="title">Tạo tổ chức </h4> <hr />
+                                    <i class="icon-bar-chart"></i>
+                                    <h4 class="title">Thống kê</h4> <hr />
                                     <p>
-                                        Tổ chức có thể hoạt động tốt hơn cá nhân
+                                        Xem thống kê về các sự kiện
                                     </p>
                                 </div>
                             </div>
+                            
                         </div>
                         <hr />
                         @* Generate Top 4 Event *@
@@ -79,8 +82,8 @@
                                         <p>{{item.ShortDescription}}</p>
                                     </div>
                                     <div class="event-footer">
-                                        <i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50
-                                        <i class="fa fa-comment-o"   aria-hidden="true" title="Số bình luận" style="padding-left:35px"></i> 50
+                                        <i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> {{item.Likes}}
+                                        <i class="fa fa-comment-o"   aria-hidden="true" title="Số bình luận" style="padding-left:35px"></i> {{item.NumberOfComments}}
                                         <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")" style="padding-left:43px">Read More &raquo;</a>
                                     </div>
                                 </div>
@@ -106,9 +109,9 @@
                                         <p>{{item.ShortDescription}}</p>
                                     </div>
                                     <div class="thread-footer">
-                                        <i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50
-                                        <i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận" style="padding-left:35px"></i> 50
-                                        <a href="@Url.Content("/#/EventDetail/{{item.EventID}}")" style="padding-left:43px">Read More &raquo;</a>
+                                        <i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> {{item.Likes}}
+                                        <i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận" style="padding-left:35px"></i> {{item.Comments}}
+                                        <a href="@Url.Content("/#/EventDetail/{{item.ThreadID}}")" style="padding-left:43px">Read More &raquo;</a>
                                     </div>
                                 </div>
 
@@ -136,13 +139,15 @@
                             <div class="organization-title">
                                 <h5 class="text-info">{{item.OrganizationName}}</h5>
                             </div>
-                            <div class="organization-img">
-                                <img src="{{item.LogoUrl}}" class="img-polaroid img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;" >
-                            </div>
-                            <div class="organization-content">
-                                <p>{{item.Introduction}}</p>
-                            </div>
-                        </div>
+                               <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
+                                <div class="organization-img">
+                                    <img src="{{item.LogoUrl}}" class="img-polaroid img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;">
+                                </div>
+                                </a>
+                                <div class="organization-content">
+                                    <p>{{item.Introduction}}</p>
+                                </div>
+</div>
 
                     </div>
                 </div>

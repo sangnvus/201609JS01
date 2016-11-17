@@ -165,7 +165,8 @@ app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, 
                 $window.sessionStorage.setItem("isAuthen", true)
             } else {
                 $rootScope.User_Information = {
-                    IsAuthen: false
+                    IsAuthen: false,
+                    IsOrganazation: false
                 };
                 $window.sessionStorage.setItem("isAuthen", false)
             }

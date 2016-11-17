@@ -193,6 +193,8 @@ namespace WingS.Controllers
                 topEvent = db.GetTopFourEventByPoint(4);
                 foreach(Event e in topEvent)
                 {
+                    int Like = db.CountLikeInEvent(e.EventID);
+                    int Comment = db.CountCommentInEvent(e.EventID);
                     //Lấy ra ảnh tương ứng với mỗi 1 event với Status = 1
                     //Note: ảnh có status bằng 1 là ảnh dùng để hiển thị trên trang Home
                     var eventMainImage = db.GetMainImageEventById(e.EventID);
@@ -206,7 +208,9 @@ namespace WingS.Controllers
                         ShortDescription = e.ShortDescription,
                         CreatorID = e.CreatorID,
                         MainImageUrl = eventMainImage.ImageUrl,
-                        Status = e.Status
+                        Status = e.Status,
+                        Likes = Like,
+                        NumberOfComments = Comment
                     });
                 }
             }
