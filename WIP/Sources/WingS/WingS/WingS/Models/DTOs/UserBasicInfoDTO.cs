@@ -15,6 +15,9 @@ namespace WingS.Models.DTOs
         public bool IsOrganazation { get; set; }
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
+        public string OrganazationName { get; set; }
+        public string JoinedDate { get; set; }
+        public string UserSignature { get; set; }
         public string Email { get; set; }
         public string Gender { get; set; }
         public string Phone { get; set; }
@@ -44,6 +47,7 @@ namespace WingS.Models.DTOs
             IsVerify = false;
             FullName = "";
             ProfileImage = "";
+            FacebookUri = "";
             Email = "";
             Gender = "";
             Phone = "";
@@ -55,7 +59,10 @@ namespace WingS.Models.DTOs
             Point = 0;
             IsOrganazation = false;
             CurrentRank = "";
+            OrganazationName = "";
+            UserSignature = "";
             RankPercent = 0;
+            JoinedDate = "";
             NumberEventDonatedIn = 0;
             TotalMoneyDonatedIn = 0;
         }

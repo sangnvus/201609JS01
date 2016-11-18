@@ -22,7 +22,7 @@
 <div class="tab-pane fade in active" id="overview">
     <div class="row">
         <div class="col-lg-3">
-            <img class="img-responsive img-profile" style="width: 227px; height: 227px;" src="~/Content/images/avatar_default.png" alt="">
+            <img class="img-responsive img-profile" style="width: 227px; height: 227px;" src="{{UserInfo.ProfileImage}}" alt="">
             <div class="list-group">
                 <a href="#" class="list-group-item active" style="text-align: center;">Tổng quan</a>
                 <a href="#" class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">99</span></a>
@@ -40,52 +40,53 @@
                             <h4 class="page-header" style="margin-bottom: 45px;">Thông tin cá nhân:</h4>
                             <div class="form-group">
                                 <label>Tên đầy đủ</label>
-                                <input type="text" class="form-control" value="{{UserInfo.FullName}}" disabled>
+                                <input type="text" class="form-control" ng-model="FullName" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input type="tel" class="form-control" value="{{UserInfo.Phone}}" disabled>
+                                <input type="tel" class="form-control" ng-model="Phone"  disabled>
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ</label>
-                                <input type="text" class="form-control" value="{{UserInfo.Address}}" disabled>
+                                <input type="text" class="form-control" ng-model="Address"  disabled>
                             </div>
                             <div class="form-group">
                                 <label>Quốc gia</label>
-                                <input type="text" class="form-control" value="{{UserInfo.Country}}" disabled>
+                                <input type="text" class="form-control" ng-model="Country"  disabled>
                             </div>
                             <div class="form-group">
                                 <label>Giới tính</label>
-                                <input type="text" class="form-control" value="{{UserInfo.Gender}}" disabled>
+                                <input type="text" class="form-control" ng-model="Gender" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Ngày sinh</label>
-                                <input type="text" class="form-control" value="{{UserInfo.DOB}}" disabled>
+                                <input type="text" class="form-control" ng-model ="DOB"  disabled>
                             </div>
                         </div>
                         <div class="col-lg-3" style="width: 300px; margin-left: 90px;">
                             <h4 class="page-header" style="margin-bottom: 45px;">Thông tin liên lạc:</h4>
                             <div class="form-group">
                                 <label>Địa chỉ Email</label>
-                                <input type="text" class="form-control" value="{{UserInfo.Email}}" disabled>
+                                <input type="text"  value="{{UserInfo.Email}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Đường dẫn Facebook</label>
-                                <input type="text" class="form-control" value="https://www.facebook.com/Tuan.Dragon.DoVan" disabled>
+                                <input type="text" class="form-control" ng-model="FacebookUri" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Chữ kí</label>
+                                <input type="text" class="form-control" ng-model="UserSignature" disabled>
                             </div>
                             <h4 class="page-header">Thông tin thêm:</h4>
                             <div class="form-group" style="margin-top: -22px;">
                                 <label>Tổ chức</label>
-                                <input type="text" class="form-control" value="Những người đẹp trai" disabled>
+                                <input type="text" value="{{UserInfo.OrganazationName}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Ngày tham gia</label>
-                                <input type="text" class="form-control" value="17/08/2016" disabled>
+                                <input type="text" value="{{UserInfo.JoinedDate}}" disabled>
                             </div>
-                            <div class="form-group">
-                                <label>Mô tả</label>
-                                <input type="text" class="form-control" value="Trường chữ kí" disabled>
-                            </div>
+                            
                         </div>
 
                     </form>
@@ -95,9 +96,10 @@
 
     </div>
     <div class="buttonHover">
-        <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendMessage"><i class="icon-inbox"></i> Nhắn tin</a>
-        <a class="btn " href="#" style="margin-left: 31px;"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
-        <a class="btn " href="#" style="margin-left: 225px;"><i class="icon-edit"></i> Sửa thông tin</a>
+        <a class="btn " href="#" onclick=" return false;" data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
+        <a class="btn " href="#" style="margin-left: 31px;" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="fa fa-flag-o" aria-hidden="true" ></i> Báo cáo</a>
+        <a class="btn " id="updateUser" ng-click="enableButton()" href="#" onclick="return false;" ng-if="UserInfo.UserName==User_Information.UserName"><i class="icon-edit"></i> Sửa thông tin</a>
+        <a class="btn" id="saveUser" style="visibility: hidden;" ng-click="saveUser()" href="#" onclick="return false;" ><i class="fa fa-floppy-o"></i> Lưu</a>
     </div>
 </div>
 
@@ -320,7 +322,9 @@
 <script>
     $(".modal-message").hide();
     $(".closeForm").hide();
+
 </script>
+
 <script src="~/Scripts/Chat.js"></script>   
 <!-- PAGE LEVEL PLUGIN SCRIPTS -->
 <script type="text/javascript" src="../../Content/js/plugins/datatables/jquery.dataTables.js"></script>

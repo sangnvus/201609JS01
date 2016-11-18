@@ -119,6 +119,20 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+       [HttpPut]
+        public IHttpActionResult UpdateUserInfo(UserBasicInfoDTO UpdateUser)
+        {
+            //Call to accesslayer
+
+            //Need to validate value
+            return Ok(new HTTPMessageDTO
+            {
+                Status = WsConstant.HttpMessageType.SUCCESS,
+                Message = "",
+                Type = "",
+                Data = UpdateUser
+            });
+        }
     }
 
 }

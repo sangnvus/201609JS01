@@ -186,24 +186,32 @@ namespace WingS.DataAccess
                 {
                     numberOfPost = db.GetNumberOfPostPerUser(userId);
                 }
-
-                //get ranking information
-                WsRanking ranking = new WsRanking();
+                using (var db = new OrganizationDAL())
+                {
+                    currentUser.OrganazationName = db.GetOrganizationById(userId).OrganizationName;
+                    if (currentUser.OrganazationName == "") currentUser.OrganazationName = "Chưa có";
+                }
+                using (var db = new Ws_DataContext())
+                {
+                    currentUser.JoinedDate = db.Ws_User.Where(x => x.UserID == userId).SingleOrDefault().CreatedDate.ToString("dd/mm/yyyy");
+                }
+                    //get ranking information
+                    WsRanking ranking = new WsRanking();
                 RankingDTO rank = ranking.RankingWithPoint(userInformation.Point);
-               
-
                 //Set information for user which want to get
                 currentUser.UserId = userId;
                 currentUser.UserName = wsUser.UserName;
                 currentUser.AccountType = wsUser.AccountType;
                 currentUser.IsActive = wsUser.IsActive;
                 currentUser.IsVerify = wsUser.IsVerify;
+                currentUser.FacebookUri = userInformation.FacebookUrl;
                 currentUser.FullName = userInformation.FullName;
                 currentUser.ProfileImage = userInformation.ProfileImage;
                 currentUser.Email = wsUser.Email;
                 currentUser.Gender = userInformation.Gender;
                 currentUser.Phone = userInformation.Phone;
                 currentUser.Address = userInformation.UserAddress;
+                currentUser.UserSignature= userInformation.UserSignature;
                 currentUser.NumberOfPost = numberOfPost;
                 if (userInformation.DoB != null)
                 {
