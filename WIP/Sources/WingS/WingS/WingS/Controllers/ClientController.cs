@@ -70,6 +70,14 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/User/_Profile.cshtml");
         }
+        public ActionResult Donate()
+        {
+            return PartialView("~/Views/Donation/_Donate.cshtml");
+        }
+        public ActionResult DonationComplete()
+        {
+            return PartialView("~/Views/Donation/_DonationDone.cshtml");
+        }
 		public ActionResult CreateEvent()
         {
             EventTypeDropList eventTypeDropList = new EventTypeDropList();

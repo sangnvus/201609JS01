@@ -49,7 +49,7 @@ app.config(function ($routeProvider) {
                     }
                 }
             },
-            title: "Tạo thảo luận",
+            title: "Tạo thảo luận"
 
         })
         .when("/RegisterSuccess", {
@@ -121,6 +121,14 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/Organization",
             title: "Tổ chức",
             controller: "OrganizationController"
+        })
+        .when("/Donate", {
+            templateUrl: "/Client/Donate",
+            title: "Ủng hộ"
+        })
+        .when("/DonationComplete", {
+            templateUrl: "/Client/DonationComplete",
+            title: "Thủ tục ủng hộ hoàn tất"
         })
         .when("/CreateOrganization", {
             templateUrl: "/Client/CreateOrganization",
