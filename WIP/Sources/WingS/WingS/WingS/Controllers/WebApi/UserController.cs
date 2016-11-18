@@ -122,16 +122,25 @@ namespace WingS.Controllers.WebApi
        [HttpPut]
         public IHttpActionResult UpdateUserInfo(UserBasicInfoDTO UpdateUser)
         {
+        
             //Call to accesslayer
-
-            //Need to validate value
-            return Ok(new HTTPMessageDTO
+            using (var db = new UserDAL())
             {
-                Status = WsConstant.HttpMessageType.SUCCESS,
-                Message = "",
-                Type = "",
-                Data = UpdateUser
-            });
+               var result= db.UpdateUserInfo(UpdateUser, User.Identity.Name);
+                if(result)
+                {
+                   return Ok(new HTTPMessageDTO
+                    {
+                        Status = WsConstant.HttpMessageType.SUCCESS,
+                    });
+                }
+                else return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                });
+            }
+                //Need to validate value
+           
         }
     }
 

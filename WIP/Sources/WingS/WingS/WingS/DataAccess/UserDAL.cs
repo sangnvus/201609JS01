@@ -100,7 +100,34 @@ namespace WingS.DataAccess
 
                 return GetUserByUserNameOrEmail(User.UserName);
             }
-        }   
+        }
+        public bool UpdateUserInfo(UserBasicInfoDTO UserInfo, string userName)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    var newInformation = db.User_Information.Where(x => x.Ws_User.UserName==userName ).SingleOrDefault();
+                    newInformation.FullName = UserInfo.FullName;
+                    newInformation.EFullName = ConvertToUnSign.Convert(UserInfo.FullName);
+                    newInformation.Phone = UserInfo.Phone;
+                    newInformation.UserAddress = UserInfo.Address;
+                    newInformation.EUserAddress = ConvertToUnSign.Convert(UserInfo.Address);
+                    newInformation.Country = UserInfo.Country;
+                    newInformation.Gender = UserInfo.Gender;
+                    newInformation.DoB = Convert.ToDateTime(UserInfo.DOB);
+                    newInformation.FacebookUrl = UserInfo.FacebookUri;
+                    newInformation.UserSignature = UserInfo.UserSignature;
+                    db.User_Information.AddOrUpdate(newInformation);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public UserBasicInfoDTO GetUserBasicInfo(string userNameOrEmail)
         {
             using (var db = new Ws_DataContext())

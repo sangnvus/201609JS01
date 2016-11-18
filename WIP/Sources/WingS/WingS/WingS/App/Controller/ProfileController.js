@@ -12,7 +12,10 @@
         $scope.Address = $scope.UserInfo.Address;
         $scope.Country = $scope.UserInfo.Country;
         $scope.Gender = $scope.UserInfo.Gender;
-        $scope.DOB = $scope.UserInfo.DOB;
+        //Convert DOB to suitable value with date time picker
+        var formatDay = ($scope.UserInfo.DOB).split("/");
+        $scope.DOB = formatDay[2]+"-"+formatDay[1]+"-"+formatDay[0];
+        //End convert
         $scope.FacebookUri = $scope.UserInfo.FacebookUri;
         $scope.UserSignature = $scope.UserInfo.UserSignature;
         
@@ -38,32 +41,42 @@
     }
     $scope.saveUser = function()
     {
-        $scope.UserInfo.FullName = $scope.FullName;
-        $scope.UserInfo.Phone = $scope.Phone;
-        $scope.UserInfo.Address = $scope.Address;
-        $scope.UserInfo.Country = $scope.Country;
-        $scope.UserInfo.Gender = $scope.Gender;
-        $scope.UserInfo.DOB = $scope.DOB;
-        $scope.UserInfo.FacebookUri = $scope.FacebookUri;
-        $scope.UserInfo.UserSignature = $scope.UserSignature;
+        $scope.newUserInfo = $scope.UserInfo;
+        $scope.newUserInfo.FullName = $scope.FullName;
+        $scope.newUserInfo.Phone = $scope.Phone;
+        $scope.newUserInfo.Address = $scope.Address;
+        $scope.newUserInfo.Country = $scope.Country;
+        $scope.newUserInfo.Gender = $scope.Gender;
+        $scope.newUserInfo.DOB = $("#datePicker").val();
+        $scope.newUserInfo.FacebookUri = $scope.FacebookUri;
+        $scope.newUserInfo.UserSignature = $scope.UserSignature;
         $http({
             url: "/api/User/UpdateUserInfo",
             method: "put",
-            data: $scope.UserInfo ,
+            data: $scope.newUserInfo,
             contentType: "application/json",
         }).success(function (response) {
-            
+            if (response.Status == "success") {
+            Lobibox.notify('success', {
+                size: 'mini',
+                rounded: true,
+                position: 'center bottom',
+                delayIndicator: false,
+                msg: "Đã cập nhật thông tin thành công"
+            });
+            } else Lobibox.notify('error', {
+                size: 'mini',
+                rounded: true,
+                position: 'center bottom',
+                delayIndicator: false,
+                msg: "Đã xảy ra lỗi khi cập nhật thông tin"
+            });
         });
+
         //Put new data to API
 
         $("#saveUser").css("visibility", "hidden");
         $(".form-control").prop("disabled", true);
-        Lobibox.notify('success', {
-            size: 'mini',
-            rounded: true,
-            position: 'center bottom',
-            delayIndicator: false,
-            msg: "Đã cập nhật thông tin thành công"
-        });
+       
     }
 });
