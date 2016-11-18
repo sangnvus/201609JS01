@@ -209,5 +209,45 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+
+        /// <summary>
+        /// Get recently donated user
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetTopRecentDonator(int top)
+        {
+            try
+            {
+                List<DonationDTO> topRecentDonator;
+
+
+                using (var db = new DonationDAL())
+                {
+
+                    topRecentDonator = db.GetTopRecentlyDonator(top);
+
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = topRecentDonator
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
     }
 }

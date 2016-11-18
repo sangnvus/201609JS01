@@ -472,43 +472,20 @@ namespace WingS.DataAccess
 
             try
             {
-                var threadListBasic = new List<ThreadBasicInfo>();
-                List<Thread> threadList = null;
-                //Get all thread in Thread table
+                List<int> threadIdList;
+                List<ThreadBasicInfo> listThread = new List<ThreadBasicInfo>();
                 using (var db = new Ws_DataContext())
                 {
-                    var threads = db.Threads.OrderBy(x => x.ThreadId);
-                    threadList = threads.ToList();
-                }               
-                if (threadList != null)
-                    {
-                        foreach (Thread thread in threadList)
-                        {
-                            //Get Creator of Thread
-                            Ws_User creatorThread;
-                            using (var dbUser = new UserDAL())
-                            {
-                                creatorThread = dbUser.GetUserById(thread.UserId);
-                            }
-                            int like;
-                            using (var dbThread = new ThreadDAL())
-                            {
-                                like = dbThread.CountLikeInThread(thread.ThreadId);
-                            }
-                            threadListBasic.Add(new ThreadBasicInfo
-                            {
-                                ThreadID = thread.ThreadId,
-                                ThreadName = thread.Title,
-                                Creator = creatorThread.UserName,
-                                Likes = like,
-                                Status = thread.Status,
-                            });
-                        }
-                    }
+                    threadIdList = db.LikeThreads.Select(x => x.ThreadId).Distinct().ToList();
+                }
 
+                foreach (int threadId in threadIdList)
+                {
+                    ThreadBasicInfo thread = GetFullThreadBasicInformation(threadId);
+                    listThread.Add(thread);
+                }
 
-                // Get top 10 newest Thread
-                topLikeThread = threadListBasic.OrderByDescending(x => x.Likes).Take(top).ToList();
+                topLikeThread = listThread.OrderByDescending(x => x.Likes).Take(top).ToList();
 
             }
             catch (Exception)

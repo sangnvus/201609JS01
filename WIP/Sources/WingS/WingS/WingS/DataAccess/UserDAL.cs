@@ -540,7 +540,7 @@ namespace WingS.DataAccess
             return listUser;
         }
 
-        [HttpGet]
+        
         public List<UserBasicInfoDTO> GetTopNumberRankingUser(int top)
         {
             var topRankingUser = new List<UserBasicInfoDTO>();

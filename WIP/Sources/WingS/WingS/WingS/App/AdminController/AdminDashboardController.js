@@ -31,4 +31,39 @@
         $scope.TopFiveRankingRaisedMoneyEvent = response.Data;
     });
 
+    // Load information of most liked thread which in top 5 rank
+    $http({
+        url: "/api/AdminThread/GetTopLikeThread",
+        method: "GET",
+        params: { top: 5 },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.TopFiveLikeThread = response.Data;
+    });
+
+    // Load information of most donated user which in top 5 rank
+    $http({
+        url: "/api/AdminThread/GetTopLikeThread",
+        method: "GET",
+        params: { top: 5 },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.TopFiveLikeThread = response.Data;
+    });
+
+    //Load  information for donation table
+    $http.get("/api/AdminUserDashboard/GetTopMostDonatedUser").success(function (response) {
+        $scope.TopFiveDonator = response.Data;
+
+    });
+
+    // load infor of donation recently
+    $http({
+        url: "/api/AdminUserDashboard/GetTopRecentDonator",
+        method: "GET",
+        params: { top: 5 },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.TopRecentDonator = response.Data;
+    });
 });

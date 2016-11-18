@@ -102,6 +102,37 @@ namespace WingS.DataAccess
         }
 
         /// <summary>
+        /// Get top recently donted user
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public List<DonationDTO> GetTopRecentlyDonator(int top)
+        {
+            List<DonationDTO> recentDonation = new List<DonationDTO>();
+
+            try
+            {
+                List<int> donationIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    donationIdList = db.Donations.OrderByDescending(x => x.DonatedDate).Select(x => x.DonationId).Take(top).ToList();
+                }
+
+                foreach (var donationId in donationIdList)
+                {
+                    DonationDTO donation = GetFullInformationOfDonation(donationId);
+                    recentDonation.Add(donation);
+                }
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return recentDonation;
+        }
+
+        /// <summary>
         /// Get donation information that has been donated by an user
         /// </summary>
         /// <param name="userId"></param>
@@ -144,7 +175,7 @@ namespace WingS.DataAccess
 
                 using (var db = new EventDAL())
                 {
-                    currentDonation.EventBasicInformation = db.GetEventBasicInfoById(donation.EventId);
+                    currentDonation.EventBasicInformation = db.GetFullEventBasicInformation(donation.EventId);
                 }
 
                 currentDonation.DonationId = donation.DonationId;

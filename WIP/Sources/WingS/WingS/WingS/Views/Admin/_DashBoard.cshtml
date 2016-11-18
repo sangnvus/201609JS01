@@ -178,7 +178,7 @@
                                         <tbody>
                                             <tr ng-repeat="item in TopFiveRankingOrg">
                                                 <td>
-                                                    <a class="pull-left" href="@Url.Content("/Admin/#/Organization/{{item.OrganizationId}}")">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.OrganizationId}}")">
                                                         <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.LogoUrl}}" alt="">
                                                     </a>
                                                     <h4>{{item.OrganizationName}}</h4>
@@ -237,7 +237,7 @@
                                         <tbody>
                                             <tr ng-repeat="item in TopFiveRankingRaisedMoneyEvent">
                                                 <td>
-                                                    <a class="pull-left" href="@Url.Content("/Admin/#/Event/{{item.OrganizationId}}")">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
                                                         <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.MainImageUrl}}" alt="">
                                                     </a>
                                                     <h4>{{item.EventName}}</h4>
@@ -256,7 +256,7 @@
                                                         <a class="btn btn-xs btn-danger">Bị cấm</a>
                                                     </div>
                                                     <div ng-switch-when="done">
-                                                        <a class="btn btn-xs btn-danger">Hoàn thành</a>
+                                                        <a class="btn btn-xs btn-danger">Đã xong</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -294,58 +294,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in TopFiveLikeThread">
                                                 <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
                                                     </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
+                                                    <h4>{{item.ThreadName}}</h4>
                                                 </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2016-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Đang hoạt động</a>
+                                                <td>{{item.Creator}}</td>
+                                                <td>{{item.Likes}}</td>
+                                                <td ng-switch="item.Status">
+                                                    <div ng-switch-when="true">
+                                                        <a class="btn btn-xs btn-green">Đang thảo luận</a>
+
+                                                    </div>
+                                                    <div ng-switch-when="false">
+                                                        <a class="btn btn-xs btn-danger">Bị cấm</a>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                                    </a>
-                                                    <h4>Tạ Ngọc Duy</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Chưa kích hoạt</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                    </a>
-                                                    <h4>lê Hồng NHiên</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                                    </a>
-                                                    <h4>Đào Trọng Nghĩa</h4>
-                                                </td>
-                                                <td>test@gmail.com</td>
-                                                <td>2015-09-24 09:46:07</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -381,58 +349,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in TopFiveDonator">
                                                 <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
                                                     </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
+                                                    <h4>{{item.FullName}}</h4>
                                                 </td>
-                                                <td>50</td>
-                                                <td>50.000$</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
+                                                <td>{{item.NumberEventDonatedIn}}</td>
+                                                <td>{{item.TotalMoneyDonatedIn}}</td>
+                                                
+                                                <td ng-switch="item.IsVerify">
+                                                    <div ng-switch-when="false">
+                                                        <a class="btn btn-xs btn-warning">Chưa kích hoạt</a>
+                                                    </div>
+                                                    <div ng-switch-when="true" ng-switch="item.IsActive">
+                                                        <a class="btn btn-xs btn-green" ng-switch-when="true">Đang hoạt động</a>
+                                                        <a class="btn btn-xs btn-danger" ng-switch-when="false">Bị cấm</a>
+                                                    </div>
+
                                                 </td>
+                                                
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                                    </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
-                                                </td>
-                                                <td>20</td>
-                                                <td>45.000$</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                    </a>
-                                                    <h4>Tạ Ngọc Duy</h4>
-                                                </td>
-                                                <td>10</td>
-                                                <td>40.000$</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                                    </a>
-                                                    <h4>Lê Hồng Nhiên</h4>
-                                                </td>
-                                                <td>5</td>
-                                                <td>10.000$</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -447,7 +386,7 @@
                     <div class="portlet portlet-green">
                         <div class="portlet-heading">
                             <div class="portlet-title">
-                                <h4><i class="fa fa-exchange fa-fw"></i> Người dùng vừa quyên góp</h4>
+                                <h4><i class="fa fa-exchange fa-fw"></i> Event vừa được quyên góp</h4>
                             </div>
                             <div class="portlet-widgets">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet2"><i class="fa fa-chevron-down"></i></a>
@@ -460,65 +399,25 @@
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Họ và tên</th>
                                                 <th>Tên sự kiện</th>
+                                                <th>Họ và tên</th>
                                                 <th>Số tiền</th>
                                                 <th>Ngày quyên góp</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in TopRecentDonator">
                                                 <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventId}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.EventBasicInformation.MainImageUrl}}" alt="">
                                                     </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
+                                                    <h4>{{item.EventBasicInformation.EventName}}</h4>
                                                 </td>
-                                                <td>50</td>
-                                                <td>50.000$</td>
-                                                <td>
-                                                    20-2-2016
-                                                </td>
+                                                <td>{{item.EventBasicInformation.CreatorName}}</td>
+                                                <td>{{item.DonatedMoney}}</td>
+                                                <td>{{item.DonatedDate}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-3.jpg" alt="">
-                                                    </a>
-                                                    <h4>Đỗ Văn Tuấn</h4>
-                                                </td>
-                                                <td>20</td>
-                                                <td>45.000$</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
-                                                    </a>
-                                                    <h4>Tạ Ngọc Duy</h4>
-                                                </td>
-                                                <td>10</td>
-                                                <td>40.000$</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
-                                                    </a>
-                                                    <h4>Lê Hồng Nhiên</h4>
-                                                </td>
-                                                <td>5</td>
-                                                <td>10.000$</td>
-                                                <td>
-                                                    <a class="btn btn-xs btn-green">Active</a>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
