@@ -32,6 +32,7 @@
   text-align: center;
   border-radius: 50%;
   background-color: white;
+  color: #e05f03;
 }
 
 .progressbar .background { background-color: #b3cef6; }

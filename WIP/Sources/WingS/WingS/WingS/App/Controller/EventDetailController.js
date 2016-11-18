@@ -24,6 +24,10 @@
         $scope.Event.VideoUrl = $sce.trustAsResourceUrl($scope.Event.VideoUrl);
         $scope.Event.Content = $sce.trustAsHtml($scope.Event.Content);
     });
+    //Load 3 organization to page
+    $http.get("/api/Organization/GetTopThreeOrganization").success(function (response) {
+        $scope.Organization = response.Data;
+    });
     // Load TimeLine
     $http({
         url: "/api/Event/GetEventTimeLineByEventId",

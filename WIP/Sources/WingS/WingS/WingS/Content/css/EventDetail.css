@@ -35,9 +35,8 @@
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 400;
     font-size: 14px;
-    float: left;
 	display: inline;
-	color: #b7b7b7;
+	color: gray;
 }
 .info a{
     color: #b7b7b7;
@@ -64,12 +63,11 @@
 	margin-right: 15px;
 }
 .contentEvent p{
-	margin-top: 15px;
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 400;
     font-size: 14px;
-    color: #696969;
     line-height: 24px;
+    color: black;
 }
 #contact p, #timeline p,span{
 	font-family: 'Open Sans', 'sans-serif';

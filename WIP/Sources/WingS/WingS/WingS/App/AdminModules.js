@@ -1,5 +1,5 @@
 ﻿'use strict';
-var app = angular.module('AdminApp', ['ngRoute', 'angular-loading-bar', 'ngAnimate', 'oitozero.ngSweetAlert']);
+var app = angular.module('AdminApp', ['ngRoute','datatables','datatables.bootstrap',  'angular-loading-bar', 'ngAnimate', 'oitozero.ngSweetAlert']);
 
 app.config(function ($routeProvider) {
     $routeProvider

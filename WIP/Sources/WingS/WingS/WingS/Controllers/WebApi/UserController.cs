@@ -162,6 +162,41 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+        [HttpGet]
+        public IHttpActionResult GetCreatedThreadOfUser(string userName)
+        {
+            try
+            {
+                List<ThreadBasicInfo> userCreatedThread;
+
+                int userId = 0; 
+                using (var db = new Ws_DataContext())
+                {
+                     userId= db.Ws_User.Where(x => x.UserName == userName).SingleOrDefault().UserID;
+                }
+                using (var db = new ThreadDAL())
+                {
+                    userCreatedThread = db.GetThreadsOfUser(userId);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get User Profile Successfully",
+                    Type = "",
+                    Data = userCreatedThread
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get User Donation Infomation!",
+                    Type = ""
+                });
+            }
+        }
         [HttpPut]
         public IHttpActionResult UpdateUserInfo(UserBasicInfoDTO UpdateUser)
         {

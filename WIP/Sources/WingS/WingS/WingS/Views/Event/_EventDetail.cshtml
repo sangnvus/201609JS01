@@ -11,7 +11,14 @@
     <link rel="stylesheet" href="~/Content/css/timeline.css">
     <link href="~/Content/css/ThreadDetail.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/scripts/lightbox/dist/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
-
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=167432310370225";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 <div class="transparent-bg" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1; zoom: 1;"></div>
 
 <div class="divPanel notop nobottom">
@@ -110,8 +117,6 @@
                 <div>
                     <p style="font-weight: 600;"><strong>Sự kiện được tổ chức tại:&nbsp;</strong>{{Event.Location}}</p>
                 </div>
-                                
-                <br>
 
             </div>
             <!-- Timeline -->
@@ -254,22 +259,18 @@
     <!-- Aside content -->
 
 </div>
-<br />
-<hr>
-<div class="circle row-fluid" style="margin-top: 5px;" align="center">
-    <!-- <div class="span2">
-        <span id="like" onclick="changeLikeStt()"><i class="fa fa-thumbs-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
-    </div>
+<hr style="margin-top: 0px;margin-bottom: 5px;">
+<div class="info">
     <div class="span2">
-        <i class="fa fa-users" aria-hidden="true" title="Số người tham gia sự kiện"></i> 500
+        <span id="like" onclick=" changeLikeStt() "><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
     </div>
     <div class="span2">
         <i class="icon-share-alt" title="Hãy chia sẻ nội dung này đến mọi người"></i> Chia sẻ
     </div>
     <div style="margin-left: 400px;">
         <i class="icon-flag"></i> Báo cáo sự kiện
-    </div> -->
-    <div class="span2 offset2">
+    </div>
+    @*<div class="span2 offset2">
         <a href="#" class="stylish">50</a>
         <h3>Tham gia</h3>
     </div>
@@ -282,8 +283,10 @@
     </div>
     <div class="span2">
         <a href="#" class="stylish">50</a>
-    </div>
+    </div>*@
 </div>
+<hr style="margin-top: 5px;margin-bottom: -26px;">
+<br/>
 <h2>Bình luận</h2>
 <div class="row-fluid">
     <!--Edit Main Content Area here-->
@@ -347,57 +350,36 @@
 </div>
 
 
-
-
-
-@*<div class="modal fade" id="sendMessage" role="dialog" hidden>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Gửi tin nhắn tới tổ chức: WingS</h4>
-            </div>
-            <div class="modal-message" align="center" style="margin-top:50px; margin-bottom:50px;" >
-                Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#">Message</a>
-            </div>
-            <div class="modal-body">
-                <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" />
-                <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung"  ng-model="content"></textarea>
-            </div>
-            <div class="modal-footer">
-                <div class="sendMessage">
-                    <button type="button" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
-                </div>
-                <div class="closeForm">
-                    <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>*@
-
 <hr>
 <!--Rank of Organization-->
-<h2>Xếp hạng các tổ chức</h2>
-<div class="row-fluid">
+    <div class="row-fluid">
+        <!--Edit Main Content Area here-->
+        <div class="span12" id="divMain">
+            <h2>Xếp hạng tổ chức</h2>
+            <hr>
 
-    <div class="span4" align="center">
-        <h5 class="text-info">Tổ chức:</h5>
-        <img src="images/services-image.jpg" class="img-polaroid img-circle" style="margin:5px 0px 15px;" alt="">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br /><a href="#">Read More &raquo;</a></p>
+            <br />
+            <br />
+        </div>
+        <div class="row-fluid">
+
+            <div class="span4" align="center" ng-repeat="item in Organization track by $index">
+                <div class="organization-title">
+                    <h5 class="text-info">{{item.OrganizationName}}</h5>
+                </div>
+                <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
+                    <div class="organization-img">
+                        <img src="{{item.LogoUrl}}" class="img-polaroid img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;">
+                    </div>
+                </a>
+                <div class="organization-content">
+                    <p>{{item.Introduction}}</p>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class="span4" align="center">
-        <h5 class="text-info">Tổ chức:</h5>
-        <img src="images/services-image.jpg" class="img-polaroid img-circle" style="margin:5px 0px 15px;" alt="">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br /><a href="#">Read More &raquo;</a></p>
-    </div>
-    <div class="span4" align="center">
-        <h5 class="text-info">Tổ chức:</h5>
-        <img src="images/services-image.jpg" class="img-polaroid img-circle" style="margin:5px 0px 15px;" alt="">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br /><a href="#">Read More &raquo;</a></p>
-    </div>
-</div>
+    <div align="center"><a class="btn btn-primary" href="#"> Xem danh sách</a></div>
 </div>
 
 <div id="footerOuterSeparator"></div>
