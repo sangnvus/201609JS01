@@ -1,5 +1,7 @@
 ﻿app.controller("ProfileController", function ($scope, $http, $routeParams) {
     var UserName = $routeParams.UserName;
+
+    //Get info of User
     $http({
         url: "/api/User/GetCurrentUser",
         method: "GET",
@@ -20,6 +22,17 @@
         $scope.UserSignature = $scope.UserInfo.UserSignature;
         
     });
+
+    //Get donation list of user
+    $http({
+        url: "/api/User/GeUsertDonationInformation",
+        method: "GET",
+        params: { userName: UserName },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.currentUserDonation = response.Data;
+    });
+
     $scope.sendMessage = function (titleMessage, content) {
         $http({
             url: "/api/Conservation/AddConservation",

@@ -119,7 +119,50 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
-       [HttpPut]
+        [HttpGet]
+        public IHttpActionResult GeUsertDonationInformation(string userName)
+        {
+            try
+            {
+                List<DonationDTO> userDonationInfor = new List<DonationDTO>();
+                List<int> donationIdList = new List<int>();
+
+                using (var db = new Ws_DataContext())
+                {
+                    int userId = db.Ws_User.Where(x => x.UserName == userName).SingleOrDefault().UserID;
+                    donationIdList = db.Donations.Where(x => x.UserId == userId).Select(x => x.DonationId).ToList();
+                }
+
+                foreach (int donationId in donationIdList)
+                {
+                    DonationDTO donation;
+                    using (var db = new DonationDAL())
+                    {
+                        donation = db.GetFullInformationOfDonation(donationId);
+                    }
+
+                    userDonationInfor.Add(donation);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get User Profile Successfully",
+                    Type = "",
+                    Data = userDonationInfor
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get User Donation Infomation!",
+                    Type = ""
+                });
+            }
+        }
+        [HttpPut]
         public IHttpActionResult UpdateUserInfo(UserBasicInfoDTO UpdateUser)
         {
         

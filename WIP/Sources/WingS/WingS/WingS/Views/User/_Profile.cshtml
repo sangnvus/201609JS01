@@ -25,11 +25,11 @@
             <img class="img-responsive img-profile" style="width: 227px; height: 227px;" src="{{UserInfo.ProfileImage}}" alt="">
             <div class="list-group">
                 <a href="#" class="list-group-item active" style="text-align: center;">Tổng quan</a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">99</span></a>
+                <a href="#" class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">{{UserInfo.NumberEventDonatedIn}}</span></a>
                 <a href="#" class="list-group-item" style="padding-left: 10px;">Số bài viết đã tạo<span class="badge purple">{{UserInfo.NumberOfPost}}</span></a>
                 <a href="#" class="list-group-item" style="padding-left: 10px;">Tổng số điểm<span class="badge orange">{{UserInfo.Point}}</span></a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">A</span></a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Trạng thái<span class="badge blue">Đang hoạt động</span></a>
+                <a href="#" class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">{{UserInfo.CurrentRank}}</span></a>
+                <a href="#" class="list-group-item" style="padding-left: 10px;">Trạng thái<span class="badge blue">{{UserInfo.IsActive}}</span></a>
             </div>
         </div>
         <div class="col-lg-9">
@@ -127,62 +127,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="odd gradeX">
-                            <td>1</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
+                        <tr class="odd gradeX" ng-repeat="item in currentUserDonation track by $index">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.EventBasicInformation.EventName}}</td>
+                            <td>{{item.EventBasicInformation.EventType}}</td>
+                            <td>{{item.DonatedMoney}}</td>
+                            <td>{{item.DonatedDate}}</td>
                         </tr>
-                        <tr class="even gradeC">
-                            <td>2</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
-                        </tr>
-                        <tr class="odd gradeA">
-                            <td>3</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
-                        </tr>
-                        <tr class="even gradeA">
-                            <td>4</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
-                        </tr>
-                        <tr class="odd gradeA">
-                            <td>5</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
-                        </tr>
-                        <tr class="even gradeA">
-                            <td>6</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
-                        </tr>
-                        <tr class="gradeA">
-                            <td>7</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
-                        </tr>
-                        <tr class="gradeA">
-                            <td>8</td>
-                            <td>Test</td>
-                            <td>Giáo dục</td>
-                            <td>100$</td>
-                            <td>12-10-2016 08:00</td>
-                        </tr>
+                     
                         </tbody>
                     </table>
                 </div>
