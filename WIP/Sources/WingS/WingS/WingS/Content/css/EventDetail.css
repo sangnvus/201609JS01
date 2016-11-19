@@ -12,7 +12,7 @@
 	float: left;
 	padding-left: 6px;
 }
-.title {
+/*.title {
     display: block;
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 700;
@@ -20,16 +20,20 @@
     color: #484849;
     text-transform: uppercase;
     margin: 20px 0;
-}
-.col-4 .urgent-progress .proTitle {
-    display: block;
-    font-family: 'Open Sans', 'sans-serif';
-    font-weight: 700;
-    font-size: 19px;
-    color: #484849;
+}*/
+.title h3{
+    font-size: 23px;
     text-transform: uppercase;
-	margin-top: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.col-4 .urgent-progress .proTitle h3{
+    font-size: 23px;
+    text-transform: uppercase;
+	margin-top: -2px;
     text-align: center;
+    margin-bottom: -4px;
 }
 .info {
     font-family: 'Open Sans', 'sans-serif';
@@ -44,19 +48,16 @@
 }
 .nav-tabs {
     margin-top: 15px; 
-	width:452px;
-	background-color: #f6f6f6;
 }
 .nav-tabs li a{
-    color: #38383f;
-	border-right: 1px solid #e5e5e5;
+    /*color: #38383f;*/
 	font-weight: 700;
 	
 }
-.nav-tabs .active a{
+/*.nav-tabs .active a{
 	background: #e05f03;
 	color: rgb(255, 255, 255);
-}
+}*/
 .space {
 	border-right: 1px solid #e5e5e5;
 	margin-left: 15px; 
@@ -74,15 +75,6 @@
 	font-size: 14px;
 	line-height: 24px;
 
-}
-.col-4 h3{
-	margin-top: -10px;
-	margin-bottom: 25px;
-    font-family: 'Open Sans', 'sans-serif';
-    font-weight: 700;
-    font-size: 20px;
-    color: #1e1d1c;
-    text-transform: uppercase;
 }
 .col-4 .title:after{
 	content: '';
@@ -276,3 +268,9 @@
 .text-faded {
     color: rgba(255,255,255,0.7);
 }
+.media-footer {
+    margin-left: 150px;
+    margin-top: -8px;
+    font-size: 13px;
+}
+

@@ -28,8 +28,8 @@
 
 <div class="divPanel notop page-content">
 
-<div class="breadcrumbs" style="font-size: 18px; padding-bottom:20px;">
-    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Chi tiết</span>
+<div class="breadcrumbs" style="font-size: 16px;padding-bottom:20px;">
+    <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp; <span>Chi tiết</span>
 </div>
 
 <!--Star event content -->
@@ -43,7 +43,9 @@
     <aside class="col-4">          
             <!-- Process Donate -->
             <div class="urgent-progress">
-                <div class="proTitle">Tiến trình ủng hộ</div>
+                <div class="proTitle">
+                    <h3>Tiến trình ủng hộ</h3>
+                </div>
                 <div class="progressbar position" data-percent="75" data-duration="1000" data-color="#ccc,#e05f03">
 
                 </div>
@@ -88,7 +90,29 @@
 </div>
 <div class="row-fluid">
     <section class="col-12">
-        <div class="title">{{Event.EventName}}</div>
+        <div class="title row">
+            <h3 style="float: left;margin-left: 30px;">
+                {{Event.EventName}}
+            </h3>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" onclick="return false">
+                    <i class="fa fa-caret-down" style="color: gray;font-size: 21px;"></i>
+                </a>
+                <ul class="dropdown-menu" style="margin-top: 21px;">
+                    <li>
+                        <a href="profile.html">
+                            <i class="fa fa-edit" style=" margin-left: -6px; "></i> Sửa
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profile.html">
+                            <i class="icon-flag" style=" margin-left: -6px; "></i> Báo cáo sự kiện
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
         <!-- Infor basic of event -->
         <div class="info">
             <span>Tạo bởi:</span> {{Event.CreatorName}}<span class="space"></span>
@@ -115,7 +139,7 @@
                     <p ng-bind-html="Event.Content"><p>
                 </div>
                 <div>
-                    <p style="font-weight: 600;"><strong>Sự kiện được tổ chức tại:&nbsp;</strong>{{Event.Location}}</p>
+                    <p style="font-weight: 600;">Sự kiện được tổ chức tại:&nbsp;{{Event.Location}}</p>
                 </div>
 
             </div>
@@ -125,8 +149,8 @@
                     <article ng-repeat="item in EventTimeLine">
                         <div class="inner">
                             <span class="date">
-                                                <span class="month">{{Event.StartedDate}}</span>
-                                            </span>
+                                <span class="month">{{Event.StartedDate}}</span>
+                             </span>
                             <h2>Từ ngày {{item.FromDate}} Đến ngày {{item.ToDate}}</h2>
                             <p>{{item.Content}}</p>
                         </div>
@@ -259,39 +283,18 @@
     <!-- Aside content -->
 
 </div>
-<hr style="margin-top: 0px;margin-bottom: 5px;">
+<hr style="margin-top: 5px;margin-bottom: 10px;">
 <div class="info">
-    <div class="span2">
-        <span id="like" onclick=" changeLikeStt() "><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
-    </div>
-    <div class="span2">
-        <i class="icon-share-alt" title="Hãy chia sẻ nội dung này đến mọi người"></i> Chia sẻ
-    </div>
-    <div style="margin-left: 400px;">
-        <i class="icon-flag"></i> Báo cáo sự kiện
-    </div>
-    @*<div class="span2 offset2">
-        <a href="#" class="stylish">50</a>
-        <h3>Tham gia</h3>
-    </div>
-    <div class="span2">
-        <a href="#" class="stylish">50</a>
-        <h3>Thích</h3>
-    </div>
-    <div class="span2">
-        <a href="#" class="stylish">Chia sẻ</a>
-    </div>
-    <div class="span2">
-        <a href="#" class="stylish">50</a>
-    </div>*@
+    <span style="margin-left: 7px;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
+    <span style="margin-left: 75px;"><i class="icon-share-alt" title="Hãy chia sẻ nội dung này đến mọi người"></i> Chia sẻ</span>
 </div>
-<hr style="margin-top: 5px;margin-bottom: -26px;">
+<hr style="margin-top: 10px; margin-bottom: -26px;margin-bottom: -30px;"/>
 <br/>
-<h2>Bình luận</h2>
+<h2>10 Bình luận <a style="font-size: 17px; color: #333;margin-left: 5px;" href="#" ng-click="reloadComment()" onclick="return false;"><i class="fa fa-refresh" title="Tải lại bình luận" aria-hidden="true"></i></a></h2>
 <div class="row-fluid">
     <!--Edit Main Content Area here-->
-    <div class="span10 offset1" id="divMain">
-        <div class="row-fluid" id="isComment">
+    <div class="span10 " id="divMain" style="margin-top: -15px;">
+        @*<div class="row-fluid" id="isComment">
             <br />
             <div class="span6 offset1">
                 <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
@@ -300,57 +303,54 @@
                     </div>
                 </div>
             </div>
+        </div>*@
+        <div ng-if="User_Information.IsAuthen" style="margin-top: 20px;">
+            <a class="pull-left" href="#">
+                <img src="{{User_Information.ProfileImage}}" style="width:55px; height:55px; margin-left:85px; " class="img-rounded" alt="" />
+            </a>&nbsp;&nbsp;&nbsp;<textarea placeholder="Viết bình luận" style="width:81%; height:35px;padding-top: 15px; " ng-model="$parent.content" my-enter="addContent(content)"></textarea>
         </div>
         <div class="media" ng-repeat="item in CommentEvent| limitTo: paginationLimit()">
             <a class="pull-left" href="#">
-                <img src="{{item.UserImageProfile}}" style="width:64px; height:64px;" class="img-circle" alt="" />
+                <img src="{{item.UserImageProfile}}" style="width: 55px; height: 55px; margin-left: 85px;" class="img-rounded" alt=""/>
             </a>
             <div class="media-body">
                 <h4 class="media-heading">{{item.UserCommentedName}} <span><small>{{item.CommentedTime}}</small></span></h4>
-                {{item.Content}}
+                <p style="margin-top: -6px;">{{item.Content}}</p>
             </div>
-            <br>
             <div class="media-footer">
-                <a href="#" class="voteButton" onclick="return false;">Vote | 50 </a> <a href="#" style="color: #999; font-size: 13px;"> DownVote </a> | <a href="#" onclick="return false" style="color: #999; font-size: 13px;" ng-click="showReply[$index]=true;getSubcomment(item.CommentId, $index)"> Trả lời ({{item.NumberSubComment}}) </a>
+                <a href="#" onclick=" return false; "> Thích </a> <span style="color: #2865a1;"> - </span>
+                <a href="#" onclick=" return false " ng-click="showReply[$index]=true;getSubcomment(item.CommentId, $index)"> Trả lời ({{item.NumberSubComment}}) </a> <span style="color: #2865a1;"> - </span>
+                <span style="color: #999;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
             </div>
-            <hr>
-            <div ng-show="showReply[$index]">
+            <div ng-show="showReply[$index]" style="margin-top: 15px;">
                 <div class="media" style="margin-left: 67px;" ng-repeat="subcomment in SubCommentEvent[$index]">
                     <a class="pull-left" href="#">
-                        <img src="{{subcomment.UserImageProfile}}" style="width:45px; height:45px;"  class="img-circle" alt="" />
+                        <img src="{{subcomment.UserImageProfile}}" style="width: 45px; height: 45px; margin-left: 80px;" class="img-rounded" alt=""/>
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{subcomment.UserCommentedName}} <span><small>{{subcomment.CommentedTime}}</small></span></h4>
-                        {{subcomment.Content}}
+                        <p style="margin-top: -6px;">{{subcomment.Content}}</p>
                     </div>
-                    <hr />
+                    @*<div class="media-footer">
+                        <a href="#" style="margin-left: -15px;" onclick=" return false; "> Thích </a> <span style="color: #2865a1;"> - </span>
+                        <span style="color: #999;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
+                    </div>*@
                 </div>
 
-                <div ng-if="User_Information.IsAuthen" style="margin-left:67px;">
-                    <br />
+                <div ng-if="User_Information.IsAuthen" style="margin-left: 134px; margin-top: 15px;">
                     <a class="pull-left" href="#">
-                        <img src="{{User_Information.ProfileImage}}" style="width:40px; height:40px;" class="img-circle" alt="" />
-                    </a>&nbsp;&nbsp;&nbsp;<input class="subContent" type="text" placeholder="Nhập bình luận" style="width:50%; height:40px; " ng-model="$parent.Subcontent" my-Enter="addSubComment(Subcontent,{{item.CommentId}},$index)" />
-                    <hr />
+                        <img src="{{User_Information.ProfileImage}}" style="width: 45px; height: 45px; margin-left: 12px;" class="img-rounded" alt=""/>
+                    </a>
+                    <input class="subContent" type="text" placeholder="Viết bình luận" style="width: 89%; height: 37px;" ng-model="$parent.Subcontent" my-Enter="addSubComment(Subcontent,{{item.CommentId}},$index)"/>
                 </div>
             </div>
         </div>
-        <span style="margin-left:64px;"></span><a href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Xem thêm bình luận</a>
-        <br />
-        <div ng-if="User_Information.IsAuthen">
-            <a class="pull-left" href="#">
-                <img src="{{User_Information.ProfileImage}}" style="width:40px; height:40px; margin-left:25px; " class="img-rounded" alt="" />
-            </a>&nbsp;&nbsp;&nbsp;<textarea placeholder="Nhập bình luận" style="width:75%; height:50px; " ng-model="$parent.content" my-Enter="addContent(content)"></textarea>
-        </div>
-        <br />
-        <div align="center" style="margin-right:15px;">
-            <a class="btn btn-primary" href="#" ng-click="reloadComment()" onclick="return false;"><i class="icon-refresh icon-spin"></i> Tải lại bình luận</a>
-        </div>
+        <br/>
+        <span style="margin-left:87px;"></span><a href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Xem thêm bình luận</a>
     </div>
 </div>
 
-
-<hr>
+<hr style="border-top: 1px solid #2865a1;"/>
 <!--Rank of Organization-->
     <div class="row-fluid">
         <!--Edit Main Content Area here-->
@@ -433,7 +433,7 @@
         <input id="hdUserId" type="hidden" />
         <input id="hdEventId" type="hidden" />
     </form>
-    <textarea id="txtMessage" class="chatbox__message" placeholder="Write something...."></textarea>
+    <textarea id="txtMessage" class="chatbox__message" placeholder="Viết cái gì đó...."></textarea>
 
 </div>
 
