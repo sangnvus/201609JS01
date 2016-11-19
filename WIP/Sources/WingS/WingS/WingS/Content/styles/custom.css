@@ -586,6 +586,15 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
     overflow: hidden;
     height: 91px;
 }
+.event-footer, .thread-footer {
+    margin-bottom: 5px;
+    display: inline-block;
+    float: left;
+}
+.event-footer span, .thread-footer span {
+    display: block;
+    float: left;
+}
 #lgout {
     width: 355px;
     margin-top: 85px;
