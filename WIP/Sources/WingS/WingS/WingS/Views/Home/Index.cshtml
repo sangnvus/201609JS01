@@ -1,8 +1,8 @@
 ﻿
 @*Import all scrips there*@
 @section scripts{
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.js"></script>
         <!-- Load angular scripts -->
-      @Scripts.Render("~/bundles/jquery")
       @Scripts.Render("~/bundles/angular")
     <script src="~/App/HomeModules.js"></script>
       <!--Load Controller-->
@@ -21,6 +21,13 @@
     <script type="text/javascript" src="~/App/Directives/checkFileValidate.js"></script>
     <script src="~/Scripts/Chat.js"></script>   
     <!--Javascripts-->
+    <script src="~/Scripts/data-tables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../Content/js/plugins/datatables/datatables-bs3.js"></script>
+    <script type="text/javascript" src="../../Content/js/plugins/datatables/advanced-tables-demo.js"></script>
+    <!-- PAGE LEVEL PLUGIN SCRIPTS -->
+    <script src="~/Scripts/data-tables/angular-datatables.min.js"></script>
+    <script src="~/Scripts/data-tables/angular-datatables.bootstrap.js"></script>
+
 
 
     }
