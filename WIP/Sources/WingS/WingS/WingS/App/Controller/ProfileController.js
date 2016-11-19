@@ -22,7 +22,15 @@
         $scope.UserSignature = $scope.UserInfo.UserSignature;
         
     });
-
+    //Get created thread information
+    $http({
+        url: "/api/User/GetCreatedThreadOfUser",
+        method: "GET",
+        params: { userName: UserName },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.currentUserThread = response.Data;
+    });
     //Get donation list of user
     $http({
         url: "/api/User/GeUsertDonationInformation",

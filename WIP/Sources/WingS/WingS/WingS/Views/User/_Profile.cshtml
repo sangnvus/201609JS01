@@ -169,54 +169,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Test</td>
-                            <td>01-12-2016 08:00</td>
-                            <td>
-                                <button class="btn btn-primary">Active</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Test</td>
-                            <td>01-12-2016 08:00</td>
-                            <td>
-                                <button class="btn btn-primary">Active</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Test</td>
-                            <td>01-12-2016 08:00</td>
-                            <td>
-                                <button class="btn btn-primary">Active</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Test</td>
-                            <td>01-12-2016 08:00</td>
-                            <td>
-                                <button class="btn btn-primary">Active</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Test</td>
-                            <td>01-12-2016 08:00</td>
-                            <td>
-                                <button class="btn btn-primary">Active</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Test</td>
-                            <td>01-12-2016 08:00</td>
-                            <td>
-                                <button class="btn btn-primary">Active</button>
-                            </td>
-                        </tr>
+                            <tr ng-repeat="item in currentUserThread">
+                                <td>{{$index +1}}</td>
+                                <td>{{item.ThreadName}}</td>
+                                <td>{{item.CreatedDate}}</td>
+                                <td>
+                                    <button class="btn btn-green" ng-if="item.Status" disabled>Đang Hoạt Động</button>
+                                    <button class="btn " ng-if="!item.Status" disabled>Dừng Hoạt Động</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
