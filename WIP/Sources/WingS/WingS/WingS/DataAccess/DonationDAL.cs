@@ -191,6 +191,18 @@ namespace WingS.DataAccess
             }
             return currentDonation;
         }
+        public bool AddNewEvent(Donation donationInfo)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var newDonate = db.Donations.Create(); ;
+                //newDonate.ShortDescription = donationInfo.ShortDescription;
+                db.Donations.Add(newDonate);
+                db.SaveChanges();
+                return true;
+            }
+
+        }
         public void Dispose()
         {
             

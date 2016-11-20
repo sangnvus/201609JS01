@@ -122,9 +122,10 @@ app.config(function ($routeProvider) {
             title: "Tổ chức",
             controller: "OrganizationController"
         })
-        .when("/Donate", {
+        .when("/Donate/:EventId", {
             templateUrl: "/Client/Donate",
-            title: "Ủng hộ"
+            title: "Ủng hộ",
+            controller: "DonateController"
         })
         .when("/DonationComplete", {
             templateUrl: "/Client/DonationComplete",

@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using API_NganLuong;
 using WingS.DataAccess;
 using WingS.Models.DTOs;
 
@@ -76,7 +78,19 @@ namespace WingS.Controllers
         }
         public ActionResult DonationComplete()
         {
-            return PartialView("~/Views/Donation/_DonationDone.cshtml");
+            String Token = Request["token"];
+            RequestCheckOrder info = new RequestCheckOrder();
+            info.Merchant_id = "48283";
+            info.Merchant_password = "12ba1130cf119352596dc8e1ba8e5fbf";
+            info.Token = Token;
+            APICheckoutV3 objNLChecout = new APICheckoutV3();
+            ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+            using (var db = new DonationDAL())
+            {
+                
+            }
+            string show = result.errorCode + result.payerName;
+            return PartialView("~/Views/Donation/_DonationDone.cshtml",show);
         }
 		public ActionResult CreateEvent()
         {
