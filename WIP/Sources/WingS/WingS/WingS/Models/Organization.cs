@@ -21,6 +21,7 @@
         public bool IsActive { get; set; }
         public bool IsVerify { get; set; }
         public int Point { get; set; }
+        public DateTime CreatedDate { get; set; } 
         public virtual ICollection<Event> Events { get; set; }
         public virtual Ws_User Ws_User { get; set; }
     }

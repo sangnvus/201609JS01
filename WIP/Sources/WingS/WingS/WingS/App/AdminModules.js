@@ -57,8 +57,22 @@ app.config(function ($routeProvider) {
             tittle: "Chi tiết sự kiện",
             templateUrl: "/Admin/EventDetail",
             controller: "AdminEventController"
+        })
+        .when("/OrganizationDashBoard", {
+            tittle: "Thống kê tổ chức",
+            templateUrl: "/Admin/OrganizationDashBoard",
+            controller: "AdminOrganizationController"
+        })
+        .when("/OrganizationList", {
+            tittle: "Danh sách sự kiện",
+            templateUrl: "/Admin/OrganizationList",
+            controller: "AdminOrganizationController"
+        })
+        .when("/OrganizationDetail/:OrganizationID", {
+            tittle: "Chi tiết sự kiện",
+            templateUrl: "/Admin/OrganizationDetail",
+            controller: "AdminOrganizationController"
         });
-
 });
 
 

@@ -13,8 +13,14 @@ namespace WingS.Models.DTOs
         public int NumberNotVerifyUser { get; set; }
         public int NumberNewCreateUser { get; set; }
         public int NumberTotalUser { get; set; }
+
+        public int NumberActiveOrganization { get; set; }
+        public int NumberNotActiveOrganization { get; set; }
+        public int NumberNotVerifyOrganization { get; set; }
         public int NumberTotalOrganization { get; set; }
+
         public int NumberTotalEvent { get; set; }
+
         public int NumberTotalThread { get; set; }
 
         public StatisticManageBasicInforDTO()
