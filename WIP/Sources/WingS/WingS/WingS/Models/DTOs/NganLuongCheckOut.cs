@@ -10,6 +10,8 @@
         public string numberMoney { get; set; }
         public string inputMoney { get; set; }
         public string isPublic { get; set; }
+        public int DonateEventId { get; set; }
+        public int DonateUserId { get; set; }
 
         public NganLuongCheckOut()
         {
@@ -21,6 +23,8 @@
             numberMoney = "";
             inputMoney = "";
             isPublic = "";
+            DonateEventId = 0;
+            DonateUserId = 0;
         }
     }
 }

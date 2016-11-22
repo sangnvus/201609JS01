@@ -49,19 +49,16 @@ namespace WingS.Controllers
         public IHttpActionResult GetDonateInfo(int eventId)
         {
             var userInfo = new UserBasicInfoDTO();
-            var newDonate = new DonationDTO();
             using (var db = new UserDAL())
             {
-                //User.Identity.Name
                 var user = db.GetUserByUserNameOrEmail(User.Identity.Name);
                 var userGet = db.GetUserInformation(user.UserID);
                 userInfo.FullName = userGet.FullName;
                 userInfo.Email = user.Email;
                 userInfo.Phone = userGet.Phone;
-                newDonate.UserId = user.UserID;
-                newDonate.EventId = eventId; 
+                userInfo.UserId = user.UserID;
+                userInfo.DonatedEventId = eventId;
             }
-            HttpContext.Current.Session["DonatedInfo"] = newDonate;
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = userInfo });
         }
     }

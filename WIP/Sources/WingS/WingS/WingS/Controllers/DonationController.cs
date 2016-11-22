@@ -42,10 +42,11 @@ namespace WingS.Controllers
             APICheckoutV3 objNLChecout = new APICheckoutV3();
             ResponseInfo result = objNLChecout.GetUrlCheckout(info, payment_method);
             //get and set data to session
-            var newDonate  = (DonationDTO)Session["DonatedInfo"];
-            Session.Remove("DonatedInfo");
+            var newDonate = new DonationDTO();
             newDonate.IsPublic = isPublic;
             newDonate.DonatedMoney = decimal.Parse(numberofMoney);
+            newDonate.UserId = inputData.DonateUserId;
+            newDonate.EventId = inputData.DonateEventId;
             Session["DonatedInfo"] = newDonate;
             Session["DonatedToken"] = result.Token;
             //return to checkout page or error page

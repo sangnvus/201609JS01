@@ -34,8 +34,7 @@ namespace WingS.Models.DTOs
         public decimal TotalMoneyDonatedIn { get; set; }
         public decimal LastDonateMoney { get; set; }
         public string LastDonateDate { get; set; }
-
-
+        public int DonatedEventId { get; set; }
         
 
         public UserBasicInfoDTO()
@@ -65,6 +64,7 @@ namespace WingS.Models.DTOs
             JoinedDate = "";
             NumberEventDonatedIn = 0;
             TotalMoneyDonatedIn = 0;
+            DonatedEventId = 0;
         }
     }
 }
