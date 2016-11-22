@@ -10,12 +10,21 @@
 
     });
 
-    // Load information of organization which in top 5 rank
+    // Load information of organization for organization dashboard cshtml: table ranking organization
     $http({
         url: "/api/Organization/GetOrganizationSortByPoint",
         method: "GET",
         contentType: "application/json"
     }).success(function (response) {
         $scope.RankingOrg = response.Data;
+    });
+
+    // Load information of organization for organization list cshtml
+    $http({
+        url: "/api/Organization/GetAllOrganization",
+        method: "GET",
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.allOrg = response.Data;
     });
 });

@@ -373,6 +373,34 @@ namespace WingS.DataAccess
             return newestOrg;
         }
 
+        /// <summary>
+        /// Get all organization
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public List<OrganizationBasicInfo> GetAllOrganization()
+        {
+            List<OrganizationBasicInfo> orgList = new List<OrganizationBasicInfo>();
+
+            try
+            {
+                List<int> orgIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    orgIdList = db.Organizations.Select(x => x.OrganizationId).ToList();
+                }
+
+                orgList.AddRange(orgIdList.Select(GetFullOrganizationBasicInformation));
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+
+            return orgList;
+        } 
+
         public void Dispose()
         {
            

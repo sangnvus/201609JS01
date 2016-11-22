@@ -153,6 +153,11 @@ namespace WingS.Controllers.WebApi
             }
         }
 
+        /// <summary>
+        /// Get top organization
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetTopOrganization(int top)
         {
@@ -163,6 +168,43 @@ namespace WingS.Controllers.WebApi
                 using (var db = new OrganizationDAL())
                 {
                     orgList = db.GetTopOrganization(top);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = orgList
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
+
+        /// <summary>
+        /// Get all organization
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetAllOrganization()
+        {
+            try
+            {
+                List<OrganizationBasicInfo> orgList;
+
+                using (var db = new OrganizationDAL())
+                {
+                    orgList = db.GetAllOrganization();
                 }
 
                 return Ok(new HTTPMessageDTO
