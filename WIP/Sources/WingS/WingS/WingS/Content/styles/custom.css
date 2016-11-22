@@ -608,6 +608,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
     margin-left: 133px;
     margin-top: 17px;
     border: 1px solid #FF5722;
+    float: right;
 }
 select option {
 	color: black;

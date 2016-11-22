@@ -53,6 +53,11 @@ app.config(function ($routeProvider) {
             templateUrl: "/Admin/EventList",
             controller: "AdminEventController"
         })
+        .when("/EventType", {
+            tittle: "Danh sách thể loại sự kiện",
+            templateUrl: "/Admin/EventType",
+            controller: "AdminEventTypeController"
+        })
         .when("/EventDetail/:EventID", {
             tittle: "Chi tiết sự kiện",
             templateUrl: "/Admin/EventDetail",

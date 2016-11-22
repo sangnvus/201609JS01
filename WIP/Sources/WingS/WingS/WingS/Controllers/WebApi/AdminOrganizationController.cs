@@ -78,5 +78,31 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+        /// <summary>
+        /// Change status of OrganizationId
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ActionName("ChangeStatusOrganization")]
+        public IHttpActionResult ChangeStatusOrganization(int organizationId)
+        {
+            try
+            {
+                bool statusOr;
+                using (var OrDal = new OrganizationDAL())
+                {
+                    var organ = OrDal.GetOrganizationById(organizationId);
+                    organ.IsActive = !organ.IsActive;
+                    statusOr = organ.IsActive;
+                    OrDal.UpdateOrganization(organ);
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = statusOr });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
     }
 }

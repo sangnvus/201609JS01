@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using WingS.DataHelper;
@@ -399,7 +400,24 @@ namespace WingS.DataAccess
             }
 
             return orgList;
-        } 
+        }
+        // Update Organization
+        public Organization UpdateOrganization(Organization organ)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    db.Organizations.AddOrUpdate(organ);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+            return organ;
+        }
 
         public void Dispose()
         {

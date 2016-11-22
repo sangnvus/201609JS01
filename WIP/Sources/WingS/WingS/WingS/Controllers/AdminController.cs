@@ -50,6 +50,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/EventManage/_EventList.cshtml");
         }
+        public ActionResult EventType()
+        {
+            return PartialView("~/Views/Admin/EventManage/_EventType.cshtml");
+        }
         public ActionResult EventDetail()
         {
             return PartialView("~/Views/Admin/EventManage/_EventDetail.cshtml");

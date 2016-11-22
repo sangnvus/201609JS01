@@ -1,0 +1,124 @@
+﻿<body>
+    @Html.Partial("../Admin/_TopSideNavigation")
+<!-- begin MAIN PAGE CONTENT -->
+<div id="page-wrapper">
+    <div class="page-content">
+        <!-- begin PAGE TITLE ROW -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-title">
+                    <h1>
+                        Thể loại sự kiện
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i> <a href="~/Admin/#/DashBoard">Thống kê</a>
+                        </li>
+                        <li><a href="/Admin/#/EventDashBoard">Sự kiện</a></li>
+                        <li class="active">Danh sách các thể loại sự kiện</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <!-- end PAGE TITLE ROW -->
+        <!-- begin ADVANCED TABLES ROW -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="portlet portlet-default">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <h4>Danh sách thể loại</h4>
+                        </div>
+                        <div class="portlet-widgets">
+                            <button class="btn btn-green btn-sm" data-toggle="modal" data-target="#newCategoryModal"><i class="fa fa-plus"></i> Thêm thể loại</button>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#EventType"><i class="fa fa-chevron-down"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="EventType" class="panel-collapse collapse in">
+                        <div class="portlet-body">
+                            <div class="table-responsive">
+                                <table datatable="ng"  id="example-table" class="table table-striped table-bordered table-hover table-green">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên thể loại</th>
+                                            <th>Mô tả</th>
+                                            <th>Số sự kiện liên quan</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td>1</td>
+                                            <td>Art</td>
+                                            <td>Test Test Test</td>
+                                            <td>120</td>
+                                            <td>
+                                                <button class="btn btn-green" style="width: 125px" s>Đang hoạt động</button>
+                                                <button class="btn btn-danger" style="width: 125px" ng-if="!item.Status" ng-click="unBan($index,item.ThreadID)">Bị cấm</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.portlet-body -->
+                    </div>
+                </div>
+                <!-- /.portlet -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+    <!-- /.page-content -->
+    <!-- start Modals -->
+    <!-- Advanced Modal Trigger -->
+    <!-- Flex Modal -->
+    <div class="modal modal-flex fade" id="newCategoryModal" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form role="form">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="flexModalLabel">
+                            Thêm thể loại
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên thể loại:</label> <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter category name..."/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Mô tả:</label>
+                            <textarea class="form-control" id="exampleInputPassword1" placeholder="Description..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button> <button type="button" class="btn btn-green">Thêm</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- end Modals -->
+
+</div>
+<!-- /#page-wrapper -->
+<!-- end MAIN PAGE CONTENT -->
+<!-- GLOBAL SCRIPTS -->
+<script src="~/Content/Admin/js/jquery.min.js"></script>
+<script src="~/Content/Admin/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="~/Content/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="~/Content/Admin/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+<script src="~/Content/Admin/js/plugins/popupoverlay/defaults.js"></script>
+<!-- HISRC Retina Images -->
+<script src="~/Content/Admin/js/plugins/hisrc/hisrc.js"></script>
+
+<!-- THEME SCRIPTS -->
+<script src="~/Content/Admin/js/flex.js"></script>
+</body>      
