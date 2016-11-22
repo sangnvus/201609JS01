@@ -341,8 +341,8 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                var currentThread = db.Events.FirstOrDefault(x => x.EventID == eventId);
-                return currentThread;
+                var currentEvent = db.Events.FirstOrDefault(x => x.EventID == eventId);
+                return currentEvent;
             }
 
         }

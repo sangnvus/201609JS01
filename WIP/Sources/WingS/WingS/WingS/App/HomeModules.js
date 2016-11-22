@@ -125,11 +125,26 @@ app.config(function ($routeProvider) {
         .when("/Donate/:EventId", {
             templateUrl: "/Client/Donate",
             title: "Ủng hộ",
-            controller: "DonateController"
+            resolve: {
+                'check': function ($location, $window) {
+                    if ($window.sessionStorage.isAuthen == "false") {
+                        $location.path('/Login');
+                    }
+                }
+            },
+            controller: "DonationController"
         })
         .when("/DonationComplete", {
             templateUrl: "/Client/DonationComplete",
-            title: "Thủ tục ủng hộ hoàn tất"
+            title: "Thủ tục ủng hộ hoàn tất",
+            resolve: {
+                'check': function ($location, $window) {
+                    if ($window.sessionStorage.isAuthen == "false") {
+                        $location.path('/Login');
+                    }
+                }
+            },
+            controller: "DonationDoneController"
         })
         .when("/CreateOrganization", {
             templateUrl: "/Client/CreateOrganization",

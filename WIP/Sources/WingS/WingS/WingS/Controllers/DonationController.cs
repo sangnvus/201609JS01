@@ -15,19 +15,12 @@ namespace WingS.Controllers
         // GET: /Donation/
         public ActionResult CheckOutNganLuong(NganLuongCheckOut inputData)
         {
+            //get data from form
             string payment_method = inputData.option_payment;
             string str_bankcode = inputData.bankcode;
-            string numberofMoney;
-            if (inputData.numberMoney == "0")
-            {
-                numberofMoney = inputData.inputMoney;
-            }
-            else
-            {
-                numberofMoney = inputData.numberMoney;
-            }
-            
-
+            bool isPublic = inputData.isPublic != "0";
+            var numberofMoney = inputData.numberMoney == "0" ? inputData.inputMoney : inputData.numberMoney;
+            //set data to nganluongAPI
             RequestInfo info = new RequestInfo
             {
                 Merchant_id = "48283",
@@ -42,13 +35,20 @@ namespace WingS.Controllers
                 order_description = "Chuyển tiền ủng hộ thông qua Ngân Lượng",
                 return_url = "http://localhost:2710/#/DonationComplete",
                 cancel_url = "http://localhost:2710/#/DonationFailed",
-                /*Buyer_fullname = inputData.buyer_fullname,
+                Buyer_fullname = inputData.buyer_fullname,
                 Buyer_email = inputData.buyer_email,
-                Buyer_mobile = inputData.buyer_mobile*/
+                Buyer_mobile = inputData.buyer_mobile
             };
             APICheckoutV3 objNLChecout = new APICheckoutV3();
             ResponseInfo result = objNLChecout.GetUrlCheckout(info, payment_method);
-
+            //get and set data to session
+            var newDonate  = (DonationDTO)Session["DonatedInfo"];
+            Session.Remove("DonatedInfo");
+            newDonate.IsPublic = isPublic;
+            newDonate.DonatedMoney = decimal.Parse(numberofMoney);
+            Session["DonatedInfo"] = newDonate;
+            Session["DonatedToken"] = result.Token;
+            //return to checkout page or error page
             if (result.Error_code == "00")
             {
                 return Redirect(result.Checkout_url);
@@ -57,17 +57,6 @@ namespace WingS.Controllers
             {
                 return PartialView("~/Views/Error/_Error.cshtml");
             }
-        }
-
-        protected string convert_utf8(string str)
-        {
-
-            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
-            Encoding utf8 = Encoding.UTF8;
-            byte[] utfBytes = utf8.GetBytes(str);
-            byte[] isoBytes = Encoding.Convert(utf8, iso, utfBytes);
-            string msg = utf8.GetString(isoBytes);
-            return msg;
         }
 	}
 }
