@@ -14,17 +14,33 @@ namespace WingS.DataAccess
         /// Get Organization with sort descending follow point
         /// </summary>
         /// <returns>List of Organization</returns>
-        public List<Organization> GetOrganizationWithSortedPoint()
+        public List<OrganizationBasicInfo> GetOrganizationOrderByDecendingPoint()
         {
-            List<Organization> listOrg;
+            List<OrganizationBasicInfo> orgList = new List<OrganizationBasicInfo>();
 
-            using (var db = new Ws_DataContext())
+            try
             {
-                var allSortedOrg = db.Organizations.OrderByDescending(x => x.Point).Where(x => x.IsActive == true);
-                listOrg = allSortedOrg.ToList();
+                List<int> orgIdList;
+                //Take all organization id and order decending by  point
+                using (var db = new Ws_DataContext())
+                {
+                    orgIdList = db.Organizations.OrderByDescending(x => x.Point).Select(x => x.OrganizationId).ToList();
+                }
+
+                //Get information for each organization id
+                foreach (int orgId in orgIdList)
+                {
+                    OrganizationBasicInfo organization = GetFullOrganizationBasicInformation(orgId);
+                    orgList.Add(organization);
+                }
+            }
+            catch (Exception)
+            {
+
+                //throw;
             }
 
-            return listOrg;
+            return orgList;
         } 
 
         public Organization AddNewOrganization(CreateOrganization organizationBasic, string UserName)

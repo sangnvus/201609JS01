@@ -9,4 +9,13 @@
         $scope.newCreatedOrg = response.Data;
 
     });
+
+    // Load information of organization which in top 5 rank
+    $http({
+        url: "/api/Organization/GetOrganizationSortByPoint",
+        method: "GET",
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.RankingOrg = response.Data;
+    });
 });

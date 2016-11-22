@@ -90,33 +90,40 @@ namespace WingS.Controllers.WebApi
         }
 
         
-
+        /// <summary>
+        /// Get all organization order by point
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetOrganizationSortByPoint()
         {
-            var orgBasicInforList = new List<OrganizationBasicInfo>();
-            List<Organization> orgSortedPointList;
-            using (var db = new OrganizationDAL())
+            try
             {
-                orgSortedPointList = db.GetOrganizationWithSortedPoint();
-                foreach (Organization org in orgSortedPointList)
-                {
-                    orgBasicInforList.Add(new OrganizationBasicInfo
-                    {
-                        OrganizationId = org.OrganizationId,
-                        OrganizationName = org.OrganizationName,
-                        Introduction = org.Introduction,
-                        LogoUrl = org.LogoUrl,
-                        Phone = org.Phone,
-                        Email = org.Email,
-                        Address = org.Address,
-                        IsActive = org.IsActive,
-                        Point = org.Point
-                    });
-                }
-            }
+                List<OrganizationBasicInfo> allRankedOrganizaation;
 
-            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = orgBasicInforList });
+                using (var db = new OrganizationDAL())
+                {
+                    allRankedOrganizaation = db.GetOrganizationOrderByDecendingPoint();
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = allRankedOrganizaation
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
         }
 
         [HttpGet]
