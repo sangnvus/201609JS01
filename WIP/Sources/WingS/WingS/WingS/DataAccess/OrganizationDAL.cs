@@ -43,6 +43,10 @@ namespace WingS.DataAccess
             newOrg.Phone = organizationBasic.Phone;
             newOrg.Email = organizationBasic.Email;
             newOrg.Address = organizationBasic.Address;
+            newOrg.IsVerify = false;
+            newOrg.IsActive = false;
+            newOrg.Point = 0;
+            newOrg.CreatedDate = DateTime.Now;
 
             using (var db = new Ws_DataContext())
             {
