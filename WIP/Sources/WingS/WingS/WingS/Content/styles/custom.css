@@ -616,3 +616,31 @@ select option {
 select option[disabled]:first-child {
 	display: none;
 }
+.overOganization p {
+    font-weight: 600;    
+}
+.overOganization {
+    margin-left: 37px;
+}
+.contactOr {
+    margin-left: 37px;
+}
+.contactOr .fa {
+    font-size: 17px;
+}
+.green {
+    background-color: #16a085;
+}
+.purple {
+    background-color: #8e44ad;
+}
+.blue {
+    background-color: #2980b9;
+}
+.red {
+    background-color: #e74c3c;
+}
+.buttonHover a:hover{
+	background: #e05f03;
+    color: white;
+}

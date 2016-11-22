@@ -1,12 +1,5 @@
 ﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="../../Content/scripts/font-awesome-4.6.3/css/font-awesome.min.css">
-<script src="../../Content/scripts/default.js" type="text/javascript"></script>
-<script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
-<script type="text/javascript">$(window).load(function () { var options = { autoResize: true, container: $('#gridArea'), offset: 10 }; var handler = $('#tiles li'); handler.wookmark(options); $('#tiles li').each(function () { var imgm = 0; if ($(this).find('img').length > 0) imgm = parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5; if ($(this).find('iframe').height()) newHeight = newHeight + 15; $(this).css('height', newHeight + 'px'); }); handler.wookmark(options); handler.wookmark(options); });</script>
-<script src="../../Content/scripts/yoxview/yox.js" type="text/javascript"></script>
-<script src="../../Content/scripts/yoxview/jquery.yoxview-2.21.js" type="text/javascript"></script>
-<script type="text/javascript">$(document).ready(function () { $('.yoxview').yoxview({ autoHideInfo: false, renderInfoPin: false, backgroundColor: '#ffffff', backgroundOpacity: 0.8, infoBackColor: '#000000', infoBackOpacity: 1 }); $('.yoxview a img').hover(function () { $(this).animate({ opacity: 0.7 }, 300) }, function () { $(this).animate({ opacity: 1 }, 300) }); });</script>
         <div class="divPanel notop nobottom">
       
         </div>
@@ -74,55 +67,40 @@
 
                 <div class="span4 sidebar">
                     <div class="sidebox" style="margin-top: 8px;">
-                        <div class="row-fluid">
-                            <a href="@Url.Content("/#/EditOrganization/{{currentOrg.OrganizationId}}")" style="margin-top: 0; float: right;" ng-style="isOwnerOrg">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Chỉnh sửa
-                            </a>
-                        </div>
                         <div align="center">
                             <img src="{{currentOrg.LogoUrl}}" class=" img-circle" style="height: 150px; width: 150px; margin: 0px 0px 15px;" alt="">
                         </div>
-                        <div class="organization-content " style="overflow: hidden;">
+                        <div class="overOganization">
+                            <h4 class="sidebox-title">Tổng quan:</h4>
+                            <p>Số sự kiện đã tạo: <span class="badge green " style=" margin-left: 80px;"> 50</span></p>
+                            <p>Điểm số: <span class="badge purple " style=" margin-left: 135px;"> 100</span></p>
+                            <p>Xếp hạng: <span class="badge red " style=" margin-left: 117px;"> Đồng</span></p>
+                            <p>Trạng thái: <span class="badge blue" style=" margin-left: 50px;"> Đang hoạt đồng</span></p>
+                        </div>
+
+                        <div class="contactOr" style="overflow: hidden;">
+                            <h4 class="sidebox-title">Liên lạc:</h4>
                             <p class="basic-infor"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Phone}}
                             </p>
                             <p class="basic-infor"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Address}}
                             </p>
                             <p class="basic-infor"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{currentOrg.Email}}
                             </p>
-                            <p class="basic-infor"><i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;300.000.000 VNĐ
-                            </p>
-                            <strong>Xếp hạng:</strong> 5 trên tổng số các tổ chức
                         </div>
-
-                        <ul>
-                            <li><a href="#">Gửi tin nhắn cho chúng tôi</a></li>
-                            <li><a href="#">Đóng góp để gây quĩ</a></li>
-                        </ul>
-
-
-                        <h4 class="sidebox-title">Thống kê</h4>
-
-                        <h5>Đã có: 40 người tham gia các sự kiện</h5>
-                        <div class="progress progress-info">
-                            <div class="bar" style="width: 20%"></div>
+                        <br/>
+                        <div class="buttonHover">
+                            <a class="btn " style="margin-left: 37px;" href="@Url.Content("/#/EditOrganization/{{currentOrg.OrganizationId}}")" ng-style="isOwnerOrg"><i class="icon-edit"></i> Sửa thông tin</a>
+                            <br/>
+                            <a class="btn " href="#" style="margin-left: 31px;" ng-style="!isOwnerOrg"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+                            <a class="btn " style="margin-left: 37px;" href="#" onclick=" return false;" data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
                         </div>
-
-                        <h5>Đã kêu gọi được( 80% ) số tiền cần thiết</h5>
-                        <div class="progress progress-success">
-                            <div class="bar" style="width: 40%"></div>
-                        </div>
-                        <h5>Đã đạt được 800 điểm</h5>
-                        <div class="progress progress-danger">
-                            <div class="bar" style="width: 40%"></div>
-                        </div>
-
 
 
                     </div>
 
                 </div>
             </div>
-            <div align="center">
+            <div style="margin-left: 339px;">
                 <a class="btn btn-primary" href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()"><i class="icon-refresh icon-spin"></i> Xem thêm...</a>
             </div>
                 

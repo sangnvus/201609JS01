@@ -9,7 +9,7 @@
             <div class="divPanel notop page-content">
 
                 <div class="breadcrumbs">
-                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Tổ chức</a> &nbsp;/&nbsp; <span>Tạo Tổ chức</span>
+                    <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="/#/EditOrganization"> Tổ chức</a> &nbsp;/&nbsp; <span>Sửa thông tin</span>
                 </div>
                 @using (Html.BeginForm("EditOrganization", "Organization", FormMethod.Post, new { @id = "LoginForm", enctype = "multipart/form-data" }))
                 {
@@ -25,7 +25,7 @@
                                     <div class="span8">
                                         <input name="OrganizationName" type="text" value="{{editOrg.OrganizationName}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
                                         <p>
-                                            Tên tổ chức không dài quá 200 kí tự.
+                                            Tên tổ chức không dài quá 50 kí tự.
                                         </p>
                                         <p>
                                             Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
@@ -48,7 +48,7 @@
                                         </h3>
                                     </div>
                                     <div class="span8">
-                                        <p>Chọn hình ảnh bạn có<span style="color: red;"> 	BẮT BUỘC</span></p>
+                                        <p>Chọn logo cho tổ chức của bạn</p>
                                         <img id="orgLogo" src="{{editOrg.LogoUrl}}" class=" img-circle" style="height: 150px; width: 150px; margin: 0px 0px 0px;" alt="" />
                                         <br />
                                         <p><input id="orgLogoInput" name="LogoImage" type="file" accept="image/*" onchange="onFileSelected(event)"></p>
@@ -71,9 +71,9 @@
                                         
                                     </div>
                                     <div class="span8">
-                                        <p>Hãy viết phần giời thiệu về tổ chức </p>
+                                        <p>Hãy viết phần giới thiệu về tổ chức </p>
                                         @*<div id="txtEditor" style="background-color: #fff; height: 300px; margin-bottom: 30px;"></div>*@
-                                        <textarea name="Introduction" style="width:450px; height:300px;">{{editOrg.Introduction}}</textarea>
+                                        <textarea name="Introduction" style="width:506px; height:144px;">{{editOrg.Introduction}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -93,11 +93,7 @@
                                     </div>
                                     <div class="span8">
                                         <input name="Phone" type="text" value="{{editOrg.Phone}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
-                                        <p>
-                                            Số điện thoại sẽ hiển thị trên trang của tổ chức, giúp cho việc liên lạc của các thành viên WingS với tổ chức của bạn thuận tiện.
-                                        </p>
-                                        <!-- <p>Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.</p> -->
-
+                                        <p>Số điện thoại sẽ hiển thị trên trang của tổ chức, giúp cho việc liên lạc của các thành viên WingS với tổ chức của bạn thuận tiện.</p>
                                     </div>
                                 </div>
                             </div>
@@ -116,12 +112,7 @@
                                         
                                     </div>
                                     <div class="span8">
-                                        <input name="Email" type="text" value="{{editOrg.Email}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
-                                        <p>
-                                            Nếu tổ chức của bạn có địa chỉ Email cụ thể thì hãy nhập địa chỉ Email vào đây.
-                                        </p>
-                                        <!-- <p>Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
-                                        </p> -->
+                                        <input name="Email" type="text" value="{{editOrg.Email}}" disabled="" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
 
                                     </div>
                                 </div>
@@ -143,7 +134,7 @@
                                     <div class="span8">
                                         <input name="Address" type="text" value="{{editOrg.Address}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
                                         <p>
-                                            Nếu tổ chức của bạn có địa chỉ cụ thể thì hãy nhập địa chỉ vào đây.
+                                            Nhập địa chỉ cụ thể tổ chức của bạn vào đây.
                                         </p>
                                         <!-- <p>Tên tổ chức bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
                                         </p> -->
