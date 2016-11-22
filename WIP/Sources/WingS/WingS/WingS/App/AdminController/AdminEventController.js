@@ -32,6 +32,7 @@
         contentType: "application/json"
     }).success(function (response) {
         $scope.currentEvent = response.Data;
+        $scope.widthEventDetail = (parseFloat($scope.currentEvent.RaisedMoney) / parseFloat($scope.currentEvent.ExpectedMoney))+'%';
         $scope.currentEvent.VideoUrl = "http://www.youtube.com/embed/" + getYoutubeId($scope.currentEvent.VideoUrl);
         $scope.currentEvent.ExpectedMoney = $scope.currentEvent.ExpectedMoney.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         $scope.currentEvent.RaisedMoney = $scope.currentEvent.RaisedMoney.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
