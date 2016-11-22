@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WingS.DataAccess;
 using WingS.DataHelper;
+using WingS.Models;
 using WingS.Models.DTOs;
 
 namespace WingS.Controllers.WebApi
@@ -217,7 +218,6 @@ namespace WingS.Controllers.WebApi
                     Status = WsConstant.HttpMessageType.ERROR,
                 });
             }
-                //Need to validate value
            
         }
     }

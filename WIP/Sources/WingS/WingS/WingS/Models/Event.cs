@@ -33,7 +33,6 @@
         public virtual ICollection<EventAlbumImage> Album { get; set; }
         public virtual EventType EType { get; set; }
         public virtual Organization Organization { get; set; }
-        public virtual ICollection<ReportEvent> ReportEvents { get; set; }
         public virtual ICollection<EventTimeLine> Etimelines { get; set; }
         public virtual ICollection<PublicRoom> ChatRoom { get; set; }
         public virtual ICollection<PublicMessageDetail> MessagePublic { get; set; }

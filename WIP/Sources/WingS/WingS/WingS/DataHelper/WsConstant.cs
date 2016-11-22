@@ -47,7 +47,20 @@ namespace WingS.DataHelper
             public static readonly string SUCCESS = "success";
             public static readonly string ERROR = "error";
         }
-
+        public static class ReportUser
+        {
+            public static readonly string BAD_RULE = "Người dùng này vi phạm nội qui";
+            public static readonly string BAD_POST = "Người dùng này có bài viết xấu";
+            public static readonly string BAD_CONTENT = "Người dùng này có một số nội dung không phù hợp";
+            public static readonly string OTHER = "Khác";
+        }
+        public static class ReportType
+        {
+            public static readonly string REPORT_USER = "Ws_User";
+            public static readonly string REPORT_EVENT = "Events";
+            public static readonly string REPORT_THREAD = "Threads";
+            public static readonly string REPORT_ORGANAZATION = "Organizations";
+        }
         public static class ForgotPass
         {
             public static readonly string WsOrganization = "WingS Organization";
