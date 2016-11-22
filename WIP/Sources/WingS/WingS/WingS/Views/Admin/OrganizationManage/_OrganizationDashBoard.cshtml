@@ -1,0 +1,216 @@
+﻿<body>
+@Html.Partial("../Admin/_TopSideNavigation")
+<div id="page-wrapper">
+
+<div class="page-content">
+
+<!-- begin PAGE TITLE ROW -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-title">
+            <h1>
+                Tổ chức
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i> <a href="index-2.html">Tổ chức</a>
+                </li>
+                <li class="active">Thống kê tổ chức</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- end PAGE TITLE ROW -->
+<!-- Start DASHBOARD CIRCLE TILES -->
+@Html.Partial("../Admin/OrganizationManage/_OrganizationCircleTiles")
+<!-- end DASHBOARD CIRCLE TILES -->
+<!-- begin ADVANCED TABLES ROW -->
+<div class="row">
+<!-- newest event-->
+<div class="col-lg-6">
+    <div class="portlet portlet-purple">
+        <div class="portlet-heading">
+            <div class="portlet-title">
+                <h4><i class="fa fa-exchange fa-fw"></i> Tổ chức mới nhất</h4>
+            </div>
+            <div class="portlet-widgets">
+                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="transactionsPortlet3" class="panel-collapse collapse in">
+            <div class="portlet-body">
+                <div class="table-responsive dashboard-demo-table">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tên tổ chức</th>
+                                <th>Người đăng ký</th>
+                                <th>Ngày đăng ký</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in newCreatedOrg">
+                                <td>
+                                    <a href="@Url.Content("/Admin/#/OrganizationDetail/{{item.OrganizationId}}")">
+                                        <h4>{{item.OrganizationName}}</h4>
+                                    </a>
+                                </td>
+                                <td>{{item.Creator.UserName}}</td>
+                                <td>{{item.CreatedDate}}</td>
+                                <td ng-switch="item.IsVerify">
+                                    <div ng-switch-when="false">
+                                        <a class="btn btn-xs btn-warning">Chờ duyệt</a>
+                                    </div>
+                                    <div ng-switch-when="true" ng-switch="item.IsActive">
+                                        <a class="btn btn-xs btn-green" ng-switch-when="true">Đang hoạt động</a>
+                                        <a class="btn btn-xs btn-danger" ng-switch-when="false">Bị cấm</a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popular Event -->
+<div class="col-lg-6">
+    <div class="portlet portlet-purple">
+        <div class="portlet-heading">
+            <div class="portlet-title">
+                <h4><i class="fa fa-exchange fa-fw"></i> Xếp hạng tổ chức</h4>
+            </div>
+            <div class="portlet-widgets">
+                <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="transactionsPortlet3" class="panel-collapse collapse in">
+            <div class="portlet-body">
+                <div class="table-responsive dashboard-demo-table">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tên tổ chức</th>
+                            <th>Điểm số</th>
+                            <th>Xếp hạng</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h4>Tuấn Tuấn</h4>
+                            </td>
+                            <td>100</td>
+                            <td>A</td>
+                            <td>
+                                <a class="btn btn-xs btn-blue">Đang hoạt động</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Tạ Ngọc Duy</h4>
+                            </td>
+                            <td>Y tế</td>
+                            <td>50</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Đã xong</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-1.jpg" alt="">
+                                </a>
+                                <h4>Đào Trọng Nghĩa</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>1</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="img/user-profile-2.jpg" alt="">
+                                </a>
+                                <h4>Lê Hồng Nhiên</h4>
+                            </td>
+                            <td>test@gmail.com</td>
+                            <td>0</td>
+                            <td>
+                                <a class="btn btn-xs btn-green">Active</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end popular Event -->
+
+</div>
+
+<!-- /.page-content -->
+
+</div>
+
+</div>
+<!-- GLOBAL SCRIPTS -->
+<script src="~/Content/Admin/js/jquery.min.js"></script>
+<script src="~/Content/Admin/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="~/Content/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="~/Content/Admin/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+<script src="~/Content/Admin/js/plugins/popupoverlay/defaults.js"></script>
+<!-- HISRC Retina Images -->
+<script src="~/Content/Admin/js/plugins/hisrc/hisrc.js"></script>
+
+<!-- PAGE LEVEL PLUGIN SCRIPTS -->
+<script src="~/Content/Admin/js/plugins/datatables/jquery.dataTables.js"></script>
+<script src="~/Content/Admin/js/plugins/datatables/datatables-bs3.js"></script>
+<script src="~/Content/Admin/js/demo/advanced-tables-demo.js"></script>
+
+
+<!-- THEME SCRIPTS -->
+<script src="~/Content/Admin/js/flex.js"></script>
+
+
+</body>

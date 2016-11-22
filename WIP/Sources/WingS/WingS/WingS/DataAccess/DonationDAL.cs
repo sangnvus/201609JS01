@@ -191,12 +191,16 @@ namespace WingS.DataAccess
             }
             return currentDonation;
         }
-        public bool AddNewEvent(Donation donationInfo)
+        public bool AddNewDonation(DonationDTO donationInfo)
         {
             using (var db = new Ws_DataContext())
             {
-                var newDonate = db.Donations.Create(); ;
-                //newDonate.ShortDescription = donationInfo.ShortDescription;
+                var newDonate = db.Donations.Create();
+                newDonate.UserId = donationInfo.UserId;
+                newDonate.EventId = donationInfo.EventId;
+                newDonate.DonatedMoney = donationInfo.DonatedMoney;
+                newDonate.IsPublic = donationInfo.IsPublic;
+                newDonate.DonatedDate = DateTime.Now;
                 db.Donations.Add(newDonate);
                 db.SaveChanges();
                 return true;

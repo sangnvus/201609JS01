@@ -502,28 +502,7 @@ namespace WingS.DataAccess
             return numberUser;
         }
 
-        /// <summary>
-        /// Count total Organization in database
-        /// </summary>
-        /// <returns>int</returns>
-        public int CountTotalOrganization()
-        {
-            int numberUser = 0;
-            try
-            {
-                using (var db = new Ws_DataContext())
-                {
-                    numberUser = db.Organizations.Count();
-                }
-            }
-            catch (Exception)
-            {
-                //throw;
-            }
-
-            return numberUser;
-        }
-
+        
         /// <summary>
         /// Get users have been create less than 3 day
         /// </summary>

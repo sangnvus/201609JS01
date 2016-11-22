@@ -26,5 +26,13 @@ namespace WingS.Models.DTOs
             EventBasicInformation = new EventBasicInfo();
             
         }
+
+        public DonationDTO(int userId, int eventId, decimal donatedMoney, bool isPublic)
+        {
+            UserId = userId;
+            EventId = eventId;
+            DonatedMoney = donatedMoney;
+            IsPublic = isPublic;
+        }
     }
 }

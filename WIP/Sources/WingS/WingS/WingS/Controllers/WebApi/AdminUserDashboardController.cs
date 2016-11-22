@@ -33,12 +33,16 @@ namespace WingS.Controllers.WebApi
                     statistic.NumberNewCreateUser = db.CountNewUser();
                     statistic.NumberTotalUser = db.CountTotalUser();
                     
-                    //Get number of organization
-                    statistic.NumberTotalOrganization = db.CountTotalOrganization();
                     //Get number of event
                     statistic.NumberTotalEvent = db.CountTotalEvent();
                     //Get number of post
                     statistic.NumberTotalThread = db.CountTotalThread();
+                }
+
+                using (var db = new OrganizationDAL())
+                {
+                    //Get number of organization
+                    statistic.NumberTotalOrganization = db.CountTotalOrganization();
                 }
 
                 return Ok(new HTTPMessageDTO

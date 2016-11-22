@@ -54,6 +54,18 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/EventManage/_EventDetail.cshtml");
         }
+        public ActionResult OrganizationDashBoard()
+        {
+            return PartialView("~/Views/Admin/OrganizationManage/_OrganizationDashBoard.cshtml");
+        }
+        public ActionResult OrganizationList()
+        {
+            return PartialView("~/Views/Admin/OrganizationManage/_OrganizationList.cshtml");
+        }
+        public ActionResult OrganizationDetail()
+        {
+            return PartialView("~/Views/Admin/OrganizationManage/_OrganizationDetail.cshtml");
+        }
         public ActionResult Index()
         {
             return View();

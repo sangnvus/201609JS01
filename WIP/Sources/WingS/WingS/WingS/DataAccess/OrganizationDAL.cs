@@ -176,7 +176,7 @@ namespace WingS.DataAccess
             try
             {
                 Organization org = GetOrganizationById(orgId);
-                //get ranking information
+                
                 
 
                 organizationBasic.OrganizationId = orgId;
@@ -190,6 +190,7 @@ namespace WingS.DataAccess
                     organizationBasic.Address = org.Address;
                     organizationBasic.IsActive = org.IsActive;
                     organizationBasic.IsVerify = org.IsVerify;
+                    organizationBasic.CreatedDate = org.CreatedDate.ToString("H:mm:ss dd/MM/yy");
                     organizationBasic.Point = org.Point;
 
                     WsRanking ranking = new WsRanking();
@@ -218,7 +219,11 @@ namespace WingS.DataAccess
                     {
                         organizationBasic.CurrentRank = "Diamon";
                     }
-                    
+                    //get creator
+                    using (var db = new UserDAL())
+                    {
+                        organizationBasic.Creator = db.GetFullInforOfUserAsBasicUser(orgId);
+                    }
                 }
 
                 
@@ -231,6 +236,123 @@ namespace WingS.DataAccess
 
             return organizationBasic;
         }
+
+        public StatisticManageBasicInforDTO GetStatisticAboutOrgaization()
+        {
+            StatisticManageBasicInforDTO statistic = new StatisticManageBasicInforDTO();
+
+            try
+            {
+                statistic.NumberActiveOrganization = CountOrganizationActiveOrNot(true);
+                statistic.NumberNotActiveOrganization = CountOrganizationActiveOrNot(false);
+                statistic.NumberNotVerifyOrganization = CountOrganizationVerifyOrNot(false);
+                statistic.NumberTotalOrganization = CountTotalOrganization();
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return statistic;
+        }
+
+        /// <summary>
+        /// Count total Organization in database
+        /// </summary>
+        /// <returns>int</returns>
+        public int CountTotalOrganization()
+        {
+            int numberUser = 0;
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    numberUser = db.Organizations.Count();
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return numberUser;
+        }
+
+        /// <summary>
+        /// Count number of Organization is verified or not
+        /// </summary>
+        /// <param name="isVerify"></param>
+        /// <returns></returns>
+        public int CountOrganizationVerifyOrNot(bool isVerify)
+        {
+            int numberOrg = 0;
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    
+                    numberOrg = isVerify ? db.Organizations.Count(x => x.IsVerify) : db.Organizations.Count(x => x.IsVerify == false);
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+            return numberOrg;
+        }
+
+        /// <summary>
+        /// Count number of Organization is actived or not
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+        public int CountOrganizationActiveOrNot(bool isActive)
+        {
+            int numberOrg = 0;
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    numberOrg = isActive ? db.Organizations.Count(x => x.IsVerify == true && x.IsActive == true) : db.Organizations.Count(x => x.IsVerify == true && x.IsActive == false);
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return numberOrg;
+        }
+
+        /// <summary>
+        /// Get organization have been create less than 30 day
+        /// </summary>
+        /// <returns></returns>
+        public List<OrganizationBasicInfo> GetNewestCreatedOrgzation()
+        {
+            List<OrganizationBasicInfo> newestOrg = new List<OrganizationBasicInfo>();
+            try
+            {
+                List<int> orgIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    DateTime dateBeforeThrityDay = DateTime.UtcNow.AddDays(-30);
+                    orgIdList = db.Organizations.OrderByDescending(x => x.CreatedDate).Where(x => x.CreatedDate >= dateBeforeThrityDay).Select(x=>x.OrganizationId).ToList();
+                    foreach (int orgId in orgIdList)
+                    {
+                        OrganizationBasicInfo organization = GetFullOrganizationBasicInformation(orgId);
+                        newestOrg.Add(organization);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+                //throw;
+            }
+            return newestOrg;
+        }
+
         public void Dispose()
         {
            

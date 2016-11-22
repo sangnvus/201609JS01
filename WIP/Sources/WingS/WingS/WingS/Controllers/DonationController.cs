@@ -42,9 +42,9 @@ namespace WingS.Controllers
                 order_description = "Chuyển tiền ủng hộ thông qua Ngân Lượng",
                 return_url = "http://localhost:2710/#/DonationComplete",
                 cancel_url = "http://localhost:2710/#/DonationFailed",
-                Buyer_fullname = inputData.buyer_fullname,
+                /*Buyer_fullname = inputData.buyer_fullname,
                 Buyer_email = inputData.buyer_email,
-                Buyer_mobile = inputData.buyer_mobile
+                Buyer_mobile = inputData.buyer_mobile*/
             };
             APICheckoutV3 objNLChecout = new APICheckoutV3();
             ResponseInfo result = objNLChecout.GetUrlCheckout(info, payment_method);
