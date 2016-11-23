@@ -1,7 +1,7 @@
 ﻿app.controller("DonationController", function ($scope, $http, $routeParams, $sce) {
     var eventId = $routeParams.EventId;
     $http({
-        url: "/api/DonationDone/GetDonateInfo",
+        url: "/api/DonationLoad/GetDonateInfo",
         method: "GET",
         params: { eventId: eventId },
         contentType: "application/json"
@@ -12,7 +12,7 @@
 
 app.controller("DonationDoneController", function ($scope, $http, $sce) {
     $http({
-        url: "/api/DonationDone/AddNewDonation",
+        url: "/Donation/AddNewDonation",
         method: "GET",
         params: {},
         contentType: "application/json"

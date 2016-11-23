@@ -5,6 +5,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using API_NganLuong;
+using WingS.DataAccess;
+using WingS.DataHelper;
 using WingS.Models.DTOs;
 
 namespace WingS.Controllers
@@ -52,9 +54,42 @@ namespace WingS.Controllers
             //return to checkout page or error page
             if (result.Error_code == "00")
             {
-                return Redirect(result.Checkout_url);
+                //return Redirect(result.Checkout_url);
+                return Redirect("http://localhost:2710/#/DonationComplete");
             }
             else
+            {
+                return PartialView("~/Views/Error/_Error.cshtml");
+            }
+        }
+        public ActionResult AddNewDonation()
+        {
+            try
+            {
+                if (Session["DonatedToken"] == null || Session["DonatedInfo"] == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var newDonate = (DonationDTO)Session["DonatedInfo"];
+                    String Token = Session["DonatedToken"].ToString();
+                    RequestCheckOrder info = new RequestCheckOrder();
+                    info.Merchant_id = "48283";
+                    info.Merchant_password = "12ba1130cf119352596dc8e1ba8e5fbf";
+                    info.Token = Token;
+                    APICheckoutV3 objNLChecout = new APICheckoutV3();
+                    ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+                    using (var db = new DonationDAL())
+                    {
+                        db.AddNewDonation(newDonate);
+                    }
+                    Session.Remove("DonatedInfo");
+                    Session.Remove("DonatedToken");
+                    return Redirect("http://localhost:2710/#/");
+                }
+            }
+            catch (Exception)
             {
                 return PartialView("~/Views/Error/_Error.cshtml");
             }
