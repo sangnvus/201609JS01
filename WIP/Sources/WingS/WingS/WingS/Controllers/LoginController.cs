@@ -315,6 +315,30 @@ namespace WingS.Controllers
                 return uriBuilder.Uri;
             }
         }
+
+        // Change Pass
+        [HttpPost]
+        public ActionResult ChangePass(string userNameChange, string newPass)
+        {
+            var Md5pass = MD5Helper.MD5Encrypt(newPass);
+            try
+            {
+                using (var userDal = new UserDAL())
+                {
+                    var AccountInfo = userDal.GetUserByUserNameOrEmail(userNameChange);
+                    AccountInfo.UserPassword = Md5pass;
+                    userDal.UpdateUser(AccountInfo);
+                }
+                FormsAuthentication.SignOut();
+                return Redirect("/#/Login");
+            }
+            catch (Exception ex)
+            {
+                //ViewBag.ErrorMessage = ex;
+                return Redirect("/#/Error");
+            }
+
+        }
     }
 
 }
