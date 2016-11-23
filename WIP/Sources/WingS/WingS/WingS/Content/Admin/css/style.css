@@ -2080,3 +2080,13 @@ input[type="checkbox"]:checked::after,
         margin-left: 0;
     }
 }
+.nameAdmin {
+    font-weight: 600;
+}
+.table td {
+    height: 67px;
+}
+.table p {
+    overflow: hidden;
+    height: 40px;
+}
