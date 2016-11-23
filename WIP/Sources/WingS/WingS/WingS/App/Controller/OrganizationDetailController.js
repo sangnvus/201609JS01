@@ -11,7 +11,11 @@
     });
 
     $.getJSON("api/User/GetCurrentUserId").done(function (data) {
-        var currentUserId = data.Data.toString();
+        var currentUserId ="";
+        if (data.Data != null) {
+            currentUserId = data.Data.toString();
+        }
+        
         if (data.Status === "success" && currentUserId === organizationId) {
             $scope.isOwnerOrg = { "visibility": "visible" };
         } else {

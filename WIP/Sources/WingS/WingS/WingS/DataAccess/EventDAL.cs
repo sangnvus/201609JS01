@@ -508,17 +508,15 @@ namespace WingS.DataAccess
         /// </summary>
         /// <param name="organizationId"></param>
         /// <returns>List of Event</returns>
-        public List<Event> GetEventsBelongToCreator(int organizationId)
+        public List<EventBasicInfo> GetEventsBelongToCreator(int organizationId)
         {
-            List<Event> eventsOfCreator;
-
+            List<int> eventIdList;
             using (var db = new Ws_DataContext())
             {
-                var listEvent = db.Events.OrderByDescending(x => x.Created_Date).Where(x => x.Status == true && x.CreatorID == organizationId);
-                eventsOfCreator = listEvent.ToList();
+                eventIdList = db.Events.OrderByDescending(x => x.Created_Date).Where(x => x.Status == true && x.CreatorID == organizationId).Select(x=>x.EventID).ToList();
             }
 
-            return eventsOfCreator;
+            return eventIdList.Select(GetFullEventBasicInformation).ToList();
         }
 
         /// <summary>
@@ -752,12 +750,12 @@ namespace WingS.DataAccess
         }
         public int CountDonatedUserOfEvent(int eventId)
         {
-            int numUser = 0;
+            var numUser = 0;
             try
             {
                 using (var db = new Ws_DataContext())
                 {
-                    numUser = db.Donations.Count(x => x.EventId == eventId);
+                    numUser = db.Donations.Where(x => x.EventId == eventId).Select(x => x.UserId).Distinct().Count();
                 }
             }
             catch (Exception)

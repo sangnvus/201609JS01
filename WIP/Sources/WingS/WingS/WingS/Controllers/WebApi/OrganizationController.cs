@@ -52,21 +52,12 @@ namespace WingS.Controllers.WebApi
         [HttpGet]
         public IHttpActionResult GetOrganizationUsingId(int orgId)
         {
-            OrganizationBasicInfo orgBasicInfo = new OrganizationBasicInfo();
+            OrganizationBasicInfo currentOrganization = new OrganizationBasicInfo();
             try
             {
                 using (var db = new OrganizationDAL())
                 {
-                    Organization org = db.GetOrganizationById(orgId);
-                    orgBasicInfo.OrganizationId = org.OrganizationId;
-                    orgBasicInfo.OrganizationName = org.OrganizationName;
-                    orgBasicInfo.Introduction = org.Introduction;
-                    orgBasicInfo.LogoUrl = org.LogoUrl;
-                    orgBasicInfo.Phone = org.Phone;
-                    orgBasicInfo.Email = org.Email;
-                    orgBasicInfo.Address = org.Address;
-                    orgBasicInfo.IsActive = org.IsActive;
-                    orgBasicInfo.Point = org.Point;
+                    currentOrganization = db.GetFullOrganizationBasicInformation(orgId);
                 }
 
                 return Ok(new HTTPMessageDTO
@@ -74,7 +65,7 @@ namespace WingS.Controllers.WebApi
                     Status = WsConstant.HttpMessageType.SUCCESS,
                     Message = "",
                     Type = "",
-                    Data = orgBasicInfo
+                    Data = currentOrganization
                 });
             }
             catch (Exception)

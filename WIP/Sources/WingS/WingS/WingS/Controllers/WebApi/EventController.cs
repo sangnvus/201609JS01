@@ -454,28 +454,12 @@ namespace WingS.Controllers
         }
         public IHttpActionResult GetEventListOfOrganization(int orgId)
         {
-            var eventListBasicInfo = new List<EventBasicInfo>();
             try
             {
+                List<EventBasicInfo> eventListBasicInfo;
                 using (var db = new EventDAL())
                 {
-                    var eventList = db.GetEventsBelongToCreator(orgId);
-
-                    foreach (Event events in eventList)
-                    {
-                        var eventMainImage = db.GetMainImageEventById(events.EventID);
-                        eventListBasicInfo.Add(new EventBasicInfo
-                        {
-                            EventID = events.EventID,
-                            CreatorID = events.CreatorID,
-                            EventName = events.EventName,
-                            MainImageUrl = eventMainImage.ImageUrl,
-                            Content = events.Description,
-                            ShortDescription = events.ShortDescription,
-                            Status = true,
-                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
-                        });
-                    }
+                    eventListBasicInfo = db.GetEventsBelongToCreator(orgId);
                 }
 
                 return Ok(new HTTPMessageDTO

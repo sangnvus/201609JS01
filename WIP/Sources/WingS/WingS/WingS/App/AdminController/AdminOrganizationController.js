@@ -19,14 +19,7 @@
         $scope.RankingOrg = response.Data;
     });
 
-    // Load information of organization for organization list cshtml
-    $http({
-        url: "/api/Organization/GetAllOrganization",
-        method: "GET",
-        contentType: "application/json"
-    }).success(function (response) {
-        $scope.allOrg = response.Data;
-    });
+   
     // Change status of Organization
     $scope.activeOrganization = function (index, orid) {
         $http({

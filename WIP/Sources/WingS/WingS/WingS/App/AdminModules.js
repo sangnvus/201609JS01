@@ -71,12 +71,12 @@ app.config(function ($routeProvider) {
         .when("/OrganizationList", {
             tittle: "Danh sách sự kiện",
             templateUrl: "/Admin/OrganizationList",
-            controller: "AdminOrganizationController"
+            controller: "AdminOrganizationListController"
         })
         .when("/OrganizationDetail/:OrganizationID", {
             tittle: "Chi tiết sự kiện",
             templateUrl: "/Admin/OrganizationDetail",
-            controller: "AdminOrganizationController"
+            controller: "AdminOrganizationDetailController"
         });
 });
 
