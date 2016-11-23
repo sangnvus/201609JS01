@@ -356,7 +356,7 @@ namespace WingS.DataAccess
                 {
                     eventType.EventTypeList.Add(new SelectListItem
                     {
-                        Text = eventtype.EventName,
+                        Text = eventtype.EventTypeName,
                         Value = eventtype.EventTypeID.ToString()
                     });
                 }
@@ -385,7 +385,7 @@ namespace WingS.DataAccess
                 EvtBasicInfo.CreatorName = currentEvent.Organization.OrganizationName;
                 EvtBasicInfo.VideoUrl = currentEvent.VideoUrl;
                 EvtBasicInfo.EventName = currentEvent.EventName;
-                EvtBasicInfo.EventType = currentEvent.EType.EventName;
+                EvtBasicInfo.EventType = currentEvent.EType.EventTypeName;
                 EvtBasicInfo.CreatedDate = currentEvent.Created_Date.ToString("dd/MM/yyyy");
                 EvtBasicInfo.Content = currentEvent.Description;
                 EvtBasicInfo.ExpectedMoney = currentEvent.ExpectedMoney;
@@ -632,7 +632,7 @@ namespace WingS.DataAccess
                 eventBasicInfo.NumberOfComments = CountCommentInEvent(eventId);
                 eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
                 eventBasicInfo.RaisedMoney = raisedMoney;
-                eventBasicInfo.EventType = wsEvent.EType.EventName;
+                eventBasicInfo.EventType = wsEvent.EType.EventTypeName;
                 eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("dd/MM/yyyy");
                 eventBasicInfo.Start_Date = wsEvent.Start_Date.ToString("dd/MM/yyyy");
                 eventBasicInfo.Finish_Date = wsEvent.Finish_Date.ToString("dd/MM/yyyy");
@@ -766,6 +766,79 @@ namespace WingS.DataAccess
 
             return numUser;
         }
+
+        public List<EventTypeDTO> GetAllEventType()
+        {
+            List<EventTypeDTO> eventTypeList = new List<EventTypeDTO>();
+            try
+            {
+                List<int> typeIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    typeIdList = db.EventTypes.Select(x=>x.EventTypeID).ToList();
+                }
+
+                foreach (var typeId in typeIdList)
+                {
+                    EventTypeDTO eventTypeDto = GetEventTypeInfomation(typeId);
+                    eventTypeList.Add(eventTypeDto);
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return eventTypeList;
+        }
+
+        public EventTypeDTO GetEventTypeInfomation(int eventTypeId)
+        {
+            EventTypeDTO eventTypeDto = new EventTypeDTO();
+            try
+            {
+                EventType eventType;
+                using (var db = new Ws_DataContext())
+                {
+                    eventType = db.EventTypes.FirstOrDefault(x => x.EventTypeID == eventTypeId);
+                }
+
+                if (eventType!=null)
+                {
+                    eventTypeDto.EventTypeID = eventType.EventTypeID;
+                    eventTypeDto.EventTypeName = eventType.EventTypeName;
+                    eventTypeDto.Content = eventType.Content;
+                    eventTypeDto.IsActive = eventType.IsActive;
+                    eventTypeDto.NumberRelatedEvent = CountNumberEventRelateAnEventType(eventType.EventTypeID);
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return eventTypeDto;
+        }
+
+        public int CountNumberEventRelateAnEventType(int eventTypeId)
+        {
+            int numberEventRelated = 0;
+
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    numberEventRelated = db.Events.Where(x => x.EventType == eventTypeId).Select(x => x.EventID).Count();
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return numberEventRelated;
+        }
+
         public void Dispose()
         {
           

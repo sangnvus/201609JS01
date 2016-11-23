@@ -1,4 +1,10 @@
 ﻿app.controller("UserListController", function ($scope, $http, SweetAlert) {
+    //Load user static information for user circle tiles
+    $http.get("/api/AdminUserDashboard/GetStatisticManageBasicInfor").success(function (response) {
+        $scope.userManageInfor = response.Data;
+
+    });
+
     $http.get("/api/AdminUserList/GetAllUser").success(function (response) {
         $scope.UserList = response.Data;
     });

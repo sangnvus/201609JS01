@@ -144,5 +144,41 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+
+        /// <summary>
+        /// Get all type event in EventType Table
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetAllEventType()
+        {
+            try
+            {
+                List<EventTypeDTO> listEventType;
+
+                using (var db = new EventDAL())
+                {
+                    listEventType = db.GetAllEventType();
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get Thread with ID Successfully",
+                    Type = "",
+                    Data = listEventType
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Event with ID",
+                    Type = ""
+                });
+            }
+        }
     }
 }

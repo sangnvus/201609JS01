@@ -284,7 +284,7 @@ namespace WingS.Controllers
                         using (var dbWscontext = new Ws_DataContext())
                         {
                             var eventTypes = dbWscontext.EventTypes.Find(events.EventType);
-                            eventType = eventTypes.EventName;
+                            eventType = eventTypes.EventTypeName;
                         }
                        
                         basicEventList.Add(new EventBasicInfo
@@ -343,7 +343,7 @@ namespace WingS.Controllers
                         using (var dbWscontext = new Ws_DataContext())
                         {
                             var eventTypes = dbWscontext.EventTypes.Find(events.EventType);
-                            eventType = eventTypes.EventName;
+                            eventType = eventTypes.EventTypeName;
                         }
 
                         basicEventList.Add(new EventBasicInfo
@@ -401,7 +401,7 @@ namespace WingS.Controllers
                         using (var dbWscontext = new Ws_DataContext())
                         {
                             var eventTypes = dbWscontext.EventTypes.Find(events.EventType);
-                            eventType = eventTypes.EventName;
+                            eventType = eventTypes.EventTypeName;
                         }
 
                         basicEventList.Add(new EventBasicInfo
