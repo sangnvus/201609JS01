@@ -210,7 +210,7 @@
                     <h4 class="modal-title">Gửi tin nhắn tới: {{UserInfo.UserName}} </h4>
                 </div>
                 <div class="modal-message" align="center" style="margin-top:50px; margin-bottom:50px;">
-                    Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Message">Message</a>
+                    Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Messages">Message</a>
                 </div>
                 <div class="modal-body">
                     <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" />
@@ -241,7 +241,12 @@
                 </div>
                 <div class="modal-body">
                         <div class="radio" ng-repeat="item in ReportContent track by $index">
-                            <label><input type="radio"  name="optradio" ng-click="setValue($index)">{{item}}</label>
+                            <div  ng-if="$index==0">
+                                <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked"  >{{item}}</label>
+                            </div>
+                            <div ng-if="$index!=0">
+                                <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" >{{item}}</label>
+                            </div>
                         </div>
                 </div>
                 <div class="modal-footer">
