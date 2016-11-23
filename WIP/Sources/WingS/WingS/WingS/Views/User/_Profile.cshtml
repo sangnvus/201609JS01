@@ -2,11 +2,11 @@
 
 <div class="contentAre">
 
-    <div class="divPanel notop page-content">
-        <div class="breadcrumbs">
-            <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="#"></a> Thông tin cá nhân
-        </div>
+<div class="divPanel notop page-content">
+    <div class="breadcrumbs">
+        <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="#"></a> Thông tin cá nhân
     </div>
+</div>
 
 <div class="row">
 <div class="col-lg-12" style="padding-left: 53px;">
@@ -17,6 +17,7 @@
     <li class="active"><a href="#overview" onclick=" return false; " data-toggle="tab">Hồ sơ</a></li>
     <li><a href="#backed" onclick=" return false; " data-toggle="tab">Lịch sử quyên góp</a></li>
     <li><a href="#created" onclick=" return false; " data-toggle="tab">Bài viết đã tạo</a></li>
+    <li><a href="#changePassWord" onclick=" return false; " data-toggle="tab">Đổi mật khẩu</a></li>
 </ul>
 <div id="userTabContent" class="tab-content">
 <div class="tab-pane fade in active" id="overview">
@@ -24,12 +25,15 @@
         <div class="col-lg-3">
             <img class="img-responsive img-profile" style="width: 227px; height: 227px;" src="{{UserInfo.ProfileImage}}" alt="">
             <div class="list-group">
-                <a href="#" class="list-group-item active" style="text-align: center;">Tổng quan</a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">{{UserInfo.NumberEventDonatedIn}}</span></a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Số bài viết đã tạo<span class="badge purple">{{UserInfo.NumberOfPost}}</span></a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Tổng số điểm<span class="badge orange">{{UserInfo.Point}}</span></a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">{{UserInfo.CurrentRank}}</span></a>
-                <a href="#" class="list-group-item" style="padding-left: 10px;">Trạng thái<span class="badge blue">{{UserInfo.IsActive}}</span></a>
+                <a href="#" onclick=" return false " class="list-group-item active" style="text-align: center;">Tổng quan</a>
+                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">{{UserInfo.NumberEventDonatedIn}}</span></a>
+                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Số bài viết đã tạo<span class="badge purple">{{UserInfo.NumberOfPost}}</span></a>
+                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Tổng số điểm<span class="badge orange">{{UserInfo.Point}}</span></a>
+                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">{{UserInfo.CurrentRank}}</span></a>
+                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Trạng thái
+                    <span class="badge blue" ng-if="UserInfo.IsActive">Đang Hoạt Động</span>
+                    <span class="badge red" ng-if="!UserInfo.IsActive">Bị cấm</span>
+                </a>
             </div>
         </div>
         <div class="col-lg-9">
@@ -44,30 +48,30 @@
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input type="tel" class="form-control" ng-model="Phone"  disabled>
+                                <input type="tel" class="form-control" ng-model="Phone" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ</label>
-                                <input type="text" class="form-control" ng-model="Address"  disabled>
+                                <input type="text" class="form-control" ng-model="Address" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Quốc gia</label>
-                                <input type="text" class="form-control" ng-model="Country"  disabled>
+                                <input type="text" class="form-control" ng-model="Country" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Giới tính</label>
                                 <input type="text" class="form-control" ng-model="Gender" disabled>
                             </div>
                             <div class="form-group">
-                                <label>Ngày sinh</label> 
-                                <input type="date"  class="form-control" id="datePicker"  value="{{DOB}}"  disabled/>
+                                <label>Ngày sinh</label>
+                                <input type="date" class="form-control" id="datePicker" value="{{DOB}}" disabled/>
                             </div>
                         </div>
                         <div class="col-lg-3" style="width: 300px; margin-left: 90px;">
                             <h4 class="page-header" style="margin-bottom: 39px;">Thông tin liên lạc:</h4>
                             <div class="form-group">
                                 <label>Địa chỉ Email</label>
-                                <input type="text"  value="{{UserInfo.Email}}" disabled>
+                                <input type="text" value="{{UserInfo.Email}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Đường dẫn Facebook</label>
@@ -86,7 +90,7 @@
                                 <label>Chữ kí</label>
                                 <input type="text" class="form-control" ng-model="UserSignature" disabled>
                             </div>
-                            
+
                         </div>
 
                     </form>
@@ -96,10 +100,10 @@
 
     </div>
     <div class="buttonHover">
-        <a class="btn " href="#" onclick=" return false;" data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
-        <a class="btn " href="#" onclick=" return false;"  data-toggle="modal"  data-target="#sendReport" style="margin-left: 31px;" ng-if="UserInfo.UserName!=User_Information.UserName" ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true" ></i> Báo cáo</a>
-        <a class="btn " id="updateUser" ng-click="enableButton()" href="#" onclick="return false;" ng-if="UserInfo.UserName==User_Information.UserName"><i class="icon-edit"></i> Sửa thông tin</a>
-        <a class="btn" id="saveUser" style="visibility: hidden;" ng-click="saveUser()" href="#" onclick="return false;" ><i class="fa fa-floppy-o"></i> Lưu</a>
+        <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
+        <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport" style="margin-left: 31px;" ng-if="UserInfo.UserName!=User_Information.UserName" ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+        <a class="btn " id="updateUser" ng-click="enableButton()" href="#" onclick=" return false; " ng-if="UserInfo.UserName==User_Information.UserName"><i class="icon-edit"></i> Sửa thông tin</a>
+        <a class="btn" id="saveUser" style="visibility: hidden;" ng-click="saveUser()" href="#" onclick=" return false; "><i class="fa fa-floppy-o"></i> Lưu</a>
     </div>
 </div>
 
@@ -134,7 +138,7 @@
                             <td>{{item.DonatedMoney}}</td>
                             <td>{{item.DonatedDate}}</td>
                         </tr>
-                     
+
                         </tbody>
                     </table>
                 </div>
@@ -169,15 +173,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in currentUserThread">
-                                <td>{{$index +1}}</td>
-                                <td>{{item.ThreadName}}</td>
-                                <td>{{item.CreatedDate}}</td>
-                                <td>
-                                    <button class="btn btn-green" ng-if="item.Status" disabled>Đang Hoạt Động</button>
-                                    <button class="btn " ng-if="!item.Status" disabled>Dừng Hoạt Động</button>
-                                </td>
-                            </tr>
+                        <tr ng-repeat="item in currentUserThread">
+                            <td>{{$index +1}}</td>
+                            <td>{{item.ThreadName}}</td>
+                            <td>{{item.CreatedDate}}</td>
+                            <td>
+                                <span class="label label-primary" ng-if="item.Status">Đang Hoạt Động</span>
+                                <span class="label label-danger " ng-if="!item.Status">Dừng Hoạt Động</span>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -190,7 +194,70 @@
 </div>
 <!-- End tab created project -->
 
+<!-- Start tab change PassWord -->
+<div class="tab-pane fade" id="changePassWord">
+    <div class="row-fluid">
+        <!--Edit Main Content Area here-->
+        <div class="span12" id="divMain" style="margin-top: 40px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 }">
+            <div class="row-fluid">
+                <section id="content">
+                    @using (Html.BeginForm("ChangePass", "Login", FormMethod.Post, new { @class = "login-content", @id = "changePassForm", @name = "changePassForm", role = "form" }))
+                    {
+
+                        <h1>Đổi mật khẩu</h1>
+                        <div>
+                            <input type="text" placeholder="Tên tài khoản" required="" id="userNameChange" name="userNameChange" />
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Mật khẩu cũ" required="" id="oldPass" name="oldPass"/>
+                        </div>
+                        <div>
+                            <div ng-show="changePassForm.newPass.$dirty && changePassForm.newPass.$invalid" style="color: red;">
+                                <i class="icon-remove-sign  " style="color: red"></i>
+                                <span ng-show="changePassForm.newPass.$error.required">Mật khẩu không được để trống</span>
+                                <span ng-show="changePassForm.newPass.$error.minlength">Mật khẩu phải dài hơn 8 kí tự</span>
+                                <span ng-show="changePassForm.newPass.$error.maxlength">Mật khẩu phải ngắn hơn 20 kí tự</span>
+                            </div>
+                            <input type="password" placeholder="Mật khẩu mới" required="" id="newPass" name="newPass"
+                                   ng-model="newPass"
+                                   ng-minlength="8"
+                                   ng-maxlength="20"/>
+                        </div>
+                        <div>
+                            <div ng-show="changePassForm.reNewPass.$dirty && changePassForm.reNewPass.$invalid" style="color: red;">
+                                <i class="icon-remove-sign  " style="color: red"></i>
+                                <span ng-show="changePassForm.reNewPass.$error.required">Nhập lại mật khẩu không được để trống</span>
+                                <span ng-show="changePassForm.reNewPass.$error.unique && !changePassForm.reNewPass.$error.required">Nhập lại mật khẩu không giống</span>
+                            </div>
+                            <input type="password" placeholder="Nhập lại mật khẩu mới"
+                                   name="reNewPass" id="reNewPass"
+                                   ng-model="reNewPass"
+                                   password-match="newPass"
+                                   required>
+                        </div>
+                        <div>
+                            <h4 id="ErrorMessage" style="color: red; margin-left: 30px;"> </h4>
+                        </div>
+                        <div style="margin-left: 12%;">
+                            <input class="btn" onclick=" return false; " style="width: 250px" type="submit"
+                                   value="Đổi mật khẩu" id="submitChangePass"
+                                   ng-disabled="!changePassForm.$dirty || (changePassForm.$dirty && changePassForm.$invalid)"/>
+                        </div>
+                    }
+                </section><!-- content -->
+            </div>
+
+            <hr>
+            <br>
+
+
+        </div>
+        <!--End Main Content here-->
+
+    </div>
 </div>
+<!-- End tab change PassWord -->
 </div>
 <!-- /.portlet-body -->
 </div>
@@ -201,66 +268,66 @@
 <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-    <div class="modal fade" id="sendMessage" role="dialog" hidden>
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gửi tin nhắn tới: {{UserInfo.UserName}} </h4>
+<div class="modal fade" id="sendMessage" role="dialog" hidden>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Gửi tin nhắn tới: {{UserInfo.UserName}} </h4>
+            </div>
+            <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Message">Tin nhắn</a>
+            </div>
+            <div class="modal-body">
+                <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage"/>
+                <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung" ng-model="content"></textarea>
+            </div>
+            <div class="modal-footer">
+                <div class="sendMessage">
+                    <button type="button" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
                 </div>
-                <div class="modal-message" align="center" style="margin-top:50px; margin-bottom:50px;">
-                    Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Messages">Message</a>
-                </div>
-                <div class="modal-body">
-                    <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" />
-                    <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung" ng-model="content"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <div class="sendMessage">
-                        <button type="button" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
-                    </div>
-                    <div class="closeForm">
-                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
-                    </div>
+                <div class="closeForm">
+                    <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
-
         </div>
+
     </div>
-    <div class="modal fade" id="sendReport" role="dialog" hidden>
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Báo cáo người dùng này </h4>
-                </div>
-                <div class="modal-message" align="center" style="margin-top:50px; margin-bottom:50px;">
-                    Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
-                </div>
-                <div class="modal-body">
-                        <div class="radio" ng-repeat="item in ReportContent track by $index">
-                            <div  ng-if="$index==0">
-                                <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked"  >{{item}}</label>
-                            </div>
-                            <div ng-if="$index!=0">
-                                <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" >{{item}}</label>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="sendMessage">
-                        <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
-                    </div>
-                    <div class="closeForm">
-                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
-                    </div>
+</div>
+<div class="modal fade" id="sendReport" role="dialog" hidden>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Báo cáo người dùng này </h4>
+            </div>
+            <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
+            </div>
+            <div class="modal-body">
+                <div class="radio" ng-repeat="item in ReportContent track by $index">
+					<div  ng-if="$index==0">
+						<label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked"  >{{item}}</label>
+					</div>
+					<div ng-if="$index!=0">
+						<label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" >{{item}}</label>
+					</div>
                 </div>
             </div>
-
+            <div class="modal-footer">
+                <div class="sendMessage">
+                    <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
+                </div>
+                <div class="closeForm">
+                    <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
         </div>
+
     </div>
+</div>
 </div>
 
 
@@ -268,12 +335,28 @@
 <script>
     $(".modal-message").hide();
     $(".closeForm").hide();
-
+   
 </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#submitChangePass').click(function () {
+                $.getJSON("/Login/ValidateUser", { UserName: $("#userNameChange").val(), PassWord: $("#oldPass").val(), AccountType: false }, function (data) {
+                    if (data == "WrongPass") {
+                        $('#ErrorMessage').html("Sai tên tài khoản hoặc mật khẩu!");
+                        return false;
 
-<script src="~/Scripts/Chat.js"></script>   
+                    } else if (data == "Locked") {
+                        $('#ErrorMessage').html("Tài khoản đang bị khóa hoặc chưa xác nhận!");
+                        return false;
+                    } else {
+                        $('#changePassForm').submit();
+                        return true;
+                    }
+                });
+            });
+        });
+    </script>
+<script src="~/Scripts/Chat.js"></script>
 <!-- PAGE LEVEL PLUGIN SCRIPTS -->
 
-
-
-    <br /><br /><br />
+</div>
