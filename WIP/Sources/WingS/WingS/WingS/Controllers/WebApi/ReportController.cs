@@ -13,22 +13,33 @@ namespace WingS.Controllers.WebApi
 {
     public class ReportController : ApiController
     {
-        [HttpPost]
-        public IHttpActionResult ReportUser(ReportBasicInfoDTO newReport)
+        [HttpGet]
+        public IHttpActionResult GetReportContentForUser()
+        {
+            List<string> reportContent = new List<string>();
+            reportContent.Add(WsConstant.ReportUser.BAD_CONTENT);
+            reportContent.Add(WsConstant.ReportUser.BAD_POST);
+            reportContent.Add(WsConstant.ReportUser.BAD_RULE);
+            reportContent.Add(WsConstant.ReportUser.OTHER);
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data= reportContent });
+        }
+        [HttpGet]
+        public IHttpActionResult ReportUser(string Content, string userName)
         {
             int currentUser = 0;
+            int toUserId = 0;
             using (var db = new UserDAL())
             {
                 currentUser = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
+                toUserId = db.GetUserByUserNameOrEmail(userName).UserID;
             }
             //Set new Report 
             Report r = new Report();
-            r.Reason = newReport.Content;
+            r.Reason = Content;
             r.ReportTime = DateTime.Now;
             r.UserId = currentUser;
             r.Type = WsConstant.ReportType.REPORT_USER;
-            r.Reason = newReport.Content;
-            r.ReportTo = newReport.ReportTo;
+            r.ReportTo = toUserId;
             r.Status = false;
             r.UpdatedTime = DateTime.Now;
             //Call to accesslayer

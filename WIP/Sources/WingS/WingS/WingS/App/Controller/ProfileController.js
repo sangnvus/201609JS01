@@ -54,6 +54,33 @@
             $(".closeForm").show();
         });
     };
+    $scope.getReportContent = function () {
+        $http({
+            url: "/api/Report/GetReportContentForUser",
+            method: "GET",
+            contentType: "application/json",
+        }).success(function (response) {
+            $scope.ReportContent = response.Data;
+        });
+    };
+    $scope.setValue=function(setValue)
+    {
+        $scope.radioValue = setValue;
+    }
+    $scope.sendReport = function () {
+        $http({
+            url: "/api/Report/ReportUser",
+            method: "get",
+            params: { userName: UserName, Content: $scope.ReportContent[$scope.radioValue] },
+            contentType: "application/json",
+        }).success(function (response) {
+            $(".modal-body").hide();
+            $(".sendMessage").hide();
+            $(".modal-message").show();
+            $(".closeForm").show();
+        });
+    };
+   
     $scope.enableButton = function()
     {
         $(".form-control").prop("disabled", false);
