@@ -9,14 +9,3 @@
         $scope.DonateInfo = response.Data;
     });
 });
-
-app.controller("DonationDoneController", function ($scope, $http, $sce) {
-    $http({
-        url: "/Donation/AddNewDonation",
-        method: "GET",
-        params: {},
-        contentType: "application/json"
-    }).success(function (response) {
-        
-    });
-});

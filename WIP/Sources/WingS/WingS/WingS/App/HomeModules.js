@@ -143,8 +143,7 @@ app.config(function ($routeProvider) {
                         $location.path('/Login');
                     }
                 }
-            },
-            controller: "DonationDoneController"
+            }
         })
         .when("/CreateOrganization", {
             templateUrl: "/Client/CreateOrganization",

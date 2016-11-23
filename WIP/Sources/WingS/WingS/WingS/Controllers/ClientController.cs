@@ -100,8 +100,7 @@ namespace WingS.Controllers
                     }
                     Session.Remove("DonatedInfo");
                     Session.Remove("DonatedToken");
-                    //string show = result.errorCode + result.payerName;
-                    return PartialView("~/Views/Donation/_DonationDone.cshtml");
+                    return PartialView("~/Views/Donation/_DonationDone.cshtml", newDonate);
                 }
             }
             catch (Exception)

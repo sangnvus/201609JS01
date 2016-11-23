@@ -1,5 +1,9 @@
-﻿<form id="form1">
+﻿@model WingS.Models.DTOs.DonationDTO
+<form id="form">
     <div>
-        <label id="show"></label>
+        <label>@Model.UserId</label>
+        <label>@Model.EventId</label>
+        <label>@Model.DonatedMoney</label>
+        <label>@Model.DonatedDate</label>
     </div>
 </form>
