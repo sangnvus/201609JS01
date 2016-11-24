@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User Profile</title>
+    <title>Report organization</title>
 
     <!-- PACE LOAD BAR PLUGIN - This creates the subtle load bar effect at the top of the page. -->
     <link href="css/plugins/pace/pace.css" rel="stylesheet">
@@ -413,7 +413,7 @@
                             <ol class="breadcrumb">
                                 <li><i class="fa fa-dashboard"></i>  <a href="dashboard.html">Thống kê</a>
                                 </li>
-                                <li class="active">Báo cáo thành viên</li>
+                                <li class="active">Báo cáo tổ chức</li>
                             </ol>
                         </div>
                     </div>
@@ -438,7 +438,8 @@
 										<thead>
 											<tr>
 												<th>Người báo cáo</th>
-												<th>Người bị báo cáo</th>
+												<th>Tổ chức bị báo cáo</th>
+												<th>Lý do</th>
 												<th>Ngày báo cáo</th>
 												<th>Trạng thái</th>
 												<th>Hành động</th>
@@ -448,9 +449,10 @@
 											<tr>
 												<td><a href="userprofile.html">test test test</a></td>
 												<td><a href="userprofile.html">test test test</a></td>
+												<td>Spam comment</td>
 												<td>02-20-2015</td>
 												<td>
-													<a class="btn btn-xs btn-red">Chưa xem</a>
+													<a class="btn btn-xs btn-red">Chờ</a>
 												</td>
 												<td>
 													<button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">Xem</button>
@@ -461,9 +463,10 @@
 											<tr>
 												<td><a href="userprofile.html">test test test</a></td>
 												<td><a href="userprofile.html">test test test</a></td>
+												<td>Spam comment</td>
 												<td>02-20-2015</td>
 												<td>
-													<a class="btn btn-xs btn-purple">Đã xem</a>
+													<a class="btn btn-xs btn-purple">Cancel</a>
 												</td>
 												<td>
 													<button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
@@ -474,9 +477,10 @@
 											<tr>
 												<td><a href="userprofile.html">test test test</a></td>
 												<td><a href="userprofile.html">test test test</a></td>
+												<td>Spam comment</td>
 												<td>02-20-2015</td>
 												<td>
-													<a class="btn btn-xs btn-default">Đồng ý</a>
+													<a class="btn btn-xs btn-default">Confirmed</a>
 												</td>
 												<td>
 													<button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
@@ -484,19 +488,6 @@
 													<button class="btn btn-purple">Cancel</button>
 												</td>
 											</tr>
-											<tr>
-												<td><a href="userprofile.html">test test test</a></td>
-												<td><a href="userprofile.html">test test test</a></td>
-												<td>02-20-2015</td>
-												<td>
-													<a class="btn btn-xs btn-default">Từ chối</a>
-												</td>
-												<td>
-													<button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
-													<button class="btn btn-default">Confirmed</button>
-													<button class="btn btn-purple">Cancel</button>
-												</td>
-											</tr>											
 										</tbody>
 									</table>
 								</div>
@@ -558,17 +549,24 @@
 				  <div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h4 class="modal-title" id="flexModalLabel">
-					  Xem nội dung báo cáo
+					  View report content
 					</h4>
 				  </div>
 				  <div class="modal-body">
 				  <div class="form-group">
-					  <label for="exampleInputEmail1">Từ:</label> <span>Jane Smith</span>
+					  <label for="exampleInputEmail1">From:</label> <span>Jane Smith</span>
 					</div>
 					<div class="form-group">
-					  <label for="exampleInputPassword1">Lý do:</label> 
+					  <label for="exampleInputEmail1">Subject:</label> <span>Spam comment</span>
+					</div>
+					<div class="form-group">
+					  <label for="exampleInputPassword1">Content:</label> 
 					  <textarea readonly class="form-control" id="exampleInputPassword1" placeholder="Description..."
-					  rows="6" cols="50" maxlength="300" style="resize: none">Hi again! I wanted to let you know that the orderds</textarea>
+					  rows="6" cols="50" maxlength="300" style="resize: none">Hi again! I wanted to let you know that the orderds
+					  hdsjhjdsb
+					  hdjvjhdsv
+					  bdjhsvdjhsjhdsvhjdvsjhvds
+					  bdjsjdsvdjshvsjdh</textarea>
 					</div>
 				  </div>
 				  <div class="modal-footer">

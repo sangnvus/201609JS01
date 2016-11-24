@@ -70,6 +70,26 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/OrganizationManage/_OrganizationDetail.cshtml");
         }
+        public ActionResult DonationInfo()
+        {
+            return PartialView("~/Views/Admin/_Donationinfo.cshtml");
+        }
+        public ActionResult ReportUser()
+        {
+            return PartialView("~/Views/Admin/ReportManage/_ReportUser.cshtml");
+        }
+        public ActionResult ReportOrganization()
+        {
+            return PartialView("~/Views/Admin/ReportManage/_ReportOrganization.cshtml");
+        }
+        public ActionResult ReportEvent()
+        {
+            return PartialView("~/Views/Admin/ReportManage/_ReportEvent.cshtml");
+        }
+        public ActionResult ReportThread()
+        {
+            return PartialView("~/Views/Admin/ReportManage/_ReportThread.cshtml");
+        }
         public ActionResult Index()
         {
             return View();

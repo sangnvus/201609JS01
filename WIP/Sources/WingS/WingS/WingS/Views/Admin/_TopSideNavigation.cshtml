@@ -242,7 +242,7 @@
                 <!-- begin USERS DROPDOWN -->
                 <li class="panel">
                     <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#users">
-                        <i class="fa fa-files-o"></i> Thành viên <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user"></i> Thành viên <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="collapse nav" id="users">
                         <li>
@@ -261,7 +261,7 @@
                 <!-- begin Event DROPDOWN -->
                 <li class="panel">
                     <a data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#projects">
-                        <i class="fa fa-bar-chart-o"></i> Sự kiện
+                        <i class="fa fa-star"></i> Sự kiện
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="collapse nav" id="projects">
@@ -286,7 +286,7 @@
                 <!-- begin Thread DROPDOWN -->
                 <li class="panel">
                     <a data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#thread">
-                        <i class="fa fa-bar-chart-o"></i> Bài viết
+                        <i class="fa fa-edit"></i> Bài viết
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="collapse nav" id="thread">
@@ -306,7 +306,7 @@
                 <!-- begin OR DROPDOWN -->
                 <li class="panel">
                     <a data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#organization">
-                        <i class="fa fa-bar-chart-o"></i> Tổ chức
+                        <i class="fa fa-users"></i> Tổ chức
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="collapse nav" id="organization">
@@ -325,9 +325,8 @@
                 <!-- end OR DROPDOWN -->	
                 <!-- begin BACKINGS DROPDOWN -->
                 <li class="panel">
-                    <a href="backing.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
-                        <i class="fa fa-bar-chart-o"></i> Backing
-                        <!-- <i class="fa fa-caret-down"></i> -->
+                    <a href="@Url.Content("~/Admin/#/DonationInfo")" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
+                        <i class="fa fa-money"></i> Quyên góp
                     </a>
                 </li>
                 <!-- end BACKINGS DROPDOWN -->
@@ -342,7 +341,7 @@
                 <!-- begin MESSAGES DROPDOWN -->
                 <li class="panel">
                     <a href="message.html" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
-                        <i class="fa fa-bar-chart-o"></i> Message
+                        <i class="fa fa-envelope"></i> Message
                         <!-- <i class="fa fa-caret-down"></i> -->
                     </a>
                 </li>
@@ -354,18 +353,23 @@
                     </a>
                     <ul class="collapse nav" id="reports">
                         <li>
-                            <a href="report-user.html">
+                            <a href="@Url.Content("~/Admin/#/ReportUser")">
                                 <i class="fa fa-angle-double-right"></i> Thành viên
                             </a>
                         </li>
                         <li>
-                            <a href="report-thread.html">
-                                <i class="fa fa-angle-double-right"></i> Bài viết
+                            <a href="@Url.Content("~/Admin/#/ReportOrganization")">
+                                <i class="fa fa-angle-double-right"></i> Tổ chức
                             </a>
                         </li>
                         <li>
-                            <a href="report-event.html">
+                            <a href="@Url.Content("~/Admin/#/ReportEvent")">
                                 <i class="fa fa-angle-double-right"></i> Sự kiện
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/Admin/#/ReportThread")">
+                                <i class="fa fa-angle-double-right"></i> Bài viết
                             </a>
                         </li>
                     </ul>

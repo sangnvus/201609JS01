@@ -77,6 +77,31 @@ app.config(function ($routeProvider) {
             tittle: "Chi tiết sự kiện",
             templateUrl: "/Admin/OrganizationDetail",
             controller: "AdminOrganizationDetailController"
+        })
+        .when("/DonationInfo", {
+            tittle: "Thông tin quyên góp",
+            templateUrl: "/Admin/DonationInfo",
+            controller: "AdminDonationInfoController"
+        })
+        .when("/ReportUser", {
+            tittle: "Báo cáo người dùng",
+            templateUrl: "/Admin/ReportUser",
+            controller: "AdminReportUserController"
+        })
+        .when("/ReportOrganization", {
+            tittle: "Báo cáo tổ chức",
+            templateUrl: "/Admin/ReportOrganization",
+            controller: "AdminReportOrganizationController"
+        })
+        .when("/ReportThread", {
+            tittle: "Báo cáo bài viết",
+            templateUrl: "/Admin/ReportThread",
+            controller: "AdminReportThreadController"
+        })
+        .when("/ReportEvent", {
+            tittle: "Báo cáo sự kiện",
+            templateUrl: "/Admin/ReportEvent",
+            controller: "AdminReportEventController"
         });
 });
 
