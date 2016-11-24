@@ -1,4 +1,4 @@
-﻿app.controller("DonationController", function ($scope, $http, $routeParams, $sce) {
+﻿app.controller("DonationController", function ($scope, $http, $routeParams, $window) {
     var eventId = $routeParams.EventId;
     $http({
         url: "/api/DonationLoad/GetDonateInfo",
@@ -6,6 +6,10 @@
         params: { eventId: eventId },
         contentType: "application/json"
     }).success(function (response) {
-        $scope.DonateInfo = response.Data;
+        if (response.Status === "success") {
+            $scope.DonateInfo = response.Data;
+        } else {
+            $window.location.href = "/#/Error";
+        }
     });
 });

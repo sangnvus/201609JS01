@@ -882,7 +882,31 @@ namespace WingS.DataAccess
 
             return type;
         }
+        public string GetEventNameById(int eventId)
+        {
 
+            try
+            {
+                string eventNm;
+                using (var db = new Ws_DataContext())
+                {
+                    var eventGet = db.Events.FirstOrDefault(x => x.EventID == eventId);
+                    if (eventGet != null)
+                    {
+                        eventNm = eventGet.EventName;
+                    }
+                    else
+                    {
+                        eventNm = "";
+                    }
+                }
+                return eventNm;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
         public void Dispose()
         {
           

@@ -25,6 +25,19 @@ namespace WingS.Controllers
                 userInfo.UserId = user.UserID;
                 userInfo.DonatedEventId = eventId;
             }
+            using (var db2 = new EventDAL())
+            {
+                var eventNmGet = db2.GetEventNameById(eventId);
+                if (eventNmGet=="")
+                {
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                }
+                else
+                {
+                    userInfo.DonatedEventName = eventNmGet;
+                }
+
+            }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = userInfo });
         }
     }
