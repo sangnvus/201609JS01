@@ -57,8 +57,8 @@
                                             <td>{{item.Content}}</td>
                                             <td>{{item.NumberRelatedEvent}}</td>
                                             <td>
-                                                <button class="btn btn-green" style="width: 125px" ng-if="item.IsActive">Đang sử dụng</button>
-                                                <button class="btn btn-default" style="width: 125px" ng-if="!item.IsActive" ng-click="unBan($index,item.ThreadID)">Ngừng sử dụng</button>
+                                                <button class="btn btn-green" style="width: 125px" ng-if="item.IsActive" ng-click="ban($index,item.EventTypeID)">Đang sử dụng</button>
+                                                <button class="btn btn-default" style="width: 125px" ng-if="!item.IsActive" ng-click="unBan($index,item.EventTypeID)">Ngừng sử dụng</button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Mapping;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
 using WingS.DataHelper;
@@ -767,6 +768,10 @@ namespace WingS.DataAccess
             return numUser;
         }
 
+        /// <summary>
+        /// Get information about *ALL* event type using in wings
+        /// </summary>
+        /// <returns></returns>
         public List<EventTypeDTO> GetAllEventType()
         {
             List<EventTypeDTO> eventTypeList = new List<EventTypeDTO>();
@@ -792,6 +797,11 @@ namespace WingS.DataAccess
             return eventTypeList;
         }
 
+        /// <summary>
+        /// Get information about event type using in wings
+        /// </summary>
+        /// <param name="eventTypeId"></param>
+        /// <returns></returns>
         public EventTypeDTO GetEventTypeInfomation(int eventTypeId)
         {
             EventTypeDTO eventTypeDto = new EventTypeDTO();
@@ -820,6 +830,11 @@ namespace WingS.DataAccess
             return eventTypeDto;
         }
 
+        /// <summary>
+        /// Count number of event that using *similarly* event Type
+        /// </summary>
+        /// <param name="eventTypeId"></param>
+        /// <returns></returns>
         public int CountNumberEventRelateAnEventType(int eventTypeId)
         {
             int numberEventRelated = 0;
@@ -837,6 +852,35 @@ namespace WingS.DataAccess
             }
 
             return numberEventRelated;
+        }
+
+        public EventType UpdateEventType(EventType type)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                db.EventTypes.AddOrUpdate(type);
+                db.SaveChanges();
+
+                return GetEventTypeById(type.EventTypeID);
+            }
+        }
+
+        public EventType GetEventTypeById(int id)
+        {
+            EventType type = new EventType();
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    type = db.EventTypes.FirstOrDefault(x => x.EventTypeID == id);
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return type;
         }
 
         public void Dispose()

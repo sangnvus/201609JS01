@@ -129,7 +129,7 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.SUCCESS,
-                    Message = "Get Thread with ID Successfully",
+                    Message = "Get Event with ID Successfully",
                     Type = "",
                     Data = currentThread
                 });
@@ -165,7 +165,7 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.SUCCESS,
-                    Message = "Get Thread with ID Successfully",
+                    Message = "Get all event type successfully",
                     Type = "",
                     Data = listEventType
                 });
@@ -175,7 +175,46 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot Get Event with ID",
+                    Message = "Cannot get event type",
+                    Type = ""
+                });
+            }
+        }
+
+        /// <summary>
+        /// Change status of eventType
+        /// </summary>
+        /// <param name="eventTypeId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult ChangeSatusOfEventType(int eventTypeId)
+        {
+            try
+            {
+                bool eventTypeStatus;
+
+                using (var db = new EventDAL())
+                {
+                    var eventType = db.GetEventTypeById(eventTypeId);
+                    eventType.IsActive = !eventType.IsActive;
+                    eventTypeStatus = eventType.IsActive;
+                    db.UpdateEventType(eventType);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Change status of eventType successfully",
+                    Type = "",
+                    Data = eventTypeStatus
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot change status of eventType",
                     Type = ""
                 });
             }
