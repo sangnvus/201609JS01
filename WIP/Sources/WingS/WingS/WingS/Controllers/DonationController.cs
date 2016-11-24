@@ -27,7 +27,7 @@ namespace WingS.Controllers
             {
                 Merchant_id = "48283",
                 Merchant_password = "12ba1130cf119352596dc8e1ba8e5fbf",
-                Receiver_email = "anhtuanvt93@gmail.com",
+                Receiver_email = "wingsfpt@gmail.com",
                 cur_code = "vnd",
                 bank_code = str_bankcode,
                 Order_code = "ma_don_hang01",
@@ -54,8 +54,8 @@ namespace WingS.Controllers
             //return to checkout page or error page
             if (result.Error_code == "00")
             {
-                //return Redirect(result.Checkout_url);
-                return Redirect("http://localhost:2710/#/DonationComplete");
+                return Redirect(result.Checkout_url);
+                //return Redirect("http://localhost:2710/#/DonationComplete");
             }
             else
             {

@@ -202,7 +202,7 @@ namespace WingS.DataAccess
                 newDonate.TradeCode = donationInfo.TradeCode;
                 newDonate.DonatedMoney = donationInfo.DonatedMoney;
                 newDonate.IsPublic = donationInfo.IsPublic;
-                newDonate.DonatedDate = DateTime.Now;
+                newDonate.DonatedDate = DateTime.Now; ;
                 db.Donations.Add(newDonate);
                 db.SaveChanges();
                 return true;

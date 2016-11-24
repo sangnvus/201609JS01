@@ -87,6 +87,7 @@ namespace WingS.Controllers
                 else
                 {
                     var newDonate = (DonationDTO)Session["DonatedInfo"];
+                    newDonate.DonatedDate = DateTime.Now.ToString("hh:mm dd/MM/yy");
                     RequestCheckOrder info = new RequestCheckOrder();
                     info.Merchant_id = "48283";
                     info.Merchant_password = "12ba1130cf119352596dc8e1ba8e5fbf";
