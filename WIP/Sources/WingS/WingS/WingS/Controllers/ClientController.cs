@@ -97,6 +97,10 @@ namespace WingS.Controllers
                     {
                         db.AddNewDonation(newDonate);
                     }
+                    using (var db = new EventDAL())
+                    {
+                        newDonate.EventName = db.GetEventNameById(newDonate.EventId);
+                    }
                     Session.Remove("DonatedInfo");
                     return PartialView("~/Views/Donation/_DonationDone.cshtml", newDonate);
                 }
