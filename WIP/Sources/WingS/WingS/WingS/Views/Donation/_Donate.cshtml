@@ -242,22 +242,22 @@
                         <td>Số tiền ủng hộ (VND)</td>
                         <td>
                             <label>
-                                <input type="radio" name="numberMoney" value="100000" checked> 100,000
+                                <input type="radio" name="numberMoney" value="100000" ng-model="moneyNumber" ng-required="!moneyNumber"> 100,000
                             </label>
                             <label>
-                                <input type="radio" name="numberMoney" value="500000"> 500,000
+                                <input type="radio" name="numberMoney" value="500000" ng-model="moneyNumber" ng-required="!moneyNumber"> 500,000
                             </label>
                             <label>
-                                <input type="radio" name="numberMoney" value="1000000"> 1,000,000
+                                <input type="radio" name="numberMoney" value="1000000" ng-model="moneyNumber" ng-required="!moneyNumber"> 1,000,000
                             </label>
                             <label>
-                                <input type="radio" name="numberMoney" value="5000000"> 5,000,000
+                                <input type="radio" name="numberMoney" value="5000000" ng-model="moneyNumber" ng-required="!moneyNumber"> 5,000,000
                             </label>
                             <label>
-                                <input type="radio" name="numberMoney" value="10000000"> 10,000,000
+                                <input type="radio" name="numberMoney" value="10000000" ng-model="moneyNumber" ng-required="!moneyNumber"> 10,000,000
                             </label>
                             <label class="in-line">
-                                <input type="radio" name="numberMoney" value="0"> Số khác<br/>
+                                <input type="radio" name="numberMoney" value="0" ng-model="moneyNumber" ng-required="!moneyNumber"> Số khác<br/>
                                 <input type="number" style="width: 270px" id="inputMoney" name="inputMoney" class="field-check " value="0">
                             </label>
                         </td>

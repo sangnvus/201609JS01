@@ -80,18 +80,17 @@ namespace WingS.Controllers
         {
             try
             {
-                if (Session["DonatedToken"] == null || Session["DonatedInfo"] == null)
+                if (Session["DonatedInfo"] == null)
                 {
                     return null;
                 }
                 else
                 {
                     var newDonate = (DonationDTO)Session["DonatedInfo"];
-                    String Token = Session["DonatedToken"].ToString();
                     RequestCheckOrder info = new RequestCheckOrder();
                     info.Merchant_id = "48283";
                     info.Merchant_password = "12ba1130cf119352596dc8e1ba8e5fbf";
-                    info.Token = Token;
+                    info.Token = newDonate.TradeCode;
                     APICheckoutV3 objNLChecout = new APICheckoutV3();
                     ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
                     using (var db = new DonationDAL())
@@ -99,7 +98,6 @@ namespace WingS.Controllers
                         db.AddNewDonation(newDonate);
                     }
                     Session.Remove("DonatedInfo");
-                    Session.Remove("DonatedToken");
                     return PartialView("~/Views/Donation/_DonationDone.cshtml", newDonate);
                 }
             }

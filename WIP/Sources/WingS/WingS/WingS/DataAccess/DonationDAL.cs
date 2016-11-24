@@ -181,6 +181,7 @@ namespace WingS.DataAccess
                 currentDonation.DonationId = donation.DonationId;
                 currentDonation.UserId = donation.UserId;
                 currentDonation.EventId = donation.EventId;
+                currentDonation.TradeCode = donation.TradeCode;
                 currentDonation.DonatedMoney = donation.DonatedMoney;
                 currentDonation.DonatedDate = donation.DonatedDate.ToString("hh:mm:ss dd/MM/yy");
                 currentDonation.IsPublic = donation.IsPublic;
@@ -198,6 +199,7 @@ namespace WingS.DataAccess
                 var newDonate = db.Donations.Create();
                 newDonate.UserId = donationInfo.UserId;
                 newDonate.EventId = donationInfo.EventId;
+                newDonate.TradeCode = donationInfo.TradeCode;
                 newDonate.DonatedMoney = donationInfo.DonatedMoney;
                 newDonate.IsPublic = donationInfo.IsPublic;
                 newDonate.DonatedDate = DateTime.Now;

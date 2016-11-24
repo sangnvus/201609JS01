@@ -62,7 +62,7 @@ namespace WingS.Controllers.WebApi
                     var toAddress = new MailAddress(userEmail, userName);
                     string fromPassword = WsConstant.ChangeStatusUser.AdminEmailPass;
                     string subject = WsConstant.ChangeStatusUser.EmailSubjectUnban;
-                    string body = WsConstant.ChangeStatusUser.EmailContentFirst + "   Tài khoản : " + userName + " " + WsConstant.ChangeStatusUser.EmailSubjectUnban;
+                    string body = WsConstant.ChangeStatusUser.EmailContentFirst + "   Tài khoản : " + userName + " " + WsConstant.ChangeStatusUser.EmailContentUnban;
                     //xu li gui mail
                     var smtp = new SmtpClient
                     {
@@ -90,7 +90,7 @@ namespace WingS.Controllers.WebApi
                     var toAddress = new MailAddress(userEmail, userName);
                     string fromPassword = WsConstant.ChangeStatusUser.AdminEmailPass;
                     string subject = WsConstant.ChangeStatusUser.EmailSubjectBan;
-                    string body = WsConstant.ChangeStatusUser.EmailContentFirst + "   Tài khoản : " + userName + " " + WsConstant.ChangeStatusUser.EmailSubjectBan;
+                    string body = WsConstant.ChangeStatusUser.EmailContentFirst + "   Tài khoản : " + userName + " " + WsConstant.ChangeStatusUser.EmailContentBan;
                     //xu li gui mail
                     var smtp = new SmtpClient
                     {

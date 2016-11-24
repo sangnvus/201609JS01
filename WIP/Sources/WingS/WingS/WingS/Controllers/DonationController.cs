@@ -47,10 +47,10 @@ namespace WingS.Controllers
             var newDonate = new DonationDTO();
             newDonate.IsPublic = isPublic;
             newDonate.DonatedMoney = decimal.Parse(numberofMoney);
+            newDonate.TradeCode = result.Token;
             newDonate.UserId = inputData.DonateUserId;
             newDonate.EventId = inputData.DonateEventId;
             Session["DonatedInfo"] = newDonate;
-            Session["DonatedToken"] = result.Token;
             //return to checkout page or error page
             if (result.Error_code == "00")
             {
