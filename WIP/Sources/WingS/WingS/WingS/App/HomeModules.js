@@ -124,7 +124,7 @@ app.config(function ($routeProvider) {
         })
         .when("/Donate/:EventId", {
             templateUrl: "/Client/Donate",
-            title: "Ủng hộ",
+            title: "Quyên góp",
             resolve: {
                 'check': function ($location, $window) {
                     if ($window.sessionStorage.isAuthen == "false") {
@@ -136,7 +136,7 @@ app.config(function ($routeProvider) {
         })
         .when("/DonationComplete", {
             templateUrl: "/Client/DonationComplete",
-            title: "Thủ tục ủng hộ hoàn tất",
+            title: "Xác nhận giao dịch hoàn tất",
             resolve: {
                 'check': function ($location, $window) {
                     if ($window.sessionStorage.isAuthen == "false") {

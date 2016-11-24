@@ -1,9 +1,45 @@
 ﻿@model WingS.Models.DTOs.DonationDTO
-<form id="form">
-    <div>
-        <label>@Model.UserId</label>
-        <label>@Model.EventId</label>
-        <label>@Model.DonatedMoney</label>
-        <label>@Model.DonatedDate</label>
+<link rel="stylesheet" href="~/Content/css/Donate.css" type="text/css" />
+<div class="contentArea">
+
+    <div class="divPanel notop page-content">
+
+        <div class="breadcrumbs">
+            <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Sự kiện</a> &nbsp;/&nbsp; <span>Xác nhận giao dịch</span>
+        </div>
+        <div class="donaneSuccess row" style="">
+            <p style="text-align:center;font-size:17px;">Giao dịch thành công. Cảm ơn bạn đã tham gia quyên góp cho sự kiện của chúng tôi!</p>
+            <hr style="border-top: 1px solid; margin-left: 30px;" />
+            <div class="infoDone " style="margin-left:30px;">
+                <h4>Thông tin giao dịch </h4>
+                <p>
+                    Mã giao dịch:
+                    <span style="margin-left: 182px;">@Model.TradeCode</span>
+                </p>
+                <p>
+                    Thời gian thực hiện:
+                    <span style="margin-left: 139px;">@Model.DonatedDate</span>
+                </p>
+                <p>
+                    Người nhận:
+                    <span style="margin-left: 186px;">Tổ chức WingS</span>
+                </p>
+                <p>
+                    Quyên góp cho sự kiện:
+                    <span style="margin-left: 115px;">Mãi mãi 1 tình yêu</span> VND
+                </p>
+                <p>
+                    Số tiền:
+                    <span style="margin-left: 218px;">@Model.DonatedMoney</span> VND
+                </p>
+            </div>
+        </div>
+        <br/>
+        <a href="/#/Home">
+            <button id="" class="btn btn-navbar-highlight btn-medium btn-primary pull-right" style="margin-left: 300px; width: 93px; height: 33px">
+                Quay lại
+            </button>
+        </a>
     </div>
-</form>
+    @Html.Partial("../Home/_Footer")
+    </div>

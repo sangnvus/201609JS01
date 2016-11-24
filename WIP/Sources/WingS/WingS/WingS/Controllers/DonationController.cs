@@ -54,8 +54,8 @@ namespace WingS.Controllers
             //return to checkout page or error page
             if (result.Error_code == "00")
             {
-                return Redirect(result.Checkout_url);
-                //return Redirect("http://localhost:2710/#/DonationComplete");
+                //return Redirect(result.Checkout_url);
+                return Redirect("http://localhost:2710/#/DonationComplete");
             }
             else
             {
