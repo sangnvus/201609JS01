@@ -82,5 +82,18 @@ namespace WingS.DataHelper
             public static readonly string AdminEmail = "WingSFPT@gmail.com";
             public static readonly string AdminEmailPass = "wing@123";
         }
+        public static class ChangeStatusUser
+        {
+            public static readonly string WsOrganization = "WingS Organization";
+            public static readonly string EmailSubjectBan = "Thông báo khóa tài khoản WingS";
+            public static readonly string EmailSubjectUnban = "Thông báo mở khóa tài khoản WingS";
+            public static readonly string EmailContentFirst = "Chào bạn, \n\n";
+            public static readonly string EmailContentUnban = "của bạn hiện đã được mở khóa.Giờ bạn có thể đăng nhập bình thường.\n------\nThân,\nThe WingS Team.";
+            public static readonly string EmailContentBan = "của bạn hiện đã bị khóa.Hiện tại bạn không thể đăng nhập bằng tài khoản này.\nNếu có bất kì thắc mắc nào xin hãy liên hệ với ban quản trị.\n------\nThân,\nThe WingS Team.";
+            public static readonly string SentAlert = "Một email đã được gửi tới địa chỉ email đăng kí của bạn!";
+            public static readonly string SendMailFailed = "Gửi email thất bại!";
+            public static readonly string AdminEmail = "WingSFPT@gmail.com";
+            public static readonly string AdminEmailPass = "wing@123";
+        }
     }
 }
