@@ -41,7 +41,7 @@ namespace WingS.Controllers
                                 UserID = thread.UserId,
                                 ThreadName = thread.Title,
                                 ImageUrl = threadImage,
-                                Content = thread.Content,
+                                ShortDescription = thread.ShortDescription,
                                 Status = thread.Status,
                                 CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
                             });
@@ -111,7 +111,7 @@ namespace WingS.Controllers
                                 CreatorID = events.CreatorID,
                                 EventName = events.EventName,
                                 MainImageUrl = eventMainImage.ImageUrl,
-                                Content = events.Description,
+                                ShortDescription = events.ShortDescription,
                                 Status = events.Status,
                                 CreatedDate = DateTime.Now.ToString("H:mm:ss MM/dd/yy")
                             });
