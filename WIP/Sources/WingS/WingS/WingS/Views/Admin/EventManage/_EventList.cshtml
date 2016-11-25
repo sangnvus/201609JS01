@@ -45,7 +45,7 @@
                         <div id="#EventTable">
                             <div class="portlet-body">
                                 <div class="table-responsive">
-                                    <table id="" class="table table-striped table-bordered table-hover table-green">
+                                    <table datatable="ng" id="" class="table table-striped table-bordered table-hover table-green">
                                         <thead>
                                             <tr>
                                                 <th>STT</th>
@@ -69,7 +69,7 @@
                                                 <td class="center">{{x.CreatedDate}}</td>
                                                 <td class="center">{{x.ExpectedMoney}} Vnđ</td>
                                                 <td class="center">
-                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'process'">Đang hoạt động</span>
+                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'process'" ng-click="ban($index,x.UserId)">Đang hoạt động</span>
                                                     <span class="label center-block btn-danger" ng-if="x.TimeStatus == 'ban'">Bị Cấm</span>
                                                     <span class="label center-block btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
                                                     <span class="label center-block btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>

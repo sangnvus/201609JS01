@@ -30,7 +30,7 @@ namespace WingS.Controllers
                 Receiver_email = "wingsfpt@gmail.com",
                 cur_code = "vnd",
                 bank_code = str_bankcode,
-                Order_code = "ma_don_hang01",
+                Order_code = "chuyen_khoan_ung_ho",
                 Total_amount = numberofMoney,
                 fee_shipping = "0",
                 Discount_amount = "0",

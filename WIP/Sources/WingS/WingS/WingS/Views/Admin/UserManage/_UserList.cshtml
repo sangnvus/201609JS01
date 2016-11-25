@@ -62,7 +62,7 @@
                                         <p ng-if="x.AccountType">Admin</p>
                                         <p ng-if="!x.AccountType">User</p>
                                     </td>
-                                    <td>{{ x.CreatedDate }}</td>
+                                    <td>{{ x.CreateDate }}</td>
                                     <td>
                                         <button class="btn btn-default" style="width: 125px" ng-if="!x.IsVerify">Chưa kích hoạt</button>
                                         <button class="btn btn-green" style="width: 125px" ng-if="x.IsActive && x.IsVerify" ng-click="ban($index,x.UserId)">Đang hoạt động</button>

@@ -247,7 +247,7 @@ namespace WingS.DataAccess
 
                 currentUser.Country = userInformation.Country;
                 currentUser.FacebookUri = userInformation.FacebookUrl;
-                currentUser.CreateDate = wsUser.CreatedDate.ToString("H:mm:ss dd/MM/yy");
+                currentUser.CreateDate = wsUser.CreatedDate.ToString("dd/MM/yy");
                 currentUser.Point = userInformation.Point;
                 if (rank.CurrentRank==0)
                 {
