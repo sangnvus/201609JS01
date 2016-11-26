@@ -1,0 +1,79 @@
+.dropDownlist {
+    color: #333;
+}
+.searchImg {
+    float: left;
+    margin-left:30px;
+    display: inline-block;
+}
+div .searchContent {
+    margin-left: 170px;
+    padding: 1em;
+    padding-top: 0em;
+    overflow: hidden;
+    height: 95px;
+}
+.search-box {
+    margin-top: -18px;
+    padding: 10px;
+    border-color: #e05f03;
+    border-radius: 10px;
+    width: 600px;
+}
+.radio-inline {
+    width: 1050px;
+    margin-top: 10px;
+}
+.radio-inline label {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-size: 120%;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 150px;
+}
+#footerInnerSeparator {
+    margin-bottom: 230px;
+}
+.input-group input[type="text"] {
+    height: 40px;
+    border-color: #e05f03;
+    color: #333;
+}
+.input-group input[type="text"]:focus {
+    border-color: #e05f03;
+}
+.input-group input[type="radio"] {
+    margin-bottom: 5px;
+}
+.dropDownlist {
+    padding: 4px 10px;
+    height: 50px;
+    margin-bottom: 3px;
+    margin-bottom: 28px;
+    width: 160px;
+    border-color:#e05f03;
+}
+.input-group select.dropDownlist:focus {
+    border-color: #e05f03;
+}
+#SearchBtn {
+    padding-top: 13px;
+    padding-bottom: 15px;
+    height: 20px;
+    margin-bottom: 29px;
+    border-color: #e05f03;
+    background-color: #e05f03;
+    color: white;
+    font-weight: 700;
+}
+.btn-search {
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-image: linear-gradient(to bottom,#e05f03,#e05f03);
+    background-repeat: repeat-x;
+}
+.box a{
+    text-decoration: none;
+}
