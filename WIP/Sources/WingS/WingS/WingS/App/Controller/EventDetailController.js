@@ -20,9 +20,21 @@
     }).success(function (response) {
         $scope.Event = response.Data;
         $scope.Event.VideoUrl = "http://www.youtube.com/embed/" + getYoutubeId($scope.Event.VideoUrl);
+        $scope.Event.PercentMoney = (($scope.Event.RaisedMoney * 100) / $scope.Event.ExpectedMoney).toFixed(1);
         $scope.Event.ExpectedMoney = $scope.Event.ExpectedMoney.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        $scope.Event.RaisedMoney = $scope.Event.RaisedMoney.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         $scope.Event.VideoUrl = $sce.trustAsResourceUrl($scope.Event.VideoUrl);
         $scope.Event.Content = $sce.trustAsHtml($scope.Event.Content);
+    });
+    //Load donator
+     $http({
+       url: "/api/Event/GetDonatorInEvent",
+        method: "Get",
+        params: { id: eventId },
+        contentType: "application/json",
+    }).success(function (response) {
+        $scope.ListDonator = response.Data;
+     
     });
     //Load 3 organization to page
     $http.get("/api/Organization/GetTopThreeOrganization").success(function (response) {

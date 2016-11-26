@@ -17,6 +17,7 @@ namespace WingS.Models
         public string TradeCode { get; set; }
         public decimal DonatedMoney { get; set; }
         public DateTime DonatedDate { get; set; }
+        public string Content { get; set; }
         public bool IsPublic { get; set; }
         public virtual Event Event { get; set; }
         public virtual Ws_User Ws_User { get; set; }

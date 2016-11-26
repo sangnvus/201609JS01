@@ -13,6 +13,7 @@ namespace WingS.Models.DTOs
         public string EventName { get; set; }
         public string TradeCode { get; set; }
         public decimal DonatedMoney { get; set; }
+        public string Content { get; set; }
         public string DonatedDate { get; set; }
         public bool IsPublic { get; set; }
         public EventBasicInfo EventBasicInformation { get; set; }

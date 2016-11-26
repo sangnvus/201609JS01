@@ -907,6 +907,27 @@ namespace WingS.DataAccess
                 return "";
             }
         }
+        public List<ListDonatorDTO> GetDonatorInEvent(int eventId)
+        {
+            List<ListDonatorDTO> newList = new List<ListDonatorDTO>();
+            using (var db = new Ws_DataContext())
+            {
+                var donatorList = (from p in db.Donations
+                                    where p.EventId == eventId && p.IsPublic == true
+                                   select new {p.UserId, p.Ws_User.User_Information.FullName, p.DonatedDate, p.DonatedMoney, p.Content }).ToList();
+                foreach(var item in donatorList)
+                {
+                    ListDonatorDTO getDonator = new ListDonatorDTO();
+                    getDonator.UserId = item.UserId;
+                    getDonator.FullName = item.FullName;
+                    getDonator.DonatedMoney = item.DonatedMoney;
+                    getDonator.DonatedDate = item.DonatedDate.ToString("dd/mm/yyyy");
+                    newList.Add(getDonator);
+                }
+                return newList;
+            }
+
+        }
         public void Dispose()
         {
           

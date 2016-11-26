@@ -160,6 +160,23 @@ namespace WingS.Controllers
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = EvtBasicInfo });
         }
+        [HttpGet]
+        public IHttpActionResult GetDonatorInEvent(int id)
+        {
+            List<ListDonatorDTO> list = new List<ListDonatorDTO>();
+            try
+            {
+                using (var db = new EventDAL())
+                {
+                    list = db.GetDonatorInEvent(id);
+                }
+            }
+            catch (Exception)
+            {
+                return Redirect("/#/Error");
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = list });
+        }
         //Get EventTimeLine       
         [HttpGet]
         public IHttpActionResult GetEventTimeLineByEventId(int id)
@@ -550,6 +567,20 @@ namespace WingS.Controllers
                     Type = ""
                 });
             }
+        }
+        [HttpGet]
+        public IHttpActionResult GetDonatinInfoInEvent(int eventId)
+        {
+            using (var db = new DonationDAL())
+            {
+               
+            }
+            return Ok(new HTTPMessageDTO
+            {
+                Status = WsConstant.HttpMessageType.SUCCESS,
+                Message = "",
+                Type = ""
+            });
         }
     }
 }
