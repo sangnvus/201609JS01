@@ -29,8 +29,8 @@
 
 <div class="divPanel notop page-content">
 
-<div class="breadcrumbs" style="font-size: 16px;padding-bottom:20px;">
-    <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp; <span>Chi tiết</span>
+<div class="breadcrumbs" style="padding-bottom:20px;">
+    <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp; <a href="/#/Home">Sự kiện</a>&nbsp;/&nbsp; <span>Chi tiết</span>
 </div>
 
 <!--Star event content -->
@@ -48,7 +48,8 @@
                     <h3>Tiến trình ủng hộ</h3>
                 </div>
                 <div class="progressbar position"  data-duration="1000" data-color="#ccc,#e05f03">
-
+                   <div class="background"></div><div class="rotate"></div><div class="left"></div><div class="right"></div><div class=""><span>{{Event.PercentMoney}}%</span></div>
+                    <a href=@Url.Content("/#/Donate/{{Event.EventID}}") title="">QUYÊN GÓP</a> 
                 </div>
                 <div class="col-2">
                     <div class="circle-tile">
@@ -69,7 +70,7 @@
                 </div>
                 <div class="col-2">
                     <div class="circle-tile">
-                        <a href="project-backers.html">
+                        <a href="project-backers.html" >
                             <div class="circle-tile-heading blue">
                                 <i class="fa fa-users fa-fw fa-3x"></i>
                             </div>
@@ -129,7 +130,7 @@
               <span><i class="fa fa-thumbs-o-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i> {{Likes}} <span class="space"></span></span>
                 }}
             <span class="fb-share-button" data-href="{{CurrentPath}}" data-layout="button_count" data-size="large" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></span>
-             @*| <a href="#" onclick="return false;" data-toggle="modal" data-target="#sendMessage"><i class="fa fa-envelope"></i></a>*@
+             
         </div>
         <br>
         <!-- Tab content -->
@@ -220,7 +221,7 @@
             <div id="AlbumImage" class="tab-pane fade">
                 <div class="row-fluid">
                     <div>
-                        <a ng-repeat="item in Event.ImageAlbum" class="example-image-link" href="{{item}}" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                        <a ng-repeat="item in Event.ImageAlbum" class="example-image-link" href="{{item}}" data-lightbox="example-set" data-title="Click chuột vào mũi tên để xem tiếp album.">
                             <img style="height: 175px;" class="example-image" src="{{item}}" alt="" />
                         </a>
                     </div>

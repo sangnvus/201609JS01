@@ -122,7 +122,7 @@
             params: { eventId: eventId },
             contentType: "application/json",
         }).success(function (response) {
-           
+            countLike();
         });
     }
   
