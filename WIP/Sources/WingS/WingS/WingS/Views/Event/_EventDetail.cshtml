@@ -39,7 +39,7 @@
                 <div class="proTitle">
                     <h3>Tiến trình ủng hộ</h3>
                 </div>
-                <div class="progressbar position" data-percent="{{Event.PercentMoney}}" data-duration="1000" data-color="#ccc,#e05f03">
+                <div class="progressbar position"  data-duration="1000" data-color="#ccc,#e05f03">
 
                 </div>
                 <div class="col-2">
@@ -54,7 +54,7 @@
                                 Đã ủng hộ
                             </div>
                             <div class="circle-tile-number text-faded">
-                                {{Event.RaisedMoney}} VNĐ
+                                {{Event.RaisedMoney}}
                             </div>
                         </div>
                     </div>
@@ -366,7 +366,7 @@
 <!-- END PAGE LEVEL PLUGIN SCRIPTS -->
 <script type="text/javascript" src="../../Content/js/progressbar.js"></script>
 <script type="text/javascript">
-    $(".progressbar").loading();
+
     $('input').on('click', function () {
         $(".progressbar").loading();
     });

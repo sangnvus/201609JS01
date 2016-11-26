@@ -1,6 +1,6 @@
 ;
 (function ($) {
-	$.fn.loading = function () {
+	$.fn.loading = function (percentage) {
 		
 		$(this).each(function () {
 			var $target  = $(this);
@@ -8,7 +8,7 @@
 			var opts = {
 			backgroundColor: $target.data('color') ? $target.data('color').split(',')[0] : DEFAULTS.backgroundColor,
 			progressColor: $target.data('color') ? $target.data('color').split(',')[1] : DEFAULTS.progressColor,
-			percent: $target.data('percent') ? $target.data('percent') : DEFAULTS.percent,
+			percent: percentage,
 			duration: $target.data('duration') ? $target.data('duration') : DEFAULTS.duration
 			};
 			// console.log(opts);

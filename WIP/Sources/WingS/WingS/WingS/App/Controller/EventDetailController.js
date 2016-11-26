@@ -25,7 +25,9 @@
         $scope.Event.RaisedMoney = $scope.Event.RaisedMoney.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         $scope.Event.VideoUrl = $sce.trustAsResourceUrl($scope.Event.VideoUrl);
         $scope.Event.Content = $sce.trustAsHtml($scope.Event.Content);
+        $(".progressbar").loading($scope.Event.PercentMoney);
     });
+
     //Load donator
      $http({
        url: "/api/Event/GetDonatorInEvent",
@@ -210,6 +212,7 @@
             return "";
         }
     }
+
 
 
 });
