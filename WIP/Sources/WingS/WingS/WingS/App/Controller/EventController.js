@@ -11,7 +11,7 @@
     });
 
     //initial option sort
-    $scope.listOfOptions = ['Ngày Tạo', 'Điểm'];
+    $scope.listOfOptions = ['Ngày Tạo', 'Số người quyên góp','Điểm tích lũy'];
     
     $scope.LoadEventSortByPoint = function () {
         var sortOption = $scope.selectedItem;

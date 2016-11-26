@@ -117,7 +117,7 @@
         </div>
         <!-- Infor basic of event -->
         <div class="info" style="padding-top:5px;">
-            <span>Tạo bởi:</span> {{Event.OrganizationName}}<span class="space"></span>
+            <a href="@Url.Content("/#/OrganizationDetail/{{Event.CreatorID}}")"><span>Tạo bởi:</span> {{Event.OrganizationName}}<span class="space"></span></a>
             <span>Thể loại:</span> {{Event.EventType}}<span class="space"></span>
             <span>
                 <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -129,7 +129,7 @@
                 {
               <span><i class="fa fa-thumbs-o-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i> {{Likes}} <span class="space"></span></span>
                 }}
-            <span class="fb-share-button" data-href="{{CurrentPath}}" data-layout="button_count" data-size="large" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></span>
+            <span class="fb-share-button" data-href="{{CurrentPath}}" data-layout="button_count" data-size="large" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></span>
              
         </div>
         <br>

@@ -3,18 +3,27 @@
 	float: left;
 }
 .col-4{
-	width: 320px;
+	width: 290px;
 	float: left;
-	padding-left: 25px;
+	padding-left: 50px;
 }
 .title {
     display: block;
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 700;
     font-size: 19px;
-    color: #484849;
+    color: #333;
     text-transform: uppercase;
     margin: 20px 0;
+}
+.col-4 h3.asideTitle {
+    display: block;
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700;
+    font-size: 19px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 .info {
     font-family: 'Open Sans', 'sans-serif';
@@ -54,7 +63,7 @@
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 400;
     font-size: 14px;
-    color: #696969;
+    color: #333;
     line-height: 24px;
 }
 #contact p, #timeline p,span{
@@ -69,7 +78,7 @@
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 700;
     font-size: 20px;
-    color: #1e1d1c;
+    color: #333;
     text-transform: uppercase;
 }
 .col-4 .title:after{
@@ -112,7 +121,7 @@
     letter-spacing: 0.05em;
 }
 .asideContentCatelogy ul a {
-    color: #75737f;
+    color: #696969;
 }
 .asideContentCatelogy ul li a:before {
     display: inline-block;
@@ -141,4 +150,10 @@
 .contentList img{
 	width:745px; 
 	height:350px;
+}
+.eDropdown {
+    border: 1px solid #FF5722;
+    height: 45px;
+    width: 290px;
+    color: black;
 }
