@@ -152,7 +152,7 @@ namespace WingS.Controllers
             EventBasicInfo EvtBasicInfo = new EventBasicInfo();
             try { 
                 using (var db = new EventDAL()){
-                EvtBasicInfo = db.GetEventBasicInfoById(id);
+                EvtBasicInfo = db.GetFullEventBasicInformation(id);
                 }
             }catch(Exception)
             {
@@ -568,19 +568,6 @@ namespace WingS.Controllers
                 });
             }
         }
-        [HttpGet]
-        public IHttpActionResult GetDonatinInfoInEvent(int eventId)
-        {
-            using (var db = new DonationDAL())
-            {
-               
-            }
-            return Ok(new HTTPMessageDTO
-            {
-                Status = WsConstant.HttpMessageType.SUCCESS,
-                Message = "",
-                Type = ""
-            });
-        }
+       
     }
 }

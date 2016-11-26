@@ -921,7 +921,7 @@ namespace WingS.DataAccess
                     getDonator.UserId = item.UserId;
                     getDonator.FullName = item.FullName;
                     getDonator.DonatedMoney = item.DonatedMoney;
-                    getDonator.DonatedDate = item.DonatedDate.ToString("dd/mm/yyyy");
+                    getDonator.DonatedDate = item.DonatedDate.ToString("H:mm:ss dd/MM/yy");
                     newList.Add(getDonator);
                 }
                 return newList;
