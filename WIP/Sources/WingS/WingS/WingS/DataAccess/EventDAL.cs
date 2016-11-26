@@ -928,6 +928,25 @@ namespace WingS.DataAccess
             }
 
         }
+
+        public bool CreateEventType(EventType type)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    db.EventTypes.Add(type);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+                //throw;
+            }
+        }
+        
         public void Dispose()
         {
           

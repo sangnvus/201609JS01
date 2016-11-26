@@ -61,4 +61,23 @@
                 }
             });
     };
+
+    $scope.createEventType= function() {
+        //$http({
+        //    method: "POST",
+        //    url: "/api/AdminEvent/CreateEventType",
+        //    data: $scope.eventType
+        //})
+        $http.post("/api/AdminEvent/CreateEventType", $scope.eventType).success(function(response) {
+            var createStatus = response.Data;
+            if (createStatus === true) {
+                $http.get("/api/AdminEvent/GetAllEventType").success(function (response) {
+                    $scope.AllEventType = response.Data;
+                });
+                SweetAlert.swal("Thành công!", "Bạn đã tạo loại sự kiện này vào sử dụng thành công", "success");
+            } else {
+                SweetAlert.swal("Thất bại", "Đã có lỗi xảy ra khi tạo loại sự kiện", "error");
+            }
+        });
+    }
 });

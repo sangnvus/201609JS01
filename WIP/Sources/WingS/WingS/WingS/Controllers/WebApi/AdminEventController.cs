@@ -219,5 +219,40 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+
+        
+        [HttpPost]
+        public IHttpActionResult CreateEventType(EventType eventType)
+        {
+            try
+            {
+                bool createStatus;
+
+                eventType.IsActive = true;
+
+                using (var db = new EventDAL())
+                {
+                    createStatus = db.CreateEventType(eventType);
+                }
+                   
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Change status of eventType successfully",
+                    Type = "",
+                    Data = createStatus
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot change status of eventType",
+                    Type = ""
+                });
+            }
+        }
     }
 }
