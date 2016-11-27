@@ -1,4 +1,4 @@
-﻿
+﻿    <link href="~/Content/Admin/css/sweetalert.css" rel="stylesheet">
     <link href="~/Content/css/EventDetail.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/Content/css/progressbar.css">
     <!-- PAGE LEVEL PLUGIN STYLES -->
@@ -242,20 +242,25 @@
     <!--Edit Main Content Area here-->
     <div class="span10 " id="divMain" style="margin-top: -15px;">
         <div ng-if="User_Information.IsAuthen" style="margin-top: 20px;">
-            <a class="pull-left" href="#">
+            <a class="pull-left" href="/#/Profile/{{item.UserCommentedName}}">
                 <img src="{{User_Information.ProfileImage}}" style="width:55px; height:55px; margin-left:85px; " class="img-rounded" alt="" />
             </a>&nbsp;&nbsp;&nbsp;<textarea placeholder="Viết bình luận" style="width:81%; height:35px;padding-top: 15px; " ng-model="$parent.content" my-enter="addContent(content)"></textarea>
         </div>
         <div class="media" ng-repeat="item in CommentEvent| limitTo: paginationLimit()">
-            <a class="pull-left" href="#">
-                <img src="{{item.UserImageProfile}}" style="width: 55px; height: 55px; margin-left: 85px;" class="img-rounded" alt=""/>
+            <a class="pull-left" href="/#/Profile/{{item.UserCommentedName}}">
+                <img src="{{item.UserImageProfile}}" style="width: 55px; height: 55px; margin-left: 85px;" class="img-rounded" alt="" />
             </a>
             <div class="media-body">
-                <h4 class="media-heading">{{item.UserCommentedName}} <span><small>&nbsp;{{item.CommentedTime}}</small></span></h4>
-                <a ng-if="item.isDeleted" href="#" title="Xóa bình luận" ng-click="deleteComment(item.CommentId)" onclick="return false">
-                   <i class="fa fa-remove" style="color: gray;font-size: 18px;"></i>
-                </a>
-                <p style="margin-top: -6px;">{{item.Content}}</p>
+                <h4 style="" class="media-heading">
+                    {{item.UserCommentedName}}
+                    <span><small>&nbsp;{{item.CommentedTime}}</small></span>
+                    <span class="pull-right" ng-if="item.isDeleted" href="#" title="Xóa bình luận" ng-click="dialog(item.CommentId)" onclick="return false">
+                        <i class="fa fa-remove" style="font-size: 20px;margin-right: 8px;margin-top: 15px;"></i>
+                    </span>
+                </h4>
+                <p style="margin-top: -6px;">
+                    {{item.Content}}
+                </p>
             </div>
             <div class="media-footer">
                 @{if (User.Identity.IsAuthenticated)
@@ -278,21 +283,24 @@
             </div>
             <div ng-show="showReply[$index]" style="margin-top: 15px;">
                 <div class="media" style="margin-left: 67px;" ng-repeat="subcomment in SubCommentEvent[$index]">
-                    <a class="pull-left" href="#">
-                        <img src="{{subcomment.UserImageProfile}}" style="width: 45px; height: 45px; margin-left: 80px;" class="img-rounded" alt=""/>
+                    <a class="pull-left" href="/#/Profile/{{item.UserCommentedName}}">
+                        <img src="{{subcomment.UserImageProfile}}" style="width: 45px; height: 45px; margin-left: 80px;" class="img-rounded" alt="" />
                     </a>
                     <div class="media-body">
-                        <a ng-if="subcomment.isDeleted" href="#" title="Xóa bình luận" ng-click="deleteSubComment(subcomment.CommentId, item.CommentId, $index)" onclick="return false">
-                            <i class="fa fa-remove" style="color: gray;font-size: 18px;"></i>
-                        </a>
-                        <h4 class="media-heading">{{subcomment.UserCommentedName}} <span><small>&nbsp;{{subcomment.CommentedTime}}</small></span></h4>
+                        <h4 class="media-heading">
+                            {{subcomment.UserCommentedName}}
+                            <span><small>&nbsp;{{subcomment.CommentedTime}}</small></span>
+                            <span class="pull-right" ng-if="subcomment.isDeleted" href="#" title="Xóa bình luận" ng-click="deleteSubComment(subcomment.CommentId, item.CommentId, $index)" onclick="return false">
+                                <i class="fa fa-remove" style="font-size: 20px;margin-right: 8px;margin-top: 15px;"></i>
+                            </span>
+                        </h4>
                         <p style="margin-top: -6px;">{{subcomment.Content}}</p>
                     </div>
                 </div>
 
                 <div ng-if="User_Information.IsAuthen" style="margin-left: 134px; margin-top: 15px;">
-                    <a class="pull-left" href="#">
-                        <img src="{{User_Information.ProfileImage}}" style="width: 45px; height: 45px; margin-left: 12px;" class="img-rounded" alt=""/>
+                    <a class="pull-left" href="/#/Profile/{{item.UserCommentedName}}">
+                        <img src="{{User_Information.ProfileImage}}" style="width: 45px; height: 45px; margin-left: 12px;" class="img-rounded" alt="" />
                     </a>
                     <input class="subContent" type="text" placeholder="Viết bình luận" style="width: 89%; height: 37px;" ng-model="$parent.Subcontent" my-Enter="addSubComment(Subcontent,{{item.CommentId}},$index)"/>
                 </div>

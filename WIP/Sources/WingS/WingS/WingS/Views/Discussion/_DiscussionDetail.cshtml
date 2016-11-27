@@ -189,7 +189,7 @@
                                     <img src="{{User_Information.ProfileImage}}" style="width:55px; height:55px; margin-left:85px; " class="img-rounded" alt="" />
                                 </a>&nbsp;&nbsp;&nbsp;<textarea placeholder="Viết bình luận" style="width:81%; height:35px;padding-top: 15px; " ng-model="$parent.content" my-enter="addContent(content)"></textarea>
                             </div>
-                            <div class="media" ng-repeat="item in CommentEvent| limitTo: paginationLimit()">
+                            <div class="media" ng-repeat="item in CommentThread| limitTo: paginationLimit()">
                                 <a class="pull-left" href="#">
                                     <img src="{{item.UserImageProfile}}" style="width: 55px; height: 55px; margin-left: 85px;" class="img-rounded" alt="" />
                                 </a>
@@ -217,7 +217,7 @@
                                     }
                                 </div>
                                 <div ng-show="showReply[$index]" style="margin-top: 15px;">
-                                    <div class="media" style="margin-left: 67px;" ng-repeat="subcomment in SubCommentEvent[$index]">
+                                    <div class="media" style="margin-left: 67px;" ng-repeat="subcomment in SubCommentThread[$index]">
                                         <a class="pull-left" href="#">
                                             <img src="{{subcomment.UserImageProfile}}" style="width: 45px; height: 45px; margin-left: 80px;" class="img-rounded" alt="" />
                                         </a>
@@ -225,10 +225,6 @@
                                             <h4 class="media-heading">{{subcomment.UserCommentedName}} <span><small>{{subcomment.CommentedTime}}</small></span></h4>
                                             <p style="margin-top: -6px;">{{subcomment.Content}}</p>
                                         </div>
-                                        @*<div class="media-footer">
-                                <a href="#" style="margin-left: -15px;" onclick=" return false; "> Thích </a> <span style="color: #2865a1;"> - </span>
-                                <span style="color: #999;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
-                            </div>*@
                                     </div>
 
                                     <div ng-if="User_Information.IsAuthen" style="margin-left: 134px; margin-top: 15px;">

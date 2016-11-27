@@ -1,4 +1,4 @@
-﻿app.controller("EventDetailController", function ($scope, $http, $routeParams, $sce, $location, $window, $rootScope) {
+﻿app.controller("EventDetailController", function ($scope, $http, $routeParams, $sce, $location, $window, $rootScope, SweetAlert) {
     //Get Current Location for sharing
     $scope.CurrentPath = $location.absUrl();
 
@@ -279,7 +279,29 @@
             });
         });
      };
-    //Delete Comment
+    // Alert admin before delete comment
+     $scope.dialog = function (CommentId) {
+        SweetAlert.swal({
+            title: "Xóa bình luận",
+            text: "Bạn thực sự muốn xóa bình luận này?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#16a085",
+            confirmButtonText: "Có",
+            cancelButtonText: "Không",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $scope.deleteComment(CommentId);
+                    SweetAlert.swal("Xóa!", "Bạn đã xóa bình luận thành công", "success");
+                } else {
+                    //do nothing
+                }
+            });
+    };
+    //Delete SubComment
      $scope.deleteSubComment = function (SubCommentId, Id, index) {
          $http({
              url: "/api/Event/DeleteSubComment",

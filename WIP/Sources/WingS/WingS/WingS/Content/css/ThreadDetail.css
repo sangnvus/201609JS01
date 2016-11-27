@@ -20,3 +20,8 @@
 .contentThread {
     color: black;
 }
+.media-footer {
+    margin-left: 150px;
+    margin-top: -8px;
+    font-size: 13px;
+}

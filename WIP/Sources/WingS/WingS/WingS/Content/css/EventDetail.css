@@ -275,4 +275,10 @@
     margin-top: -8px;
     font-size: 13px;
 }
+.fa-remove {
+    color: white;
+}
+.fa-remove:hover {
+    color: #999;
+}
 

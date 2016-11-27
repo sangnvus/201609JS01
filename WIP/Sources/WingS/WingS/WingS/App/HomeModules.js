@@ -1,5 +1,5 @@
 ﻿'use strict';
-var app = angular.module('ClientApp', ['ngRoute', 'datatables','datatables.bootstrap', 'angular-loading-bar', 'ngAnimate']);
+var app = angular.module('ClientApp', ['ngRoute', 'datatables', 'datatables.bootstrap', 'angular-loading-bar', 'ngAnimate', 'oitozero.ngSweetAlert']);
     
 app.config(function ($routeProvider) {
     $routeProvider
