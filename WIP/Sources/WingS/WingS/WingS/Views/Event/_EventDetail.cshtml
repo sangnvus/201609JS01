@@ -30,7 +30,7 @@
 <div class="divPanel notop page-content">
 
 <div class="breadcrumbs" style="padding-bottom:20px;">
-    <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp; <a href="/#/Home">Sự kiện</a>&nbsp;/&nbsp; <span>Chi tiết</span>
+    <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp; <a href="/#/Event">Sự kiện</a>&nbsp;/&nbsp; <span>Chi tiết</span>
 </div>
 
 <!--Star event content -->
@@ -93,7 +93,7 @@
 <div class="row-fluid">
     <section class="col-12">
         <div class="title row">
-            <h3 style="float: left;margin-left: 30px;">
+            <h3 style="float: left;margin-left: 30px;margin-bottom: 5px;">
                 {{Event.EventName}}
             </h3>
             <div class="dropdown">
@@ -124,15 +124,15 @@
                 {{Event.CreatedDate}}<span class="space"></span>
             </span>
             @{if (User.Identity.IsAuthenticated) {
-            <span> <a href="#" onclick="return false" ng-click="doLike()"><i class="fa fa-thumbs-o-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i></a> {{Likes}} <span class="space"></span></span>}
+            <span> <a href="#" onclick="return false" ng-click="doLike()"><i class="fa fa-thumbs-o-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i></a> <span ng-style="isLikeStyle">{{Likes}}</span> <span class="space"></span></span>}
                 else
                 {
-              <span><i class="fa fa-thumbs-o-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i> {{Likes}} <span class="space"></span></span>
+              <span><i class="fa fa-thumbs-o-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i> <span ng-style="isLikeStyle">{{Likes}}</span> <span class="space"></span></span>
                 }}
             <span class="fb-share-button" data-href="{{CurrentPath}}" data-layout="button_count" data-size="large" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></span>
              
         </div>
-        <br>
+        <br/>
         <!-- Tab content -->
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#contentEvt" onclick="return false">Nội dung</a></li>
@@ -222,7 +222,7 @@
                 <div class="row-fluid">
                     <div>
                         <a ng-repeat="item in Event.ImageAlbum" class="example-image-link" href="{{item}}" data-lightbox="example-set" data-title="Click chuột vào mũi tên để xem tiếp album.">
-                            <img style="height: 175px;" class="example-image" src="{{item}}" alt="" />
+                            <img style="width: 220px;height: 175px;" class="example-image" src="{{item}}" alt="" />
                         </a>
                     </div>
 

@@ -242,17 +242,32 @@ namespace WingS.DataAccess
             return listThreads;
         }
         // Get Thread by Created
-        public List<Thread> GetNewestThreadByCreatedDate()
+        public List<ThreadBasicInfo> GetNewestThreadByCreatedDate()
         {
-            List<Thread> listThreads = null;
-            //Get All thread by created Date
-            using (var db = new Ws_DataContext())
+            var listThread = new List<ThreadBasicInfo>();
+            try
             {
-                var newestThread = db.Threads.OrderByDescending(x => x.CreatedDate).Where(x => x.Status == true);
-                listThreads = newestThread.ToList();
-            }
+                List<int> userIdThread;
+                using (var db = new Ws_DataContext())
+                {
+                    userIdThread = db.Threads.OrderByDescending(x => x.CreatedDate).Where(x => x.Status == true).Select(x => x.ThreadId).ToList();
+                }
 
-            return listThreads;
+                using (var db = new ThreadDAL())
+                {
+                    foreach (int threadId in userIdThread)
+                    {
+                        ThreadBasicInfo threadBasic = db.GetFullThreadBasicInformation(threadId);
+                        listThread.Add(threadBasic);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+            return listThread;
         }
         public Thread GetThreadById(int threadId)
         {
@@ -556,6 +571,7 @@ namespace WingS.DataAccess
                 currentThread.Creator = user.UserName;
                 currentThread.ThreadName = thread.Title;
                 currentThread.ImageUrl = GetAllImageThreadById(thread.ThreadId);
+                currentThread.ShortDescription = thread.ShortDescription;
                 currentThread.Content = thread.Content;
                 currentThread.Likes = CountLikeInThread(thread.ThreadId);
                 currentThread.Comments = CountCommentInThread(thread.ThreadId);

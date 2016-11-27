@@ -1,12 +1,5 @@
 ﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="../../Content/scripts/default.js" type="text/javascript"></script>
-<script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
-<script type="text/javascript">$(window).load(function () {var options = {autoResize: true,container: $('#gridArea'),offset: 10};var handler = $('#tiles li');handler.wookmark(options);$('#tiles li').each(function () { var imgm = 0; if($(this).find('img').length>0)imgm=parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5;if($(this).find('iframe').height()) newHeight = newHeight+15;$(this).css('height', newHeight + 'px');});handler.wookmark(options);handler.wookmark(options);});</script>
-<script src="../../Content/scripts/yoxview/yox.js" type="text/javascript"></script>
-<script src="../../Content/scripts/yoxview/jquery.yoxview-2.21.js" type="text/javascript"></script>
-<script type="text/javascript">$(document).ready(function () {$('.yoxview').yoxview({autoHideInfo:false,renderInfoPin:false,backgroundColor:'#ffffff',backgroundOpacity:0.8,infoBackColor:'#000000',infoBackOpacity:1});$('.yoxview a img').hover(function(){$(this).animate({opacity:0.7},300)},function(){$(this).animate({opacity:1},300)});});</script>
-
-
     <div class="divPanel notop nobottom">
     </div>
 
@@ -15,9 +8,9 @@
         <div class="divPanel notop page-content">
 
             <div class="breadcrumbs">
-                <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Thảo luận</span>
+                <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp; <span>Thảo luận</span>
             </div>
-            <div class="row-fluid">
+            @*<div class="row-fluid">
                 <div class="span3">
                     <div class="box">
                         <i class="icon-edit"></i>
@@ -31,25 +24,26 @@
                     </div>
                 </div>
 
-            </div>
-
-            <hr>
+            </div>*@
             <!--Edit Portfolio Content Area here-->
             <div class="row">
 
                 <div class="span3" style="width:242px" ng-repeat="item in Thread| limitTo: paginationLimit()">
                     <div class="thread-title">
-                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><h4 class="text-info">{{item.ThreadName}}</h4></a>
+                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")" style="text-decoration: none;">
+                            <h5 class="text-info">{{item.ThreadName}}</h5>
+                        </a>
                     </div>
                     <div class="thread-img">
-                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}" class="img-polaroid" alt="" style="width: 300px; height: 200px; margin: 5px 0px 15px;"></a>
+                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}" class="" alt="" style="width: 300px; height: 200px; margin: 5px 0px 15px;"></a>
                     </div>
                     <div class="thread-content">
-                        <p ng-bind-html="SkipValidation(item.Content)"></p>
+                        <p>{{item.ShortDescription}}</p>
                     </div>
-                    <div class="thread-footer">
-                        <i class="foundicon-thumb-up"></i><span><strong>{{item.Likes}}</strong></span>&nbsp; &nbsp;&nbsp; &nbsp;<i class="foundicon-chat"></i><span><strong>30</strong></span></br>
-                        <a href="#">Xem thêm &raquo;</a>
+                    <div class="thread-footer" style="margin-top: 5px;">
+                        <span style="width: 48px;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> {{item.Likes}}</span>
+                        <span style="margin-left: 30px;width: 50px;"><i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận"></i> {{item.Comments}}</span>
+                        <span style="margin-left:30px"><a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Xem thêm &raquo;</a></span>
                     </div>
                     <br />  
                     <br />  
@@ -58,34 +52,37 @@
             <!--/End Portfolio Content Area-->
             <br />
             <div align="center">
-                <a class="btn btn-primary" href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()"><i class="icon-refresh icon-spin"></i> Xem thêm...</a>
+                <a class="btn btn-primary" href="#" onclick=" return false; " ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()"><i class="icon-refresh icon-spin"></i> Xem thêm...</a>
             </div>
-            <div id="footerInnerSeparator"></div>
-            <hr>
+            <br/>
+            <hr style="border-top: 1px solid #2865a1;" />
+            <div class="row">
+                <div class="span12" id="divMain">
+                    <h2 style="color: rgb(0, 0, 0);">Xếp hạng cá nhân</h2>
+                    <hr>
+                    <br />
+                </div>
+            </div>
             <div class="row-fluid">
 
-                <div class="span4" align="center">
-                    <h4 class="text-info">Cá nhân </h4>
-                    <img src="Content/Images/services-image.jpg" class="img-polaroid img-circle" style="margin: 5px 0px 15px;" alt="">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><a href="#">Read More &raquo;</a>
-                    </p>
-                </div>
-                <div class="span4" align="center">
-                    <h5 class="text-info">Cá nhân </h5>
-                    <img src="Content/Images/services-image.jpg" class="img-polaroid img-circle" style="margin: 5px 0px 15px;" alt="">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><a href="#">Read More &raquo;</a>
-                    </p>
-                </div>
-                <div class="span4" align="center">
-                    <h5 class="text-info">Cá nhân </h5>
-                    <img src="Content/Images/services-image.jpg" class="img-polaroid img-circle" style="margin: 5px 0px 15px;" alt="">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><a href="#">Read More &raquo;</a>
-                    </p>
+                <div class="span4" align="center" ng-repeat="item in TopThreeRankingUser track by $index">
+                    <h4 class="text-info">{{item.UserName}}</h4>
+                    <a href="@Url.Content("/#/Profile/{{item.UserName}}")">
+                        <div class="organization-img">
+                            <img src="{{item.ProfileImage}}" class="img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;">
+                        </div>
+                    </a>
+                    <div class="">
+                        <p>{{item.UserSignature}}</p>
+                    </div>
+                    <br/>
+                    <div>
+                        <a href="@Url.Content("/#/Profile/{{item.UserName}}")">Xem chi tiết &raquo;</a>
+                    </div>
                 </div>
 
             </div>
         </div>
         <div id="footerOuterSeparator"></div>
         @Html.Partial("../Home/_Footer")
-        <br/><br/><br/>
     </div>

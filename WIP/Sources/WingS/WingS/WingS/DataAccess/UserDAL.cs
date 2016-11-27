@@ -529,7 +529,7 @@ namespace WingS.DataAccess
                 List<int> listUserId;
                 using (var db = new Ws_DataContext())
                 {
-                    listUserId = db.User_Information.OrderByDescending(x=>x.Point).Select(x=>x.UserID).Take(5).ToList();
+                    listUserId = db.User_Information.OrderByDescending(x => x.Point).Select(x => x.UserID).Take(top).ToList();
                 }
 
                 foreach (int userId in listUserId)

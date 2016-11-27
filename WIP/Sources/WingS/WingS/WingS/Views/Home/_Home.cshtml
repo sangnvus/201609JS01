@@ -81,10 +81,10 @@
                                     <div class="event-content">
                                         <p>{{item.ShortDescription}}</p>
                                     </div>
-                                    <div class="event-footer">
+                                    <div class="event-footer" style="margin-top: 5px;">
                                         <span style="width: 48px;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> {{item.Likes}}</span>
                                         <span style="margin-left: 30px;width: 50px;"><i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận"></i> {{item.NumberOfComments}}</span>
-                                        <span style="margin-left:30px"><a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">Xem thêm &raquo;</a></span>                                        
+                                        <span style="margin-left:30px"><a href="@Url.Content("/#/EventDetail/{{item.EventID}}")">Xem thêm &raquo;</a></span>
                                     </div>
                                 </div>
                                 
@@ -108,7 +108,7 @@
                                     <div class="thread-content">
                                         <p>{{item.ShortDescription}}</p>
                                     </div>
-                                    <div class="thread-footer">
+                                    <div class="thread-footer" style="margin-top: 5px;">
                                         <span style="width: 48px;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> {{item.Likes}}</span>
                                         <span style="margin-left: 30px;width: 50px;"><i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận"></i> {{item.Comments}}</span>
                                         <span style="margin-left:30px"><a href="@Url.Content("/#/EventDetail/{{item.ThreadID}}")">Xem thêm &raquo;</a></span>
@@ -124,7 +124,7 @@
                 </div>
                 <hr />
 
-                <div class="row-fluid">
+                <div class="row">
                     <!--Edit Main Content Area here-->
                     <div class="span12" id="divMain">
                         <h2 style="color: rgb(0, 0, 0);">Xếp hạng tổ chức</h2>
@@ -141,13 +141,13 @@
                             </div>
                                <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
                                 <div class="organization-img">
-                                    <img src="{{item.LogoUrl}}" class="img-polaroid img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;">
+                                    <img src="{{item.LogoUrl}}" class="img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;">
                                 </div>
                                 </a>
                                 <div class="organization-content">
                                     <p>{{item.Introduction}}</p>
                                 </div>
-</div>
+                        </div>
 
                     </div>
                 </div>

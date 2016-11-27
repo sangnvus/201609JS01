@@ -45,11 +45,11 @@
 	color: gray;
 }
 .info a{
-    color: #b7b7b7;
+    color: gray;
 
 }
 .nav-tabs {
-    margin-top: 15px; 
+    margin-top: 21px; 
 }
 .nav-tabs li a{
     /*color: #38383f;*/
