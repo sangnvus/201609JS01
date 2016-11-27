@@ -20,5 +20,6 @@
         public virtual Event Event { get; set; }
         public virtual Ws_User Ws_User { get; set; }
         public ICollection<SubCommentEvent> SubComment { get; set; }
+        public ICollection<LikeCommentEvent> LikeComment { get; set; }
     }
 }

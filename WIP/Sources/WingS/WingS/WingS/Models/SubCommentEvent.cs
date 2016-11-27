@@ -21,5 +21,6 @@ namespace WingS.Models
         public bool Status { get; set; }
         public virtual CommentEvent CommentEvent { get; set; }
         public virtual Ws_User Ws_User { get; set; }
+       
     }
 }

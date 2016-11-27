@@ -42,6 +42,8 @@
        });
     }
     countLike();
+    if ($rootScope.User_Information.IsAuthen == true)
+    {
     // CheckCurrentUserIsLikedOrNot
     $http({
        url: "/api/Thread/CheckCurrentUserIsLikedOrNot",
@@ -57,7 +59,8 @@
                 "color": "rgb(224, 95, 3)"
             }
         }
-   });
+    });
+    }
     //AddLike When Click
    $scope.doLike = function ()
    {

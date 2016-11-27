@@ -7,19 +7,17 @@ using System.Web;
 
 namespace WingS.Models
 {
-    public class Activity
+    public class LikeCommentEvent
     {
         [Key]
-        public int ActivityId { get; set; }
+        public int LikeCommentId { get; set; }
+        [ForeignKey("Comment")]
+        public int CommentId { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public string CreatorName { get; set; }
-        public string CreatorImage { get; set; }
-        public string NotifyUrl { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string Message { get; set; }
-        public bool IsRead { get; set; }
         public bool Status { get; set; }
+        public virtual CommentEvent Comment { get; set; }
         public virtual Ws_User User { get; set; }
+
     }
 }

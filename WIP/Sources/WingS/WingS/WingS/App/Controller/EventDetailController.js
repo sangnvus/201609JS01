@@ -1,16 +1,27 @@
-﻿app.controller("EventDetailController", function ($scope, $http, $routeParams, $sce, $location,$window) {
+﻿app.controller("EventDetailController", function ($scope, $http, $routeParams, $sce, $location, $window, $rootScope) {
+    //Get Current Location for sharing
+    $scope.CurrentPath = $location.absUrl();
+
+    //Get EventId from router to send to backed
     var eventId = $routeParams.Id;
+    
+    //Set eventId to Window variable to connect chat room
     $window.eventId = eventId;
+
+    //Create SubComment Array
     var emptySubComment = new Array();
     $scope.SubCommentEvent = emptySubComment;
+
+    //Send Number OfComment in each event
+    $scope.NumberOfComment = 0;
+
+    //Set LikeStyle when do like or do unlike
     $scope.isLikeStyle =
          {
              "color": "black"
          }
     //Flag to change color like button
     var flag = false;
-    //Hide if no comment
-    $("#isComment").hide();
     //Load event Detail
     $http({
         url: "/api/Event/GetEventDetailById",
@@ -29,8 +40,8 @@
     });
 
     //Load donator
-     $http({
-       url: "/api/Event/GetDonatorInEvent",
+    $http({
+        url: "/api/Event/GetDonatorInEvent",
         method: "Get",
         params: { id: eventId },
         contentType: "application/json",
@@ -63,6 +74,26 @@
         });
     }
     countLike();
+    if ($rootScope.User_Information.IsAuthen == true)
+    {
+    // CheckCurrentUserIsLikedOrNot
+    $http({
+        url: "/api/Event/CheckCurrentUserIsLikedOrNot",
+        method: "GET",
+        params: { eventId: eventId },
+        contentType: "application/json",
+    }).success(function (response) {
+        if (response.Data == true) {
+            flag = true;
+        //Set Color for like button.
+            $scope.isLikeStyle =
+            {
+                "color": "rgb(224, 95, 3)"
+            }
+    }
+    });
+    }
+  
     //Load All Commend to view.
     $http({
         url: "/api/Event/GetAllComment",
@@ -71,12 +102,31 @@
         contentType: "application/json",
     }).success(function (response) {
         if (response.Status == "not-found") {
-            $("#isComment").show();
+
         }
         else {
             $scope.CommentEvent = response.Data;
+            $scope.NumberOfComment = $scope.CommentEvent.length;
         }
     });
+
+    //AddLike When Click
+    $scope.doLike = function () {
+        flag = !flag;
+        if (flag == true)
+            $scope.isLikeStyle = { "color": "rgb(224, 95, 3)" }
+        else $scope.isLikeStyle = { "color": "black" }
+        $http({
+            url: "/api/Event/ChangeLikeState",
+            method: "get",
+            params: { eventId: eventId },
+            contentType: "application/json",
+        }).success(function (response) {
+           
+        });
+    }
+  
+
     //Add comment API
     $scope.addContent = function () {
         var newContent = $scope.content;
@@ -102,8 +152,8 @@
                     params: { eventId: eventId },
                     contentType: "application/json",
                 }).success(function (response) {
-                    $("#isComment").hide();
                     $scope.CommentEvent = response.Data;
+                    $scope.NumberOfComment = $scope.CommentEvent.length;
                 });
             });
         }
@@ -143,6 +193,29 @@
             $(".subContent").val('');
         });
     }
+    //
+    function countLikeForComment(commentId,index) {
+        $http({
+            url: "/api/Event/CountLikeInCommentEvent",
+            method: "GET",
+            params: { commentId: commentId },
+            contentType: "application/json",
+        }).success(function (response) {
+            $scope.CommentEvent[index].NumberOfLikes = response.Data;
+        });
+    }
+    //Like Comment
+    $scope.likeComment = function (commentId,index) {
+        $http({
+            url: "/api/Event/ChangeLikeStateForComment",
+            method: "get",
+            params: { commentId: commentId },
+            contentType: "application/json",
+        }).success(function (response) {
+            countLikeForComment(commentId,index);
+          
+        });
+    }
     // Handle Loadmore comment
     var pageShow = 4;
     var index = 2;
@@ -164,10 +237,11 @@
             contentType: "application/json",
         }).success(function (response) {
             if (response.Status == "not-found") {
-                $("#isComment").show();
+
             }
             else {
                 $scope.CommentEvent = response.Data;
+                $scope.NumberOfComment = $scope.CommentEvent.length;
                 pageShow = 4;
                 index = 2;
 

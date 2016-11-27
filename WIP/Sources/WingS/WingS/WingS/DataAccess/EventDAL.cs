@@ -21,6 +21,15 @@ namespace WingS.DataAccess
             }
 
         }
+        public int CountLikeInCommentEvent(int CommentId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int CountLike = db.LikeCommentEvents.Count(x => x.CommentId == CommentId && x.Status == true);
+                return CountLike;
+            }
+
+        }
         public int CountCommentInEvent(int EventId)
         {
             using (var db = new Ws_DataContext())
@@ -80,6 +89,38 @@ namespace WingS.DataAccess
         }
         catch (Exception) { return false; }
     }
+        public bool ChangelikeStateForComment(int commentId, string UserName)
+        {
+            try
+            {
+                int CurrenUser = 0;
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+                }
+                using (var db = new Ws_DataContext())
+                {
+                    //Check current like status.
+                    LikeCommentEvent current = (
+                                           from p in db.LikeCommentEvents
+                                           where p.CommentId == commentId && p.UserId == CurrenUser
+                                           select p
+                                           ).SingleOrDefault();
+                    if (current != null)
+                    {
+                        current.Status = !current.Status;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        db.LikeCommentEvents.Add(new LikeCommentEvent() { CommentId = commentId, UserId = CurrenUser, Status = true });
+                        db.SaveChanges();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception) { return false; }
+        }
         public List<int> GetAllCommentIdAndSubCommentId()
         {
             List<int> list = new List<int>();
@@ -124,8 +165,16 @@ namespace WingS.DataAccess
             }
             return list;
         }
-        public List<BasicCommentThread> GetAllCommentInEvent(int eventId)
+        public List<BasicCommentThread> GetAllCommentInEvent(int eventId,string currentUserName)
         {
+            int CurrenUser = 0;
+            if (currentUserName != "")
+            {
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(currentUserName).UserID;
+                }
+            }
             List<BasicCommentThread> list = new List<BasicCommentThread>();
             using (var db = new Ws_DataContext())
             {
@@ -142,6 +191,13 @@ namespace WingS.DataAccess
                         bs.UserCommentedName = item.UserName;
                         bs.UserImageProfile = item.ProfileImage;
                         bs.CommentId = item.CommentEventId;
+                        if(currentUserName!="")
+                        { if (db.LikeCommentEvents.Where(x => x.CommentId == item.CommentEventId && x.UserId == CurrenUser && x.Status == true).SingleOrDefault() != null)
+                          {
+                            bs.isLiked = true;
+                          }
+                        }
+                        else bs.isLiked = false;
                         bs.Content = item.Content;
                         bs.NumberSubComment = item.Count;
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
@@ -149,6 +205,7 @@ namespace WingS.DataAccess
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        bs.NumberOfLikes = db.LikeCommentEvents.Where(x => x.CommentId == item.CommentEventId && x.Status == true).Count();
                         list.Add(bs);
                     }
 
@@ -603,6 +660,8 @@ namespace WingS.DataAccess
                 eventBasicInfo.CreatorUserName = creatorUserName;
                 eventBasicInfo.OrganizationName = organizationName;
                 eventBasicInfo.CreatorName = creatorName;
+                eventBasicInfo.OrganizationName = wsEvent.Organization.OrganizationName;
+                eventBasicInfo.CreatorName = creatorName;
                 eventBasicInfo.EventName = wsEvent.EventName;
                 eventBasicInfo.ShortDescription = wsEvent.ShortDescription;
                 eventBasicInfo.Content = wsEvent.Description;
@@ -928,8 +987,7 @@ namespace WingS.DataAccess
             }
 
         }
-
-        public bool CreateEventType(EventType type)
+		  public bool CreateEventType(EventType type)
         {
             try
             {
@@ -946,7 +1004,6 @@ namespace WingS.DataAccess
                 //throw;
             }
         }
-        
         public void Dispose()
         {
           

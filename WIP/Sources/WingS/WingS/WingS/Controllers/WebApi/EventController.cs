@@ -25,6 +25,16 @@ namespace WingS.Controllers
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = numberOfLikes });
         }
         [HttpGet]
+        public IHttpActionResult CountLikeInCommentEvent(int CommentId)
+        {
+            int numberOfLikes = 0;
+            using (var db = new EventDAL())
+            {
+                numberOfLikes = db.CountLikeInCommentEvent(CommentId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = numberOfLikes });
+        }
+        [HttpGet]
         public IHttpActionResult CheckCurrentUserIsLikedOrNot(int EventId)
         {
             bool isLiked = false;
@@ -44,6 +54,15 @@ namespace WingS.Controllers
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
         }
         [HttpGet]
+        public IHttpActionResult ChangeLikeStateForComment(int CommentId)
+        {
+            using (var db = new EventDAL())
+            {
+                var change = db.ChangelikeStateForComment(CommentId, User.Identity.Name);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
+        }
+        [HttpGet]
         public IHttpActionResult CheckExistedSubCommentOrNot()
         {
             using (var db = new EventDAL())
@@ -59,13 +78,17 @@ namespace WingS.Controllers
         [HttpGet]
         public IHttpActionResult GetAllComment(int eventId)
         {
+            List<BasicCommentThread> commentList = new List<BasicCommentThread>();
             using (var db = new EventDAL())
             {
-                var commentList = db.GetAllCommentInEvent(eventId);
-                if (commentList == null || commentList.Count == 0)
+                if (User.Identity.IsAuthenticated) { 
+                commentList = db.GetAllCommentInEvent(eventId, User.Identity.Name);
+                } else commentList = db.GetAllCommentInEvent(eventId, "");
+            }
+            if (commentList == null || commentList.Count == 0)
                     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
                 else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = commentList });
-            }
+           
 
         }
         [HttpPost]
@@ -568,6 +591,7 @@ namespace WingS.Controllers
                 });
             }
         }
-       
+      
+
     }
 }

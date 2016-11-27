@@ -14,6 +14,8 @@ namespace WingS.Models.DTOs
         public string Content { get; set; }
         public string CommentedTime { get; set; }
         public int NumberSubComment { get; set; }
+        public int NumberOfLikes { get; set; }
+        public bool isLiked { get; set; }
         public BasicCommentThread()
         {
             NumberSubComment = 0;
