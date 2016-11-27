@@ -69,7 +69,7 @@
                                         <button class="btn btn-danger" style="width: 125px" ng-if="!x.IsActive && x.IsVerify" ng-click="unBan($index,x.UserId)">Bị cấm</button>
                                     </td>
                                     <td>
-                                        <a href="/Admin/#/UserProfile"><button class="btn btn-blue">Xem chi tiết</button></a>
+                                        <a href=@Url.Content("/Admin/#/UserProfile/{{x.UserName}}")><button class="btn btn-blue">Xem chi tiết</button></a>
                                     </td>
                                 </tr>
                                 </tbody>

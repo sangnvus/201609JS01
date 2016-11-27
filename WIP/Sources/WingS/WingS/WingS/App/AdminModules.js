@@ -46,12 +46,12 @@ app.config(function ($routeProvider) {
         .when("/EventDashBoard", {
             tittle: "Thống kê sự kiện",
             templateUrl: "/Admin/EventDashBoard",
-            controller: "AdminEventController"
+            controller: "AdminEventDashBoardController"
         })
         .when("/EventList", {
             tittle: "Danh sách sự kiện",
             templateUrl: "/Admin/EventList",
-            controller: "AdminEventController"
+            controller: "AdminEventListController"
         })
         .when("/EventType", {
             tittle: "Danh sách thể loại sự kiện",
@@ -61,7 +61,7 @@ app.config(function ($routeProvider) {
         .when("/EventDetail/:EventID", {
             tittle: "Chi tiết sự kiện",
             templateUrl: "/Admin/EventDetail",
-            controller: "AdminEventController"
+            controller: "AdminEventDetailController"
         })
         .when("/OrganizationDashBoard", {
             tittle: "Thống kê tổ chức",

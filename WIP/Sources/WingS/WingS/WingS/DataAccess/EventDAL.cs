@@ -1004,6 +1004,14 @@ namespace WingS.DataAccess
                 //throw;
             }
         }
+		public void UpdateEvent(Event eventUpdate)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                db.Events.AddOrUpdate(eventUpdate);
+                db.SaveChanges();
+            }
+        }
         public void Dispose()
         {
           

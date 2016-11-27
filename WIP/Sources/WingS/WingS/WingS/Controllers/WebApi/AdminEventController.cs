@@ -254,5 +254,42 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+		[HttpGet]
+        [ActionName("ChangeStatusEvent")]
+        public IHttpActionResult ChangeStatusEvent(int eventId)
+        {
+            try
+            {
+                string timeStatusEvent;
+                using (var db = new EventDAL())
+                {
+                    var eventGet = db.GetEventById(eventId);
+                    eventGet.Status = !eventGet.Status;
+
+                    if (!eventGet.Status)
+                    {
+                        timeStatusEvent = "ban";
+                    }
+                    else if (eventGet.Status && DateTime.Now > eventGet.Finish_Date)
+                    {
+                        timeStatusEvent = "done";
+                    }
+                    else if (eventGet.Status && DateTime.Now < eventGet.Start_Date)
+                    {
+                        timeStatusEvent = "income";
+                    }
+                    else
+                    {
+                        timeStatusEvent = "process";
+                    }
+                    db.UpdateEvent(eventGet);
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = timeStatusEvent });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
     }
 }
