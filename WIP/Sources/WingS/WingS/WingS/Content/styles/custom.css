@@ -494,9 +494,9 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 }
 
 .organization-content .introduction{
-    height: 88px;
+    height: 40px;
     overflow: hidden;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .organization-content .basic-infor{

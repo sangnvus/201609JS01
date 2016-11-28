@@ -11,38 +11,18 @@
             <div class="divPanel notop page-content">
 
                 <div class="breadcrumbs">
-                    <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp; <span>Tổ chức</span>
+                    <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp; <span>Tổ chức</span>
                 </div>
 
-                <div id="orgCreate" class="row-fluid">
-                    <div class="span3">
-                        <div class="box">
-
-                            <a href="@Url.Content("/#/CreateOrganization")"><i class="icon-edit"></i></a>
-                            <h4 class="title">Tạo Tổ chức</h4>
-                            <hr />
-                            <p>
-                                Hãy tạo Tổ chức để có thể phát động những sự kiện từ thiện.
-                            </p>
-                        </div>
-                    </div>
-                    
-                </div>
-                <hr />
-                
-
-                <div id="orgUserPart" class="row-fluid">
+                @*<div id="orgUserPart" class="row-fluid">
                     @*<strong><h2>Tổ chức của bạn</h2></strong>*@
-                </div>
-
-
-                <div class="row-fluid">
+                @*<div class="row-fluid">
                     <div id="orgUser" class="span3" ng-show="showOrgUser()">
                         <div class="organization-name" >
                             <a href="@Url.Content("/#/OrganizationDetail/{{orgBelongUser.OrganizationId}}")" style="text-decoration: none; color: inherit;">
-                                <h4 class="text-info" style="text-transform: capitalize;">
+                                <h3 class="text-info" style="text-transform: capitalize;">
                                     <strong>{{orgBelongUser.OrganizationName}}</strong>
-                                </h4>
+                                </h3>
                             </a>
                         </div>
                         <div class="organization-logo ">
@@ -70,10 +50,10 @@
 
                 </div>
 
-                <div id="breaktag"></div>
+                <div id="breaktag"></div>*@
 
                 <div class="row-fluid">
-                    <strong><h2>Danh Sách Tổ chức</h2></strong>
+                    <h2>Danh Sách Tổ chức</h2>
                 </div>
 
                 <!-- Row 1 -->
@@ -103,13 +83,13 @@
                                 <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{item.Phone}}
                             </p>
 
-                            <p class="basic-infor">
+                            @*<p class="basic-infor">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{item.Email}}
                             </p>
 
                             <p class="basic-infor">
                                 <i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;{{item.Status}}
-                            </p>
+                            </p>*@
                         </div>
 
                         <div class="thread-footer ">
