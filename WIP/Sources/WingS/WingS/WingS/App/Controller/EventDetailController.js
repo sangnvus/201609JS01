@@ -18,7 +18,7 @@
     //Set LikeStyle when do like or do unlike
     $scope.isLikeStyle =
          {
-             "color": "black"
+             "color": "gray"
          }
     //Flag to change color like button
     var flag = false;
@@ -115,7 +115,7 @@
         flag = !flag;
         if (flag == true)
             $scope.isLikeStyle = { "color": "rgb(224, 95, 3)" }
-        else $scope.isLikeStyle = { "color": "black" }
+        else $scope.isLikeStyle = { "color": "gray" }
         $http({
             url: "/api/Event/ChangeLikeState",
             method: "get",

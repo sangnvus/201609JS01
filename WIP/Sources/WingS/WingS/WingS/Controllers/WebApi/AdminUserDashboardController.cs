@@ -182,7 +182,7 @@ namespace WingS.Controllers.WebApi
         }
 
         [HttpGet]
-        public IHttpActionResult GetTopFiveRankUser()
+        public IHttpActionResult GetTopRankUser(int top)
         {
             try
             {
@@ -191,7 +191,7 @@ namespace WingS.Controllers.WebApi
 
                 using (var db = new UserDAL())
                 {
-                    topRankUser = db.GetTopNumberRankingUser(5);
+                    topRankUser = db.GetTopNumberRankingUser(top);
                 }
 
                 return Ok(new HTTPMessageDTO

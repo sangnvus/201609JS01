@@ -15,7 +15,13 @@
         };
 
     });
-    $scope.SkipValidation = function (value) {
-        return $sce.trustAsHtml(value);
-    };
+    // Load information of user who in top 3 rank
+    $http({
+        url: "/api/AdminUserDashboard/GetTopRankUser",
+        method: "GET",
+        params: { top: 3 },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.TopThreeRankingUser = response.Data;
+    });
 });

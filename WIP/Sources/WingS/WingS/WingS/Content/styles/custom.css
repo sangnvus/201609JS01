@@ -577,7 +577,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 }
 .event-title,.thread-title, .organization-title {
     overflow: hidden;
-    height: 66px;
+    height: 65px;
 }
 .event-title h5, .thread-title h5, .organization-title h5 {
     font-size: 17px;

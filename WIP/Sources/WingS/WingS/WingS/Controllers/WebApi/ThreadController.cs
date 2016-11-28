@@ -147,7 +147,7 @@ namespace WingS.Controllers.WebApi
                     else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = SubcommentList });
             }
         }
-        // Get 4 Thread có View lớn nhiều nhất
+        // Get top Thread by CreateDate
         [HttpGet]
         public IHttpActionResult GetTopThreadByCreatedDate()
         {
@@ -212,7 +212,7 @@ namespace WingS.Controllers.WebApi
                     threadBasic.ImageUrl = db.GetAllImageThreadById(id);
                     threadBasic.Content = current.Content;
                     threadBasic.Status = current.Status;
-                    threadBasic.CreatedDate = current.CreatedDate.ToString("H:mm:ss | MM/dd/yyyy");
+                    threadBasic.CreatedDate = current.CreatedDate.ToString("H:mm:ss  MM/dd/yyyy");
                     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = threadBasic });
                 }
 
@@ -254,44 +254,29 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
             }
         }
-
         // Get list thread by create date
         [HttpGet]
         [ActionName("NewestThread")]
         public IHttpActionResult GetNewestThread()
         {
-            List<Thread> NewestThread = null;
-            var basicThreadList = new List<ThreadBasicInfo>();
+            List<ThreadBasicInfo> listThread = new List<ThreadBasicInfo>();
             try
             {
                 using (var db = new ThreadDAL())
                 {
-                    NewestThread = db.GetNewestThreadByCreatedDate();
-                    foreach (Thread thread in NewestThread)
-                    {
-                        List<String> threadImage = db.GetAllImageThreadById(thread.ThreadId);
-                        basicThreadList.Add(new ThreadBasicInfo
-                        {
-                            ThreadID = thread.ThreadId,
-                            UserID = thread.UserId,
-                            ThreadName = thread.Title,
-                            ImageUrl = threadImage,
-                            Content = thread.Content,
-                            ShortDescription =  thread.ShortDescription,
-                            Status = true,
-                            CreatedDate = thread.CreatedDate.ToString("H:mm:ss MM/dd/yy")
-                        });
-                    }
+                    listThread = db.GetNewestThreadByCreatedDate();
                 }
-
-                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = basicThreadList });
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = listThread });
             }
             catch (Exception)
             {
-                //ViewBag.ErrorMessage = ex;
-                return Redirect("/#/Error");
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
             }
-
         }
     }
 }
