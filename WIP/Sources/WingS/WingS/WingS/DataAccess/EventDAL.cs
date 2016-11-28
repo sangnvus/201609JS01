@@ -1096,6 +1096,21 @@ namespace WingS.DataAccess
                 else return false;
             }
         }
+
+        public List<EventBasicInfo> GetEventSortByNumberOfDonator()
+        {
+            List<EventBasicInfo> eventList = new List<EventBasicInfo>();
+            try
+            {
+                eventList = GetAllEvents().OrderByDescending(x => x.DonatedUser).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return eventList;
+        } 
         public void Dispose()
         {
           

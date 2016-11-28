@@ -71,8 +71,8 @@
         $http.post("/api/AdminEvent/CreateEventType", $scope.eventType).success(function(response) {
             var createStatus = response.Data;
             if (createStatus === true) {
-                $http.get("/api/AdminEvent/GetAllEventType").success(function (response) {
-                    $scope.AllEventType = response.Data;
+                $http.get("/api/AdminEvent/GetAllEventType").success(function (allEventType) {
+                    $scope.AllEventType = allEventType.Data;
                 });
                 SweetAlert.swal("Thành công!", "Bạn đã tạo loại sự kiện này vào sử dụng thành công", "success");
             } else {

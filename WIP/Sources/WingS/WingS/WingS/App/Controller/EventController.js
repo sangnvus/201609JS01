@@ -1,96 +1,67 @@
 ﻿app.controller("EventController", function ($scope, $http) {
-    //Load top 1 event to Event page
-    $http.get("/api/Event/Top1View").success(function (response) {
-        $scope.Top1Event = response.Data;
-    });
-
-    //Load Event follow create date
+    var pageShow = 4;
+    var index = 1;
     //Default when router to Event page
     $http.get("/api/Event/NewestEvent").success(function (response) {
         $scope.EventList = response.Data;
+        //load more event
+        
+        $scope.hasMoreItemsToShow = function () {
+            return pageShow < ($scope.EventList.length / index);
+        };
+        
     });
 
     //initial option sort
     $scope.listOfOptions = ['Ngày Tạo', 'Số người quyên góp','Điểm tích lũy'];
-    
-    $scope.LoadEventSortByPoint = function () {
+    $scope.selectedItem = "Ngày Tạo";
+    $scope.LoadEventSortByOpion = function () {
         var sortOption = $scope.selectedItem;
-        if (sortOption === "Điểm") {
+        if (sortOption === "Điểm tích lũy") {
             //Load Event follow point
             $http.get("/api/Event/EventsSortByPoint").success(function(response) {
-                EventList = response.Data;
+                $scope.EventList = response.Data;
             });
-        } else {
+        }
+        if (sortOption === "Ngày Tạo") {
             //Load Event follow create date
             $http.get("/api/Event/NewestEvent").success(function (response) {
                 $scope.EventList = response.Data;
             });
         }
+        if (sortOption === "Số người quyên góp") {
+            //Load Event follow create date
+            $http.get("/api/Event/EventsSortByNumberUserDonatedIn").success(function (response) {
+                $scope.EventList = response.Data;
+            });
+        }
+
         //Load Event follow number of follower
         
     };
 
-    // Get event type is Văn hóa - Xã hội
-    $scope.getEventSocial = function() {
+    // Get events using specify type
+    $scope.getEventByType = function(typeId) {
         $http({
             url: "/api/Event/GetEventsFollowEventType",
             method: "GET",
-            params: { typeEventId: 1 },
-            contentType: "application/json"
-        }).success(function (response) {
-            $scope.EventList = response.Data;
-        });
-    };
-    // Get event type is Giáo dục
-    $scope.getEventEducation = function () {
-        $http({
-            url: "/api/Event/GetEventsFollowEventType",
-            method: "GET",
-            params: { typeEventId: 2 },
-            contentType: "application/json"
-        }).success(function (response) {
-            $scope.EventList = response.Data;
-        });
-    };
-
-    // Get event type is Y tế
-    $scope.getEventMedical = function () {
-        $http({
-            url: "/api/Event/GetEventsFollowEventType",
-            method: "GET",
-            params: { typeEventId: 3 },
+            params: { typeEventId: typeId },
             contentType: "application/json"
         }).success(function (response) {
             $scope.EventList = response.Data;
         });
     };
     
-    // Get event type is Khác
-    $scope.getEventOther = function () {
-        $http({
-            url: "/api/Event/GetEventsFollowEventType",
-            method: "GET",
-            params: { typeEventId: 4 },
-            contentType: "application/json"
-        }).success(function (response) {
-            $scope.EventList = response.Data;
-        });
-    };
   
     //Load 3 organization to Event page
     $http.get("/api/Organization/GetTopThreeOrganization").success(function (response) {
         $scope.Organization = response.Data;
     });
 
-    //load more event
-    var pageShow = 4;
-    var index = 1;
     $scope.paginationLimit = function (data) {
         return pageShow * index;
     };
-    $scope.hasMoreItemsToShow = function () {
-        return pageShow < ($scope.EventList.length / index);
-    };
+
     $scope.showMoreItems = function () {
         index = index + 1;
     };

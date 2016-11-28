@@ -684,5 +684,32 @@ namespace WingS.Controllers
 
         }
 
+        /// <summary>
+        /// Get all event sort by number user donated in this event
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult EventsSortByNumberUserDonatedIn()
+        {
+            try
+            {
+                List<EventBasicInfo> basicEventList;
+                using (var db = new EventDAL())
+                {
+                    basicEventList = db.GetEventSortByNumberOfDonator();
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Data = basicEventList
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
+
     }
 }
