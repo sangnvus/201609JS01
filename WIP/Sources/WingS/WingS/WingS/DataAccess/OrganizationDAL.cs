@@ -222,27 +222,27 @@ namespace WingS.DataAccess
                     RankingDTO rank = ranking.RankingWithPoint(org.Point);
                     if (rank.CurrentRank == 0)
                     {
-                        organizationBasic.CurrentRank = "New";
+                        organizationBasic.CurrentRank = "Mới";
                     }
                     else if (rank.CurrentRank == 200)
                     {
-                        organizationBasic.CurrentRank = "Bronze";
+                        organizationBasic.CurrentRank = "Đồng";
                     }
                     else if (rank.CurrentRank == 500)
                     {
-                        organizationBasic.CurrentRank = "Silver";
+                        organizationBasic.CurrentRank = "Bạc";
                     }
                     else if (rank.CurrentRank == 2000)
                     {
-                        organizationBasic.CurrentRank = "Golden";
+                        organizationBasic.CurrentRank = "Vàng";
                     }
                     else if (rank.CurrentRank == 5000)
                     {
-                        organizationBasic.CurrentRank = "Plantium";
+                        organizationBasic.CurrentRank = "Bạch Kim";
                     }
                     else if (rank.CurrentRank == 10000)
                     {
-                        organizationBasic.CurrentRank = "Diamon";
+                        organizationBasic.CurrentRank = "Kim Cương";
                     }
                     //get creator
                     using (var db = new UserDAL())

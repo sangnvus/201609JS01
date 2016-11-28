@@ -353,3 +353,24 @@ div.DTFC_LeftFootWrapper table {
 	border-color: #34495e;
     background-color: #34495e;
 }
+.table .label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+.table .label-primary {
+    background-color: #337ab7;
+}
+.table .label-danger {
+    background-color: red;
+}
+.nameAdmin {
+    font-weight: 600;
+}

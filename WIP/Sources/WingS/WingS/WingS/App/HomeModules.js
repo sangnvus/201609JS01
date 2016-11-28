@@ -82,18 +82,18 @@ app.config(function ($routeProvider) {
             title: "Thông tin cá nhân",
             controller: "ProfileController"
         })
-          .when("/Messages", {
-              templateUrl: "/Client/Messages",
-              resolve: {
-                  'check': function ($location, $window) {
-                      if ($window.sessionStorage.isAuthen == "false") {
-                          $location.path('/Login');
-                      }
-                  }
-              },
-              title: "Tin nhắn",
-              controller: "MessagesController"
-          })
+        .when("/Messages", {
+            templateUrl: "/Client/Messages",
+            resolve: {
+                'check': function($location, $window) {
+                    if ($window.sessionStorage.isAuthen == "false") {
+                        $location.path('/Login');
+                    }
+                }
+            },
+            title: "Tin nhắn",
+            controller: "MessagesController"
+        })
         .when("/CreateEvent", {
             templateUrl: "/Client/CreateEvent",
             resolve: {
@@ -114,7 +114,7 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/Donate",
             title: "Quyên góp",
             resolve: {
-                'check': function ($location, $window) {
+                'check': function($location, $window) {
                     if ($window.sessionStorage.isAuthen == "false") {
                         $location.path('/Login');
                     }
@@ -126,7 +126,7 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/DonationComplete",
             title: "Xác nhận giao dịch hoàn tất",
             resolve: {
-                'check': function ($location, $window) {
+                'check': function($location, $window) {
                     if ($window.sessionStorage.isAuthen == "false") {
                         $location.path('/Login');
                     }
@@ -154,6 +154,11 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/EditOrganization",
             title: "Chi tiết Tổ chức",
             controller: "EditOrganizationController"
+        })
+        .when("/Statistics", {
+            templateUrl: "/Client/Statistics",
+            title: "Thống kê",
+            controller: "StatisticsController"
         });
 });
 

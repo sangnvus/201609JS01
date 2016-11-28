@@ -216,7 +216,12 @@ namespace WingS.DataAccess
                 }
                 using (var db = new OrganizationDAL())
                 {
-                    currentUser.OrganazationName = db.GetOrganizationById(userId).OrganizationName;
+                    Organization org = db.GetOrganizationById(userId);
+                    if (org !=null)
+                    {
+                        currentUser.OrganazationName = org.OrganizationName;
+                    }
+                    
                     if (currentUser.OrganazationName == "") currentUser.OrganazationName = "Chưa có";
                 }
                 using (var db = new Ws_DataContext())
@@ -253,27 +258,27 @@ namespace WingS.DataAccess
                 currentUser.Point = userInformation.Point;
                 if (rank.CurrentRank==0)
                 {
-                    currentUser.CurrentRank = "New";
+                    currentUser.CurrentRank = "Mới";
                 }
                 else if (rank.CurrentRank == 200)
                 {
-                    currentUser.CurrentRank = "Bronze";
+                    currentUser.CurrentRank = "Đồng";
                 }
                 else if (rank.CurrentRank == 500)
                 {
-                    currentUser.CurrentRank = "Silver";
+                    currentUser.CurrentRank = "Bạc";
                 }
                 else if (rank.CurrentRank == 2000)
                 {
-                    currentUser.CurrentRank = "Golden";
+                    currentUser.CurrentRank = "Vàng";
                 }
                 else if (rank.CurrentRank == 5000)
                 {
-                    currentUser.CurrentRank = "Plantium";
+                    currentUser.CurrentRank = "Bạch Kim";
                 }
                 else if (rank.CurrentRank == 10000)
                 {
-                    currentUser.CurrentRank = "Diamon";
+                    currentUser.CurrentRank = "Kim Cương";
                 }
 
                 currentUser.RankPercent = rank.RankPercent;
@@ -531,7 +536,7 @@ namespace WingS.DataAccess
                 List<int> listUserId;
                 using (var db = new Ws_DataContext())
                 {
-                    listUserId = db.User_Information.OrderByDescending(x => x.Point).Select(x => x.UserID).Take(top).ToList();
+                    listUserId = db.Ws_User.Where(x => x.AccountType == false).Select(x => x.UserID).ToList();
                 }
 
                 foreach (int userId in listUserId)
@@ -546,7 +551,7 @@ namespace WingS.DataAccess
 
                 //throw;
             }
-            return topRankingUser;
+            return topRankingUser.OrderByDescending(x=>x.Point).ToList();
         }
 
         /// <summary>

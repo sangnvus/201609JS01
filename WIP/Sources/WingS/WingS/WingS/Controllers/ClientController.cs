@@ -138,5 +138,9 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Organization/_EditOrganization.cshtml");
         }
+        public ActionResult Statistics()
+        {
+            return PartialView("~/Views/Home/_Statistics.cshtml");
+        }
     }
 }
