@@ -251,7 +251,10 @@
                 <img src="{{item.UserImageProfile}}" style="width: 55px; height: 55px; margin-left: 85px;" class="img-rounded" alt=""/>
             </a>
             <div class="media-body">
-                <h4 class="media-heading">{{item.UserCommentedName}} <span><small>{{item.CommentedTime}}</small></span></h4>
+                <h4 class="media-heading">{{item.UserCommentedName}} <span><small>&nbsp;{{item.CommentedTime}}</small></span></h4>
+                <a ng-if="item.isDeleted" href="#" title="Xóa bình luận" ng-click="deleteComment(item.CommentId)" onclick="return false">
+                   <i class="fa fa-remove" style="color: gray;font-size: 18px;"></i>
+                </a>
                 <p style="margin-top: -6px;">{{item.Content}}</p>
             </div>
             <div class="media-footer">
@@ -279,13 +282,12 @@
                         <img src="{{subcomment.UserImageProfile}}" style="width: 45px; height: 45px; margin-left: 80px;" class="img-rounded" alt=""/>
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">{{subcomment.UserCommentedName}} <span><small>{{subcomment.CommentedTime}}</small></span></h4>
+                        <a ng-if="subcomment.isDeleted" href="#" title="Xóa bình luận" ng-click="deleteSubComment(subcomment.CommentId, item.CommentId, $index)" onclick="return false">
+                            <i class="fa fa-remove" style="color: gray;font-size: 18px;"></i>
+                        </a>
+                        <h4 class="media-heading">{{subcomment.UserCommentedName}} <span><small>&nbsp;{{subcomment.CommentedTime}}</small></span></h4>
                         <p style="margin-top: -6px;">{{subcomment.Content}}</p>
                     </div>
-                    @*<div class="media-footer">
-                        <a href="#" style="margin-left: -15px;" onclick=" return false; "> Thích </a> <span style="color: #2865a1;"> - </span>
-                        <span style="color: #999;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> 50</span>
-                    </div>*@
                 </div>
 
                 <div ng-if="User_Information.IsAuthen" style="margin-left: 134px; margin-top: 15px;">

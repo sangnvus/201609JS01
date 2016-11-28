@@ -258,20 +258,38 @@
         }).success(function (response) {
             $scope.MessageList = response.Data;
         });
-    //Send message 
-    $scope.sendMessage = function (titleMessage, content) {
+    //Delete Comment
+     $scope.deleteComment = function (CommentId) {
         $http({
-            url: "/api/Conservation/AddConservation",
-            method: "post",
-            data: { Title: titleMessage, Content: content, ReceiverName: $scope.Event.CreatorUserName },
+            url: "/api/Event/DeleteComment",
+            method: "GET",
+            params: { commentId: CommentId },
             contentType: "application/json",
         }).success(function (response) {
-            $(".modal-body").hide();
-            $(".sendMessage").hide();
-            $(".modal-message").show();
-            $(".closeForm").show();
+            //Reload Comment
+            $http({
+                url: "/api/Event/GetAllComment",
+                method: "GET",
+                params: { eventId: eventId },
+                contentType: "application/json",
+            }).success(function (response) {
+                $scope.CommentEvent = response.Data;
+                if (response.Data == null) $scope.NumberOfComment = 0;
+                $scope.NumberOfComment = $scope.CommentEvent.length;
+            });
         });
-    };
+     };
+    //Delete Comment
+     $scope.deleteSubComment = function (SubCommentId, Id, index) {
+         $http({
+             url: "/api/Event/DeleteSubComment",
+             method: "GET",
+             params: { subCommentId: SubCommentId },
+             contentType: "application/json",
+         }).success(function (response) {
+             LoadSubComment(Id, index);
+         });
+     };
     $scope.SkipValidation = function(value)
     {
         return $sce.trustAsHtml(value);

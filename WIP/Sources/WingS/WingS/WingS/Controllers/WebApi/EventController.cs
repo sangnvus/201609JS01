@@ -151,7 +151,7 @@ namespace WingS.Controllers
             using (var db = new EventDAL())
             {
 
-                var SubcommentList = db.GetSubCommentInEventById(CommentId);
+                var SubcommentList = db.GetSubCommentInEventById(CommentId, User.Identity.Name);
                 if (SubcommentList == null) return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
                 else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = SubcommentList });
             }
@@ -591,7 +591,38 @@ namespace WingS.Controllers
                 });
             }
         }
-      
+        [HttpGet]
+        public IHttpActionResult DeleteComment(int commentId)
+        {
+            using (var db = new EventDAL())
+            {
+                var result = db.DeleteComment(commentId, User.Identity.Name);
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data= result
+                });
+            }
+                   
+        }
+        [HttpGet]
+        public IHttpActionResult DeleteSubComment(int subCommentId)
+        {
+            using (var db = new EventDAL())
+            {
+                var result = db.DeleteSubComment(subCommentId, User.Identity.Name);
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = result
+                });
+            }
+
+        }
 
     }
 }

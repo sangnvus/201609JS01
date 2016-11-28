@@ -198,6 +198,11 @@ namespace WingS.DataAccess
                           }
                         }
                         else bs.isLiked = false;
+                        if (CurrenUser == item.UserId)
+                        {
+                            bs.isDeleted = true;
+                        }
+                        else bs.isDeleted = false; 
                         bs.Content = item.Content;
                         bs.NumberSubComment = item.Count;
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
@@ -235,8 +240,16 @@ namespace WingS.DataAccess
             }
 
         }
-        public List<BasicCommentThread> GetSubCommentInEventById(int CommentId)
+        public List<BasicCommentThread> GetSubCommentInEventById(int CommentId, string currentUserName)
         {
+            int CurrenUser = 0;
+            if (currentUserName != "")
+            {
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(currentUserName).UserID;
+                }
+            }
             List<BasicCommentThread> list = new List<BasicCommentThread>();
             using (var db = new Ws_DataContext())
             {
@@ -244,7 +257,7 @@ namespace WingS.DataAccess
                 {
                     var listComment = db.SubCommentEvent
                         .Where(x => x.Status == true && x.CommentEventId == CommentId)
-                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.CommentEventId, x.Content, x.CommentDate })
+                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.SubCommentEventId, x.Content, x.CommentDate })
                         .OrderByDescending(x => x.CommentDate).ToList();
                     foreach (var item in listComment)
                     {
@@ -252,7 +265,12 @@ namespace WingS.DataAccess
                         bs.UserCommentedId = item.UserId;
                         bs.UserCommentedName = item.UserName;
                         bs.UserImageProfile = item.ProfileImage;
-                        bs.CommentId = CommentId;
+                        bs.CommentId = item.SubCommentEventId;
+                        if (CurrenUser == item.UserId)
+                        {
+                            bs.isDeleted = true;
+                        }
+                        else bs.isDeleted = false;
                         bs.Content = item.Content;
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
                             bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
@@ -1004,12 +1022,56 @@ namespace WingS.DataAccess
                 //throw;
             }
         }
-		public void UpdateEvent(Event eventUpdate)
+        public void UpdateEvent(Event eventUpdate)
         {
             using (var db = new Ws_DataContext())
             {
                 db.Events.AddOrUpdate(eventUpdate);
                 db.SaveChanges();
+            }
+        }
+        public bool DeleteComment (int CommentId, string UserName)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var currentComment = (from p in db.CommentEvents
+                                     where p.CommentEventId == CommentId && p.Ws_User.UserName.Equals(UserName)
+                                     select p).FirstOrDefault();
+                if (currentComment != null)
+                {
+                    var subCommentInComment = (from p in db.SubCommentEvent
+                                                      where p.CommentEventId == currentComment.CommentEventId
+                                                      select p).ToList();
+                    if (subCommentInComment != null)
+                    {
+                        foreach (var item in subCommentInComment)
+                        {
+                            //Delete All SubComment First
+                            db.SubCommentEvent.Remove(item);
+                        }
+                    }
+                    //Delete Comment
+                    db.CommentEvents.Remove(currentComment);
+                    db.SaveChanges();
+                    return true;
+                }
+                else return false;
+            }
+        }
+        public bool DeleteSubComment(int SubCommentId, string UserName)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var currentComment = (from p in db.SubCommentEvent
+                                      where p.SubCommentEventId == SubCommentId && p.Ws_User.UserName.Equals(UserName)
+                                      select p).FirstOrDefault();
+                if (currentComment != null)
+                {
+                    db.SubCommentEvent.Remove(currentComment);
+                    db.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
         }
         public void Dispose()
