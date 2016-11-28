@@ -9,6 +9,7 @@
         public string buyer_mobile { get; set; }
         public string numberMoney { get; set; }
         public string inputMoney { get; set; }
+        public string DonateContent { get; set; }
         public string isPublic { get; set; }
         public int DonateEventId { get; set; }
         public int DonateUserId { get; set; }
@@ -22,6 +23,7 @@
             buyer_mobile = "";
             numberMoney = "";
             inputMoney = "";
+            DonateContent = "";
             isPublic = "";
             DonateEventId = 0;
             DonateUserId = 0;

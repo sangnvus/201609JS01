@@ -201,6 +201,7 @@ namespace WingS.DataAccess
                 newDonate.EventId = donationInfo.EventId;
                 newDonate.TradeCode = donationInfo.TradeCode;
                 newDonate.DonatedMoney = donationInfo.DonatedMoney;
+                newDonate.Content = donationInfo.Content;
                 newDonate.IsPublic = donationInfo.IsPublic;
                 newDonate.DonatedDate = DateTime.Now; ;
                 db.Donations.Add(newDonate);

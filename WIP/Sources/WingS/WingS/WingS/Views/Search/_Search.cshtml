@@ -22,7 +22,7 @@
                         <option value="organization">Tổ chức</option>
                     </select>
                     <input type="text" class="form-control search-box" placeholder="Nhập từ khóa để tìm kiếm" id="SearchKey" name="searchKey" required />
-                    <a class="btn btn-search" id="SearchBtn">Tìm kiếm</a>
+                    <button class="btn btn-search" id="SearchBtn">Tìm kiếm</button>
                 <div>
                     <h3 id="ErrorMessage2" style="color: red;"> </h3>
                     <p id="messageHelper" style="font-size: 120%;color: blue;"></p>
@@ -59,7 +59,7 @@
             }
         );
     });
-    $("#SearchBtn").click(function() {
+    function DoSearch() {
         $("#ErrorMessage2").html("");
         if ($("#SearchKey").val() === "") {
             document.getElementById('SearchKey').style = "border-color: red;";
@@ -67,79 +67,88 @@
             $("#ErrorMessage2").html("Xin hãy nhập dữ liệu để tìm kiếm!");
             return false;
         }
-        //} else if (!$("input:radio[name='searchType']").is(":checked")) {
-        //    $("#ErrorMessage2").html("Xin hãy chọn một mục để tìm kiếm!");
-        //    return false;
-        //}
+            //} else if (!$("input:radio[name='searchType']").is(":checked")) {
+            //    $("#ErrorMessage2").html("Xin hãy chọn một mục để tìm kiếm!");
+            //    return false;
+            //}
         else {
             $.ajax({
                 type: "GET",
                 url: "@Url.Content("/Search/SearchResult")",
                 datatype: "JSON",
-                data: {
-                    searchKey: $("#SearchKey").val(),
-                    searchType: $('select option:selected').val()
-                },
-                success: function (response) {
-                    debugger;
-                    var output = $("#resultDiv");
-                    output.empty();
-                    var result = "";
-                    if (response.status === "empty") {
-                        $("#ErrorMessage2").html("Không có kết quả nào khớp với từ khóa của bạn!");
-                        $("#messageHelper").html("");
-                        return false;
-                    } else if (response.status === "error") {
-                        $("#ErrorMessage2").html("Đã có lỗi xảy ra với server.Vui lòng thử lại sau!");
-                        $("#messageHelper").html("");
-                        return false;
-                    }
-                    //show thread result
-                    if (response.type === "thread") {
-                        for (var i = 0; i < response.data.length; i++) {
-                            var thread = response.data[i];
-                            result += '<div class = "searchImg">' + '<a href="/#/ThreadDetail/' + thread.ThreadID + '">' +
-                                '<img src="' + thread.ImageUrl + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="thread img"></a>' + '</div>' +
-                                '<div class = "searchContent"><b>Tiêu đề : </b>' + thread.ThreadName + '<br/>' +
-                                '<b> Nội dung : </b>' + thread.ShortDescription + '<br/>' +
-                                '<b> Ngày tạo : </b>' + thread.CreatedDate + '</div>' + '<hr style="margin-left:30px;" />';
-                        };
-                    } 
-                    else if (response.type === "user" || response.type === "userinfo") {
-                        for (var j = 0; j < response.data.length; j++) {
-                            var user = response.data[j];
-                            result += '<div class = "searchImg">' + '<a href="/#/Profile/' + user.UserName + '">' +
-                                '<img src="' + user.ProfileImage + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="Imgage of User"></a>' + '</div>' +
-                                '<div class = "searchContent"><b>Tên đầy đủ : </b>' + user.FullName + '<br/>' +
-                                '<b> Địa chỉ : </b>' + user.UserAddress + '<br/>' +
-                                '<b> Số điện thoại : </b>' + user.Phone + '<br/>' + '</div>' + '<hr style="margin-left:30px;" />';
-                        };
-                    }
-                    else if (response.type === "event") {
-                        for (var k = 0; k < response.data.length; k++) {
-                            var event = response.data[k];
-                            result += '<div class = "searchImg">' + '<a href="/#/EventDetail/' + event.EventID + '">' +
-                                '<img src="' + event.ImageUrl + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="event img"></a>' + '</div>' +
-                                '<div class = "searchContent"><b>Tên sự kiện : </b>' + event.EventName + '<br/>' +
-                                '<b> Nội dung : </b>' + event.ShortDescription + '<br/>' +
-                                '<b> Ngày tạo : </b>' + event.CreatedDate + '</div>' + '<hr style="margin-left:30px;" />';
-                        };
-                    }
-                    else if (response.type === "organization") {
-                        for (var l = 0; l < response.data.length; l++) {
-                            var organization = response.data[l];
-                            result += '<div class = "searchImg">' + '<a href="/#/OrganizationDetail/' + organization.OrganizationId + '">' +
-                                '<img src="' + organization.LogoUrl + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="organi img"></a>' + '</div>' +
-                                '<div class = "searchContent"><b>Tên tổ chức : </b>' + organization.OrganizationName + '<br/>' +
-                                '<b> Số điện thoaị : </b>' + organization.Phone + '<br/>' +
-                                '<b> Email : </b>' + organization.Email + '<br/>' + '</div>' + '<hr style="margin-left:30px;" />';
-                        };
-                    }
-                    $("#resultDiv").append(result);
+            data: {
+                searchKey: $("#SearchKey").val(),
+                searchType: $('select option:selected').val()
+            },
+            success: function (response) {
+                debugger;
+                var output = $("#resultDiv");
+                output.empty();
+                var result = "";
+                if (response.status === "empty") {
+                    $("#ErrorMessage2").html("Không có kết quả nào khớp với từ khóa của bạn!");
                     $("#messageHelper").html("");
+                    return false;
+                } else if (response.status === "error") {
+                    $("#ErrorMessage2").html("Đã có lỗi xảy ra với server.Vui lòng thử lại sau!");
+                    $("#messageHelper").html("");
+                    return false;
                 }
-            }); // end ajax
-            return true;
+                //show thread result
+                if (response.type === "thread") {
+                    for (var i = 0; i < response.data.length; i++) {
+                        var thread = response.data[i];
+                        result += '<div class = "searchImg">' + '<a href="/#/ThreadDetail/' + thread.ThreadID + '">' +
+                            '<img src="' + thread.ImageUrl + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="thread img"></a>' + '</div>' +
+                            '<div class = "searchContent"><b>Tiêu đề : </b>' + thread.ThreadName + '<br/>' +
+                            '<b> Nội dung : </b>' + thread.ShortDescription + '<br/>' +
+                            '<b> Ngày tạo : </b>' + thread.CreatedDate + '</div>' + '<hr style="margin-left:30px;" />';
+                    };
+                } 
+                else if (response.type === "user" || response.type === "userinfo") {
+                    for (var j = 0; j < response.data.length; j++) {
+                        var user = response.data[j];
+                        result += '<div class = "searchImg">' + '<a href="/#/Profile/' + user.UserName + '">' +
+                            '<img src="' + user.ProfileImage + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="Imgage of User"></a>' + '</div>' +
+                            '<div class = "searchContent"><b>Tên đầy đủ : </b>' + user.FullName + '<br/>' +
+                            '<b> Địa chỉ : </b>' + user.UserAddress + '<br/>' +
+                            '<b> Số điện thoại : </b>' + user.Phone + '<br/>' + '</div>' + '<hr style="margin-left:30px;" />';
+                    };
+                }
+                else if (response.type === "event") {
+                    for (var k = 0; k < response.data.length; k++) {
+                        var event = response.data[k];
+                        result += '<div class = "searchImg">' + '<a href="/#/EventDetail/' + event.EventID + '">' +
+                            '<img src="' + event.ImageUrl + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="event img"></a>' + '</div>' +
+                            '<div class = "searchContent"><b>Tên sự kiện : </b>' + event.EventName + '<br/>' +
+                            '<b> Nội dung : </b>' + event.ShortDescription + '<br/>' +
+                            '<b> Ngày tạo : </b>' + event.CreatedDate + '</div>' + '<hr style="margin-left:30px;" />';
+                    };
+                }
+                else if (response.type === "organization") {
+                    for (var l = 0; l < response.data.length; l++) {
+                        var organization = response.data[l];
+                        result += '<div class = "searchImg">' + '<a href="/#/OrganizationDetail/' + organization.OrganizationId + '">' +
+                            '<img src="' + organization.LogoUrl + '" class="img-polaroid" style="width: 160px;height: 110px;" alt="organi img"></a>' + '</div>' +
+                            '<div class = "searchContent"><b>Tên tổ chức : </b>' + organization.OrganizationName + '<br/>' +
+                            '<b> Số điện thoaị : </b>' + organization.Phone + '<br/>' +
+                            '<b> Email : </b>' + organization.Email + '<br/>' + '</div>' + '<hr style="margin-left:30px;" />';
+                    };
+                }
+                $("#resultDiv").append(result);
+                $("#messageHelper").html("");
+            }
+        }); // end ajax
+        return true;
+    }
+    }
+    $("#SearchBtn").click(function () {
+        DoSearch();
+    });
+    $("#SearchKey").keypress(function (event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            DoSearch();
         }
     });
 </script>

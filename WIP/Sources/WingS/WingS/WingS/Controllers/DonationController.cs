@@ -50,6 +50,7 @@ namespace WingS.Controllers
             newDonate.TradeCode = result.Token;
             newDonate.UserId = inputData.DonateUserId;
             newDonate.EventId = inputData.DonateEventId;
+            newDonate.Content = inputData.DonateContent;
             Session["DonatedInfo"] = newDonate;
             //return to checkout page or error page
             if (result.Error_code == "00")

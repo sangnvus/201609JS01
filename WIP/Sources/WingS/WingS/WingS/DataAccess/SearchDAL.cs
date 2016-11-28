@@ -32,10 +32,6 @@ namespace WingS.DataAccess
                             db.Threads.OrderByDescending(x => x.CreatedDate)
                             .Where(x => x.Status == true && (x.Title.Contains(currentTerm) || x.Etitle.Contains(currentTerm)));
                             listThreads.AddRange(topThread.ToList());
-                            if (listThreads.Count >= 20)
-                            {
-                                break;
-                            }
                         }
                     return listThreads;
                 }
@@ -93,10 +89,6 @@ namespace WingS.DataAccess
                                            p.UserAddress.Contains((currentTerm))
                                        select p).OrderByDescending(x => x.FullName);
                         listUsers.AddRange(dataget.ToList());
-                        if (listUsers.Count >= 20)
-                        {
-                            break;
-                        }
                     }
                     return listUsers;
                 }
@@ -126,10 +118,6 @@ namespace WingS.DataAccess
                         var currentTerm = term.Trim();
                         var dataget = (from p in db.Ws_User where p.UserName.Contains(currentTerm) || p.Email.Contains(currentTerm) select p);
                         listUsers.AddRange(dataget.ToList());
-                        if (listUsers.Count >= 20)
-                        {
-                            break;
-                        }
                     }
                     return listUsers;
                 }
@@ -161,10 +149,6 @@ namespace WingS.DataAccess
                             db.Events.OrderByDescending(x => x.Created_Date)
                                 .Where(x => x.Status == true && (x.EEventName.Contains(currentTerm) || x.EventName.Contains(currentTerm) || x.Location.Contains(currentTerm)));
                         listEvents.AddRange(Event.ToList());
-                        if (listEvents.Count >= 20)
-                        {
-                            break;
-                        }
                     }
                     return listEvents;
                 }
@@ -217,10 +201,6 @@ namespace WingS.DataAccess
                                         x.OrganizationName.Contains(currentTerm) || x.EOrganizationName.Contains(currentTerm) || x.Email.Contains(currentTerm) ||
                                         x.Phone.Contains(currentTerm) || x.Address.Contains(currentTerm));
                         listOrgs.AddRange(getOrg.ToList());
-                        if (listOrgs.Count >= 20)
-                        {
-                            break;
-                        }
                     }
                     return listOrgs;
                 }
