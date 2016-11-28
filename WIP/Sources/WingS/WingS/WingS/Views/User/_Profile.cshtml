@@ -100,8 +100,13 @@
 
     </div>
     <div class="buttonHover">
+        @{ if(User.Identity.Name!=""||User.Identity.IsAuthenticated)
+            {
         <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
-        <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport" style="margin-left: 31px;" ng-if="UserInfo.UserName!=User_Information.UserName" ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+        <a ng-if="checkReported" class="btn " href="#" onclick=" return false; " style="margin-left: 31px;" title="Bạn đã báo cáo người dùng này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+        <a ng-if="!checkReported" class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport" style="margin-left: 31px;" ng-if="UserInfo.UserName!=User_Information.UserName" ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+            }
+        }
         <a class="btn " id="updateUser" ng-click="enableButton()" href="#" onclick=" return false; " ng-if="UserInfo.UserName==User_Information.UserName"><i class="icon-edit"></i> Sửa thông tin</a>
         <a class="btn" id="saveUser" style="visibility: hidden;" ng-click="saveUser()" href="#" onclick=" return false; "><i class="fa fa-floppy-o"></i> Lưu</a>
     </div>

@@ -89,10 +89,17 @@
                         </div>
                         <br/>
                         <div class="buttonHover">
-                            <a class="btn " style="margin-left: 37px;" href="@Url.Content("/#/EditOrganization/{{currentOrg.OrganizationId}}")" ng-style="isOwnerOrg"><i class="icon-edit"></i> Sửa thông tin</a>
+                            <a class="btn " style="margin-left: 37px;" href="@Url.Content("/#/EditOrganization/{{currentOrg.OrganizationId}}")" ng-style="isOwnerOrg" ng-if="User_Information.OrganazationName==currentOrg.OrganizationName"><i class="icon-edit"></i> Sửa thông tin</a>
                             <br/>
-                            <a class="btn " href="#" style="margin-left: 31px;" ng-style="!isOwnerOrg"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
-                            <a class="btn " style="margin-left: 37px;" href="#" onclick=" return false;" data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
+                           @{ if (User.Identity.Name != "" || User.Identity.IsAuthenticated)
+                               {
+                                <span ng-if="User_Information.OrganazationName!=currentOrg.OrganizationName">
+                                <a ng-if="checkReported" class="btn " href="#" onclick=" return false; " style="margin-left: 31px;" title="Bạn đã báo cáo tổ chức này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+                                <a ng-if="!checkReported" class="btn " href="#" style="margin-left: 31px;" onclick="return false;" ng-click="getReportContent()" data-toggle="modal" data-target="#sendReport" ng-style="!isOwnerOrg"><i class="fa fa-flag-o" aria-hidden="true" ></i> Báo cáo</a>
+                                <a class="btn " style="margin-left: 37px;" href="#" onclick="return false;" data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
+                                </span>
+                                }
+                               }
                         </div>
 
 
@@ -104,10 +111,45 @@
                 <a class="btn btn-primary" href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()"><i class="icon-refresh icon-spin"></i> Xem thêm...</a>
             </div>
                 
+            <div class="modal fade" id="sendReport" role="dialog" hidden>
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Báo cáo người dùng này </h4>
+                        </div>
+                        <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                            Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
+                        </div>
+                        <div class="modal-body">
+                            <div class="radio" ng-repeat="item in ReportContent track by $index">
+                                <div ng-if="$index==0">
+                                    <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked">{{item}}</label>
+                                </div>
+                                <div ng-if="$index!=0">
+                                    <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)">{{item}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="sendMessage">
+                                <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
+                            </div>
+                            <div class="closeForm">
+                                <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
                
         </div>
-
+        <script>
+            $(".modal-message").hide();
+            $(".closeForm").hide();
+        </script>
             @Html.Partial("../Home/_Footer")
             <br /><br /><br />
         </div>

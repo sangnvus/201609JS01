@@ -142,6 +142,7 @@ namespace WingS.DataAccess
                                        ProfileImage = user.User_Information.ProfileImage,
                                        UserName = user.UserName,
                                        AccountType = user.AccountType,
+                                       OrganazationName = user.Organazation.OrganizationName,
                                        IsOrganazation = (user.Organazation != null&&user.Organazation.IsVerify == true) ? true : false                                   
                                  }).FirstOrDefault();
                 return currentUser;
@@ -222,8 +223,9 @@ namespace WingS.DataAccess
                 {
                     currentUser.JoinedDate = db.Ws_User.Where(x => x.UserID == userId).SingleOrDefault().CreatedDate.ToString("dd/mm/yyyy");
                 }
-                    //get ranking information
-                    WsRanking ranking = new WsRanking();
+
+                //get ranking information
+                WsRanking ranking = new WsRanking();
                 RankingDTO rank = ranking.RankingWithPoint(userInformation.Point);
                 //Set information for user which want to get
                 currentUser.UserId = userId;

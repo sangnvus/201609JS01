@@ -54,6 +54,14 @@ namespace WingS.DataHelper
             public static readonly string BAD_CONTENT = "Người dùng này có một số nội dung không phù hợp";
             public static readonly string OTHER = "Khác";
         }
+        public static class ReportOrg
+        {
+            public static readonly string BAD_RULE = "Tổ chức này vi phạm nội qui";
+            public static readonly string BAD_EVENT = "Tổ chức này có những sự kiện không hợp lệ";
+            public static readonly string BAD_CONTENT = "Tổ chức này có những sự kiện mang tính lừa đảo";
+            public static readonly string BAD_ACTION = "Tổ chức này có những hành xử không đúng";
+            public static readonly string OTHER = "Khác";
+        }
         public static class ReportType
         {
             public static readonly string REPORT_USER = "Ws_User";

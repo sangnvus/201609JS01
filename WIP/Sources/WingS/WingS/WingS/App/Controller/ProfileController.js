@@ -1,4 +1,4 @@
-﻿app.controller("ProfileController", function ($scope, $http, $routeParams) {
+﻿app.controller("ProfileController", function ($scope, $http, $routeParams,$rootScope) {
     var UserName = $routeParams.UserName;
 
     //Get info of User
@@ -22,6 +22,17 @@
         $scope.UserSignature = $scope.UserInfo.UserSignature;
         
     });
+    //Check current User reported this User or not
+    if ($rootScope.User_Information.IsAuthen == true && $rootScope.User_Information.UserName != UserName) {
+            $http({
+                url: "/api/Report/CheckCurrentUserReportedOrNot",
+                method: "GET",
+                params: { Type: "Ws_User", ReportTo: UserName },
+                contentType: "application/json",
+            }).success(function (response) {
+                $scope.checkReported = response.Data;
+            });
+        } 
     //Get created thread information
     $http({
         url: "/api/User/GetCreatedThreadOfUser",
@@ -54,6 +65,8 @@
             $(".closeForm").show();
         });
     };
+  
+    //Get report COntent from backend to bind to view
     $scope.getReportContent = function () {
         $http({
             url: "/api/Report/GetReportContentForUser",

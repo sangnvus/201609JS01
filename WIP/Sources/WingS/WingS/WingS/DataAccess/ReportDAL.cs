@@ -18,6 +18,17 @@ namespace WingS.DataAccess
                 return currentReport;
             }
         }
+        public bool CheckCurrentUserReportedOrNot(string Type,int ReportTo, string UserName)
+        {
+
+            using (var db = new Ws_DataContext())
+            {
+               int CurrentUserId = db.Ws_User.Where(x => x.UserName == UserName).FirstOrDefault().UserID;
+                var check = db.Reports.Where(x => x.UserId == CurrentUserId && x.ReportTo == ReportTo && x.Type == Type).SingleOrDefault();
+                if (check != null) return true;
+                else return false;
+            }
+        }
         public void Dispose()
         {
             
