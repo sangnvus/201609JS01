@@ -18,7 +18,7 @@ namespace WingS.Models
         public DateTime CreatedDate { get; set; }
         public string Content { get; set; }
         public bool Status { get; set; }
-        public virtual Conservation ConserVation { get; set; }
+        public virtual Conversation ConserVation { get; set; }
         public virtual Ws_User User { get; set;}
     }
 }

@@ -82,7 +82,7 @@ namespace WingS.ChatHub
                 db.SaveChanges();
                 using (var dbCurrent = new ConservationDAL())
                 {
-                    Conservation current = dbCurrent.GetConservationById(ConservationId);
+                    Conversation current = dbCurrent.GetConservationById(ConservationId);
                     current.UpdatedTime = DateTime.Now;
                     dbCurrent.UpdateTime(current);
                 }
@@ -105,7 +105,7 @@ namespace WingS.ChatHub
             using (var db = new Ws_DataContext())
             {
                 //Get Id of Receiver 
-                var Id = (from p in db.Conservation
+                var Id = (from p in db.Conversation
                           where p.ConservationId == ConservationId 
                           select new { p.CreatorId, p.ReceiverId } ).SingleOrDefault();
                 if(newMess.UserId==Id.CreatorId)

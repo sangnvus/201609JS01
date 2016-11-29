@@ -563,6 +563,7 @@ namespace WingS.DataAccess
                 eventInfo.Created_Date = DateTime.Now;
                 eventInfo.Updated_Date = DateTime.Now;
                 eventInfo.Status = true;
+                eventInfo.IsOpen = true;
                 return eventInfo;
             }
         }
@@ -590,6 +591,26 @@ namespace WingS.DataAccess
             using (var db = new Ws_DataContext())
             {
                 eventIdList = db.Events.OrderByDescending(x => x.Created_Date).Where(x => x.Status == true && x.CreatorID == organizationId).Select(x=>x.EventID).ToList();
+            }
+
+            return eventIdList.Select(GetFullEventBasicInformation).ToList();
+        }
+        public List<EventBasicInfo> GetEventsBelongToCreatorByPoint(int organizationId)
+        {
+            List<int> eventIdList;
+            using (var db = new Ws_DataContext())
+            {
+                eventIdList = db.Events.OrderByDescending(x => x.TotalPoint).Where(x => x.Status == true && x.CreatorID == organizationId).Select(x => x.EventID).ToList();
+            }
+
+            return eventIdList.Select(GetFullEventBasicInformation).ToList();
+        }
+        public List<EventBasicInfo> GetEventsBelongToCreatorByStatus(int organizationId, bool status)
+        {
+            List<int> eventIdList;
+            using (var db = new Ws_DataContext())
+            {
+                eventIdList = db.Events.OrderByDescending(x => x.Created_Date).Where(x => x.Status == true && x.CreatorID == organizationId&&x.IsOpen==status).Select(x => x.EventID).ToList();
             }
 
             return eventIdList.Select(GetFullEventBasicInformation).ToList();
@@ -689,6 +710,7 @@ namespace WingS.DataAccess
                 eventBasicInfo.Location = wsEvent.Location;
                 eventBasicInfo.VideoUrl = wsEvent.VideoUrl;
                 eventBasicInfo.Status = wsEvent.Status;
+                eventBasicInfo.IsOpen = wsEvent.IsOpen;
                 if (!wsEvent.Status)
                 {
                     eventBasicInfo.TimeStatus = "ban";

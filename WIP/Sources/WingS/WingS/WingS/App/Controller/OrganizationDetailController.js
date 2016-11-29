@@ -32,7 +32,7 @@
             $scope.isOwnerOrg = { "visibility": "hidden" };
         }
     });
-
+  
     $http({
         url: "/api/Organization/GetRankOfOrganization",
         method: "GET",
@@ -41,15 +41,8 @@
     }).success(function (response) {
         $scope.orgRank = response.Data;
     });
-
-    //Get event belong to Organization
-    $http({
-        url: "/api/Event/GetEventListOfOrganization",
-        method: "GET",
-        params: { orgId: organizationId },
-        contentType: "application/json"
-    }).success(function (response) {
-        $scope.eventsOfOrganization = response.Data;
+    function setLoadMore()
+    {
         var pageShow = 4;
         var index = 1;
         $scope.paginationLimit = function (data) {
@@ -61,6 +54,16 @@
         $scope.showMoreItems = function () {
             index = index + 1;
         };
+    }
+    //Get event belong to Organization
+    $http({
+        url: "/api/Event/GetEventListOfOrganization",
+        method: "GET",
+        params: { orgId: organizationId },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.eventsOfOrganization = response.Data;
+        setLoadMore();
     });
     //Get report content to bind to View
     $scope.getReportContent = function () {
@@ -70,6 +73,20 @@
             contentType: "application/json",
         }).success(function (response) {
             $scope.ReportContent = response.Data;
+        });
+    };
+    //Send message 
+    $scope.sendMessage = function (titleMessage, content) {
+        $http({
+            url: "/api/Conservation/AddConservation",
+            method: "post",
+            data: { Title: titleMessage, Content: content, ReceiverName: $scope.currentOrg.CreatorName },
+            contentType: "application/json",
+        }).success(function (response) {
+            $(".modal-message-body").hide();
+            $(".message-sendMessage").hide();
+            $(".modal-message-message").show();
+            $(".message-closeForm").show();
         });
     };
     $scope.setValue = function (setValue) {
@@ -88,15 +105,61 @@
             $(".closeForm").show();
         });
     };
-    //Get top event of Organization
-    
-    $http({
-        url: "/api/Event/GetTopOneViewedEventOfOrganization",
-        method: "GET",
-        params: { orgId: organizationId },
-        contentType: "application/json"
-    }).success(function (response) {
-        $scope.topEventsOfOrganization = response.Data;
-    });
+
+    //Sort when change dropdownlist
+    $scope.listOfOptions = ['Tất cả', 'Điểm', 'Đang diễn ra', 'Đã diễn ra'];
+    $scope.selectedItem = "Tất cả";
+    $scope.SortEvent = function () {
+        var sortOption = $scope.selectedItem;
+        if (sortOption === "Tất cả") {
+            $http({
+                url: "/api/Event/GetEventListOfOrganization",
+                method: "GET",
+                params: { orgId: organizationId },
+                contentType: "application/json"
+            }).success(function (response) {
+                $scope.eventsOfOrganization = response.Data;
+                setLoadMore();
+            });
+        }
+        else if (sortOption === "Điểm") {
+            $http({
+                url: "/api/Event/OrderEventListOfOrganizationByPoint",
+                method: "GET",
+                params: { orgId: organizationId },
+                contentType: "application/json"
+            }).success(function (response) {
+                $scope.eventsOfOrganization = response.Data;
+                setLoadMore();
+            });
+        }
+        else if (sortOption === "Đang diễn ra") {
+            $http({
+                url: "/api/Event/OrderEventListOfOrganizationByStatus",
+                method: "GET",
+                params: { orgId:organizationId,isStatus: true },
+                contentType: "application/json"
+            }).success(function (response) {
+                $scope.eventsOfOrganization = response.Data;
+                setLoadMore();
+            });
+        }
+        else (sortOption === "Đã diễn ra")
+        {
+            $http({
+                url: "/api/Event/OrderEventListOfOrganizationByStatus",
+                method: "GET",
+                params: { orgId: organizationId, isStatus: false },
+                contentType: "application/json"
+            }).success(function (response) {
+                $scope.eventsOfOrganization = response.Data;
+                setLoadMore();
+            });
+
+        }
+        //Load Event follow number of follower
+
+    };
+
 
 });

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace WingS.Models
 {
-    public class Conservation
+    public class Conversation
     {
         [Key]
         public int ConservationId { get; set; }

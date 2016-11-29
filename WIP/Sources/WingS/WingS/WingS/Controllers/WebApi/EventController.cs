@@ -521,6 +521,66 @@ namespace WingS.Controllers
                 });
             }
         }
+        [HttpGet]
+        public IHttpActionResult OrderEventListOfOrganizationByPoint(int orgId)
+        {
+            try
+            {
+                List<EventBasicInfo> eventListBasicInfo;
+                using (var db = new EventDAL())
+                {
+                    eventListBasicInfo = db.GetEventsBelongToCreatorByPoint(orgId);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = eventListBasicInfo
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
+        [HttpGet]
+        public IHttpActionResult OrderEventListOfOrganizationByStatus(int orgId, bool isStatus)
+        {
+            try
+            {
+                List<EventBasicInfo> eventListBasicInfo;
+                using (var db = new EventDAL())
+                {
+                    eventListBasicInfo = db.GetEventsBelongToCreatorByStatus(orgId, isStatus);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = eventListBasicInfo
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
 
         public IHttpActionResult GetTopOneViewedEventOfOrganization(int orgId)
         {

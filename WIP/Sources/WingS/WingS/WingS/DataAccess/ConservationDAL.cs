@@ -10,28 +10,28 @@ namespace WingS.DataAccess
 {
     public class ConservationDAL : IDisposable
     {
-       public Conservation AddNewConservation(Conservation newConservation)
+       public Conversation AddNewConservation(Conversation newConservation)
         {
             using (var db = new Ws_DataContext())
             {
-                var returnedConservation = db.Conservation.Add(newConservation);
+                var returnedConservation = db.Conversation.Add(newConservation);
                 db.SaveChanges();
                 return returnedConservation;
             }
         }
-        public Conservation GetConservationById(int Id)
+        public Conversation GetConservationById(int Id)
         {
             using (var db = new Ws_DataContext())
             {
-                var returnedConservation = db.Conservation.Where(x => x.ConservationId == Id).SingleOrDefault();
+                var returnedConservation = db.Conversation.Where(x => x.ConservationId == Id).SingleOrDefault();
                 return returnedConservation;
             }
         }
-        public void UpdateTime(Conservation currentConservation)
+        public void UpdateTime(Conversation currentConservation)
         {
             using (var db = new Ws_DataContext())
             {
-                db.Conservation.AddOrUpdate(currentConservation);
+                db.Conversation.AddOrUpdate(currentConservation);
                 db.SaveChanges();
             }
           
@@ -73,7 +73,7 @@ namespace WingS.DataAccess
             List<ConservationBasicInfoDTO> ConservationList = new List<ConservationBasicInfoDTO>();
             using (var db = new Ws_DataContext())
             {
-                var list = (from p in db.Conservation
+                var list = (from p in db.Conversation
                             where p.CreatorId == CurrenUser || p.ReceiverId == CurrenUser
                             select p).OrderByDescending(x=>x.UpdatedTime).ToList();
                 foreach (var item in list)

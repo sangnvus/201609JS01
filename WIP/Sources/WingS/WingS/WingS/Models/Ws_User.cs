@@ -28,8 +28,8 @@
         public virtual ICollection<Thread> Threads { get; set; }
         public virtual User_Information User_Information { get; set; }
         public virtual Organization Organazation { get; set; }
-        public virtual ICollection<Conservation> CreatorConservation { get; set; }
-        public virtual ICollection<Conservation> ReceiverConservation { get; set; }
+        public virtual ICollection<Conversation> CreatorConservation { get; set; }
+        public virtual ICollection<Conversation> ReceiverConservation { get; set; }
         public virtual ICollection<Message> Message { get; set; }
         public virtual ICollection<PublicMessageDetail> PublicMessage{ get; set; }
         public virtual ICollection<Connection> Connection { get; set; }

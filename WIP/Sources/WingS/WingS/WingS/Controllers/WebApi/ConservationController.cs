@@ -17,7 +17,7 @@ namespace WingS.Controllers.WebApi
         {
             int receiverId = 0;
             int CurrentUser = 0;
-            Conservation returnedConservation;
+            Conversation returnedConservation;
        try {
             using (var db = new UserDAL())
             {
@@ -25,7 +25,7 @@ namespace WingS.Controllers.WebApi
                 receiverId = db.GetUserByUserNameOrEmail(newConservation.ReceiverName).UserID;
             }
             //Add conservation
-            var conservation = new Conservation
+            var conservation = new Conversation
             {
                 CreatorId = CurrentUser,
                 ReceiverId = receiverId,
@@ -100,7 +100,7 @@ namespace WingS.Controllers.WebApi
             using (var db = new ConservationDAL())
             {
                 db.AddNewMessage(mess);
-                Conservation current = db.GetConservationById(ConservationId);
+                Conversation current = db.GetConservationById(ConservationId);
                 current.UpdatedTime = DateTime.Now;
                 db.UpdateTime(current);
             }

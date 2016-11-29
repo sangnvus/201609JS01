@@ -27,6 +27,7 @@
         public string VideoUrl { get; set; }
         public double ExpectedMoney { get; set; }
         public int TotalPoint { get; set; }
+        public bool IsOpen { get; set; }
         public bool Status { get; set; }
         public virtual ICollection<CommentEvent> CommentEvents { get; set; }
         public virtual ICollection<Donation> Donations { get; set; }

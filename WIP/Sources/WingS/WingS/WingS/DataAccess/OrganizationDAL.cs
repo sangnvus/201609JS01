@@ -197,12 +197,11 @@ namespace WingS.DataAccess
             try
             {
                 Organization org = GetOrganizationById(orgId);
-                
-                
 
                 organizationBasic.OrganizationId = orgId;
                 if (org != null)
                 {
+
                     organizationBasic.OrganizationName = org.OrganizationName;
                     organizationBasic.Introduction = org.Introduction;
                     organizationBasic.LogoUrl = org.LogoUrl;
@@ -213,8 +212,13 @@ namespace WingS.DataAccess
                     organizationBasic.IsVerify = org.IsVerify;
                     organizationBasic.CreatedDate = org.CreatedDate.ToString("H:mm:ss dd/MM/yy");
                     organizationBasic.Point = org.Point;
+                    using (var db = new Ws_DataContext())
+                    {
+                        organizationBasic.CreatorName = db.Organizations.Where(x => x.OrganizationId == orgId).SingleOrDefault().Ws_User.UserName;
+                        organizationBasic.NumberOfEvent = db.Events.Where(x => x.CreatorID == organizationBasic.OrganizationId).Count();
+                    }
 
-                    WsRanking ranking = new WsRanking();
+                        WsRanking ranking = new WsRanking();
                     RankingDTO rank = ranking.RankingWithPoint(org.Point);
                     if (rank.CurrentRank == 0)
                     {
