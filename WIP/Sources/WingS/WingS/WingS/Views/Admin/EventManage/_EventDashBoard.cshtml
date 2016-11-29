@@ -14,7 +14,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index-2.html">Sự kiện</a>
+                                <i class="fa fa-dashboard"></i>  <a href="/Admin/#/DashBoard">Sự kiện</a>
                             </li>
                             <li class="active">Thống kê sự kiện</li>
                         </ol>
@@ -56,19 +56,20 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="x in TopNewEvent">
-                                                <td>
-                                                    <a href="@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")">
-                                                        <h4>{{x.EventName}}</h4>
+                                                <td class="nameAdmin">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{x.MainImageUrl}}" alt="">
                                                     </a>
+                                                    <p> {{x.EventName}}</p>
                                                 </td>
                                                 <td>{{x.EventType}}</td>
                                                 <td>{{x.CreatedDate}}</td>
                                                 <td>{{x.Location}}</td>
                                                 <td>
-                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'process'">Đang hoạt động</span>
-                                                    <span class="label center-block btn-danger" ng-if="x.TimeStatus == 'ban'">Bị Cấm</span>
-                                                    <span class="label center-block btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
-                                                    <span class="label center-block btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>
+                                                    <span class="label btn-green" ng-if="x.TimeStatus == 'process'">Đang hoạt động</span>
+                                                    <span class="label btn-danger" ng-if="x.TimeStatus == 'ban'">Bị Cấm</span>
+                                                    <span class="label btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
+                                                    <span class="label btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -106,19 +107,20 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="x in TopHotEvent">
-                                                <td>
-                                                    <a href="@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")">
-                                                        <h4>{{x.EventName}}</h4>
+                                                <td class="nameAdmin">
+                                                    <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{x.EventID}}")">
+                                                        <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{x.MainImageUrl}}" alt="">
                                                     </a>
+                                                    <p> {{x.EventName}}</p>
                                                 </td>
                                                 <td>{{x.EventType}}</td>
                                                 <td>{{x.Location}}</td>
                                                 <td>{{x.ExpectedMoney}} Vnđ</td>
                                                 <td>
-                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'process'">Đang hoạt động</span>
-                                                    <span class="label center-block btn-danger" ng-if="x.TimeStatus == 'ban'">Bị Cấm</span>
-                                                    <span class="label center-block btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
-                                                    <span class="label center-block btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>
+                                                    <span class="label btn-green" ng-if="x.TimeStatus == 'process'">Đang hoạt động</span>
+                                                    <span class="label btn-danger" ng-if="x.TimeStatus == 'ban'">Bị Cấm</span>
+                                                    <span class="label btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
+                                                    <span class="label btn-orange" ng-if="x.TimeStatus == 'income'">Sắp diễn ra</span>
                                                 </td>
                                             </tr>
                                         </tbody>

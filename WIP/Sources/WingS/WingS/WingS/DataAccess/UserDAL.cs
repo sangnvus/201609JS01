@@ -551,7 +551,7 @@ namespace WingS.DataAccess
 
                 //throw;
             }
-            return topRankingUser.OrderByDescending(x=>x.Point).ToList();
+            return topRankingUser.OrderByDescending(x => x.Point).Take(top).ToList();
         }
 
         /// <summary>

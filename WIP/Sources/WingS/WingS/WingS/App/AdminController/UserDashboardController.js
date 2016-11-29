@@ -23,8 +23,12 @@
     });
 
     // Load information of user who in top 5 rank
-    $http.get("/api/AdminUserDashboard/GetTopFiveRankUser").success(function (response) {
+    $http({
+        url: "/api/AdminUserDashboard/GetTopRankUser",
+        method: "GET",
+        params: { top: 5 },
+        contentType: "application/json"
+    }).success(function (response) {
         $scope.TopFiveRankingUser = response.Data;
-
     });
 });

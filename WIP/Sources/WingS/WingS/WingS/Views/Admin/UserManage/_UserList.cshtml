@@ -14,7 +14,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="index-2.html">Thống kê</a>
+                            <i class="fa fa-dashboard"></i> <a href="/Admin/#/DashBoard">Thống kê</a>
                         </li>
                         <li class="active">Danh sách thành viên</li>
                     </ol>
@@ -39,24 +39,28 @@
                     </div>
                     <div class="portlet-body">
                         <div class="table-responsive">
-                            <table datatable="ng" id="thitcho" class="table table-striped table-bordered table-hover table-green">
+                            <table datatable="ng" id="" class="table table-striped table-bordered table-hover table-green">
                                 <thead>
                                 <tr>
-                                    <th style="width: 80px;">STT</th>
-                                    <th style="width: 220px;">Họ và tên</th>
-                                    <th style="width: 220px;">Tên đăng nhập</th>
-                                    <th style="width: 220px;">Địa chỉ Email</th>
+                                    <th style="width: 30px;">STT</th>
+                                    <th style="">Tên đăng nhập</th>
+                                    <th style="">Họ và tên</th>
+                                    <th style="">Địa chỉ Email</th>
                                     <th style="">Loại tài khoản</th>
                                     <th>Ngày tạo</th>
                                     <th>Trạng thái</th>
-                                    <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr class="gradeX" ng-repeat="x in UserList">
-                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{$index + 1}}</td>
+                                    <td class="nameAdmin">
+                                        <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{x.UserId}}")">
+                                            <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{x.ProfileImage}}" alt="">
+                                        </a>
+                                        <p>{{x.UserName}}</p>
+                                    </td>
                                     <td>{{ x.FullName }}</td>
-                                    <td>{{ x.UserName }}</td>
                                     <td>{{ x.Email }}</td>
                                     <td>
                                         <p ng-if="x.AccountType">Admin</p>
@@ -64,12 +68,9 @@
                                     </td>
                                     <td>{{ x.CreateDate }}</td>
                                     <td>
-                                        <button class="btn btn-default" style="width: 125px" ng-if="!x.IsVerify">Chưa kích hoạt</button>
-                                        <button class="btn btn-green" style="width: 125px" ng-if="x.IsActive && x.IsVerify" ng-click="ban($index,x.UserId)">Đang hoạt động</button>
+                                        <button class="btn btn-warning" style="width: 125px" ng-if="!x.IsVerify">Chưa kích hoạt</button>
+                                        <button class="btn btn-primary" style="width: 125px" ng-if="x.IsActive && x.IsVerify" ng-click="ban($index,x.UserId)">Đang hoạt động</button>
                                         <button class="btn btn-danger" style="width: 125px" ng-if="!x.IsActive && x.IsVerify" ng-click="unBan($index,x.UserId)">Bị cấm</button>
-                                    </td>
-                                    <td>
-                                        <a href=@Url.Content("/Admin/#/UserProfile/{{x.UserName}}")><button class="btn btn-blue">Xem chi tiết</button></a>
                                     </td>
                                 </tr>
                                 </tbody>

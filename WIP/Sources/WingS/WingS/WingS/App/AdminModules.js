@@ -73,6 +73,11 @@ app.config(function ($routeProvider) {
             templateUrl: "/Admin/OrganizationList",
             controller: "AdminOrganizationListController"
         })
+        .when("/RegisterOrganization", {
+            tittle: "Danh sách đăng ký",
+            templateUrl: "/Admin/RegisterOrganization",
+            controller: "AdminRegisterOrganizationController"
+        })
         .when("/OrganizationDetail/:OrganizationID", {
             tittle: "Chi tiết sự kiện",
             templateUrl: "/Admin/OrganizationDetail",

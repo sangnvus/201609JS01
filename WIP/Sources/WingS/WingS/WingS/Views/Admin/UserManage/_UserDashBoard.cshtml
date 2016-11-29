@@ -14,7 +14,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="#">Thống kê</a>
+                                <i class="fa fa-dashboard"></i>  <a href="/Admin/#/DashBoard">Thống kê</a>
                             </li>
                             <li class="active">Thống kê thành viên</li>
                         </ol>
@@ -36,18 +36,18 @@
                             <div class="portlet-title">
                                 <h4><i class="fa fa-exchange fa-fw"></i> Quyên góp nhiều nhất</h4>
                             </div>
-                            <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet2"><i class="fa fa-chevron-down"></i></a> </div>
+                            <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet1" onclick="return false"><i class="fa fa-chevron-down"></i></a> </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div id="transactionsPortlet2" class="panel-collapse collapse in">
+                        <div id="transactionsPortlet1" class="panel-collapse collapse in">
                             <div class="portlet-body">
                                 <div class="table-responsive dashboard-demo-table">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
                                                 <th style="width: 25px;">STT</th>
-                                                <th style="width: 200px;">Họ và tên</th>
-                                                <th style="width: 125px;">Tên đăng nhập</th>
+                                                <th style="width: 200px;">Tên đăng nhập</th>
+                                                <th style="width: 125px;">Họ và tên</th>
                                                 <th style="width: 128px;">Tổng số sự kiện</th>
                                                 <th style="width: 128px;">Tổng số tiền</th>
                                                 <th style="width: 152px;">Lần quyên góp cuối</th>
@@ -58,13 +58,13 @@
                                         <tbody>
                                             <tr ng-repeat="item in TopFiveDonator">
                                                 <td>{{$index + 1}}</td>
-                                                <td>
+                                                <td class="nameAdmin">
                                                     <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
                                                         <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
                                                     </a>
-                                                    <h4>{{item.FullName}}</h4>
+                                                    <p> {{item.UserName}}</p>
                                                 </td>
-                                                <td>{{item.UserName}}</td>
+                                                <td>{{item.FullName}}</td>
                                                 <td>{{item.NumberEventDonatedIn}}</td>
                                                 <td>{{item.TotalMoneyDonatedIn}}&nbsp;vnd</td>
                                                 <td>{{item.LastDonateMoney}}</td>
@@ -95,45 +95,43 @@
             <!-- Recent user and top Created thread -->
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="portlet portlet-blue">
+                    <div class="portlet portlet-green">
                         <div class="portlet-heading">
                             <div class="portlet-title">
                                 <h4><i class="fa fa-exchange fa-fw"></i> Tạo nhiều bài viết nhất</h4>
                             </div>
-                            <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a> </div>
+                            <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet2" onclick="return false"><i class="fa fa-chevron-down"></i></a> </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div id="transactionsPortlet3" class="panel-collapse collapse in">
+                        <div id="transactionsPortlet2" class="panel-collapse collapse in">
                             <div class="portlet-body">
                                 <div class="table-responsive dashboard-demo-table">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th style="width: 125px">Họ và tên</th>
-                                                <th>Tên đăng nhập</th>
-                                                <th style="width: 125px">Địa chỉ Email</th>
-                                                <th>Số bài viết</th>
+                                                <th style="">Tên đăng nhập</th>
+                                                <th style="">Địa chỉ Email</th>
+                                                <th style="width: 59px;">Số bài viết</th>
                                                 <th>Trạng thái</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="item in TopFiveUserCreateThread">
-                                                <td>
+                                                <td class="nameAdmin">
                                                     <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
                                                         <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
                                                     </a>
-                                                    <h4>{{item.FullName}}</h4>
+                                                    <p>{{item.UserName}}</p>
                                                 </td>
-                                                <td>{{item.UserName}}</td>
                                                 <td>{{item.Email}}</td>
                                                 <td>{{item.NumberOfPost}}</td>
                                                 <td ng-switch="item.IsVerify">
                                                     <div ng-switch-when="false">
-                                                        <a class="btn btn-xs btn-warning">Chưa kích hoạt</a>
+                                                        <a class="label label-warning">Chưa kích hoạt</a>
                                                     </div>
                                                     <div ng-switch-when="true" ng-switch="item.IsActive">
-                                                        <a class="btn btn-xs btn-green" ng-switch-when="true">Đang hoạt động</a>
-                                                        <a class="btn btn-xs btn-danger" ng-switch-when="false">Bị cấm</a>
+                                                        <a class="label label-primary" ng-switch-when="true">Đang hoạt động</a>
+                                                        <a class="label label-danger" ng-switch-when="false">Bị cấm</a>
                                                     </div>
 
                                                 </td>
@@ -149,12 +147,12 @@
                 <!-- end top creators -->
                 <!-- Top Rank -->
                 <div class="col-lg-6">
-                    <div class="portlet portlet-orange">
+                    <div class="portlet portlet-green">
                         <div class="portlet-heading">
                             <div class="portlet-title">
                                 <h4><i class="fa fa-exchange fa-fw"></i> Xếp hạng cao nhất</h4>
                             </div>
-                            <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3"><i class="fa fa-chevron-down"></i></a>
+                            <div class="portlet-widgets"> <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet3" onclick="return false"><i class="fa fa-chevron-down"></i></a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -164,8 +162,7 @@
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead>
                                         <tr>
-                                            <th style="width: 125px">Họ và tên</th>
-                                            <th>Tên đăng nhập</th>
+                                            <th style="width: 120px">Tên đăng nhập</th>
                                             <th>Điểm số</th>
                                             <th>Xếp hạng</th>
                                             <th>Trạng thái</th>
@@ -173,22 +170,21 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="item in TopFiveRankingUser">
-                                                <td>
+                                                <td class="nameAdmin">
                                                     <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
                                                         <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
                                                     </a>
-                                                    <h4>{{item.FullName}}</h4>
+                                                    <p>{{item.UserName}}</p>
                                                 </td>
-                                                <td>{{item.UserName}}</td>
                                                 <td>{{item.Point}}</td>
                                                 <td>{{item.CurrentRank}}</td>
                                                 <td ng-switch="item.IsVerify">
                                                     <div ng-switch-when="false">
-                                                        <a class="btn btn-xs btn-warning">Chưa kích hoạt</a>
+                                                        <a class="label label-warning">Chưa kích hoạt</a>
                                                     </div>
                                                     <div ng-switch-when="true" ng-switch="item.IsActive">
-                                                        <a class="btn btn-xs btn-green" ng-switch-when="true">Đang hoạt động</a>
-                                                        <a class="btn btn-xs btn-danger" ng-switch-when="false">Bị cấm</a>
+                                                        <a class="label label-primary" ng-switch-when="true">Đang hoạt động</a>
+                                                        <a class="label label-danger" ng-switch-when="false">Bị cấm</a>
                                                     </div>
 
                                                 </td>
