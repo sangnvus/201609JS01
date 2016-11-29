@@ -104,5 +104,59 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
             }
         }
+
+
+        /// <summary>
+        /// Accept an organization ( make it active )
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult AcceptingOrganization(int organizationId)
+        {
+            try
+            {
+                using (var db = new OrganizationDAL())
+                {
+                    var org = db.GetOrganizationById(organizationId);
+                    org.IsVerify = true;
+                    org.IsActive = true;
+
+                    db.UpdateOrganization(org);
+                }
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = true });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
+
+        /// <summary>
+        /// cancel create organization request
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult CancelCreateOrganizationRequest(int organizationId)
+        {
+            try
+            {
+                bool isSuccess;
+                // Delete create request
+                using (var db = new OrganizationDAL())
+                {
+                    isSuccess = db.DeleteOrganization(organizationId);
+                }
+
+                //Send mail to Creator
+
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = isSuccess });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
     }
 }

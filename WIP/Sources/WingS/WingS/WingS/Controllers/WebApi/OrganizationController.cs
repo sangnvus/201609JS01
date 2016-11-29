@@ -217,5 +217,42 @@ namespace WingS.Controllers.WebApi
                 });
             }
         }
+
+        /// <summary>
+        /// get all organization which is waiting admin's acception
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetAllOrganizationWaitForAccept()
+        {
+            try
+            {
+                List<OrganizationBasicInfo> orgList;
+
+                using (var db = new OrganizationDAL())
+                {
+                    orgList = db.GetAllOrganizationWaitForAcception();
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = orgList
+                });
+            }
+            catch (Exception)
+            {
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "",
+                    Type = ""
+                });
+            }
+        }
+
     }
 }
