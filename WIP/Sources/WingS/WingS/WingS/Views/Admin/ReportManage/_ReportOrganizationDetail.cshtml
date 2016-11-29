@@ -17,7 +17,10 @@
                                 <i class="fa fa-dashboard"></i> <a href="/Admin/#/DashBoard">Thống kê</a>
                             </li>
                             <li><a href="#" onclick="return false">Báo cáo</a></li>
-                            <li class="active">Báo cáo tổ chức</li>
+                            <li>
+                                <a href="/Admin/#/ReportUser">Báo cáo tổ chức</a>
+                            </li>
+                            <li class="active">Chi tiết</li>
                         </ol>
                     </div>
                 </div>
@@ -32,7 +35,11 @@
                     <div class="portlet portlet-default">
                         <div class="portlet-heading">
                             <div class="portlet-title">
-                                <h4>Danh sách báo cáo</h4>
+                                <h4>Báo cáo chi tiết</h4>
+                            </div>
+                            <div class="portlet-widgets">
+                                <button class="btn btn-blue">Đồng ý</button>
+                                <button class="btn btn-purple">Từ chối</button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -41,47 +48,21 @@
                                 <table datatable="ng" id="example-table" class="table table-striped table-bordered table-hover table-green">
                                     <thead>
                                         <tr>
-                                            <th>Tổ chức bị báo cáo</th>
-                                            <th>Số lần bị báo cáo</th>
-                                            <th>Trạng thái</th>
-                                            <th>Hành động</th>
+                                            <th>Người báo cáo</th>
+                                            <th>Lý do</th>
+                                            <th>Ngày báo cáo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="nameAdmin">
-                                                <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
-                                                </a>
-                                                <p>&nbsp;{{item.UserName}}</p>
-                                            </td>
-                                            <td>20</td>
-                                            <td>
-                                                <a class="btn btn-xs btn-warning">Chờ xử lý</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-blue" href="/Admin/#/ReportOrganizationDetail">Xem chi tiết</a>
-                                            </td>
+                                            <td><a href="userprofile.html">test test test</a></td>
+                                            <td><a href="userprofile.html">test test test</a></td>
+                                            <td>12/12/16</td>
                                         </tr>
                                         <tr>
+                                            <td><a href="userprofile.html">test test test</a></td>
                                             <td><a href="userprofile.html">test test test</a></td>
                                             <td>10</td>
-                                            <td>
-                                                <a class="btn btn-xs btn-green">Đồng ý</a>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="userprofile.html">test test test</a></td>
-                                            <td>115</td>
-                                            <td>
-                                                <a class="btn btn-xs btn-default">Từ chối</a>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -108,3 +89,4 @@
     <!-- THEME SCRIPTS -->
     <script src="~/Content/Admin/js/flex.js"></script>
 </body>
+

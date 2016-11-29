@@ -88,9 +88,19 @@ app.config(function ($routeProvider) {
             templateUrl: "/Admin/ReportUser",
             controller: "AdminReportUserController"
         })
+        .when("/ReportUserDetail", {
+            tittle: "Báo cáo người dùng",
+            templateUrl: "/Admin/ReportUserDetail",
+            controller: "AdminReportUserController"
+        })
         .when("/ReportOrganization", {
             tittle: "Báo cáo tổ chức",
             templateUrl: "/Admin/ReportOrganization",
+            controller: "AdminReportOrganizationController"
+        })
+        .when("/ReportOrganizationDetail", {
+            tittle: "Báo cáo tổ chức",
+            templateUrl: "/Admin/ReportOrganizationDetail",
             controller: "AdminReportOrganizationController"
         })
         .when("/ReportThread", {
