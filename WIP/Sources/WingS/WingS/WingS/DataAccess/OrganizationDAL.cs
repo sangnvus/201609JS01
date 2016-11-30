@@ -423,6 +423,64 @@ namespace WingS.DataAccess
             return organ;
         }
 
+        /// <summary>
+        /// get all organization wait for accept
+        /// </summary>
+        /// <returns></returns>
+        public List<OrganizationBasicInfo> GetAllOrganizationWaitForAcception()
+        {
+            List<OrganizationBasicInfo> orgList = new List<OrganizationBasicInfo>();
+
+            try
+            {
+                List<int> orgIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    orgIdList = db.Organizations.Where(x=>x.IsVerify==false).Select(x => x.OrganizationId).ToList();
+                }
+
+                orgList.AddRange(orgIdList.Select(GetFullOrganizationBasicInformation));
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+
+            return orgList;
+        }
+
+        /// <summary>
+        /// Delete orgaization with id
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public bool DeleteOrganization(int orgId)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    Organization organization = db.Organizations.FirstOrDefault(x => x.OrganizationId == orgId);
+                        
+                    if (organization != null)
+                    {
+                        db.Organizations.Remove(organization);
+                        db.SaveChanges();
+                        return true;
+                    }
+
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+                //throw;
+            }
+            
+        }
+
         public void Dispose()
         {
            

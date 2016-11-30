@@ -25,6 +25,16 @@
     margin-top: -8px;
     font-size: 13px;
 }
+.btnDelete {
+    color: white;
+}
+.btnDelete p {
+    color: #333;
+}
+.btnDelete:hover {
+    color: #999;
+}
 .fa-remove:hover {
-    background-color: #999;
+    background-color: white;
+    color: gray;
 }

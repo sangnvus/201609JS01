@@ -68,7 +68,7 @@ namespace WingS.Controllers
         }
         public ActionResult RegisterOrganization()
         {
-            return PartialView("~/Views/Admin/OrganizationManage/_RegisterOrganization.cshtml");
+            return PartialView("~/Views/Admin/OrganizationManage/_OrganizationRegister.cshtml");
         }
         public ActionResult OrganizationDetail()
         {

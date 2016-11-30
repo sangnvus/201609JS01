@@ -255,14 +255,14 @@
                     {{item.UserCommentedName}}
                     <span><small>&nbsp;{{item.CommentedTime}}</small></span>
                 </h4>
-                <span style="margin-top: -5px; height: 18px;" class="pull-right" ng-if="item.isDeleted" href="#" title="Xóa bình luận" ng-click="dialog(item.CommentId)" onclick="return false">
-                    <i id="btnDelete" class="fa fa-remove" style="font-size: 20px; color: white;"></i>
-                </span>
-                <p style="margin-top: -6px;"
-                   onmousemove="document.all.btnDelete.style.color = '#999' "
-                   onmouseout ="document.all.btnDelete.style.color = 'white' ">
-                    {{item.Content}}
-                </p>
+                <div class="btnDelete">
+                    <span style="margin-top: -5px; height: 18px;" class="pull-right" ng-if="item.isDeleted" href="#" title="Xóa bình luận" ng-click="dialog(item.CommentId)" onclick="return false">
+                        <i class="fa fa-remove" style="font-size: 20px;"></i>
+                    </span>
+                    <p style="margin-top: -6px;">
+                        {{item.Content}}
+                    </p>
+                </div>
             </div>
             <div class="media-footer">
                 @{if (User.Identity.IsAuthenticated)
@@ -293,14 +293,14 @@
                             {{subcomment.UserCommentedName}}
                             <span><small>&nbsp;{{subcomment.CommentedTime}}</small></span>
                         </h4>
-                        <span style="margin-top: -5px; height: 18px;" class="pull-right" ng-if="subcomment.isDeleted" href="#" title="Xóa bình luận" ng-click="deleteSubComment(subcomment.CommentId, item.CommentId,$parent.$parent.$index)" onclick="return false">
-                            <i id="btnSubDelete" class="fa fa-remove" style="font-size: 20px; color: white;"></i>
-                        </span>
-                        <p style="margin-top: -6px;"
-                           onmousemove=" document.all.btnSubDelete.style.color = '#999' "
-                           onmouseout=" document.all.btnSubDelete.style.color = 'white' ">
-                           {{subcomment.Content}}
-                        </p>
+                        <div class="btnDelete">
+                            <span style="margin-top: -5px; height: 18px;" class="pull-right" ng-if="subcomment.isDeleted" href="#" title="Xóa bình luận" ng-click="deleteSubComment(subcomment.CommentId, item.CommentId, $parent.$parent.$index)" onclick="return false">
+                                <i class="fa fa-remove" style="font-size: 20px;"></i>
+                            </span>
+                            <p style="margin-top: -6px;">
+                                {{subcomment.Content}}
+                            </p>
+                        </div>
                     </div>
                 </div>
 
