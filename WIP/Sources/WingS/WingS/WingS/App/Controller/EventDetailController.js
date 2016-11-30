@@ -106,6 +106,7 @@
         else {
             $scope.CommentEvent = response.Data;
             $scope.NumberOfComment = $scope.CommentEvent.length;
+           
         }
     });
 
@@ -170,6 +171,7 @@
             }
             else {
                 emptySubComment[index] = response.Data;
+              
             }
         });
     }
@@ -189,6 +191,7 @@
         }).success(function (response) {
             //reload all subcommet
             LoadSubComment(Id, index);
+            $scope.CommentEvent[index].NumberSubComment++;
             $(".subContent").val('');
         });
     }
@@ -309,6 +312,7 @@
              contentType: "application/json",
          }).success(function (response) {
              LoadSubComment(Id, index);
+             $scope.CommentEvent[index].NumberSubComment--;
          });
      };
     $scope.SkipValidation = function(value)

@@ -182,7 +182,7 @@ namespace WingS.DataAccess
                 {
                     var listComment = db.SubCommentThread
                         .Where(x => x.Status == true&&x.CommentThreadId==CommentId)
-                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.CommentThreadId, x.Content, x.CommentDate })
+                        .Select(x => new { x.UserId, x.Ws_User.UserName, x.Ws_User.User_Information.ProfileImage, x.SubCommentThreadId, x.Content, x.CommentDate })
                         .OrderByDescending(x => x.CommentDate).ToList();
                     foreach (var item in listComment)
                     {
@@ -190,7 +190,7 @@ namespace WingS.DataAccess
                         bs.UserCommentedId = item.UserId;
                         bs.UserCommentedName = item.UserName;
                         bs.UserImageProfile = item.ProfileImage;
-                        bs.CommentId = CommentId;
+                        bs.CommentId = item.SubCommentThreadId;
                         bs.Content = item.Content;
                         if (CurrenUser == item.UserId)
                         {

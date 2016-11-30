@@ -10,7 +10,6 @@
          }
     //Flag to change color like button
     var flag = false;
-    $("#isComment").hide();
     //Load ThreadDetail
     $http({
         url: "/api/Thread/GetThreadById",
@@ -138,7 +137,6 @@
                 params: { threadId: threadId },
                 contentType: "application/json",
             }).success(function (response) {
-                $("#isComment").hide();
                 $scope.CommentThread = response.Data;
                 $scope.NumberOfComment = $scope.CommentThread.length;
                 pageShow = 4;
@@ -160,6 +158,8 @@
         }).success(function (response) {
             //reload all subcommet
             LoadSubComment(Id, index);
+            $scope.CommentThread[index].NumberSubComment++;
+            $(".subContent").val('');
 
         });
     }
@@ -238,6 +238,7 @@
              contentType: "application/json",
          }).success(function (response) {
              LoadSubComment(Id, index);
+             $scope.CommentThread[index].NumberSubComment--;
          });
      };
     // Handle Loadmore comment
@@ -260,15 +261,9 @@
             params: { threadId: threadId },
             contentType: "application/json",
         }).success(function (response) {
-            if (response.Status == "not-found") {
-                $("#isComment").show();
-            }
-            else {
                 $scope.CommentThread = response.Data;
                 pageShow = 4;
                 index = 2;
-
-            }
         });
     };
  
