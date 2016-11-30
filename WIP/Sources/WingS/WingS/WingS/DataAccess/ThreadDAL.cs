@@ -109,8 +109,16 @@ namespace WingS.DataAccess
             }
             return list;
         }
-        public List<BasicCommentThread> GetAllCommentInThread (int threadId)
+        public List<BasicCommentThread> GetAllCommentInThread (int threadId, string currentUserName)
         {
+            int CurrenUser = 0;
+            if (currentUserName != "")
+            {
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(currentUserName).UserID;
+                }
+            }
             List<BasicCommentThread> list = new List<BasicCommentThread>();
             using (var db = new Ws_DataContext())
             {
@@ -128,12 +136,26 @@ namespace WingS.DataAccess
                         bs.UserImageProfile = item.ProfileImage;
                         bs.CommentId = item.CommentThreadId;
                         bs.Content = item.Content;
+                        if (currentUserName != "")
+                        {
+                            if (db.LikeCommentThreads.Where(x => x.CommentId == item.CommentThreadId && x.UserId == CurrenUser && x.Status == true).SingleOrDefault() != null)
+                            {
+                                bs.isLiked = true;
+                            }
+                        }
+                        else bs.isLiked = false;
+                        if (CurrenUser == item.UserId)
+                        {
+                            bs.isDeleted = true;
+                        }
+                        else bs.isDeleted = false;
                         bs.NumberSubComment = item.Count;
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
                             bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
+                        bs.NumberOfLikes = db.LikeCommentThreads.Where(x => x.CommentId == item.CommentThreadId && x.Status == true).Count();
                         list.Add(bs);
                     }
                    
@@ -143,8 +165,16 @@ namespace WingS.DataAccess
             }
             return list;
         }
-        public List<BasicCommentThread> GetSubCommentInThreadById(int CommentId)
+        public List<BasicCommentThread> GetSubCommentInThreadById(int CommentId, string currentUserName)
         {
+            int CurrenUser = 0;
+            if (currentUserName != "")
+            {
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(currentUserName).UserID;
+                }
+            }
             List<BasicCommentThread> list = new List<BasicCommentThread>();
             using (var db = new Ws_DataContext())
             {
@@ -162,6 +192,11 @@ namespace WingS.DataAccess
                         bs.UserImageProfile = item.ProfileImage;
                         bs.CommentId = CommentId;
                         bs.Content = item.Content;
+                        if (CurrenUser == item.UserId)
+                        {
+                            bs.isDeleted = true;
+                        }
+                        else bs.isDeleted = false;
                         if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
                             bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
@@ -639,6 +674,102 @@ namespace WingS.DataAccess
                 //throw;
             }
             return countComment;
+        }
+        public int CountLikeInCommentThread(int CommentId)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                int CountLike = db.LikeCommentThreads.Count(x => x.CommentId == CommentId && x.Status == true);
+                return CountLike;
+            }
+
+        }
+        public bool ChangelikeStateForComment(int commentId, string UserName)
+        {
+            try
+            {
+                int CurrenUser = 0;
+                using (var db = new UserDAL())
+                {
+                    CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+                }
+                using (var db = new Ws_DataContext())
+                {
+                    //Check current like status.
+                    LikeCommentThread current = (
+                                           from p in db.LikeCommentThreads
+                                           where p.CommentId == commentId && p.UserId == CurrenUser
+                                           select p
+                                           ).SingleOrDefault();
+                    if (current != null)
+                    {
+                        current.Status = !current.Status;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        db.LikeCommentThreads.Add(new LikeCommentThread() { CommentId = commentId, UserId = CurrenUser, Status = true });
+                        db.SaveChanges();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception) { return false; }
+        }
+        public bool DeleteComment(int CommentId, string UserName)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var currentComment = (from p in db.CommentThreads
+                                      where p.CommentThreadId == CommentId && p.Ws_User.UserName.Equals(UserName)
+                                      select p).FirstOrDefault();
+                if (currentComment != null)
+                {
+                    var subCommentInComment = (from p in db.SubCommentThread
+                                               where p.CommentThreadId == currentComment.CommentThreadId
+                                               select p).ToList();
+                    if (subCommentInComment != null)
+                    {
+                        foreach (var item in subCommentInComment)
+                        {
+                            //Delete All SubComment First
+                            db.SubCommentThread.Remove(item);
+                        }
+                    }
+                    var LikeInComment = (from p in db.LikeCommentThreads
+                                         where p.CommentId == CommentId
+                                         select p).ToList();
+                    if (LikeInComment != null)
+                    {
+                        foreach (var item in LikeInComment)
+                        {
+                            //Delete All SubComment First
+                            db.LikeCommentThreads.Remove(item);
+                        }
+                    }
+
+                    db.CommentThreads.Remove(currentComment);
+                    db.SaveChanges();
+                    return true;
+                }
+                else return false;
+            }
+        }
+        public bool DeleteSubComment(int SubCommentId, string UserName)
+        {
+            using (var db = new Ws_DataContext())
+            {
+                var currentComment = (from p in db.SubCommentThread
+                                      where p.SubCommentThreadId == SubCommentId && p.Ws_User.UserName.Equals(UserName)
+                                      select p).FirstOrDefault();
+                if (currentComment != null)
+                {
+                    db.SubCommentThread.Remove(currentComment);
+                    db.SaveChanges();
+                    return true;
+                }
+                else return false;
+            }
         }
         public void Dispose()
         {

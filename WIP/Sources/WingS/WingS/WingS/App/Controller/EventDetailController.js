@@ -7,7 +7,6 @@
     
     //Set eventId to Window variable to connect chat room
     $window.eventId = eventId;
-
     //Create SubComment Array
     var emptySubComment = new Array();
     $scope.SubCommentEvent = emptySubComment;
@@ -206,7 +205,7 @@
     }
     //Like Comment
     $scope.likeComment = function (commentId,index) {
-        $http({
+       $http({
             url: "/api/Event/ChangeLikeStateForComment",
             method: "get",
             params: { commentId: commentId },
@@ -215,7 +214,7 @@
             countLikeForComment(commentId,index);
           
         });
-    }
+    } 
     // Handle Loadmore comment
     var pageShow = 4;
     var index = 2;

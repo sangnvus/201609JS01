@@ -15,6 +15,7 @@ namespace WingS.Controllers.WebApi
 {
     public class ThreadController : ApiController
     {
+
         [HttpGet]
         public IHttpActionResult CheckCurrentUserIsLikedOrNot(int ThreadId)
         {
@@ -62,7 +63,7 @@ namespace WingS.Controllers.WebApi
         {
             using (var db = new ThreadDAL())
             {
-               var commentList = db.GetAllCommentInThread(threadId);
+               var commentList = db.GetAllCommentInThread(threadId, User.Identity.Name);
                 if (commentList == null||commentList.Count==0)
                     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
                 else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data= commentList });
@@ -129,7 +130,7 @@ namespace WingS.Controllers.WebApi
             using (var db = new ThreadDAL())
             {
 
-                var SubcommentList = db.GetSubCommentInThreadById(CommentId);
+                var SubcommentList = db.GetSubCommentInThreadById(CommentId, User.Identity.Name);
                 if (SubcommentList == null) return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
                 else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = SubcommentList });
             }
@@ -254,6 +255,7 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
             }
         }
+
         // Get list thread by create date
         [HttpGet]
         [ActionName("NewestThread")]
@@ -277,6 +279,58 @@ namespace WingS.Controllers.WebApi
                     Type = ""
                 });
             }
+        }
+        [HttpGet]
+        public IHttpActionResult CountLikeInCommentThread(int CommentId)
+        {
+            int numberOfLikes = 0;
+            using (var db = new ThreadDAL())
+            {
+                numberOfLikes = db.CountLikeInCommentThread(CommentId);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = numberOfLikes });
+        }
+        [HttpGet]
+        public IHttpActionResult DeleteComment(int commentId)
+        {
+            using (var db = new ThreadDAL())
+            {
+                var result = db.DeleteComment(commentId, User.Identity.Name);
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = result
+                });
+            }
+
+        }
+        [HttpGet]
+        public IHttpActionResult DeleteSubComment(int subCommentId)
+        {
+            using (var db = new ThreadDAL())
+            {
+                var result = db.DeleteSubComment(subCommentId, User.Identity.Name);
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "",
+                    Type = "",
+                    Data = result
+                });
+            }
+
+        }
+
+        [HttpGet]
+        public IHttpActionResult ChangeLikeStateForComment(int CommentId)
+        {
+            using (var db = new ThreadDAL())
+            {
+                var change = db.ChangelikeStateForComment(CommentId, User.Identity.Name);
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS });
         }
     }
 }

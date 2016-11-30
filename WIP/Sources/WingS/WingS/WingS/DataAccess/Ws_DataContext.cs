@@ -35,6 +35,7 @@ namespace WingS.DataAccess
         public virtual DbSet<PublicRoom> PublicRooms { get; set; }
         public virtual DbSet<PublicMessageDetail> PublicMessageDetails { get; set; }
         public virtual DbSet<LikeCommentEvent> LikeCommentEvents { get; set; }
+        public virtual DbSet<LikeCommentThread> LikeCommentThreads { get; set; }
         public Ws_DataContext() : base(WsConstant.ConnectionString)
         {
         }

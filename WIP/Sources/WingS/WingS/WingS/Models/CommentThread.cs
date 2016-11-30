@@ -19,6 +19,7 @@
         public bool Status { get; set; }
         public virtual Thread Thread { get; set; }
         public virtual Ws_User Ws_User { get; set; }
+        public ICollection<LikeCommentThread> LikeComment { get; set; }
         public ICollection<SubCommentThread> SubComment { get; set; }
     }
 }

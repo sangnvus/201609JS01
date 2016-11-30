@@ -1,5 +1,6 @@
-﻿app.controller("ThreadDetailController", function ($scope, $http, $routeParams, $sce, $location, $rootScope) {
+﻿app.controller("ThreadDetailController", function ($scope, $http, $routeParams, $sce, $location, $rootScope, SweetAlert) {
     $scope.CurrentPath = $location.absUrl();
+    $scope.NumberOfComment = 0;
     var threadId = $routeParams.Id;
     var emptySubComment = new Array();
     $scope.SubCommentThread = emptySubComment;
@@ -84,13 +85,8 @@
         params: { threadId: threadId },
         contentType: "application/json",
     }).success(function (response) {
-        if (response.Status == "not-found") {
-            $("#isComment").show();
-        }
-        else
-        {
             $scope.CommentThread = response.Data;
-        }
+            $scope.NumberOfComment = $scope.CommentThread.length;
     });
     //Load SubCommentIfExisted
     function LoadSubComment(Id, index)
@@ -114,7 +110,7 @@
     {
         LoadSubComment(Id, index);
     }
- 
+
     //Add comment API
     $scope.addContent = function () {
         var newContent = $scope.content;
@@ -144,6 +140,9 @@
             }).success(function (response) {
                 $("#isComment").hide();
                 $scope.CommentThread = response.Data;
+                $scope.NumberOfComment = $scope.CommentThread.length;
+                pageShow = 4;
+                index = 2;
             });
         });
         }
@@ -161,9 +160,86 @@
         }).success(function (response) {
             //reload all subcommet
             LoadSubComment(Id, index);
-            $(".subContent").val('');
+
         });
     }
+    //Count like for comment
+    function countLikeForComment(commentId, index) {
+        $http({
+            url: "/api/Thread/CountLikeInCommentThread",
+            method: "GET",
+            params: { commentId: commentId },
+            contentType: "application/json",
+        }).success(function (response) {
+            $scope.CommentThread[index].NumberOfLikes = response.Data;
+        });
+    }
+    //Like Comment
+    $scope.likeComment = function (commentId, index) {
+        $http({
+            url: "/api/Thread/ChangeLikeStateForComment",
+            method: "get",
+            params: { commentId: commentId },
+            contentType: "application/json",
+        }).success(function (response) {
+            countLikeForComment(commentId, index);
+
+        });
+    }
+    // Alert admin before delete comment
+     $scope.dialog = function (CommentId) {
+        SweetAlert.swal({
+            title: "Xóa bình luận",
+            text: "Bạn thực sự muốn xóa bình luận này?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#16a085",
+            confirmButtonText: "Có",
+            cancelButtonText: "Không",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $scope.deleteComment(CommentId);
+                    SweetAlert.swal("Xóa!", "Bạn đã xóa bình luận thành công", "success");
+                } else {
+                    //do nothing
+                }
+            });
+    };
+       //Delete Comment
+     $scope.deleteComment = function (CommentId) {
+        $http({
+            url: "/api/Thread/DeleteComment",
+            method: "GET",
+            params: { commentId: CommentId },
+            contentType: "application/json",
+        }).success(function (response) {
+            //Reload Comment
+            $http({
+                url: "/api/Thread/GetAllComment",
+                method: "GET",
+                params: { threadId: threadId },
+                contentType: "application/json",
+            }).success(function (response) {
+                $scope.CommentThread = response.Data;
+                if (response.Data == null) $scope.NumberOfComment = 0;
+                $scope.NumberOfComment = $scope.CommentThread.length;
+            });
+        });
+     };
+    //Delete SubComment
+     $scope.deleteSubComment = function (SubCommentId, Id, index) {
+         $http({
+             url: "/api/Thread/DeleteSubComment",
+             method: "GET",
+             params: { subCommentId: SubCommentId },
+             contentType: "application/json",
+         }).success(function (response) {
+             LoadSubComment(Id, index);
+         });
+     };
     // Handle Loadmore comment
     var pageShow = 4;
     var index = 2;

@@ -1072,6 +1072,17 @@ namespace WingS.DataAccess
                             db.SubCommentEvent.Remove(item);
                         }
                     }
+                    var LikeInComment = (from p in db.LikeCommentEvents
+                                         where p.CommentId == CommentId
+                                         select p).ToList();
+                    if (LikeInComment != null)
+                    {
+                        foreach (var item in LikeInComment)
+                        {
+                            //Delete All SubComment First
+                            db.LikeCommentEvents.Remove(item);
+                        }
+                    }
                     //Delete Comment
                     db.CommentEvents.Remove(currentComment);
                     db.SaveChanges();
