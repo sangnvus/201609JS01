@@ -159,6 +159,16 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/Statistics",
             title: "Thống kê",
             controller: "StatisticsController"
+        })
+        .when("/EditEvent", {
+            templateUrl: "/Client/EditEvent",
+            title: "Sửa thông tin của sự kiện",
+            controller: "EditEventController"
+        })
+        .when("/EditThread", {
+            templateUrl: "/Client/EditThread",
+            title: "Sửa thông tin của bài viết",
+            controller: "EditThreadController"
         });
 });
 

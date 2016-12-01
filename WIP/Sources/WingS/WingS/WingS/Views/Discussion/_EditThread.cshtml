@@ -1,0 +1,143 @@
+﻿@*@model WingS.Models.DTOs.CreateThreadInfo*@
+<script src="../../Content/scripts/tinymce/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        // Initialize your tinyMCE Editor with your preferred options
+        tinyMCE.init({
+            // General options
+            selector: "#ThreadContent"
+        });
+</script>
+<div class="divPanel notop nobottom">
+</div>
+
+<div class="contentArea">
+
+    <div class="divPanel notop page-content">
+
+        <div class="breadcrumbs">
+            <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="/#/Discussion"> Thảo Luận</a> &nbsp;/&nbsp; <span>Sửa thảo luận</span>
+        </div>
+
+        @using (Html.BeginForm("EditThread", "Thread", FormMethod.Post, new { @id = "EditThread", @name = "EditThread", enctype = "multipart/form-data" }))
+        {
+            <div class="row-fluid">
+                <div class="span9 offset1">
+                    <p>
+                        Những mục có dấu <span style="color: red">*</span> không được để trống
+                    </p>
+                    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                        <div class="row-fluid">
+                            <div class="span4" align="center">
+                                <h3 style="margin-top: 25px;">
+                                    <strong>Tiêu đề<span style="color: red"> *</span></strong>
+                                </h3>
+                            </div>
+                            <div class="span8">
+                                <input type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 96%;" id="Title" name="Title"
+                                       ng-model="Title" ng-minlength="6" ng-maxlength="100" required />
+                                <p>
+                                    <span style="color: red" ng-show="EditThread.Title.$dirty && EditThread.Title.$invalid">
+                                        <span ng-show="EditThread.Title.$error.required">Tiêu đề phần thảo luận không được để trống</span>
+                                        <span ng-show="EditThread.Title.$error.minlength">Tiêu đề phần thảo luận phải trên 6 kí tự</span>
+                                        <span ng-show="EditThread.Title.$error.maxlength">Tiêu đề phần thảo luận không vượt quá 100 kí tự</span>
+                                    </span>
+                                </p>
+                                <p>
+                                    Tiêu đề bạn nhập vào sẽ giúp mọi người tìm kiếm dễ dàng hơn.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span9 offset1">
+                    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
+                        <div class="row-fluid">
+                            <div class="span4" align="center">
+                                <h3 style="margin-top: 25px;">
+                                    <strong>Hình ảnh <span style="color: red"> *</span></strong>
+                                </h3>
+                            </div>
+                            <div class="span8">
+                                <p>Chọn hình ảnh bạn có</p>
+                                <input type="file" class="multiple" name="Images" multiple valid-file ng-model="Images" required accept="image/*" />
+                                <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
+                                <p>
+                                    <span style="color: red" ng-show="EditThread.Images.$dirty && CreateEventForm.FileUpload.$invalid">
+                                        <span ng-show="EditThread.Images.$error.required">Bạn phải chọn ảnh để upload</span>
+                                    </span>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span9 offset1">
+                    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
+                        <div class="row-fluid">
+                            <div class="span4" align="center">
+                                <h3 style="margin-top:25px;"><strong>Mô tả ngắn<span style="color: red"> *</span></strong></h3>
+                            </div>
+                            <div class="span8">
+                                <p>Nhập vào mô tả ngắn </p>
+                                <textarea name="ShortDescription" id="ShortDescription" class="form-control" rows="4" style="width: 97%;"
+                                          ng-model="ShortDescription" ng-minlength="6" required></textarea>
+                                <p>
+                                    <span style="color: red" ng-show="EditThread.ShortDescription.$dirty && EditThread.ShortDescription.$invalid">
+                                        <span ng-show="EditThread.ShortDescription.$error.required">Phần mô tả không được để trống</span>
+                                        <span ng-show="EditThread.ShortDescription.$error.minlength">Phần mô tả phải trên 6 kí tự</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span9 offset1">
+                    <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
+                        <div class="row-fluid">
+                            <div class="span4" align="center">
+                                <h3 style="margin-top:25px;"><strong>Câu chuyện</strong></h3>
+                            </div>
+                            <div class="span8">
+                                <p>Mô tả nội dung của bạn </p>
+                                <textarea id="ThreadContent" name="Content" style="height: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span9 offset1" align="right">
+                    <button type="submit" ng-disabled="!EditThread.$dirty || (EditThread.$dirty && EditThread.$invalid)" class=" btn btn-navbar-highlight btn-large btn-primary">
+                        Lưu
+                    </button>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
+<div id="footerOuterSeparator"></div>
+
+@Html.Partial("../Home/_Footer")
+
+
+<br /><br /><br />
+<!-- Include stylesheet -->
+
+<style>
+    textarea {
+        height: 100px;
+    }
+</style>
+<script>
+    $("#Title").focus();
+</script>
+

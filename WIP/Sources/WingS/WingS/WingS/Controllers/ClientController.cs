@@ -142,5 +142,13 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Home/_Statistics.cshtml");
         }
+        public ActionResult EditEvent()
+        {
+            return PartialView("~/Views/Event/_EditEvent.cshtml");
+        }
+        public ActionResult EditThread()
+        {
+            return PartialView("~/Views/Discussion/_EditThread.cshtml");
+        }
     }
 }
