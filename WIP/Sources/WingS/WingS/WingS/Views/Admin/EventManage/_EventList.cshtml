@@ -70,10 +70,10 @@
                                                 <td class="center">{{x.CreatedDate}}</td>
                                                 <td class="center">{{x.ExpectedMoney}}</td>
                                                 <td class="center">
-                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'process'" ng-click="banEvent($index,x.EventID)">Đang hoạt động</span>
+                                                    <span class="label center-block btn-blue" ng-if="x.TimeStatus == 'process'" ng-click="banEvent($index,x.EventID)">Đang diễn ra</span>
                                                     <span class="label center-block btn-danger" ng-if="x.TimeStatus == 'ban'" ng-click="unbanEvent($index,x.EventID)">Bị Cấm</span>
-                                                    <span class="label center-block btn-blue" ng-if="x.TimeStatus == 'done'">Đã hoàn thành</span>
-                                                    <span class="label center-block btn-orange" ng-if="x.TimeStatus == 'income'" ng-click="banEvent($index,x.EventID)">Sắp diễn ra</span>
+                                                    <span class="label center-block btn-dark-blue" ng-if="x.TimeStatus == 'done'">Đã xong</span>
+                                                    <span class="label center-block btn-green" ng-if="x.TimeStatus == 'income'" ng-click="banEvent($index,x.EventID)">Sắp diễn ra</span>
                                                 </td>
                                             </tr>
                                         </tbody>
