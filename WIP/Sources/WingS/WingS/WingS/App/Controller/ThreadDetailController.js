@@ -241,6 +241,43 @@
              $scope.CommentThread[index].NumberSubComment--;
          });
      };
+    //Load report to view
+     $scope.getReportContent = function () {
+         $http({
+             url: "/api/Report/GetReportContentForThread",
+             method: "GET",
+             contentType: "application/json",
+         }).success(function (response) {
+             $scope.ReportContent = response.Data;
+         });
+     };
+     if ($rootScope.User_Information.IsAuthen == true) {
+         $http({
+             url: "/api/Report/CheckCurrentUserReportedOrNot",
+             method: "GET",
+             params: { Type: "Threads", ReportTo: threadId },
+             contentType: "application/json",
+         }).success(function (response) {
+             $scope.checkReported = response.Data;
+         });
+     }
+     $scope.setValue = function (setValue) {
+         $scope.radioValue = setValue;
+     }
+    //Send report
+     $scope.sendReport = function () {
+         $http({
+             url: "/api/Report/ReportThread",
+             method: "get",
+             params: { toThreadId: threadId, Content: $scope.ReportContent[$scope.radioValue] },
+             contentType: "application/json",
+         }).success(function (response) {
+             $(".modal-body").hide();
+             $(".sendMessage").hide();
+             $(".modal-message").show();
+             $(".closeForm").show();
+         });
+     };
     // Handle Loadmore comment
     var pageShow = 4;
     var index = 2;

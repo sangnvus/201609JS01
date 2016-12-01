@@ -102,16 +102,19 @@
                 </a>
                 <ul class="dropdown-menu" style="margin-top: 21px;">
                     <li>
-                        <a href="profile.html">
+                        <a href="#" onclick="return false;">
                             <i class="fa fa-edit" style=" margin-left: -6px; "></i> Sửa
                         </a>
                     </li>
                     <li>
-                        <a href="profile.html">
-                            <i class="icon-flag" style=" margin-left: -6px; "></i> Báo cáo sự kiện
-                        </a>
+                        @{ if (User.Identity.Name != "" || User.Identity.IsAuthenticated)
+                            {
+                                <a ng-if="checkReported"  href="#" onclick=" return false; "  title="Bạn đã báo cáo sự kiện này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"  style="margin-left: -6px;"  ></i> Báo cáo</a>
+                                <a ng-if="!checkReported"  href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport"  ng-click="getReportContent()"><i class="fa fa-flag-o"  style="margin-left: -6px;"></i> Báo cáo</a>
+                            }
+                        }
                     </li>
-                </ul>
+                </ul>s
             </div>
 
         </div>
@@ -348,7 +351,39 @@
     </div>
     <div align="center"><a class="btn btn-primary" href="#"> Xem danh sách</a></div>
 </div>
+    <div class="modal fade" id="sendReport" role="dialog" hidden>
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Báo cáo sự kiện này </h4>
+                </div>
+                <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                    Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
+                </div>
+                <div class="modal-body">
+                    <div class="radio" ng-repeat="item in ReportContent track by $index">
+                        <div ng-if="$index==0">
+                            <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked">{{item}}</label>
+                        </div>
+                        <div ng-if="$index!=0">
+                            <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)">{{item}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="sendMessage">
+                        <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
+                    </div>
+                    <div class="closeForm">
+                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
 
+        </div>
+    </div>
 <div id="footerOuterSeparator"></div>
 
 @Html.Partial("../Home/_Footer")
