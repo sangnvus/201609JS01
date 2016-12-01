@@ -315,6 +315,43 @@
              $scope.CommentEvent[index].NumberSubComment--;
          });
      };
+    //Load report to view
+     $scope.getReportContent = function () {
+         $http({
+             url: "/api/Report/GetReportContentForEvent",
+             method: "GET",
+             contentType: "application/json",
+         }).success(function (response) {
+             $scope.ReportContent = response.Data;
+         });
+     };
+     if ($rootScope.User_Information.IsAuthen == true) {
+         $http({
+             url: "/api/Report/CheckCurrentUserReportedOrNot",
+             method: "GET",
+             params: { Type: "Events", ReportTo: eventId },
+             contentType: "application/json",
+         }).success(function (response) {
+             $scope.checkReported = response.Data;
+         });
+     }
+     $scope.setValue = function (setValue) {
+         $scope.radioValue = setValue;
+     }
+     //Send report
+      $scope.sendReport = function () {
+        $http({
+            url: "/api/Report/ReportEvent",
+            method: "get",
+            params: { toEventId: eventId, Content: $scope.ReportContent[$scope.radioValue] },
+            contentType: "application/json",
+        }).success(function (response) {
+            $(".modal-body").hide();
+            $(".sendMessage").hide();
+            $(".modal-message").show();
+            $(".closeForm").show();
+        });
+    };
     $scope.SkipValidation = function(value)
     {
         return $sce.trustAsHtml(value);
