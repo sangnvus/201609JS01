@@ -120,5 +120,17 @@ namespace WingS.DataHelper
             public static readonly string AdminEmail = "WingSFPT@gmail.com";
             public static readonly string AdminEmailPass = "wing@123";
         }
+
+        public static class OrganizationRegistration
+        {
+            public static readonly string WsAdmin = "WingS Admin";
+            public static readonly string EmailSubjectRejectRegistration = "Thông báo hủy bỏ yêu cầu tạo tổ chức tại WingS";
+            public static readonly string EmailContentFirst = "Chào bạn,\n\n";
+            public static readonly string EmailContentRejectRegistration = "của bạn đã bị từ trối bởi Admin của WingS do không đáp ứng được yêu cầu của việc tạo tổ chức của WingS.\nNếu có bất kì thắc mắc nào xin hãy liên hệ với ban quản trị.\n------\nThân,\nThe WingS Team.";
+            public static readonly string SentAlert = "Một email đã được gửi tới địa chỉ email đăng kí của bạn!";
+            public static readonly string SendMailFailed = "Gửi email thất bại!";
+            public static readonly string AdminEmail = "WingSFPT@gmail.com";
+            public static readonly string AdminEmailPass = "wing@123";
+        }
     }
 }

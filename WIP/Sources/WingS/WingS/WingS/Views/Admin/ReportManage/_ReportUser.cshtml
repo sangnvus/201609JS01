@@ -42,47 +42,31 @@
                                 <thead>
                                 <tr>
                                     <th>Người bị báo cáo</th>
-                                    <th>Số lần bị báo cáo</th>
+                                    <th>Số lần bị báo cáo mới</th>
+                                    <th>Tổng số lần bị báo cáo</th>
                                     <th>Trạng thái</th>
                                     <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="nameAdmin">
-                                        <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
-                                            <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
-                                        </a>
-                                        <p>&nbsp;{{item.UserName}}</p>
-                                    </td>
-                                    <td>20</td>
-                                    <td>
-                                        <a class="btn btn-xs btn-warning">Chờ xử lý</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-blue" href="/Admin/#/ReportUserDetail">Xem chi tiết</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="userprofile.html">test test test</a></td>
-                                    <td>10</td>
-                                    <td>
-                                        <a class="btn btn-xs btn-green">Đồng ý</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="userprofile.html">test test test</a></td>
-                                    <td>115</td>
-                                    <td>
-                                        <a class="btn btn-xs btn-default">Từ chối</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
-                                    </td>
-                                </tr>
+                                    <tr ng-repeat="item in reportStatistic">
+                                        <td class="nameAdmin">
+                                            <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.IsReportedId}}")">
+                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.IsreportedImage}}" alt="">
+                                            </a>
+                                            <p>&nbsp;{{item.IsreportedUserName}}</p>
+                                        </td>
+                                        <td>&nbsp;{{item.NewReportedTimes}}</td>
+                                        <td>&nbsp;{{item.TotalReportedTimes}}</td>
+                                        <td>
+                                            <button class="btn btn-primary" style="width: 125px" ng-if="item.IsActive " ng-click="ban($index,x.UserId)">Đang hoạt động</button>
+                                            <button class="btn btn-danger" style="width: 125px" ng-if="!item.IsActive " ng-click="unBan($index,x.UserId)">Bị cấm</button>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-blue" href="@Url.Content("/Admin/#/ReportUserDetail/{{item.IsReportedId}}")">Xem chi tiết</a>
+                                        </td>
+                                    </tr>
+                                
                                 </tbody>
                             </table>
                         </div>

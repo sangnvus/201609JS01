@@ -231,31 +231,38 @@ namespace WingS.DataAccess
 
                 //get ranking information
                 WsRanking ranking = new WsRanking();
-                RankingDTO rank = ranking.RankingWithPoint(userInformation.Point);
+                RankingDTO rank = new RankingDTO();
+                
+                
                 //Set information for user which want to get
                 currentUser.UserId = userId;
                 currentUser.UserName = wsUser.UserName;
                 currentUser.AccountType = wsUser.AccountType;
                 currentUser.IsActive = wsUser.IsActive;
                 currentUser.IsVerify = wsUser.IsVerify;
-                currentUser.FacebookUri = userInformation.FacebookUrl;
-                currentUser.FullName = userInformation.FullName;
-                currentUser.ProfileImage = userInformation.ProfileImage;
-                currentUser.Email = wsUser.Email;
-                currentUser.Gender = userInformation.Gender;
-                currentUser.Phone = userInformation.Phone;
-                currentUser.Address = userInformation.UserAddress;
-                currentUser.UserSignature= userInformation.UserSignature;
-                currentUser.NumberOfPost = numberOfPost;
-                if (userInformation.DoB != null)
-                {
-                    currentUser.DOB = userInformation.DoB.Value.ToString("dd/MM/yyyy");
-                }
 
-                currentUser.Country = userInformation.Country;
-                currentUser.FacebookUri = userInformation.FacebookUrl;
-                currentUser.CreateDate = wsUser.CreatedDate.ToString("dd/MM/yy");
-                currentUser.Point = userInformation.Point;
+                currentUser.Email = wsUser.Email;
+                if (userInformation != null)
+                {
+                    rank = ranking.RankingWithPoint(userInformation.Point);
+                    currentUser.FacebookUri = userInformation.FacebookUrl;
+                    currentUser.FullName = userInformation.FullName;
+                    currentUser.ProfileImage = userInformation.ProfileImage;
+                    currentUser.Gender = userInformation.Gender;
+                    currentUser.Phone = userInformation.Phone;
+                    currentUser.Address = userInformation.UserAddress;
+                    currentUser.UserSignature = userInformation.UserSignature;
+
+                    if (userInformation.DoB != null) currentUser.DOB = userInformation.DoB.Value.ToString("dd/MM/yyyy");
+
+                    currentUser.Country = userInformation.Country;
+                    currentUser.FacebookUri = userInformation.FacebookUrl;
+                    currentUser.CreateDate = wsUser.CreatedDate.ToString("dd/MM/yy");
+                    currentUser.Point = userInformation.Point;
+                }
+                
+                currentUser.NumberOfPost = numberOfPost;
+                
                 if (rank.CurrentRank==0)
                 {
                     currentUser.CurrentRank = "Mới";
