@@ -57,8 +57,8 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <h3 style="text-align:center;margin-top: 0px;margin-bottom: 60px;">Tiến trình ủng hộ</h3>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' :widthEventDetail)}">
-                                                            {{widthEventDetail}}%
+                                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' :currentEvent.PercentMoney+'%'}">
+                                                            {{currentEvent.PercentMoney}}%
                                                         </div>
                                                     </div>
 
@@ -76,7 +76,7 @@
                                                                 Đã ủng hộ
                                                             </div>
                                                             <div class="circle-tile-number text-faded">
-                                                                {{currentEvent.RaisedMoney}} Vnđ
+                                                                {{currentEvent.RaisedMoney}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -138,15 +138,13 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <section id="timeline">
-                                                <article>
+                                                <article ng-repeat="item in EventTimeLine">
                                                     <div class="inner">
                                                         <span class="date">
-                                                            <span class="day">30<sup>th</sup></span>
-                                                            <span class="month">Jan</span>
-                                                            <span class="year">2014</span>
+                                                            <span class="month">{{currentEvent.StartedDate}}</span>
                                                         </span>
-                                                        <h2>The Title</h2>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+                                                        <h2>Từ ngày {{item.FromDate}} Đến ngày {{item.ToDate}}</h2>
+                                                        <p style="color: black">{{item.Content}}</p>
                                                     </div>
                                                 </article>
                                             </section>

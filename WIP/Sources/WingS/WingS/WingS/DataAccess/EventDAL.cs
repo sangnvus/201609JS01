@@ -4,6 +4,7 @@ using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI;
 using WingS.DataHelper;
 using WingS.Models;
 using WingS.Models.DTOs;
@@ -447,7 +448,8 @@ namespace WingS.DataAccess
         {
             using (var db = new Ws_DataContext())
             {
-                var currentTimeLine = db.ETimeLine.OrderByDescending(x => x.EventId == eventId && x.Status == true).ToList();
+               
+                var currentTimeLine = db.ETimeLine.Where(x => x.EventId == eventId).ToList();
                 return currentTimeLine;
             }
         }
@@ -843,7 +845,7 @@ namespace WingS.DataAccess
             catch (Exception)
             {
 
-                //throw;
+                raisedMoney = 0;
             }
 
             return raisedMoney;

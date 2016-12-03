@@ -12,9 +12,6 @@ app.controller("AdminEventDashBoardController", function ($scope, $http) {
 });
 //controller for evetn detail
 app.controller("AdminEventDetailController", function ($scope, $http, $sce, $routeParams) {
-    $scope.parseFloat = function (val) {
-        return isNaN(parseFloat(val)) ? 0 : parseFloat(val);
-    }
     function getYoutubeId(url) {
         var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var match = url.match(regExp);
@@ -26,18 +23,27 @@ app.controller("AdminEventDetailController", function ($scope, $http, $sce, $rou
     }
     var eventId = $routeParams.EventID;
     $http({
+        url: "/api/AdminEvent/GetEventTimeLineByEventId",
+        method: "Get",
+        params: { eventId: eventId },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.EventTimeLine = response.Data;
+    });
+    $http({
         url: "/api/AdminEvent/GetEventWithId",
         method: "GET",
         params: { eventId: eventId },
         contentType: "application/json"
     }).success(function (response) {
         $scope.currentEvent = response.Data;
-        $scope.widthEventDetail = (parseFloat($scope.currentEvent.RaisedMoney) / parseFloat($scope.currentEvent.ExpectedMoney)) + '%';
         $scope.currentEvent.VideoUrl = "http://www.youtube.com/embed/" + getYoutubeId($scope.currentEvent.VideoUrl);
+        $scope.currentEvent.PercentMoney = (($scope.currentEvent.RaisedMoney * 100) / $scope.currentEvent.ExpectedMoney).toFixed(1);
         $scope.currentEvent.ExpectedMoney = $scope.currentEvent.ExpectedMoney.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         $scope.currentEvent.RaisedMoney = $scope.currentEvent.RaisedMoney.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         $scope.currentEvent.VideoUrl = $sce.trustAsResourceUrl($scope.currentEvent.VideoUrl);
         $scope.currentEvent.Content = $sce.trustAsHtml($scope.currentEvent.Content);
+        $(".progressbar1").loading($scope.currentEvent.PercentMoney);
     });
 });
 //controller for event list page

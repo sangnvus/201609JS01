@@ -291,5 +291,26 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
             }
         }
+        //Get EventTimeLine       
+        [HttpGet]
+        public IHttpActionResult GetEventTimeLineByEventId(int eventId)
+        {
+            List<EventTimeLineBasicInfo> eventTimeLine = new List<EventTimeLineBasicInfo>();
+            var EventList = new List<EventTimeLine>();
+            using (var db = new EventDAL())
+            {
+                EventList = db.GetEventTimeLineByEventId(eventId);
+                foreach (var eTimeLine in EventList)
+                {
+                    eventTimeLine.Add(new EventTimeLineBasicInfo
+                    {
+                        FromDate = eTimeLine.FromDate.ToString("dd/MM/yy"),
+                        ToDate = eTimeLine.ToDate.ToString("dd/MM/yy"),
+                        Content = eTimeLine.Content
+                    });
+                }
+            }
+            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = eventTimeLine });
+        }
     }
 }
