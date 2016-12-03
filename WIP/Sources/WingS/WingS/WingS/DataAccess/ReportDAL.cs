@@ -47,9 +47,19 @@ namespace WingS.DataAccess
                         reportBasic.ReportId = report.ReportId;
                         reportBasic.UserId = report.UserId;
                         var userMakeReport = db.Ws_User.FirstOrDefault(x=>x.UserID == reportBasic.UserId);
+                        var userInformationMakeReport = db.User_Information.FirstOrDefault(x => x.UserID == reportBasic.UserId);
                         if (userMakeReport != null)
                         {
                             reportBasic.ReportorUserName = userMakeReport.UserName;
+                        }
+
+                        if (userInformationMakeReport != null)
+                        {
+                            reportBasic.ReportorImage = userInformationMakeReport.ProfileImage;
+                        }
+                        else
+                        {
+                            reportBasic.ReportorImage = "~/Content/Images/Slider/avatar_default.png";
                         }
                             
                         reportBasic.Reason = report.Reason;
@@ -122,6 +132,11 @@ namespace WingS.DataAccess
             }
         }
 
+        /// <summary>
+        /// get report statistic data
+        /// </summary>
+        /// <param name="typeReport"></param>
+        /// <returns></returns>
         public List<ReportStatisticDTO> GetListReportByType(string typeReport)
         {
             List<ReportStatisticDTO> listReport = new List<ReportStatisticDTO>();
@@ -237,6 +252,31 @@ namespace WingS.DataAccess
 
             return times;
         }
+
+        public List<ReportBasicInfoDTO> GetReportDetailData(string typeReport)
+        {
+            List<ReportBasicInfoDTO> reportDetailData = new List<ReportBasicInfoDTO>();
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    var reportIdList = db.Reports.Where(x => x.Type == typeReport).Select(x => x.ReportId).ToList();
+
+                    foreach (var reportId in reportIdList)
+                    {
+                        var reportBasic = GetReportBasicInformation(reportId);
+                        reportDetailData.Add(reportBasic);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+                //throw;
+            }
+
+            return reportDetailData;
+        } 
 
         public void Dispose()
         {

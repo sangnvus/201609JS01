@@ -206,6 +206,10 @@ namespace WingS.Controllers.WebApi
             }
         }
 
+        /// <summary>
+        /// Get report statistic about user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetUserReportData()
         {
@@ -221,7 +225,7 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.SUCCESS,
-                    Message = "Get Report Data Successfully",
+                    Message = "Get User Report Data Successfully",
                     Type = "",
                     Data = reportStatistic
                 });
@@ -231,7 +235,43 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot Report Data Profile!",
+                    Message = "Cannot User Report Data Profile!",
+                    Type = ""
+                });
+            }
+        }
+
+        /// <summary>
+        /// Get user report detail data
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetUserReportDetailData(int userId)
+        {
+            try
+            {
+                List<ReportBasicInfoDTO> userDetailReportData = new List<ReportBasicInfoDTO>();
+
+                using (var reportDal = new ReportDAL())
+                {
+                    userDetailReportData = reportDal.GetReportDetailData(WsConstant.ReportType.REPORT_USER);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get User Detail Report  Data Successfully",
+                    Type = "",
+                    Data = userDetailReportData
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot User Detail Report Data Profile!",
                     Type = ""
                 });
             }
