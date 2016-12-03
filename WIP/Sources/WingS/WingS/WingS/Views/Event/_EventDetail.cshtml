@@ -114,7 +114,7 @@
                             }
                         }
                     </li>
-                </ul>s
+                </ul>
             </div>
 
         </div>
@@ -157,11 +157,12 @@
             </div>
             <!-- Timeline -->
             <div id="timelineTab" class="tab-pane fade" >
+                <h2 style="margin-left: 109px;text-transform: uppercase;font-family: 'Source Sans Pro', sans-serif;">Thời gian diễn ra: {{Event.Start_Date}} - {{Event.Finish_Date}}</h2>
                 <section id="timeline" >
                     <article ng-repeat="item in EventTimeLine">
                         <div class="inner">
                             <span class="date">
-                                <span class="month">{{Event.StartedDate}}</span>
+                                @*<span class="month">{{Event.Start_Date}}</span>*@
                              </span>
                             <h2>Từ ngày {{item.FromDate}} Đến ngày {{item.ToDate}}</h2>
                             <p>{{item.Content}}</p>

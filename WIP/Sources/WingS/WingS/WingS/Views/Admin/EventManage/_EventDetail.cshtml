@@ -137,11 +137,12 @@
                                 <div class="tab-pane fade" id="campaign">
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <h2 style="margin-left: 109px;text-transform: uppercase;font-family: 'Source Sans Pro', sans-serif;">Thời gian diễn ra: {{currentEvent.Start_Date}} - {{currentEvent.Finish_Date}}</h2>
                                             <section id="timeline">
                                                 <article ng-repeat="item in EventTimeLine">
                                                     <div class="inner">
                                                         <span class="date">
-                                                            <span class="month">{{currentEvent.StartedDate}}</span>
+                                                            @*<span class="month">{{currentEvent.StartedDate}}</span>*@
                                                         </span>
                                                         <h2>Từ ngày {{item.FromDate}} Đến ngày {{item.ToDate}}</h2>
                                                         <p style="color: black">{{item.Content}}</p>

@@ -1,4 +1,4 @@
-﻿<body>
+﻿    <body>
     @Html.Partial("../Admin/_TopSideNavigation")
     <!-- begin MAIN PAGE CONTENT -->
     <div id="page-wrapper">
@@ -43,10 +43,10 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 20px;">STT</th>
-                                            <th style="width: 600px;">Tên tổ chức</th>
-                                            <th style="">Địa chỉ Email</th>
                                             <th style="">Người đăng ký </th>
                                             <th style="">Ngày đăng ký</th>
+                                            <th style="">Tên tổ chức</th>
+                                            <th style="">Địa chỉ Email</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
 
@@ -55,24 +55,23 @@
                                     <tbody>
                                         <tr class="odd gradeX" ng-repeat="item in allOrgWaitAccept">
                                             <td>{{ $index + 1 }}</td>
-                                            <td>
-                                                <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.OrganizationId}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.LogoUrl}}" alt="">
+                                            <td class="nameAdmin">
+                                                <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.UserId}}")">
+                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
                                                 </a>
-                                                <h4>&nbsp;{{item.OrganizationName}}</h4>
+                                                <p> {{item.Creator.UserName}}</p>
                                             </td>
-                                            <td>{{item.Email}}</td>
-                                            <td>{{item.Creator.UserName}}</td>
                                             <td>{{item.CreatedDate}}</td>
-
-                                            <td>
-                                                <button class="btn btn-green" style="width: 125px" ng-if="item.IsVerify && item.IsActive" onclick="return false">Đang hoạt động</button>
+                                            <td>{{item.OrganizationName}}</td>
+                                            <td>{{item.Email}}</td>
+                                            <td>                                   
                                                 <button class="btn btn-warning" style="width: 125px" ng-if="!item.IsVerify" onclick="return false">Chờ phê duyệt</button>
+                                                <button class="btn btn-primary" style="width: 125px" ng-if="item.IsVerify && item.IsActive" onclick="return false">Đồng ý</button>
+                                                <button class="btn btn-danger" style="width: 125px" ng-if="item.!IsActive" onclick="return false">Từ chối</button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-blue" data-toggle="modal" data-target="#viewMessageModal">View</button>
-                                                <button class="btn btn-default" ng-click="AcceptOrg($index,item.OrganizationId)">Confirmed</button>
-                                                <button class="btn btn-purple" ng-click="cancelCreateOrg($index,item.OrganizationId)">Cancel</button>
+                                                <button class="btn btn-primary" ng-click="AcceptOrg($index,item.OrganizationId)">Đồng ý</button>
+                                                <button class="btn btn-danger" ng-click="cancelCreateOrg($index,item.OrganizationId)">Từ chối</button>
                                             </td>
 
                                         </tr>
