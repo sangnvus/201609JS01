@@ -93,10 +93,10 @@ app.config(function ($routeProvider) {
             templateUrl: "/Admin/ReportUser",
             controller: "AdminReportUserController"
         })
-        .when("/ReportUserDetail", {
+        .when("/ReportUserDetail/:UserId", {
             tittle: "Báo cáo người dùng",
             templateUrl: "/Admin/ReportUserDetail",
-            controller: "AdminReportUserController"
+            controller: "AdminReportUserDetailController"
         })
         .when("/ReportOrganization", {
             tittle: "Báo cáo tổ chức",

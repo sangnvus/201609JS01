@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
 using WingS.DataAccess;
 using WingS.DataHelper;
@@ -143,13 +144,47 @@ namespace WingS.Controllers.WebApi
             try
             {
                 bool isSuccess;
+                OrganizationBasicInfo organizationBasic;
                 // Delete create request
                 using (var db = new OrganizationDAL())
                 {
+                    //get inforamation of organziation Creator
+                    organizationBasic = db.GetFullOrganizationBasicInformation(organizationId);
+
                     isSuccess = db.DeleteOrganization(organizationId);
                 }
 
-                //Send mail to Creator
+                
+                
+                //Send mail to Creator to anounce that admin reject create organization request
+                if (isSuccess)
+                {
+                    //khai bao bien
+                    var fromAddress = new MailAddress(WsConstant.OrganizationRegistration.AdminEmail, WsConstant.OrganizationRegistration.WsAdmin);
+                    var toAddress = new MailAddress(organizationBasic.Creator.Email, organizationBasic.Creator.UserName);
+                    string fromPassword = WsConstant.OrganizationRegistration.AdminEmailPass;
+                    string subject = WsConstant.OrganizationRegistration.EmailSubjectRejectRegistration;
+                    string body = WsConstant.OrganizationRegistration.EmailContentFirst + "Yêu cầu tạo tổ chức : '" + organizationBasic.OrganizationName + "' " + WsConstant.OrganizationRegistration.EmailContentRejectRegistration;
+                    //xu li gui mail
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Timeout = 30000,
+                        Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                    };
+                    using (var message = new MailMessage(fromAddress, toAddress)
+                    {
+                        Subject = subject,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(message);
+                    }
+                }
 
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = isSuccess });
             }

@@ -205,5 +205,36 @@ namespace WingS.Controllers.WebApi
                 }
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult GetUserReportData()
+        {
+            try
+            {
+                List<ReportStatisticDTO> reportStatistic = new List<ReportStatisticDTO>();
+
+                using (var reportDal = new ReportDAL())
+                {
+                    reportStatistic = reportDal.GetListReportByType(WsConstant.ReportType.REPORT_USER);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get Report Data Successfully",
+                    Type = "",
+                    Data = reportStatistic
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Report Data Profile!",
+                    Type = ""
+                });
+            }
+        }
     }
 }
