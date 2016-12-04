@@ -350,95 +350,99 @@
 
         </div>
     </div>
-    <div align="center"><a class="btn btn-primary" href="#"> Xem danh sách</a></div>
+<div align="center"><a class="btn btn-primary" href="#"> Xem danh sách</a>
 </div>
-    <div class="modal fade" id="sendReport" role="dialog" hidden>
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Báo cáo sự kiện này </h4>
-                </div>
-                <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
-                    Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
-                </div>
-                <div class="modal-body">
-                    <div class="radio" ng-repeat="item in ReportContent track by $index">
-                        <div ng-if="$index==0">
-                            <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked">{{item}}</label>
+        <div class="chatbox chatbox--tray chatbox--empty">
+            <div class="chatbox__title">
+                <h5><a href="">Thảo luận về sự kiện</a></h5>
+                <button class="chatbox__title__tray">
+                    <span></span>
+                </button>
+                <button class="chatbox__title__close">
+                    <span>
+                        <svg viewBox="0 0 12 12" width="12px" height="12px">
+                            <line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                            <line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <div id="msgContainer" class="chatbox__body">
+                <div ng-repeat="item in MessageList">
+                    <div class="media">
+                        <a class="pull-left" href="/#/Profile/{{item.CreatorName}}">
+                            <img src="{{item.CreatorImage}}" style="width: 50px; height: 50px;" class="img-rounded" alt="" />
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><small>{{item.CreatorName}}</small> <span><small>{{item.CreatedDate}}</small></span></h4>
+                            {{item.Content}}
                         </div>
-                        <div ng-if="$index!=0">
-                            <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)">{{item}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="sendMessage">
-                        <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
-                    </div>
-                    <div class="closeForm">
-                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                        <br />
                     </div>
                 </div>
             </div>
+            <form class="chatbox__credentials">
+                @if (User.Identity == null || !User.Identity.IsAuthenticated)
+                {
+                    <div class="require_Login">
+                        <p>Bạn cần đăng nhập để có thể xem được nội dung thảo luận</p>
+
+                        <h3>
+                            <a style:align="center" href=@Url.Content("/#/Login")> Đăng nhập</a>
+                        </h3>
+                    </div>
+                }
+                else
+                {
+                    <button type="submit" id="btnStartChat" class="btn btn-success btn-block">Vào phòng thảo luận</button>
+                }
+                <input id="hdId" type="hidden" />
+                <input id="hdUserId" type="hidden" />
+                <input id="hdEventId" type="hidden" />
+            </form>
+            <textarea id="txtMessage" class="chatbox__message" placeholder="Viết cái gì đó...."></textarea>
 
         </div>
+</div>
+<div class="modal fade" id="sendReport" role="dialog" hidden>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Báo cáo sự kiện này </h4>
+            </div>
+            <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
+            </div>
+            <div class="modal-body">
+                <div class="radio" ng-repeat="item in ReportContent track by $index">
+                    <div ng-if="$index==0">
+                        <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked">{{item}}</label>
+                    </div>
+                    <div ng-if="$index!=0">
+                        <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)">{{item}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="sendMessage">
+                    <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
+                </div>
+                <div class="closeForm">
+                    <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
+
 <div id="footerOuterSeparator"></div>
 
 @Html.Partial("../Home/_Footer")
 <br/><br/><br/>
 
-<div class="chatbox chatbox--tray chatbox--empty">
-    <div class="chatbox__title">
-        <h5><a href="">Thảo luận về sự kiện</a></h5>
-        <button class="chatbox__title__tray">
-            <span></span>
-        </button>
-        <button class="chatbox__title__close">
-            <span>
-                            <svg viewBox="0 0 12 12" width="12px" height="12px">
-                                <line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
-                                <line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
-                            </svg>
-                        </span>
-        </button>
-    </div>
-    <div id="msgContainer" class="chatbox__body">
-    <div ng-repeat="item in MessageList">
-    <div class="media">
-        <a class="pull-left" href="#">
-            <img src="{{item.CreatorImage}}" style="width: 50px; height:50px;" class="img-rounded" alt="" />
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading"><small>{{item.CreatorName}}</small> <span><small>{{item.CreatedDate}}</small></span></h4>
-            {{item.Content}}
-        </div>
-        <br />
-    </div>
-    </div>
-   </div>
-    <form class="chatbox__credentials">
-        @if (User.Identity == null || !User.Identity.IsAuthenticated)
-        {
-            <div class="require_Login">
-                <p>Bạn cần đăng nhập để có thể xem được nội dung thảo luận</p>
-
-                <h3><a style:align="center" href=@Url.Content("/#/Login")> Đăng nhập</a></h3>
-            </div>
-        }
-        else
-        {
-            <button type="submit" id="btnStartChat" class="btn btn-success btn-block" >Vào phòng thảo luận</button>
-        }
-        <input id="hdId" type="hidden" />
-        <input id="hdUserId" type="hidden" />
-        <input id="hdEventId" type="hidden" />
-    </form>
-    <textarea id="txtMessage" class="chatbox__message" placeholder="Viết cái gì đó...."></textarea>
-
-</div>
 
 
 <!-- END PAGE LEVEL PLUGIN SCRIPTS -->

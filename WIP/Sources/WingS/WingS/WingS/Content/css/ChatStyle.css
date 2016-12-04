@@ -1,7 +1,6 @@
 ﻿.chatbox {
     position: fixed;
     bottom: 0;
-    right: 90px;
     width: 350px;
     height: 400px;
     background-color: #fff;
@@ -12,6 +11,7 @@
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
+    margin-left: 779px;
 }
 
 .chatbox--tray {
@@ -68,6 +68,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 25px;
 }
 
 .chatbox__title h5:before {
