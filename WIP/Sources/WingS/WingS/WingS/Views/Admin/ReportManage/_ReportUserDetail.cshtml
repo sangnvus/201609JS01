@@ -38,8 +38,8 @@
                                 <h4>Báo cáo chi tiết về {{currentUserProfile.UserName}}</h4>
                             </div>
                             <div class="portlet-widgets">
-                                <button class="btn btn-blue" ng-click="ban($index,x.UserId)">Khóa tài khoản này</button>
-                                
+                                <button class="btn btn-primary" ng-if="currentUserProfile.IsActive " ng-click="ban(currentUserProfile.UserId)">Khóa tài khoản này</button>
+                                <button class="btn btn-danger" ng-if="!currentUserProfile.IsActive " ng-click="unBan(currentUserProfile.UserId)">Mở khóa tài khoản này</button>
                             </div>
                             <div class="clearfix"></div>
                         </div>

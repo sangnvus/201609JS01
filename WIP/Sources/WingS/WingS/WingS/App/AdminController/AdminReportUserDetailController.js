@@ -20,9 +20,21 @@
         $scope.UserReportDetailData = response.Data;
     });
 
+
+    $scope.activeUser = function (userid) {
+        $http({
+            url: "/api/AdminUserList/ChangeStatusUser",
+            method: "GET",
+            params: { userid: userid },
+            contentType: "application/json"
+        }).success(function (response) {
+            $scope.currentUserProfile.IsActive = response.Data;
+        });
+        return true;
+    };
     // Alert admin before change status
     //Lock
-    $scope.ban = function (index, userid) {
+    $scope.ban = function (userid) {
         SweetAlert.swal({
             title: "Khóa tài khoản",
             text: "Bạn muốn khóa tài khoản này?",
@@ -36,7 +48,7 @@
         },
             function (isConfirm) {
                 if (isConfirm) {
-                    $scope.activeUser(index, userid);
+                    $scope.activeUser(userid);
                     SweetAlert.swal("Khóa!", "Bạn đã khóa tài khoản thành công", "success");
                 } else {
                     SweetAlert.swal("Hủy", "Tài khoản chưa được khóa", "error");
@@ -44,7 +56,7 @@
             });
     };
     //Un lock
-    $scope.unBan = function (index, userid) {
+    $scope.unBan = function (userid) {
         SweetAlert.swal({
             title: "Mở khóa tài khoản",
             text: "Bạn muốn mở khóa tài khoản này?",
@@ -58,7 +70,7 @@
         },
             function (isConfirm) {
                 if (isConfirm) {
-                    $scope.activeUser(index, userid);
+                    $scope.activeUser(userid);
                     SweetAlert.swal("Khóa!", "Bạn đã mở khóa tài khoản thành công", "success");
                 } else {
                     SweetAlert.swal("Hủy", "Tài khoản chưa được mở khóa", "error");

@@ -162,6 +162,7 @@ namespace WingS.DataAccess
                         if (userIsReported != null)
                         {
                             reportStatistic.IsreportedUserName = userIsReported.UserName;
+                            reportStatistic.IsreportedUserStatus = userIsReported.IsActive;
                         }
 
                         var userIsReportedInformation = db.User_Information.FirstOrDefault(x => x.UserID == id);

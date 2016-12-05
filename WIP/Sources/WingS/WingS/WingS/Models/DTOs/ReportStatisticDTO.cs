@@ -12,6 +12,7 @@ namespace WingS.Models.DTOs
         public string IsreportedImage { get; set; }
         public int TotalReportedTimes { get; set; }
         public int NewReportedTimes { get; set; }
+        public bool IsreportedUserStatus { get; set; }
 
     }
 }
