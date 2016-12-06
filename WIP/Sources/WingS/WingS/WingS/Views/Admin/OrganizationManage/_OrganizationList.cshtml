@@ -43,7 +43,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 20px;">STT</th>
-                                            <th style="width: 688px;">Tên tổ chức</th>
+                                            <th style="">Tên tổ chức</th>
                                             <th style="">Địa chỉ Email</th>
                                             <th style="">Người đăng ký </th>
                                             <th style="">Ngày đăng ký</th>
@@ -54,11 +54,11 @@
                                     <tbody>
                                         <tr class="odd gradeX" ng-repeat="item in allOrg">
                                             <td>{{ $index + 1 }}</td>
-                                            <td>
+                                            <td class="nameAdmin">
                                                 <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.OrganizationId}}")">
                                                     <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.LogoUrl}}" alt="">
                                                 </a>
-                                                <h4>&nbsp;{{item.OrganizationName}}</h4>
+                                                <p> {{item.OrganizationName}}</p>
                                             </td>
                                             <td>{{item.Email}}</td>
                                             <td>{{item.Creator.UserName}}</td>

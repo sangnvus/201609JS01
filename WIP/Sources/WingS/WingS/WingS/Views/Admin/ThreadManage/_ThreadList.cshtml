@@ -12,7 +12,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="Admin/#/DashBoard">Thống kê</a>
+                            <i class="fa fa-dashboard"></i> <a href="/Admin/#/DashBoard">Thống kê</a>
                         </li>
                         <li class="active">Danh sách bài viết</li>
                     </ol>
@@ -35,31 +35,36 @@
                     </div>
                     <div class="portlet-body">
                         <div class="table-responsive">
-                            <table id="" class="table table-striped table-bordered table-hover table-green">
+                            <table datatable="ng" id="" class="table table-striped table-bordered table-hover table-green">
                                 <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Tên bài viết</th>
-                                    <th style="width: 120px">Người tạo</th>
-                                    <th style="width: 128px">Ngày tạo </th>
-                                    <th>Trạng thái</th>
-                                    <th>Hành động</th>
-                                </tr>
+                                    <tr>
+                                        <th style="width: 25px;">STT</th>
+                                        <th>Tên bài viết</th>
+                                        <th style="">Người tạo</th>
+                                        <th style="">Ngày tạo </th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="item in allThread">
-                                    <td>{{ $index + 1 }}</td>
-                                    <td><a href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")"><strong>{{item.ThreadName}}</strong></a></td>
-                                    <td>{{item.Creator}}</td>
-                                    <td>{{item.CreatedDate}}</td>
-                                    <td>
-                                        <button class="btn btn-green" style="width: 125px" ng-if="item.Status" ng-click="ban($index,item.ThreadID)">Đang thảo luận</button>
-                                        <button class="btn btn-danger" style="width: 125px" ng-if="!item.Status" ng-click="unBan($index,item.ThreadID)">Bị cấm</button>
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")" class="btn btn-blue">Xem chi tiết</a>
-                                    </td>
-                                </tr>
+                                    <tr ng-repeat="item in allThread">
+                                        <td>{{ $index + 1 }}</td>
+                                        <td class="nameAdmin">
+                                            <a class="pull-left" href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")">
+                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
+                                            </a>
+                                            <p> {{item.ThreadName}}</p>
+                                        </td>
+                                        <td>{{item.Creator}}</td>
+                                        <td>{{item.CreatedDate}}</td>
+                                        <td>
+                                            <button class="btn btn-green" style="width: 125px" ng-if="item.Status" ng-click="ban($index,item.ThreadID)">Đang thảo luận</button>
+                                            <button class="btn btn-danger" style="width: 125px" ng-if="!item.Status" ng-click="unBan($index,item.ThreadID)">Bị cấm</button>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")" class="btn btn-blue">Xem chi tiết</a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

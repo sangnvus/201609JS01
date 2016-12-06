@@ -13,7 +13,10 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i> <a href="index-2.html">Tổ chức</a>
+                    <i class="fa fa-dashboard"></i> <a href="/Admin/#/DashBoard">Thống kê</a>
+                </li>
+                <li>
+                    <a href="#" onclick="return false">Tổ chức</a>
                 </li>
                 <li class="active">Thống kê tổ chức</li>
             </ol>
@@ -54,7 +57,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in RankingOrg">
-                                        <td>
+                                        <td class="nameAdmin">
                                             <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.OrganizationId}}")">
                                                 <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.LogoUrl}}" alt="">
                                             </a>
@@ -108,7 +111,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in newCreatedOrg">
-                                <td>
+                                <td class="nameAdmin">
                                     <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.OrganizationId}}")">
                                         <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.LogoUrl}}" alt="">
 
