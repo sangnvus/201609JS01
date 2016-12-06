@@ -23,7 +23,6 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
-    <link href="../../Content/scripts/lightbox/dist/css/lightbox.css" rel="stylesheet">
     <link href="../../Content/styles/custom.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/chatbox.css" rel="stylesheet" type="text/css" />
@@ -80,7 +79,6 @@
                                             <img src="{{User_Information.ProfileImage}}" style="width: 38px; height: 37px; margin-top: 2px;"/> <b class="caret"></b>
                                             <ul class="dropdown-menu">
                                                 <li><a href="@Url.Content("/#/Messages/")"><i class="fa fa-envelope" style=" margin-left: -6px;margin-right: 4px; "></i> Tin nhắn<span class="badge green pull-right">4</span></a></li>
-                                                <li><a href=@Url.Content("/#/Profile/{{User_Information.UserName}}")><i class="fa fa-bell" style="margin-left: -6px;margin-right: 4px; " ></i> Hoạt động</a></li>
                                                 <li><a href=@Url.Content("/#/Profile/{{User_Information.UserName}}")><i class="fa fa-user" style="margin-left: -6px;margin-right: 4px; "></i> Thông tin tài khoản</a></li>
                                                 <li ng-if="User_Information.IsOrganazation==true"><a href=@Url.Content("/#/OrganizationDetail/{{User_Information.UserId}}")><i class="fa fa-group" style=" margin-left: -6px;margin-right: 4px; "></i> Tổ chức của bạn</a></li>
                                                 <li><a id="Logout" data-toggle="modal" data-target="#lgout" onclick="return false"><i class="fa fa-sign-out" style=" margin-left: -6px;margin-right: 4px; "></i> Đăng xuất {{User_Information.FullName}}</a></li>

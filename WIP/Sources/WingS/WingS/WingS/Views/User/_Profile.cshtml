@@ -17,7 +17,7 @@
     <li class="active"><a href="#overview" onclick=" return false; " data-toggle="tab">Hồ sơ</a></li>
     <li><a href="#backed" onclick=" return false; " data-toggle="tab">Lịch sử quyên góp</a></li>
     <li><a href="#created" onclick=" return false; " data-toggle="tab">Bài viết đã tạo</a></li>
-    <li><a href="#changePassWord" onclick=" return false; " data-toggle="tab">Đổi mật khẩu</a></li>
+    <li ng-if="UserInfo.UserName==User_Information.UserName"><a href="#changePassWord" onclick=" return false; " data-toggle="tab">Đổi mật khẩu</a></li>
 </ul>
 <div id="userTabContent" class="tab-content">
 <div class="tab-pane fade in active" id="overview">
@@ -103,8 +103,8 @@
         @{ if(User.Identity.Name!=""||User.Identity.IsAuthenticated)
             {
         <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
-        <a ng-if="checkReported" class="btn " href="#" onclick=" return false; " style="margin-left: 31px;" title="Bạn đã báo cáo người dùng này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
-        <a ng-if="!checkReported" class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport" style="margin-left: 31px;" ng-if="UserInfo.UserName!=User_Information.UserName" ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+        <a ng-if="checkReported && UserInfo.UserName!=User_Information.UserName" class="btn " href="#" onclick=" return false; " style="margin-left: 31px;" title="Bạn đã báo cáo người dùng này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+        <a ng-if="!checkReported && UserInfo.UserName!=User_Information.UserName" class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport" style="margin-left: 31px;"  ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
             }
         }
         <a class="btn " id="updateUser" ng-click="enableButton()" href="#" onclick=" return false; " ng-if="UserInfo.UserName==User_Information.UserName"><i class="icon-edit"></i> Sửa thông tin</a>
@@ -200,7 +200,7 @@
 <!-- End tab created project -->
 
 <!-- Start tab change PassWord -->
-<div class="tab-pane fade" id="changePassWord">
+<div class="tab-pane fade" id="changePassWord" ng-if="UserInfo.UserName==User_Information.UserName">
     <div class="row-fluid">
         <!--Edit Main Content Area here-->
         <div class="span12" id="divMain" style="margin-top: 40px;

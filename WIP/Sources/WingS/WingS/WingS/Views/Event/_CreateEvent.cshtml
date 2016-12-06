@@ -164,13 +164,13 @@
                                         </div>
                                         <div class="span9">
                                             <p>Nội dung sự kiện của bạn </p>
-                                            <textarea id="eventContent" name="Content" @*ng-model="Content" ng-minlength="6" required*@></textarea>
+                                            <textarea id="eventContent" name="Content" ng-model="Content" @*ng-minlength="6" required*@></textarea>
                                             @*<p>
                                                         <span style="color: red" ng-show="CreateEventForm.Content.$dirty && CreateEventForm.Content.$invalid">
                                                             <span ng-show="CreateEventForm.Content.$error.required">Nội dung sự kiện không được để trống</span>
                                                             <span ng-show="CreateEventForm.Content.$error.minlength">Nội dung sự kiện phải trên 6 kí tự</span>
                                                         </span>
-                                                    </p>*@
+                                             </p>*@
                                         </div>
                                     </div>
                                 </div>
@@ -291,7 +291,7 @@
                                             <input type="text" name="VideoUrl" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 80%;"
                                                    ng-model="VideoUrl" required/>
                                             <p>
-                                                Nhập vào đường link của đoạn phim bạn có
+                                                Nhập vào đường link Youtube của đoạn phim bạn có
                                             </p>
                                             <p>
                                                 <span style="color: red" ng-show="CreateEventForm.VideoUrl.$dirty && CreateEventForm.VideoUrl.$invalid">
