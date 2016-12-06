@@ -9,6 +9,7 @@ namespace WingS.Models.DTOs
     public class CreateThreadInfo
     {
         public int CreatorID { get; set; }
+        public int ThreadId { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         [AllowHtml]

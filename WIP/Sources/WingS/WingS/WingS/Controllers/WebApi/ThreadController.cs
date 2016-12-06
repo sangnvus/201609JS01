@@ -213,6 +213,7 @@ namespace WingS.Controllers.WebApi
                     threadBasic.ImageUrl = db.GetAllImageThreadById(id);
                     threadBasic.Content = current.Content;
                     threadBasic.Status = current.Status;
+                    threadBasic.ShortDescription = current.ShortDescription;
                     threadBasic.CreatedDate = current.CreatedDate.ToString("H:mm:ss  MM/dd/yyyy");
                     return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = threadBasic });
                 }

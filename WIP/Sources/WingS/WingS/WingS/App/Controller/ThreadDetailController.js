@@ -278,19 +278,7 @@
              $(".closeForm").show();
          });
      };
-    // Handle Loadmore comment
-    var pageShow = 4;
-    var index = 2;
-    $scope.paginationLimit = function (data) {
-        return pageShow * index;
-    };
-    $scope.hasMoreItemsToShow = function () {
-        if (typeof $scope.CommentThread == "undefined") return false;
-        else return pageShow < ($scope.CommentThread.length / index);
-    };
-    $scope.showMoreItems = function () {
-        index = index + 1;
-    };
+
     $scope.reloadComment = function () {
         $http({
             url: "/api/Thread/GetAllComment",
@@ -303,8 +291,24 @@
                 index = 2;
         });
     };
- 
+     // Handle Loadmore comment
+    var pageShow = 4;
+    var index = 2;
+    $scope.paginationLimit = function (data) {
+        return pageShow * index;
+    };
+    $scope.hasMoreItemsToShow = function () {
+        if ($scope.CommentThread != null) {
+            if (typeof $scope.CommentThread == "undefined") return false;
+            else return pageShow < ($scope.CommentThread.length / index);
+        }
+        else return false;
+    };
+    $scope.showMoreItems = function () {
+        index = index + 1;
+    };
 });
+
 app.filter('trusted', ['$sce', function ($sce) {
     return function (url) {
         return $sce.trustAsResourceUrl(url);

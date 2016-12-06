@@ -160,12 +160,12 @@ app.config(function ($routeProvider) {
             title: "Thống kê",
             controller: "StatisticsController"
         })
-        .when("/EditEvent", {
+        .when("/EditEvent/:Id", {
             templateUrl: "/Client/EditEvent",
             title: "Sửa thông tin của sự kiện",
             controller: "EditEventController"
         })
-        .when("/EditThread", {
+        .when("/EditThread/:Id", {
             templateUrl: "/Client/EditThread",
             title: "Sửa thông tin của bài viết",
             controller: "EditThreadController"

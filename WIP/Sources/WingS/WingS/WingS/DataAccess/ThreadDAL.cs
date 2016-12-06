@@ -334,6 +334,35 @@ namespace WingS.DataAccess
                  }
 
         }
+        public Thread UpdateThread(CreateThreadInfo thread, string UserName)
+        {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
+            using (var db = new Ws_DataContext())
+            {
+                //Get current Thread To Edit
+                var currentThread = db.Threads.Where(x => x.ThreadId == thread.ThreadId).SingleOrDefault();
+                currentThread.Title = thread.Title;
+                currentThread.Content = thread.Content;
+                currentThread.ShortDescription = thread.ShortDescription;
+                currentThread.UpdatedDate = DateTime.Now;
+                if (CurrenUser != currentThread.UserId)
+                {
+                    return null;
+                }
+                else
+                {
+                    db.Threads.AddOrUpdate(currentThread);
+                    db.SaveChanges();
+                }
+                return currentThread;
+
+                }
+            
+        }
         public Thread CreateEmptyThread()
         {
             using (var db = new Ws_DataContext())
