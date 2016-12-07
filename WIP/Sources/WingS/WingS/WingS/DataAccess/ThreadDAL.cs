@@ -150,9 +150,9 @@ namespace WingS.DataAccess
                         }
                         else bs.isDeleted = false;
                         bs.NumberSubComment = item.Count;
-                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
-                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
-                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                        if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).TotalHours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).TotalHours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         bs.NumberOfLikes = db.LikeCommentThreads.Where(x => x.CommentId == item.CommentThreadId && x.Status == true).Count();
@@ -197,9 +197,9 @@ namespace WingS.DataAccess
                             bs.isDeleted = true;
                         }
                         else bs.isDeleted = false;
-                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
-                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
-                        else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
+                        if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).TotalHours + " Tiếng cách đây";
+                        else if (DateTime.Now.Subtract(item.CommentDate).TotalHours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         list.Add(bs);
@@ -230,8 +230,8 @@ namespace WingS.DataAccess
                         bs.UserImageProfile = item.ProfileImage;
                         bs.CommentId = item.CommentThreadId;
                         bs.Content = item.Content;
-                        if (DateTime.Now.Subtract(item.CommentDate).Hours <= 24 && DateTime.Now.Subtract(item.CommentDate).Hours >= 1)
-                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Hours + " Tiếng cách đây";
+                        if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
+                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).TotalHours + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
@@ -333,6 +333,35 @@ namespace WingS.DataAccess
                      return GetThreadById(newThread.ThreadId);
                  }
 
+        }
+        public Thread UpdateThread(CreateThreadInfo thread, string UserName)
+        {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(UserName).UserID;
+            }
+            using (var db = new Ws_DataContext())
+            {
+                //Get current Thread To Edit
+                var currentThread = db.Threads.Where(x => x.ThreadId == thread.ThreadId).SingleOrDefault();
+                currentThread.Title = thread.Title;
+                currentThread.Content = thread.Content;
+                currentThread.ShortDescription = thread.ShortDescription;
+                currentThread.UpdatedDate = DateTime.Now;
+                if (CurrenUser != currentThread.UserId)
+                {
+                    return null;
+                }
+                else
+                {
+                    db.Threads.AddOrUpdate(currentThread);
+                    db.SaveChanges();
+                }
+                return currentThread;
+
+                }
+            
         }
         public Thread CreateEmptyThread()
         {

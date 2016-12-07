@@ -7,6 +7,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 <link href="~/Content/css/ThreadDetail.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/scripts/lightbox/dist/css/lightbox.css" rel="stylesheet">
 <script src="../../Content/scripts/lightbox/dist/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
 <script src="../../Content/scripts/default.js" type="text/javascript"></script>
 <link href="~/Content/Admin/css/sweetalert.css" rel="stylesheet">
@@ -34,12 +35,12 @@
                             <i class="fa fa-caret-down" style="color: gray; font-size: 21px; margin-top: 17px;"></i>
                         </a>
                         <ul class="dropdown-menu" style="margin-top: 38px;">
-                            <li>
-                                <a href="/#/EditThread">
+                            <li ng-if="Thread.UserID==User_Information.UserId">
+                                <a href="@Url.Content("/#/EditThread/{{Thread.ThreadID}}")">
                                     <i class="fa fa-edit" style="margin-left: -6px;"></i> Sửa thông tin
                                 </a>
                             </li>
-                            <li>
+                            <li ng-if="Thread.UserID!=User_Information.UserId">
                                 @{ if (User.Identity.Name != "" || User.Identity.IsAuthenticated)
                                     {
                                         <a ng-if="checkReported" href="#" onclick=" return false; " title="Bạn đã báo cáo bài viết này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true" style="margin-left: -6px;"></i> Báo cáo</a>
@@ -93,95 +94,6 @@
                         </div>
                     </div>
 
-                        @*<div class="row-fluid">
-                            <!--Infor of User-->
-                            <div class="span3">
-                                <h2>Thông tin</h2>
-                                <hr>
-                                <p><span style="font-weight: bold">Tạo bởi:</span>   <strong>{{user.UserName}}</strong> </p>
-                                <p><span style="font-weight: bold">Điểm tích lũy:</span> <span>600</span></p>
-                                <p><span style="font-weight: bold">Ảnh đại diện</span><p>
-                                <p><img src="{{user.ProfileImage}}" class="img-polaroid" alt=""></p>
-
-                                <a href="#" style="color: #333"><i class="icon-envelope-alt"></i> Nhắn tin</a>
-                                &nbsp; &nbsp;<a href="#" style="color: #333"><i class="icon-ban-circle"></i> Báo cáo người dùng</a>
-                            </div>
-                            <!--/End Infor of User  -->
-                            <!--Edit Main Content Area here-->
-                            <div class="span9" id="divMain">
-                                <div class="row-fluid">
-                                    <div class="span3 ">
-                                        @if (User.Identity.Name == null || User.Identity.Name == "")
-                                        {
-                                            <i class="fa fa-thumbs-up" style="color:black;" aria-hidden="true" title="Số lượt thích"></i><span><strong> &nbsp; &nbsp;&nbsp;{{Likes}}</strong></span>
-                                        }
-                                        else
-                                        {
-                                            <a href="#" onclick="return false;" ng-click="doLike()"><i class="fa fa-thumbs-up" aria-hidden="true" ng-style="isLikeStyle" title="Số lượt thích"></i></a><span><strong> &nbsp; &nbsp;&nbsp;{{Likes}}</strong></span>
-                                        }
-                                    </div>
-                                    <div class="span3"><i class="icon-flag"></i> <strong>Báo cáo bài viết</strong></div>
-                                    @*<div class="icon-share-alt span3 " data-href="{{CurrentPath}}" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>*@
-                                    @*<div class="icon-share-alt span3 " data-href="http://localhost:2710/#/ThreadDetail/9" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A2710%2F%23%2FThreadDetail%2F9&amp;src=sdkpreparse"> Chia sẻ</a></div>
-                                </div>
-                                <hr />
-                                <div class="row-fluid" id="isComment">
-                                    <br />
-                                    <div class="span6 offset1">
-                                        <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
-                                            <div class="row-fluid">
-                                                <h3 style="margin-top:15px;"><strong>Hiện tại chưa có bình luận nào </strong></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="media" ng-repeat="item in CommentThread| limitTo: paginationLimit()">
-                                    <a class="pull-left" href="#">
-                                        <img src="{{item.UserImageProfile}}" style="width:64px; height:64px;" class="img-circle" alt="" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">{{item.UserCommentedName}} <span><small>{{item.CommentedTime}}</small></span></h4>
-                                        {{item.Content}}
-                                    </div>
-                                    <br>
-                                    <div class="media-footer">
-                                        <a href="#" class="voteButton" onclick="return false;">Vote | 50 </a> <a href="#" style="color: #999; font-size: 13px;"> DownVote </a> | <a href="#" onclick="return false" style="color: #999; font-size: 13px;" ng-click="showReply[$index]=true;getSubcomment(item.CommentId, $index)"> Trả lời ({{item.NumberSubComment}}) </a>
-                                    </div>
-                                    <hr>
-                                    <div ng-show="showReply[$index]">
-                                        <div class="media" style="margin-left: 67px;" ng-repeat="subcomment in SubCommentThread[$index]">
-                                            <a class="pull-left" href="#">
-                                                <img src="{{subcomment.UserImageProfile}}" style="width:45px; height:45px;" class="img-circle" alt="" />
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">{{subcomment.UserCommentedName}} <span><small>{{subcomment.CommentedTime}}</small></span></h4>
-                                                {{subcomment.Content}}
-                                            </div>
-                                            <hr />
-                                        </div>
-
-                                        <div ng-if="User_Information.IsAuthen" style="margin-left:67px;">
-                                            <br />
-                                            <a class="pull-left" href="#">
-                                                <img src="{{User_Information.ProfileImage}}" style="width:40px; height:40px;" class="img-circle" alt="" />
-                                            </a>&nbsp;&nbsp;&nbsp;<input class="subContent" type="text" placeholder="Nhập bình luận" style="width:50%; height:40px; " ng-model="$parent.Subcontent" my-enter="addSubComment(Subcontent,{{item.CommentId}},$index)" />
-                                            <hr />
-                                        </div>
-                                    </div>
-                                </div>
-                                <span style="margin-left:64px;"></span><a href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Xem thêm bình luận</a>
-                                <br />
-                                <div ng-if="User_Information.IsAuthen">
-                                    <a class="pull-left" href="#">
-                                        <img src="{{User_Information.ProfileImage}}" style="width:40px; height:40px; margin-left:25px; " class="img-rounded" alt="" />
-                                    </a>&nbsp;&nbsp;&nbsp;<textarea placeholder="Nhập bình luận" style="width:75%; height:50px; " ng-model="$parent.content" my-enter="addContent(content)"></textarea>
-                                </div>
-                                <br />
-                                <div align="center" style="margin-right:15px;">
-                                    <a class="btn btn-primary" href="#" ng-click="reloadComment()" onclick="return false;"><i class="icon-refresh icon-spin"></i> Tải lại bình luận</a>
-                                </div>
-                            </div>
-                        </div>*@
                     <hr style="margin-top: 10px; margin-bottom: -26px;" />
                     <br />
                     <h2>{{NumberOfComment}} Bình luận <a style="font-size: 17px; color: #333;margin-left: 5px;" href="#" ng-click="reloadComment()" onclick="return false;"><i class="fa fa-refresh" title="Tải lại bình luận" aria-hidden="true"></i></a></h2>
@@ -260,7 +172,7 @@
                                 </div>
                             </div>
                             <br />
-                            <span style="margin-left:87px;"></span><a href="#" onclick="return false;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Xem thêm bình luận</a>
+                           
                         </div>
                     </div>
 

@@ -43,7 +43,7 @@
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>STT</th>
+                            <th style="width: 25px;">STT</th>
                             <th>Tên bài viết</th>
                             <th style="width:120px">Người tạo</th>
                             <th style="width:128px">Ngày tạo</th>
@@ -53,7 +53,12 @@
                         <tbody>
                         <tr ng-repeat="item in newCreatedThread">
                             <td>{{ $index + 1 }}</td>
-                            <td><a href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")"><strong>{{item.ThreadName}}</strong></a></td>
+                            <td class="nameAdmin">
+                                <a class="pull-left" href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")">
+                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
+                                </a>
+                                <p> {{item.ThreadName}}</p>
+                            </td>
                             <td>{{item.Creator}}</td>
                             <td>{{item.CreatedDate}}</td>
                             <td>

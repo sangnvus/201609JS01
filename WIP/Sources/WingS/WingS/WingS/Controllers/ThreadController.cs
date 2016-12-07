@@ -45,7 +45,21 @@ namespace WingS.Controllers
             {
                 return Redirect("/#/Error");
             }
-            return Redirect("/#/Home");
+            return Redirect("/#/ThreadDetail/" + newThread.ThreadId);
+        }
+        [HttpPost]
+        public ActionResult EditThread(CreateThreadInfo thread)
+        { 
+            WingS.Models.Thread newThread = null;
+            //Add thread to DB
+            using (var db = new ThreadDAL())
+            {
+                newThread = db.UpdateThread(thread, User.Identity.Name);
+            }
+            if(newThread!= null){ 
+                return Redirect("/#/ThreadDetail/"+newThread.ThreadId);
+            }
+            else return Redirect("/#/Error");
         }
     }
 }
