@@ -7,6 +7,7 @@
     //Load All Message by ConservationId
     $scope.getMessage = function(userName, conservationId)
     {
+        $("#textMessage").remove();
         $window.conservationId = conservationId;
         $scope.replyShow = true;
         $scope.CurrentConservationId = conservationId;

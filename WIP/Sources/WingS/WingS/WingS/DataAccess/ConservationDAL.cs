@@ -43,7 +43,7 @@ namespace WingS.DataAccess
             using (var db = new Ws_DataContext())
             {
 
-                var list = db.Message.OrderByDescending(x => x.ConservationId == id).ToList();
+                var list = db.Message.Where(x=>x.ConservationId==id).ToList();
                 foreach (var item in list)
                 {
                     MessageBasicInfoDTO current = new MessageBasicInfoDTO();

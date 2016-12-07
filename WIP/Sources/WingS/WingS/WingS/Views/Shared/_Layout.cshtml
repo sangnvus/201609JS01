@@ -157,7 +157,7 @@
                             alert(msg);
                         }
                         window.globalHub.client.ReceiverMessage = function (info) {
-                            $('#messContainer').append(' <div class="media"><a class="pull-left" href="#"><img src="' + info.CreatorImage + '" style="width: 64px; height:64px;" class="img-rounded" alt="" /></a><div class="media-body"><h4 class="media-heading">' + info.CreatorName + '<span><small>' + info.CreatedDate + '</small></span></h4>' + info.Content + '</div></div><hr/>');
+                            $('#messContainer').append(' <div class="media" id="textMessage"><a class="pull-left" href="#"><img src="' + info.CreatorImage + '" style="width: 64px; height:64px;" class="img-rounded" alt="" /></a><div class="media-body"><h4 class="media-heading">' + info.CreatorName + '<span><small>' + info.CreatedDate + '</small></span></h4>' + info.Content + '</div><hr/></div>');
                             var height = $('#MessageBox')[0].scrollHeight;
                             $('#MessageBox').scrollTop(height);
                         }
