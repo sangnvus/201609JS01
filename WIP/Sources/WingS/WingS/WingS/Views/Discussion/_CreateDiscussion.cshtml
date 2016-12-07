@@ -4,7 +4,14 @@
         // Initialize your tinyMCE Editor with your preferred options
         tinyMCE.init({
             // General options
-            selector: "#ThreadContent"
+            selector: "#ThreadContent",
+            toolbar: 'fontsizeselect',
+            fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+            setup: function (ed) {
+                ed.on('init', function () {
+                    this.getDoc().body.style.fontSize = '18px';
+                });
+            }
         });
 </script>
         <div class="divPanel notop nobottom">
@@ -92,19 +99,27 @@
                         <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41); ">
                             <div class="row-fluid">
                                 <div class="span4" align="center">
-                                    <h3 style="margin-top:25px;"><strong>Câu chuyện</strong></h3>
+                                    <h3 style="margin-top:25px;"><strong>Câu chuyện</strong><span style="color: red"> *</span></h3>
                                 </div>
                                 <div class="span8">
                                     <p>Mô tả nội dung của bạn </p>
                                     <textarea id="ThreadContent" name="Content" style="height: 80%;"></textarea>
+                                    <div>
+                                        <p>
+                                            <span id="CheckThreadContent" style="color: red" hidden>
+                                                <span>Bạn phải nhập vào nội dung</span>
+                                            </span>
+                                        </p>
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                     </div>
                 <div class="row-fluid">
                     <div class="span9 offset1" align="right">
-                        <button type="submit" ng-disabled="!CreateThread.$dirty || (CreateThread.$dirty && CreateThread.$invalid)" class=" btn btn-navbar-highlight btn-large btn-primary">
+                        <button id="CreatedThread" type="submit" onclick="return false;" ng-disabled="!CreateThread.$dirty || (CreateThread.$dirty && CreateThread.$invalid)" class=" btn btn-navbar-highlight btn-large btn-primary">
                             Tạo thảo luận
                         </button>
                     </div>
@@ -129,4 +144,17 @@
     </style>
     <script>
         $("#title").focus();
+        $(function () {
+            $('#CreatedThread').click(function() {
+                var editorContent = tinyMCE.get('ThreadContent').getContent();
+                if (editorContent == '') {
+                    $('#CheckThreadContent').show();
+                    return false;
+                }
+                else {
+                    $('#CreateThread').submit();
+                    return true;
+                }
+            });
+        });
     </script>

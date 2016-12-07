@@ -5,11 +5,25 @@
     // Initialize your tinyMCE Editor with your preferred options
     tinyMCE.init({
         // General options
-        selector: "#eventContent"
+        selector: "#eventContent",
+        toolbar: 'fontsizeselect',
+        fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+        setup: function (ed) {
+            ed.on('init', function () {
+                this.getDoc().body.style.fontSize = '18px';
+            });
+        }
     });
     tinyMCE.init({
         // General options
-        selector: "#eventContact"
+        selector: "#eventContact",
+        toolbar: 'fontsizeselect',
+        fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+        setup: function (ed) {
+            ed.on('init', function () {
+                this.getDoc().body.style.fontSize = '18px';
+            });
+        }
     });
 </script>
 
@@ -38,7 +52,7 @@
                                 <li><a data-toggle="tab" href="#menu1" onclick=" return false ">Lịch trình</a></li>
                                 <li><a data-toggle="tab" href="#menu2" onclick=" return false ">Hình ảnh và Video</a></li>
                                 <li>
-                                    <button type="submit" id="createEventBtn" class="btn btn-navbar-highlight btn-primary"
+                                    <button type="submit" id="createEventBtn" onclick="return false;" class="btn btn-navbar-highlight btn-primary"
                                             style="width: 110px; height: 36px"
                                             ng-disabled="!CreateEventForm.$dirty || (CreateEventForm.$dirty && CreateEventForm.$invalid)">
                                         Tạo sự kiện
@@ -159,18 +173,19 @@
                                     <div class="row-fluid">
                                         <div class="span3" align="center">
                                             <h3 style="margin-top: 25px;">
-                                                <strong>Nội dung@*<span style="color: red"> *</span>*@</strong>
+                                                <strong>Nội dung<span style="color: red"> *</span></strong>
                                             </h3>
                                         </div>
                                         <div class="span9">
                                             <p>Nội dung sự kiện của bạn </p>
                                             <textarea id="eventContent" name="Content" ng-model="Content" @*ng-minlength="6" required*@></textarea>
-                                            @*<p>
-                                                        <span style="color: red" ng-show="CreateEventForm.Content.$dirty && CreateEventForm.Content.$invalid">
-                                                            <span ng-show="CreateEventForm.Content.$error.required">Nội dung sự kiện không được để trống</span>
-                                                            <span ng-show="CreateEventForm.Content.$error.minlength">Nội dung sự kiện phải trên 6 kí tự</span>
-                                                        </span>
-                                             </p>*@
+                                            <div>
+                                                <p>
+                                                    <span id="CheckEventContent" style="color: red" hidden>
+                                                        <span>Bạn phải nhập vào nội dung</span>
+                                                    </span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -178,18 +193,19 @@
                                     <div class="row-fluid">
                                         <div class="span3" align="center">
                                             <h3 style="margin-top: 25px;">
-                                                <strong>Thông tin liên hệ@*<span style="color: red"> *</span>*@</strong>
+                                                <strong>Thông tin liên hệ<span style="color: red"> *</span></strong>
                                             </h3>
                                         </div>
                                         <div class="span9">
                                             <p>Thông tin liên hệ của bạn: </p>
                                             <textarea id="eventContact" name="Contact" style="height: 60%; height: 80%;" @*ng-model="Contact" ng-minlength="6" required*@></textarea>
-                                            @*<p>
-                                                        <span style="color: red" ng-show="CreateEventForm.Contact.$dirty && CreateEventForm.Contact.$invalid">
-                                                            <span ng-show="CreateEventForm.Contact.$error.required">Thông tin liên hệ không được để trống</span>
-                                                            <span ng-show="CreateEventForm.Contact.$error.minlength">Thông tin liên hệ phải trên 6 kí tự</span>
-                                                        </span>
-                                                    </p>*@
+                                            <div>
+                                                <p>
+                                                    <span id="CheckEventContact" style="color: red" hidden>
+                                                        <span>Bạn phải nhập vào nội dung</span>
+                                                    </span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -329,6 +345,30 @@
     var counter = 1;
     $(document).ready(function() {
         $('#eventTitle').focus();
+        $(function () {
+            $('#createEventBtn').click(function () {
+                var eventContent = tinyMCE.get('eventContent').getContent();
+                var eventContact = tinyMCE.get('eventContact').getContent();
+                if (eventContent == '' && eventContact == '') {
+                    $('#CheckEventContent').show();
+                    $('#CheckEventContent').show();
+                    return false;
+                }
+                if (eventContent == '') {
+                    $('#CheckEventContent').show();
+                    return false;
+                }
+                if (eventContact == '') {
+                    $('#CheckEventContent').show();
+                    return false;
+                }
+                else {
+                    $('#CreateEventForm').submit();
+                return true;
+             }
+              
+            });
+        });
         $("#addButton").click(function() {
             if (counter > 10) {
                 alert("Chỉ có thể tạo tối đa 10 lịch trình");
