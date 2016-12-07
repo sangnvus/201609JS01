@@ -95,6 +95,7 @@ namespace WingS.Controllers.WebApi
                 {
                     var organ = OrDal.GetOrganizationById(organizationId);
                     organ.IsActive = !organ.IsActive;
+                    organ.IsVerify = !organ.IsVerify;
                     statusOr = organ.IsActive;
                     OrDal.UpdateOrganization(organ);
                 }

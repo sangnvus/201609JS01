@@ -8,7 +8,7 @@
         <div class="divPanel notop page-content">
 
             <div class="breadcrumbs">
-                <a href="Home.html">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Tổ chức</a> &nbsp;/&nbsp; <span>Tạo Tổ chức</span>
+                <a href="@Url.Content("/#/Home")">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Tổ chức</a> &nbsp;/&nbsp; <span>Tạo Tổ chức</span>
             </div>
             @using (Html.BeginForm("CreateOrganization", "Organization", FormMethod.Post, new { @id = "CreateOrganization", @name = "CreateOrganization", enctype = "multipart/form-data" }))
             {

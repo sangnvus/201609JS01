@@ -143,8 +143,9 @@ namespace WingS.DataAccess
                                        UserName = user.UserName,
                                        AccountType = user.AccountType,
                                        OrganazationName = user.Organazation.OrganizationName,
-                                       IsOrganazation = (user.Organazation != null&&user.Organazation.IsVerify == true) ? true : false                                   
-                                 }).FirstOrDefault();
+                                       IsOrganazation = (user.Organazation != null&&user.Organazation.IsVerify == true) ? true : false      ,
+                                       IsOrganazationVerify = (user.Organazation != null && user.Organazation.IsVerify == false) ? false : true
+                                   }).FirstOrDefault();
                 return currentUser;
             }
         }

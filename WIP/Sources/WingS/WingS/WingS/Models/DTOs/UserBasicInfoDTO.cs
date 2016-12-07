@@ -13,6 +13,7 @@ namespace WingS.Models.DTOs
         public bool IsActive { get; set; }
         public bool IsVerify { get; set; }
         public bool IsOrganazation { get; set; }
+        public bool IsOrganazationVerify { get; set; }
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
         public string OrganazationName { get; set; }

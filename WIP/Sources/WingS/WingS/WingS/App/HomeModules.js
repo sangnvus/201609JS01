@@ -140,6 +140,10 @@ app.config(function ($routeProvider) {
                     if ($window.sessionStorage.isAuthen === "false") {
                         $location.path('/Login');
                     }
+                    else if($window.sessionStorage.IsVerifyOrg ==="false")
+                    {
+                        $location.path('/RegistedNotify');
+                    }
                 }
             },
             title: "Tạo tổ chức"
@@ -149,6 +153,10 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/OrganizationDetail",
             title: "Chi tiết Tổ chức",
             controller: "OrganizationDetailController"
+        })
+        .when("/RegistedNotify", {
+                templateUrl: "/Client/RegistedOrg",
+                title: "Đã tạo tổ chức rồi",
         })
         .when("/EditOrganization/:OrgId", {
             templateUrl: "/Client/EditOrganization",
@@ -188,7 +196,8 @@ app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, 
                 // Save authen info into $rootScope
                 $rootScope.User_Information = data.Data;
                 $rootScope.User_Information.IsAuthen = true;
-                $window.sessionStorage.setItem("isAuthen", true)
+                $window.sessionStorage.setItem("isAuthen", true);
+                $window.sessionStorage.setItem("IsVerifyOrg", $rootScope.User_Information.IsOrganazationVerify);
             } else {
                 $rootScope.User_Information = {
                     IsAuthen: false,

@@ -134,6 +134,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Organization/_CreateOrganization.cshtml");
         }
+        public ActionResult RegistedOrg()
+        {
+            return PartialView("~/Views/Organization/_RegistedOrganization.cshtml");
+        }
         public ActionResult EditOrganization()
         {
             return PartialView("~/Views/Organization/_EditOrganization.cshtml");

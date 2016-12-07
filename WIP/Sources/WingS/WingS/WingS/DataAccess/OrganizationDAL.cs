@@ -25,7 +25,7 @@ namespace WingS.DataAccess
                 //Take all organization id and order decending by  point
                 using (var db = new Ws_DataContext())
                 {
-                    orgIdList = db.Organizations.OrderByDescending(x => x.Point).Select(x => x.OrganizationId).ToList();
+                    orgIdList = db.Organizations.OrderByDescending(x => x.Point).Where(x=>x.IsVerify == true).Select(x => x.OrganizationId).ToList();
                 }
 
                 //Get information for each organization id
