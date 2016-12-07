@@ -62,7 +62,7 @@ namespace WingS.Controllers
             {
                 return Redirect("/#/Error");
             }
-            return Redirect("/#/Home");
+            return Redirect("/#/EventDetail/"+newEvent.EventID);
         }
 
     }

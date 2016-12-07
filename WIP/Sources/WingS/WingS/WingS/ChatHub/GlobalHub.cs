@@ -133,6 +133,7 @@ namespace WingS.ChatHub
             {
                 UserId = db.GetUserByUserNameOrEmail(HttpContext.Current.User.Identity.Name).UserID;
             }
+            string currentConnection = Context.ConnectionId;
             using (var db = new Ws_DataContext())
             {
                 //Add mesage to db
@@ -157,9 +158,12 @@ namespace WingS.ChatHub
                                          .Select(x=>x.ConnectionRoom.ConnectionString).ToList();
                 foreach(var item in list)
                 {
-                    Clients.Client(item).ReceivePublicMessage(returnedMessage);
+                    if(!item.Equals(currentConnection)) Clients.Client(item).ReceivePublicMessage(returnedMessage);
+
                 }
             }
+            //Send it to caller
+            Clients.Caller.ReceivePublicMessage(returnedMessage);
 
         }
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)

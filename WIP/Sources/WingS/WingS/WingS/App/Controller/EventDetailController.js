@@ -225,8 +225,11 @@
         return pageShow * index;
     };
     $scope.hasMoreItemsToShow = function () {
-        if (typeof $scope.CommentEvent == "undefined") return false;
-        else return pageShow < ($scope.CommentEvent.length / index);
+        if ($scope.CommentEvent != null) {
+            if (typeof $scope.CommentEvent == "undefined") return false;
+            else return pageShow < ($scope.CommentEvent.length / index);
+        }
+        else return false;
     };
     $scope.showMoreItems = function () {
         index = index + 1;
