@@ -9,6 +9,11 @@ namespace WingS.DataAccess
 {
     public class AlbumImageDAL : IDisposable
     {
+        /// <summary>
+        /// Add New Album
+        /// </summary>
+        /// <param name="album"></param>
+        /// <returns>ThreadAlbumImage</returns>
         public ThreadAlbumImage AddNewAlbum(ThreadAlbumImageDTO album)
         {
             var emptyAlbum = CreateEmptyThreadAlbum();
@@ -22,6 +27,10 @@ namespace WingS.DataAccess
             }
 
         }
+        /// <summary>
+        /// Create Empty Thread Album
+        /// </summary>
+        /// <returns>ThreadAlbumImage</returns>
         public ThreadAlbumImage CreateEmptyThreadAlbum()
         {
             using (var db = new Ws_DataContext()){
@@ -32,6 +41,11 @@ namespace WingS.DataAccess
                 return album;
                 }
         }
+        /// <summary>
+        /// Add Event Album
+        /// </summary>
+        /// <param name="album"></param>
+        /// <returns>eventAlbum</returns>
         public EventAlbumImage AddEventAlbum(EventAlbumImageDTO album)
         {
             var eventAlbum = CreateEmptyEventAlbum();
@@ -45,6 +59,10 @@ namespace WingS.DataAccess
             }
 
         }
+        /// <summary>
+        /// Create Empty Event Album
+        /// </summary>
+        /// <returns>album</returns>
         public EventAlbumImage CreateEmptyEventAlbum()
         {
             using (var db = new Ws_DataContext())
