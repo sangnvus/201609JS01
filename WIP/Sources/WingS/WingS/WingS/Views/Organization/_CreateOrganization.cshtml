@@ -180,7 +180,7 @@
 
             <div class="row-fluid">
                 <div class="span9 offset1" align="right">
-                    <button type="submit" class="btn btn-navbar-highlight btn-large btn-primary" ng-disabled="!CreateOrganization.$dirty || (CreateOrganization.$dirty && CreateOrganization.$invalid)">Tạo Tổ Chức</button>
+                    <button id="createOrgBtn" type="submit" onclick=" return false; " class="btn btn-navbar-highlight btn-large btn-primary" ng-disabled="!CreateOrganization.$dirty || (CreateOrganization.$dirty && CreateOrganization.$invalid)">Tạo Tổ Chức</button>
                 </div>
             </div>
             }
@@ -200,8 +200,17 @@
     }
 </style>
  <script src="../../Content/scripts/default.js" type="text/javascript"></script>
-    <script>
-        $(document).ready(function () {
-            $('#title').focus();
+<script>
+    $(document).ready(function() {
+        $('#title').focus();
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#createOrgBtn').click(function () {
+            $('#CreateOrganization').submit();
+            alert("Bạn đã yêu cầu tạo tổ chức thành công, vui lòng đợi quyết định từ ban quản trị. Xin cảm ơn!");
         });
-    </script>
+    });
+</script>
+
