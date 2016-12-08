@@ -135,10 +135,11 @@
                                 </h3>
                             </div>
                             <div class="span8">
-                                <input name="Email" type="text" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;"
-                                       ng-model="Email" />
+                                <input name="Email" type="email" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;"
+                                       ng-model="Email" required />
                                 <p>
                                     <span style="color: red" ng-show="CreateOrganization.Email.$dirty && CreateOrganization.Email.$invalid">
+                                        <span ng-show="CreateOrganization.Email.$error.required">Địa chỉ Email không được để trống</span>
                                         <span ng-show="CreateOrganization.Email.$error.email">Địa chỉ Email không đúng định dạng</span>
                                     </span>
                                 </p>

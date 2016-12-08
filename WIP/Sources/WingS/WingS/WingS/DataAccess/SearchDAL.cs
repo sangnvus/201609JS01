@@ -199,7 +199,7 @@ namespace WingS.DataAccess
                                 .Where(
                                     x =>
                                         x.OrganizationName.Contains(currentTerm) || x.EOrganizationName.Contains(currentTerm) || x.Email.Contains(currentTerm) ||
-                                        x.Phone.Contains(currentTerm) || x.Address.Contains(currentTerm));
+                                        x.Phone.Contains(currentTerm));
                         listOrgs.AddRange(getOrg.ToList());
                     }
                     return listOrgs;

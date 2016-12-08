@@ -110,6 +110,11 @@
                     $("#ErrorMessage2").html("Đã có lỗi xảy ra với server.Vui lòng thử lại sau!");
                     $("#messageHelper").html("");
                     return false;
+                } else if (response.status === "emptyinput") {
+                    document.getElementById('SearchKey').style = "border-color: red;";
+                    $("#SearchKey").focus();
+                    $("#ErrorMessage2").html("Xin hãy nhập dữ liệu để tìm kiếm!");
+                    return false;
                 }
                 //show thread result
                 if (response.type === "thread") {
