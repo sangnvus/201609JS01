@@ -94,7 +94,6 @@ namespace WingS.DataAccess
                         currentOrg.LogoUrl = organizationBasic.LogoUrl;
                     }
                     currentOrg.Phone = organizationBasic.Phone;
-                    currentOrg.Email = organizationBasic.Email;
                     currentOrg.Address = organizationBasic.Address;
 
                     db.SaveChanges();
