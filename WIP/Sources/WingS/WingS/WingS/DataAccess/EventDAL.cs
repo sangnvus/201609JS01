@@ -57,7 +57,7 @@ namespace WingS.DataAccess
             }
         }
     
-    public bool ChangelikeState(int EventId, string UserName)
+        public bool ChangelikeState(int EventId, string UserName)
     {
         try
         {
@@ -1029,7 +1029,7 @@ namespace WingS.DataAccess
             }
 
         }
-		  public bool CreateEventType(EventType type)
+		public bool CreateEventType(EventType type)
         {
             try
             {
