@@ -60,7 +60,7 @@ namespace WingS.Controllers
             {
             //Save data to database
             Random rnd = new Random();
-            var verifycode = rnd.Next(999999).ToString();
+            var verifycode = rnd.Next(000001,999999).ToString();
             var Md5pass = MD5Helper.MD5Encrypt(account.PassWord);
                 var newUser = new Ws_User
                 {

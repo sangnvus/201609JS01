@@ -1,0 +1,33 @@
+﻿@model WingS.Models.DTOs.DonationDTO
+<link rel="stylesheet" href="~/Content/css/Donate.css" type="text/css" />
+<div class="contentArea">
+
+    <div class="divPanel notop page-content">
+
+        <div class="breadcrumbs">
+            <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="#"> Sự kiện</a> &nbsp;/&nbsp; <span>Xác nhận giao dịch</span>
+        </div>
+        <div class="donaneSuccess row" style="">
+            <p style="text-align:center;font-size:17px;">Giao dịch thất bại.Xin vui lòng thử lại</p>
+            <hr style="border-top: 1px solid; margin-left: 30px;" />
+        </div>
+        <br/>
+        @if (@Model.EventId != 0)
+        {
+            <a href="/#/Donate/@Model.EventId">
+                <button id="" class="btn btn-navbar-highlight btn-medium btn-primary pull-right" style="margin-left: 300px; width: 93px; height: 33px">
+                    Quay lại
+                </button>
+            </a>
+        }
+        else
+        {
+            <a href="/#/Home">
+            <button id="" class="btn btn-navbar-highlight btn-medium btn-primary pull-right" style="margin-left: 300px; width: 93px; height: 33px">
+                Quay lại trang chủ
+            </button>
+        </a>
+        }
+    </div>
+    @Html.Partial("../Home/_Footer")
+    </div>
