@@ -84,7 +84,7 @@
                             <div class="span8">
                                 <p>Hãy viết phần giới thiệu về tổ chức </p>
                                 @*<div id="txtEditor" style="background-color: #fff; height: 300px; margin-bottom: 30px;"></div>*@
-                                <textarea name="Introduction" style="width: 450px; height: 300px;" ng-model="Introduction" ng-minlength="6" ng-maxlength="100" required></textarea>
+                                <textarea name="Introduction" style="width: 500px; height: 200px;" ng-model="Introduction" ng-minlength="6" ng-maxlength="100" required></textarea>
                                 <p>
                                     <span style="color: red" ng-show="CreateOrganization.Introduction.$dirty && CreateOrganization.Introduction.$invalid">
                                         <span ng-show="CreateOrganization.Introduction.$error.required">Phần giới thiệu không được để trống</span>
@@ -194,21 +194,13 @@
 
 
 
-    <style>
-        textarea {
-            height: 300px;
-        }
-    </style>
+<style>
+    textarea {
+        height: 300px;
+    }
+</style>
+ <script src="../../Content/scripts/default.js" type="text/javascript"></script>
     <script>
-        $("#Title").focus();
-    </script>
-    <script src="../../Content/scripts/default.js" type="text/javascript"></script>
-    <script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
-    <script type="text/javascript">$(window).load(function () { var options = { autoResize: true, container: $('#gridArea'), offset: 10 }; var handler = $('#tiles li'); handler.wookmark(options); $('#tiles li').each(function () { var imgm = 0; if ($(this).find('img').length > 0) imgm = parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5; if ($(this).find('iframe').height()) newHeight = newHeight + 15; $(this).css('height', newHeight + 'px'); }); handler.wookmark(options); handler.wookmark(options); });</script>
-    <script src="../../Content/scripts/yoxview/yox.js" type="text/javascript"></script>
-    <script src="../../Content/scripts/yoxview/jquery.yoxview-2.21.js" type="text/javascript"></script>
-    <script type="text/javascript">$(document).ready(function () { $('.yoxview').yoxview({ autoHideInfo: false, renderInfoPin: false, backgroundColor: '#ffffff', backgroundOpacity: 0.8, infoBackColor: '#000000', infoBackOpacity: 1 }); $('.yoxview a img').hover(function () { $(this).animate({ opacity: 0.7 }, 300) }, function () { $(this).animate({ opacity: 1 }, 300) }); });</script>
-    <script type="text/javascript">
         $(document).ready(function () {
             $('#title').focus();
         });
