@@ -59,6 +59,11 @@ namespace WingS.DataAccess
                     current.Content = item.Content;
                     messageList.Add(current);
                 }
+                //Update Is Read for message.
+                var currentConversation = db.Conversation.Where(x => x.ConservationId == id).SingleOrDefault();
+                currentConversation.isRead = true;
+                db.Conversation.AddOrUpdate(currentConversation);
+                db.SaveChanges();
             }
             return messageList;
 
@@ -99,6 +104,48 @@ namespace WingS.DataAccess
                     //Set other attributes
                     current.Title = item.Title;
                     current.ConservationId = item.ConservationId;
+                    ConservationList.Add(current);
+                }
+                return ConservationList;
+            }
+        }
+        public List<ConservationBasicInfoDTO> GetAllConservationByUserIdAndStatus(string name, bool isRead)
+        {
+            int CurrenUser = 0;
+            using (var db = new UserDAL())
+            {
+                CurrenUser = db.GetUserByUserNameOrEmail(name).UserID;
+            }
+            List<ConservationBasicInfoDTO> ConservationList = new List<ConservationBasicInfoDTO>();
+            using (var db = new Ws_DataContext())
+            {
+                var list = (from p in db.Conversation
+                            where (p.CreatorId == CurrenUser || p.ReceiverId == CurrenUser) && p.isRead == isRead
+                            select p).OrderByDescending(x => x.UpdatedTime).ToList();
+                foreach (var item in list)
+                {
+                    ConservationBasicInfoDTO current = new ConservationBasicInfoDTO();
+                    //Set Image
+                    if (item.ReceiverId == CurrenUser)
+                    {
+                        current.AvatarUrl = item.Creator.User_Information.ProfileImage;
+                        current.CreatorName = item.Creator.UserName;
+                    }
+                    else
+                    {
+                        current.AvatarUrl = item.Receiver.User_Information.ProfileImage;
+                        current.CreatorName = item.Receiver.UserName;
+                    }
+                    //Set Time
+                    if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours <= 24 && DateTime.Now.Subtract(item.UpdatedTime).TotalHours >= 1)
+                        current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).TotalHours + " Tiếng cách đây";
+                    else if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours > 24)
+                        current.CreatedDate = item.UpdatedTime.ToString("H:mm:ss dd/MM/yy");
+                    else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
+                    //Set other attributes
+                    current.Title = item.Title;
+                    current.ConservationId = item.ConservationId;
+                    current.isRead = current.isRead;
                     ConservationList.Add(current);
                 }
                 return ConservationList;

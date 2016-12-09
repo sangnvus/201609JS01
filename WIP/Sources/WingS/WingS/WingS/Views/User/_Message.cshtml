@@ -12,10 +12,9 @@
 
                         <div class="sidebox">
                             <div class="row-fluid">
-                                <select>
-                                    <option value="volvo">Tất cả</option>
-                                    <option value="saab">Chưa đọc</option>
-                                    <option value="sent">Đã gửi</option>
+                                <select class="messDropdown" ng-options="option for option in listOfOptions" ng-model="selectedItem"
+                                        ng-change="GetConversation()">
+
                                 </select>
                             </div>
                             <hr>
