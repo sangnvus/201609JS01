@@ -73,6 +73,18 @@ namespace WingS.Controllers.WebApi
             else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
         }
         [HttpGet]
+        public IHttpActionResult GetConservationByStatus(bool status)
+        {
+            List<ConservationBasicInfoDTO> ConservationList;
+            using (var db = new ConservationDAL())
+            {
+                ConservationList = db.GetAllConservationByUserIdAndStatus(User.Identity.Name, status);
+            }
+            if (ConservationList != null)
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = ConservationList });
+            else return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+        }
+        [HttpGet]
         public IHttpActionResult GetAllMessageByConservationId(int conservationId)
         {
             List<MessageBasicInfoDTO> MessageList;

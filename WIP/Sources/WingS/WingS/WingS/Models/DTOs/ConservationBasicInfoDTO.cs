@@ -14,6 +14,7 @@ namespace WingS.Models.DTOs
         public string Title { get; set; }
         public string Content { get; set; }
         public string CreatedDate { get; set; }
+        public bool isRead { get; set; }
         public bool isHidden { get; set; }
     }
 }

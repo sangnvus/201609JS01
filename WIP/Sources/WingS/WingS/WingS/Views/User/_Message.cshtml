@@ -12,10 +12,9 @@
 
                         <div class="sidebox">
                             <div class="row-fluid">
-                                <select>
-                                    <option value="volvo">Tất cả</option>
-                                    <option value="saab">Chưa đọc</option>
-                                    <option value="sent">Đã gửi</option>
+                                <select class="messDropdown" ng-options="option for option in listOfOptions" ng-model="selectedItem"
+                                        ng-change="GetConversation()">
+
                                 </select>
                             </div>
                             <hr>
@@ -28,7 +27,17 @@
                                     <a href="#" onclick="return false" ng-click="getMessage(item.Title,item.ConservationId)" style="text-decoration: none;">
                                         <div class="media-body" style="margin-left:62px;">
                                             <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
-                                            <p style="color: black"> {{item.Title}}</p>
+                                            <p ng-if="item.isRead==false" style="color: black"> 
+                                                
+                                               <strong>{{item.Title}}</strong> 
+                                            
+                                            </p>
+                                            <p ng-if="item.isRead==true" style="color: black">
+
+                                                {{item.Title}}
+
+                                            </p>
+
                                         </div>
 
                                 </div>

@@ -44,27 +44,27 @@
                             <h4 class="page-header" style="margin-bottom: 39px;">Thông tin cá nhân:</h4>
                             <div class="form-group">
                                 <label>Tên đầy đủ</label>
-                                <input type="text" class="form-control" ng-model="FullName" disabled>
+                                <input type="text" class="form-control userinfo" ng-model="FullName" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input type="tel" class="form-control" ng-model="Phone" disabled>
+                                <input type="tel" class="form-control userinfo" ng-model="Phone" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ</label>
-                                <input type="text" class="form-control" ng-model="Address" disabled>
+                                <input type="text" class="form-control userinfo" ng-model="Address" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Quốc gia</label>
-                                <input type="text" class="form-control" ng-model="Country" disabled>
+                                <input type="text" class="form-control userinfo" ng-model="Country" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Giới tính</label>
-                                <input type="text" class="form-control" ng-model="Gender" disabled>
+                                <input type="text" class="form-control userinfo" ng-model="Gender" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Ngày sinh</label>
-                                <input type="date" class="form-control" id="datePicker" value="{{DOB}}" disabled/>
+                                <input type="date" class="form-control userinfo" id="datePicker" value="{{DOB}}" disabled/>
                             </div>
                         </div>
                         <div class="col-lg-3" style="width: 300px; margin-left: 90px;">
@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Đường dẫn Facebook</label>
-                                <input type="text" class="form-control" ng-model="FacebookUri" disabled>
+                                <input type="text" class="form-control userinfo" ng-model="FacebookUri" disabled>
                             </div>
                             <h4 class="page-header">Thông tin thêm:</h4>
                             <div class="form-group" style="margin-top: -22px;">
@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Chữ kí</label>
-                                <input type="text" class="form-control" ng-model="UserSignature" disabled>
+                                <input type="text" class="form-control userinfo" ng-model="UserSignature" disabled>
                             </div>
 
                         </div>
@@ -138,7 +138,12 @@
                         <tbody>
                         <tr class="odd gradeX" ng-repeat="item in currentUserDonation track by $index">
                             <td>{{$index+1}}</td>
-                            <td>{{item.EventBasicInformation.EventName}}</td>
+                            <td class="nameAdmin">
+                                <a class="pull-left" href="@Url.Content("/#/EventDetail/{{item.EventBasicInformation.EventID}}")">
+                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.EventBasicInformation.MainImageUrl}}" alt="">
+                                </a>
+                                <p> {{item.EventBasicInformation.EventName}}</p>
+                            </td>
                             <td>{{item.EventBasicInformation.EventType}}</td>
                             <td>{{item.DonatedMoney}}</td>
                             <td>{{item.DonatedDate}}</td>
@@ -180,7 +185,12 @@
                         <tbody>
                         <tr ng-repeat="item in currentUserThread">
                             <td>{{$index +1}}</td>
-                            <td>{{item.ThreadName}}</td>
+                            <td class="nameAdmin">
+                                <a class="pull-left" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">
+                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
+                                </a>
+                                <p> {{item.ThreadName}}</p>
+                            </td>
                             <td>{{item.CreatedDate}}</td>
                             <td>
                                 <span class="label label-primary" ng-if="item.Status">Đang Hoạt Động</span>

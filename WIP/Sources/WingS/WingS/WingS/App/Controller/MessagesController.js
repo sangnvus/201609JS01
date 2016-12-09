@@ -32,4 +32,32 @@
             $(".newMesage").val("");
         });
     }
+    $scope.listOfOptions = ['Tất cả', 'Đã đọc', 'Chưa đọc'];
+    $scope.selectedItem = "Tất cả";
+    $scope.GetConversation = function () {
+        var sortOption = $scope.selectedItem;
+        if (sortOption === "Tất cả") {
+            $http.get("/api/Conservation/GetAllConservation").success(function (response) {
+                $scope.Conservation = response.Data;
+            });
+        }
+        if (sortOption === "Đã đọc") {
+            $http({
+                url: "/api/Conservation/GetConservationByStatus",
+                method: "GET",
+                params: { status: true },
+            }).success(function (response) {
+                $scope.Conservation = response.Data;
+            });
+        }
+         if (sortOption === "Chưa đọc") {
+            $http({
+                url: "/api/Conservation/GetConservationByStatus",
+                method: "GET",
+                params: { status: false },
+            }).success(function (response) {
+                $scope.Conservation = response.Data;
+            });
+        }
+    };
 });

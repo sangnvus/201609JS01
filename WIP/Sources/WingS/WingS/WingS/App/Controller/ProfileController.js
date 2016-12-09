@@ -137,7 +137,7 @@
         //Put new data to API
 
         $("#saveUser").css("visibility", "hidden");
-        $(".form-control").prop("disabled", true);
+        $(".userinfo").prop("disabled", true);
        
     }
 });

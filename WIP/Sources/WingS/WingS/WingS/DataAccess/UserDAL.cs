@@ -108,16 +108,25 @@ namespace WingS.DataAccess
                 using (var db = new Ws_DataContext())
                 {
                     var newInformation = db.User_Information.Where(x => x.Ws_User.UserName==userName ).SingleOrDefault();
-                    newInformation.FullName = UserInfo.FullName;
-                    newInformation.EFullName = ConvertToUnSign.Convert(UserInfo.FullName);
-                    newInformation.Phone = UserInfo.Phone;
-                    newInformation.UserAddress = UserInfo.Address;
-                    newInformation.EUserAddress = ConvertToUnSign.Convert(UserInfo.Address);
-                    newInformation.Country = UserInfo.Country;
-                    newInformation.Gender = UserInfo.Gender;
-                    newInformation.DoB = Convert.ToDateTime(UserInfo.DOB);
-                    newInformation.FacebookUrl = UserInfo.FacebookUri;
-                    newInformation.UserSignature = UserInfo.UserSignature;
+                    if (UserInfo.FullName != null)
+                    {
+                        newInformation.FullName = UserInfo.FullName;
+                        newInformation.EFullName = ConvertToUnSign.Convert(UserInfo.FullName);
+                    }
+                    if (UserInfo.Phone != null)
+                    {
+                        newInformation.Phone = UserInfo.Phone;
+                    }
+                    if (UserInfo.Address != null)
+                    {
+                        newInformation.UserAddress = UserInfo.Address;
+                        newInformation.EUserAddress = ConvertToUnSign.Convert(UserInfo.Address);
+                    }
+                    if(UserInfo.Country!=null) newInformation.Country = UserInfo.Country;
+                    if(UserInfo.Gender!=null)  newInformation.Gender = UserInfo.Gender;
+                    if (UserInfo.DOB != null)  newInformation.DoB = Convert.ToDateTime(UserInfo.DOB);
+                    if (UserInfo.FacebookUri != null) newInformation.FacebookUrl = UserInfo.FacebookUri;
+                    if (UserInfo.UserSignature != null) newInformation.UserSignature = UserInfo.UserSignature;
                     db.User_Information.AddOrUpdate(newInformation);
                     db.SaveChanges();
                     return true;

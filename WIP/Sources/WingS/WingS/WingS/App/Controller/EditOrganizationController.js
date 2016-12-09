@@ -8,5 +8,7 @@
         contentType: "application/json"
     }).success(function (response) {
         $scope.editOrg = response.Data;
+        $scope.OrganizationName = $scope.editOrg.OrganizationName;
+        $scope.Introduction = $scope.editOrg.Introduction;
     });
 });

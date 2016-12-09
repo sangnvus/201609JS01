@@ -7,6 +7,8 @@ using WingS.DataHelper;
 using WingS.DataAccess;
 using WingS.Models.DTOs;
 using WingS.Models;
+using System.Data.Entity.Migrations;
+
 namespace WingS.ChatHub
 {
     public class GlobalHub : Hub
@@ -113,10 +115,18 @@ namespace WingS.ChatHub
                     ListConnetion=db.Connection.Where(x => x.UserId == Id.ReceiverId).Select(x=>x.ConnectionString).ToList();
                 }
                 else ListConnetion = db.Connection.Where(x => x.UserId == Id.CreatorId).Select(x => x.ConnectionString).ToList();
+                if (ListConnetion == null)
+                {
+                    var currentConversation = db.Conversation.Where(x => x.ConservationId == ConservationId).SingleOrDefault();
+                    currentConversation.isRead = false;
+                    db.Conversation.AddOrUpdate(currentConversation);
+                    db.SaveChanges();
+                }
             }
             //Send it to caller
             Clients.Caller.ReceiverMessage(info);
             //Send new Message to Receiver if Connecting 
+        
             foreach (var item in ListConnetion)
             {
                 Clients.Client(item).NewMessageNotification("Bạn đã nhận 1 tin nhắn mới, xem tại Tin nhắn!");
