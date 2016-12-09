@@ -132,5 +132,12 @@ namespace WingS.DataHelper
             public static readonly string AdminEmail = "WingSFPT@gmail.com";
             public static readonly string AdminEmailPass = "wing@123";
         }
+        public static class NganLuongApi
+        {
+            public static readonly string MerchantId = "48283";
+            public static readonly string Password = "12ba1130cf119352596dc8e1ba8e5fbf";
+            public static readonly string AdminEmail = "WingSFPT@gmail.com";
+
+        }
     }
 }

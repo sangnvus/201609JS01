@@ -11,34 +11,46 @@ namespace WingS.Controllers
 {
     public class DonationLoadController : ApiController
     {
+        /// <summary>
+        /// Get Donate Info
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetDonateInfo(int eventId)
         {
-            var userInfo = new UserBasicInfoDTO();
-            using (var db = new UserDAL())
+            try
             {
-                var user = db.GetUserByUserNameOrEmail(User.Identity.Name);
-                var userGet = db.GetUserInformation(user.UserID);
-                userInfo.FullName = userGet.FullName;
-                userInfo.Email = user.Email;
-                userInfo.Phone = userGet.Phone;
-                userInfo.UserId = user.UserID;
-                userInfo.DonatedEventId = eventId;
-            }
-            using (var db2 = new EventDAL())
-            {
-                var eventNmGet = db2.GetEventNameById(eventId);
-                if (eventNmGet=="")
+                var userInfo = new UserBasicInfoDTO();
+                using (var db = new UserDAL())
                 {
-                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.NOT_FOUND });
+                    var user = db.GetUserByUserNameOrEmail(User.Identity.Name);
+                    var userGet = db.GetUserInformation(user.UserID);
+                    userInfo.FullName = userGet.FullName;
+                    userInfo.Email = user.Email;
+                    userInfo.Phone = userGet.Phone;
+                    userInfo.UserId = user.UserID;
+                    userInfo.DonatedEventId = eventId;
                 }
-                else
+                using (var db2 = new EventDAL())
                 {
-                    userInfo.DonatedEventName = eventNmGet;
-                }
+                    var eventNmGet = db2.GetEventNameById(eventId);
+                    if (eventNmGet == "")
+                    {
+                        return Ok(new HTTPMessageDTO {Status = WsConstant.HttpMessageType.NOT_FOUND});
+                    }
+                    else
+                    {
+                        userInfo.DonatedEventName = eventNmGet;
+                    }
 
+                }
+                return Ok(new HTTPMessageDTO {Status = WsConstant.HttpMessageType.SUCCESS, Data = userInfo});
             }
-            return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = userInfo });
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR});
+            }
         }
     }
 }

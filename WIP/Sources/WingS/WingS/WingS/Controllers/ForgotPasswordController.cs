@@ -86,8 +86,8 @@ namespace WingS.Controllers
                 {
                     validAcc = userDal.GetUserByUserNameOrEmail(userNameOrEmail);
                 }
-            if (validAcc != null) return this.Json(true, JsonRequestBehavior.AllowGet);
-            else return this.Json(false, JsonRequestBehavior.AllowGet);
+            if (validAcc != null) return Json(true, JsonRequestBehavior.AllowGet);
+            else return Json(false, JsonRequestBehavior.AllowGet);
         }
 	}
 }
