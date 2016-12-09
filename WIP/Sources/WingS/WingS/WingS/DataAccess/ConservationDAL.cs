@@ -103,6 +103,7 @@ namespace WingS.DataAccess
                     else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
                     //Set other attributes
                     current.Title = item.Title;
+                    current.isRead = item.isRead;
                     current.ConservationId = item.ConservationId;
                     ConservationList.Add(current);
                 }
@@ -145,7 +146,6 @@ namespace WingS.DataAccess
                     //Set other attributes
                     current.Title = item.Title;
                     current.ConservationId = item.ConservationId;
-                    current.isRead = current.isRead;
                     ConservationList.Add(current);
                 }
                 return ConservationList;
