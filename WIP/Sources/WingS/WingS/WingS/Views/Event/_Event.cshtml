@@ -118,9 +118,33 @@
                         <!--Create Event-->
                         <div class="span12" ng-if="User_Information.IsOrganazation==true">
                             <div class="box">
-                                <a href="/#/CreateEvent"><i class="icon-tasks"></i></a>
-                                <a href="/#/CreateEvent" style="color: #333;"><h4>TẠO SỰ KIỆN</h4></a>
+                                <label id="createEvent1"><a><i class="icon-tasks"></i></a></label>
+                                <label id="createEvent2"><a style="color: #333;"><h4>TẠO SỰ KIỆN</h4></a></label>
+                                <input type="hidden" id="UserIdHd" value="{{User_Information.UserId}}"/>
+                                <button type="button" hidden id="WarnCreateEvent" data-toggle="modal" data-target="#WarnningEvent"></button>
                                 <hr>
+                                <script type="text/javascript">
+                                    $("#createEvent1").click(function () {
+                                        $.getJSON("/EventPage/CheckCreateEvent", { userId: $("#UserIdHd").val() }, function (data) {
+                                            if (!data) {
+                                                $('#WarnCreateEvent').click();
+                                            }
+                                            else {
+                                                window.location.href = "/#/CreateEvent/";
+                                            }
+                                        });
+                                    });
+                                    $("#createEvent2").click(function () {
+                                        $.getJSON("/EventPage/CheckCreateEvent", { userId: $("#UserIdHd").val() }, function (data) {
+                                            if (!data) {
+                                                $('#WarnCreateEvent').click();
+                                            }
+                                            else {
+                                                window.location.href = "/#/CreateEvent/";
+                                            }
+                                        });
+                                    });
+                                </script>
                                 <p>
                                     Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
                                 </p>
@@ -170,7 +194,25 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Warnning Modal -->
+            <div class="modal modal-flex fade" id="WarnningEvent" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true" hidden>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="color: #fff; background-color: #2f4254;">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="flexModalLabel">
+                                Thông báo : Không thể tạo sự kiện!
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p>Bạn không thể taọ sự kiện vì tổ chức của bạn đã bị cấm hoặc chưa kích hoạt.</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color: #e0e7e8;">
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
             @Html.Partial("../Home/_Footer")
         </div>
-

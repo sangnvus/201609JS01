@@ -65,5 +65,25 @@ namespace WingS.Controllers
             return Redirect("/#/EventDetail/"+newEvent.EventID);
         }
 
+        /// <summary>
+        /// Check Event state to Create
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public JsonResult CheckCreateEvent(int userId)
+        {
+            using (var db = new OrganizationDAL())
+            {
+                var orgaGet = db.GetOrganizationById(userId);
+                if (!orgaGet.IsVerify || !orgaGet.IsActive)
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
     }
 }
