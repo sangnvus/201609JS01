@@ -41,13 +41,14 @@
                                             <th>STT</th>
                                             <th>Tên sự kiện</th>
                                             <th>Người quyên góp</th>
+                                            <th>Lời nhắn</th>
                                             <th>Số tiền</th>
                                             <th>Ngày quyên góp</th>
                                             <th>Mã giao dịch</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                    @*<tr>
                                             <td>1</td>
                                             <td class="nameAdmin">
                                                 <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
@@ -61,8 +62,66 @@
                                                 </a>
                                                 <p>&nbsp;{{item.UserName}}</p>                                            
                                             </td>
+                                            <td>{{content}}</td>
                                             <td>$300</td>
                                             <td>10 Feb,2015</td>
+                                            <td>MLDNN34</td>
+                                        </tr>*@
+                                    <tr>
+                                        <td>1</td>
+                                        <td class="nameAdmin">
+                                            <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
+                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
+                                            </a>
+                                            <p> 1000 áo ấm Hà Giang</p>
+                                        </td>
+                                        <td class="nameAdmin">
+                                            <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
+                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
+                                            </a>
+                                            <p>Anh Tuấn</p>
+                                        </td>
+                                        <td>Chúc sự kiện diễn ra thành công</td>
+                                        <td>300000</td>
+                                        <td>08:00:00 12/10/16</td>
+                                        <td>MLDNN34</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td class="nameAdmin">
+                                            <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
+                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
+                                            </a>
+                                            <p> 1000 áo ấm Hà Giang</p>
+                                        </td>
+                                        <td class="nameAdmin">
+                                            <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
+                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
+                                            </a>
+                                            <p>Anh Tuấn</p>
+                                        </td>
+                                        <td>Chúc sự kiện diễn ra thành công</td>
+                                        <td>300000</td>
+                                        <td>08:00:00 12/10/16</td>
+                                        <td>MLDNN34</td>
+                                    </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td class="nameAdmin">
+                                                <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
+                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
+                                                </a>
+                                                <p> 1000 áo ấm Hà Giang</p>
+                                            </td>
+                                            <td class="nameAdmin">
+                                                <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
+                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
+                                                </a>
+                                                <p>Anh Tuấn</p>
+                                            </td>
+                                            <td>Chúc sự kiện diễn ra thành công</td>
+                                            <td>300000</td>
+                                            <td>08:00:00 12/10/16</td>
                                             <td>MLDNN34</td>
                                         </tr>
                                     </tbody>

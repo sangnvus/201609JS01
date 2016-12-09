@@ -133,6 +133,10 @@ app.config(function ($routeProvider) {
                 }
             }
         })
+        .when("/DonationFailed", {
+            templateUrl: "/Client/DonationFailed",
+            title: "Giao dịch thất bại"
+        })
         .when("/CreateOrganization", {
             templateUrl: "/Client/CreateOrganization",
             resolve: {

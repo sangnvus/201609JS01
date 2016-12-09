@@ -11,19 +11,32 @@
                 <div class="breadcrumbs">
                     <a href="@Url.Content("/#/Home")">Trang chủ</a> &nbsp;/&nbsp;<a href="/#/EditOrganization"> Tổ chức</a> &nbsp;/&nbsp; <span>Sửa thông tin</span>
                 </div>
-                @using (Html.BeginForm("EditOrganization", "Organization", FormMethod.Post, new { @id = "LoginForm", enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("EditOrganization", "Organization", FormMethod.Post, new { @id = "CreateOrganization", @name = "CreateOrganization", enctype = "multipart/form-data" }))
                 {
                     <div class="row-fluid">
                         <div class="span9 offset1">
+                            <p>
+                                Những mục có dấu <span style="color: red">*</span> không được để trống
+                            </p>
                             <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
                                 <div class="row-fluid">
                                     <div class="span4" align="center">
-                                        <h3 style="margin-top: 25px;">
-                                            <strong>Tên Tổ Chức</strong>
+                                        <h3 id="title" style="margin-top: 25px;">
+                                            <strong>
+                                                Tên Tổ Chức<span style="color: red"> *</span>
+                                            </strong>
                                         </h3>
                                     </div>
                                     <div class="span8">
-                                        <input name="OrganizationName" type="text" value="{{editOrg.OrganizationName}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
+                                        <input name="OrganizationName" type="text"  style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;"
+                                               ng-model="OrganizationName" ng-minlength="6" ng-maxlength="100" required />
+                                        <p>
+                                            <span style="color: red" ng-show="CreateOrganization.OrganizationName.$dirty && CreateOrganization.OrganizationName.$invalid">
+                                                <span ng-show="CreateOrganization.OrganizationName.$error.required">Tên Tổ chức không được để trống</span>
+                                                <span ng-show="CreateOrganization.OrganizationName.$error.minlength">Tên Tổ chức phải trên 6 kí tự</span>
+                                                <span ng-show="CreateOrganization.OrganizationName.$error.maxlength">Tên Tổ chức không vượt quá 100 kí tự</span>
+                                            </span>
+                                        </p>
                                         <p>
                                             Tên tổ chức không dài quá 50 kí tự.
                                         </p>
@@ -44,7 +57,7 @@
                                 <div class="row-fluid">
                                     <div class="span4" align="center">
                                         <h3 style="margin-top: 25px;">
-                                            <strong>Logo</strong>
+                                            <strong>Logo<span style="color: red"> *</span></strong>
                                         </h3>
                                     </div>
                                     <div class="span8">
@@ -53,7 +66,11 @@
                                         <br />
                                         <p><input id="orgLogoInput" name="LogoImage" type="file" accept="image/*" onchange="onFileSelected(event)"></p>
                                         <p style="font-weight: bold;">Chọn file với định dạng JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
-
+                                        <p>
+                                            <span style="color: red" ng-show="CreateOrganization.LogoImage.$dirty && CreateOrganization.LogoImage.$invalid">
+                                                <span ng-show="CreateOrganization.LogoImage.$error.required">Bạn phải chọn ảnh để upload</span>
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -66,14 +83,21 @@
                                     <div class="span4" align="center">
 
                                         <h3 style="margin-top: 25px;">
-                                            <strong>Giới Thiệu</strong>
+                                            <strong>Giới Thiệu<span style="color: red"> *</span></strong>
                                         </h3>
-                                        
+
                                     </div>
                                     <div class="span8">
                                         <p>Hãy viết phần giới thiệu về tổ chức </p>
                                         @*<div id="txtEditor" style="background-color: #fff; height: 300px; margin-bottom: 30px;"></div>*@
-                                        <textarea name="Introduction" style="width:506px; height:144px;">{{editOrg.Introduction}}</textarea>
+                                        <textarea name="Introduction" style="width: 500px; height: 200px;" ng-model="Introduction" ng-minlength="6" ng-maxlength="100" required></textarea>
+                                        <p>
+                                            <span style="color: red" ng-show="CreateOrganization.Introduction.$dirty && CreateOrganization.Introduction.$invalid">
+                                                <span ng-show="CreateOrganization.Introduction.$error.required">Phần giới thiệu không được để trống</span>
+                                                <span ng-show="CreateOrganization.Introduction.$error.minlength">Phần giới thiệu hệ phải trên 6 kí tự</span>
+                                                <span ng-show="CreateOrganization.Introduction.$error.maxlength">Phần giới thiệu hệ không quá 100 kí tự</span>
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -87,38 +111,28 @@
                                     <div class="span4" align="center">
 
                                         <h3 style="margin-top: 25px;">
-                                            <strong>Số điện thoại</strong>
+                                            <strong>Số điện thoại<span style="color: red"> *</span></strong>
                                         </h3>
-                                        
+
                                     </div>
                                     <div class="span8">
-                                        <input name="Phone" type="text" value="{{editOrg.Phone}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
-                                        <p>Số điện thoại sẽ hiển thị trên trang của tổ chức, giúp cho việc liên lạc của các thành viên WingS với tổ chức của bạn thuận tiện.</p>
+                                        <input name="Phone" type="number" value="{{editOrg.Phone}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;"
+                                               ng-model="Phone" required />
+                                        <p>
+                                            <span style="color: red" ng-show="CreateOrganization.Phone.$dirty && CreateOrganization.Phone.$invalid">
+                                                <span ng-show="CreateOrganization.Phone.$error.required">Số điện thoại không được để trống</span>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            Số điện thoại sẽ hiển thị trên trang của tổ chức, giúp cho việc liên lạc của các thành viên WingS với tổ chức của bạn thuận tiện.
+                                        </p>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row-fluid">
-                        <div class="span9 offset1">
-                            <div class="alert alert-danger" style="background-color: rgb(240, 240, 240); color: rgb(41, 41, 41);">
-                                <div class="row-fluid">
-                                    <div class="span4" align="center">
-
-                                        <h3 style="margin-top: 25px;">
-                                            <strong>Email</strong>
-                                        </h3>
-                                        
-                                    </div>
-                                    <div class="span8">
-                                        <input name="Email" type="text" value="{{editOrg.Email}}" disabled="" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row-fluid">
                         <div class="span9 offset1">
@@ -129,7 +143,7 @@
                                         <h3 style="margin-top: 25px;">
                                             <strong>Địa Chỉ</strong>
                                         </h3>
-                                       
+
                                     </div>
                                     <div class="span8">
                                         <input name="Address" type="text" value="{{editOrg.Address}}" style="margin-top: 7px; padding: 10px; border-color: rgb(224, 95, 3); border-radius: 10px; width: 100%;" />
@@ -147,7 +161,11 @@
 
                     <div class="row-fluid">
                         <div class="span9 offset1" align="right">
-                            <button type="submit" class="btn btn-navbar-highlight btn-large btn-primary">Lưu</button>
+                            <button type="submit"
+                                    class="btn btn-navbar-highlight btn-large btn-primary"
+                                    >
+                                Lưu
+                            </button>
                         </div>
                     </div>
                 }
@@ -182,15 +200,7 @@
         reader.readAsDataURL(selectedFile);
     }
 </script>
-<script>
-    $("#Title").focus();
-</script>
 <script src="../../Content/scripts/default.js" type="text/javascript"></script>
-<script src="../../Content/scripts/wookmark/js/jquery.wookmark.js" type="text/javascript"></script>
-<script type="text/javascript">$(window).load(function () { var options = { autoResize: true, container: $('#gridArea'), offset: 10 }; var handler = $('#tiles li'); handler.wookmark(options); $('#tiles li').each(function () { var imgm = 0; if ($(this).find('img').length > 0) imgm = parseInt($(this).find('img').not('p img').css('margin-bottom')); var newHeight = $(this).find('img').height() + imgm + $(this).find('div').height() + $(this).find('h4').height() + $(this).find('p').not('blockquote p').height() + $(this).find('iframe').height() + $(this).find('blockquote').height() + 5; if ($(this).find('iframe').height()) newHeight = newHeight + 15; $(this).css('height', newHeight + 'px'); }); handler.wookmark(options); handler.wookmark(options); });</script>
-<script src="../../Content/scripts/yoxview/yox.js" type="text/javascript"></script>
-<script src="../../Content/scripts/yoxview/jquery.yoxview-2.21.js" type="text/javascript"></script>
-<script type="text/javascript">$(document).ready(function () { $('.yoxview').yoxview({ autoHideInfo: false, renderInfoPin: false, backgroundColor: '#ffffff', backgroundOpacity: 0.8, infoBackColor: '#000000', infoBackOpacity: 1 }); $('.yoxview a img').hover(function () { $(this).animate({ opacity: 0.7 }, 300) }, function () { $(this).animate({ opacity: 1 }, 300) }); });</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#title').focus();

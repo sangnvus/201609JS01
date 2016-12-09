@@ -57,6 +57,7 @@ namespace WingS.Controllers
             {
                 return Redirect(result.Checkout_url);
                 //return Redirect("http://localhost:2710/#/DonationComplete");
+                //return Redirect("http://localhost:2710/#/DonationFailed");
             }
             else
             {

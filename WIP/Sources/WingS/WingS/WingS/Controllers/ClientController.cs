@@ -73,16 +73,30 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Donation/_Donate.cshtml");
         }
+        public ActionResult DonationFailed()
+        {
+            if (Session["DonatedInfo"] != null)
+            {
+                //Get data in session and transactiondetail
+                var newDonate = (DonationDTO)Session["DonatedInfo"];
+                Session.Remove("DonatedInfo");
+                return PartialView("~/Views/Donation/_DonationFailed.cshtml", newDonate);
+            }
+            var emptyDonate = new DonationDTO();
+            return PartialView("~/Views/Donation/_DonationFailed.cshtml", emptyDonate);
+        }
         public ActionResult DonationComplete()
         {
             try
             {
+                //check exist DonatedInfo Session
                 if (Session["DonatedInfo"] == null)
                 {
                     return null;
                 }
                 else
                 {
+                    //Get data in session and transactiondetail and return to view
                     var newDonate = (DonationDTO)Session["DonatedInfo"];
                     newDonate.DonatedDate = DateTime.Now.ToString("hh:mm dd/MM/yy");
                     RequestCheckOrder info = new RequestCheckOrder();

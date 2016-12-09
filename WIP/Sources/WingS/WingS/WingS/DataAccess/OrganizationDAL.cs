@@ -61,7 +61,7 @@ namespace WingS.DataAccess
             newOrg.Email = organizationBasic.Email;
             newOrg.Address = organizationBasic.Address;
             newOrg.IsVerify = false;
-            newOrg.IsActive = false;
+            newOrg.IsActive = true;
             newOrg.Point = 0;
             newOrg.CreatedDate = DateTime.Now;
 
@@ -94,7 +94,6 @@ namespace WingS.DataAccess
                         currentOrg.LogoUrl = organizationBasic.LogoUrl;
                     }
                     currentOrg.Phone = organizationBasic.Phone;
-                    currentOrg.Email = organizationBasic.Email;
                     currentOrg.Address = organizationBasic.Address;
 
                     db.SaveChanges();

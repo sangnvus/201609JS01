@@ -138,7 +138,12 @@
                         <tbody>
                         <tr class="odd gradeX" ng-repeat="item in currentUserDonation track by $index">
                             <td>{{$index+1}}</td>
-                            <td>{{item.EventBasicInformation.EventName}}</td>
+                            <td class="nameAdmin">
+                                <a class="pull-left" href="@Url.Content("/#/EventDetail/{{item.EventBasicInformation.EventID}}")">
+                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.EventBasicInformation.MainImageUrl}}" alt="">
+                                </a>
+                                <p> {{item.EventBasicInformation.EventName}}</p>
+                            </td>
                             <td>{{item.EventBasicInformation.EventType}}</td>
                             <td>{{item.DonatedMoney}}</td>
                             <td>{{item.DonatedDate}}</td>
@@ -180,7 +185,12 @@
                         <tbody>
                         <tr ng-repeat="item in currentUserThread">
                             <td>{{$index +1}}</td>
-                            <td>{{item.ThreadName}}</td>
+                            <td class="nameAdmin">
+                                <a class="pull-left" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">
+                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
+                                </a>
+                                <p> {{item.ThreadName}}</p>
+                            </td>
                             <td>{{item.CreatedDate}}</td>
                             <td>
                                 <span class="label label-primary" ng-if="item.Status">Đang Hoạt Động</span>
@@ -200,19 +210,20 @@
 <!-- End tab created project -->
 
 <!-- Start tab change PassWord -->
-<div class="tab-pane fade" id="changePassWord" ng-if="UserInfo.UserName==User_Information.UserName">
+<div class="tab-pane fade" id="changePassWord">
+    @*ng-if="UserInfo.UserName==User_Information.UserName"*@
     <div class="row-fluid">
         <!--Edit Main Content Area here-->
         <div class="span12" id="divMain" style="margin-top: 40px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 }">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               }">
             <div class="row-fluid">
                 <section id="content">
-                    @using (Html.BeginForm("ChangePass", "Login", FormMethod.Post, new { @class = "login-content", @id = "changePassForm", @name = "changePassForm", role = "form" }))
+                    @using (Html.BeginForm("ChangePass", "Login", FormMethod.Post, new {@class = "login-content", @id = "changePassForm", @name = "changePassForm", role = "form"}))
                     {
 
                         <h1>Đổi mật khẩu</h1>
                         <div>
-                            <input type="text" placeholder="Tên tài khoản" required="" id="userNameChange" name="userNameChange" />
+                            <input type="text" placeholder="Tên tài khoản" required="" id="userNameChange" name="userNameChange"/>
                         </div>
                         <div>
                             <input type="password" placeholder="Mật khẩu cũ" required="" id="oldPass" name="oldPass"/>
@@ -353,8 +364,9 @@
                     } else if (data == "Locked") {
                         $('#ErrorMessage').html("Tài khoản đang bị khóa hoặc chưa xác nhận!");
                         return false;
-                    } else {
+                    } else {                       
                         $('#changePassForm').submit();
+                        alert("Bạn đã đổi mật khẩu thành công, vui lòng đăng nhập lại!");
                         return true;
                     }
                 });

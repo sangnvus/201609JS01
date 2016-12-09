@@ -31,7 +31,7 @@ namespace WingS.Controllers
                     var AccountInfo = userDal.GetUserByUserNameOrEmail(userNameOrEmail);
                     userName = AccountInfo.UserName;
                     userEmail = AccountInfo.Email;
-                    var md5pass = rnd.Next(999999).ToString();
+                    var md5pass = rnd.Next(00000001,99999999).ToString();
                     userNewPass = md5pass;
                     AccountInfo.UserPassword = MD5Helper.MD5Encrypt(md5pass);
                     userDal.UpdateUser(AccountInfo);
