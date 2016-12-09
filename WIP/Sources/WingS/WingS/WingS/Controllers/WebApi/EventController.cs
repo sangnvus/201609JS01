@@ -338,7 +338,7 @@ namespace WingS.Controllers
                             ShortDescription = events.ShortDescription,
                             Status = true,
                             EventType = eventType,
-                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
+                            CreatedDate = events.Created_Date.ToString("H:mm:ss dd/MM/yy")
                         });
                     }
                 }
@@ -397,7 +397,7 @@ namespace WingS.Controllers
                             ShortDescription = events.ShortDescription,
                             Status = true,
                             EventType = eventType,
-                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
+                            CreatedDate = events.Created_Date.ToString("H:mm:ss dd/MM/yy")
                         });
                     }
                 }
@@ -455,7 +455,7 @@ namespace WingS.Controllers
                             ShortDescription = events.ShortDescription,
                             Status = true,
                             EventType = eventType,
-                            CreatedDate = DateTime.Now.ToString("H:mm:ss dd/MM/yy")
+                            CreatedDate = events.Created_Date.ToString("H:mm:ss dd/MM/yy")
                         });
                     }
                 }
