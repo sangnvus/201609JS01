@@ -116,13 +116,23 @@
                         </div>
                         <hr>
                         <!--Create Event-->
-                        <div class="span12">
+                        <div class="span12" ng-if="User_Information.IsOrganazation==true">
                             <div class="box">
                                 <a href="/#/CreateEvent"><i class="icon-tasks"></i></a>
-                                <a href="/#/CreateEvent" style="color:#333;"><h4>TẠO SỰ KIỆN</h4></a>
+                                <a href="/#/CreateEvent" style="color: #333;"><h4>TẠO SỰ KIỆN</h4></a>
                                 <hr>
                                 <p>
                                     Tạo ra những sự kiện từ thiện riêng của bạn để kêu gọi đóng góp.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="span12" ng-if="User_Information.IsOrganazation==false">
+                            <div class="box">
+                                <a href="/#/CreateOrganization"><i class="icon-tasks"></i></a>
+                                <a href="/#/CreateOrganization" style="color: #333;"><h4>TẠO TỔ CHỨC</h4></a>
+                                <hr>
+                                <p>
+                                    Tạo ra tổ chức để có thể tạo những sự kiện riêng của bạn.
                                 </p>
                             </div>
                         </div>

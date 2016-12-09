@@ -51,7 +51,9 @@
                 </div>
                 <div class="progressbar position"  data-duration="1000" data-color="#ccc,#e05f03">
                    <div class="background"></div><div class="rotate"></div><div class="left"></div><div class="right"></div><div class=""><span>{{Event.PercentMoney}}%</span></div>
-                    <a href=@Url.Content("/#/Donate/{{Event.EventID}}") title="">QUYÊN GÓP</a> 
+                    <a id="goDonate" title="">QUYÊN GÓP</a>
+                    <input id="hdEventId2" type="hidden" value="{{Event.EventID}}"/>
+                    <button type="button" id="ShowWarnning" hidden data-toggle="modal" data-target="#WarnningDonate"></button>
                 </div>
                 <div class="col-2">
                     <div class="circle-tile">
@@ -400,7 +402,7 @@
                 }
                 <input id="hdId" type="hidden" />
                 <input id="hdUserId" type="hidden" />
-                <input id="hdEventId" type="hidden" />
+                <input id="hdEventId" type="hidden"/>
             </form>
             <textarea id="txtMessage" class="chatbox__message" placeholder="Nhập nội dung...."></textarea>
 
@@ -439,13 +441,31 @@
 
     </div>
 </div>
-
+    
 <div id="footerOuterSeparator"></div>
 
 @Html.Partial("../Home/_Footer")
 <br/><br/><br/>
-
-
+    <!-- Warnning Modal -->
+    <div class="modal modal-flex fade" id="WarnningDonate" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true" hidden>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="color: #fff; background-color: #2f4254;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="flexModalLabel">
+                        Thông báo : Không thể ủng hộ !
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p>Bạn không thể ủng hộ vì sự kiện này đã kết thúc hoặc đã bị cấm!</p>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #e0e7e8;">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 
 <!-- END PAGE LEVEL PLUGIN SCRIPTS -->
 <script type="text/javascript" src="../../Content/js/progressbar.js"></script>
@@ -484,6 +504,18 @@
 
         });
     })(jQuery);
+        
+    $("#goDonate").click(function () {
+        var eventId = $("#hdEventId2").val();
+            $.getJSON("/Donation/CheckDonateEvent", { eventId: eventId }, function (data) {
+                if (!data) {
+                    $('#ShowWarnning').click();
+                }
+                else {
+                    window.location.href = "/#/Donate/" + eventId;
+                }
+            });
+        });
 </script>
     
     

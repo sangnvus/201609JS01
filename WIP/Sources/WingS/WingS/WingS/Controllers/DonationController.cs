@@ -13,8 +13,11 @@ namespace WingS.Controllers
 {
     public class DonationController : Controller
     {
-        //
-        // GET: /Donation/
+        /// <summary>
+        /// Get info then redirect to NganLuong
+        /// </summary>
+        /// <param name="inputData"></param>
+        /// <returns></returns>
         public ActionResult CheckOutNganLuong(NganLuongCheckOut inputData)
         {
             //get data from form
@@ -25,9 +28,9 @@ namespace WingS.Controllers
             //set data to nganluongAPI
             RequestInfo info = new RequestInfo
             {
-                Merchant_id = "48283",
-                Merchant_password = "12ba1130cf119352596dc8e1ba8e5fbf",
-                Receiver_email = "wingsfpt@gmail.com",
+                Merchant_id = WsConstant.NganLuongApi.MerchantId,
+                Merchant_password = WsConstant.NganLuongApi.Password,
+                Receiver_email = WsConstant.NganLuongApi.AdminEmail,
                 cur_code = "vnd",
                 bank_code = str_bankcode,
                 Order_code = "chuyen_khoan_ung_ho",
@@ -62,6 +65,27 @@ namespace WingS.Controllers
             else
             {
                 return PartialView("~/Views/Error/_Error.cshtml");
+            }
+        }
+
+        /// <summary>
+        /// Check Event state to donate
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        public JsonResult CheckDonateEvent(int eventId)
+        {
+            using (var db = new EventDAL())
+            {
+                var eventGet = db.GetEventById(eventId);
+                if (!eventGet.Status || DateTime.Now > eventGet.Finish_Date)
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
             }
         }
 	}
