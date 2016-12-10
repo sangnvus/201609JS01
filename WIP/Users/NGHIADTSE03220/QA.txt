@@ -1,2 +1,4 @@
+Return redirect thi bieu dien nhu the nao
 Login: UserDAL sang Ws_Datacontext nhu the nao
-Register: phan gui mail viet truc tiep trong ham Register thi nen bieu dien nhu the nao
+Register: phan gui mail viet truc tiep trong ham Register thi nen bieu dien nhu the naonn
+
