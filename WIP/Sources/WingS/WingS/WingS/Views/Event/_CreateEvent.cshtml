@@ -6,13 +6,15 @@
     tinyMCE.init({
         // General options
         selector: "#eventContent",
-        toolbar: 'fontsizeselect',
+        height: 350,
+        plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+         'searchreplace visualblocks code fullscreen',
+         'insertdatetime media table contextmenu paste code'
+        ],
+        toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image| sizeselect | fontselect |  fontsizeselect',
         fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
-        setup: function (ed) {
-            ed.on('init', function () {
-                this.getDoc().body.style.fontSize = '18px';
-            });
-        }
+        content_css: '//www.tinymce.com/css/codepen.min.css'
     });
     tinyMCE.init({
         // General options
