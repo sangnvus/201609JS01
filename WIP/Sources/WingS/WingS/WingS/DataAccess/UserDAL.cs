@@ -155,7 +155,11 @@ namespace WingS.DataAccess
                                        IsOrganazation = (user.Organazation != null&&user.Organazation.IsVerify == true) ? true : false      ,
                                        IsOrganazationVerify = (user.Organazation != null && user.Organazation.IsVerify == false) ? false : true
                                    }).FirstOrDefault();
-                return currentUser;
+                using (var item = new ConservationDAL())
+                {
+                    currentUser.UnreadMessage = item.CountUnreadConversation(userNameOrEmail);
+                }
+                    return currentUser;
             }
         }
 

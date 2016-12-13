@@ -16,8 +16,8 @@ namespace WingS.Models
         public string Title { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedTime { get; set; }
-        public bool isHidden { get; set; }
-        public bool isRead { get; set; }
+        public bool IsCreatorRead { get; set; }
+        public bool IsReceiverRead { get; set; }
         public bool Status { get; set; }
         public ICollection<Message> Message { get; set; }
         public virtual Ws_User Creator { get; set; }

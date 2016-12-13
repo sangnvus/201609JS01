@@ -33,8 +33,8 @@ namespace WingS.Controllers.WebApi
                 UpdatedTime = DateTime.Now,
                 CreatedDate = DateTime.Now,
                 Status = true,
-                isHidden = false,
-                isRead = false,
+                IsCreatorRead = true,
+                IsReceiverRead = false,
             };
             using (var db = new ConservationDAL())
             {
@@ -90,7 +90,7 @@ namespace WingS.Controllers.WebApi
             List<MessageBasicInfoDTO> MessageList;
             using (var db = new ConservationDAL())
             {
-                MessageList = db.GetAllMessageByConservationId(conservationId);
+                MessageList = db.GetAllMessageByConservationId(conservationId, User.Identity.Name);
             }
             return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = MessageList });
 

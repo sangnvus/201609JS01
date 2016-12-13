@@ -86,6 +86,14 @@ namespace WingS.ChatHub
                 {
                     Conversation current = dbCurrent.GetConservationById(ConservationId);
                     current.UpdatedTime = DateTime.Now;
+                    if(UserId==current.CreatorId)
+                    {
+                        current.IsReceiverRead = false; 
+                    }
+                    if (UserId == current.ReceiverId)
+                    {
+                        current.IsCreatorRead = false;
+                    }
                     dbCurrent.UpdateTime(current);
                 }
                 var GetInfo = (from p in db.Message
@@ -108,17 +116,26 @@ namespace WingS.ChatHub
             {
                 //Get Id of Receiver 
                 var Id = (from p in db.Conversation
-                          where p.ConservationId == ConservationId 
-                          select new { p.CreatorId, p.ReceiverId } ).SingleOrDefault();
-                if(newMess.UserId==Id.CreatorId)
+                          where p.ConservationId == ConservationId
+                          select new { p.CreatorId, p.ReceiverId }).SingleOrDefault();
+                if (newMess.UserId == Id.CreatorId)
                 {
-                    ListConnetion=db.Connection.Where(x => x.UserId == Id.ReceiverId).Select(x=>x.ConnectionString).ToList();
+                    ListConnetion = db.Connection.Where(x => x.UserId == Id.ReceiverId ).Select(x => x.ConnectionString).ToList();
                 }
-                else ListConnetion = db.Connection.Where(x => x.UserId == Id.CreatorId).Select(x => x.ConnectionString).ToList();
-                if (ListConnetion == null)
+                else ListConnetion = db.Connection.Where(x => x.UserId == Id.CreatorId ).Select(x => x.ConnectionString).ToList();
+                if (ListConnetion.Count() != 0)
                 {
                     var currentConversation = db.Conversation.Where(x => x.ConservationId == ConservationId).SingleOrDefault();
-                    currentConversation.isRead = false;
+                    if (UserId == currentConversation.CreatorId)
+                    {
+
+                        currentConversation.IsReceiverRead = true;
+                    }
+                    if (UserId == currentConversation.ReceiverId)
+                    {
+                        currentConversation.IsCreatorRead = true;
+
+                    }
                     db.Conversation.AddOrUpdate(currentConversation);
                     db.SaveChanges();
                 }

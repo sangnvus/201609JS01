@@ -32,6 +32,7 @@ namespace WingS.Models.DTOs
         public string CurrentRank { get; set; }
         public double RankPercent { get; set; }
         public int NumberEventDonatedIn { get; set; }
+        public int UnreadMessage { get; set; }
         public decimal TotalMoneyDonatedIn { get; set; }
         public decimal LastDonateMoney { get; set; }
         public string LastDonateDate { get; set; }
