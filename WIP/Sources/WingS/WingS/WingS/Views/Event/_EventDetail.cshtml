@@ -106,11 +106,6 @@
                 </a>
                 <ul class="dropdown-menu" style="margin-top: 21px;">
                     <li>
-                        <a href="/#/EditEvent">
-                            <i class="fa fa-edit" style="margin-left: -6px; "></i> Sửa thông tin
-                        </a>
-                    </li>
-                    <li>
                         @{ if (User.Identity.Name != "" || User.Identity.IsAuthenticated)
                             {
                                 <a ng-if="checkReported"  href="#" onclick=" return false; "  title="Bạn đã báo cáo sự kiện này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"  style="margin-left: -6px;"  ></i> Báo cáo</a>

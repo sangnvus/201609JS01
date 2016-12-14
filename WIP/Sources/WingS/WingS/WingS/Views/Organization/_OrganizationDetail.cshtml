@@ -111,31 +111,33 @@
             </div>
             <div class="modal fade" id="sendMessage" role="dialog" hidden>
                 <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header" style="padding:5px;">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Gửi tin nhắn tới: {{currentOrg.OrganizationName}} </h4>
-                        </div>
-                        <div class="modal-message-message" align="center" style="margin-top: 50px; margin-bottom: 50px; padding:5px;">
-                            Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Message">Tin nhắn</a>
-                        </div>
-                        <div class="modal-message-body" style="padding:5px;">
-                            <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" />
-                            <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung" ng-model="content"></textarea>
-                        </div>
-                        <div class="modal-message-footer" style="padding:5px; ">
-                            <div class="message-closeForm" >
-                                <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                    <form name="CreateMessage">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding:5px;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Gửi tin nhắn tới: {{currentOrg.OrganizationName}} </h4>
                             </div>
-                            <div class="message-sendMessage">
-                                <button type="button" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
+                            <div class="modal-message-message" align="center" style="margin-top: 50px; margin-bottom: 50px; padding:5px;">
+                                Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Message">Tin nhắn</a>
                             </div>
-                          
-                        </div>
-                    </div>
+                            <div class="modal-message-body" style="padding:5px;">
+                                <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" ng-minlength="6" required />
+                                <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung" ng-model="content" required></textarea>
+                            </div>
+                            <div class="modal-message-footer" style="padding:5px; ">
+                                <div class="message-closeForm">
+                                    <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                                </div>
+                                <div class="message-sendMessage">
+                                    <button type="button"  ng-disabled="!CreateMessage.$dirty || (CreateMessage.$dirty && CreateMessage.$invalid)" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
+                                </div>
 
-                </div>
+                            </div>
+                        </div>
+                        </form>
+
+</div>
             </div> 
             <div class="modal fade" id="sendReport" role="dialog" hidden>
                 <div class="modal-dialog">

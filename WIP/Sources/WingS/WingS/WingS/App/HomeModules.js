@@ -165,6 +165,13 @@ app.config(function ($routeProvider) {
         .when("/EditOrganization/:OrgId", {
             templateUrl: "/Client/EditOrganization",
             title: "Chi tiết Tổ chức",
+            resolve: {
+                'check': function ($location, $window) {
+                    if ($window.sessionStorage.isAuthen == "false") {
+                        $location.path('/Login');
+                    }
+                }
+            },
             controller: "EditOrganizationController"
         })
         .when("/Statistics", {
@@ -172,15 +179,18 @@ app.config(function ($routeProvider) {
             title: "Thống kê",
             controller: "StatisticsController"
         })
-        .when("/EditEvent/:Id", {
-            templateUrl: "/Client/EditEvent",
-            title: "Sửa thông tin của sự kiện",
-            controller: "EditEventController"
-        })
         .when("/EditThread/:Id", {
             templateUrl: "/Client/EditThread",
             title: "Sửa thông tin của bài viết",
-            controller: "EditThreadController"
+            resolve: {
+                'check': function ($location, $window) {
+                    if ($window.sessionStorage.isAuthen == "false") {
+                        $location.path('/Login');
+                    }
+                }
+            },
+            controller: "EditThreadController",
+
         });
 });
 
