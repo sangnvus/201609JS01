@@ -1124,6 +1124,25 @@ namespace WingS.DataAccess
 
             return eventList;
         } 
+        public List<EventTypeDTO> GetEventsType()
+        {
+            List<EventTypeDTO> eventType = new List<EventTypeDTO>();
+            using (var db = new Ws_DataContext())
+            {
+                var list = (from p in db.EventTypes
+                            select new { p.EventTypeID, p.EventTypeName }
+                            ).ToList();
+                foreach(var item in list)
+                {
+                    EventTypeDTO type = new EventTypeDTO();
+                    type.EventTypeID = item.EventTypeID;
+                    type.EventTypeName = item.EventTypeName;
+                    eventType.Add(type);
+                }
+            }
+            return eventType;
+
+        }
         public void Dispose()
         {
           

@@ -39,7 +39,14 @@
         //Load Event follow number of follower
         
     };
-
+    //Load All Event Type
+    $http({
+        url: "/api/Event/GetEventsType",
+        method: "GET",
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.EventType = response.Data;
+    });
     // Get events using specify type
     $scope.getEventByType = function(typeId) {
         $http({

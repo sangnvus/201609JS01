@@ -710,6 +710,28 @@ namespace WingS.Controllers
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
             }
         }
+        //Get All Event Type to views
+        [HttpGet]
+        public IHttpActionResult GetEventsType()
+        {
+            try
+            {
+                List<EventTypeDTO> basicEventType;
+                using (var db = new EventDAL())
+                {
+                    basicEventType = db.GetEventsType();
+                }
 
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Data = basicEventType
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR });
+            }
+        }
     }
 }

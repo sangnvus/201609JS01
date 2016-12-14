@@ -44,74 +44,17 @@
                             <select class="eDropdown" ng-options="option for option in listOfOptions"
                                     ng-model="selectedItem"
                                     ng-change="LoadEventSortByPoint()">
-                                @*<option>Ngày Tạo</option>
-                                <option ng-change="LoadEventSortByPoint">Điểm</option>*@
-
                             </select>
                         </div>
-                        @*<ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#newest" onclick=" return false" ng-click="loadNewestEvent()">Sự kiện mới nhất</a></li>
-                            <li ><a data-toggle="tab" href="#popular" onclick=" return false " ng-click="loadFollowEvent()">Sự kiện được quan tâm</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-
-                            <!-- Popular event -->
-                            <div id="popular" class="tab-pane fade in active">
-                                <div class="asideContentEvent" style="display: block;">
-                                    <!-- First content -->
-                                    <div class="item">
-                                        <div class="col-3">
-                                            <img style="height:73px;" src="portfolio/600x400.png" />
-                                        </div>
-                                        <div class="col-9">
-                                            <a href="" class="title1">Phát động chương trình "Ngọt ngào ước mơ đêm trung thu lần 5" năm 2016</a>
-                                        </div>
-                                        <div class="info">
-                                            <i class="fa fa-users" aria-hidden="true" title="Số người tham gia sự kiện"></i> 500
-                                            <span style="padding-left: 84px;"><i class="fa fa-calendar-o"></i> 12/10/2016</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End popular Event -->
-                            <!-- Newest event -->
-                            <div id="newest" class="tab-pane fade">
-                                <div class="asideContentEvent" style="display: block;">
-                                    <!-- First content -->
-                                    <div class="item">
-                                        <div class="col-3">
-                                            <img style="height:73px;" src="portfolio/600x400.png" />
-                                        </div>
-                                        <div class="col-9">
-                                            <a href="" class="title1">Phát động chương trình "Ngọt ngào ước mơ đêm trung thu lần 5" năm 2016</a>
-                                        </div>
-                                        <div class="info">
-                                            <span><i class="fa fa-calendar-o"></i> 12/10/2016</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Newest Event -->
-                        </div>*@
-                        <!-- End tab aside -->
                         <hr/>
                         <!--Event type-->
                         <h3 class="title" style="">Thể loại</h3>
                         <div class="asideContentCatelogy" style="display: block;">
                             <ul style="list-style-type: circle;">
-                                <li ng-click="getEventByType(2)">
-                                    <a>Văn hóa - Xã hội</a>
+                                <li ng-repeat="item in EventType track by $index" ng-click="getEventByType(item.EventTypeID)">
+                                    <a>{{item.EventTypeName}}</a>
                                 </li>
-                                <li>
-                                    <a ng-click="getEventByType(1)">Giáo dục</a>
-                                </li>
-                                <li>
-                                    <a ng-click="getEventByType(3)">Y tế</a>
-                                </li>
-                                <li>
-                                    <a ng-click="getEventByType(4)">Khác</a>
-                                </li>
+                             
                             </ul>
                         </div>
                         <hr>
