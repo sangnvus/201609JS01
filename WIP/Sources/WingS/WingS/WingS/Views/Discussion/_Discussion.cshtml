@@ -28,22 +28,24 @@
             <!--Edit Portfolio Content Area here-->
             <div class="row">
 
-                <div class="span3" style="width:242px" ng-repeat="item in Thread| limitTo: paginationLimit()">
-                    <div class="thread-title">
-                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")" style="text-decoration: none;">
-                            <h5 class="text-info">{{item.ThreadName}}</h5>
-                        </a>
-                    </div>
+                <div class="spanThread addborder" ng-repeat="item in Thread| limitTo: paginationLimit()">
                     <div class="thread-img">
-                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}" class="" alt="" style="width: 300px; height: 200px; margin: 5px 0px 15px;"></a>
+                        <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")"><img src="{{item.ImageUrl[0]}}" class="" alt=""></a>
                     </div>
-                    <div class="thread-content">
-                        <p>{{item.ShortDescription}}</p>
-                    </div>
-                    <div class="thread-footer" style="margin-top: 5px;">
-                        <span style="width: 48px;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> {{item.Likes}}</span>
-                        <span style="margin-left: 30px;width: 50px;"><i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận"></i> {{item.Comments}}</span>
-                        <span style="margin-left:30px"><a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Xem thêm &raquo;</a></span>
+                    <div class="contentTop">
+                        <div class="thread-title">
+                            <a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")" style="text-decoration: none;">
+                                <h5 class="text-info">{{item.ThreadName}}</h5>
+                            </a>
+                        </div>
+                        <div class="thread-content">
+                            <p>{{item.ShortDescription}}</p>
+                        </div>
+                        <div class="thread-footer" style="margin-top: 5px;">
+                            <span style="width: 48px;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i> {{item.Likes}}</span>
+                            <span style="margin-left: 30px; width: 50px;"><i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận"></i> {{item.Comments}}</span>
+                            <span style="margin-left: 30px"><a href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">Xem thêm &raquo;</a></span>
+                        </div>
                     </div>
                     <br />  
                     <br />  

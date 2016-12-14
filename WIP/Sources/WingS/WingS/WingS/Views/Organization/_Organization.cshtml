@@ -14,44 +14,6 @@
                     <a href="@Url.Content("/#/Home")">Trang chủ</a> &nbsp;/&nbsp; <span>Tổ chức</span>
                 </div>
 
-                @*<div id="orgUserPart" class="row-fluid">
-                    @*<strong><h2>Tổ chức của bạn</h2></strong>*@
-                @*<div class="row-fluid">
-                    <div id="orgUser" class="span3" ng-show="showOrgUser()">
-                        <div class="organization-name" >
-                            <a href="@Url.Content("/#/OrganizationDetail/{{orgBelongUser.OrganizationId}}")" style="text-decoration: none; color: inherit;">
-                                <h3 class="text-info" style="text-transform: capitalize;">
-                                    <strong>{{orgBelongUser.OrganizationName}}</strong>
-                                </h3>
-                            </a>
-                        </div>
-                        <div class="organization-logo ">
-                            <a href="@Url.Content("/#/OrganizationDetail/{{orgBelongUser.OrganizationId}}")" style="text-decoration: none; color: inherit;">
-                                <img src="{{orgBelongUser.LogoUrl}}" class="img-polaroid" alt="">
-                            </a>
-                        </div>
-                        <div class="organization-content " style="overflow: hidden;">
-                            <p class="introduction">{{orgBelongUser.Introduction}}</p>
-                            <p class="basic-infor">
-                                <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{orgBelongUser.Phone}}
-                            </p>
-                            <p class="basic-infor">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{orgBelongUser.Email}}
-                            </p>
-                            <p class="basic-infor">
-                                <i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;{{orgBelongUser.Status}}
-                            </p>
-                        </div>
-                        <div class="thread-footer ">
-                            <a href="#">Xem chi tiết &raquo;</a>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div id="breaktag"></div>*@
-
                 <div class="row-fluid">
                     <h2>Danh Sách Tổ chức</h2>
                 </div>
@@ -59,43 +21,35 @@
                 <!-- Row 1 -->
                 <div class="row">
 
-                    <div class="span3" style="width:242px" ng-repeat="item in OrgList| limitTo: paginationLimit()">
-                        <div class="organization-name ">
+                    <div class="spanThread addborder" ng-repeat="item in OrgList| limitTo: paginationLimit()">
+                        <div class="organization-img">
                             <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
-                                <h3 class="text-info" style="text-transform: capitalize;">
-                                    <strong>{{item.OrganizationName}}</strong>
-                                </h3>
+                                <img src="{{item.LogoUrl}}" alt="">
                             </a>
                         </div>
+                        <div class="contentTop">
+                            <div class="organization-name ">
+                                <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
+                                    <h3 class="text-info" style="text-transform: capitalize;">
+                                        <strong>{{item.OrganizationName}}</strong>
+                                    </h3>
+                                </a>
+                            </div>
+                            <div class="organization-content " style="overflow: hidden;">
+                                <p class="introduction">
+                                    {{item.Introduction}}
+                                </p>
 
-                        <div class="organization-logo ">
-                            <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
-                                <img src="{{item.LogoUrl}}" class="img-polaroid" alt="">
-                            </a>
+                                <p class="basic-infor">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{item.Phone}}
+                                </p>
+                            </div>
+                            <div class="thread-footer ">
+
+                                <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">Xem chi tiết &raquo;</a>
+                            </div>
                         </div>
 
-                        <div class="organization-content " style="overflow: hidden;">
-                            <p class="introduction">
-                                {{item.Introduction}}
-                            </p>
-
-                            <p class="basic-infor">
-                                <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{item.Phone}}
-                            </p>
-
-                            @*<p class="basic-infor">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{item.Email}}
-                            </p>
-
-                            <p class="basic-infor">
-                                <i class="fa fa-scribd" aria-hidden="true"></i>&nbsp;&nbsp;{{item.Status}}
-                            </p>*@
-                        </div>
-
-                        <div class="thread-footer ">
-
-                            <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">Xem chi tiết &raquo;</a>
-                        </div>
                         <br />
                         <br />
                     </div>

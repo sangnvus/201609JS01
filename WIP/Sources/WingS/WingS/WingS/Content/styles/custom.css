@@ -478,7 +478,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 }
 
 .organization-name{
-    height: 70px;
+    height: 60px;
     overflow: hidden;
 }
 
@@ -645,4 +645,12 @@ select option[disabled]:first-child {
 .buttonHover a:hover{
 	background: #e05f03;
     color: white;
+}
+.thread-img, .organization-img{
+    width: 248px; 
+    height: 245px;
+}
+.spanThread {
+    width: 248px;
+    margin-top: 20px;
 }
