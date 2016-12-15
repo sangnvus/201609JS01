@@ -21,16 +21,16 @@
                             <div ng-repeat="item in Conservation track by $index">
 
                                 <div class="row-fluid">
-                                    <a class="pull-left" href="#">
+                                    <a class="pull-left" href="/#/Profile/{{item.CreatorName}}">
                                         <img src="{{item.AvatarUrl}}" style="width:60px; height:60px;" class="img-circle" alt="" />
                                     </a>
                                     <a href="#" onclick="return false" ng-click="getMessage(item.Title,item.ConservationId)" style="text-decoration: none;">
                                         <div class="media-body" style="margin-left:62px;">
                                             <h4 class="media-heading">{{item.CreatorName}} <span><small>{{item.CreatedDate}}</small></span></h4>
-                                            <p ng-if="item.isRead==false" style="color: black"> 
-                                                
-                                               <strong>{{item.Title}}</strong> 
-                                            
+                                            <p ng-if="item.isRead==false" style="color: black">
+
+                                                <strong>{{item.Title}}</strong>
+
                                             </p>
                                             <p ng-if="item.isRead==true" style="color: black">
 
@@ -39,9 +39,9 @@
                                             </p>
 
                                         </div>
-
+                                    </a>
                                 </div>
-                                <hr>  </a>
+                                <hr>  
 
                             </div>
                          
@@ -57,7 +57,7 @@
                             <div id="messContainer">
                                 <div ng-repeat="item in Message track by $index">
                                     <div class="media">
-                                        <a class="pull-left" href="#">
+                                        <a class="pull-left" href="/#/Profile/{{item.CreatorName}}">
                                             <img src="{{item.CreatorImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
                                         </a>
                                         <div class="media-body">
@@ -71,7 +71,7 @@
                             <br>
                         </div>
                         <div ng-show="replyShow">
-                            <a class="pull-left" href="#">
+                            <a class="pull-left" href="#" onclick="return false">
                                 <img src="{{User_Information.ProfileImage}}" style="width: 64px; height:64px;" class="img-rounded" alt="" />
                             </a>&nbsp;&nbsp;&nbsp;<input class="newMesage" id="newMessage" type="text" @*ng-model="newMessage"*@ placeholder="Nhập tin nhắn" style="width:64%; height:50px; " @*my-Enter="addMessage(newMessage,{{CurrentConservationId}})"*@ />
                         </div>
