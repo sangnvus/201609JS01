@@ -35,11 +35,11 @@
                     <div class="portlet portlet-default">
                         <div class="portlet-heading">
                             <div class="portlet-title">
-                                <h4>Báo cáo chi tiết</h4>
+                                <h4>Báo cáo chi tiết về {{isReportedOrganization.UserName}}</h4>
                             </div>
                             <div class="portlet-widgets">
-                                <button class="btn btn-blue">Đồng ý</button>
-                                <button class="btn btn-purple">Từ chối</button>
+                                <button class="btn btn-primary" ng-if="isReportedOrganization.IsActive " ng-click="ban(isReportedOrganization.OrganizationId)">Khóa tổ chức này</button>
+                                <button class="btn btn-danger" ng-if="!isReportedOrganization.IsActive " ng-click="unBan(isReportedOrganization.OrganizationId)">Mở khóa tổ chức này</button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -51,18 +51,24 @@
                                             <th>Người báo cáo</th>
                                             <th>Lý do</th>
                                             <th>Ngày báo cáo</th>
+                                            @*<th>Trạng thái</th>*@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="userprofile.html">test test test</a></td>
-                                            <td><a href="userprofile.html">test test test</a></td>
-                                            <td>12/12/16</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="userprofile.html">test test test</a></td>
-                                            <td><a href="userprofile.html">test test test</a></td>
-                                            <td>10</td>
+                                        <tr ng-repeat="item in OrganizationReportDetailData">
+                                            <td class="nameAdmin">
+                                                <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
+                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ReportorImage}}" alt="">
+                                                </a>
+                                                <p>&nbsp;{{item.ReportorUserName}}</p>
+                                            </td>
+                                            <td>{{item.Reason}}</td>
+                                            <td>{{item.ReportTime}}</td>
+                                            @*<td>
+                                                <a class="label label-primary" ng-if="item.Status ">Mới</a>
+                                                <a class="label label-default" ng-if="!item.Status ">Đã xem</a>
+                                            </td>*@
+
                                         </tr>
                                     </tbody>
                                 </table>

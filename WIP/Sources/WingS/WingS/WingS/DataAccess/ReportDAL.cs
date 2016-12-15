@@ -63,11 +63,11 @@ namespace WingS.DataAccess
                         }
                             
                         reportBasic.Reason = report.Reason;
-                        reportBasic.ReportTime = report.ReportTime.ToString("HH:mm:ss dd/mm/yyyy");
+                        reportBasic.ReportTime = report.ReportTime.ToString("HH:mm:ss dd/MM/yyyy");
                         reportBasic.Type = report.Type;
                         reportBasic.ReportTo = report.ReportTo;
                         reportBasic.Status = report.Status;
-                        reportBasic.UpdatedTime = report.UpdatedTime.ToString("HH:mm:ss dd/mm/yyyy");
+                        reportBasic.UpdatedTime = report.UpdatedTime.ToString("HH:mm:ss dd/MM/yyyy");
 
                         if (reportBasic.Type.Equals(WsConstant.ReportType.REPORT_USER))
                         {
@@ -254,14 +254,17 @@ namespace WingS.DataAccess
             return times;
         }
 
-        public List<ReportBasicInfoDTO> GetReportDetailData(string typeReport)
+        public List<ReportBasicInfoDTO> GetReportDetailData(int isReportedId, string typeReport)
         {
             List<ReportBasicInfoDTO> reportDetailData = new List<ReportBasicInfoDTO>();
             try
             {
                 using (var db = new Ws_DataContext())
                 {
-                    var reportIdList = db.Reports.Where(x => x.Type == typeReport).Select(x => x.ReportId).ToList();
+                    var reportIdList =
+                        db.Reports.Where(x => x.ReportTo == isReportedId && x.Type == typeReport)
+                            .Select(x => x.ReportId)
+                            .ToList();
 
                     foreach (var reportId in reportIdList)
                     {
