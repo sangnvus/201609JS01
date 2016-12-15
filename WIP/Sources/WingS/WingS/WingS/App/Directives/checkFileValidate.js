@@ -1,10 +1,24 @@
 ﻿app.directive('validFile', function () {
+var validFormats = ['image/jpg', 'image/gif','image/jpeg','image/png','image/bmp'];
     return {
         require: 'ngModel',
-        link: function (scope, el, attrs, ngModel) {
+        link: function ($scope, el, attrs, ngModel) {
             //change event is fired when file is selected
             el.bind('change', function () {
-                scope.$apply(function () {
+                var thisFile = this.files;
+                $scope.CreateEventForm.FileUpload.$setValidity("validFileSize", true);
+                $scope.CreateEventForm.FileUpload.$setValidity("validFileType", true);
+                for (var i = 0; i < thisFile.length; i++) {
+                    if (thisFile[i].size > 20000000) {
+                        $scope.CreateEventForm.FileUpload.$setValidity("validFileSize", false);
+                        break;
+                    }
+                    if (validFormats.indexOf(thisFile[i].type.toLowerCase()) === -1) {
+                        $scope.CreateEventForm.FileUpload.$setValidity("validFileType", false);
+                        break;
+                    }
+                }
+                $scope.$apply(function () {
                     ngModel.$setViewValue(el.val());
                     ngModel.$render();
                 });

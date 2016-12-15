@@ -293,6 +293,8 @@
                                             <p>
                                                 <span style="color: red" ng-show="CreateEventForm.FileUpload.$dirty && CreateEventForm.FileUpload.$invalid">
                                                         <span ng-show="CreateEventForm.FileUpload.$error.required">Bạn phải chọn ảnh để upload</span>
+														<span ng-show="CreateEventForm.FileUpload.$error.validFileSize">Kích thước File không thể lớn hơn 20MB</span>
+														<span ng-show="CreateEventForm.FileUpload.$error.validFileType">Định dạng file không đúng</span>
                                                     </span>
                                             </p>
                                         </div>
