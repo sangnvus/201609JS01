@@ -85,6 +85,18 @@ app.controller("AdminReportOrganizationDetailController", function($scope, $http
         contentType: "application/json"
     }).success(function(response) {
         $scope.OrganizationReportDetailData = response.Data;
+        
+        // after load organziation's detail reports, change all status of report to false (seen - đã xem)
+        if (response.Status === "success") {
+            $http({
+                url: "/api/Report/ChangeStatusOfAllReportWithIdAndType",
+                method: "GET",
+                params: { isReportId: orgId, reportType: "Organizations" },
+                contentType: "application/json"
+            }).success(function (isSuccess) {
+                var isChangeStatusSucces = isSuccess.Status;
+            });
+        }
     });
 
     $scope.activeOrganization = function (orid) {

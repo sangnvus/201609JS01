@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using WingS.DataHelper;
@@ -254,6 +255,12 @@ namespace WingS.DataAccess
             return times;
         }
 
+        /// <summary>
+        /// get all report with id and report type
+        /// </summary>
+        /// <param name="isReportedId"></param>
+        /// <param name="typeReport"></param>
+        /// <returns></returns>
         public List<ReportBasicInfoDTO> GetReportDetailData(int isReportedId, string typeReport)
         {
             List<ReportBasicInfoDTO> reportDetailData = new List<ReportBasicInfoDTO>();
@@ -280,8 +287,39 @@ namespace WingS.DataAccess
             }
 
             return reportDetailData;
-        } 
+        }
 
+        /// <summary>
+        /// Change status of report to false
+        /// </summary>
+        /// <param name="isReportId"></param>
+        /// <param name="reportType"></param>
+        /// <returns></returns>
+        public bool ChangeStatusOfReport(int isReportId, string reportType)
+        {
+            try
+            {
+                using (var db = new Ws_DataContext())
+                {
+                    List<Report> reports = db.Reports.Where(x => x.ReportTo == isReportId && x.Type == reportType && x.Status == true).ToList();
+                    foreach (var report in reports)
+                    {
+                        report.Status = false;
+                        db.Reports.AddOrUpdate(report);
+                    }
+
+                    db.SaveChanges();
+                    //change success
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                //change false
+                return false;
+                //throw;
+            }
+        }
         public void Dispose()
         {
             

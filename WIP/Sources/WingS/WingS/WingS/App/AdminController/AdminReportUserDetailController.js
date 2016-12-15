@@ -18,6 +18,18 @@
         contentType: "application/json"
     }).success(function (response) {
         $scope.UserReportDetailData = response.Data;
+
+        // after load user's detail reports, change all status of report to false (seen - đã xem)
+        if (response.Status === "success") {
+            $http({
+                url: "/api/Report/ChangeStatusOfAllReportWithIdAndType",
+                method: "GET",
+                params: { isReportId: userDetailId, reportType: "Ws_User" },
+                contentType: "application/json"
+            }).success(function (isSuccess) {
+                var isChangeStatusSucces = isSuccess.Status;
+            });
+        }
     });
 
 

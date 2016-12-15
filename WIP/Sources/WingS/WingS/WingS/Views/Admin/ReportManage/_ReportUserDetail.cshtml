@@ -37,7 +37,7 @@
                             <div class="portlet-title">
                                 <h4>Báo cáo chi tiết về {{currentUserProfile.UserName}}</h4>
                             </div>
-                            <div class="portlet-widgets">
+                            <div class="portlet-widgets" ng-if="currentUserProfile!=null">
                                 <button class="btn btn-primary" ng-if="currentUserProfile.IsActive " ng-click="ban(currentUserProfile.UserId)">Khóa tài khoản này</button>
                                 <button class="btn btn-danger" ng-if="!currentUserProfile.IsActive " ng-click="unBan(currentUserProfile.UserId)">Mở khóa tài khoản này</button>
                             </div>
@@ -51,8 +51,8 @@
                                             <th>Người báo cáo</th>
                                             <th>Lý do</th>
                                             <th>Ngày báo cáo</th>
-                                            @*<th>Trạng thái</th>
-                                            <th>Hành động</th>*@
+                                            <th>Trạng thái</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,13 +65,11 @@
                                             </td>
                                             <td>{{item.Reason}}</td>
                                             <td>{{item.ReportTime}}</td>
-                                            @*<td>
+                                            <td>
                                                 <a class="label label-primary" ng-if="item.Status ">Mới</a>
                                                 <a class="label label-default" ng-if="!item.Status ">Đã xem</a>
-                                            </td>*@
-                                            @*<td>
-                                                <a class="btn btn-blue" href="@Url.Content("/Admin/#/ReportUserDetail/{{item.IsReportedId}}")">Xem chi tiết</a>
-                                            </td>*@
+                                            </td>
+                                            
                                         </tr>
                                         
                                     </tbody>

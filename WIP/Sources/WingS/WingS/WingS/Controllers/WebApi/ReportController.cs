@@ -333,6 +333,103 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot User Detail Report Data",
+                    Type = ""
+                });
+            }
+        }
+
+
+        [HttpGet]
+        public IHttpActionResult GetReportStatisticWithReportType(string reportType)
+        {
+            try
+            {
+                List<ReportStatisticDTO> reportStatistic = new List<ReportStatisticDTO>();
+
+                using (var reportDal = new ReportDAL())
+                {
+                    reportStatistic = reportDal.GetListReportByType(reportType);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get Report Data Successfully",
+                    Type = "",
+                    Data = reportStatistic
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Report Data",
+                    Type = ""
+                });
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetReportDetailData(int isReportId, string reportType)
+        {
+            try
+            {
+                List<ReportBasicInfoDTO> detailReportData;
+
+                using (var reportDal = new ReportDAL())
+                {
+                    detailReportData = reportDal.GetReportDetailData(isReportId, reportType);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get Detail Report  Data Successfully",
+                    Type = "",
+                    Data = detailReportData
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot User Detail Report Data",
+                    Type = ""
+                });
+            }
+        }
+
+        /// <summary>
+        /// Change status of report after see. From true to false (means "mới" to "đã xem")
+        /// </summary>
+        /// <param name="isReportId"></param>
+        /// <param name="reportType"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult ChangeStatusOfAllReportWithIdAndType(int isReportId, string reportType)
+        {
+            try
+            {
+                using (var reportDal = new ReportDAL())
+                {
+                    reportDal.ChangeStatusOfReport(isReportId, reportType);
+                }
+
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Message = "Get User Detail Report  Data Successfully",
+                    Type = "",
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
                     Message = "Cannot User Detail Report Data Profile!",
                     Type = ""
                 });

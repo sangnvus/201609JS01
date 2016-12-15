@@ -37,7 +37,7 @@
                             <div class="portlet-title">
                                 <h4>Báo cáo chi tiết về {{isReportedOrganization.UserName}}</h4>
                             </div>
-                            <div class="portlet-widgets">
+                            <div class="portlet-widgets" ng-if="isReportedOrganization!=null">
                                 <button class="btn btn-primary" ng-if="isReportedOrganization.IsActive " ng-click="ban(isReportedOrganization.OrganizationId)">Khóa tổ chức này</button>
                                 <button class="btn btn-danger" ng-if="!isReportedOrganization.IsActive " ng-click="unBan(isReportedOrganization.OrganizationId)">Mở khóa tổ chức này</button>
                             </div>
@@ -51,7 +51,7 @@
                                             <th>Người báo cáo</th>
                                             <th>Lý do</th>
                                             <th>Ngày báo cáo</th>
-                                            @*<th>Trạng thái</th>*@
+                                            <th>Trạng thái</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,10 +64,10 @@
                                             </td>
                                             <td>{{item.Reason}}</td>
                                             <td>{{item.ReportTime}}</td>
-                                            @*<td>
+                                            <td>
                                                 <a class="label label-primary" ng-if="item.Status ">Mới</a>
                                                 <a class="label label-default" ng-if="!item.Status ">Đã xem</a>
-                                            </td>*@
+                                            </td>
 
                                         </tr>
                                     </tbody>
