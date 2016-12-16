@@ -113,10 +113,20 @@ app.config(function ($routeProvider) {
             templateUrl: "/Admin/ReportThread",
             controller: "AdminReportThreadController"
         })
+        .when("/ReportThreadDetail/:ThreadId", {
+            tittle: "Báo cáo bài viết",
+            templateUrl: "/Admin/ReportThreadDetail",
+            controller: "AdminReportThreadDetailController"
+        })
         .when("/ReportEvent", {
             tittle: "Báo cáo sự kiện",
             templateUrl: "/Admin/ReportEvent",
             controller: "AdminReportEventController"
+        })
+        .when("/ReportEventDetail/:EventId", {
+            tittle: "Báo cáo sự kiện",
+            templateUrl: "/Admin/ReportEventDetail",
+            controller: "AdminReportEventDetailController"
         });
 });
 

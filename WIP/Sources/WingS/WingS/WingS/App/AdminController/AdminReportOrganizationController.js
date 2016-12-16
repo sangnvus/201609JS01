@@ -1,11 +1,16 @@
 ﻿app.controller("AdminReportOrganizationController", function ($scope, $http, $sce, SweetAlert) {
-    // Load user report data
-    $http.get("/api/Report/GetOrganizationReportAsStatistic").success(function (response) {
+
+    //load report statistic with type = organization
+    $http({
+        url: "/api/Report/GetReportStatisticWithReportType",
+        method: "Get",
+        params: { reportType: "Organizations" },
+        contentType: "application/json"
+    }).success(function (response) {
         $scope.reportStatistic = response.Data;
     });
 
-
-    // Change status of Organization
+    // Change status of Organization (Mean lock or unlock organization)
     $scope.activeOrganization = function (index, orid) {
         $http({
             url: "/api/AdminOrganization/ChangeStatusOrganization",
@@ -79,9 +84,9 @@ app.controller("AdminReportOrganizationDetailController", function($scope, $http
 
     //Load report information about reported organization
     $http({
-        url: "/api/Report/GetOrganizationReportDetailData",
+        url: "/api/Report/GetReportDetailData",
         method: "GET",
-        params: { orgId: orgId },
+        params: { isReportId: orgId, reportType: "Organizations" },
         contentType: "application/json"
     }).success(function(response) {
         $scope.OrganizationReportDetailData = response.Data;

@@ -51,7 +51,7 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in reportStatistic track by $index">
-                                            <td>{{$index}}</td>
+                                            <td>{{$index+1}}</td>
                                             <td class="nameAdmin">
                                                 <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.IsReportedId}}")">
                                                     <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.IsreportedImage}}" alt="">

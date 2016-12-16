@@ -178,6 +178,7 @@ namespace WingS.DataAccess
                         if (eventIsReported != null)
                         {
                             reportStatistic.IsreportedUserName = eventIsReported.EventName;
+                            reportStatistic.IsreportedUserStatus = eventIsReported.Status;
                         }
                             
                         reportStatistic.IsreportedImage = eventDal.GetMainImageEventById(id).ImageUrl;
@@ -188,6 +189,7 @@ namespace WingS.DataAccess
                         if (threadIsReported != null)
                         {
                             reportStatistic.IsreportedUserName = threadIsReported.Title;
+                            reportStatistic.IsreportedUserStatus = threadIsReported.Status;
                         }
 
                         reportStatistic.IsreportedImage = threadDal.GetAllImageThreadById(id).First();
@@ -199,6 +201,7 @@ namespace WingS.DataAccess
                         {
                             reportStatistic.IsreportedUserName = orgIsReported.OrganizationName;
                             reportStatistic.IsreportedImage = orgIsReported.LogoUrl;
+                            reportStatistic.IsreportedUserStatus = orgIsReported.IsActive;
                         }
                     }
                         

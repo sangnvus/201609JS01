@@ -12,9 +12,9 @@
     });
 
     $http({
-        url: "/api/Report/GetUserReportDetailData",
+        url: "/api/Report/GetReportDetailData",
         method: "GET",
-        params: { userId: userDetailId },
+        params: { isReportId: userDetailId, reportType: "Ws_User" },
         contentType: "application/json"
     }).success(function (response) {
         $scope.UserReportDetailData = response.Data;

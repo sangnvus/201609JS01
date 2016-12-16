@@ -98,9 +98,17 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Admin/ReportManage/_ReportEvent.cshtml");
         }
+        public ActionResult ReportEventDetail()
+        {
+            return PartialView("~/Views/Admin/ReportManage/_ReportEventDetail.cshtml");
+        }
         public ActionResult ReportThread()
         {
             return PartialView("~/Views/Admin/ReportManage/_ReportThread.cshtml");
+        }
+        public ActionResult ReportThreadDetail()
+        {
+            return PartialView("~/Views/Admin/ReportManage/_ReportThreadDetail.cshtml");
         }
         public ActionResult Index()
         {

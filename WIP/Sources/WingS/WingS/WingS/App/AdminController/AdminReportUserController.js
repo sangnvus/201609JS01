@@ -1,6 +1,11 @@
 ﻿app.controller("AdminReportUserController", function ($scope, $http, $sce, SweetAlert) {
     // Load user report data
-    $http.get("/api/Report/GetUserReportData").success(function (response) {
+    $http({
+        url: "/api/Report/GetReportStatisticWithReportType",
+        method: "Get",
+        params: { reportType: "Ws_User" },
+        contentType: "application/json"
+    }).success(function (response) {
         $scope.reportStatistic = response.Data;
     });
 

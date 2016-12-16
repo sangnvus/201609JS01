@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="page-title">
                         <h1>
-                            Chi tiết báo cáo tổ chức
+                            Chi tiết báo cáo sự kiện
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -18,7 +18,7 @@
                             </li>
                             <li><a href="#" onclick="return false">Báo cáo</a></li>
                             <li>
-                                <a href="/Admin/#/ReportUser">Báo cáo tổ chức</a>
+                                <a href="/Admin/#/ReportUser">Báo cáo sự kiện</a>
                             </li>
                             <li class="active">Chi tiết</li>
                         </ol>
@@ -35,11 +35,11 @@
                     <div class="portlet portlet-default">
                         <div class="portlet-heading">
                             <div class="portlet-title">
-                                <h4>Báo cáo chi tiết về "{{isReportedOrganization.OrganizationName}}"</h4>
+                                <h4>Báo cáo chi tiết về "{{isReportedEvent.EventName}}"</h4>
                             </div>
-                            <div class="portlet-widgets" ng-if="isReportedOrganization!=null">
-                                <button class="btn btn-primary" ng-if="isReportedOrganization.IsActive " ng-click="ban(isReportedOrganization.OrganizationId)">Khóa tổ chức này</button>
-                                <button class="btn btn-danger" ng-if="!isReportedOrganization.IsActive " ng-click="unBan(isReportedOrganization.OrganizationId)">Mở khóa tổ chức này</button>
+                            <div class="portlet-widgets" ng-if="isReportedEvent!=null">
+                                <button class="btn btn-primary" ng-if="isReportedEvent.Status " ng-click="ban(isReportedEvent.EventID)">Khóa sự kiện này</button>
+                                <button class="btn btn-danger" ng-if="!isReportedEvent.Status " ng-click="unBan(isReportedEvent.EventID)">Mở khóa sự kiện này</button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -55,7 +55,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in OrganizationReportDetailData">
+                                        <tr ng-repeat="item in EventReportDetailData">
                                             <td class="nameAdmin">
                                                 <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
                                                     <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ReportorImage}}" alt="">
@@ -95,4 +95,6 @@
     <!-- THEME SCRIPTS -->
     <script src="~/Content/Admin/js/flex.js"></script>
 </body>
+
+
 

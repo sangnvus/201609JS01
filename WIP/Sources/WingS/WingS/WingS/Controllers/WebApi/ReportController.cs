@@ -207,139 +207,10 @@ namespace WingS.Controllers.WebApi
         }
 
         /// <summary>
-        /// Get report statistic about user
+        /// Get report statistic for each type
         /// </summary>
+        /// <param name="reportType"></param>
         /// <returns></returns>
-        [HttpGet]
-        public IHttpActionResult GetUserReportData()
-        {
-            try
-            {
-                List<ReportStatisticDTO> reportStatistic = new List<ReportStatisticDTO>();
-
-                using (var reportDal = new ReportDAL())
-                {
-                    reportStatistic = reportDal.GetListReportByType(WsConstant.ReportType.REPORT_USER);
-                }
-
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.SUCCESS,
-                    Message = "Get User Report Data Successfully",
-                    Type = "",
-                    Data = reportStatistic
-                });
-            }
-            catch (Exception)
-            {
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot User Report Data Profile!",
-                    Type = ""
-                });
-            }
-        }
-
-        /// <summary>
-        /// Get user report detail data
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public IHttpActionResult GetUserReportDetailData(int userId)
-        {
-            try
-            {
-                List<ReportBasicInfoDTO> userDetailReportData = new List<ReportBasicInfoDTO>();
-
-                using (var reportDal = new ReportDAL())
-                {
-                    userDetailReportData = reportDal.GetReportDetailData(userId, WsConstant.ReportType.REPORT_USER);
-                }
-
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.SUCCESS,
-                    Message = "Get User Detail Report  Data Successfully",
-                    Type = "",
-                    Data = userDetailReportData
-                });
-            }
-            catch (Exception)
-            {
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot User Detail Report Data Profile!",
-                    Type = ""
-                });
-            }
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetOrganizationReportAsStatistic()
-        {
-            try
-            {
-                List<ReportStatisticDTO> reportStatistic = new List<ReportStatisticDTO>();
-
-                using (var reportDal = new ReportDAL())
-                {
-                    reportStatistic = reportDal.GetListReportByType(WsConstant.ReportType.REPORT_ORGANAZATION);
-                }
-
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.SUCCESS,
-                    Message = "Get Organization Report Data Successfully",
-                    Type = "",
-                    Data = reportStatistic
-                });
-            }
-            catch (Exception)
-            {
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot Organization Report Data Profile!",
-                    Type = ""
-                });
-            }
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetOrganizationReportDetailData(int orgId)
-        {
-            try
-            {
-                List<ReportBasicInfoDTO> organizationDetailReportData;
-
-                using (var reportDal = new ReportDAL())
-                {
-                    organizationDetailReportData = reportDal.GetReportDetailData(orgId, WsConstant.ReportType.REPORT_ORGANAZATION);
-                }
-
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.SUCCESS,
-                    Message = "Get User Detail Report  Data Successfully",
-                    Type = "",
-                    Data = organizationDetailReportData
-                });
-            }
-            catch (Exception)
-            {
-                return Ok(new HTTPMessageDTO
-                {
-                    Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot User Detail Report Data",
-                    Type = ""
-                });
-            }
-        }
-
-
         [HttpGet]
         public IHttpActionResult GetReportStatisticWithReportType(string reportType)
         {
@@ -371,6 +242,13 @@ namespace WingS.Controllers.WebApi
             }
         }
 
+
+        /// <summary>
+        /// Get detail data of isReported ID
+        /// </summary>
+        /// <param name="isReportId"></param>
+        /// <param name="reportType"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetReportDetailData(int isReportId, string reportType)
         {
@@ -396,7 +274,7 @@ namespace WingS.Controllers.WebApi
                 return Ok(new HTTPMessageDTO
                 {
                     Status = WsConstant.HttpMessageType.ERROR,
-                    Message = "Cannot User Detail Report Data",
+                    Message = "Cannot Detail Report Data",
                     Type = ""
                 });
             }
