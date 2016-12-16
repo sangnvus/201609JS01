@@ -6,6 +6,7 @@ using WingS.DataAccess;
 using WingS.DataHelper;
 using WingS.Models;
 using WingS.Models.DTOs;
+using System.Collections.Generic;
 
 namespace WingS.Controllers
 {
@@ -50,6 +51,33 @@ namespace WingS.Controllers
             catch (Exception)
             {
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR});
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAllDonationBasicInformation()
+        {
+            try
+            {
+                List<DonationDTO> listDonation;
+                using (var db = new DonationDAL())
+                {
+                    listDonation = db.GetAllDonation();
+                }
+                return Ok(new HTTPMessageDTO 
+                { 
+                    Status = WsConstant.HttpMessageType.SUCCESS,
+                    Data = listDonation 
+                });
+            }
+            catch (Exception)
+            {
+                return Ok(new HTTPMessageDTO
+                {
+                    Status = WsConstant.HttpMessageType.ERROR,
+                    Message = "Cannot Get Donation Information",
+                    Type = ""
+                });
             }
         }
     }

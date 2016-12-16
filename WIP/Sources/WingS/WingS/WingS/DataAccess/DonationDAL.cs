@@ -168,9 +168,20 @@ namespace WingS.DataAccess
             try
             {
                 Donation donation;
+                string userName = "";
+                string userImageUrl = "";
                 using (var db = new Ws_DataContext())
                 {
                     donation = db.Donations.FirstOrDefault(x => x.DonationId == donationId);
+                    var wsUser = db.Ws_User.FirstOrDefault(x => x.UserID == donation.UserId);
+                    if (wsUser != null)
+                    {
+                        userName = wsUser.UserName;
+                    }
+
+                    var userInformation = db.User_Information.FirstOrDefault(x => x.UserID == donation.UserId);
+                    if (userInformation != null)
+                        userImageUrl = userInformation.ProfileImage;
                 }
 
                 using (var db = new EventDAL())
@@ -180,9 +191,12 @@ namespace WingS.DataAccess
 
                 currentDonation.DonationId = donation.DonationId;
                 currentDonation.UserId = donation.UserId;
+                currentDonation.UserName = userName;
+                currentDonation.UserImageUrl = userImageUrl;
                 currentDonation.EventId = donation.EventId;
                 currentDonation.TradeCode = donation.TradeCode;
                 currentDonation.DonatedMoney = donation.DonatedMoney;
+                currentDonation.Content = donation.Content;
                 currentDonation.DonatedDate = donation.DonatedDate.ToString("hh:mm:ss dd/MM/yy");
                 currentDonation.IsPublic = donation.IsPublic;
             }
@@ -210,6 +224,33 @@ namespace WingS.DataAccess
             }
 
         }
+
+        public List<DonationDTO> GetAllDonation()
+        {
+            var donationList = new List<DonationDTO>();
+            try
+            {
+                List<int> donationIdList;
+                using (var db = new Ws_DataContext())
+                {
+                    donationIdList = db.Donations.Select(x => x.DonationId).ToList();
+                }
+
+                foreach (int donationId in donationIdList)
+                {
+                    var donationDto = GetFullInformationOfDonation(donationId);
+                    donationList.Add(donationDto);
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+                //throw;
+            }
+
+            return donationList;
+        } 
+
         public void Dispose()
         {
             

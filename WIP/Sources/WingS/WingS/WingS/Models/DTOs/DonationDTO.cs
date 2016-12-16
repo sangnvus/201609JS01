@@ -9,6 +9,8 @@ namespace WingS.Models.DTOs
     {
         public int DonationId { get; set; }
         public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string UserImageUrl { get; set; }
         public int EventId { get; set; }
         public string EventName { get; set; }
         public string TradeCode { get; set; }

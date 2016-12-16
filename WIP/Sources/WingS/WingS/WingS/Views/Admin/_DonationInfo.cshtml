@@ -48,81 +48,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @*<tr>
-                                            <td>1</td>
+                                        <tr ng-repeat="item in AllDonationRecord">
+                                            <td>{{$index + 1}}</td>
                                             <td class="nameAdmin">
-                                                <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.MainImageUrl}}" alt="">
+                                                <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventId}}")">
+                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.EventBasicInformation.MainImageUrl}}" alt="">
                                                 </a>
-                                                <p> {{item.EventName}}</p> 
+                                                <p>&nbsp;{{item.EventBasicInformation.EventName}}</p>
                                             </td>
                                             <td class="nameAdmin">
                                                 <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
+                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.UserImageUrl}}" alt="">
                                                 </a>
-                                                <p>&nbsp;{{item.UserName}}</p>                                            
+                                                <p>{{item.UserName}}</p>
                                             </td>
-                                            <td>{{content}}</td>
-                                            <td>$300</td>
-                                            <td>10 Feb,2015</td>
-                                            <td>MLDNN34</td>
-                                        </tr>*@
-                                    <tr>
-                                        <td>1</td>
-                                        <td class="nameAdmin">
-                                            <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
-                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
-                                            </a>
-                                            <p> 1000 áo ấm Hà Giang</p>
-                                        </td>
-                                        <td class="nameAdmin">
-                                            <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
-                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
-                                            </a>
-                                            <p>Anh Tuấn</p>
-                                        </td>
-                                        <td>Chúc sự kiện diễn ra thành công</td>
-                                        <td>300000</td>
-                                        <td>08:00:00 12/10/16</td>
-                                        <td>MLDNN34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td class="nameAdmin">
-                                            <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
-                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
-                                            </a>
-                                            <p> 1000 áo ấm Hà Giang</p>
-                                        </td>
-                                        <td class="nameAdmin">
-                                            <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
-                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
-                                            </a>
-                                            <p>Anh Tuấn</p>
-                                        </td>
-                                        <td>Chúc sự kiện diễn ra thành công</td>
-                                        <td>300000</td>
-                                        <td>08:00:00 12/10/16</td>
-                                        <td>MLDNN34</td>
-                                    </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="nameAdmin">
-                                                <a class="pull-left" href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
-                                                </a>
-                                                <p> 1000 áo ấm Hà Giang</p>
-                                            </td>
-                                            <td class="nameAdmin">
-                                                <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.UserId}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="/Content/Images/avatar_default.png" alt="">
-                                                </a>
-                                                <p>Anh Tuấn</p>
-                                            </td>
-                                            <td>Chúc sự kiện diễn ra thành công</td>
-                                            <td>300000</td>
-                                            <td>08:00:00 12/10/16</td>
-                                            <td>MLDNN34</td>
+                                            <td>{{item.Content}}</td>
+                                            <td>{{item.DonatedMoney}}</td>
+                                            <td>{{item.DonatedDate}}</td>
+                                            <td>{{item.TradeCode}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
