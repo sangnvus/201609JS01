@@ -73,7 +73,7 @@ namespace WingS.DataAccess
             }
         }
 
-        public Boolean EditOrganization(CreateOrganization organizationBasic, string UserName)
+        public Organization EditOrganization(CreateOrganization organizationBasic, string UserName)
         {
             try
             {
@@ -98,12 +98,12 @@ namespace WingS.DataAccess
 
                     db.SaveChanges();
 
-                    return true;
+                    return GetOrganizationById(currentOrg.OrganizationId);
                 }
             }
             catch (Exception)
             {
-                return false;
+                return null;
                 //throw;
             }
             

@@ -359,7 +359,7 @@
     <script type="text/javascript">
         $(function () {
             $('#submitChangePass').click(function () {
-                $.getJSON("/Login/ValidateUser", { UserName: $("#userNameChange").val(), PassWord: $("#oldPass").val(), AccountType: false }, function (data) {
+                $.getJSON("/Login/ValidateUser", { UserName: $("#userNameChange").val(), PassWord: $("#oldPass").val()}, function (data) {
                     if (data == "WrongPass") {
                         $('#ErrorMessage').html("Sai tên tài khoản hoặc mật khẩu!");
                         return false;

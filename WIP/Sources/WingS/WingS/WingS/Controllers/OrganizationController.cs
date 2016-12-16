@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using WingS.DataAccess;
 using WingS.DataHelper;
+using WingS.Models;
 using WingS.Models.DTOs;
 
 namespace WingS.Controllers
@@ -15,7 +16,7 @@ namespace WingS.Controllers
         public ActionResult CreateOrganization(CreateOrganization organization, HttpPostedFileBase LogoImage)
         {
             //Models.Organization newOrganization;
-
+            Organization organi = new Organization();
             try
             {
                 string logoName = WsConstant.randomString() + Path.GetExtension(LogoImage.FileName).ToLower();
@@ -25,7 +26,7 @@ namespace WingS.Controllers
 
                 using (var db = new OrganizationDAL())
                 {
-                    db.AddNewOrganization(organization, User.Identity.Name);
+                    organi = db.AddNewOrganization(organization, User.Identity.Name);
                 }
             }
             catch (Exception)
@@ -33,13 +34,14 @@ namespace WingS.Controllers
                 return Redirect("/#/Error");
             }
 
-            return Redirect("/#/Home");
+            return Redirect("/#/OrganizationDetail/" + organi.OrganizationId);
         }
 
         public ActionResult EditOrganization(CreateOrganization organization, HttpPostedFileBase LogoImage)
         {
             try
             {
+                Organization organi = new Organization();
                 if (LogoImage != null)
                 {
                     string logoName = WsConstant.randomString() + Path.GetExtension(LogoImage.FileName).ToLower();
@@ -50,15 +52,14 @@ namespace WingS.Controllers
                 
                 using (var db = new OrganizationDAL())
                 {
-                    db.EditOrganization(organization,User.Identity.Name);
+                    organi = db.EditOrganization(organization, User.Identity.Name);
                 }
+                return Redirect("/#/OrganizationDetail/" + organi.OrganizationId);
             }
             catch (Exception)
             {
                 return Redirect("/#/Error");
             }
-
-            return Redirect("/#/Home");
         }
 	}
 }
