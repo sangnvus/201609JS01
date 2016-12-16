@@ -59,11 +59,13 @@
                             </div>
                             <div class="span8">
                                 <p>Chọn hình ảnh bạn có</p>
-                                <input name="LogoImage" type="file" valid-file ng-model="LogoImage" required>
+                                <input name="LogoImage" type="file" valid-file-organi ng-model="LogoImage" required>
                                 <p style="font-weight: bold;">Chọn file với định dạng JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
                                 <p>
                                     <span style="color: red" ng-show="CreateOrganization.LogoImage.$dirty && CreateOrganization.LogoImage.$invalid">
                                         <span ng-show="CreateOrganization.LogoImage.$error.required">Bạn phải chọn ảnh để upload</span>
+                                        <span ng-show="CreateOrganization.LogoImage.$error.validFileSize">Kích thước File không thể lớn hơn 20MB</span>
+                                        <span ng-show="CreateOrganization.LogoImage.$error.validFileType">Định dạng file không đúng</span>
                                     </span>
                                 </p>
 

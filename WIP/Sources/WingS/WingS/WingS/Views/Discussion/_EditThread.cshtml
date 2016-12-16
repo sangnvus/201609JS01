@@ -56,11 +56,10 @@
                             <div class="span8">
                                 <p>Nhập vào mô tả ngắn </p>
                                 <textarea name="ShortDescription" id="ShortDescription" class="form-control" rows="4" style="width: 97%;"
-                                          ng-model="ShortDescription" ng-minlength="6" required></textarea>
+                                          ng-model="ShortDescription" required></textarea>
                                 <p>
                                     <span style="color: red" ng-show="EditThread.ShortDescription.$invalid">
                                         <span ng-show="EditThread.ShortDescription.$error.required">Phần mô tả không được để trống</span>
-                                        <span ng-show="EditThread.ShortDescription.$error.minlength">Phần mô tả phải trên 6 kí tự</span>
                                     </span>
                                 </p>
                             </div>
