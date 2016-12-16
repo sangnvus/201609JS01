@@ -22,7 +22,7 @@ namespace WingS.Controllers
                 string logoName = WsConstant.randomString() + Path.GetExtension(LogoImage.FileName).ToLower();
                 string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/Upload"), logoName);
                 LogoImage.SaveAs(path);
-                organization.LogoUrl = "Content/Upload/" + logoName;
+                organization.LogoUrl = "/Content/Upload/" + logoName;
 
                 using (var db = new OrganizationDAL())
                 {
@@ -47,7 +47,7 @@ namespace WingS.Controllers
                     string logoName = WsConstant.randomString() + Path.GetExtension(LogoImage.FileName).ToLower();
                     string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/Upload"), logoName);
                     LogoImage.SaveAs(path);
-                    organization.LogoUrl = "Content/Upload/" + logoName;
+                    organization.LogoUrl = "/Content/Upload/" + logoName;
                 }
                 
                 using (var db = new OrganizationDAL())
