@@ -68,11 +68,13 @@
                                     </div>
                                     <div class="span8">
                                         <p>Chọn hình ảnh bạn có</p>
-                                        <input type="file" class="multiple" name="Images" multiple valid-file ng-model="Images" required accept="image/*"/>
+                                        <input type="file" class="multiple" name="Images" multiple valid-file-thread ng-model="Images" required accept="image/*"/>
                                         <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
                                         <p>
                                             <span style="color: red" ng-show="CreateThread.Images.$dirty && CreateEventForm.FileUpload.$invalid">
-                                            <span ng-show="CreateThread.Images.$error.required">Bạn phải chọn ảnh để upload</span>
+                                                <span ng-show="CreateThread.Images.$error.required">Bạn phải chọn ảnh để upload</span>
+                                                <span ng-show="CreateThread.Images.$error.validFileSize">Kích thước File không thể lớn hơn 20MB</span>
+                                                <span ng-show="CreateThread.Images.$error.validFileType">Định dạng file không đúng</span>
                                         </span>
                                         </p>
 
@@ -90,7 +92,12 @@
                                      </div>
                                      <div class="span8">
                                          <p>Nhập vào mô tả ngắn </p>
-                                         <textarea name="ShortDescription" style="width: 97%;"></textarea>
+                                         <textarea name="ShortDescription" style="width: 97%;" ng-model="ShortDescription" required></textarea>
+                                         <p>
+                                             <span style="color: red" ng-show="CreateThread.ShortDescription.$dirty && CreateThread.ShortDescription.$invalid">
+                                                 <span ng-show="CreateThread.ShortDescription.$error.required">Mô tả ngắn không được để trống</span>
+                                             </span>
+                                         </p>
                                      </div>
                                  </div>
                              </div>

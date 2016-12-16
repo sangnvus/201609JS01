@@ -155,7 +155,46 @@
                                 </div>
                                 <!-- end tab campaign -->
 
+                                <div id="list" class="tab-pane fade">
+                                    <!-- begin NEW USER TABLES ROW -->
+                                    <div class="portlet portlet-default">
+                                        <div class="portlet-heading">
+                                            <div class="portlet-title">
+                                                <h4>Danh sách đóng góp</h4>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-responsive">
+                                                <table datatable="ng" id="example-table" class="table table-striped table-bordered table-hover table-green">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 30px;">STT</th>
+                                                            <th style="width: 215px;">HỌ VÀ TÊN</th>
+                                                            <th style="width: 215px;">SỐ TIỀN<span style="padding-left:110px;">VND</span></th>
+                                                            <th>NGÀY ĐÓNG GÓP</th>
+                                                            <th>GHI CHÚ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="donate in ListDonator track by $index ">
+                                                            <td>{{$index+1}}</td>
+                                                            <td>{{donate.FullName}}</td>
+                                                            <td>{{donate.DonatedMoney}}</td>
+                                                            <td>{{donate.DonatedDate}} </td>
+                                                            <td>{{donate.Content}}</td>
+                                                        </tr>
 
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.table-responsive -->
+                                        </div>
+                                        <!-- /.portlet-body -->
+                                    </div>
+                                    <!-- /.portlet -->
+
+                                </div>
                             </div>
                         </div>
                         <!-- /.portlet-body -->

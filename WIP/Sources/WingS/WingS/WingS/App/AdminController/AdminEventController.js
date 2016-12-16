@@ -31,6 +31,15 @@ app.controller("AdminEventDetailController", function ($scope, $http, $sce, $rou
         $scope.EventTimeLine = response.Data;
     });
     $http({
+        url: "/api/Event/GetDonatorInEvent",
+        method: "Get",
+        params: { id: eventId },
+        contentType: "application/json"
+    }).success(function (response) {
+        $scope.ListDonator = response.Data;
+
+    });
+    $http({
         url: "/api/AdminEvent/GetEventWithId",
         method: "GET",
         params: { eventId: eventId },
