@@ -86,12 +86,10 @@
                             <div class="span8">
                                 <p>Hãy viết phần giới thiệu về tổ chức </p>
                                 @*<div id="txtEditor" style="background-color: #fff; height: 300px; margin-bottom: 30px;"></div>*@
-                                <textarea name="Introduction" style="width: 500px; height: 200px;" ng-model="Introduction" ng-minlength="6" ng-maxlength="100" required></textarea>
+                                <textarea name="Introduction" style="width: 500px; height: 200px;" ng-model="Introduction" required></textarea>
                                 <p>
                                     <span style="color: red" ng-show="CreateOrganization.Introduction.$dirty && CreateOrganization.Introduction.$invalid">
                                         <span ng-show="CreateOrganization.Introduction.$error.required">Phần giới thiệu không được để trống</span>
-                                        <span ng-show="CreateOrganization.Introduction.$error.minlength">Phần giới thiệu hệ phải trên 6 kí tự</span>
-                                        <span ng-show="CreateOrganization.Introduction.$error.maxlength">Phần giới thiệu hệ không quá 100 kí tự</span>
                                     </span>
                                 </p>
                             </div>
@@ -133,7 +131,7 @@
                         <div class="row-fluid">
                             <div class="span4" align="center">
                                 <h3 style="margin-top: 25px;">
-                                    <strong>Email</strong>
+                                    <strong>Email<span style="color: red"> *</span></strong>
                                 </h3>
                             </div>
                             <div class="span8">
