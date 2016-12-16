@@ -258,11 +258,11 @@ body {background-image: url(scribble_light.png);  background-position: inherit; 
 
 .cap2 > div {opacity: 0.85;filter:alpha(opacity=85);background-color:rgb(85, 139, 197);}
 
-.cap3 > div {opacity: 0.85;filter:alpha(opacity=85);}
+.cap3 > div {opacity: 0.85;filter:alpha(opacity=85);background-color: green;}
 
-.cap4 > div {opacity: 0.85;filter:alpha(opacity=85);}
+.cap4 > div {opacity: 0.85;filter:alpha(opacity=85);background-color: purple;}
 
-.cap5 > div {opacity: 0.85;filter:alpha(opacity=85);}
+.cap5 > div {opacity: 0.85;filter:alpha(opacity=85);background-color:greenyellow;}
 
 .camera_full_width {margin-left:-35px;margin-right:-35px; margin-top: -55px;}
 
