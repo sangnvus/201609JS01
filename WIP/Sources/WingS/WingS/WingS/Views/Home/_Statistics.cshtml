@@ -39,29 +39,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in TopTenRankingUser">
+                                        <tr ng-repeat="item in AllEventList">
                                             <td>{{$index+1}}</td>
                                             <td class="nameAdmin">
-                                                <a class="pull-left" href="@Url.Content("/#/Profile/{{item.UserName}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
+                                                <a class="pull-left" href="@Url.Content("/#/EventDetail/{{item.EventID}}")">
+                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.MainImageUrl}}" alt="">
                                                 </a>
-                                                <p>&nbsp;{{item.UserName}}</p>
+                                                <p>&nbsp;{{item.EventName}}</p>
                                             </td>
                                             <td>
-                                                <p>Văn hóa- Xã hội</p>
+                                                <p>{{item.EventType}}</p>
                                             </td>
-                                            <td>08:00:00 12/12/16</td>
-                                            <td>123</td>
-                                            <td>123,000,000</td>
-                                            <td>50%</td>
-                                            <td ng-switch="item.IsVerify">
-                                                <div ng-switch-when="false">
-                                                    <a class="label label-warning">Chưa kích hoạt</a>
-                                                </div>
-                                                <div ng-switch-when="true" ng-switch="item.IsActive">
-                                                    <a class="label label-primary" ng-switch-when="true">Đang hoạt động</a>
-                                                    <a class="label label-danger" ng-switch-when="false">Bị cấm</a>
-                                                </div>
+                                            <td>{{item.CreatedDate}}</td>
+                                            <td>{{item.DonatedUser}}</td>
+                                            <td>{{item.RaisedMoney}}</td>
+                                            <td>{{item.DonatePercent}}%</td>
+                                            <td class="center">
+                                                <span class="label center-block btn-blue" ng-if="item.TimeStatus == 'process'" style="background-color: #138871">Đang diễn ra</span>
+                                                <span class="label center-block btn-danger" ng-if="item.TimeStatus == 'ban'" style="background-color: #d9534f">Bị Cấm</span>
+                                                <span class="label center-block btn-dark-blue" ng-if="item.TimeStatus == 'done'" style="background-color: #2980b9">Đã xong</span>
+                                                <span class="label center-block btn-green" ng-if="item.TimeStatus == 'income'" style="background-color: #cf850f">Sắp diễn ra</span>
                                             </td>
                                         </tr>
                                     </tbody>

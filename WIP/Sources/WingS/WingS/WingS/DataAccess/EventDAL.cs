@@ -734,6 +734,7 @@ namespace WingS.DataAccess
                 eventBasicInfo.NumberOfComments = CountCommentInEvent(eventId);
                 eventBasicInfo.ExpectedMoney = wsEvent.ExpectedMoney;
                 eventBasicInfo.RaisedMoney = raisedMoney;
+                eventBasicInfo.DonatePercent = raisedMoney/(decimal) wsEvent.ExpectedMoney*100;
                 eventBasicInfo.EventType = wsEvent.EType.EventTypeName;
                 eventBasicInfo.CreatedDate = wsEvent.Created_Date.ToString("dd/MM/yyyy");
                 eventBasicInfo.Start_Date = wsEvent.Start_Date.ToString("dd/MM/yyyy");

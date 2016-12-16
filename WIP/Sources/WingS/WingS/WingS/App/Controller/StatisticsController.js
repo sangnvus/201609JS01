@@ -1,5 +1,9 @@
 ﻿app.controller("StatisticsController", function ($scope, $http) {
-    // Load information of user who in top 5 rank
+    //load event donation information
+    $http.get("/api/AdminEvent/GetAllEvent").success(function (response) {
+        $scope.AllEventList = response.Data;
+    });
+    // Load information of user who in top 10 rank
     $http({
         url: "/api/AdminUserDashboard/GetTopRankUser",
         method: "GET",
