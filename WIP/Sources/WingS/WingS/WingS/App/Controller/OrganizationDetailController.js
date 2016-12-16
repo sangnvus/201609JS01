@@ -1,4 +1,4 @@
-﻿app.controller("OrganizationDetailController", function ($scope, $http, $routeParams, $rootScope) {
+﻿app.controller("OrganizationDetailController", function ($scope, $http, $sce, $routeParams, $rootScope) {
     var organizationId = $routeParams.OrgId;
     //get organization detail
     $http({
@@ -8,6 +8,7 @@
         contentType: "application/json"
     }).success(function (response) {
         $scope.currentOrg = response.Data;
+        $scope.currentOrg.Introduction = $sce.trustAsHtml($scope.currentOrg.Introduction);
     });
     //Check current User reported this Org or not
     if ($rootScope.User_Information.IsAuthen == true && $rootScope.User_Information.UserId != organizationId) {
@@ -21,18 +22,18 @@
         });
     }
     $.getJSON("api/User/GetCurrentUserId").done(function (data) {
-        var currentUserId ="";
+        var currentUserId = "";
         if (data.Data != null) {
             currentUserId = data.Data.toString();
         }
-        
+
         if (data.Status === "success" && currentUserId === organizationId) {
             $scope.isOwnerOrg = { "visibility": "visible" };
         } else {
             $scope.isOwnerOrg = { "visibility": "hidden" };
         }
     });
-  
+
     $http({
         url: "/api/Organization/GetRankOfOrganization",
         method: "GET",
@@ -41,8 +42,7 @@
     }).success(function (response) {
         $scope.orgRank = response.Data;
     });
-    function setLoadMore()
-    {
+    function setLoadMore() {
         var pageShow = 4;
         var index = 1;
         $scope.paginationLimit = function (data) {
@@ -137,7 +137,7 @@
             $http({
                 url: "/api/Event/OrderEventListOfOrganizationByStatus",
                 method: "GET",
-                params: { orgId:organizationId,isStatus: true },
+                params: { orgId: organizationId, isStatus: true },
                 contentType: "application/json"
             }).success(function (response) {
                 $scope.eventsOfOrganization = response.Data;
