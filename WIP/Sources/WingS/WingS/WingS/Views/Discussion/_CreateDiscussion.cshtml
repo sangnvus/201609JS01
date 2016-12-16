@@ -71,11 +71,11 @@
                                         <input type="file" class="multiple" name="Images" multiple valid-file-thread ng-model="Images" required accept="image/*"/>
                                         <p style="font-weight: bold;">Chọn file với định dạng JPG, JPEG, PNG, GIF, hoặc BMP. Ít nhất với 1024x768 pixels, tỉ lệ 4x3 và không vượt quá 20MB.</p>
                                         <p>
-                                            <span style="color: red" ng-show="CreateThread.Images.$dirty && CreateEventForm.FileUpload.$invalid">
+                                            <span style="color: red" ng-show="CreateThread.Images.$dirty && CreateThread.Images.$invalid">
                                                 <span ng-show="CreateThread.Images.$error.required">Bạn phải chọn ảnh để upload</span>
                                                 <span ng-show="CreateThread.Images.$error.validFileSize">Kích thước File không thể lớn hơn 20MB</span>
                                                 <span ng-show="CreateThread.Images.$error.validFileType">Định dạng file không đúng</span>
-                                        </span>
+                                            </span>
                                         </p>
 
                                     </div>
