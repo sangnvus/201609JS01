@@ -130,8 +130,12 @@ namespace WingS.Controllers.WebApi
 
                 using (var db = new Ws_DataContext())
                 {
-                    int userId = db.Ws_User.Where(x => x.UserName == userName).SingleOrDefault().UserID;
-                    donationIdList = db.Donations.Where(x => x.UserId == userId).Select(x => x.DonationId).ToList();
+                    var user = db.Ws_User.FirstOrDefault(x => x.UserName == userName);
+                    if (user != null)
+                    {
+                        int userId = user.UserID;
+                        donationIdList = db.Donations.Where(x => x.UserId == userId).Select(x => x.DonationId).ToList();
+                    }
                 }
 
                 foreach (int donationId in donationIdList)

@@ -28,6 +28,7 @@ namespace WingS.Models.DTOs
         public int DonatedUser { get; set; }
         public double ExpectedMoney { get; set; }
         public decimal RaisedMoney { get; set; }
+        public decimal DonatePercent { get; set; }
         public string EventType { get; set; }
         public string CreatedDate { get; set; }
         public string Start_Date { get; set; }
