@@ -151,7 +151,7 @@ namespace WingS.DataAccess
             List<Organization> orgList = null;
             using (var db = new Ws_DataContext())
             {
-                var topOrg = db.Organizations.OrderByDescending(x => x.Point).Take(numberOrg);
+                var topOrg = db.Organizations.Where(x=> x.IsVerify==true).OrderByDescending(x => x.Point).Take(numberOrg);
                 orgList = topOrg.ToList();
             }
             return orgList;

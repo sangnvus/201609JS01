@@ -149,14 +149,15 @@
                     <div class="span12 row-fluid">
 
                         <div class="span4" align="center" ng-repeat="item in Organization track by $index">
+                            <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
+                                <div class="">
+                                    <img src="{{item.LogoUrl}}" class="img-circle" style="width: 118px; height: 118px; margin: 5px 0px 15px;">
+                                </div>
+                            </a>
                             <div class="organization-title">
                                 <h5 class="text-info">{{item.OrganizationName}}</h5>
                             </div>
-                            <a href="@Url.Content("/#/OrganizationDetail/{{item.OrganizationId}}")">
-                                <div class="">
-                                    <img src="{{item.LogoUrl}}" class="img-circle" style="width: 111px; height: 118px; margin: 5px 0px 15px;">
-                                </div>
-                            </a>
+
                             @*<div class="organization-content">
                                     <p>{{item.Introduction}}</p>
                                 </div>*@
