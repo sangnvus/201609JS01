@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -59,6 +60,37 @@ namespace WingS.Controllers
             {
                 return Redirect("/#/Error");
             }
+        }
+        public ActionResult UpdateUserAvatar(HttpPostedFileBase Image)
+        {
+            try
+            {
+               
+                string ImageName = WsConstant.randomString() + Path.GetExtension(Image.FileName).ToLower();
+                string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/Upload"), ImageName);
+                Image.SaveAs(path);
+                string newName = "/Content/Upload/" + ImageName;
+                //Delete Current Image in Upload folder.
+
+                //Update Current Image to UserInformation
+                using (var db = new UserDAL())
+                {
+                    var userId = db.GetUserByUserNameOrEmail(User.Identity.Name).UserID;
+                    var userInfo = db.GetUserInformation(userId);
+                    userInfo.ProfileImage = newName;
+                    using (var context = new Ws_DataContext())
+                    {
+                        context.User_Information.AddOrUpdate(userInfo);
+                        context.SaveChanges();
+                    }
+                    return Redirect("/#/Profile/" + User.Identity.Name);
+                }
+            }
+            catch (Exception)
+            {
+                return Redirect("/#/Error");
+            }
+           
         }
 	}
 }

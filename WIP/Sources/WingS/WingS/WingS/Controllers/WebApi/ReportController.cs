@@ -66,9 +66,14 @@ namespace WingS.Controllers.WebApi
             }
             catch(Exception)
             {
+                try { 
                 using (var db = new Ws_DataContext())
                 {
                     ReportToId = db.Ws_User.Where(x => x.UserName == ReportTo).SingleOrDefault().UserID;
+                }
+                }catch(Exception)
+                {
+                    return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.ERROR});
                 }
             }
          

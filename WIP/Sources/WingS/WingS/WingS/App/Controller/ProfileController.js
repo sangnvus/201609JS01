@@ -1,4 +1,4 @@
-﻿app.controller("ProfileController", function ($scope, $http, $routeParams,$rootScope) {
+﻿app.controller("ProfileController", function ($scope, $http, $routeParams, $rootScope, $location) {
     var UserName = $routeParams.UserName;
 
     //Get info of User
@@ -30,7 +30,11 @@
                 params: { Type: "Ws_User", ReportTo: UserName },
                 contentType: "application/json",
             }).success(function (response) {
-                $scope.checkReported = response.Data;
+                if (response.Status == "error")
+                {
+                    $location.path('/Error');
+                }
+                else $scope.checkReported = response.Data;
             });
         } 
     //Get created thread information
@@ -100,6 +104,7 @@
         $("#MoreInfo").prop("disabled", true);
         $("#saveUser").css("visibility", "visible");
     }
+
     $scope.saveUser = function()
     {
         $scope.newUserInfo = $scope.UserInfo;

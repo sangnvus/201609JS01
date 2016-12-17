@@ -2,359 +2,414 @@
 
 <div class="contentAre">
 
-<div class="divPanel notop page-content">
-    <div class="breadcrumbs">
-        <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="#"></a> Thông tin cá nhân
-    </div>
-</div>
-
-<div class="row">
-<div class="col-lg-12" style="padding-left: 53px;">
-
-<div class="portlet portlet-default">
-<div class="portlet-body">
-<ul id="userTab" class="nav nav-tabs">
-    <li class="active"><a href="#overview" onclick=" return false; " data-toggle="tab">Hồ sơ</a></li>
-    <li><a href="#backed" onclick=" return false; " data-toggle="tab">Lịch sử quyên góp</a></li>
-    <li><a href="#created" onclick=" return false; " data-toggle="tab">Bài viết đã tạo</a></li>
-    <li ng-if="UserInfo.UserName==User_Information.UserName"><a href="#changePassWord" onclick=" return false; " data-toggle="tab">Đổi mật khẩu</a></li>
-</ul>
-<div id="userTabContent" class="tab-content">
-<div class="tab-pane fade in active" id="overview">
-    <div class="row">
-        <div class="col-lg-3">
-            <img class="img-responsive img-profile" style="width: 227px; height: 227px;" src="{{UserInfo.ProfileImage}}" alt="">
-            <div class="list-group">
-                <a href="#" onclick=" return false " class="list-group-item active" style="text-align: center;">Tổng quan</a>
-                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">{{UserInfo.NumberEventDonatedIn}}</span></a>
-                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Số bài viết đã tạo<span class="badge purple">{{UserInfo.NumberOfPost}}</span></a>
-                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Tổng số điểm<span class="badge orange">{{UserInfo.Point}}</span></a>
-                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">{{UserInfo.CurrentRank}}</span></a>
-                <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Trạng thái
-                    <span class="badge blue" ng-if="UserInfo.IsActive">Đang Hoạt Động</span>
-                    <span class="badge red" ng-if="!UserInfo.IsActive">Bị cấm</span>
-                </a>
-            </div>
+    <div class="divPanel notop page-content">
+        <div class="breadcrumbs">
+            <a href="/#/Home">Trang chủ</a> &nbsp;/&nbsp;<a href="#"></a> Thông tin cá nhân
         </div>
-        <div class="col-lg-9">
-            <div id="userSettingsContent" class="tab-content">
-                <div class="tab-pane fade in active" id="basicInformation">
-                    <form role="form">
-                        <div class="col-lg-6">
-                            <h4 class="page-header" style="margin-bottom: 39px;">Thông tin cá nhân:</h4>
-                            <div class="form-group">
-                                <label>Tên đầy đủ</label>
-                                <input type="text" class="form-control userinfo" ng-model="FullName" disabled>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12" style="padding-left: 53px;">
+
+            <div class="portlet portlet-default">
+                <div class="portlet-body">
+                    <ul id="userTab" class="nav nav-tabs">
+                        <li class="active"><a href="#overview" onclick=" return false; " data-toggle="tab">Hồ sơ</a></li>
+                        <li><a href="#backed" onclick=" return false; " data-toggle="tab">Lịch sử quyên góp</a></li>
+                        <li><a href="#created" onclick=" return false; " data-toggle="tab">Bài viết đã tạo</a></li>
+                        <li ng-if="UserInfo.UserName==User_Information.UserName"><a href="#changePassWord" onclick=" return false; " data-toggle="tab">Đổi mật khẩu</a></li>
+                    </ul>
+                    <div id="userTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="overview">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="avatar" style="position:relative;">
+                                        <img class="img-responsive img-profile" style="width: 227px; height: 227px;" src="{{UserInfo.ProfileImage}}" alt="">
+                                        @{ if (User.Identity.Name != "" || User.Identity.IsAuthenticated)
+                                            {
+                                                <label class="edit-avatar"  ng-if=" UserInfo.UserName==User_Information.UserName">
+                                                    <a class="btn" href="#" onclick="return false;" data-target="#changeAvatar" data-toggle="modal"><i class="fa-camera"></i> Chọn ảnh</a>
+                                                </label>
+                                               
+                                            }
+                                        }
+                                       
+                                    </div>
+                                    <div class="list-group">
+                                        <a href="#" onclick=" return false " class="list-group-item active" style="text-align: center;">Tổng quan</a>
+                                        <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Số sự kiện đã quyên góp<span class="badge green">{{UserInfo.NumberEventDonatedIn}}</span></a>
+                                        <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Số bài viết đã tạo<span class="badge purple">{{UserInfo.NumberOfPost}}</span></a>
+                                        <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Tổng số điểm<span class="badge orange">{{UserInfo.Point}}</span></a>
+                                        <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">Xếp hạng<span class="badge red">{{UserInfo.CurrentRank}}</span></a>
+                                        <a href="#" onclick=" return false " class="list-group-item" style="padding-left: 10px;">
+                                            Trạng thái
+                                            <span class="badge blue" ng-if="UserInfo.IsActive">Đang Hoạt Động</span>
+                                            <span class="badge red" ng-if="!UserInfo.IsActive">Bị cấm</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div id="userSettingsContent" class="tab-content">
+                                        <div class="tab-pane fade in active" id="basicInformation">
+                                            <form role="form">
+                                                <div class="col-lg-6">
+                                                    <h4 class="page-header" style="margin-bottom: 39px;">Thông tin cá nhân:</h4>
+                                                    <div class="form-group">
+                                                        <label>Tên đầy đủ</label>
+                                                        <input type="text" class="form-control userinfo" ng-model="FullName" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Số điện thoại</label>
+                                                        <input type="tel" class="form-control userinfo" ng-model="Phone" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Địa chỉ</label>
+                                                        <input type="text" class="form-control userinfo" ng-model="Address" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Quốc gia</label>
+                                                        <input type="text" class="form-control userinfo" ng-model="Country" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Giới tính</label>
+                                                        <input type="text" class="form-control userinfo" ng-model="Gender" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Ngày sinh</label>
+                                                        <input type="date" class="form-control userinfo" id="datePicker" value="{{DOB}}" disabled />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3" style="width: 300px; margin-left: 90px;">
+                                                    <h4 class="page-header" style="margin-bottom: 39px;">Thông tin liên lạc:</h4>
+                                                    <div class="form-group">
+                                                        <label>Địa chỉ Email</label>
+                                                        <input type="text" value="{{UserInfo.Email}}" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Đường dẫn Facebook</label>
+                                                        <input type="text" class="form-control userinfo" ng-model="FacebookUri" disabled>
+                                                    </div>
+                                                    <h4 class="page-header">Thông tin thêm:</h4>
+                                                    <div class="form-group" style="margin-top: -22px;">
+                                                        <label>Tổ chức</label>
+                                                        <input type="text" value="{{UserInfo.OrganazationName}}" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Ngày tham gia</label>
+                                                        <input type="text" value="{{UserInfo.CreateDate}}" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Chữ kí</label>
+                                                        <input type="text" class="form-control userinfo" ng-model="UserSignature" disabled>
+                                                    </div>
+
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="form-group">
-                                <label>Số điện thoại</label>
-                                <input type="tel" class="form-control userinfo" ng-model="Phone" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Địa chỉ</label>
-                                <input type="text" class="form-control userinfo" ng-model="Address" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Quốc gia</label>
-                                <input type="text" class="form-control userinfo" ng-model="Country" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Giới tính</label>
-                                <input type="text" class="form-control userinfo" ng-model="Gender" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Ngày sinh</label>
-                                <input type="date" class="form-control userinfo" id="datePicker" value="{{DOB}}" disabled/>
+                            <div class="buttonHover">
+                                @{ if (User.Identity.Name != "" || User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
+                                        <a ng-if="checkReported && UserInfo.UserName!=User_Information.UserName" class="btn " href="#" onclick=" return false; " style="margin-left: 31px;" title="Bạn đã báo cáo người dùng này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+                                        <a ng-if="!checkReported && UserInfo.UserName!=User_Information.UserName" class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport" style="margin-left: 31px;" ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
+                                    }
+                                }
+                                <a class="btn " id="updateUser" ng-click="enableButton()" href="#" onclick=" return false; " ng-if="UserInfo.UserName==User_Information.UserName"><i class="icon-edit"></i> Sửa thông tin</a>
+                                <a class="btn" id="saveUser" style="visibility: hidden;" ng-click="saveUser()" href="#" onclick=" return false; "><i class="fa fa-floppy-o"></i> Lưu</a>
                             </div>
                         </div>
-                        <div class="col-lg-3" style="width: 300px; margin-left: 90px;">
-                            <h4 class="page-header" style="margin-bottom: 39px;">Thông tin liên lạc:</h4>
-                            <div class="form-group">
-                                <label>Địa chỉ Email</label>
-                                <input type="text" value="{{UserInfo.Email}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Đường dẫn Facebook</label>
-                                <input type="text" class="form-control userinfo" ng-model="FacebookUri" disabled>
-                            </div>
-                            <h4 class="page-header">Thông tin thêm:</h4>
-                            <div class="form-group" style="margin-top: -22px;">
-                                <label>Tổ chức</label>
-                                <input type="text" value="{{UserInfo.OrganazationName}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Ngày tham gia</label>
-                                <input type="text" value="{{UserInfo.CreateDate}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Chữ kí</label>
-                                <input type="text" class="form-control userinfo" ng-model="UserSignature" disabled>
-                            </div>
 
+                        <!-- Tab Event donated -->
+                        <div class="tab-pane fade" id="backed">
+                            <div class="row">
+
+                                <div class="portlet portlet-default" style="margin-left: 30px;">
+                                    <div class="portlet-heading">
+                                        <div class="portlet-title">
+                                            <h4>Lịch sử quyên góp</h4>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="table-responsive">
+                                            <table datatable="ng" id="example-table" class="table table-striped table-bordered table-hover table-green">
+                                                <thead>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th style="width: 320px;">Tên sự kiện</th>
+                                                        <th>Thể loại</th>
+                                                        <th>Số tiền quyên góp</th>
+                                                        <th>Ngày quyên góp</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="odd gradeX" ng-repeat="item in currentUserDonation track by $index">
+                                                        <td>{{$index+1}}</td>
+                                                        <td class="nameAdmin">
+                                                            <a class="pull-left" href="@Url.Content("/#/EventDetail/{{item.EventBasicInformation.EventID}}")">
+                                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.EventBasicInformation.MainImageUrl}}" alt="">
+                                                            </a>
+                                                            <p> {{item.EventBasicInformation.EventName}}</p>
+                                                        </td>
+                                                        <td>{{item.EventBasicInformation.EventType}}</td>
+                                                        <td>{{item.DonatedMoney}}</td>
+                                                        <td>{{item.DonatedDate}}</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.portlet-body -->
+                                </div>
+                                <!-- /.portlet -->
+
+                            </div>
                         </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="buttonHover">
-        @{ if(User.Identity.Name!=""||User.Identity.IsAuthenticated)
-            {
-        <a class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendMessage" ng-if="UserInfo.UserName!=User_Information.UserName"><i class="icon-inbox"></i> Nhắn tin</a>
-        <a ng-if="checkReported && UserInfo.UserName!=User_Information.UserName" class="btn " href="#" onclick=" return false; " style="margin-left: 31px;" title="Bạn đã báo cáo người dùng này rồi" ng-disabled="true"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
-        <a ng-if="!checkReported && UserInfo.UserName!=User_Information.UserName" class="btn " href="#" onclick=" return false; " data-toggle="modal" data-target="#sendReport" style="margin-left: 31px;"  ng-click="getReportContent()"><i class="fa fa-flag-o" aria-hidden="true"></i> Báo cáo</a>
-            }
-        }
-        <a class="btn " id="updateUser" ng-click="enableButton()" href="#" onclick=" return false; " ng-if="UserInfo.UserName==User_Information.UserName"><i class="icon-edit"></i> Sửa thông tin</a>
-        <a class="btn" id="saveUser" style="visibility: hidden;" ng-click="saveUser()" href="#" onclick=" return false; "><i class="fa fa-floppy-o"></i> Lưu</a>
-    </div>
-</div>
-
-<!-- Tab Event donated -->
-<div class="tab-pane fade" id="backed">
-    <div class="row">
-
-        <div class="portlet portlet-default" style="margin-left: 30px;">
-            <div class="portlet-heading">
-                <div class="portlet-title">
-                    <h4>Lịch sử quyên góp</h4>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="portlet-body">
-                <div class="table-responsive">
-                    <table datatable="ng" id="example-table" class="table table-striped table-bordered table-hover table-green">
-                        <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th style="width: 320px;">Tên sự kiện</th>
-                            <th>Thể loại</th>
-                            <th>Số tiền quyên góp</th>
-                            <th>Ngày quyên góp</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="odd gradeX" ng-repeat="item in currentUserDonation track by $index">
-                            <td>{{$index+1}}</td>
-                            <td class="nameAdmin">
-                                <a class="pull-left" href="@Url.Content("/#/EventDetail/{{item.EventBasicInformation.EventID}}")">
-                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.EventBasicInformation.MainImageUrl}}" alt="">
-                                </a>
-                                <p> {{item.EventBasicInformation.EventName}}</p>
-                            </td>
-                            <td>{{item.EventBasicInformation.EventType}}</td>
-                            <td>{{item.DonatedMoney}}</td>
-                            <td>{{item.DonatedDate}}</td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.table-responsive -->
-            </div>
-            <!-- /.portlet-body -->
-        </div>
-        <!-- /.portlet -->
-
-    </div>
-</div>
-<!-- End tab backed projects -->
-<!-- Tab created thread -->
-<div class="tab-pane fade" id="created" style="margin-left: 30px;">
-    <div class="row">
-        <div class="portlet portlet-default">
-            <div class="portlet-heading">
-                <div class="portlet-title">
-                    <h4>Bài viết đã tạo</h4>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="portlet-body">
-                <div class="table-responsive">
-                    <table datatable="ng" id="example-table-2" class="table table-striped table-bordered table-hover table-green">
-                        <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Tên bài viết</th>
-                            <th>Ngày tạo</th>
-                            <th>Trạng thái</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="item in currentUserThread">
-                            <td>{{$index +1}}</td>
-                            <td class="nameAdmin">
-                                <a class="pull-left" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">
-                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
-                                </a>
-                                <p> {{item.ThreadName}}</p>
-                            </td>
-                            <td>{{item.CreatedDate}}</td>
-                            <td>
-                                <span class="label label-primary" ng-if="item.Status">Đang Hoạt Động</span>
-                                <span class="label label-danger " ng-if="!item.Status">Dừng Hoạt Động</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.table-responsive -->
-            </div>
-            <!-- /.portlet-body -->
-        </div>
-        <!-- /.portlet -->
-    </div>
-</div>
-<!-- End tab created project -->
-
-<!-- Start tab change PassWord -->
-<div class="tab-pane fade" id="changePassWord">
-    @*ng-if="UserInfo.UserName==User_Information.UserName"*@
-    <div class="row-fluid">
-        <!--Edit Main Content Area here-->
-        <div class="span12" id="divMain" style="margin-top: 40px;
+                        <!-- End tab backed projects -->
+                        <!-- Tab created thread -->
+                        <div class="tab-pane fade" id="created" style="margin-left: 30px;">
+                            <div class="row">
+                                <div class="portlet portlet-default">
+                                    <div class="portlet-heading">
+                                        <div class="portlet-title">
+                                            <h4>Bài viết đã tạo</h4>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="table-responsive">
+                                            <table datatable="ng" id="example-table-2" class="table table-striped table-bordered table-hover table-green">
+                                                <thead>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Tên bài viết</th>
+                                                        <th>Ngày tạo</th>
+                                                        <th>Trạng thái</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in currentUserThread">
+                                                        <td>{{$index +1}}</td>
+                                                        <td class="nameAdmin">
+                                                            <a class="pull-left" href="@Url.Content("/#/ThreadDetail/{{item.ThreadID}}")">
+                                                                <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
+                                                            </a>
+                                                            <p> {{item.ThreadName}}</p>
+                                                        </td>
+                                                        <td>{{item.CreatedDate}}</td>
+                                                        <td>
+                                                            <span class="label label-primary" ng-if="item.Status">Đang Hoạt Động</span>
+                                                            <span class="label label-danger " ng-if="!item.Status">Dừng Hoạt Động</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.portlet-body -->
+                                </div>
+                                <!-- /.portlet -->
+                            </div>
+                        </div>
+                        <!-- End tab created project -->
+                        <!-- Start tab change PassWord -->
+                        <div class="tab-pane fade" id="changePassWord">
+                            @*ng-if="UserInfo.UserName==User_Information.UserName"*@
+                            <div class="row-fluid">
+                                <!--Edit Main Content Area here-->
+                                <div class="span12" id="divMain" style="margin-top: 40px;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }">
-            <div class="row-fluid">
-                <section id="content">
-                    @using (Html.BeginForm("ChangePass", "Login", FormMethod.Post, new {@class = "login-content", @id = "changePassForm", @name = "changePassForm", role = "form"}))
-                    {
+                                    <div class="row-fluid">
+                                        <section id="content">
+                                            @using (Html.BeginForm("ChangePass", "Login", FormMethod.Post, new { @class = "login-content", @id = "changePassForm", @name = "changePassForm", role = "form" }))
+                                            {
 
-                        <h1>Đổi mật khẩu</h1>
-                        <div>
-                            <input type="text" placeholder="Tên tài khoản" required="" id="userNameChange" name="userNameChange"/>
-                        </div>
-                        <div>
-                            <input type="password" placeholder="Mật khẩu cũ" required="" id="oldPass" name="oldPass"/>
-                        </div>
-                        <div>
-                            <div ng-show="changePassForm.newPass.$dirty && changePassForm.newPass.$invalid" style="color: red;">
-                                <i class="icon-remove-sign  " style="color: red"></i>
-                                <span ng-show="changePassForm.newPass.$error.required">Mật khẩu không được để trống</span>
-                                <span ng-show="changePassForm.newPass.$error.minlength">Mật khẩu phải dài hơn 8 kí tự</span>
-                                <span ng-show="changePassForm.newPass.$error.maxlength">Mật khẩu phải ngắn hơn 20 kí tự</span>
+                                                <h1>Đổi mật khẩu</h1>
+                                                <div>
+                                                    <input type="text" placeholder="Tên tài khoản" required="" id="userNameChange" name="userNameChange" />
+                                                </div>
+                                                <div>
+                                                    <input type="password" placeholder="Mật khẩu cũ" required="" id="oldPass" name="oldPass" />
+                                                </div>
+                                                <div>
+                                                    <div ng-show="changePassForm.newPass.$dirty && changePassForm.newPass.$invalid" style="color: red;">
+                                                        <i class="icon-remove-sign  " style="color: red"></i>
+                                                        <span ng-show="changePassForm.newPass.$error.required">Mật khẩu không được để trống</span>
+                                                        <span ng-show="changePassForm.newPass.$error.minlength">Mật khẩu phải dài hơn 8 kí tự</span>
+                                                        <span ng-show="changePassForm.newPass.$error.maxlength">Mật khẩu phải ngắn hơn 20 kí tự</span>
+                                                    </div>
+                                                    <input type="password" placeholder="Mật khẩu mới" required="" id="newPass" name="newPass"
+                                                           ng-model="newPass"
+                                                           ng-minlength="8"
+                                                           ng-maxlength="20" />
+                                                </div>
+                                                <div>
+                                                    <div ng-show="changePassForm.reNewPass.$dirty && changePassForm.reNewPass.$invalid" style="color: red;">
+                                                        <i class="icon-remove-sign  " style="color: red"></i>
+                                                        <span ng-show="changePassForm.reNewPass.$error.required">Nhập lại mật khẩu không được để trống</span>
+                                                        <span ng-show="changePassForm.reNewPass.$error.unique && !changePassForm.reNewPass.$error.required">Nhập lại mật khẩu không giống</span>
+                                                    </div>
+                                                    <input type="password" placeholder="Nhập lại mật khẩu mới"
+                                                           name="reNewPass" id="reNewPass"
+                                                           ng-model="reNewPass"
+                                                           password-match="newPass"
+                                                           required>
+                                                </div>
+                                                <div>
+                                                    <h4 id="ErrorMessage" style="color: red; margin-left: 30px;"> </h4>
+                                                </div>
+                                                <div style="margin-left: 12%;">
+                                                    <input class="btn" onclick=" return false; " style="width: 250px" type="submit"
+                                                           value="Đổi mật khẩu" id="submitChangePass"
+                                                           ng-disabled="!changePassForm.$dirty || (changePassForm.$dirty && changePassForm.$invalid)" />
+                                                </div>
+                                            }
+                                        </section><!-- content -->
+                                    </div>
+
+                                    <hr>
+                                    <br>
+
+
+                                </div>
+                                <!--End Main Content here-->
+
                             </div>
-                            <input type="password" placeholder="Mật khẩu mới" required="" id="newPass" name="newPass"
-                                   ng-model="newPass"
-                                   ng-minlength="8"
-                                   ng-maxlength="20"/>
                         </div>
-                        <div>
-                            <div ng-show="changePassForm.reNewPass.$dirty && changePassForm.reNewPass.$invalid" style="color: red;">
-                                <i class="icon-remove-sign  " style="color: red"></i>
-                                <span ng-show="changePassForm.reNewPass.$error.required">Nhập lại mật khẩu không được để trống</span>
-                                <span ng-show="changePassForm.reNewPass.$error.unique && !changePassForm.reNewPass.$error.required">Nhập lại mật khẩu không giống</span>
-                            </div>
-                            <input type="password" placeholder="Nhập lại mật khẩu mới"
-                                   name="reNewPass" id="reNewPass"
-                                   ng-model="reNewPass"
-                                   password-match="newPass"
-                                   required>
-                        </div>
-                        <div>
-                            <h4 id="ErrorMessage" style="color: red; margin-left: 30px;"> </h4>
-                        </div>
-                        <div style="margin-left: 12%;">
-                            <input class="btn" onclick=" return false; " style="width: 250px" type="submit"
-                                   value="Đổi mật khẩu" id="submitChangePass"
-                                   ng-disabled="!changePassForm.$dirty || (changePassForm.$dirty && changePassForm.$invalid)"/>
-                        </div>
-                    }
-                </section><!-- content -->
+                        <!-- End tab change PassWord -->
+                    </div>
+                    <!-- /.portlet-body -->
+                </div>
+                <!-- /.portlet -->
+
+
             </div>
-
-            <hr>
-            <br>
-
-
+            <!-- /.col-lg-12 -->
         </div>
-        <!--End Main Content here-->
+        <!-- /.row -->
+        <div class="modal fade" id="sendMessage" role="dialog" hidden>
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <form name="CreateMessage">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Gửi tin nhắn tới: {{UserInfo.UserName}} </h4>
+                        </div>
 
-    </div>
-</div>
-<!-- End tab change PassWord -->
-</div>
-<!-- /.portlet-body -->
-</div>
-<!-- /.portlet -->
-
-
-</div>
-<!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<div class="modal fade" id="sendMessage" role="dialog" hidden>
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <form name="CreateMessage">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gửi tin nhắn tới: {{UserInfo.UserName}} </h4>
-                </div>
-                
-                <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
-                    Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Message">Tin nhắn</a>
-                </div>
-                <div class="modal-body">
-                    <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" ng-minlength="6" required />
-                    <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung" ng-model="content" required></textarea>
-                </div>
-                <div class="modal-footer">
-                    <div class="sendMessage">
-                        <button type="button" ng-disabled="!CreateMessage.$dirty || (CreateMessage.$dirty && CreateMessage.$invalid)" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
+                        <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                            Bạn đã gửi tin nhắn thành công, hãy kiểm tra tại <a href="#/Message">Tin nhắn</a>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" name="title" id="title" class="input-block-level" placeholder="Chủ đề" ng-model="titleMessage" ng-minlength="6" required />
+                            <textarea rows="11" name="message" id="message" class="input-block-level" placeholder="Nội dung" ng-model="content" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="sendMessage">
+                                <button type="button" ng-disabled="!CreateMessage.$dirty || (CreateMessage.$dirty && CreateMessage.$invalid)" ng-click="sendMessage(titleMessage, content)" class="btn btn-info pull-right">Gửi tin nhắn</button>
+                            </div>
+                            <div class="closeForm">
+                                <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="closeForm">
-                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-            </form>
+                </form>
 
-</div>
-</div>
-<div class="modal fade" id="sendReport" role="dialog" hidden>
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Báo cáo người dùng này </h4>
-            </div>
-            <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
-                Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
-            </div>
-            <div class="modal-body">
-                <div class="radio" ng-repeat="item in ReportContent track by $index">
-					<div  ng-if="$index==0">
-						<label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked"  >{{item}}</label>
-					</div>
-					<div ng-if="$index!=0">
-						<label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" >{{item}}</label>
-					</div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="sendMessage">
-                    <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
-                </div>
-                <div class="closeForm">
-                    <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
-                </div>
             </div>
         </div>
+        <div class="modal fade" id="sendReport" role="dialog" hidden>
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Báo cáo người dùng này </h4>
+                    </div>
+                    <div class="modal-message" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                        Bạn đã gửi báo cáo thành công, cảm ơn bạn đã dùng dịch vụ của chúng tôi.
+                    </div>
+                    <div class="modal-body">
+                        <div class="radio" ng-repeat="item in ReportContent track by $index">
+                            <div ng-if="$index==0">
+                                <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)" checked="checked">{{item}}</label>
+                            </div>
+                            <div ng-if="$index!=0">
+                                <label><input type="radio" id="optradio" name="optradio" ng-click="setValue($index)">{{item}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="sendMessage">
+                            <button type="button" ng-click="sendReport()" class="btn btn-info pull-right">Gửi báo cáo</button>
+                        </div>
+                        <div class="closeForm">
+                            <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+        <div class="modal fade" id="changeAvatar" role="dialog" hidden>
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Hãy chọn ảnh đại diện </h4>
+                    </div>
+                  @using (Html.BeginForm("UpdateUserAvatar", "Organization", FormMethod.Post, new { @id = "updateAvatar", @name = "updateAvatar", enctype = "multipart/form-data" }))
+                  {
+                    <div class="modal-body">
+          
+                        <input type="file" name="Image"  accept="image/*" onchange="onFileSelected(event)" required>
+                        <img id="userAvatar"  src="{{UserInfo.ProfileImage}}" class=" img-circle" style="height: 150px; width: 150px; margin: 0px 0px 0px;" alt="" />
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <div class="saveAvatar">
+                            <button type="submit" class="btn btn-info pull-right">Lưu</button>
+                        </div>
+                    
+                    </div>
+                  }
+                </div>
+
+            </div>
+        </div>
     </div>
+   
 </div>
-</div>
-
 
 @Html.Partial("../Home/_Footer")
 <script>
     $(".modal-message").hide();
     $(".closeForm").hide();
    
+</script>
+<!--load image to logo after select file-->
+<script>
+    function onFileSelected(event) {
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
+
+        var imgtag = document.getElementById("userAvatar");
+        imgtag.title = selectedFile.name;
+
+        reader.onload = function (event) {
+            imgtag.src = event.target.result;
+        };
+
+        reader.readAsDataURL(selectedFile);
+    }
 </script>
     <script type="text/javascript">
         $(function () {

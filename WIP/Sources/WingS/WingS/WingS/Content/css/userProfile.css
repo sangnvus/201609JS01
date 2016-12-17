@@ -2391,3 +2391,16 @@ div.DTFC_LeftFootWrapper table {
     vertical-align: baseline;
     border-radius: .25em;
 }
+.avatar{
+  position: relative;
+}
+ .edit-avatar {
+      display:none;
+      position: absolute;
+      height: 25px;
+      bottom: 10px;
+     
+    }
+ .avatar:hover .edit-avatar{
+   display:block;
+}
