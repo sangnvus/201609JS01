@@ -16,7 +16,6 @@ namespace WingS.Controllers
         public ActionResult CreateOrganization(CreateOrganization organization, HttpPostedFileBase LogoImage)
         {
             //Models.Organization newOrganization;
-            Organization organi = new Organization();
             try
             {
                 string logoName = WsConstant.randomString() + Path.GetExtension(LogoImage.FileName).ToLower();
@@ -26,7 +25,7 @@ namespace WingS.Controllers
 
                 using (var db = new OrganizationDAL())
                 {
-                    organi = db.AddNewOrganization(organization, User.Identity.Name);
+                    db.AddNewOrganization(organization, User.Identity.Name);
                 }
             }
             catch (Exception)
@@ -34,7 +33,7 @@ namespace WingS.Controllers
                 return Redirect("/#/Error");
             }
 
-            return Redirect("/#/OrganizationDetail/" + organi.OrganizationId);
+            return Redirect("/#/Home");
         }
 
         public ActionResult EditOrganization(CreateOrganization organization, HttpPostedFileBase LogoImage)
