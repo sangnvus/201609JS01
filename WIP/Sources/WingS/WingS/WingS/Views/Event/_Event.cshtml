@@ -121,22 +121,21 @@
                         <h1>Xếp hạng các tổ chức</h1>
                         <hr/>
                     </div>
-                    <div class="row-fluid">
+                    <div class="span12 row-fluid">
 
                         <div class="span4" align="center" ng-repeat="item in Organization track by $index">
+                            <div class="">
+                                <img src="{{item.LogoUrl}}" class="img-circle" style="width: 118px; height: 118px; margin: 5px 0px 15px;">
+                            </div>
                             <div class="organization-title">
                                 <h4 class="text-info">{{item.OrganizationName}}</h4>
-                            </div>
-                            <div class="organization-img">
-                                <img src="{{item.LogoUrl}}" class="img-circle" style="width:111px;height:118px; margin: 5px 0px 15px;">
-                            </div>
-                            <div class="organization-content">
-                                <p>{{item.Introduction}}</p>
                             </div>
                         </div>
 
                     </div>
                 </div>
+                <br />
+                <div align="center"><a class="btn btn-primary" href=@Url.Content("/#/Organization")> Xem danh sách các tổ chức</a></div>
             </div>
             <!-- Warnning Modal -->
             <div class="modal modal-flex fade" id="WarnningEvent" tabindex="-1" role="dialog" aria-labelledby="flexModalLabel" aria-hidden="true" hidden>
