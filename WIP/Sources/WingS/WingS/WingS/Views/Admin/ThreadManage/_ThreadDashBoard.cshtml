@@ -55,9 +55,8 @@
                             <td>{{ $index + 1 }}</td>
                             <td class="nameAdmin">
                                 <a class="pull-left" href="@Url.Content("/Admin/#/ThreadDetail/{{item.ThreadID}}")">
-                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ImageUrl[0]}}" alt="">
+                                    <p> {{item.ThreadName}}</p>
                                 </a>
-                                <p> {{item.ThreadName}}</p>
                             </td>
                             <td>{{item.Creator}}</td>
                             <td>{{item.CreatedDate}}</td>

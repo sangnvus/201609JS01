@@ -56,10 +56,9 @@
                                         <tr class="odd gradeX" ng-repeat="item in allOrgWaitAccept">
                                             <td>{{ $index + 1 }}</td>
                                             <td class="nameAdmin">
-                                                <a class="pull-left" href="@Url.Content("/Admin/#/OrganizationDetail/{{item.UserId}}")">
-                                                    <img style="width: 40px; height: 40px;" class="media-object img-circle" src="{{item.ProfileImage}}" alt="">
+                                                <a class="pull-left" href="@Url.Content("/Admin/#/UserProfile/{{item.OrganizationId}}")">
+                                                    <p> {{item.Creator.UserName}}</p>
                                                 </a>
-                                                <p> {{item.Creator.UserName}}</p>
                                             </td>
                                             <td>{{item.CreatedDate}}</td>
                                             <td>{{item.OrganizationName}}</td>
