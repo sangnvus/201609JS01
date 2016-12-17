@@ -39,19 +39,19 @@
                                 <div class="col-lg-8" id="divMain">
                                     <h3>Giới thiệu</h3>
 
-                                    <p>{{currentOrg.Introduction}}</p>
+                                    <p ng-bind-html="currentOrg.Introduction"><p>
 
-                                    <h3>Các sự kiện đã tổ chức</h3>
+                                        <h3>Các sự kiện đã tổ chức</h3>
 
-                                    <div class="row" ng-repeat="item in eventsOfOrganization | limitTo: paginationLimit()">
-                                        <div class="col-lg-2">
-                                            <a href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
-                                                <img src="{{item.MainImageUrl}}" class="img-polaroid" alt="" style="width: 110px;height: 120px; margin-bottom: 20px; ">
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-10 orContent">
-                                            <h4>{{item.EventName}}</h4>
-                                            <p>{{item.ShortDescription}}</p>
+                                        <div class="row" ng-repeat="item in eventsOfOrganization | limitTo: paginationLimit()">
+                                            <div class="col-lg-2">
+                                                <a href="@Url.Content("/Admin/#/EventDetail/{{item.EventID}}")">
+                                                    <img src="{{item.MainImageUrl}}" class="img-polaroid" alt="" style="width: 110px;height: 120px; margin-bottom: 20px; ">
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-10 orContent">
+                                                <h4>{{item.EventName}}</h4>
+                                                <p>{{item.ShortDescription}}</p>
                                             <p>
                                                 <span style="width: 48px;"><i class="fa fa-thumbs-o-up" aria-hidden="true" title="Số lượt thích"></i>&nbsp;{{item.Likes}}</span>
                                                 <span style="margin-left: 30px; width: 50px;"><i class="fa fa-comment-o" aria-hidden="true" title="Số bình luận"></i>&nbsp;{{item.NumberOfComments}}</span>
