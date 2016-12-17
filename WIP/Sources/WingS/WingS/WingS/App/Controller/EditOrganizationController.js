@@ -1,4 +1,4 @@
-﻿app.controller("EditOrganizationController", function ($scope, $http, $routeParams) {
+﻿app.controller("EditOrganizationController", function ($scope,$sce, $http, $routeParams) {
     var organizationId = $routeParams.OrgId;
     //get organization detail
     $http({
@@ -9,6 +9,6 @@
     }).success(function (response) {
         $scope.editOrg = response.Data;
         $scope.OrganizationName = $scope.editOrg.OrganizationName;
-        $scope.Introduction = $scope.editOrg.Introduction;
+        $scope.editOrg.Introduction = $sce.trustAsHtml($scope.editOrg.Introduction);
     });
 });

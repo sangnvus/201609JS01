@@ -111,7 +111,7 @@
                                             <h4>Nội dung</h4>
                                             <div id="content" class="tab-pane fade in active">
                                                 <div class="contentEvent">
-                                                    <p>{{currentEvent.Content}}<p>
+                                                    <p ng-bind-html="currentEvent.Content"><p>
                                                 </div>
                                                 <div>
                                                     <p style="font-weight: 600;">Sự kiện được thực hiện tại: {{currentEvent.Location}}</p>
