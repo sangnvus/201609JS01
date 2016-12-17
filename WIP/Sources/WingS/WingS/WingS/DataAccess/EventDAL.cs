@@ -1030,6 +1030,7 @@ namespace WingS.DataAccess
                     getDonator.FullName = item.FullName;
                     getDonator.DonatedMoney = item.DonatedMoney;
                     getDonator.DonatedDate = item.DonatedDate.ToString("H:mm:ss dd/MM/yy");
+                    getDonator.Content = item.Content;
                     newList.Add(getDonator);
                 }
                 return newList;
