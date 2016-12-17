@@ -27,7 +27,7 @@
                                         <img class="img-responsive img-profile" style="width: 227px; height: 227px;" src="{{UserInfo.ProfileImage}}" alt="">
                                         @{ if (User.Identity.Name != "" || User.Identity.IsAuthenticated)
                                             {
-                                                <label class="edit-avatar"  ng-if=" UserInfo.UserName==User_Information.UserName">
+                                                <label class="edit-avatar"  ng-if="UserInfo.UserName==User_Information.UserName">
                                                     <a class="btn" href="#" onclick="return false;" data-target="#changeAvatar" data-toggle="modal"><i class="fa-camera"></i> Chọn ảnh</a>
                                                 </label>
                                                

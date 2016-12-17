@@ -207,7 +207,7 @@ namespace WingS.DataAccess
                         bs.Content = item.Content;
                         bs.NumberSubComment = item.Count;
                         if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
-                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).TotalHours + " Tiếng cách đây";
+                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,1) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).TotalHours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
@@ -274,7 +274,7 @@ namespace WingS.DataAccess
                         else bs.isDeleted = false;
                         bs.Content = item.Content;
                         if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
-                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).TotalHours + " Tiếng cách đây";
+                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,1) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).TotalHours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
@@ -307,7 +307,7 @@ namespace WingS.DataAccess
                         bs.CommentId = item.CommentEventId;
                         bs.Content = item.Content;
                         if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
-                            bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).TotalHours + " Tiếng cách đây";
+                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,1) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).TotalHours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";

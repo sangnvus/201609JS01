@@ -53,7 +53,7 @@ namespace WingS.DataAccess
                     MessageBasicInfoDTO current = new MessageBasicInfoDTO();
                     //Set time
                     if (DateTime.Now.Subtract(item.CreatedDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CreatedDate).TotalHours >= 1)
-                        current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).TotalHours + " Tiếng cách đây";
+                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
                     else if (DateTime.Now.Subtract(item.CreatedDate).TotalHours > 24)
                         current.CreatedDate = item.CreatedDate.ToString("H:mm:ss dd/MM/yy");
                     else current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).Minutes + " Phút cách đây";
@@ -129,7 +129,7 @@ namespace WingS.DataAccess
                     }
                     //Set Time
                     if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours <= 24 && DateTime.Now.Subtract(item.UpdatedTime).TotalHours >= 1)
-                        current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).TotalHours + " Tiếng cách đây";
+                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
                     else if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours > 24)
                         current.CreatedDate = item.UpdatedTime.ToString("H:mm:ss dd/MM/yy");
                     else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
@@ -181,7 +181,7 @@ namespace WingS.DataAccess
                     }
                     //Set Time
                     if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours <= 24 && DateTime.Now.Subtract(item.UpdatedTime).TotalHours >= 1)
-                        current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).TotalHours + " Tiếng cách đây";
+                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
                     else if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours > 24)
                         current.CreatedDate = item.UpdatedTime.ToString("H:mm:ss dd/MM/yy");
                     else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
@@ -206,7 +206,7 @@ namespace WingS.DataAccess
                         }
                         //Set Time
                         if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours <= 24 && DateTime.Now.Subtract(item.UpdatedTime).TotalHours >= 1)
-                            current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).TotalHours + " Tiếng cách đây";
+                            current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours > 24)
                             current.CreatedDate = item.UpdatedTime.ToString("H:mm:ss dd/MM/yy");
                         else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
