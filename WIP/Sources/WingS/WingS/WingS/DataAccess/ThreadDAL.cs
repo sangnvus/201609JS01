@@ -151,9 +151,11 @@ namespace WingS.DataAccess
                         else bs.isDeleted = false;
                         bs.NumberSubComment = item.Count;
                         if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
-                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,1) + " Tiếng cách đây";
+                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,0) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).TotalHours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
+                        else if (DateTime.Now.Subtract(item.CommentDate).Minutes == 0)
+                            bs.CommentedTime = "Vừa xong";
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         bs.NumberOfLikes = db.LikeCommentThreads.Where(x => x.CommentId == item.CommentThreadId && x.Status == true).Count();
                         list.Add(bs);
@@ -198,9 +200,11 @@ namespace WingS.DataAccess
                         }
                         else bs.isDeleted = false;
                         if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
-                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,1) + " Tiếng cách đây";
+                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,0) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).TotalHours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
+                        else if (DateTime.Now.Subtract(item.CommentDate).Minutes == 0)
+                            bs.CommentedTime = "Vừa xong";
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         list.Add(bs);
                     }
@@ -231,9 +235,11 @@ namespace WingS.DataAccess
                         bs.CommentId = item.CommentThreadId;
                         bs.Content = item.Content;
                         if (DateTime.Now.Subtract(item.CommentDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CommentDate).TotalHours >= 1)
-                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,1) + " Tiếng cách đây";
+                            bs.CommentedTime = Math.Round(DateTime.Now.Subtract(item.CommentDate).TotalHours,0) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.CommentDate).Hours > 24)
                             bs.CommentedTime = item.CommentDate.ToString("H:mm:ss dd/MM/yy");
+                        else if (DateTime.Now.Subtract(item.CommentDate).Minutes == 0)
+                            bs.CommentedTime = "Vừa xong";
                         else bs.CommentedTime = DateTime.Now.Subtract(item.CommentDate).Minutes + " Phút cách đây";
                         list.Add(bs);
                     }

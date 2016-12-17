@@ -53,9 +53,11 @@ namespace WingS.DataAccess
                     MessageBasicInfoDTO current = new MessageBasicInfoDTO();
                     //Set time
                     if (DateTime.Now.Subtract(item.CreatedDate).TotalHours <= 24 && DateTime.Now.Subtract(item.CreatedDate).TotalHours >= 1)
-                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
+                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,0) + " Tiếng cách đây";
                     else if (DateTime.Now.Subtract(item.CreatedDate).TotalHours > 24)
                         current.CreatedDate = item.CreatedDate.ToString("H:mm:ss dd/MM/yy");
+                    else if (DateTime.Now.Subtract(item.CreatedDate).Minutes == 0)
+                        current.CreatedDate = "Vừa xong";
                     else current.CreatedDate = DateTime.Now.Subtract(item.CreatedDate).Minutes + " Phút cách đây";
                     //Set other atributes
                     current.CreatorImage = item.User.User_Information.ProfileImage;
@@ -129,9 +131,11 @@ namespace WingS.DataAccess
                     }
                     //Set Time
                     if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours <= 24 && DateTime.Now.Subtract(item.UpdatedTime).TotalHours >= 1)
-                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
+                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,0) + " Tiếng cách đây";
                     else if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours > 24)
                         current.CreatedDate = item.UpdatedTime.ToString("H:mm:ss dd/MM/yy");
+                    else if (DateTime.Now.Subtract(item.CreatedDate).Minutes == 0)
+                        current.CreatedDate = "Vừa xong";
                     else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
                     //Set other attributes
                     current.Title = item.Title;
@@ -181,9 +185,11 @@ namespace WingS.DataAccess
                     }
                     //Set Time
                     if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours <= 24 && DateTime.Now.Subtract(item.UpdatedTime).TotalHours >= 1)
-                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
+                        current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,0) + " Tiếng cách đây";
                     else if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours > 24)
                         current.CreatedDate = item.UpdatedTime.ToString("H:mm:ss dd/MM/yy");
+                    else if (DateTime.Now.Subtract(item.CreatedDate).Minutes == 0)
+                        current.CreatedDate = "Vừa xong";
                     else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
                     //Set other attributes
                     current.Title = item.Title;
@@ -206,9 +212,11 @@ namespace WingS.DataAccess
                         }
                         //Set Time
                         if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours <= 24 && DateTime.Now.Subtract(item.UpdatedTime).TotalHours >= 1)
-                            current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,1) + " Tiếng cách đây";
+                            current.CreatedDate = Math.Round(DateTime.Now.Subtract(item.CreatedDate).TotalHours,0) + " Tiếng cách đây";
                         else if (DateTime.Now.Subtract(item.UpdatedTime).TotalHours > 24)
                             current.CreatedDate = item.UpdatedTime.ToString("H:mm:ss dd/MM/yy");
+                        else if (DateTime.Now.Subtract(item.CreatedDate).Minutes == 0)
+                            current.CreatedDate = "Vừa xong";
                         else current.CreatedDate = DateTime.Now.Subtract(item.UpdatedTime).Minutes + " Phút cách đây";
                         //Set other attributes
                         current.Title = item.Title;
