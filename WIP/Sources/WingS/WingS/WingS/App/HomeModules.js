@@ -14,6 +14,11 @@ app.config(function ($routeProvider) {
             templateUrl: "/Client/Login"
 
         })
+        .when("/AboutUs", {
+            tittle: "Về chúng tôi",
+            templateUrl: "/Client/AboutUs"
+
+        })
         .when("/Register", {
             tittle: "Đăng ký",
             templateUrl: "/Client/Register"

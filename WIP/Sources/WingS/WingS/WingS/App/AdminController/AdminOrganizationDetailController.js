@@ -1,4 +1,4 @@
-﻿app.controller("AdminOrganizationDetailController", function ($scope, $http, SweetAlert, $routeParams) {
+﻿app.controller("AdminOrganizationDetailController", function ($scope, $http, $sce, SweetAlert, $routeParams) {
     var organizationId = $routeParams.OrganizationID;
     //get organization detail
     $http({
@@ -8,6 +8,7 @@
         contentType: "application/json"
     }).success(function (response) {
         $scope.currentOrg = response.Data;
+        $scope.currentOrg.Introduction = $sce.trustAsHtml($scope.currentOrg.Introduction);
     });
 
     
