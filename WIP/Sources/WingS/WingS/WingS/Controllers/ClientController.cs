@@ -16,6 +16,10 @@ namespace WingS.Controllers
         {
             return PartialView("~/Views/Login/_Login.cshtml");
         }
+        public ActionResult AboutUs()
+        {
+            return PartialView("~/Views/Home/_AboutUs.cshtml");
+        }
         public ActionResult Register()
         {
             return PartialView("~/Views/Login/_Register.cshtml");
