@@ -117,6 +117,8 @@ namespace WingS.Controllers.WebApi
         {
             try
             {
+                OrganizationBasicInfo organizationBasic;
+
                 using (var db = new OrganizationDAL())
                 {
                     var org = db.GetOrganizationById(organizationId);
@@ -124,7 +126,41 @@ namespace WingS.Controllers.WebApi
                     org.IsActive = true;
 
                     db.UpdateOrganization(org);
+
+                    organizationBasic = db.GetFullOrganizationBasicInformation(org.OrganizationId);
                 }
+
+                
+                //send email to register user
+                //khai bao bien
+                var fromAddress = new MailAddress(WsConstant.OrganizationRegistration.AdminEmail, WsConstant.OrganizationRegistration.WsAdmin);
+                var toAddress = new MailAddress(organizationBasic.Creator.Email, organizationBasic.Creator.UserName);
+                string fromPassword = WsConstant.OrganizationRegistration.AdminEmailPass;
+                string subject = WsConstant.OrganizationRegistration.EmailSubjectAcceptRegistration;
+                string body = WsConstant.OrganizationRegistration.EmailContentFirst + "Yêu cầu tạo tổ chức : '" + organizationBasic.OrganizationName + "' " + WsConstant.OrganizationRegistration.EmailContentAcceptRegistration;
+                //xu li gui mail
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Timeout = 30000,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+                    
+               
+
+
                 return Ok(new HTTPMessageDTO { Status = WsConstant.HttpMessageType.SUCCESS, Data = true });
             }
             catch (Exception)
