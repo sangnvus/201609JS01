@@ -222,7 +222,7 @@ app.run(['$location', '$rootScope', '$window', function ($location, $rootScope, 
                     IsAuthen: false,
                     IsOrganazation: false
                 };
-                $window.sessionStorage.setItem("isAuthen", false)
+                $window.sessionStorage.setItem("isAuthen", false);
             }
         })
     }
