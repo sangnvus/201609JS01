@@ -132,7 +132,7 @@ namespace WingS.DataAccess
                     }
                     if(UserInfo.Country!=null) newInformation.Country = UserInfo.Country;
                     if(UserInfo.Gender!=null)  newInformation.Gender = UserInfo.Gender;
-                    if (UserInfo.DOB != null)  newInformation.DoB = Convert.ToDateTime(UserInfo.DOB);
+                    if (UserInfo.DOB != "")  newInformation.DoB = Convert.ToDateTime(UserInfo.DOB);
                     if (UserInfo.FacebookUri != null) newInformation.FacebookUrl = UserInfo.FacebookUri;
                     if (UserInfo.UserSignature != null) newInformation.UserSignature = UserInfo.UserSignature;
                     db.User_Information.AddOrUpdate(newInformation);
